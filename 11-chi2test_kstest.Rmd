@@ -1,0 +1,3 @@
+# Chi2- und Kolmogorow-Smirnow-Test {#chi2test_kstest}
+
+

@@ -1,0 +1,17 @@
+--- 
+title: "Einfuehrung in die Statistik"
+author: "Tobias Krueger"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: book.bib
+biblio-style: apalike
+link-citations: yes
+github-repo: krueger-t/eids
+description: "This is the script of the course 'Einfuehrung in die Statistik' (in German) run at the Geography Department of Humboldt-Universität zu Berlin."
+---
+
+# Vorwort {-}
+
+Dies ist das Skript fuer den Kurs 'Einfuehrung in die Statistik' am Geographischen Institut der Humboldt-Universität zu Berlin.

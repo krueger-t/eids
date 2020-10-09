@@ -1,0 +1,16 @@
+[
+["index.html", "Einfuehrung in die Statistik Vorwort", " Einfuehrung in die Statistik Tobias Krueger 2020-10-09 Vorwort Dies ist das Skript fuer den Kurs ‘Einfuehrung in die Statistik’ am Geographischen Institut der Humboldt-Universität zu Berlin. "],
+["einfuehrung.html", "Chapter 1 Einfuehrung", " Chapter 1 Einfuehrung "],
+["begriffe.html", "Chapter 2 Grundbegriffe", " Chapter 2 Grundbegriffe "],
+["haeufigkeit.html", "Chapter 3 Haeufigkeiten", " Chapter 3 Haeufigkeiten "],
+["streuung.html", "Chapter 4 Streuungsparameter", " Chapter 4 Streuungsparameter "],
+["korrelation.html", "Chapter 5 Korrelationsanalyse", " Chapter 5 Korrelationsanalyse "],
+["wahrscheinlichkeit.html", "Chapter 6 Grundlagen der Wahrscheinlichkeitsrechnung", " Chapter 6 Grundlagen der Wahrscheinlichkeitsrechnung "],
+["verteilungen.html", "Chapter 7 Verteilungen", " Chapter 7 Verteilungen "],
+["schaetzen.html", "Chapter 8 Schaetzen von Verteilungsparametern", " Chapter 8 Schaetzen von Verteilungsparametern "],
+["ttest.html", "Chapter 9 T-Test", " Chapter 9 T-Test "],
+["ftest.html", "Chapter 10 F-Test", " Chapter 10 F-Test "],
+["chi2test-kstest.html", "Chapter 11 Chi2- und Kolmogorow-Smirnow-Test", " Chapter 11 Chi2- und Kolmogorow-Smirnow-Test "],
+["regression.html", "Chapter 12 Lineare Regression", " Chapter 12 Lineare Regression "],
+["literatur.html", "Literatur", " Literatur "]
+]
