@@ -1,3 +1,57 @@
-# Einfuehrung {#einfuehrung}
+# Einführung {#einfuehrung}
 
+## Modul B3 _Einführung in die Statistik & das Fach Geographie_
 
+Das Modul B3 besteht aus:
+
+1. Dem Seminar _Einführung in die Statistik_ mit [Tobias Krüger](https://www.iri-thesys.org/people/kruegertobias) (regelmaessiges ZOOM-Treffen montags 11:00-12:30 - s. Moodle link)
+2. Dem Seminar _Einführung in die Geographie_ mit [Christoph Schneider](https://www.geographie.hu-berlin.de/de/Members/schneider_christoph) und [Henning Nuissl](https://www.geographie.hu-berlin.de/de/Members/nuissl_henning)
+3. Der PC-Übung _Statistische Datenverarbeitung_ mit [Matthias Baumann](https://www.geographie.hu-berlin.de/en/professorships/biogeography/people/current-people/baumann), [Sebastian Schubert](https://www.geographie.hu-berlin.de/de/Members/schubert_sebastian), [Heidi Kreibich](https://www.gfz-potsdam.de/staff/heidi-kreibich/), [Abror Gafurov](https://www.gfz-potsdam.de/staff/abror-gafurov/), [Hoseung Jung](https://www.iri-thesys.org/people/jung), Friedrich Busch, Kassandra Jensch und Maeve Smyth (ab 27. November 3-stuendig freitags 09:00-12:00 - dazu mehr weiter unten)
+
+Das vorliegende Skript ist Grundlage des Seminars _Einführung in die Statistik_ und dient der theoretischen Vorbereitung der PC-Übung _Statistische Datenverarbeitung_. Organisatorisches dazu weiter unten. Zunaechst ein paar Worte zur Motivation.
+
+## Statistik im empirischen Forschungsprozess
+
+Lesen Sie dazu bitte Kapitel 2.4 von @zimmermann2014 - s. Moodle link. Gemaess dieser Kategorisierung befasst sich die Statistik hauptsaechlich mit **Datenanalyse** (Punkt 7), obwohl die angrenzenden Schritte ebenfalls wichtig sind. Auf **Auswahl der Untersuchungseinheit** (Punkt 4), **Datenerhebung** (Punkt 5) und **Datenaufbereitung** (Punkt 6) werden wir in Kapitel \@ref(begriffe) naeher eingehen. Punkt 8 (**Interpretation und Rueckschluesse**) wird durchgehend eine Rolle spielen.
+
+## Warum Statistik?
+
+Statistik ist Teil des physisch- & humangeographischen Methodenpakets. Da die Erkenntnisse der Geographie in vielen Teilen auf dem empirischen Forschungsprozess basieren ist statistische Analyse unumgänglich als Argumentationsunterstützung und als Beweissicherung. Außerdem dient sie der Bestätigung oder Widerlegung theoretischer Ansätze und der Generierung neuer Informationen aus verfügbaren Daten. In der Praxis dient Statistik häufig als Entscheidungsgrundlage.
+
+Lesen Sie bitte Kapitel 2.3 von @zimmermann2014 fuer konkrete Anwendungsbeispiele der Statistik in der Geographie.
+
+**Aufgabe:** _Bitte beschreiben Sie anhand des Kapitels kurz die fuer Sie wichtigsten Anwendungsfelder der Statistik in der Geographie und laden Sie Ihren Text ueber den Abgabelink auf Moodle bis Ende der Woche hoch - s. Abgabelink unter Woche 1 auf Moodle._
+
+Am Ende von Kapitel 2.3 in @zimmermann2014 finden Sie ausserdem eine Erklaerung der Teilbereiche der Statistik. Mit der **deskriptiven (beschreibenden) Statistik** beschaeftigen wir uns in den Wochen 3-5 (Kapitel \@ref(haeufigkeit)-\@ref(korrelation)). Dazu ist das Lehrbuch von @zimmermann2014 wichtig. Mit der **induktiven (schließenden) Statistik** beschaefigen wir uns in den Wochen 8-13 (Kapitel \@ref(schaetzen)-\@ref(regression)). Die Bruecke zwischen diesen beiden Teilbereichen - wie es @zimmermann2014 darstellt - ist die **Wahrscheinlichkeitstheorie**, mit der wir uns in den Wochen 6-7 auseinandersetzen (Kapitel \@ref(wahrscheinlichkeit)-\@ref(verteilungen)).
+
+## Organisatorisches
+
+Die Abfolge der Inhalte des Seminars und der PC-Übung finden Sie in Tabelle \@ref(tab:syllabus).
+
+```{r include=FALSE}
+library("readxl")
+tab_syllabus <- read_excel("tabs/syllabus.xlsx")
+```
+
+```{r syllabus, echo=FALSE}
+knitr::kable(
+  tab_syllabus, booktabs = TRUE,
+  caption = 'Inhalte von _Einführung in die Statistik_ und _Statistische Datenverarbeitung_. Der gelesene Stoff wird am darauffolgenden Montag im Seminar diskutiert. Die PC-Übung beginnt in Woche 4 am 27. November.'
+)
+```
+
+Der prinzipielle Lernmodus in diesem digitalen Semester ist das **Lesen** von Kapiteln aus dem vorliegenden Skript und aus zwei Lehrbuechern (@zimmermann2014 und @mittag2016). Im **Seminar** jeden Montag besteht die Moeglichkeit, Fragen zu klaeren und den Stoff der vorherigen Woche zu diskutieren. Das Seminar findet ueber ZOOM statt - s. permanenter link auf Moodle.
+
+**Wichtig:** _Fragen und Diskussionswuensche muessen bis Ende jeder Woche ueber das Moodleforum eingereicht werden. Manche Fragen werden sich bereits ueber das Forum klaeren lassen._
+
+Im Selbststudium - unterstuetzt durch das Seminar - erarbeiten Sie sich so die Theorie, welche dann in der **PC-Übung** mittels der Software R zur Anwendung kommt. Die PC-Übung findet ab 27. November immer freitags 09:00-12:00 statt, ebenfalls ueber ZOOM. Wir werden mehrere thematische ZOOM-Raeume anbieten, in die Sie nach Bedarf gehen koennen. Zu Beginn jeder Sitzung werden Fragen zur aktuellen Hausaufgabe geklärt. Sodann wird ein neuer Übungszettel zur Bearbeitung freigegeben. Waehrend dessen stehen die Lehrende in den ZOOM-Raeumen für Fragen zur Verfügung. Ein Lösungszettel wird am Ende bereit gestellt. Abschliessend gibt es eine neue Hausaufgabe bis zur nächsten Woche. Der Lösungszettel wird vor der nächsten Übung bereit gestellt.
+
+In den **Hausaufgaben** wird z.B. in der Übung Erprobtes auf einen anderen Datensatz angewendet oder erweitert. Mindestens 8 von 10 Hausaufgaben müssen bestanden sein, d.h. zu mehr als 50% richtig sein. Die Abgabe erfolgt ueber einen Abgabelink auf Moodle bis zum nächsten Mittwoch 24:00. Das Abgabeformat (HTML via R Markdown) wird in der ersten PC-Übung ausfuehrlich erklaert und eingeuebt. Es beinhaltet den R-Code, einen kurzen Text zur Beantwortung der Fragestellung bzw. Interpretation der Ergebnisse, sowie relevante (!) Abbildungen, Tabellen und Kenngrößen. Am Donnerstag wird das Lösungsblatt bereit gestellt. Unklarheiten und Probleme werden zu Beginn der nächsten Übung geklaert.
+
+Ein kurzes Wort zu unseren **Erwartungen**: In diesem digitalen Semester wird selbstaendiges Lernen noch wichtiger sein als in Praesenzsemestern. Das Seminar entspricht mit 3 Leistungspunkten einem Aufwand von 90 Stunden, d.h. 6 Stunden pro Woche. Bei maximal 1,5 Stunden "Praesenz" via ZOOM verbleiben mindestens 4,5 Stunden pro Woche fuer das Selbststudium des Skriptes und der ausgewaehlten Lehrbuchkapitel. Die PC-Übung entspricht mit 3 Leistungspunkten ebenfalls 90 Stunden, d.h. 7,5 Stunden pro Woche ab Semesterwoche 4. Bei 3 Stunden "Praesenz" via ZOOM verbleiben weitere 4,5 Stunden pro Woche fuer Nachbereitung und Hausaufgaben. **Insgesamt sollten Sie sich auf 9 Stunden pro Woche selbstständiges Arbeiten für Statistik einstellen.**
+
+Die Modulabschlusspruefung ist dieses Jahr eine sogenannte **take-home Klausur**, die Sie - voraussichtlich in der 1. Semesterferienwoche - zuhause in einem vorgegeben Zeitrahmen selbstaendig bearbeiten. Ein Nachholtermin findet voraussichtlich in der letzten Semesterferienwoche statt. Die Anmeldung erfolgt gegen Semesterende über AGNES (Frau Schwedler). Die take-home Klausur wird stark an die Übungen und Hausaufgaben angelehnt sein. Dazu wird es ein paar Fragen - womoeglich multiple-choice - ueber Moodle geben. Insgesamt werden sich 5/6 der zu erreichenden Punktzahl auf _Einführung in die Statistik_ beziehen und 1/6 auf _Einführung in die Geographie_. Wir werden immer wieder klausuraehnliche Fragen waehrend des Semesters stellen.
+
+## Mathematische Notation & Grundlagen
+
+...

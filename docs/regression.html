@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-10-09" />
+<meta name="date" content="2020-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -71,7 +71,13 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
-<li class="chapter" data-level="1" data-path="einfuehrung.html"><a href="einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einfuehrung</a></li>
+<li class="chapter" data-level="1" data-path="einfuehrung.html"><a href="einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
+<li class="chapter" data-level="1.1" data-path="einfuehrung.html"><a href="einfuehrung.html#modul-b3-einführung-in-die-statistik-das-fach-geographie"><i class="fa fa-check"></i><b>1.1</b> Modul B3 <em>Einführung in die Statistik &amp; das Fach Geographie</em></a></li>
+<li class="chapter" data-level="1.2" data-path="einfuehrung.html"><a href="einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.2</b> Statistik im empirischen Forschungsprozess</a></li>
+<li class="chapter" data-level="1.3" data-path="einfuehrung.html"><a href="einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.3</b> Warum Statistik?</a></li>
+<li class="chapter" data-level="1.4" data-path="einfuehrung.html"><a href="einfuehrung.html#organisatorisches"><i class="fa fa-check"></i><b>1.4</b> Organisatorisches</a></li>
+<li class="chapter" data-level="1.5" data-path="einfuehrung.html"><a href="einfuehrung.html#mathematische-notation-grundlagen"><i class="fa fa-check"></i><b>1.5</b> Mathematische Notation &amp; Grundlagen</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="begriffe.html"><a href="begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe</a></li>
 <li class="chapter" data-level="3" data-path="haeufigkeit.html"><a href="haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Haeufigkeiten</a></li>
 <li class="chapter" data-level="4" data-path="streuung.html"><a href="streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter</a></li>
@@ -82,7 +88,10 @@
 <li class="chapter" data-level="9" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>9</b> T-Test</a></li>
 <li class="chapter" data-level="10" data-path="ftest.html"><a href="ftest.html"><i class="fa fa-check"></i><b>10</b> F-Test</a></li>
 <li class="chapter" data-level="11" data-path="chi2test-kstest.html"><a href="chi2test-kstest.html"><i class="fa fa-check"></i><b>11</b> Chi2- und Kolmogorow-Smirnow-Test</a></li>
-<li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Lineare Regression</a></li>
+<li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Lineare Regression</a><ul>
+<li class="chapter" data-level="12.1" data-path="regression.html"><a href="regression.html#motivation"><i class="fa fa-check"></i><b>12.1</b> Motivation</a></li>
+<li class="chapter" data-level="12.2" data-path="regression.html"><a href="regression.html#definitionen"><i class="fa fa-check"></i><b>12.2</b> Definitionen</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="literatur.html"><a href="literatur.html"><i class="fa fa-check"></i>Literatur</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -105,7 +114,40 @@
             <section class="normal" id="section-">
 <div id="regression" class="section level1">
 <h1><span class="header-section-number">Chapter 12</span> Lineare Regression</h1>
+<div id="motivation" class="section level2">
+<h2><span class="header-section-number">12.1</span> Motivation</h2>
+<p>Kann man Ihre Reisezeit mit der Entfernung zu Ihrem Wohnort statistisch vorhersagen? (vgl. VL 5)</p>
+<div class="figure" style="text-align: center"><span id="fig:abb12-1"></span>
+<img src="figs/abb12-1.jpg" alt="Reisezeit in Abhängigkeit zur Entfernung. Korrelationskoeffizient nach Bravais-Pearson r~$x,y$~=0,86"  />
+<p class="caption">
+Figure 12.1: Reisezeit in Abhängigkeit zur Entfernung. Korrelationskoeffizient nach Bravais-Pearson r<sub><span class="math inline">\(x,y\)</span></sub>=0,86
+</p>
+</div>
+<p><strong>Ziel</strong>: Eine Gerade durch die Punktwolke zu legen, die den <em>Trend</em> beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.</p>
+<p>Es geht um <em>2 Variablen</em> (Merkmale):</p>
+<ul>
+<li>die <strong>abhängige Variable</strong> <span class="math inline">\(y\)</span> (im Bsp. Reisezeit)</li>
+<li>die <strong>unabhängige Variable</strong> <span class="math inline">\(x\)</span> (im Bsp. Entfernung)</li>
+</ul>
+<p>Die Variablen müssen <em>metrisch</em> skaliert sein. Wir wollen das generelle Verhalten von <span class="math inline">\(y\)</span> mit <span class="math inline">\(y\)</span> beschreiben. Eine Gerade ist das einfachste lineare Modell.</p>
+</div>
+<div id="definitionen" class="section level2">
+<h2><span class="header-section-number">12.2</span> Definitionen</h2>
+<p>Im Falle einer einzigen unabhängigen Variable ist die Gleichung des <strong>linearen Models</strong> wie folgt:</p>
+<p><span class="math display" id="eq:linmodsingle">\[\begin{equation}
+y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i
+\tag{12.1}
+\end{equation}\]</span></p>
+<p>Mit <span class="math inline">\(i\)</span> = 1,2,…,<span class="math inline">\(n\)</span></p>
+<ul>
+<li><span class="math inline">\(y_i\)</span> Wert der <strong>abhängigen Variable</strong> für Datenpunkt <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(x_i\)</span> Wert der <strong>unabhängigen Variable</strong> für Datenpunkt <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\beta_0\)</span> <strong>Achsenabschnitt</strong> der Geraden (ein Parameter)</li>
+<li><span class="math inline">\(\beta_1\)</span> <strong>Steigung</strong> der Geraden (ein Parameter)</li>
+<li><span class="math inline">\(\epsilon_i\)</span> <strong>Residuum</strong> (Fehler) für Datenpunkt <span class="math inline">\(i\)</span></li>
+</ul>
 
+</div>
 </div>
             </section>
 
@@ -163,6 +205,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
