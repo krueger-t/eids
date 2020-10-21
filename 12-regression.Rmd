@@ -1,3 +1,40 @@
 # Lineare Regression {#regression}
 
+## Motivation
+
+Kann man Ihre Reisezeit mit der Entfernung zu Ihrem Wohnort statistisch vorhersagen? (vgl. VL 5)
+
+
+```{r abb12-1, echo=FALSE, fig.align='center', fig.cap='Reisezeit in Abhängigkeit zur Entfernung. Korrelationskoeffizient nach Bravais-Pearson r~$x,y$~=0,86'}
+knitr::include_graphics('figs/abb12-1.jpg')
+```
+
+**Ziel**: Eine Gerade durch die Punktwolke zu legen, die den *Trend* beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.
+
+Es geht um *2 Variablen* (Merkmale):
+
+- die **abhängige Variable** $y$ (im Bsp. Reisezeit)
+- die **unabhängige Variable** $x$ (im Bsp. Entfernung)
+
+Die Variablen müssen *metrisch* skaliert sein. Wir wollen das generelle Verhalten von $y$ mit $y$ beschreiben. Eine Gerade ist das einfachste lineare Modell.
+
+## Definitionen
+
+Im Falle einer einzigen unabhängigen Variable ist die Gleichung des **linearen Models** wie folgt:
+
+$$\begin{equation}
+y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i
+(\#eq:linmodsingle)
+\end{equation}$$
+
+Mit $i$ = 1,2,...,$n$
+
+- $y_i$ Wert der **abhängigen Variable** für Datenpunkt $i$
+- $x_i$ Wert der **unabhängigen Variable** für Datenpunkt $i$
+- $\beta_0$ **Achsenabschnitt** der Geraden (ein Parameter)
+- $\beta_1$ **Steigung** der Geraden (ein Parameter)
+- $\epsilon_i$ **Residuum** (Fehler) für Datenpunkt $i$
+
+
+
 
