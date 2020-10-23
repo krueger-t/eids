@@ -1,3 +1,162 @@
-# Haeufigkeiten {#haeufigkeit}
+# Häufigkeiten und Lageparameter {#haeufigkeit}
 
+Mit diesem Kapitel des Skriptes steigen wir in die **deskriptive Statistik** ein. Lesen Sie hierzu bitte Kapitel 3.2.1 und 3.2.2 von @zimmermann2014. Im folgenden finden Sie wie gehabt Leitfragen und Ergaenzungen zu diesen Kapiteln.
 
+## Ziel der deskriptiven Statistik
+
+Jene _Eigenschaft_ eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als **Merkmal** $x$ des Elements bezeichnet. Der **Merkmalswert** $x_i$ mit $i=1,\ldots,n$ ist jener Wert, den ein Merkmal $x$ in einer statistischen Untersuchung _tatsächlich_ annimmt. Ziel der **deskriptiven Statistik** ist es, die _Verteilung_ der Merkmalswerte eines Merkmals über den möglichen Wertebereich (Ausprägungen) mit einzelnen _Parametern_ näher zu charakterisieren. Z.B. die Anzahl der Ausbrüche eines Vulkans an verschiedenen Tagen.
+
+Die Parameter sind:
+
+1. **Lageparameter**: Maße der zentralen Tendenz einer Verteilung (s. dieses Kapitel)
+2. **Streuungsparameter**: Maße der Variabilität einer Verteilung (s. Kapitel \@ref(streuung))
+3. **Schiefe** und **Wölbung** einer Verteilung (s. Kapitel \@ref(streuung))
+
+Dazu brauchen wir erstmal Begriffe wie **absolute Häufigkeit**, **relative Häufigkeit** und **Summenhäufigkeit** sowie Diagramme wie **Histogramme** und **Boxplots**, die Verteilungen graphisch darstellen.
+
+## Häufigkeiten
+
+Schauen wir uns dazu die Reisedaten an, die die Studierenden im letzte Jahr eingegeben hatten, und zwar nur die Entfernungen (der R-Code wird in den PC-Uebungen schnell klar werden):
+
+```{r include=FALSE}
+library("readxl")
+dat <- read_excel("data/Reisedaten.xlsx", na = "-999")
+dat <- as.data.frame(dat)
+names(dat) <- c('x','t')
+```
+
+```{r echo=TRUE}
+# Ausgabe von dat$x
+# dies ist die Variable "Entfernung (Luftlinie) zum Wohnort (m)"
+dat$x
+```
+Das ist eine ungeordnete Reihe von 122 Datenpunkten, die sogenannten **Rohdaten**. "NA" steht fuer "not available", d.h. fehlende Daten.
+
+Wenn wir die Rohdaten jetzt ordnen und in Klassen einteilen koennen wir **absolute Haeufigkeiten** bestimmen, gewissermassen durch Abzaehlen:
+
+```{r echo=TRUE}
+# dat$x aufsteigend ordnen und ausgeben
+sort(dat$x)
+# Daten in km umrechnen und absolute Haeufigkeiten bestimmen
+# fuer Klassen von 0 bis 55km mit Breite 5km
+hist(dat$x/1000, breaks = seq(0, 55, 5),
+     main = "", xlab = "Entfernung (km)", 
+     ylab = "absolute Haeufigkeit")
+```
+Diese Darstellung ist ein **Histogramm**. Dazu spaeter mehr. Das Ordnen geschieht bei der Erechnung des Histogramms automatisch, hier haben wir es nur der Anschaulichkeit halber eingefuegt.
+
+Die **absolute Häufigkeit**, bezeichnet mit $h_j$ für $h\left(a_j\right)$ und $j=1,\ldots,m$, gibt also die _Anzahl_ der statistischen Einheiten in einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $x$ annehmen. In unserem Beispiel haben wir die Merkmalsausprägungen durch Klassifizierung gewissermassen kuenstlich erzeugt da die Menge der Ausprägungen des Merkmals "Entfernung" ja nicht abzaehlbar ist. Im Beispiel der Anzahl Vulkanausbrueche in @zimmermann2014 gibt es dagegen abzaehlbare Merkmalsausprägungen.
+
+Die Summe der absoluten Häufigkeiten ist der Stichprobenumfang $n$:
+$$\sum_{j=1}^{m}h_j=n \quad\text{mit}\quad m\leq n$$
+
+Die **relative Häufigkeit**, bezeichnet mit $f_j$ für $f\left(a_j\right)$ und $j=1,\ldots,m$, gibt dann den _Anteil_ der statistischen Einheiten an einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $x$ annehmen:
+$$f_j=f\left(a_j\right)=\frac{h\left(a_j\right)}{n}$$
+
+Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. Da das in der `hist()` Funktion  nicht vorgesehen ist, ist der R-Code etwas laenger:
+
+```{r echo=TRUE}
+# Histogramm berechnen ohne Output
+h <- hist(dat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
+# absolute in relative Haeufigkeiten umrechnen
+h$counts <- h$counts / sum(h$counts)
+# Histogrammdaten plotten
+plot(h, freq = TRUE, col = "gray",
+     main = "", xlab = "Entfernung (km)", 
+     ylab = "relative Haeufigkeit")
+```
+Interpretation: Der ersten Balken z.B. geht bis knapp unter 0.15, d.h. knapp 15% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Haeufigkeiten weiter oben anschauen dann sehen wir, dass das etwa 15 von 107 Datenpunkten (ohne "NA") sind.
+
+Die Summe der relativen Häufigkeiten ist 1, was 100% entspricht:
+$$\sum_{j=1}^{m}f_j=1 \quad\text{mit}\quad m\leq n$$
+
+Kommen wir nun zu den **Summenhäufigkeiten**, auch genannt **kumulative Häufigkeit** oder **kumulierte Häufigkeit**. Die absolute Summenhäufigkeit einer Merkmalsausprägung $a_j$ ist die Anzahl der Merkmalswerte, die kleiner oder gleich $a_j$ sind. Die relative Summenhäufigkeit von $a_j$ ist dementsprechend der Anteil der Merkmalswerte, die kleiner oder gleich $a_j$ sind. Am besten visualisieren wir das kurz in R:
+
+```{r echo=TRUE, fig.show='hold', out.width='50%'}
+# Histogramm berechnen ohne Output
+h <- hist(dat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
+# Haeufigkeiten kumuliert aufsummieren
+h$counts <- cumsum(h$counts)
+# Histogrammdaten plotten
+plot(h, freq = TRUE, col = "gray",
+     main = "", xlab = "Entfernung (km)", 
+     ylab = "absolute Summenhaeufigkeit")
+# absolute Summenhaeufigkeiten in relative umrechnen
+h$counts <- h$counts / max(h$counts)
+# Histogrammdaten plotten
+plot(h, freq = TRUE, col = "gray",
+     main = "", xlab = "Entfernung (km)", 
+     ylab = "relative Summenhaeufigkeit")
+```
+Die Haeufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Hoehe 107, die Gesamtzahl der Datenpunkte $n$ (ohne "NA"), bzw. die relative Hoehe 1 (100%). Sehen die dazu auch das Beispiel in @zimmermann2014, Tabelle 3.10 auf Seite 87.
+
+Abschliessend noch ein paar Worte zur **Klassifizierung**. Aequidistante Klassen, d.h. Klassen gleicher Breite, sind grundsaetzlich zu bevorzugen. In R koennen Sie eine gewuenschte Anzahl Klassen angeben, die dann aequidistant ueber den Wertebereich verteilt werden. Das ist sinnvoll fuer einen ersten Eindruck. Die Grundeinstellung von 10 Klassen ist dabei meist ausreichend. Im Laufe der Analyse wird es manchmal sinnvoller sein, bestimmte Klassen vorzugeben, auch (oder gerade) wenn manche Klasse in der betrachteten Stichprobe nicht vorkommen. Auch das ist in R moeglich, in dem Sie die Klassengrenzen ("breaks") angeben. Probieren wir das in R aus:
+
+```{r echo=TRUE, fig.show='hold', out.width='33%'}
+# Klassenbreite 5km
+hist(dat$x/1000, breaks = seq(0, 60, 5),
+     main = "", xlab = "Entfernung (km)", 
+     ylab = "absolute Haeufigkeit")
+# Klassenbreite 10km
+hist(dat$x/1000, breaks = seq(0, 60, 10),
+     main = "", xlab = "Entfernung (km)", 
+     ylab = "absolute Haeufigkeit")
+# Klassenbreite 20km
+hist(dat$x/1000, breaks = seq(0, 60, 20),
+     main = "", xlab = "Entfernung (km)", 
+     ylab = "absolute Haeufigkeit")
+```
+Je groesser die Klassenbreite desto mehr Nuancen der Verteilung der Werte geht verloren. Je kleiner die Klassenbreite desto mehr Luecken entstehen im Histogramm und die generelle Form der Verteilung tritt in den Hintergrund. Eine geeignete mittlere Klassenbreite wird man nur durch Ausprobieren hinbekommen. Siehe aber @zimmermann2014, S. 91-102 für Richtlinien zur Klassenbildung.
+
+## Lageparameter
+
+Lageparameter sind Maße der zentralen Tendenz einer Häufigkeitsverteilung. Siehe @zimmermann2014, Kapitel 3.2.2. Wichtig sind uns in dieser Veranstaltung der **Modus**, das **arithmetische Mittel** und der **Median**, weniger das harmonische Mittel und das geometrische Mittel, die Sie aber bei @zimmermann2014 nachlesen koennen.
+
+Der **Modus** $\bar x_{mod}$ entspricht jener Merkmalsausprägung $a_j$, die in der Häufigkeitsverteilung (lokal) _am häufigsten_ vorkommt. In unseren Entfernungsdaten waere das der Wert 12.5:
+
+```{r echo=TRUE}
+h <- hist(dat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
+plot(h, freq = TRUE, col = "gray",
+     main = "", xlab = "Entfernung (km)", 
+     ylab = "absolute Haeufigkeit")
+# Gib Klassenmitte aus an der Stelle wo die Haeufigkeiten gleich dem Maximum sind
+h$mids[h$counts==max(h$counts)]
+```
+Bei "kuenstlichen" Klassen wie in unserem Beispiel wird typischerweise die Mitte der haeufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhaengig von der gewaehlten Klassifizierung und nicht eindeutig. In der obigen Darstellung sehen wir ausserdem ein zweites lokales Maximum bei 27.5, es handelt sich also in dieser Klassifizierung um eine **bimodale** Verteilung. Der generelle Begriff fuer mehrere Modi ist **multimodal**.
+
+Das **arithmetische Mittel** $\bar x$ der Merkmalswerte $x_1, x_2, \ldots, x_n$ ist die Summe aller Merkmalswerte $x_i$ relative zur Stichprobengröße $n$:
+$$\bar x=\frac{\sum_{i=1}^{n}x_i}{n}$$
+
+Liegen absolute oder relative Häufigkeiten für die Merkmalsausprägungen $a_j$ vor, kann das arithmetische Mittel  $\bar x$ **gewichtet** berechnet werden:
+
+$$\bar x=\frac{\sum_{j=1}^{m}a_j\cdot h_j}{n}=\sum_{j=1}^{m}a_j\cdot f_j\quad\text{mit}\quad m\leq n$$
+
+Berechnen wir das arithmetische Mittel fuer unsere Entfernungsdaten mit der Funktion `mean`:
+
+```{r echo=TRUE}
+# berechne arithmetisches Mittel fuer Variable "Entfernung" (x) in km,
+# wobei "NA" Werte ignoriert werden sollen (sonst waere die Ausgabe ebenfalls "NA")
+mean(dat$x/1000, na.rm = TRUE)
+```
+
+Andere Mittelwerte sind das geometrische Mittel und das harmonische Mittel, siehe @zimmermann2014, S. 126-134.
+
+Der **Median** $\bar x_{med}$ schliesslich entspricht jenem Merkmalswert $x_j$ in einer Häufigkeitsverteilung, der eine geordnete Reihe von Merkmalswerten $x_1, x_2, \ldots, x_n$ in zwei _gleich große_ Wertebereiche teilt. Für eine _ungerade_ Anzahl von Merkmalswerten entspricht der Median dem mittleren Wert:
+$$\bar x_{med}=x_{\frac{n+1}{2}}$$
+
+Für eine _gerade_ Anzahl von Merkmalswerten wird der Median aus dem arithmetischen Mittel der beiden mittleren Werte errechnet:
+$$\bar x_{med}=\frac{x_{\frac{n}{2}}+x_{\frac{n}{2}+1}}{2}$$
+
+Berechnen wir den Median fuer unsere Entfernungsdaten mit der Funktion `median`:
+
+```{r echo=TRUE}
+median(dat$x/1000, na.rm = TRUE)
+```
+
+Der Median wird auch **0,5-Quantil** genannt. Allgemein entspricht ein **p-Quantil** $\bar x_p$ mit $0\leq p\leq 1$ jenem Merkmalswert $x_j$ in einer Häufigkeitsverteilung, der eine geordnete Reihe von Merkmalswerten $x_1, x_2, \ldots, x_n$ in zwei Wertebereiche teilt, so dass ein Anteil $p$ der Werte kleiner oder gleich $x_j$ ist. Ist das Produkt $n\cdot p$ _nicht ganzzahlig_, wird für $j$ die dem Produkt nächstgrößere Zahl verwendet:
+$$\bar x_p=x_j$$
+
+Ist das Produkt $n\cdot p$ _ganzzahlig_, dann ist $j=n\cdot p$:
+$$\bar x_p=\frac{x_j+x_{j+1}}{2}$$
+
+Auf Quantile werden wir im Zuge theoretischer Verteilungen noch naeher zu sprechen kommen (Kapitel \@ref(verteilungen)).

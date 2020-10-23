@@ -1,3 +1,3 @@
-# Streuungsparameter {#streuung}
+# Streuungsparameter, Schiefe und Woelbung {#streuung}
 
 
