@@ -1,18 +1,18 @@
 # Grundbegriffe und Datenerhebung {#begriffe}
 
-Lesen Sie hierzu bitte Kapitel 3.1.2 und 3.1.3 von @zimmermann2014. Im folgenden finden Sie Leitfragen und Ergaenzungen zu diesen Kapiteln.
+Lesen Sie hierzu bitte Kapitel 3.1.2 und 3.1.3 von @zimmermann2014. Im folgenden finden Sie Leitfragen und Ergänzungen zu diesen Kapiteln.
 
 ## Statistische Grundbegriffe
 
-Die **statistische Masse** umfasst all jene Elemente (Anzahl $N$), die für eine statistische Untersuchung _Relevanz_ besitzen. Für die Bestimmung der statistischen Masse sind inhaltliche, zeitliche und räumliche Abgrenzungskriterien erforderlich. Alternative Begriffe sind (die gelaeufigsten fett gedruckt): statistische Grundmenge, **Grundgesamtheit**, **Population**, Kollektiv. Beispiele finden Sie in @zimmermann2014, Kapitel 3.1.3.
+Die **statistische Masse** umfasst all jene Elemente (Anzahl $N$), die für eine statistische Untersuchung _Relevanz_ besitzen. Für die Bestimmung der statistischen Masse sind inhaltliche, zeitliche und räumliche Abgrenzungskriterien erforderlich. Alternative Begriffe sind (die geläufigsten fett gedruckt): statistische Grundmenge, **Grundgesamtheit**, **Population**, Kollektiv. Beispiele finden Sie in @zimmermann2014, Kapitel 3.1.3.
 
-Die **statistische Einheit** $e_i$ mit $i=1, \ldots, n$ stellt das _Untersuchungselement_ und somit die kleinste, nicht weiter unterteilbare Einheit in einer statistischen Untersuchung dar. Diese statistische Einheit trägt jene Information (auch als Merkmal $x$ bezeichnet), die im Zentrum der statistischen Untersuchung steht. Alternative Begriffe sind, je nach Kontext: **Untersuchungseinheit**, Proband, **Merkmalsträger**. Siehe @zimmermann2014, Kapitel 3.1.3 fuer Beispiele.
+Die **statistische Einheit** $e_i$ mit $i=1, \ldots, n$ stellt das _Untersuchungselement_ und somit die kleinste, nicht weiter unterteilbare Einheit in einer statistischen Untersuchung dar. Diese statistische Einheit trägt jene Information (auch als Merkmal $x$ bezeichnet), die im Zentrum der statistischen Untersuchung steht. Alternative Begriffe sind, je nach Kontext: **Untersuchungseinheit**, Proband, **Merkmalsträger**. Siehe @zimmermann2014, Kapitel 3.1.3 für Beispiele.
 
 Jene _Eigenschaft_ eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als **Merkmal** $x$ des Elements bezeichnet. Eine statistische Einheit weist mindestens ein Merkmal auf, kann aber ebenso durch mehrere Merkmale gekennzeichnet sein. Alternative Begriffe sind: **Variable**, Indikator. Beispiele finden Sie wiederum in @zimmermann2014, Kapitel 3.1.3.
 
 Die **Merkmalsausprägungen** $a_j$ mit $j=1, \ldots, m$ eines Merkmals $x$ umfassen jene Manifestationen, die ein Merkmal im Rahmen einer statistischen Untersuchung annehmen _kann_. Alternative Begriffe sind: Merkmalskategorien, Modalitäten. Z.B. kann das Merkmal Schneedeckenhöhe Werte von null (kein Schnee vorhanden) bis zu mehreren Metern einnehmen.
 
-Der **Merkmalswert** $x_i$ mit $i=1, \ldots, n$ schliesslich ist jener Wert, den ein Merkmal $x$ in einer statistischen Untersuchung tatsächlich annimmt. Alternative Begriffe sind: Beobachtungswert, Datum (Plural: Daten). Beispiel: Tatsächliche Schneedeckenmessung an einem Punkt von 285,5cm.
+Der **Merkmalswert** $x_i$ mit $i=1, \ldots, n$ schließlich ist jener Wert, den ein Merkmal $x$ in einer statistischen Untersuchung tatsächlich annimmt. Alternative Begriffe sind: Beobachtungswert, Datum (Plural: Daten). Beispiel: Tatsächliche Schneedeckenmessung an einem Punkt von 285,5cm.
 
 ## Datenerhebung
 
@@ -24,28 +24,28 @@ Der **Merkmalswert** $x_i$ mit $i=1, \ldots, n$ schliesslich ist jener Wert, den
 - _Wozu sind sie wichtig?_
 - _Was ist der Unterschied zwischen **Gesamterhebung** und **Teilerhebung**?_
 
-Zur Primärdatenerhebung hoeren Sie mehr von Henning Nuissl im Seminar _Einführung in die Geographie_. An dieser Stelle aber noch ein paar Worte zur Auswahl einer Stichprobe aus einer Grundgesamtheit. Aus statistischer Perspektive sind dabei prinzipiell drei Aspekte zu beachten:
+Zur Primärdatenerhebung hören Sie mehr von Henning Nuissl im Seminar _Einführung in die Geographie_. An dieser Stelle aber noch ein paar Worte zur Auswahl einer Stichprobe aus einer Grundgesamtheit. Aus statistischer Perspektive sind dabei prinzipiell drei Aspekte zu beachten:
 
-1. **Repräsentativität**: Eine Stichprobe sollte die Variabilitaet der Grundgesamtheit moeglichst genau abbilden, z.B. bezueglich Demographien oder raeumlicher Unterschiede.
+1. **Repräsentativität**: Eine Stichprobe sollte die Variabilität der Grundgesamtheit möglichst genau abbilden, z.B. bezüglich Demographien oder räumlicher Unterschiede.
 2. **Zufälligkeit**: Jede Merkmalsausprägung der Grundgesamtheit sollte die gleiche "Chance" haben ausgewählt zu werden. In der Praxis ist dies oft nur näherungsweise möglich.
-3. **Stichprobenumfang**: Eine Stichprobe sollte ausreichend gross sein. Mehr dazu in der schließenden Statistik (Kapitel \@ref(schaetzen)-\@ref(regression)).
+3. **Stichprobenumfang**: Eine Stichprobe sollte ausreichend groß sein. Mehr dazu in der schließenden Statistik (Kapitel \@ref(schaetzen)-\@ref(regression)).
 
 ## Skalenniveaus
 
 Die Skalenniveaus von Daten bestimmen den Informationsgehalt der Daten und damit das Analyse- und Interpretationspotenzial. In der Reihenfolge Nominalskala - Ordinalskala - metrische Skalen werden jeweils zusätzliche mathematische Operationen erschlossen (s. @zimmermann2014, Tabelle 3.8, S. 79).
 
-Qualitative, klassifikatorische Merkmale befinden sich auf der **Nominalskala**. Die Kategorien koennen verbale Bezeichnungen oder Zahlencodes sein (Achtung: Die Zahl ist in dem Fall ein Code und keine natürliche Zahl mit der gerechnet werden kann.) Die zuelaessige mathematische Operation ist der **Vergleich**, d.h. Merkmalswerte von statistischen Einheiten sind entweder gleich oder verschieden. Beispiel: Art des Vulkanausbruchs (Tabelle \@ref(tab:nominal)). Obwohl $1+2=3$ ist, ist Lava plus Gestein nicht gleich Gas!
+Qualitative, klassifikatorische Merkmale befinden sich auf der **Nominalskala**. Die Kategorien können verbale Bezeichnungen oder Zahlencodes sein (Achtung: Die Zahl ist in dem Fall ein Code und keine natürliche Zahl mit der gerechnet werden kann.) Die zulässige mathematische Operation ist der **Vergleich**, d.h. Merkmalswerte von statistischen Einheiten sind entweder gleich oder verschieden. Beispiel: Art des Vulkanausbruchs (Tabelle \@ref(tab:nominal)). Obwohl $1+2=3$ ist, ist Lava plus Gestein nicht gleich Gas!
 
 | Lava | Gestein | Gas | Asche |
 | :---: | :---: | :---: | :---: |
 | 1 | 2 | 3 | 4 |
 Table: (\#tab:nominal) Art des Vulkanausbruchs.
 
-Qualitative, komparative Merkmale (Rangmerkmale) finden Sie auf der **Ordinalskala**. Wieder koennen die Kategorien verbale Bezeichnungen sein oder mittels Zahlen codiert. Die Zulaessigen mathematischen Operationen sind der **Vergleich** sowie **Wertung/Reihung/Ordnung**. Es sind keine Aussagen über Distanz oder Ähnlichkeit benachbarter Merkmalsausprägungen moeglich. Beispiel: Komfort der Unterkunft (Tabelle \@ref(tab:ordinal)). Der Komfort eines \*\*\*Hotels ist groesser als der Komfort eines \*Hotels, aber nicht 3x so gross!
+Qualitative, komparative Merkmale (Rangmerkmale) finden Sie auf der **Ordinalskala**. Wieder können die Kategorien verbale Bezeichnungen sein oder mittels Zahlen codiert. Die Zulässigen mathematischen Operationen sind der **Vergleich** sowie **Wertung/Reihung/Ordnung**. Es sind keine Aussagen über Distanz oder Ähnlichkeit benachbarter Merkmalsausprägungen möglich. Beispiel: Komfort der Unterkunft (Tabelle \@ref(tab:ordinal)). Der Komfort eines \*\*\*Hotels ist größer als der Komfort eines \*Hotels, aber nicht 3x so groß!
 
 | Jugendherberge | \*Hotel | \*\*Hotel | \*\*\*Hotel |
 | :---: | :---: | :---: | :---: |
 | 0 | 1 | 2 | 3 |
 Table: (\#tab:ordinal) Komfort der Unterkunft.
 
-Quantitative Merkmale befinden sich auf **metrischen Skalen**. Sie werden mit reellen Zahlen bezeichnet. Die zulaessigen mathematischen Operationen sind der **Vergleich**, **Wertung/Reihung/Ordnung** sowie **Addition/Subtraktion** und im Falle der Rationalskala auch **Multiplikation/Division**. Die Unterscheidung **Intervallskala** und **Rationalskala (Verhältnisskala)** ist fuer uns nicht so wichtig. Intervallskalen fehlt ein natuerlicher Nullpunkt und daher ist die Berechnung von Relationen nicht moeglich. Sie kann aber auf einen Referenznullpunkt umgerechnet werden, wodurch Multiplikation und Division moeglich wedren. Wenn wir also in diesem Kurs von einer **metrischen Skala** sprechen dann sind die mathematischen Operationen Vergleich, Wertung/Reihung/Ordnung, Addition/Subtraktion und Multiplikation/Division alle zulaessig.
+Quantitative Merkmale befinden sich auf **metrischen Skalen**. Sie werden mit reellen Zahlen bezeichnet. Die zulässigen mathematischen Operationen sind der **Vergleich**, **Wertung/Reihung/Ordnung** sowie **Addition/Subtraktion** und im Falle der Rationalskala auch **Multiplikation/Division**. Die Unterscheidung **Intervallskala** und **Rationalskala (Verhältnisskala)** ist für uns nicht so wichtig. Intervallskalen fehlt ein natürlicher Nullpunkt und daher ist die Berechnung von Relationen nicht möglich. Sie kann aber auf einen Referenznullpunkt umgerechnet werden, wodurch Multiplikation und Division möglich wedren. Wenn wir also in diesem Kurs von einer **metrischen Skala** sprechen dann sind die mathematischen Operationen Vergleich, Wertung/Reihung/Ordnung, Addition/Subtraktion und Multiplikation/Division alle zulässig.

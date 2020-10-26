@@ -6,25 +6,25 @@ Lesen Sie dazu bitte Kapitel 3.2.3 von @zimmermann2014.
 
 **Streuungsparameter** sind Maße der Variabilität einer Häufigkeitsverteilung. Uns interessieren hier v.a. **Spannweite**, **Quartilsabstand**, **Varianz und Standardabweichung** und **Variationskoeffizient**, weniger durchschnittliche absolute Abweichung, da wir leztere kaum in der Praxis sehen.
 
-Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-Whisker-Plot, kurz einfach **Boxplot**, verdeutlichen (Abbildung \@ref(fig:boxplot)). Ein Boxplot fasst die Verteilung der Werte eines Merkmals (in einer Stichprobe) zusammen. Die **Spannweite** ist der Abstand zwischen Minimum und Maximum der Merkmalswerte. Der **Quartilsabstand** ist der Abstand zwischen 0,25-Quantil und 0,75-Quantil; in diesem Bereich liegen 50% der Merkmalswerte (0,75-0,25). 0,25-Quantil, 0,5-Quantil (Median) und 0,75-Quantil heissen auch 1., 2. und 3. Quartil, weil sie den Wertebereich in vier gleichgrosse Teile teilen: Zwischen Minimum und 0,25-Quantil liegen 25% der Merkmalswerte, zwischen 0,25-Quantil und Median 25%, zwischen Median und 0,75-Quantil 25% und zwischen 0,75-Quantil und Maximum ebenfalls 25%. Ebenso gibt es auch Quintile usw., diese sind aber in der Praxis kaum von Bedeutung. Ein Boxplot kann horizontal wie hier und vertikal dargestellt werden.
+Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-Whisker-Plot, kurz einfach **Boxplot**, verdeutlichen (Abbildung \@ref(fig:boxplot)). Ein Boxplot fasst die Verteilung der Werte eines Merkmals (in einer Stichprobe) zusammen. Die **Spannweite** ist der Abstand zwischen Minimum und Maximum der Merkmalswerte. Der **Quartilsabstand** ist der Abstand zwischen 0,25-Quantil und 0,75-Quantil; in diesem Bereich liegen 50% der Merkmalswerte (0,75-0,25). 0,25-Quantil, 0,5-Quantil (Median) und 0,75-Quantil heissen auch 1., 2. und 3. Quartil, weil sie den Wertebereich in vier gleichgroße Teile teilen: Zwischen Minimum und 0,25-Quantil liegen 25% der Merkmalswerte, zwischen 0,25-Quantil und Median 25%, zwischen Median und 0,75-Quantil 25% und zwischen 0,75-Quantil und Maximum ebenfalls 25%. Ebenso gibt es auch Quintile usw., diese sind aber in der Praxis kaum von Bedeutung. Ein Boxplot kann horizontal wie hier und vertikal dargestellt werden.
 
 ```{r boxplot, echo=FALSE, fig.align='center', fig.cap='Boxplot mit Quartilsabstand und Spannweite.', out.width='80%'}
 knitr::include_graphics('figs/boxplot.png')
 ```
 
-Der Boxplot ist eine vereinfachte Darstellung eines Histogramms. Schauen Sie sich dazu bitte Kapitel 4.3.6 von @zimmermann2014 an, besonders Abbildung 4.10. Sehen Sie welcher Boxplot in 4.10b zu welchem Histogramm in 4.10c gehoert?
+Der Boxplot ist eine vereinfachte Darstellung eines Histogramms. Schauen Sie sich dazu bitte Kapitel 4.3.6 von @zimmermann2014 an, besonders Abbildung 4.10. Sehen Sie welcher Boxplot in 4.10b zu welchem Histogramm in 4.10c gehört?
 
-Die Entsprechung koennen Sie auch in unseren Reisedaten sehen (hier sowohl "Entfernung" als auch "Reisezeit"):
+Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl "Entfernung" als auch "Reisezeit"):
 
 ```{r echo=TRUE, fig.show='hold', out.width='50%'}
 # Histogramm "Entfernung" in km
 hist(dat$x/1000, breaks = seq(0, 55, 5),
      main = "", xlab = "Entfernung (km)", 
-     ylab = "absolute Haeufigkeit")
+     ylab = "absolute Häufigkeit")
 # Histogramm "Reisezeit" in min
 hist(dat$t, breaks = seq(0, 120, 10),
      main = "", xlab = "Reisezeit (min)", 
-     ylab = "absolute Haeufigkeit")
+     ylab = "absolute Häufigkeit")
 # Boxplot "Entfernung" in km
 boxplot(dat$x/1000, range = 0, horizontal = TRUE,
         ylim = c(0,55), xlab = "Entfernung (km)")
@@ -32,24 +32,24 @@ boxplot(dat$x/1000, range = 0, horizontal = TRUE,
 boxplot(dat$t, range = 0, horizontal = TRUE,
         ylim = c(0,120), xlab = "Reisezeit (min)")
 ```
-"Entfernung" ist schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. "Reisezeit" dagegen ist annaehernd symmetrisch verteilt, mit der Box in Mitte des Plots. Es ist wichtig fuer das Verstaendnis von Verteilungen in Kapitel \@ref(verteilungen), dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
+"Entfernung" ist schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. "Reisezeit" dagegen ist annähernd symmetrisch verteilt, mit der Box in Mitte des Plots. Es ist wichtig für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen), dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
 
 Nun zu den weiteren Streuungsparametern. Die **Varianz** $s^2$ ist die mittlere ("durchschnittliche") quadrierte Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ vom arithmetischen Mittel $\bar x$:
 $$s^2=\frac{\sum_{i-1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
 
-Genau genommen ist das die **korrigierte Varianz**, wo durch $n-1$ geteilt wird und nicht durch $n$ wie man bei einer Mittelung erwarten wuerde. Das Teilen durch $n-1$ garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schliessenden Statistik. Der Nenner $n-1$ wird **Anzahl Freiheitsgrade** genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) frei zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits "belegt" – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.
+Genau genommen ist das die **korrigierte Varianz**, wo durch $n-1$ geteilt wird und nicht durch $n$ wie man bei einer Mittelung erwarten würde. Das Teilen durch $n-1$ garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner $n-1$ wird **Anzahl Freiheitsgrade** genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) frei zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits "belegt" – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.
 
 Die **Standardabweichung** $s$ ist die Quadratwurzel der mittleren quadrierten Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ vom arithmetischen Mittel $\bar x$, d.h. die Quadratwurzel der Varianz:
 $$s=\sqrt{s^2}=\sqrt{\frac{\sum_{i-1}^{n}\left(x_i-\bar x\right)^2}{n-1}}$$
 
 Die Standardabweichung besitzt die gleiche Einheit wie die Merkmalswerte und ist deshalb einfacher zu interpretieren als die Varianz. Sie drückt die Streuung der Merkmalswerte um den Mittelwert bzw. deren Abweichung vom Mittelwert in einer anschaulichen Größe aus. Je größer die Werte der Standardabweichung sind, desto mehr streuen die Daten.
 
-Der **Variationskoeffizient** $v$ einer Häufigkeitsverteilung mit den Merkmalswerten $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ schliesslich ist die Standardabweichung $s$ im Verhältnis zum Mittelwert $\bar x$:
+Der **Variationskoeffizient** $v$ einer Häufigkeitsverteilung mit den Merkmalswerten $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ schließlich ist die Standardabweichung $s$ im Verhältnis zum Mittelwert $\bar x$:
 $$v=\frac{s}{\bar x}$$
 
 Der Variationskoeffizient setzt die Streuung der Merkmalswerte in unmittelbare Relation zum arithmetischen Mittel. Dadurch werden unterschiedliche Verteilungen vergleichbar.
 
-Schauen wir uns die Streungsparameter fuer die Reisedaten mittels R an:
+Schauen wir uns die Streungsparameter für die Reisedaten mittels R an:
 
 ```{r echo=TRUE}
 # "Entfernung" in km
@@ -81,7 +81,7 @@ st
 vt <- st / tbar
 vt
 ```
-Obwohl "Reisezeit" im Vergleich zu "Entfernung" eine viel groessere Varianz hat ist der Variationskoeffizient kleiner, da Reisezeit auf einer groesseren Skala gemessen wird.
+Obwohl "Reisezeit" im Vergleich zu "Entfernung" eine viel größere Varianz hat ist der Variationskoeffizient kleiner, da Reisezeit auf einer größeren Skala gemessen wird.
 
 ## Schiefe und Wölbung von Häufigkeitsverteilungen
 
@@ -90,13 +90,13 @@ Lesen Sie dazu bitte Kapitel 3.2.5 von @zimmermann2014.
 Die **Schiefe** $a_3$ einer Häufigkeitsverteilung von Merkmalswerten $x_1, x_2, \ldots, x_n$ mit dem arithmetischen Mittel $\bar x$ und der Standardabweichung $s$ bezeichnet die Abweichung der Verteilung der Merkmalswerte von der symmetrischen Form:
 $$a_3=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^3}{n\cdot s^3}$$
 
-Fuer eine symmetrische Verteilung gilt:
+Für eine symmetrische Verteilung gilt:
 $$a_3=0\quad \bar x_{mod}=\bar x_{med}=\bar x$$
 D.h. Modus, Median und Arithmetisches Mittel sind identisch.
 
-Fuer eine sogenannte rechtsschiefe (linkssteile) Verteilung gilt:
+Für eine sogenannte rechtsschiefe (linkssteile) Verteilung gilt:
 $$a_3>0\quad \bar x_{mod}<\bar x_{med}<\bar x$$
-Fuer eine linkschiefe (rechtssteile) Verteilung gilt:
+Für eine linkschiefe (rechtssteile) Verteilung gilt:
 $$a_3<0\quad \bar x_{mod}>\bar x_{med}>\bar x$$
 
 Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben ist die Verteilung des Merkmals "Entfernung" rechtsschief:
@@ -112,7 +112,7 @@ median(dat$x/1000, na.rm = TRUE)
 mean(dat$x/1000, na.rm = TRUE)
 ```
 
-Die Verteilung des Merkmals "Reisezeit" dagegen ist weniger rechtsschief, annaehernd symmetrisch, was man auch daran sieht, dass der Median und das aritmetische Mittel fast identisch sind:
+Die Verteilung des Merkmals "Reisezeit" dagegen ist weniger rechtsschief, annähernd symmetrisch, was man auch daran sieht, dass der Median und das aritmetische Mittel fast identisch sind:
 
 ```{r echo=TRUE}
 # Schiefe
@@ -125,23 +125,23 @@ mean(dat$t, na.rm = TRUE)
 Die **Wölbung** $a_4$ einer Häufigkeitsverteilung von Merkmalswerten 𝑥$x_1, x_2, \ldots, x_n$ mit dem arithmetischen Mittel $\bar x$ und der Standardabweichung $s$ bestimmt die _Steilheit_ einer Verteilung:
 $$a_4=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^4}{n\cdot s^4}-3$$
 
-Die Subtraktion von "-3" dient der Standardisierung auf die sogenannte Normalverteilung, eine symmetrische, glockenfoermige Verteilung (s. @zimmermann2014, Kapitel 3.2.5). Mehr zur Normalverteilung in Kapitel \@ref(verteilungen).
+Die Subtraktion von "-3" dient der Standardisierung auf die sogenannte Normalverteilung, eine symmetrische, glockenförmige Verteilung (s. @zimmermann2014, Kapitel 3.2.5). Mehr zur Normalverteilung in Kapitel \@ref(verteilungen).
 
-Fuer eine Normalverteilung gilt:
+Für eine Normalverteilung gilt:
 $$a_4=0$$
 
-Fuer eine spitzere Verteilung als die Normalverteilung gilt:
+Für eine spitzere Verteilung als die Normalverteilung gilt:
 $$a_4>0$$
 
-Fuer eine flachere Verteilung als die Normalverteilung gilt:
+Für eine flachere Verteilung als die Normalverteilung gilt:
 $$a_4<0$$
 
 Die Verteilungen der Merkmale unserer Reisedaten sind beide spitzer als die Normalverteilung, wobei "Entfernung" wegen der Rechtsschiefe garnicht mit der Normalverteilung vergleichbar ist:
 
 ```{r echo=TRUE}
-# Woelbung "Entfernung"
+# Wölbung "Entfernung"
 kurtosis(dat$x/1000, na.rm = TRUE) - 3
-# Woelbung "Reisezeit"
+# Wölbung "Reisezeit"
 kurtosis(dat$t, na.rm = TRUE) - 3
 ```
 

@@ -2,25 +2,38 @@
 
 Das Modul B3 _Einführung in die Statistik und das Fach Geographie_ besteht aus:
 
-1. Dem Seminar _Einführung in die Statistik_ mit [Tobias Krüger](https://www.iri-thesys.org/people/kruegertobias) (regelmaessiges ZOOM-Treffen montags 11:00-12:30 - s. Moodle link)
+1. Dem Seminar _Einführung in die Statistik_ mit [Tobias Krüger](https://www.iri-thesys.org/people/kruegertobias) (regelmäßiges ZOOM-Treffen montags 11:00-12:30 - s. Moodle link)
 2. Dem Seminar _Einführung in die Geographie_ mit [Christoph Schneider](https://www.geographie.hu-berlin.de/de/Members/schneider_christoph) und [Henning Nuissl](https://www.geographie.hu-berlin.de/de/Members/nuissl_henning)
-3. Der PC-Übung _Statistische Datenverarbeitung_ mit [Matthias Baumann](https://www.geographie.hu-berlin.de/en/professorships/biogeography/people/current-people/baumann), [Sebastian Schubert](https://www.geographie.hu-berlin.de/de/Members/schubert_sebastian), [Heidi Kreibich](https://www.gfz-potsdam.de/staff/heidi-kreibich/), [Abror Gafurov](https://www.gfz-potsdam.de/staff/abror-gafurov/), [Hoseung Jung](https://www.iri-thesys.org/people/jung), Friedrich Busch, Kassandra Jensch und Maeve Smyth (ab 27. November 3-stuendig freitags 09:00-12:00 - dazu mehr weiter unten)
+3. Der PC-Übung _Statistische Datenverarbeitung_ mit [Matthias Baumann](https://www.geographie.hu-berlin.de/en/professorships/biogeography/people/current-people/baumann), [Sebastian Schubert](https://www.geographie.hu-berlin.de/de/Members/schubert_sebastian), [Heidi Kreibich](https://www.gfz-potsdam.de/staff/heidi-kreibich/), [Abror Gafurov](https://www.gfz-potsdam.de/staff/abror-gafurov/), [Hoseung Jung](https://www.iri-thesys.org/people/jung), Friedrich Busch, Kassandra Jensch und Maeve Smyth (ab 27. November 3-stündig freitags 09:00-12:00 - dazu mehr weiter unten)
 
-Das vorliegende Skript ist Grundlage des Seminars _Einführung in die Statistik_ und dient der theoretischen Vorbereitung der PC-Übung _Statistische Datenverarbeitung_. Organisatorisches dazu weiter unten. Zunaechst ein paar einleitende Worte zur Statistik in der Geographie.
+Das vorliegende Skript ist Grundlage des Seminars _Einführung in die Statistik_ und dient der theoretischen Vorbereitung der PC-Übung _Statistische Datenverarbeitung_. Organisatorisches dazu weiter unten.
+
+Am Ende des Semesters haben Sie ein Grundverständnis der beschreibenden und der schließenden Statistik erworben. Sie können folgende Methoden selbständig in der Software R anwenden und deren Ergebnisse interpretieren:
+- Beschreibung von Stichproben mit Zentralitäts- und Streuungsmaßen
+- Beschreibung der Korrelation zwischen Merkmalen
+- Schätzen von Verteilungsparametern anhand von Stichproben
+- Test auf Unterschiede in Mittelwerten (t-Test)
+- Test auf Unterschiede in Varianzen (F-Test)
+- Test auf Unterschiede in Verteilungen (Kolmogorov-Smirnov-Test)
+- Test auf Unabhängigkeit (Chi-Quadrat-Test)
+- Modellierung eines linearen Zusammenhangs zwischen Merkmalen (lineare Regression)
+- Graphisch Methoden wie Histogramm, Boxplot, Streudiagramm und Quantil-Quantil-Plot
+
+Zunächst aber ein paar einleitende Worte zur Statistik in der Geographie.
 
 ## Statistik im empirischen Forschungsprozess
 
-Lesen Sie dazu bitte Kapitel 2.4 von @zimmermann2014 - s. Moodle link. Gemaess der dort gewaehlten Kategorisierung befasst sich die Statistik hauptsaechlich mit **Datenanalyse** (Punkt 7), obwohl die angrenzenden Schritte ebenfalls wichtig sind. Auf **Auswahl der Untersuchungseinheit** (Punkt 4), **Datenerhebung** (Punkt 5) und **Datenaufbereitung** (Punkt 6) werden wir in Kapitel \@ref(begriffe) naeher eingehen. Punkt 8 (**Interpretation und Rueckschluesse**) wird durchgehend eine Rolle spielen.
+Lesen Sie dazu bitte Kapitel 2.4 von @zimmermann2014 - s. Moodle link. Gemäß der dort gewählten Kategorisierung befasst sich die Statistik hauptsächlich mit **Datenanalyse** (Punkt 7), obwohl die angrenzenden Schritte ebenfalls wichtig sind. Auf **Auswahl der Untersuchungseinheit** (Punkt 4), **Datenerhebung** (Punkt 5) und **Datenaufbereitung** (Punkt 6) werden wir in Kapitel \@ref(begriffe) näher eingehen. Punkt 8 (**Interpretation und Rückschlüsse**) wird durchgehend eine Rolle spielen.
 
 ## Warum Statistik?
 
 Statistik ist Teil des physisch- und humangeographischen Methodenpakets. Da die Erkenntnisse der Geographie in vielen Teilen auf dem empirischen Forschungsprozess basieren ist statistische Analyse unumgänglich als Argumentationsunterstützung und als Beweissicherung. Außerdem dient sie der Bestätigung oder Widerlegung theoretischer Ansätze und der Generierung neuer Informationen aus verfügbaren Daten. In der Praxis dient Statistik häufig als Entscheidungsgrundlage.
 
-Lesen Sie bitte Kapitel 2.3 von @zimmermann2014 fuer konkrete Anwendungsbeispiele der Statistik in der Geographie.
+Lesen Sie bitte Kapitel 2.3 von @zimmermann2014 für konkrete Anwendungsbeispiele der Statistik in der Geographie.
 
-**Aufgabe:** _Auf Moodle unter Woche 1 finden Sie ein kurzes Quiz zu diesem Kapitel. Bitte beantworten Sie die Fragen bis Ende der Woche. Dies werden wir jede Woche tun, als Lernstandskontrolle fuer Sie und als Ueberblick fuer uns ueber moegliche Verstaendnisprobleme._
+**Aufgabe:** _Auf Moodle unter Woche 1 finden Sie ein kurzes Quiz zu diesem Kapitel. Bitte beantworten Sie die Fragen bis Ende der Woche. Dies werden wir jede Woche tun, als Lernstandskontrolle für Sie und als Überblick für uns über mögliche Verständnisprobleme._
 
-Am Ende von Kapitel 2.3 in @zimmermann2014 finden Sie ausserdem eine Erklaerung der Teilbereiche der Statistik. Mit der **deskriptiven (beschreibenden) Statistik** beschaeftigen wir uns in den Wochen 3-5. Dazu ist das Lehrbuch von @zimmermann2014 wichtig. Mit der **induktiven (schließenden) Statistik** beschaefigen wir uns in den Wochen 8-13. Die Bruecke zwischen diesen beiden Teilbereichen - wie es @zimmermann2014 darstellt - ist die **Wahrscheinlichkeitstheorie**, mit deren Grundlagen wir uns in den Wochen 6-7 auseinandersetzen.
+Am Ende von Kapitel 2.3 in @zimmermann2014 finden Sie außerdem eine Erklärung der Teilbereiche der Statistik. Mit der **deskriptiven (beschreibenden) Statistik** beschäftigen wir uns in den Wochen 3-5. Dazu ist das Lehrbuch von @zimmermann2014 wichtig. Mit der **induktiven (schließenden) Statistik** beschäfigen wir uns in den Wochen 8-13. Die Brücke zwischen diesen beiden Teilbereichen - wie es @zimmermann2014 darstellt - ist die **Wahrscheinlichkeitstheorie**, mit deren Grundlagen wir uns in den Wochen 6-7 auseinandersetzen.
 
 ## Organisatorisches
 
@@ -38,52 +51,52 @@ knitr::kable(
 )
 ```
 
-Der prinzipielle Lernmodus in diesem digitalen Semester ist das **Lesen** von Kapiteln aus dem vorliegenden Skript und aus zwei Lehrbuechern (@zimmermann2014 und @mittag2016). Dazu gibt es kleine **Quizzes** jede Woche. Diese werden automatisch bewertet und sind Voraussetzung fuer den Erhalt der 3 Leistungspunkte des Seminars _Einführung in die Statistik_. Im **Seminar** jeden Montag besteht die Moeglichkeit, Fragen zu klaeren und den Stoff der vorherigen Woche zu diskutieren. Das Seminar findet ueber ZOOM statt - s. permanenter link auf Moodle.
+Der prinzipielle Lernmodus in diesem digitalen Semester ist das **Lesen** von Kapiteln aus dem vorliegenden Skript und aus zwei Lehrbüchern (@zimmermann2014 und @mittag2016). Dazu gibt es kleine **Quizzes** jede Woche. Diese werden automatisch bewertet und sind Voraussetzung für den Erhalt der 3 Leistungspunkte des Seminars _Einführung in die Statistik_. Im **Seminar** jeden Montag besteht die Möglichkeit, Fragen zu klären und den Stoff der vorherigen Woche zu diskutieren. Das Seminar findet über ZOOM statt - s. permanenter link auf Moodle.
 
-**Wichtig:** _Fragen und Diskussionswuensche muessen bis Ende jeder Woche ueber das Moodleforum eingereicht werden. Manche Fragen werden sich bereits ueber das Forum klaeren lassen._
+**Wichtig:** _Fragen und Diskussionswünsche müssen bis Ende jeder Woche über das Moodleforum eingereicht werden. Manche Fragen werden sich bereits über das Forum klären lassen._
 
-Im Selbststudium - unterstuetzt durch das Seminar - erarbeiten Sie sich so die Theorie, welche dann in der **PC-Übung** mittels der Software R zur Anwendung kommt. Die PC-Übung findet ab 27. November immer freitags 09:00-12:00 statt, ebenfalls ueber ZOOM. Wir werden mehrere thematische ZOOM-Raeume anbieten, in die Sie nach Bedarf gehen koennen (Fragen zu Hausaufgaben, Fragen zu R, Fragen zur Theorie, ...). In diesem Zeitfenster bearbeiten Sie jede Woche einen Übungszettel. Die Lehrende stehen waehrend dessen in den ZOOM-Raeumen für Fragen zur Verfügung. Ein Lösungszettel wird am Ende bereit gestellt. Abschliessend gibt es eine neue Hausaufgabe bis zur nächsten Woche. Der Lösungszettel wird vor der nächsten Übung bereit gestellt. Ausserhalb des Zeitfensters am Freitag beantworten wir Fragen ueber das Moodle Forum.
+Im Selbststudium - unterstützt durch das Seminar - erarbeiten Sie sich so die Theorie, welche dann in der **PC-Übung** mittels der Software R zur Anwendung kommt. Die PC-Übung findet ab 27. November immer freitags 09:00-12:00 statt, ebenfalls über ZOOM. Wir werden mehrere thematische ZOOM-Räume anbieten, in die Sie nach Bedarf gehen können (Fragen zu Hausaufgaben, Fragen zu R, Fragen zur Theorie, ...). In diesem Zeitfenster bearbeiten Sie jede Woche einen Übungszettel. Die Lehrende stehen während dessen in den ZOOM-Räumen für Fragen zur Verfügung. Ein Lösungszettel wird am Ende bereit gestellt. Abschließend gibt es eine neue Hausaufgabe bis zur nächsten Woche. Der Lösungszettel wird vor der nächsten Übung bereit gestellt. Außerhalb des Zeitfensters am Freitag beantworten wir Fragen über das Moodle Forum.
 
-In den **Hausaufgaben** wird in der Übung Erprobtes auf einen anderen Datensatz angewendet oder erweitert. Die Hausaufgaben sind Voraussetzung fuer den Erhalt der 3 Leistungspunkte der PC-Übung _Statistische Datenverarbeitung_. Die Abgabe erfolgt ueber einen Abgabelink auf Moodle bis zum nächsten Mittwoch 24:00. Das Abgabeformat (HTML via R Markdown) wird in der ersten PC-Übung ausfuehrlich erklaert und eingeuebt. Es beinhaltet den R-Code, einen kurzen Text zur Beantwortung der Fragestellung bzw. Interpretation der Ergebnisse, sowie relevante (!) Abbildungen, Tabellen und Kenngrößen. Am Donnerstag wird das Lösungsblatt bereit gestellt. Unklarheiten und Probleme werden waehrend der nächsten Übung geklaert (eigener ZOOM-Raum).
+In den **Hausaufgaben** wird in der Übung Erprobtes auf einen anderen Datensatz angewendet oder erweitert. Die Hausaufgaben sind Voraussetzung für den Erhalt der 3 Leistungspunkte der PC-Übung _Statistische Datenverarbeitung_. Die Abgabe erfolgt über einen Abgabelink auf Moodle bis zum nächsten Mittwoch 24:00. Das Abgabeformat (HTML via R Markdown) wird in der ersten PC-Übung ausführlich erklärt und eingeübt. Es beinhaltet den R-Code, einen kurzen Text zur Beantwortung der Fragestellung bzw. Interpretation der Ergebnisse, sowie relevante (!) Abbildungen, Tabellen und Kenngrößen. Am Donnerstag wird das Lösungsblatt bereit gestellt. Unklarheiten und Probleme werden während der nächsten Übung geklärt (eigener ZOOM-Raum).
 
-Ein kurzes Wort zu unseren **Erwartungen**: In diesem digitalen Semester wird selbstaendiges Lernen noch wichtiger sein als in Praesenzsemestern. Das Seminar entspricht mit 3 Leistungspunkten einem Aufwand von 90 Stunden, d.h. 6 Stunden pro Woche. Bei maximal 1,5 Stunden "Praesenz" via ZOOM verbleiben mindestens 4,5 Stunden pro Woche fuer das Selbststudium des Skriptes und der ausgewaehlten Lehrbuchkapitel. Die PC-Übung entspricht mit 3 Leistungspunkten ebenfalls 90 Stunden, d.h. 7,5 Stunden pro Woche ab Semesterwoche 4. Bei 3 Stunden "Praesenz" via ZOOM verbleiben weitere 4,5 Stunden pro Woche fuer Nachbereitung und Hausaufgaben. **Insgesamt sollten Sie sich also auf 9 Stunden pro Woche selbstständiges Arbeiten für Statistik einstellen.**
+Ein kurzes Wort zu unseren **Erwartungen**: In diesem digitalen Semester wird selbständiges Lernen noch wichtiger sein als in Präsenzsemestern. Das Seminar entspricht mit 3 Leistungspunkten einem Aufwand von 90 Stunden, d.h. 6 Stunden pro Woche. Bei maximal 1,5 Stunden "Präsenz" via ZOOM verbleiben mindestens 4,5 Stunden pro Woche für das Selbststudium des Skriptes und der ausgewählten Lehrbuchkapitel. Die PC-Übung entspricht mit 3 Leistungspunkten ebenfalls 90 Stunden, d.h. 7,5 Stunden pro Woche ab Semesterwoche 4. Bei 3 Stunden "Präsenz" via ZOOM verbleiben weitere 4,5 Stunden pro Woche für Nachbereitung und Hausaufgaben. **Insgesamt sollten Sie sich also auf 9 Stunden pro Woche selbstständiges Arbeiten für Statistik einstellen.**
 
-Die Modulabschlusspruefung ist dieses Jahr eine sogenannte **take-home Klausur**, die Sie - voraussichtlich in der 1. Semesterferienwoche - zuhause in einem vorgegeben Zeitrahmen selbstaendig bearbeiten. Ein Nachholtermin findet voraussichtlich in der letzten Semesterferienwoche statt. Die Anmeldung erfolgt gegen Semesterende über AGNES bei Frau Schwedler. Die take-home Klausur wird stark an die Übungen und Hausaufgaben angelehnt sein. Dazu wird es ein paar Fragen ueber Moodle geben - aehnlich der regelmaessigen Quizzes. Insgesamt werden sich 5/6 der zu erreichenden Punktzahl auf _Einführung in die Statistik_ beziehen und 1/6 auf _Einführung in die Geographie_.
+Die Modulabschlussprüfung ist dieses Jahr eine sogenannte **take-home Klausur**, die Sie - voraussichtlich in der 1. Semesterferienwoche - zuhause in einem vorgegeben Zeitrahmen selbständig bearbeiten. Ein Nachholtermin findet voraussichtlich in der letzten Semesterferienwoche statt. Die Anmeldung erfolgt gegen Semesterende über AGNES bei Frau Schwedler. Die take-home Klausur wird stark an die Übungen und Hausaufgaben angelehnt sein. Dazu wird es ein paar Fragen über Moodle geben - ähnlich der regelmäßigen Quizzes. Insgesamt werden sich 5/6 der zu erreichenden Punktzahl auf _Einführung in die Statistik_ beziehen und 1/6 auf _Einführung in die Geographie_.
 
 ## Mathematische Notation und Grundlagen
 
-In diesem Unterkapitel werden wichtige Begriffe eingefuehrt und wichtige mathematische Grundlagen aus der Schule wiederholt. Lesen Sie bitte dazu Kapitel 1.2 von @zimmermann2014. Dort werden anhand des Beispieles der Kostenaufstellung fuer eine "Statistikexkursion" die Begriffe **Variable**, **Index** und **Summe** eingefuehrt. Variable wird synonym mit **Merkmal** verwendet. In den Zeilen der Tabelle 1.1 in @zimmermann2014 stehen dann die einzelnen **Merkmalswerte** oder einfach nur **Werte** fuer die Untersuchungselemente (**statistische Einheiten**). Jede statistische Einheit ist gekennzeichnet durch einen eigenen Index. An dieser Stelle sei ergaenzt, dass ein Index auch unterschiedliche Variablen bezeichnen kann, z.B. $x_1, x_2, \ldots$.
+In diesem Unterkapitel werden wichtige Begriffe eingeführt und wichtige mathematische Grundlagen aus der Schule wiederholt. Lesen Sie bitte dazu Kapitel 1.2 von @zimmermann2014. Dort werden anhand des Beispieles der Kostenaufstellung für eine "Statistikexkursion" die Begriffe **Variable**, **Index** und **Summe** eingeführt. Variable wird synonym mit **Merkmal** verwendet. In den Zeilen der Tabelle 1.1 in @zimmermann2014 stehen dann die einzelnen **Merkmalswerte** oder einfach nur **Werte** für die Untersuchungselemente (**statistische Einheiten**). Jede statistische Einheit ist gekennzeichnet durch einen eigenen Index. An dieser Stelle sei ergänzt, dass ein Index auch unterschiedliche Variablen bezeichnen kann, z.B. $x_1, x_2, \ldots$.
 
-Die **Summe** verschiedener Merkmalswerte wird wie folgt abgekuerzt:
+Die **Summe** verschiedener Merkmalswerte wird wie folgt abgekürzt:
 $$\begin{equation}
 \sum_{i=1}^{n}x_i=x_1+x_2+\ldots+x_{n-1}+x_n
 (\#eq:sum)
 \end{equation}$$
-Wobei das Summenzeichen $\Sigma$ die Anweisung symbolisiert, die Merkmalswerte $x_i$ zu addieren, wobei der Index $i$ von 1 bis zur Anzahl der Werte $n$ laeuft.
+Wobei das Summenzeichen $\Sigma$ die Anweisung symbolisiert, die Merkmalswerte $x_i$ zu addieren, wobei der Index $i$ von 1 bis zur Anzahl der Werte $n$ läuft.
 
-Eine aehnliche verkuerzte Schreibweise gibt es fuer das **Produkt**:
+Eine ähnliche verkürzte Schreibweise gibt es für das **Produkt**:
 $$\begin{equation}
 \prod_{i=1}^{n}x_i=x_1 \cdot x_2 \cdot \ldots \cdot x_{n-1} \cdot x_n
 (\#eq:prod1)
 \end{equation}$$
-Hier gibt das Produktzeichen $\Pi$ die Anweisung, die Merkmalswerte $x_i$ zu multiplizieren, wobei wiederum der Index $i$ von 1 bis zur Anzahl der Werte $n$ laeuft.
+Hier gibt das Produktzeichen $\Pi$ die Anweisung, die Merkmalswerte $x_i$ zu multiplizieren, wobei wiederum der Index $i$ von 1 bis zur Anzahl der Werte $n$ läuft.
 
-Manchmal wird das Multiplikationszeichen weggelassen und es findet sich nur ein kleiner Abstand zwischen den zu multiplizierenden Groessen:
+Manchmal wird das Multiplikationszeichen weggelassen und es findet sich nur ein kleiner Abstand zwischen den zu multiplizierenden Größen:
 $$\begin{equation}
 \prod_{i=1}^{n}x_i=x_1 \, x_2 \, \ldots \, x_{n-1} \, x_n
 (\#eq:prod2)
 \end{equation}$$
-Diese Schreibweise, die man haeufig aus Platzgruenden findet, impliziert in jedem Fall eine Multiplikation.
+Diese Schreibweise, die man häufig aus Platzgründen findet, impliziert in jedem Fall eine Multiplikation.
 
-Zwei weitere Begriffe, die @zimmermann2014 nicht einfuehrt, sind fuer diese Lehrveranstaltung noch wichtig, **Vektor** und **Matrix**:
+Zwei weitere Begriffe, die @zimmermann2014 nicht einführt, sind für diese Lehrveranstaltung noch wichtig, **Vektor** und **Matrix**:
 
-In einem **Reihenvektor** sind Groessen (z.B. Merkmalswerte) horizontal angeordnet:
+In einem **Reihenvektor** sind Größen (z.B. Merkmalswerte) horizontal angeordnet:
 $$\mathbf{x} =
 \begin{pmatrix}
 x_1 & x_2 & \cdots & x_n
 \end{pmatrix}$$
 
-In einem **Spaltevektor** sind die Groessen vertikal angeordnet:
+In einem **Spaltevektor** sind die Größen vertikal angeordnet:
 $$\mathbf{x} =
 \begin{pmatrix}
 x_1\\
@@ -92,7 +105,7 @@ x_2\\
 x_n
 \end{pmatrix}$$
 
-In einer **Matrix** sind Groessen wie in einer Tabelle angeordnet, z.B. Merkmalswerte unterschiedlicher Variablen (Spalten):
+In einer **Matrix** sind Größen wie in einer Tabelle angeordnet, z.B. Merkmalswerte unterschiedlicher Variablen (Spalten):
 $$\mathbf{X} =
 \begin{pmatrix}
 x_{1,1} & x_{1,2} & \cdots & x_{1,p}\\
@@ -100,15 +113,15 @@ x_{2,1} & x_{2,2} & \cdots & x_{2,p}\\
 \vdots & \vdots & \ddots & \vdots\\
 x_{n,1} & x_{n,2} & \cdots & x_{n,p}
 \end{pmatrix}$$
-Hier hat jeder Merkmalswert zwei Indices, einen fuer die statistische Einheit (hier bis Anzahl $n$) und einen fuer die Variable (hier bis Anzahl $p$).
+Hier hat jeder Merkmalswert zwei Indices, einen für die statistische Einheit (hier bis Anzahl $n$) und einen für die Variable (hier bis Anzahl $p$).
 
-Vektoren und Matrizen werden in der Regel fett gedruckt, wobei Vektoren mit Kleinbuchstaben und Matrizen mit Grossbuchstaben bezeichnet werden. Die Rechenregeln fuer Vektoren und Matrizen sind in der linearen Algebra zusammengefasst. Wir werden daraus nur Auszuege in den letzten Semesterwochen verwenden.
+Vektoren und Matrizen werden in der Regel fett gedruckt, wobei Vektoren mit Kleinbuchstaben und Matrizen mit Großbuchstaben bezeichnet werden. Die Rechenregeln für Vektoren und Matrizen sind in der linearen Algebra zusammengefasst. Wir werden daraus nur Auszüge in den letzten Semesterwochen verwenden.
 
 **Aufgabe:** _Zu diesen Begriffen gibt es ebenfalls ein kleines Quiz zu beantworten - s. Moodle unter Woche 1._
 
 ### Exponential- und Logarithmusfunktion
 
-Zwei mathematische Funktionen sind fuer diese Lehrveranstaltung besonders wichtig, die Exponential- und die Logarithmusfunktion. Die folgende Darstellung ist inspiriert von @gelman2002.
+Zwei mathematische Funktionen sind für diese Lehrveranstaltung besonders wichtig, die Exponential- und die Logarithmusfunktion. Die folgende Darstellung ist inspiriert von @gelman2002.
 
 Stellen Sie sich eine Amöbe vor, die sich innerhalb einer Stunde teilt (Abbildung \@ref(fig:amoeba)). Diese zwei Amöben teilen sich jede in einer weiteren Stunde usw. Wie lautet die Gleichung für die Anzahl Amöben, $y$, als Funktion der Zeit, $t$ (in Stunden)?
 
@@ -121,7 +134,7 @@ $$\begin{equation}
 y=2^t
 (\#eq:exp)
 \end{equation}$$
-Dies ist eine **Exponentialfunktion** mit **Basis** 2 and **Exponent** $t$. Abbildung \@ref(fig:explog) zeigt zwei Plots dieser Funktion. (Den verwendeten R code werden sie im Verlauf der PC-Uebung verstehen.)
+Dies ist eine **Exponentialfunktion** mit **Basis** 2 and **Exponent** $t$. Abbildung \@ref(fig:explog) zeigt zwei Plots dieser Funktion. (Den verwendeten R code werden sie im Verlauf der PC-Übung verstehen.)
 
 ```{r explog, echo=TRUE, fig.align='center', fig.cap='Links: Plot von Gleichung 1.4. Right: Plot von Gleichung 1.4 auf logarithmischer Skala.', fig.show='hold', out.width='50%'}
 t <- seq(1, 6)
@@ -137,12 +150,12 @@ log(y)=log(2^t)=t \cdot log(2)
 \end{equation}$$
 Da der Logarithmus von $y$ eine lineare Funktion von $t$ ist (Gleichung \@ref(eq:inv)), zeigt die rechte Seite von Abbildung \@ref(fig:explog) ($y$ auf logarithmischer Skala) eine gerade Linie.
 
-Uebliche Basen der Logarithmusfunktion sind:
+Übliche Basen der Logarithmusfunktion sind:
 $$\begin{equation}
 log_2\left(2^t\right)=lb\left(2^t\right)=t
 (\#eq:lb)
 \end{equation}$$
-Dies ist der sogenannte binaere Logarithmus (lb).
+Dies ist der sogenannte binäre Logarithmus (lb).
 
 $$\begin{equation}
 log_{10}\left(10^t\right)=lg\left(10^t\right)=t
@@ -154,7 +167,7 @@ $$\begin{equation}
 log_e\left(e^t\right)=ln\left(e^t\right)=t
 (\#eq:ln)
 \end{equation}$$
-Dies ist der sogenannte natuerliche Logarithmus (ln), wobei $e \approx 2.7183$ die Eulersche Zahl ist.
+Dies ist der sogenannte natürliche Logarithmus (ln), wobei $e \approx 2.7183$ die Eulersche Zahl ist.
 
 Achtung: Programmiersprachen wie R nutzen oft eine andere Notation, der wir auch in diesem Kurs folgen:
 $$\begin{equation}
@@ -204,7 +217,7 @@ log\left(u^r\right)=r \cdot log(u)
 
 ### Quadratische Funktion und Wurzelfunktion
 
-Abschliessend sei noch die **quadratische Funktion** erwaehnt (Abbildung \@ref(fig:quad), links):
+Abschließend sei noch die **quadratische Funktion** erwähnt (Abbildung \@ref(fig:quad), links):
 $$\begin{equation}
 f(x)=x^2
 (\#eq:quad)

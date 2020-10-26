@@ -4,27 +4,27 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Streuungsparameter, Schiefe und Wölbung | Einfuehrung in die Statistik</title>
-  <meta name="description" content="This is the script of the course ‘Einfuehrung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
+  <title>Chapter 4 Streuungsparameter, Schiefe und Wölbung | Einführung in die Statistik</title>
+  <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Streuungsparameter, Schiefe und Wölbung | Einfuehrung in die Statistik" />
+  <meta property="og:title" content="Chapter 4 Streuungsparameter, Schiefe und Wölbung | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is the script of the course ‘Einfuehrung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
+  <meta property="og:description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
   <meta name="github-repo" content="krueger-t/eids" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Streuungsparameter, Schiefe und Wölbung | Einfuehrung in die Statistik" />
+  <meta name="twitter:title" content="Chapter 4 Streuungsparameter, Schiefe und Wölbung | Einführung in die Statistik" />
   
-  <meta name="twitter:description" content="This is the script of the course ‘Einfuehrung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
+  <meta name="twitter:description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
   
 
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-10-25" />
+<meta name="date" content="2020-10-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Einfuehrung in die Statistik</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Einführung in die Statistik</a>
           </h1>
         </div>
 
@@ -195,23 +195,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> Streuungsparameter</h2>
 <p>Lesen Sie dazu bitte Kapitel 3.2.3 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>.</p>
 <p><strong>Streuungsparameter</strong> sind Maße der Variabilität einer Häufigkeitsverteilung. Uns interessieren hier v.a. <strong>Spannweite</strong>, <strong>Quartilsabstand</strong>, <strong>Varianz und Standardabweichung</strong> und <strong>Variationskoeffizient</strong>, weniger durchschnittliche absolute Abweichung, da wir leztere kaum in der Praxis sehen.</p>
-<p>Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-Whisker-Plot, kurz einfach <strong>Boxplot</strong>, verdeutlichen (Abbildung <a href="streuung.html#fig:boxplot">4.1</a>). Ein Boxplot fasst die Verteilung der Werte eines Merkmals (in einer Stichprobe) zusammen. Die <strong>Spannweite</strong> ist der Abstand zwischen Minimum und Maximum der Merkmalswerte. Der <strong>Quartilsabstand</strong> ist der Abstand zwischen 0,25-Quantil und 0,75-Quantil; in diesem Bereich liegen 50% der Merkmalswerte (0,75-0,25). 0,25-Quantil, 0,5-Quantil (Median) und 0,75-Quantil heissen auch 1., 2. und 3. Quartil, weil sie den Wertebereich in vier gleichgrosse Teile teilen: Zwischen Minimum und 0,25-Quantil liegen 25% der Merkmalswerte, zwischen 0,25-Quantil und Median 25%, zwischen Median und 0,75-Quantil 25% und zwischen 0,75-Quantil und Maximum ebenfalls 25%. Ebenso gibt es auch Quintile usw., diese sind aber in der Praxis kaum von Bedeutung. Ein Boxplot kann horizontal wie hier und vertikal dargestellt werden.</p>
+<p>Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-Whisker-Plot, kurz einfach <strong>Boxplot</strong>, verdeutlichen (Abbildung <a href="streuung.html#fig:boxplot">4.1</a>). Ein Boxplot fasst die Verteilung der Werte eines Merkmals (in einer Stichprobe) zusammen. Die <strong>Spannweite</strong> ist der Abstand zwischen Minimum und Maximum der Merkmalswerte. Der <strong>Quartilsabstand</strong> ist der Abstand zwischen 0,25-Quantil und 0,75-Quantil; in diesem Bereich liegen 50% der Merkmalswerte (0,75-0,25). 0,25-Quantil, 0,5-Quantil (Median) und 0,75-Quantil heissen auch 1., 2. und 3. Quartil, weil sie den Wertebereich in vier gleichgroße Teile teilen: Zwischen Minimum und 0,25-Quantil liegen 25% der Merkmalswerte, zwischen 0,25-Quantil und Median 25%, zwischen Median und 0,75-Quantil 25% und zwischen 0,75-Quantil und Maximum ebenfalls 25%. Ebenso gibt es auch Quintile usw., diese sind aber in der Praxis kaum von Bedeutung. Ein Boxplot kann horizontal wie hier und vertikal dargestellt werden.</p>
 <div class="figure" style="text-align: center"><span id="fig:boxplot"></span>
 <img src="figs/boxplot.png" alt="Boxplot mit Quartilsabstand und Spannweite." width="80%" />
 <p class="caption">
 Figure 4.1: Boxplot mit Quartilsabstand und Spannweite.
 </p>
 </div>
-<p>Der Boxplot ist eine vereinfachte Darstellung eines Histogramms. Schauen Sie sich dazu bitte Kapitel 4.3.6 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> an, besonders Abbildung 4.10. Sehen Sie welcher Boxplot in 4.10b zu welchem Histogramm in 4.10c gehoert?</p>
-<p>Die Entsprechung koennen Sie auch in unseren Reisedaten sehen (hier sowohl “Entfernung” als auch “Reisezeit”):</p>
+<p>Der Boxplot ist eine vereinfachte Darstellung eines Histogramms. Schauen Sie sich dazu bitte Kapitel 4.3.6 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> an, besonders Abbildung 4.10. Sehen Sie welcher Boxplot in 4.10b zu welchem Histogramm in 4.10c gehört?</p>
+<p>Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl “Entfernung” als auch “Reisezeit”):</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="streuung.html#cb18-1"></a><span class="co"># Histogramm &quot;Entfernung&quot; in km</span></span>
 <span id="cb18-2"><a href="streuung.html#cb18-2"></a><span class="kw">hist</span>(dat<span class="op">$</span>x<span class="op">/</span><span class="dv">1000</span>, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">55</span>, <span class="dv">5</span>),</span>
 <span id="cb18-3"><a href="streuung.html#cb18-3"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, </span>
-<span id="cb18-4"><a href="streuung.html#cb18-4"></a>     <span class="dt">ylab =</span> <span class="st">&quot;absolute Haeufigkeit&quot;</span>)</span>
+<span id="cb18-4"><a href="streuung.html#cb18-4"></a>     <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span>
 <span id="cb18-5"><a href="streuung.html#cb18-5"></a><span class="co"># Histogramm &quot;Reisezeit&quot; in min</span></span>
 <span id="cb18-6"><a href="streuung.html#cb18-6"></a><span class="kw">hist</span>(dat<span class="op">$</span>t, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">120</span>, <span class="dv">10</span>),</span>
 <span id="cb18-7"><a href="streuung.html#cb18-7"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit (min)&quot;</span>, </span>
-<span id="cb18-8"><a href="streuung.html#cb18-8"></a>     <span class="dt">ylab =</span> <span class="st">&quot;absolute Haeufigkeit&quot;</span>)</span>
+<span id="cb18-8"><a href="streuung.html#cb18-8"></a>     <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span>
 <span id="cb18-9"><a href="streuung.html#cb18-9"></a><span class="co"># Boxplot &quot;Entfernung&quot; in km</span></span>
 <span id="cb18-10"><a href="streuung.html#cb18-10"></a><span class="kw">boxplot</span>(dat<span class="op">$</span>x<span class="op">/</span><span class="dv">1000</span>, <span class="dt">range =</span> <span class="dv">0</span>, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</span>
 <span id="cb18-11"><a href="streuung.html#cb18-11"></a>        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">55</span>), <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>)</span>
@@ -219,17 +219,17 @@ Figure 4.1: Boxplot mit Quartilsabstand und Spannweite.
 <span id="cb18-13"><a href="streuung.html#cb18-13"></a><span class="kw">boxplot</span>(dat<span class="op">$</span>t, <span class="dt">range =</span> <span class="dv">0</span>, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</span>
 <span id="cb18-14"><a href="streuung.html#cb18-14"></a>        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">120</span>), <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-11-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-2.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-3.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-4.png" width="50%" />
-“Entfernung” ist schief verteilt, die zentralen 50% der Verteilung - die “Box” im Boxplot - befinden sich links der Mitte. “Reisezeit” dagegen ist annaehernd symmetrisch verteilt, mit der Box in Mitte des Plots. Es ist wichtig fuer das Verstaendnis von Verteilungen in Kapitel <a href="verteilungen.html#verteilungen">7</a>, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!</p>
+“Entfernung” ist schief verteilt, die zentralen 50% der Verteilung - die “Box” im Boxplot - befinden sich links der Mitte. “Reisezeit” dagegen ist annähernd symmetrisch verteilt, mit der Box in Mitte des Plots. Es ist wichtig für das Verständnis von Verteilungen in Kapitel <a href="verteilungen.html#verteilungen">7</a>, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!</p>
 <p>Nun zu den weiteren Streuungsparametern. Die <strong>Varianz</strong> <span class="math inline">\(s^2\)</span> ist die mittlere (“durchschnittliche”) quadrierte Abweichung der Merkmalswerte <span class="math inline">\(x_i\quad\left(i=1, 2, \ldots, x_n\right)\)</span> vom arithmetischen Mittel <span class="math inline">\(\bar x\)</span>:
 <span class="math display">\[s^2=\frac{\sum_{i-1}^{n}\left(x_i-\bar x\right)^2}{n-1}\]</span></p>
-<p>Genau genommen ist das die <strong>korrigierte Varianz</strong>, wo durch <span class="math inline">\(n-1\)</span> geteilt wird und nicht durch <span class="math inline">\(n\)</span> wie man bei einer Mittelung erwarten wuerde. Das Teilen durch <span class="math inline">\(n-1\)</span> garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schliessenden Statistik. Der Nenner <span class="math inline">\(n-1\)</span> wird <strong>Anzahl Freiheitsgrade</strong> genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) frei zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits “belegt” – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.</p>
+<p>Genau genommen ist das die <strong>korrigierte Varianz</strong>, wo durch <span class="math inline">\(n-1\)</span> geteilt wird und nicht durch <span class="math inline">\(n\)</span> wie man bei einer Mittelung erwarten würde. Das Teilen durch <span class="math inline">\(n-1\)</span> garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner <span class="math inline">\(n-1\)</span> wird <strong>Anzahl Freiheitsgrade</strong> genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) frei zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits “belegt” – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.</p>
 <p>Die <strong>Standardabweichung</strong> <span class="math inline">\(s\)</span> ist die Quadratwurzel der mittleren quadrierten Abweichung der Merkmalswerte <span class="math inline">\(x_i\quad\left(i=1, 2, \ldots, x_n\right)\)</span> vom arithmetischen Mittel <span class="math inline">\(\bar x\)</span>, d.h. die Quadratwurzel der Varianz:
 <span class="math display">\[s=\sqrt{s^2}=\sqrt{\frac{\sum_{i-1}^{n}\left(x_i-\bar x\right)^2}{n-1}}\]</span></p>
 <p>Die Standardabweichung besitzt die gleiche Einheit wie die Merkmalswerte und ist deshalb einfacher zu interpretieren als die Varianz. Sie drückt die Streuung der Merkmalswerte um den Mittelwert bzw. deren Abweichung vom Mittelwert in einer anschaulichen Größe aus. Je größer die Werte der Standardabweichung sind, desto mehr streuen die Daten.</p>
-<p>Der <strong>Variationskoeffizient</strong> <span class="math inline">\(v\)</span> einer Häufigkeitsverteilung mit den Merkmalswerten <span class="math inline">\(x_i\quad\left(i=1, 2, \ldots, x_n\right)\)</span> schliesslich ist die Standardabweichung <span class="math inline">\(s\)</span> im Verhältnis zum Mittelwert <span class="math inline">\(\bar x\)</span>:
+<p>Der <strong>Variationskoeffizient</strong> <span class="math inline">\(v\)</span> einer Häufigkeitsverteilung mit den Merkmalswerten <span class="math inline">\(x_i\quad\left(i=1, 2, \ldots, x_n\right)\)</span> schließlich ist die Standardabweichung <span class="math inline">\(s\)</span> im Verhältnis zum Mittelwert <span class="math inline">\(\bar x\)</span>:
 <span class="math display">\[v=\frac{s}{\bar x}\]</span></p>
 <p>Der Variationskoeffizient setzt die Streuung der Merkmalswerte in unmittelbare Relation zum arithmetischen Mittel. Dadurch werden unterschiedliche Verteilungen vergleichbar.</p>
-<p>Schauen wir uns die Streungsparameter fuer die Reisedaten mittels R an:</p>
+<p>Schauen wir uns die Streungsparameter für die Reisedaten mittels R an:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="streuung.html#cb19-1"></a><span class="co"># &quot;Entfernung&quot; in km</span></span>
 <span id="cb19-2"><a href="streuung.html#cb19-2"></a><span class="co"># arithmethisches Mittel</span></span>
 <span id="cb19-3"><a href="streuung.html#cb19-3"></a>xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(dat<span class="op">$</span>x<span class="op">/</span><span class="dv">1000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
@@ -267,19 +267,19 @@ Figure 4.1: Boxplot mit Quartilsabstand und Spannweite.
 <span id="cb35-2"><a href="streuung.html#cb35-2"></a>vt &lt;-<span class="st"> </span>st <span class="op">/</span><span class="st"> </span>tbar</span>
 <span id="cb35-3"><a href="streuung.html#cb35-3"></a>vt</span></code></pre></div>
 <pre><code>## [1] 0.3760598</code></pre>
-<p>Obwohl “Reisezeit” im Vergleich zu “Entfernung” eine viel groessere Varianz hat ist der Variationskoeffizient kleiner, da Reisezeit auf einer groesseren Skala gemessen wird.</p>
+<p>Obwohl “Reisezeit” im Vergleich zu “Entfernung” eine viel größere Varianz hat ist der Variationskoeffizient kleiner, da Reisezeit auf einer größeren Skala gemessen wird.</p>
 </div>
 <div id="schiefe-und-wölbung-von-häufigkeitsverteilungen" class="section level2">
 <h2><span class="header-section-number">4.2</span> Schiefe und Wölbung von Häufigkeitsverteilungen</h2>
 <p>Lesen Sie dazu bitte Kapitel 3.2.5 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>.</p>
 <p>Die <strong>Schiefe</strong> <span class="math inline">\(a_3\)</span> einer Häufigkeitsverteilung von Merkmalswerten <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> mit dem arithmetischen Mittel <span class="math inline">\(\bar x\)</span> und der Standardabweichung <span class="math inline">\(s\)</span> bezeichnet die Abweichung der Verteilung der Merkmalswerte von der symmetrischen Form:
 <span class="math display">\[a_3=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^3}{n\cdot s^3}\]</span></p>
-<p>Fuer eine symmetrische Verteilung gilt:
+<p>Für eine symmetrische Verteilung gilt:
 <span class="math display">\[a_3=0\quad \bar x_{mod}=\bar x_{med}=\bar x\]</span>
 D.h. Modus, Median und Arithmetisches Mittel sind identisch.</p>
-<p>Fuer eine sogenannte rechtsschiefe (linkssteile) Verteilung gilt:
+<p>Für eine sogenannte rechtsschiefe (linkssteile) Verteilung gilt:
 <span class="math display">\[a_3&gt;0\quad \bar x_{mod}&lt;\bar x_{med}&lt;\bar x\]</span>
-Fuer eine linkschiefe (rechtssteile) Verteilung gilt:
+Für eine linkschiefe (rechtssteile) Verteilung gilt:
 <span class="math display">\[a_3&lt;0\quad \bar x_{mod}&gt;\bar x_{med}&gt;\bar x\]</span></p>
 <p>Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben ist die Verteilung des Merkmals “Entfernung” rechtsschief:</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="streuung.html#cb37-1"></a><span class="kw">library</span>(moments)</span></code></pre></div>
@@ -291,7 +291,7 @@ Fuer eine linkschiefe (rechtssteile) Verteilung gilt:
 <pre><code>## [1] 13.065</code></pre>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="streuung.html#cb42-1"></a><span class="kw">mean</span>(dat<span class="op">$</span>x<span class="op">/</span><span class="dv">1000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 13.95896</code></pre>
-<p>Die Verteilung des Merkmals “Reisezeit” dagegen ist weniger rechtsschief, annaehernd symmetrisch, was man auch daran sieht, dass der Median und das aritmetische Mittel fast identisch sind:</p>
+<p>Die Verteilung des Merkmals “Reisezeit” dagegen ist weniger rechtsschief, annähernd symmetrisch, was man auch daran sieht, dass der Median und das aritmetische Mittel fast identisch sind:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="streuung.html#cb44-1"></a><span class="co"># Schiefe</span></span>
 <span id="cb44-2"><a href="streuung.html#cb44-2"></a><span class="kw">skewness</span>(dat<span class="op">$</span>t, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.4462817</code></pre>
@@ -302,18 +302,18 @@ Fuer eine linkschiefe (rechtssteile) Verteilung gilt:
 <pre><code>## [1] 50.80612</code></pre>
 <p>Die <strong>Wölbung</strong> <span class="math inline">\(a_4\)</span> einer Häufigkeitsverteilung von Merkmalswerten 𝑥<span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> mit dem arithmetischen Mittel <span class="math inline">\(\bar x\)</span> und der Standardabweichung <span class="math inline">\(s\)</span> bestimmt die <em>Steilheit</em> einer Verteilung:
 <span class="math display">\[a_4=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^4}{n\cdot s^4}-3\]</span></p>
-<p>Die Subtraktion von “-3” dient der Standardisierung auf die sogenannte Normalverteilung, eine symmetrische, glockenfoermige Verteilung (s. <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.2.5). Mehr zur Nofmalverteilung in Kapitel <a href="verteilungen.html#verteilungen">7</a>.</p>
-<p>Fuer eine Normalverteilung gilt:
+<p>Die Subtraktion von “-3” dient der Standardisierung auf die sogenannte Normalverteilung, eine symmetrische, glockenförmige Verteilung (s. <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.2.5). Mehr zur Normalverteilung in Kapitel <a href="verteilungen.html#verteilungen">7</a>.</p>
+<p>Für eine Normalverteilung gilt:
 <span class="math display">\[a_4=0\]</span></p>
-<p>Fuer eine spitzere Verteilung als die Normalverteilung gilt:
+<p>Für eine spitzere Verteilung als die Normalverteilung gilt:
 <span class="math display">\[a_4&gt;0\]</span></p>
-<p>Fuer eine flachere Verteilung als die Normalverteilung gilt:
+<p>Für eine flachere Verteilung als die Normalverteilung gilt:
 <span class="math display">\[a_4&lt;0\]</span></p>
 <p>Die Verteilungen der Merkmale unserer Reisedaten sind beide spitzer als die Normalverteilung, wobei “Entfernung” wegen der Rechtsschiefe garnicht mit der Normalverteilung vergleichbar ist:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="streuung.html#cb50-1"></a><span class="co"># Woelbung &quot;Entfernung&quot;</span></span>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="streuung.html#cb50-1"></a><span class="co"># Wölbung &quot;Entfernung&quot;</span></span>
 <span id="cb50-2"><a href="streuung.html#cb50-2"></a><span class="kw">kurtosis</span>(dat<span class="op">$</span>x<span class="op">/</span><span class="dv">1000</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 3.86359</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="streuung.html#cb52-1"></a><span class="co"># Woelbung &quot;Reisezeit&quot;</span></span>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="streuung.html#cb52-1"></a><span class="co"># Wölbung &quot;Reisezeit&quot;</span></span>
 <span id="cb52-2"><a href="streuung.html#cb52-2"></a><span class="kw">kurtosis</span>(dat<span class="op">$</span>t, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 0.9528005</code></pre>
 
