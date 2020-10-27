@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-10-26" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,13 +158,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="streuung.html"><a href="streuung.html#streuungsparameter"><i class="fa fa-check"></i><b>4.1</b> Streuungsparameter</a></li>
 <li class="chapter" data-level="4.2" data-path="streuung.html"><a href="streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="korrelation.html"><a href="korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a></li>
+<li class="chapter" data-level="5" data-path="korrelation.html"><a href="korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a><ul>
+<li class="chapter" data-level="5.1" data-path="korrelation.html"><a href="korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik"><i class="fa fa-check"></i><b>5.1</b> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik</a></li>
+<li class="chapter" data-level="5.2" data-path="korrelation.html"><a href="korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman"><i class="fa fa-check"></i><b>5.2</b> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman</a></li>
+<li class="chapter" data-level="5.3" data-path="korrelation.html"><a href="korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson"><i class="fa fa-check"></i><b>5.3</b> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="wahrscheinlichkeit.html"><a href="wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a></li>
 <li class="chapter" data-level="7" data-path="verteilungen.html"><a href="verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a></li>
 <li class="chapter" data-level="8" data-path="schaetzen.html"><a href="schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schaetzen von Verteilungsparametern</a></li>
 <li class="chapter" data-level="9" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>9</b> T-Test</a></li>
 <li class="chapter" data-level="10" data-path="ftest.html"><a href="ftest.html"><i class="fa fa-check"></i><b>10</b> F-Test</a></li>
-<li class="chapter" data-level="11" data-path="chi2test-kstest.html"><a href="chi2test-kstest.html"><i class="fa fa-check"></i><b>11</b> Chi2- und Kolmogorow-Smirnow-Test</a></li>
+<li class="chapter" data-level="11" data-path="chi2testkstest.html"><a href="chi2testkstest.html"><i class="fa fa-check"></i><b>11</b> Chi2- und Kolmogorow-Smirnow-Test</a></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Lineare Regression</a><ul>
 <li class="chapter" data-level="12.1" data-path="regression.html"><a href="regression.html#motivation"><i class="fa fa-check"></i><b>12.1</b> Motivation</a></li>
 <li class="chapter" data-level="12.2" data-path="regression.html"><a href="regression.html#definitionen"><i class="fa fa-check"></i><b>12.2</b> Definitionen</a></li>
@@ -194,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Mit diesem Kapitel des Skriptes steigen wir in die <strong>deskriptive Statistik</strong> ein. Lesen Sie hierzu bitte Kapitel 3.2.1 und 3.2.2 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>. Im folgenden finden Sie wie gehabt Leitfragen und Ergänzungen zu diesen Kapiteln.</p>
 <div id="ziel-der-deskriptiven-statistik" class="section level2">
 <h2><span class="header-section-number">3.1</span> Ziel der deskriptiven Statistik</h2>
-<p>Jene <em>Eigenschaft</em> eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als <strong>Merkmal</strong> <span class="math inline">\(x\)</span> des Elements bezeichnet. Der <strong>Merkmalswert</strong> <span class="math inline">\(x_i\)</span> mit <span class="math inline">\(i=1,\ldots,n\)</span> ist jener Wert, den ein Merkmal <span class="math inline">\(x\)</span> in einer statistischen Untersuchung <em>tatsächlich</em> annimmt. Ziel der <strong>deskriptiven Statistik</strong> ist es, die <em>Verteilung</em> der Merkmalswerte eines Merkmals über den möglichen Wertebereich (Ausprägungen) mit einzelnen <em>Parametern</em> näher zu charakterisieren. Z.B. die Anzahl der Ausbrüche eines Vulkans an verschiedenen Tagen.</p>
+<p>Jene <em>Eigenschaft</em> eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als <strong>Merkmal</strong> <span class="math inline">\(X\)</span> des Elements bezeichnet. Der <strong>Merkmalswert</strong> <span class="math inline">\(x_i\)</span> mit <span class="math inline">\(i=1,\ldots,n\)</span> ist jener Wert, den ein Merkmal <span class="math inline">\(X\)</span> in einer statistischen Untersuchung <em>tatsächlich</em> annimmt. Ziel der <strong>deskriptiven Statistik</strong> ist es, die <em>Verteilung</em> der Merkmalswerte eines Merkmals über den möglichen Wertebereich (Ausprägungen) mit einzelnen <em>Parametern</em> näher zu charakterisieren. Z.B. die Anzahl der Ausbrüche eines Vulkans an verschiedenen Tagen.</p>
 <p>Die Parameter sind:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Lageparameter</strong>: Maße der zentralen Tendenz einer Verteilung (s. dieses Kapitel)</li>
@@ -250,10 +254,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-5"><a href="haeufigkeit.html#cb7-5"></a>     <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 Diese Darstellung ist ein <strong>Histogramm</strong>. Dazu später mehr. Das Ordnen geschieht bei der Erechnung des Histogramms automatisch, hier haben wir es nur der Anschaulichkeit halber eingefügt.</p>
-<p>Die <strong>absolute Häufigkeit</strong>, bezeichnet mit <span class="math inline">\(h_j\)</span> für <span class="math inline">\(h\left(a_j\right)\)</span> und <span class="math inline">\(j=1,\ldots,m\)</span>, gibt also die <em>Anzahl</em> der statistischen Einheiten in einer Stichprobe an, welche die Merkmalsausprägung <span class="math inline">\(a_j\)</span> für ein Merkmal <span class="math inline">\(x\)</span> annehmen. In unserem Beispiel haben wir die Merkmalsausprägungen durch Klassifizierung gewissermaßen künstlich erzeugt da die Menge der Ausprägungen des Merkmals “Entfernung” ja nicht abzählbar ist. Im Beispiel der Anzahl Vulkanausbrüche in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> gibt es dagegen abzählbare Merkmalsausprägungen.</p>
+<p>Die <strong>absolute Häufigkeit</strong>, bezeichnet mit <span class="math inline">\(h_j\)</span> für <span class="math inline">\(h\left(a_j\right)\)</span> und <span class="math inline">\(j=1,\ldots,m\)</span>, gibt also die <em>Anzahl</em> der statistischen Einheiten in einer Stichprobe an, welche die Merkmalsausprägung <span class="math inline">\(a_j\)</span> für ein Merkmal <span class="math inline">\(X\)</span> annehmen. In unserem Beispiel haben wir die Merkmalsausprägungen durch Klassifizierung gewissermaßen künstlich erzeugt da die Menge der Ausprägungen des Merkmals “Entfernung” ja nicht abzählbar ist. Im Beispiel der Anzahl Vulkanausbrüche in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> gibt es dagegen abzählbare Merkmalsausprägungen.</p>
 <p>Die Summe der absoluten Häufigkeiten ist der Stichprobenumfang <span class="math inline">\(n\)</span>:
 <span class="math display">\[\sum_{j=1}^{m}h_j=n \quad\text{mit}\quad m\leq n\]</span></p>
-<p>Die <strong>relative Häufigkeit</strong>, bezeichnet mit <span class="math inline">\(f_j\)</span> für <span class="math inline">\(f\left(a_j\right)\)</span> und <span class="math inline">\(j=1,\ldots,m\)</span>, gibt dann den <em>Anteil</em> der statistischen Einheiten an einer Stichprobe an, welche die Merkmalsausprägung <span class="math inline">\(a_j\)</span> für ein Merkmal <span class="math inline">\(x\)</span> annehmen:
+<p>Die <strong>relative Häufigkeit</strong>, bezeichnet mit <span class="math inline">\(f_j\)</span> für <span class="math inline">\(f\left(a_j\right)\)</span> und <span class="math inline">\(j=1,\ldots,m\)</span>, gibt dann den <em>Anteil</em> der statistischen Einheiten an einer Stichprobe an, welche die Merkmalsausprägung <span class="math inline">\(a_j\)</span> für ein Merkmal <span class="math inline">\(X\)</span> annehmen:
 <span class="math display">\[f_j=f\left(a_j\right)=\frac{h\left(a_j\right)}{n}\]</span></p>
 <p>Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. Da das in der <code>hist()</code> Funktion nicht vorgesehen ist, ist der R-Code etwas länger:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="haeufigkeit.html#cb8-1"></a><span class="co"># Histogramm berechnen ohne Output</span></span>

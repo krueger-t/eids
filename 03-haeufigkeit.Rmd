@@ -4,7 +4,7 @@ Mit diesem Kapitel des Skriptes steigen wir in die **deskriptive Statistik** ein
 
 ## Ziel der deskriptiven Statistik
 
-Jene _Eigenschaft_ eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als **Merkmal** $x$ des Elements bezeichnet. Der **Merkmalswert** $x_i$ mit $i=1,\ldots,n$ ist jener Wert, den ein Merkmal $x$ in einer statistischen Untersuchung _tatsächlich_ annimmt. Ziel der **deskriptiven Statistik** ist es, die _Verteilung_ der Merkmalswerte eines Merkmals über den möglichen Wertebereich (Ausprägungen) mit einzelnen _Parametern_ näher zu charakterisieren. Z.B. die Anzahl der Ausbrüche eines Vulkans an verschiedenen Tagen.
+Jene _Eigenschaft_ eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als **Merkmal** $X$ des Elements bezeichnet. Der **Merkmalswert** $x_i$ mit $i=1,\ldots,n$ ist jener Wert, den ein Merkmal $X$ in einer statistischen Untersuchung _tatsächlich_ annimmt. Ziel der **deskriptiven Statistik** ist es, die _Verteilung_ der Merkmalswerte eines Merkmals über den möglichen Wertebereich (Ausprägungen) mit einzelnen _Parametern_ näher zu charakterisieren. Z.B. die Anzahl der Ausbrüche eines Vulkans an verschiedenen Tagen.
 
 Die Parameter sind:
 
@@ -45,12 +45,12 @@ hist(dat$x/1000, breaks = seq(0, 55, 5),
 ```
 Diese Darstellung ist ein **Histogramm**. Dazu später mehr. Das Ordnen geschieht bei der Erechnung des Histogramms automatisch, hier haben wir es nur der Anschaulichkeit halber eingefügt.
 
-Die **absolute Häufigkeit**, bezeichnet mit $h_j$ für $h\left(a_j\right)$ und $j=1,\ldots,m$, gibt also die _Anzahl_ der statistischen Einheiten in einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $x$ annehmen. In unserem Beispiel haben wir die Merkmalsausprägungen durch Klassifizierung gewissermaßen künstlich erzeugt da die Menge der Ausprägungen des Merkmals "Entfernung" ja nicht abzählbar ist. Im Beispiel der Anzahl Vulkanausbrüche in @zimmermann2014 gibt es dagegen abzählbare Merkmalsausprägungen.
+Die **absolute Häufigkeit**, bezeichnet mit $h_j$ für $h\left(a_j\right)$ und $j=1,\ldots,m$, gibt also die _Anzahl_ der statistischen Einheiten in einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $X$ annehmen. In unserem Beispiel haben wir die Merkmalsausprägungen durch Klassifizierung gewissermaßen künstlich erzeugt da die Menge der Ausprägungen des Merkmals "Entfernung" ja nicht abzählbar ist. Im Beispiel der Anzahl Vulkanausbrüche in @zimmermann2014 gibt es dagegen abzählbare Merkmalsausprägungen.
 
 Die Summe der absoluten Häufigkeiten ist der Stichprobenumfang $n$:
 $$\sum_{j=1}^{m}h_j=n \quad\text{mit}\quad m\leq n$$
 
-Die **relative Häufigkeit**, bezeichnet mit $f_j$ für $f\left(a_j\right)$ und $j=1,\ldots,m$, gibt dann den _Anteil_ der statistischen Einheiten an einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $x$ annehmen:
+Die **relative Häufigkeit**, bezeichnet mit $f_j$ für $f\left(a_j\right)$ und $j=1,\ldots,m$, gibt dann den _Anteil_ der statistischen Einheiten an einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $X$ annehmen:
 $$f_j=f\left(a_j\right)=\frac{h\left(a_j\right)}{n}$$
 
 Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. Da das in der `hist()` Funktion  nicht vorgesehen ist, ist der R-Code etwas länger:

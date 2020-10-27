@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-10-26" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -158,13 +158,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="streuung.html"><a href="streuung.html#streuungsparameter"><i class="fa fa-check"></i><b>4.1</b> Streuungsparameter</a></li>
 <li class="chapter" data-level="4.2" data-path="streuung.html"><a href="streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="korrelation.html"><a href="korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a></li>
+<li class="chapter" data-level="5" data-path="korrelation.html"><a href="korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a><ul>
+<li class="chapter" data-level="5.1" data-path="korrelation.html"><a href="korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik"><i class="fa fa-check"></i><b>5.1</b> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik</a></li>
+<li class="chapter" data-level="5.2" data-path="korrelation.html"><a href="korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman"><i class="fa fa-check"></i><b>5.2</b> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman</a></li>
+<li class="chapter" data-level="5.3" data-path="korrelation.html"><a href="korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson"><i class="fa fa-check"></i><b>5.3</b> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="wahrscheinlichkeit.html"><a href="wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a></li>
 <li class="chapter" data-level="7" data-path="verteilungen.html"><a href="verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a></li>
 <li class="chapter" data-level="8" data-path="schaetzen.html"><a href="schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schaetzen von Verteilungsparametern</a></li>
 <li class="chapter" data-level="9" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>9</b> T-Test</a></li>
 <li class="chapter" data-level="10" data-path="ftest.html"><a href="ftest.html"><i class="fa fa-check"></i><b>10</b> F-Test</a></li>
-<li class="chapter" data-level="11" data-path="chi2test-kstest.html"><a href="chi2test-kstest.html"><i class="fa fa-check"></i><b>11</b> Chi2- und Kolmogorow-Smirnow-Test</a></li>
+<li class="chapter" data-level="11" data-path="chi2testkstest.html"><a href="chi2testkstest.html"><i class="fa fa-check"></i><b>11</b> Chi2- und Kolmogorow-Smirnow-Test</a></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Lineare Regression</a><ul>
 <li class="chapter" data-level="12.1" data-path="regression.html"><a href="regression.html#motivation"><i class="fa fa-check"></i><b>12.1</b> Motivation</a></li>
 <li class="chapter" data-level="12.2" data-path="regression.html"><a href="regression.html#definitionen"><i class="fa fa-check"></i><b>12.2</b> Definitionen</a></li>
@@ -300,7 +304,7 @@ Für eine linkschiefe (rechtssteile) Verteilung gilt:
 <pre><code>## [1] 50</code></pre>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="streuung.html#cb48-1"></a><span class="kw">mean</span>(dat<span class="op">$</span>t, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 50.80612</code></pre>
-<p>Die <strong>Wölbung</strong> <span class="math inline">\(a_4\)</span> einer Häufigkeitsverteilung von Merkmalswerten 𝑥<span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> mit dem arithmetischen Mittel <span class="math inline">\(\bar x\)</span> und der Standardabweichung <span class="math inline">\(s\)</span> bestimmt die <em>Steilheit</em> einer Verteilung:
+<p>Die <strong>Wölbung</strong> <span class="math inline">\(a_4\)</span> einer Häufigkeitsverteilung von Merkmalswerten <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> mit dem arithmetischen Mittel <span class="math inline">\(\bar x\)</span> und der Standardabweichung <span class="math inline">\(s\)</span> bestimmt die <em>Steilheit</em> einer Verteilung:
 <span class="math display">\[a_4=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^4}{n\cdot s^4}-3\]</span></p>
 <p>Die Subtraktion von “-3” dient der Standardisierung auf die sogenannte Normalverteilung, eine symmetrische, glockenförmige Verteilung (s. <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.2.5). Mehr zur Normalverteilung in Kapitel <a href="verteilungen.html#verteilungen">7</a>.</p>
 <p>Für eine Normalverteilung gilt:

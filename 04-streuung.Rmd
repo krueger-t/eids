@@ -122,7 +122,7 @@ median(dat$t, na.rm = TRUE)
 mean(dat$t, na.rm = TRUE)
 ```
 
-Die **Wölbung** $a_4$ einer Häufigkeitsverteilung von Merkmalswerten 𝑥$x_1, x_2, \ldots, x_n$ mit dem arithmetischen Mittel $\bar x$ und der Standardabweichung $s$ bestimmt die _Steilheit_ einer Verteilung:
+Die **Wölbung** $a_4$ einer Häufigkeitsverteilung von Merkmalswerten $x_1, x_2, \ldots, x_n$ mit dem arithmetischen Mittel $\bar x$ und der Standardabweichung $s$ bestimmt die _Steilheit_ einer Verteilung:
 $$a_4=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^4}{n\cdot s^4}-3$$
 
 Die Subtraktion von "-3" dient der Standardisierung auf die sogenannte Normalverteilung, eine symmetrische, glockenförmige Verteilung (s. @zimmermann2014, Kapitel 3.2.5). Mehr zur Normalverteilung in Kapitel \@ref(verteilungen).
