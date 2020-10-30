@@ -2,11 +2,11 @@
 
 Das Modul B3 _Einführung in die Statistik und das Fach Geographie_ besteht aus:
 
-1. Der Vorlesung _Einführung in die Statistik_ mit [Tobias Krüger](https://www.iri-thesys.org/people/kruegertobias) (regelmäßiges ZOOM-Treffen, montags 11:00 - 12:30, s. Moodle link)
-2. Der Vorlesung _Einführung in die Geographie_ mit [Christoph Schneider](https://www.geographie.hu-berlin.de/de/Members/schneider_christoph) und [Henning Nuissl](https://www.geographie.hu-berlin.de/de/Members/nuissl_henning)
+1. Dem Seminar _Einführung in die Statistik_ mit [Tobias Krüger](https://www.iri-thesys.org/people/kruegertobias) (regelmäßiges ZOOM-Treffen, montags 11:00 - 12:30, s. Moodle link)
+2. Dem Seminar _Einführung in die Geographie_ mit [Christoph Schneider](https://www.geographie.hu-berlin.de/de/Members/schneider_christoph) und [Henning Nuissl](https://www.geographie.hu-berlin.de/de/Members/nuissl_henning)
 3. Der PC-Übung _Statistische Datenverarbeitung_ mit [Matthias Baumann](https://www.geographie.hu-berlin.de/en/professorships/biogeography/people/current-people/baumann), [Sebastian Schubert](https://www.geographie.hu-berlin.de/de/Members/schubert_sebastian), [Heidi Kreibich](https://www.gfz-potsdam.de/staff/heidi-kreibich/), [Abror Gafurov](https://www.gfz-potsdam.de/staff/abror-gafurov/), [Hoseung Jung](https://www.iri-thesys.org/people/jung), Friedrich Busch, Kassandra Jensch und Maeve Smyth (ab 27. November, freitags 09:00 - 12:00 - dazu [mehr](#orga) weiter unten)
 
-Das vorliegende Skript ist Grundlage der Vorlesung _Einführung in die Statistik_ und dient der theoretischen Vorbereitung der PC-Übung _Statistische Datenverarbeitung_. Organisatorisches dazu [weiter unten](#orga).
+Das vorliegende Skript ist Grundlage des Seminars _Einführung in die Statistik_ und dient der theoretischen Vorbereitung der PC-Übung _Statistische Datenverarbeitung_. Organisatorisches dazu [weiter unten](#orga).
 
 Am Ende des Semesters haben Sie ein Grundverständnis der beschreibenden und der schließenden Statistik erworben. Sie können folgende Methoden selbständig in der Software *R* anwenden und deren Ergebnisse interpretieren:
 
@@ -52,17 +52,17 @@ knitr::kable(
 )
 ```
 
-Der prinzipielle Lernmodus in diesem digitalen Semester ist das **Lesen** von Kapiteln aus dem vorliegenden Skript und aus zwei Lehrbüchern [@zimmermann2014; @mittag2016]. Dazu gibt es jede Woche ein kleines **Quiz** auf Moodle. Diese werden automatisch bewertet und sind Voraussetzung für den Erhalt der 3 Leistungspunkte der Vorlesung _Einführung in die Statistik_. In der **Vorlesung** jeden Montag besteht die Möglichkeit, Fragen zu klären und den Stoff der vorherigen Woche zu diskutieren. Die Vorlesung findet über ZOOM statt, s. permanenter Link auf Moodle.
+Der prinzipielle Lernmodus in diesem digitalen Semester ist das **Lesen** von Kapiteln aus dem vorliegenden Skript und aus zwei Lehrbüchern [@zimmermann2014; @mittag2016]. Dazu gibt es jede Woche ein kleines **Quiz** auf Moodle. Diese werden automatisch bewertet und sind Voraussetzung für den Erhalt der 3 Leistungspunkte des Seminars _Einführung in die Statistik_. Im **Seminar** jeden Montag besteht die Möglichkeit, Fragen zu klären und den Stoff der vorherigen Woche zu diskutieren. Das Seminar findet über ZOOM statt, s. permanenter Link auf Moodle.
 
 **Wichtig:** _Fragen und Diskussionswünsche müssen bis Ende jeder Woche über das Moodleforum eingereicht werden. Manche Fragen werden sich bereits über das Forum klären lassen._
 
-Im Selbststudium - unterstützt durch die **Vorlesung** - erarbeiten Sie sich so die Theorie, welche dann in der **PC-Übung** mittels der Software *R* zur Anwendung kommt. Die PC-Übung findet ab 27. November immer freitags 09:00 - 12:00 statt, ebenfalls über ZOOM. Wir werden mehrere thematische ZOOM-Räume anbieten, in die Sie nach Bedarf gehen können (Fragen zu Hausaufgaben, Fragen zu *R*, Fragen zur Theorie, ...). In diesem Zeitfenster bearbeiten Sie jede Woche einen Übungszettel. Die Lehrende stehen währenddessen in den ZOOM-Räumen für Fragen zur Verfügung. Ein Lösungszettel wird am Ende bereitgestellt. Abschließend gibt es eine neue Hausaufgabe bis zur nächsten Woche. Der Lösungszettel wird vor der nächsten Übung bereitgestellt. Außerhalb des Zeitfensters am Freitag beantworten wir Fragen über das Moodle Forum.
+Im Selbststudium - unterstützt durch das **Seminar** - erarbeiten Sie sich so die Theorie, welche dann in der **PC-Übung** mittels der Software *R* zur Anwendung kommt. Die PC-Übung findet ab 27. November immer freitags 09:00 - 12:00 statt, ebenfalls über ZOOM. Wir werden mehrere thematische ZOOM-Räume anbieten, in die Sie nach Bedarf gehen können (Fragen zu Hausaufgaben, Fragen zu *R*, Fragen zur Theorie, ...). In diesem Zeitfenster bearbeiten Sie jede Woche einen Übungszettel. Die Lehrende stehen währenddessen in den ZOOM-Räumen für Fragen zur Verfügung. Ein Lösungszettel wird am Ende bereitgestellt. Abschließend gibt es eine neue Hausaufgabe bis zur nächsten Woche. Der Lösungszettel wird vor der nächsten Übung bereitgestellt. Außerhalb des Zeitfensters am Freitag beantworten wir Fragen über das Moodle Forum.
 
 In den **Hausaufgaben** wird in der Übung Erprobtes auf einen anderen Datensatz angewendet oder erweitert. Die Hausaufgaben sind Voraussetzung für den Erhalt der 3 Leistungspunkte der PC-Übung _Statistische Datenverarbeitung_. Die Abgabe erfolgt über einen Abgabelink auf Moodle bis zum nächsten **Mittwoch 24:00**. Das Abgabeformat (HTML via R Markdown) wird in der ersten PC-Übung ausführlich erklärt und eingeübt. Es beinhaltet den R-Code, einen kurzen Text zur Beantwortung der Fragestellung bzw. Interpretation der Ergebnisse, sowie relevante (!) Abbildungen, Tabellen und Kenngrößen. Am Donnerstag wird das Lösungsblatt bereit gestellt. Unklarheiten und Probleme werden während der nächsten Übung geklärt (eigener ZOOM-Raum für Fragen zur letzten Hausaufgabe).
 
 Ein kurzes Wort zu unseren **Erwartungen**: In diesem digitalen Semester wird selbständiges Lernen noch wichtiger sein als in Präsenzsemestern. Das Seminar entspricht mit 3 Leistungspunkten einem Aufwand von 90 Stunden, d.h. 6 Stunden pro Woche. Bei maximal 1,5 Stunden "Präsenz" via ZOOM verbleiben mindestens 4,5 Stunden pro Woche für das Selbststudium des Skriptes und der ausgewählten Lehrbuchkapitel. Die PC-Übung entspricht mit 3 Leistungspunkten ebenfalls 90 Stunden, d.h. 7,5 Stunden pro Woche ab Semesterwoche 4. Bei 3 Stunden "Präsenz" via ZOOM verbleiben weitere 4,5 Stunden pro Woche für Nachbereitung und Hausaufgaben. **Insgesamt sollten Sie sich also auf 9 Stunden pro Woche selbstständiges Arbeiten für Statistik einstellen.**
 
-Die Modulabschlussprüfung ist dieses Jahr eine sogenannte **take-home Klausur**, die Sie - voraussichtlich in der 1. Semesterferienwoche - zu Hause in einem vorgegeben Zeitrahmen selbständig bearbeiten. Ein Nachholtermin findet voraussichtlich in der letzten Semesterferienwoche statt. Die Anmeldung erfolgt gegen Semesterende über AGNES bei Frau Schwedler. Die take-home Klausur wird stark an die Übungen und Hausaufgaben angelehnt sein. Außerdem wird es ein paar Fragen über Moodle geben - ähnlich der regelmäßigen Quizze. Insgesamt werden sich \(\frac{5}{6}\) der zu erreichenden Punktzahl auf _Einführung in die Statistik_ beziehen und \(\frac{1}{6}\) auf _Einführung in die Geographie_.
+Die Modulabschlussprüfung ist dieses Jahr eine sogenannte **take-home Klausur**, die Sie - voraussichtlich am **05.03.2021** - zu Hause in einem vorgegeben Zeitrahmen selbständig bearbeiten. Ein Nachholtermin findet voraussichtlich am **16.04.2021** statt. Die Anmeldung erfolgt gegen Semesterende über AGNES bei Frau Schwedler. Die take-home Klausur wird stark an die Übungen und Hausaufgaben angelehnt sein. Außerdem wird es ein paar Fragen über Moodle geben - ähnlich der regelmäßigen Quizze. Insgesamt werden sich \(\frac{5}{6}\) der zu erreichenden Punktzahl auf _Einführung in die Statistik_ beziehen und \(\frac{1}{6}\) auf _Einführung in die Geographie_.
 
 ## Mathematische Notation und Grundlagen
 
@@ -73,7 +73,7 @@ $$\begin{equation}
 \sum_{i=1}^{n}x_i=x_1+x_2+\ldots+x_{n-1}+x_n
 (\#eq:sum)
 \end{equation}$$
-Wobei das Summenzeichen $\Sigma$ die Anweisung symbolisiert, die Merkmalswerte $x_i$ zu addieren, wobei der Index $i$ von 1 bis zur Anzahl der Werte $n$ läuft.
+Das Summenzeichen $\Sigma$ symbolisiert die Anweisung, die Merkmalswerte $x_i$ zu addieren, wobei der Index $i$ von 1 bis zur Anzahl der Werte $n$ läuft.
 
 Eine ähnliche verkürzte Schreibweise gibt es für das **Produkt**:
 $$\begin{equation}

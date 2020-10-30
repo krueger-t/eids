@@ -7,9 +7,7 @@ Lesen Sie hierzu bitte Kapitel 3.4.2 von @zimmermann2014. Die Fragen, die uns be
 - Wie stark ist der Zusammenhang zwischen den Merkmalen?
 - Wie kann man den Zusammenhang visualisieren?
 
-Die Verfahren sind unterschiedlich für nominalskalierte, ordinalskalierte und metrische Merkmale. Wir werden diese jetzt nacheinander einführen.
-
-Die Themen können Sie in @mittag2016, Kapitel 8 und 9 vertiefen.
+Die Verfahren sind unterschiedlich für nominalskalierte, ordinalskalierte und metrische Merkmale. Wir werden diese jetzt nacheinander einführen. Die Themen können Sie in @mittag2016, Kapitel 8 und 9 vertiefen.
 
 ## Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik
 
@@ -107,7 +105,7 @@ An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Beide Merkmale
 plot(dat$x/1000, dat$t, xlab="Entfernung (km)", ylab="Reisezeit (min)")
 ```
 
-**Aufgabe:** _Uberlegen Sie kurz, wie stark die Korrelation hier sein wird. (Auflösung weiter unten.)_
+**Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird. (Auflösung weiter unten.)_
 
 Die _lineare_ Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-**Korrelationskoeffizient** nach Bravais-Pearson $r_{x,y}$ für $n$ Wertepaare $\left(x_i,y_i\right)$ mit $i=1, 2, \ldots, n$ berechnet. Er ergibt sich aus den Standardabweichungen $s_x$ und $s_y$ und der standardisierten Kovarianz $s_{x,y}$ durch:
 $$r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}$$
