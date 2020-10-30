@@ -1,6 +1,9 @@
 book_filename: "eids"
 language:
+  label:
+    fig: 'Abbildung '
+    tab: 'Tabelle '
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Kapitel "
 delete_merged_file: true
 output_dir: "docs"
