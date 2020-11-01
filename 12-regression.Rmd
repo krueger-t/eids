@@ -1,36 +1,13 @@
 # Lineare Regression {#regression}
 
-## Warum lineare Regression?
+Die Fragen, die wir mit linearer Regression beantworten möchten, sind von der in Abbildung \@ref(fig:abb12-1) dargestellten Art: _Kann man Ihre Reisezeit mit der Entfernung zu Ihrem Wohnort statistisch vorhersagen?_ (vgl. Kapitel \@ref(korrelation))
 
-Die Fragen, die wir mit linearer Regression beantworten möchten, sind von der in Abbildung \@ref(fig:abb12-1) dargestellten Art: Kann man Ihre Reisezeit mit der Entfernung zu Ihrem Wohnort statistisch vorhersagen? (vgl. Kapitel \@ref(korrelation))
-
-```{r, include=FALSE}
-library(readxl)
-library(dplyr)
-library(bookdown)
-library(ggplot2)
-library(car)
-
-# Daten laden
-daten <- read_excel("data/Daten.xlsx", na = "-999")
-daten <- as.data.frame(daten)
-names(daten) <- c("distanz","zeit")
-
-# umwandeln in km und redundante Dezimalstellen entfernen
-daten <- mutate(daten, distanz = distanz/100)
-daten <- round(daten, digits = 1)
-
-```
-
-
-
-```{r abb12-1, echo=TRUE, fig.align='center', fig.cap='Reisezeit in Abhängigkeit zur Entfernung. Korrelationskoeffizient nach Bravais-Pearson <br>r~$x, y$~=0'}
-
-ggplot(data = daten, 
-       aes(x = distanz, y = zeit)) + 
-  geom_point() + 
-  xlab("Entfernung (km)") + 
-  ylab("Reisezeit (min)")
+```{r abb12-1, echo=TRUE, fig.align='center', fig.cap='Reisezeit in Abhängigkeit zur Entfernung. Korrelationskoeffizient nach Bravais-Pearson (Kapitel \\@ref(korrelation)): 0.86.'}
+library("readxl")
+dat <- read_excel("data/Reisedaten.xlsx", na = "-999")
+dat <- as.data.frame(dat)
+names(dat) <- c('x','t')
+plot(dat$x/1000, dat$t, xlab="Entfernung (km)", ylab="Reisezeit (min)")
 ```
 
 Das **Ziel** ist, eine Gerade durch die Punktwolke zu legen, die den *Trend* beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.
@@ -40,98 +17,95 @@ Es geht um *2 Variablen* (Merkmale):
 - die **abhängige Variable** $y$ (im Bsp. Reisezeit)
 - die **unabhängige Variable** $x$ (im Bsp. Entfernung)
 
-Die Variablen müssen *metrisch* skaliert sein. Wir wollen das generelle Verhalten von $y$ mit $y$ beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.
+Die Variablen müssen *metrisch* skaliert sein. Wir wollen das generelle Verhalten von $y$ mit $x$ beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.
 
 ## Definitionen
 
-Im Falle einer einzigen unabhängigen Variable ist die Gleichung des **linearen Models** wie folgt:
+Im Falle einer einzigen unabhängigen Variable lautet die Gleichung des **linearen Models**:
 
 $$\begin{equation}
-y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i
+y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i \quad \text{mit} \quad i=1,2,\ldots,n
 (\#eq:linmodsingle)
 \end{equation}$$
 
-Wobei $i$ eine positive natürliche Zahl darstellt, also $i$ = 1,2,...,$n$
+$y_i$ bezeichnet den Wert der **abhängigen Variable** für Datenpunkt $i$, und $x_i$ den Wert der **unabhängigen Variable** für Datenpunkt $i$. Der Parameter $\beta_0$ beschreibt den **Achsenabschnitt** der Geraden, also der Punkt an dem die Gerade die y-Achse schneidet. Der Parameter $\beta_1$ beschreibt die **Steigung** der Geraden. $\epsilon_i$ schließlich stellt das **Residuum** (also den Fehler) für Datenpunkt $i$ dar (Abbildung \@ref(fig:abb12-2)).
 
-$y_i$ beschreibt den Wert der **abhängigen Variable** für Datenpunkt $i$, und $x_i$ den Wert der **unabhängigen Variable** für Datenpunkt $i$. Der Parameter $\beta_0$ beschreibt den **Achsenabschnitt** der Geraden, also wo die Gerade die y-Achse schneidet. Der Parameter $\beta_1$ beschreibt die **Steigung** der Geraden (ein Parameter). $\epsilon_i$ schließlich stellt das **Residuum** (also den Fehler) für Datenpunkt $i$ dar (Abbildung \@ref(fig:abb12-2)).
-
-```{r abb12-2, echo=FALSE, fig.align='center', fig.cap='Definitionen'}
-
+```{r abb12-2, echo=FALSE, fig.align='center', fig.cap='Lineare Regression: Definitionen.'}
 knitr::include_graphics('figs/abb12-2.png')
 ```
 
 ## Beschreibung vs. Vorhersage
 
-Der primäre Zweck einer Regressionsanalyse ist die Beschreibung (oder Erklärung) der Daten im Sinne einer allgemeinen Beziehung, die sich auf die Population übertragen lässt, aus der diese Daten entnommen werden. Da diese Beziehung eine Eigenschaft der Population ist, sollte diese demnach auch Vorhersagen ermöglichen. Hierbei ist jedoch Vorsicht geboten. Betrachten Sie das Verhältnis zwischen Jahr und Weltrekordzeit für die in Abbildung \@ref(fig:mile) dargestellte Herrenmeile. Wenn, wie hier, die Zeit als Prädiktor dient, wird die Regression zu einer Form der Trendanalyse, die in diesem Fall eine Abnahme der Rekordzeit im Hinblick auf das Jahr angibt.
+Der primäre Zweck einer Regressionsanalyse ist die Beschreibung (oder Erklärung) der Daten im Sinne einer allgemeinen Beziehung, die sich auf die Grundgesamtheit übertragen lässt, aus der diese Daten entnommen wurden. Da diese Beziehung eine Eigenschaft der Grundgesamtheit ist, sollte diese demnach auch Vorhersagen ermöglichen. Hierbei ist jedoch Vorsicht geboten. Betrachten Sie den Zusammenhang von Jahr und Weltrekordzeit für die in Abbildung \@ref(fig:mile) dargestellten Daten (Meile, Herren). Wenn, wie hier, die Zeit als Prädiktor dient, wird die Regression zu einer Form der Trendanalyse, die in diesem Fall eine Verringerung der Rekordzeit mit den Jahren anzeigt.
 
 ```{r echo=TRUE}
-# Daten aus entferntem Repository laden
-dat <- read.csv("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile.csv", header=TRUE)
-# lineares Modell and Daten aus 1. Hälfte des 20. JH. anpassen
-fit1 <- lm(seconds ~ year, data = dat[dat$year<1950,])
-# Informationen zu Parameterschätzungen extrahieren
+# Daten laden
+mile <- read.csv("https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile.csv", header=TRUE)
+# lineares Modell an Daten aus 1. Hälfte des 20. JH. anpassen
+fit1 <- lm(seconds ~ year, data = mile[mile$year<1950,])
+# Informationen zu Parameterschätzern extrahieren
 coef(summary(fit1))
 # lineares Modell an kompletten Datensatz anpassen
-fit2 <- lm(seconds ~ year, data = dat)
+fit2 <- lm(seconds ~ year, data = mile)
 coef(summary(fit2))
 ```
 
-```{r mile, echo=TRUE, fig.align='center', fig.cap= 'Links: Trend des Weltrekords der Herrenmeile in der ersten Hälfte des 20. Jahrhunderts (Beschreibung). Mitte: Extrapolierung des Trends auf die zweite Hälfte des 20. Jahrhunderts (Vorhersage). Rechts: Extrapolierung des Trends bis zum Jahr 2050 (längere Vorhersage). Quelle: @wainer2009', fig.show='hold', out.width='33%'}
+```{r mile, echo=TRUE, fig.align='center', fig.cap= 'Links: Trend des Weltrekords "Meile, Herren" in der ersten Hälfte des 20. Jahrhunderts (Beschreibung). Mitte: Extrapolation des Trends auf die zweite Hälfte des 20. Jahrhunderts (Vorhersage). Rechts: Extrapolation des Trends bis zum Jahr 2050 (längere Vorhersage). Nach: @wainer2009', fig.show='hold', out.width='33%'}
 # Modellanpassung für 1. Hälfte des 20. JH. plotten
-plot(dat$year[dat$year<1950], dat$seconds[dat$year<1950],
+plot(mile$year[mile$year<1950], mile$seconds[mile$year<1950],
      xlim = c(1900, 2000), ylim = c(200, 260),
      pch = 19, type = 'p',
-     xlab = "Jahr", ylab = "Weltrekord, Herrenmeile (Sekunden)")
+     xlab = "Jahr", ylab = "Weltrekord, Meile, Herren (Sekunden)")
 abline(coef(fit1), lwd = 3, col = "red")
-# Extrapolierung für 2. Hälfte des 20. JH. plotten
-plot(dat$year, dat$seconds,
+# Extrapolation für 2. Hälfte des 20. JH. plotten
+plot(mile$year, mile$seconds,
      xlim = c(1900, 2000), ylim = c(200, 260),
      pch = 19, type = 'p',
-     xlab = "Jahr", ylab = "Weltrekord, Herrenmeile (Sekunden)")
+     xlab = "Jahr", ylab = "Weltrekord, Meile, Herren (Sekunden)")
 abline(coef(fit1), lwd = 3, col = "red")
 # Modellanpassung für Gesamtdaten bis 2050 plotten
-plot(dat$year, dat$seconds,
+plot(mile$year, mile$seconds,
      xlim = c(1900, 2050), ylim = c(200, 260),
      pch = 19, type = 'p',
-     xlab = "Jahr", ylab = "Weltrekord, Herrenmeile (Sekunden)")
+     xlab = "Jahr", ylab = "Weltrekord, Meile, Herren (Sekunden)")
 abline(coef(fit2), lwd = 3, col = "red")
 ```
 
-Der Weltrekord bei der Herrenmeile verbesserte sich in der ersten Hälfte des 20. Jahrhunderts linear (Abbildung \@ref(fig:mile), links). Diese Hochrechnung bietet auch für die zweite Hälfte eine bemerkenswert genaue Passung (Abbildung \@ref(fig:mile), Mitte). Wie lange kann sich der Weltrekord jedoch noch mit der gleichen Geschwindigkeit verbessern (Abbildung \@ref(fig:mile), rechts)? Dieses Beispiel zeigt deutlich die Anwendbarkeit von Regressionen für Vorhersagen innerhalb bestimmter Grenzen, kennzeichnet jedoch gleichzeitig die Begrenzung dieser einfachen Modelle für Fernvorhersagen (z.B. über Zeit und Raum). Im Falle des Weltrekords würden wir erwarten, dass die Verbesserungsrate mit der Zeit abnimmt, d.h. dass sich der Weltrekord abflacht, was ein nichtlineares Modell erfordert.
+Der Weltrekord verbesserte sich in der ersten Hälfte des 20. Jahrhunderts linear (Abbildung \@ref(fig:mile), links). Dieser Trend passt auch für die zweite Hälfte des 20. Jahrhunderts bemerkenswert gut (Abbildung \@ref(fig:mile), Mitte). Wie lange kann sich der Weltrekord jedoch noch mit der gleichen Rate verbessern (Abbildung \@ref(fig:mile), rechts)?
+
+Dieses Beispiel zeigt deutlich die Anwendbarkeit von Regressionen für Vorhersagen innerhalb bestimmter Grenzen, zeigt jedoch gleichzeitig die Grenzen dieser einfachen Modelle für längere Vorhersagen (z.B. in Zeit und Raum). Im Falle des Weltrekords würden wir erwarten, dass die Verbesserungsrate mit der Zeit abnimmt, d.h. dass die Kurve abflacht, was ein nichtlineares Modell erfordert.
 
 ## Ausblick: weiterführende lineare Modelle
 
-Wenn wir über das lineare Modell sprechen, ist die abhängige Variable immer metrisch, während die unabhängigen Variablen metrisch, nominal/ordinal oder gemischt sein können. Im Prinzip kann jede dieser Varianten mathematisch gleich behandelt werden, d.h. alle können z.B. mit der lm-Funktion in R analysiert werden. Allerdings sind historisch gesehen unterschiedliche Bezeichnungen für diese Varianten festgelegt worden, die hier erwähnt werden sollten, um Verwirrung zu vermeiden (Tabelle \@ref(tab:varianten1) und \@ref(tab:varianten2)).
+Wenn wir über das lineare Modell sprechen, ist die abhängige Variable immer metrisch skaliert, während die unabhängigen Variablen metrisch, nominal/ordinal oder gemischt sein können. Im Prinzip kann jede dieser Varianten mathematisch gleich behandelt werden, d.h. alle können z.B. mit der `lm()` Funktion in _R_ analysiert werden. Allerdings haben sich historisch gesehen unterschiedliche Bezeichnungen für diese Varianten etabliert, die hier erwähnt werden sollen, um Verwirrung zu vermeiden (Tabellen \@ref(tab:varianten1) und \@ref(tab:varianten2)).
 
-
-| | Abhängige Variable(n) metrisch / <br>unabhängige Variable(n)... |
+| unabhängige Variable(n)<br>metrisch | unabhängige Variable(n)<br>nominal/ordinal | unabhängige Variable(n)<br>gemischt |
 | :---: | :---: | :---: |
-| ...metrisch | ...nominal/ ordinal | ...gemischt |
-| Regression | Varianzanalyse<br>(ANOVA) | Kovarianz Analyse<br>(ANCOVA) |
-Tabelle: (\#tab:varianten1) Historische Namen für die Varianten des linearen Modells, je nachdem, ob die unabhängigen Variablen metrisch, nominal oder gemischt sind. Die abhängige Variable ist immer nominal.
-
+| Regression | Varianzanalyse<br>(ANOVA) | Kovarianzanalyse<br>(ANCOVA) |
+Table: (\#tab:varianten1) Historische Namen für die Varianten des linearen Modells, je nachdem, ob die unabhängigen Variablen metrisch, nominal/ordinal oder gemischt sind. Die abhängige Variable ist immer metrisch skaliert.
 
 | | 1 unabhängige Variable  | >1 unabhängige Variable |
 | :---: | :---: | :---: |
-| **1 unabhängige Variable** | Regression  | Multiple Regression |
-| **>1 unabhängige Variable** | Multivariate Regression |
-Tabelle: (\#tab:varianten2) Historische Namen für die Regression, je nachdem, ob wir eine oder mehrere unabhängige Variablen und eine oder mehrere abhängige Variablen haben.
-
+| **1 abhängige Variable** | Regression  | Multiple Regression |
+| **>1 abhängige Variable** | Multivariate Regression | Multivariate multiple Regression|
+Table: (\#tab:varianten2) Historische Namen für Regression, je nachdem, ob wir eine oder mehrere unabhängige Variablen und eine oder mehrere abhängige Variablen haben.
 
 ## Lineare Regression
 
 Wie soll nun die Gerade durch die Punktwolke gelegt werden, d.h. welche Werte sollen Achsenabschnitt $\beta_0$ und Steigung $\beta_1$ annehmen?
 
-Typischerweise werden Regressionsprobleme gelöst, d.h. die Linien in den Abbildungen \@ref(fig:abb12-1) und \@ref(fig:abb12-2) werden an die Daten angepasst, indem die Summe der quadratischen Fehler zwischen der Regressionsgeraden und den Datenpunkten minimiert wird (kleinste-Quadrate-Schätzung). Diese Differenz wird auch als SSE bezeichnet (Sum of Squared Errors). Grafisch gesehen, probieren wir in Abbildung \@ref(fig:abb12-1) verschiedene Linien mit unterschiedlichen Schnittpunkten ($\beta_0$) und Steigungen ($\beta_1$) aus und wählen diejenige, bei der die Summe über alle vertikalen Abstände zum Quadrat ($\epsilon_i$) am kleinsten ist. Mathematisch ist SSE definiert als:
+Typischerweise werden Regressionsprobleme gelöst, d.h. die Geraden in den Abbildungen \@ref(fig:abb12-1) und \@ref(fig:abb12-2) an die Daten angepasst, indem die Summe der quadratischen Abweichungen zwischen der Regressionsgeraden und den Datenpunkten minimiert wird - die sogenannte **Kleinste-Quadrate-Schätzung**.
+
+Die Summe der quadratischen Abweichungen wird auch als $SSE$ bezeichnet (Sum of Squared Errors). Grafisch gesehen probieren wir in Abbildung \@ref(fig:abb12-1) verschiedene Geraden mit unterschiedlichen Achsenabschnitten $\beta_0$ und Steigungen $\beta_1$ aus und wählen diejenige, bei der die Summe aller vertikalen Abstände $\epsilon_i$ zum Quadrat am kleinsten ist. Mathematisch ist $SSE$ definiert als:
 
 $$\begin{equation}
 SSE=\sum_{i=1}^{n}\left(\epsilon_i\right)^2=\sum_{i=1}^{n}\left(y_i-\left(\beta_0+\beta_1 \cdot x_i\right)\right)^2
 (\#eq:sse)
 \end{equation}$$
 
-Das **Residuum**, also der Teil der Varianz, der durch das lineare Modell nicht erklärt werden kann, wird durch die folgende Gleichung beschrieben: $\epsilon_i=y_i-\left(\beta_0+\beta_1 \cdot x_i\right)$
+Das Residuum $\epsilon_i$ ist also gleich $y_i-\left(\beta_0+\beta_1 \cdot x_i\right)$, dem vertikalen Abstand zwischen Datenpunkt und Regressionsgerade.
 
-Im Falle der linearen Regression kann SSE analytisch minimiert werden, was z.B. bei nichtlinearen Modellen nicht der Fall ist. Analytisch finden wir das Minimum von SSE, wenn deren partielle Ableitungen in Bezug auf die beiden Modellparameter beide Null sind:  $\frac{\partial SSE}{\partial \beta_0}=0$ und $\frac{\partial SSE}{\partial \beta_1}=0$. Unter Anwendung der Definition von SEE aus Gleichung \@ref(eq:sse) beginnen wir also mit einem System von zwei Differentialgleichungen:
+Im Falle der linearen Regression kann $SSE$ analytisch minimiert werden, was z.B. bei nichtlinearen Modellen nicht der Fall ist. Analytisch finden wir das Minimum von $SSE$ wo dessen partielle Ableitungen in Bezug auf die beiden Modellparameter beide Null sind: $\frac{\partial SSE}{\partial \beta_0}=0$ und $\frac{\partial SSE}{\partial \beta_1}=0$. Unter Anwendung der Definition von $SEE$ aus Gleichung \@ref(eq:sse) und der **Summenregel** (wenn $y=u(t) \pm v(t)$ dann $\frac{dy}{dt}=\frac{du}{dt} \pm \frac{dv}{dt}$) und der **Kettenregel** (wenn $y=u(t) \pm v(t)$ dann $\frac{dy}{dt}=\frac{du}{dt} \pm \frac{dv}{dt}$) erhalten wir:
 
 $$\begin{equation}
 \frac{\partial SSE}{\partial \beta_0}=-2 \cdot \sum_{i=1}^{n}\left(y_i-\beta_0-\beta_1 \cdot x_i\right)=0
@@ -142,29 +116,31 @@ $$\begin{equation}
 (\#eq:sseb1)
 \end{equation}$$
 
-Diese Ableitungen können wir anhand der **Summenregel** (wenn $𝑦=𝑢±𝑣$, dann
-$𝑦^′=𝑢′±𝑣′$ ) und der **Kettenregel** (wenn $𝑦=𝑓[𝑔(𝑥)]$ dann
-$𝑦^′=𝑓′[𝑔(𝑥)]*𝑔′(𝑥)$ ) lösen.
-Mit den Gleichungen \@ref(eq:sseb0) und \@ref(eq:sseb1) haben wir ein Gleichungssystem mit 2 Gleichungen und 2 Unbekannten, das wir eindeutig lösen können.
+Gleichungen \@ref(eq:sseb0) und \@ref(eq:sseb1) bilden ein Gleichungssystem mit zwei Gleichungen und zwei Unbekannten, das wir eindeutig lösen können:
 
-Zuerst lösen wir Gleichung \@ref(eq:sseb0) nach $\beta_0$ (nachdem wir durch -2 geteilt haben):
+Zuerst lösen wir Gleichung \@ref(eq:sseb0) nach $\beta_0$ auf (nachdem wir durch -2 geteilt haben):
 
 $$\begin{equation}
 \sum_{i=1}^{n}y_i-n \cdot \beta_0-\beta_1 \cdot \sum_{i=1}^{n}x_i=0
 (\#eq:b01)
 \end{equation}$$
 $$\begin{equation}
-n \cdot \hat\beta_0=\sum_{i=1}^{n}y_i-\hat\beta_1 \cdot \sum_{i=1}^{n}x_i
+n \cdot \beta_0=\sum_{i=1}^{n}y_i-\beta_1 \cdot \sum_{i=1}^{n}x_i
 (\#eq:b02)
 \end{equation}$$
 $$\begin{equation}
-\hat\beta_0=\bar{y}-\hat\beta_1 \cdot \bar{x}
+\beta_0=\bar{y}-\beta_1 \cdot \bar{x}
 (\#eq:b03)
 \end{equation}$$
 
-Beachten Sie, dass wir irgendwann $\beta_0$ in $\hat\beta_0$ und $\beta_1$ in $\hat\beta_1$ umbenannt haben, um diese als **Schätzwerte** zu bezeichnen. Die Parameter-Notation war bisher allgemein, aber wenn wir uns den tatsächlichen numerischen Werten für die vorliegenden Daten nähern, verwenden wir das "Dach"-Symbol, um zu signalisieren, dass wir jetzt Schätzungen dieser allgemeinen Parameter für einen bestimmten Datensatz berechnen.
+Formal sind das jetzt Parameter*schätzer*:
+$$\begin{equation}
+\hat\beta_0=\bar{y}-\hat\beta_1 \cdot \bar{x}
+(\#eq:b04)
+\end{equation}$$
+Das "Dach"-Symbol bezeichnet Schätzer.
 
-Als zweites, setzen wir Gleichung \@ref(eq:b03) in Gleichung \@ref(eq:sseb1) ein (nachdem wir durch -2 geteilt haben):
+Sodann setzen wir Gleichung \@ref(eq:b04) in Gleichung \@ref(eq:sseb1) ein (nachdem wir durch -2 geteilt haben):
 
 $$\begin{equation}
 \sum_{i=1}^{n}\left(x_i \cdot y_i-\beta_0 \cdot x_i-\beta_1 \cdot x_i^2\right)=0
@@ -175,7 +151,7 @@ $$\begin{equation}
 (\#eq:insert2)
 \end{equation}$$
 
-Drittens, lösen wir Gleichung Third \@ref(eq:insert2) nach $\beta_1$:
+Schließlich lösen wir Gleichung \@ref(eq:insert2) nach $\beta_1$ auf:
 
 $$\begin{equation}
 \sum_{i=1}^{n}\left(x_i \cdot y_i-\bar{y} \cdot x_i\right)-\hat\beta_1 \cdot \sum_{i=1}^{n}\left(x_i^2-\bar{x} \cdot x_i\right)=0
@@ -186,109 +162,115 @@ $$\begin{equation}
 (\#eq:b12)
 \end{equation}$$
 
-Über eine Reihe von Schritten, die ich hier überspringe, gelangen wir zum folgenden Schritt:
+Über eine Reihe von Schritten, die ich hier überspringe, erhalten wir:
 
 $$\begin{equation}
 \hat\beta_1=\frac{SSXY}{SSX}
 (\#eq:b13)
 \end{equation}$$
-Wo $SSX=\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^2$ und $SSXY=\sum_{i=1}^{n}\left(x_i-\bar{x}\right) \cdot \left(y_i-\bar{y}\right)$. Beachten Sie, dass entsprechend gilt: $SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2$. Dies ist eine exakte Lösung für $\hat\beta_1$.
 
-Wir setzen nun Gleichung \@ref(eq:b13) in Gleichung \@ref(eq:sse) ein und haben eine exakte Lösung für $\hat\beta_0$.
+$SSX=\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^2$ ist ein Maß für die Varianz der Daten in $x$-Richtung. $SSXY=\sum_{i=1}^{n}\left(x_i-\bar{x}\right) \cdot \left(y_i-\bar{y}\right)$ ist ein Maß für die Kovarianz der Daten. Es gibt auch $SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2$, das entsprechend ein Maß für die Varianz der Daten in $y$-Richtung ist. Gleichung \@ref(eq:b13) ist eine exakte Lösung für $\hat\beta_1$.
 
+Wir setzen nun Gleichung \@ref(eq:b13) in Gleichung \@ref(eq:b04) ein und haben eine exakte Lösung für $\hat\beta_0$. Abbildung \@ref(fig:lmxt) zeigt eine Grafik der so berechneten Regressionsgeraden für unsere Reisedaten.
 
-## Statistische Signifikanz
+```{r echo=TRUE}
+# lineare Regression Reisedaten
+dat$x <- dat$x/1000
+fit3 <- lm(formula = t ~ x, data = dat)
+coef(summary(fit3))
+```
 
-Wenn wir Schätzungen für die Regressionsparameter haben, müssen wir uns fragen, ob diese Schätzungen statistisch signifikant sind oder ob sie entstanden sind durch Zufall aus dem (angenommenen) Zufallsprozess der Stichprobenziehung der Daten. Wir tun dies über die **Varianzanalyse (ANOVA)**, die mit der Erstellung der ANOVA-Tabelle (Tabelle \@ref(tab:anova)) beginnt. Dies geschieht oft im Hintergrund in Software wie R und wird eigentlich nicht so viel betrachtet.
+```{r lmxt, echo=TRUE, fig.align='center', fig.cap= 'Reisezeit in Abhängigkeit zur Entfernung: Lineare Regression $y_i=23.55+1.93\\cdot x_i+\\epsilon_i$', out.width='80%'}
+# Modellanpassung plotten
+plot(dat$x, dat$t,
+     pch = 19, type = 'p',
+     xlab = "Entfernung (km)", ylab = "Reisezeit (Minuten)")
+abline(coef(fit3), lwd = 3, col = "red")
+```
 
+## Signifikanz der Regression
 
-| Varianzquelle | Quadrat-<br>summe | Freiheitsgrad ($df$) | Varianz | F-Statistic ($F_s$) | p-Wert |
+Wenn wir Werte für die Regressionsparameter haben, müssen wir uns fragen, ob diese Werte statistisch signifikant sind oder ob sie durch Zufall aus dem (angenommenen) Zufallsprozess der Stichprobenziehung entstanden sein könnten. Dazu testen wir formal, ob die vom Modell erklärte Varianz in den Daten signifikant größer als die nicht erklärte Varianz ist. Das ist ein F-Test-Problem, das wir über die sogenannte Varianzanalyse (ANOVA) angehen. ANOVA beginnt mit der Erstellung der ANOVA-Tabelle (Tabelle \@ref(tab:anova)). Dies geschieht oft im Hintergrund in Software wie _R_ und wird eigentlich nicht so häufig explizit betrachtet.
+
+| Varianz-<br>quelle | Quadrat-<br>summe | Freiheits-<br>grad ($df$) | Varianz | F-Statistik ($F_s$) | p-Wert |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | Regression | $SSR=\\SSY-SSE$ | $1$ | $\frac{SSR}{df_{SSR}}$ | $\frac{\frac{SSR}{df_{SSR}}}{s^2}$ | $1-F\left(F_s,1,n-2\right)$ |
 | Fehler | $SSE$ | $n-2$ | $\frac{SSE}{df_{SSE}}=s^2$ | | |
 | Gesamt | $SSY$ | $n-1$ | | | |
-Tabelle: (\#tab:anova) ANOVA-Tabelle für lineare Regression.
+Table: (\#tab:anova) ANOVA-Tabelle für lineare Regression.
 
-In der zweiten Spalte von Tabelle (\#tab:anova) ist $SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2$ ein Maß für die Gesamtvarianz der Daten, d.h. wie stark die Datenpunkte um den Gesamtmittelwert variieren (Abbildung \@ref(fig:ssysse), links). $SSE=\sum_{i=1}^{n}\left(\epsilon_i\right)^2=\sum_{i=1}^{n}\left(y_i-\left(\beta_0+\beta_1 \cdot x_i\right)\right)^2$ ist ein Maß für die Fehlervarianz, d.h. wie stark die Datenpunkte um die Regressionsgerade variieren (Abbildung \@ref(fig:ssysse), rechts). Dies ist die Varianz, die nicht durch das Modell erklärt wird. $SSR=SSY-SSE$ ist folglich ein Maß für die Varianz, die durch das Modell erklärt wird.
+Schauen wir uns zunächst die zweiten Spalte von Tabelle \@ref(tab:anova) an: $SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2$ ist ein Maß für die Gesamtvarianz der Daten (in $y$-Richtung), d.h. wie stark die Datenpunkte um den Gesamtmittelwert streuen (Abbildung \@ref(fig:ssysse), links). $SSE=\sum_{i=1}^{n}\left(\epsilon_i\right)^2=\sum_{i=1}^{n}\left(y_i-\left(\beta_0+\beta_1 \cdot x_i\right)\right)^2$ ist ein Maß für die Fehlervarianz, d.h. wie stark die Datenpunkte um die Regressionsgerade streuen (Abbildung \@ref(fig:ssysse), rechts). Dies ist die Varianz, die nach der Modellanpassung übrig ist ("nicht erklärt"). $SSR=SSY-SSE$ ist folglich ein Maß für die vom Modell erklärte Varianz.
 
-
-```{r ssysse, echo=FALSE, fig.align='center', fig.cap='Variation der Datenpunkte um den Mittelwert, gekennzeichnet mit $SSY$ (links) und um die Regressionsgerade, gekennzeichnet mit $SSE$ (rechts).', fig.show='hold', out.width='50%'}
+```{r ssysse, echo=FALSE, fig.align='center', fig.cap='Variation der Datenpunkte um den Mittelwert, zusammengefasst durch $SSY$ (links), und um die Regressionsgerade, zusammengefasst durch $SSE$ (rechts).', fig.show='hold', out.width='50%'}
 knitr::include_graphics(c('figs/ssy.jpg','figs/sse.jpg'))
 ```
 
-In der dritten Spalte der Tabelle \@ref(tab:anova) sind die sogenannten **Freiheitsgrade** der drei Varianzterme aufgeführt, die als die Anzahl der freien Parameter für den jeweiligen Term verstanden werden können, die durch den (angenommenen) Zufallsprozess der Stichprobenziehung der Daten kontrolliert wird (vgl. Kapitel \@ref(streuung)). Die Freiheitsgrade werden verwendet, um die Varianzterme in der vierten Spalte der Tabelle \@ref(tab:anova) zu normalisieren, wobei $s^2$ die **Fehlervarianz** genannt wird.
+In der dritten Spalte der Tabelle \@ref(tab:anova) stehen die Freiheitsgrade der drei Varianzterme, die als Anzahl der Werte in einer Stichprobe, die für die Berechnung der jeweiligen Parameter frei zur Verfügung stehen, verstanden werden können (vgl. Kapitel \@ref(streuung)). In die Berechnung von $SSY$ geht $\bar y$ ein, fuer dessen Berechnung die Werte der Stichprobe bereits einmal verwendet wurden. Dadurch ist die Anzahl Freiheitsgrade $df_{SSY}=n-1$. In die Berechnung von $SSE$ gehen $\beta_0$ und $\beta_1$ ein (Gleichung \@ref(eq:sse)), d.h. die Anzahl Freiheitsgrade $df_{SSE}=n-2$. Fuer $SSR$ gilt dann einfach: $df_{SSR}=df_{SSY}-df_{SSE}=1$. Die Freiheitsgrade werden verwendet, um die Varianzterme in der vierten Spalte der Tabelle \@ref(tab:anova) zu normalisieren, wobei $s^2$ Fehlervarianz genannt wird.
 
-In der fünften Spalte der Tabelle \@ref(tab:anova) finden wir das Verhältnis von zwei Varianzen; Regressionsvarianz über Fehlervarianz. Natürlich wollen wir für eine signifikante Regression, dass die (durch das Modell erklärte) Regressionsvarianz viel größer ist als die (durch das Modell nicht erklärte) Fehlervarianz. Dies ist ein **F-Test** Problem, bei dem getestet wird, ob sich die durch das Modell erklärte Varianz signifikant von der durch das Modell nicht erklärten Varianz unterscheidet. Das Verhältnis der beiden Varianzen dient als F-Statistik ($F_s$). 
+In der fünften Spalte der Tabelle \@ref(tab:anova) finden wir das Verhältnis von zwei Varianzen; Regressionsvarianz über Fehlervarianz. Von einer signifikanten Regression erwarten wir, dass die (durch das Modell erklärte) Regressionsvarianz viel größer ist als die (durch das Modell nicht erklärte) Fehlervarianz. Dies ist ein F-Test Problem, bei dem getestet wird, ob sich die durch das Modell _erklärte_ Varianz **signifikant** von der durch das Modell _nicht erklärten_ Varianz unterscheidet. Das Verhältnis der beiden Varianzen dient als F-Statistik ($F_s$).
 
-Die sechste Spalte der Tabelle \@ref(tab:anova) zeigt dann den **p-Wert** des F-Tests, d.h. die Wahrscheinlichkeit, $F_s$ oder einen größeren Wert (d.h. ein noch besseres Modell) zufällig zu erhalten, wenn die Nullhypothese ($H_0$) wahr ist. $H_0$ bedeutet hier, dass die beiden Varianzen gleich sind. $F_s$ folgt einer F-Verteilung mit den Parametern $1$ und $n-2$ unter der Nullhypothese (Abbildung \@ref(abb:fcdf)). Die rote Linie in Abbildung \@ref(fig:fcdf) markiert einen bestimmten Wert von $F_s$ (zwischen 10 und 11) und den entsprechenden Wert der kumulativen Verteilungsfunktion der F-Verteilung ($F\left(F_s,1,n-2\right)$). Der p-Wert ist $\Pr\left(Z\geq F_s\right)=1-F\left(F_s,1,n-2\right)$, und beschreibt die Wahrscheinlichkeit, dieses oder ein größeres Varianzverhältnis zufällig (aufgrund des Zufallsstichprobenverfahrens) zu erhalten, selbst wenn die beiden Varianzen tatsächlich gleich sind.
+Die sechste Spalte der Tabelle \@ref(tab:anova) gibt dann den p-Wert des F-Tests an, d.h. die Wahrscheinlichkeit, $F_s$ oder einen größeren Wert (d.h. **ein noch besseres Modell**) zufällig zu erhalten, wenn die Nullhypothese ($H_0$) wahr ist. $H_0:\frac{SSR}{df_{SSR}}=s^2$, d.h. die beiden Varianzen sind gleich; $H_1:\frac{SSR}{df_{SSR}}>s^2$, d.h. die erklärte Varianz ist größer als die nicht erklärte. $F_s$ folgt einer F-Verteilung mit den Parametern $1$ und $n-2$ unter der Nullhypothese (Abbildung \@ref(fig:fcdf)). Die rote Linie in Abbildung \@ref(fig:fcdf) markiert einen bestimmten Wert von $F_s$ (zwischen 10 und 11) und den entsprechenden Wert der Verteilungsfunktion der F-Verteilung ($F\left(F_s,1,n-2\right)$). Der p-Wert ist $\Pr\left(Z> F_s\right)=1-F\left(F_s,1,n-2\right)$ und beschreibt die Wahrscheinlichkeit, dieses oder ein größeres Varianzverhältnis zufällig (aufgrund der zufälligen Stichprobenziehung) zu erhalten, selbst wenn die beiden Varianzen tatsächlich gleich sind.
 
-
-```{r fcdf, echo=FALSE, fig.align='center', fig.cap='Kumulative Verteilungsfunktion (CDF) der F-Verteilung der F-Statistik of the F statistic ($F_s$) mit bestimmtem Wert und dem entsprechenden rot markierten Wert der CDF.', out.width='80%'}
+```{r fcdf, echo=FALSE, fig.align='center', fig.cap='Verteilungsfunktion der F-Verteilung der F-Statistik $F_s$. Rot: Bestimmter Wert für $F_s$ und entsprechender Wert der Verteilungsfunktion.', out.width='80%'}
 knitr::include_graphics('figs/cdf_f.jpg')
 ```
 
+Im Beispiel der Reisedaten ist der p-Wert wesentlich kleiner als das konventionelle Signifikanzniveau 0.01, daher lehnen wir die die Nullhypothese ab und bezeichnen die Regression als statistisch signifikant (Tabelle \@ref(tab:reisezeit)).
 
-Hier ist der p-Wert sehr klein, und daher können wir schlussfolgern, dass die Regression signifikant ist (Tabelle \@ref(tab:reisezeit)).
-
-| Varianzquelle | Quadrat-<br>summe | Freiheitsgrad ($df$) | Varianz | F-Statistik <br>($F_s$) | p-Wert |
+| Varianz-<br>quelle | Quadrat-<br>summe | Freiheits-<br>grad ($df$) | Varianz | F-Statistik ($F_s$) | p-Wert |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| Regression | 26253 | 1 | 26253 | 275,32 | 8,12e-30 |
-| Fehler | 9059 | 95 | 95,36 | | |
+| Regression | 26253 | 1 | 26253 | 275.32 | 8.12e-30 |
+| Fehler | 9059 | 95 | 95.36 | | |
 | Gesamt | 35312 | 96 | | | |
-Tabelle: (\#tab:reisezeit) Werte für unser Beispiel der Reisezeit.
+Table: (\#tab:reisezeit) ANOVA-Tabelle für die Regression des Beispiels Reisedaten.
 
+## Konfidenzintervalle und Signifikanz der Parameter
 
-## Konfidenzintervalle auf Signifikanz der Parameter
+Da die Modellanpassung nicht perfekt ist, haben die Parameterschätzer Standardfehler, d.h. sie werden wie andere statistische Kennzahlen als Realisationen eines Zufallsprozesses interpretiert. Das führt uns zu Konfidenzintervallen und t-Tests auf Signifikanz der einzelnen Parameter.
 
-Nachdem wir die statistische Signifikanz der Regression festgestellt haben, sollten wir uns die Unsicherheit um die Parameterschätzungen ansehen. In der klassischen linearen Regression wird diese Unsicherheit so konzeptualisiert, dass sie sich rein aus dem Zufallsstichprobenverfahren ergibt; die vorliegenden Daten sind nur eine Möglichkeit von vielen, und in jedem alternativen Fall wären die Parameterschätzungen etwas anders ausgefallen. Das lineare Modell selbst wird als korrekt angenommen.
-
-Der erste Schritt, um festzustellen, wie zuversichtlich wir sein sollten, dass die Parameterschätzungen korrekt sind, ist die Berechnung von **Standardfehlern**. Für $\hat\beta_0$ geht das wie folgt:
-
+Der **Standardfehlern** für $\hat\beta_0$ ist:
 $$\begin{equation}
 s_{\hat\beta_0}=\sqrt{\frac{\sum_{i=1}^{n}x_i^2}{n} \cdot \frac{s^2}{SSX}}
 (\#eq:seb0)
 \end{equation}$$
 
-Wenn wir diese Formel in ihre einzelnen Teile zerlegen, sehen wir: Je mehr Datenpunkte $n$ wir haben, desto kleiner ist der Standardfehler, d.h. desto mehr Vertrauen haben wir in die Schätzung. Außerdem gilt, je größer die Abweichung in $x$ ($SSX$), desto kleiner der Standardfehler. Beide Effekte machen intuitiv Sinn: je mehr Datenpunkte wir haben und je mehr Möglichkeiten für $x$ wir abgedeckt haben, desto sicherer können wir sein, dass wir in unserer Zufallsstichprobe nicht viel verpasst haben. Umgekehrt gilt: je größer die Fehlervarianz $s^2$, d.h. je kleiner die Erklärungskraft unseres Modells, desto größer der Standardfehler. Und je mehr $x$-Datenpunkte wir von Null entfernt haben, d.h. je größer $\sum_{i=1}^{n}x_i^2$, desto geringer ist unser Vertrauen in den Schnittpunkt (wo $x=0$) und damit steigt der Standardfehler.
+Wenn wir diese Formel in ihre einzelnen Teile zerlegen, sehen wir: Je mehr Datenpunkte $n$ wir haben, desto kleiner ist der Standardfehler, d.h. desto mehr Vertrauen haben wir in die Schätzung. Außerdem gilt, je größer die Abweichung in $x$ ($SSX$), desto kleiner der Standardfehler. Beide Effekte machen intuitiv Sinn: Je mehr Datenpunkte wir haben und je mehr Ausprägungen von $x$ wir abgedeckt haben, desto sicherer können wir sein, dass wir mit unserer Stichprobe nicht viel verpasst haben. Umgekehrt gilt: Je größer die Fehlervarianz $s^2$, d.h. je kleiner die Erklärungskraft unseres Modells, desto größer der Standardfehler. Und je mehr $x$-Datenpunkte von Null entfernt sind, d.h. je größer $\sum_{i=1}^{n}x_i^2$, desto geringer ist unser Vertrauen in den Achsenabschnitt (wo $x=0$) und damit steigt der Standardfehler.
 
 Der Standardfehler für $\hat\beta_1$ ist:
-
 $$\begin{equation}
 s_{\hat\beta_1}=\sqrt{\frac{s^2}{SSX}}
 (\#eq:seb1)
 \end{equation}$$
 
-Die gleiche Interpretation gilt, außer dass es keinen Einfluss der Größe der $x$-Datenpunkte gibt.
+Hier gilt die gleiche Interpretation wie zuvor, außer dass es keinen Einfluss der Größe der $x$-Datenpunkte gibt.
 
-Wir können auch einen Standardfehler für neue Vorhersagen $\hat y$ festlegen für gegebene $\hat x$:
-
+Wir können auch einen Standardfehler für neue Vorhersagen $\hat y$ für gegebene $\hat x$ festlegen:
 $$\begin{equation}
 s_{\hat y}=\sqrt{s^2 \cdot \left(\frac{1}{n}+\frac{\left(\hat x-\bar x\right)^2}{SSX}\right)}
 (\#eq:sey)
 \end{equation}$$
 
-Dieselbe Interpretation gilt auch hier, nur dass jetzt ein zusätzlicher Begriff $\left(\hat x-\bar x\right)^2$ hinzugefügt wurde, der besagt, je weiter der neue $x$-Wert vom Zentrum der ursprünglichen Daten (den Trainings- oder Kalibrierdaten) entfernt ist, desto größer ist der Standardfehler der neuen Vorhersage, d.h. desto geringer ist die Zuversicht, dass sie korrekt ist.
+Dieselbe Interpretation gilt auch hier, nur dass jetzt ein zusätzlicher Term $\left(\hat x-\bar x\right)^2$ auftaucht, der besagt, je weiter der neue $x$-Wert vom Zentrum der ursprünglichen Daten (den Trainings- oder Kalibrierungsdaten) entfernt ist, desto größer ist der Standardfehler der neuen Vorhersage, d.h. desto geringer ist die Zuversicht, dass sie korrekt ist.
 
-Anmerkung: Die Formel für die Standardfehler ergibt sich aus den grundlegenden Annahmen der linearen Regression, auf die weiter unten eingegangen wird. Dies kann mathematisch dargestellt werden, wird hier aber ausgelassen.
+Anmerkung: Die Formeln für die Standardfehler ergeben sich aus den grundlegenden Annahmen der linearen Regression, auf die wir weiter unten eingehen werden. Dies kann mathematisch hergeleitet werden, wird hier aber ausgelassen.
 
-Aus den Standardfehlern können wir **Konfidenzintervalle** für die Parameterschätzungen wie folgt berechnen:
-
+Aus den Standardfehlern können wir **Konfidenzintervalle** für die Parameterschätzer wie folgt berechnen:
 $$\begin{equation}
 \Pr\left(\hat\beta_0-t_{n-2;0.975} \cdot s_{\hat\beta_0}\leq \beta_0\leq \hat\beta_0+t_{n-2;0.975} \cdot s_{\hat\beta_0}\right)=0.95
 (\#eq:cib01)
 \end{equation}$$
 
-Das Symbol $\Pr(\cdot)$ bedeutet Wahrscheinlichkeit. Das Symbol $t_{n-2;0.975}$ steht für das 0.975-Perzentil der t-Verteilung mit $n-2$ Freiheitsgraden. Die Gleichung \@ref(eq:cib01) ist das zentrale 95%-Konfidenzintervall, das als die Grenzen definiert ist, in denen der wahre Parameter, hier $\beta_0$, mit einer Wahrscheinlichkeit von 0,95 liegt. Wir können das Intervall wie folgt schreiben:
+Das Symbol $\Pr(\cdot)$ bedeutet Wahrscheinlichkeit. Das Symbol $t_{n-2;0.975}$ steht für das 0.975-Perzentil der t-Verteilung mit $n-2$ Freiheitsgraden. Die Gleichung \@ref(eq:cib01) ist das zentrale 95%-Konfidenzintervall, d.h. ein Intervall, in dem der wahre Parameterwert, hier $\beta_0$, mit einer Wahrscheinlichkeit von 0.95 liegt. Vgl. Konfidenzintervall des Mittelwertschätzers (Kapitel \@ref(schaetzen)).
 
+Wir können das Intervall auch wie folgt schreiben:
 $$\begin{equation}
-CI=\left[\hat\beta_0-t_{n-2;0.975} \cdot s_{\hat\beta_0};\hat\beta_0+t_{n-2;0.975} \cdot s_{\hat\beta_0}\right]
+KI=\left[\hat\beta_0-t_{n-2;0.975} \cdot s_{\hat\beta_0};\hat\beta_0+t_{n-2;0.975} \cdot s_{\hat\beta_0}\right]
 (\#eq:cib02)
 \end{equation}$$
 
-Wie zu sehen ist, liegt das Konfidenzintervall symmetrisch um den Parameterschätzwert $\hat\beta_0$ und ergibt sich aus einer t-Verteilung mit dem Parameter $n-2$, dessen Breite durch den Standardfehler $s_{\hat\beta_0}$ moduliert wird. Beachten Sie, dass die Breite der t-Verteilung ebenfalls durch den Stichprobenumfang kontrolliert wird und mit zunehmendem $n$ immer schmaler wird.
+Wie zu sehen ist, liegt das Konfidenzintervall symmetrisch um den Parameterschätzwert $\hat\beta_0$ und ergibt sich aus einer t-Verteilung mit dem Parameter $n-2$, deren Breite durch den Standardfehler $s_{\hat\beta_0}$ moduliert wird. Beachten Sie, dass die Breite der t-Verteilung ebenfalls durch den Stichprobenumfang kontrolliert wird und mit zunehmendem $n$ immer schmaler wird.
 
 Die gleichen Formeln gelten für $\beta_1$ und $y$:
-
 $$\begin{equation}
 \Pr\left(\hat\beta_1-t_{n-2;0.975} \cdot s_{\hat\beta_1}\leq \beta_1\leq \hat\beta_1+t_{n-2;0.975} \cdot s_{\hat\beta_1}\right)=0.95
 (\#eq:cib1)
@@ -298,16 +280,17 @@ $$\begin{equation}
 (\#eq:ciy)
 \end{equation}$$
 
-Wie bei den p-Werten müssen wir uns auch hier über die Bedeutung der Wahrscheinlichkeit klar werden, die in der klassischen Statistik auf dem **wiederholten Stichprobenprinzip** beruht. Die Bedeutung des 95%-Konfidenzintervalls ist dann, dass bei einer angenommenen unendlichen Anzahl von Regressionsexperimenten das 95%-Konfidenzintervall in 95% der Fälle den wahren Parameterwert erfasst. Auch hier handelt es sich **nicht** um die Wahrscheinlichkeit, dass der wahre Parameterwert für ein beliebiges Experiment innerhalb des Konfidenzintervalls liegt!
+Die Formeln für die Konfidenzintervalle (Gleichungen \@ref(eq:cib01), \@ref(eq:cib1) und \@ref(eq:ciy)) ergeben sich aus den Grundannahmen der linearen Regression (vgl. Kapitel \@ref(schaetzen)): Die Residuen sind _unabhängig identisch verteilt (u.i.v.)_ gemäß einer _Normalverteilung_, d.h. $\epsilon_i\sim N(0,\sigma)$, und _das lineare Modell ist korrekt_. Dann lässt sich mathematisch zeigen, dass $\frac{\hat\beta_0-\beta_0}{s_{\hat\beta_0}}$, $\frac{\hat\beta_1-\beta_1}{s_{\hat\beta_1}}$ und $\frac{\hat y-y}{s_{\hat y}}$ $t_{n-2}$-verteilt sind (t-Verteilung mit $n-2$ Freiheitsgraden).
 
-Die Formeln für die Konfidenzintervalle (Gleichungen \@ref(eq:cib01), \@ref(eq:cib1) und \@ref(eq:ciy)) ergeben sich aus den Grundannahmen der linearen Regression; die Residuen sind **unabhängig identisch verteilt (u.i.v.)** gemäß einer **Normalverteilung** und **das lineare Modell ist korrekt**. Dann lässt sich mathematisch zeigen, dass $\frac{\hat\beta_0-\beta_0}{s_{\hat\beta_0}}$, $\frac{\hat\beta_1-\beta_1}{s_{\hat\beta_1}}$ und $\frac{\hat y-y}{s_{\hat y}}$ $t_{n-2}$-verteilt sind (t-Verteilung mit $n-2$ Freiheitsgraden). Da das zentrale 95%-Konfidenzintervall einer willkürlich $t_{n-2}$-verteilten Zufallsvariablen $Z$ $\Pr\left(-t_{n-2;0.975}\leq Z\leq t_{n-2;0. 975}\right)=0,95$ (Abbildung \@ref(fig:tpdfcdf)), können wir jeden der oben genannten drei Terme durch $Z$ ersetzen und neu anordnen, um zu den Gleichungen \@ref(eq:cib01), \@ref(eq:cib1) und \@ref(eq:ciy) zu gelangen.
+Da das zentrale 95%-Konfidenzintervall einer $t_{n-2}$-verteilten Zufallsvariablen $Z$ $\Pr\left(-t_{n-2;0.975}\leq Z\leq t_{n-2;0. 975}\right)=0.95$ ist (Abbildung \@ref(fig:tpdfcdf)), können wir jeden der oben genannten drei Terme für $Z$ einsetzen und neu anordnen, um zu den Gleichungen \@ref(eq:cib01), \@ref(eq:cib1) und \@ref(eq:ciy) zu gelangen.
 
-```{r tpdfcdf, echo=FALSE, fig.align='center', fig.cap='Links: Wahrscheinlichkeitsdichtefunktion (PDF) einer t-verteilten Zufallsvariablen $Z$, wobei das zentrale 95%-Konfidenzintervall rot markiert ist. 95% der PDF liegen zwischen den beiden Schranken, 2,5% liegen links von der unteren Schranke und 2,5% rechts von der oberen Schranke. Rechts: Kumulative Verteilungsfunktion (CDF) der gleichen t-verteilten Zufallsvariablen $Z$. Die obere Grenze des 95%-Konfidenzintervalls ist als $t_{n-2;0,975}$ definiert, d.h. das 0,975-Perzentil der Verteilung, während die untere Grenze als $t_{n-2;0,025}$ definiert ist, was aufgrund der Symmetrie der Verteilung $-t_{n-2;0,975}$ entspricht.', fig.show='hold', out.width='50%'}
+```{r tpdfcdf, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion einer t-verteilten Zufallsvariablen $Z$, wobei das zentrale 95%-Konfidenzintervall rot markiert ist. 95% der Dichtefunktion liegen zwischen den beiden Grenzen, 2.5% liegen links von der unteren Grenze und 2.5% rechts von der oberen Grenze. Rechts: Verteilungsfunktion der gleichen t-verteilten Zufallsvariablen $Z$. Die obere Grenze des 95%-Konfidenzintervalls ist als $t_{n-2;0.975}$ definiert, d.h. das 0.975-Perzentil der Verteilung, während die untere Grenze als $t_{n-2;0.025}$ definiert ist, was aufgrund der Symmetrie der Verteilung $-t_{n-2;0.975}$ entspricht.', fig.show='hold', out.width='50%'}
 knitr::include_graphics(c('figs/pdf_t.jpg','figs/cdf_t.jpg'))
 ```
 
-Die t-Verteilungseigenschaft der Parameterschätzungen kann weiter ausgenutzt werden, um jede Parameterschätzung separat auf ihre statistische Signifikanz zu testen. Dies wird besonders wichtig bei multiplen Regressionsproblemen, bei denen wir mehr als einen möglichen Prädiktor haben, von denen nicht alle einen statistisch signifikanten Effekt haben werden. Die **Signifikanz der Parameterschätzungen** wird durch einen **t-Test** bestimmt. Die **NullHypothese** ist, dass die wahren Parameter gleich Null sind, d.h. die Parameterschätzungen sind nicht signifikant:
+Die Signifikanz der Parameterschätzer wird mit Hilfe eines t-Tests ermittelt (vgl. Kapitel \@ref(ttest) und \@ref(ftest)).
 
+Die **Nullhypothese** ist, dass die wahren Parameterwerte gleich Null sind, d.h. die Parameterschätzer _nicht_ signifikant sind:
 $$\begin{equation}
 H_0:\beta_0=0
 (\#eq:h0b0)
@@ -317,8 +300,7 @@ H_0:\beta_1=0
 (\#eq:h0b1)
 \end{equation}$$
 
-Diese Hypothese wird gegen die **Alternativhypothese** getestet, dass die wahren Parameter ungleich Null sind, d.h. dass die Parameterschätzungen signifikant sind:
-
+Diese Hypothese wird gegen die **Alternativhypothese** getestet, dass die wahren Parameterwerte *un*gleich Null sind, d.h. dass die Parameterschätzer signifikant sind:
 $$\begin{equation}
 H_1:\beta_0\neq 0
 (\#eq:h1b0)
@@ -328,7 +310,7 @@ H_1:\beta_1\neq 0
 (\#eq:h1b1)
 \end{equation}$$
 
-Die statistischen Tests sind:
+Die Teststatistiken sind:
 
 $$\begin{equation}
 t_s=\frac{\hat\beta_0-0}{s_{\hat\beta_0}}\sim t_{n-2}
@@ -339,112 +321,78 @@ t_s=\frac{\hat\beta_1-0}{s_{\hat\beta_1}}\sim t_{n-2}
 (\#eq:tsb1)
 \end{equation}$$
 
-Das "Tilde"-Symbol ($\sim$) bedeutet, dass die Teststatistik einer bestimmten Verteilung folgt, hier der t-Verteilung. Dies ergibt sich wiederum aus den oben erwähnten Regressionsannahmen. Die Annahmen sind die gleichen wie beim üblichen t-Test der Mittelwerte, außer dass im Fall der linearen Regression die Residuen als u.i.v. normal angenommen werden, während im Fall der Mittelwerte die tatsächlichen Datenpunkte $y$ als **u.i.v. normal** angenommen werden.
+Das "Tilde"-Symbol ($\sim$) bedeutet, dass die Teststatistik einer bestimmten Verteilung folgt, hier der t-Verteilung. Dies ergibt sich wiederum aus den oben erwähnten Regressionsannahmen. Die Annahmen sind die gleichen wie beim üblichen t-Test der Mittelwerte (Kapitel \@ref(ttest) und \@ref(ftest)), außer dass im Fall der linearen Regression die Residuen als u.i.v. normal angenommen werden, während im Fall der Mittelwerte die tatsächlichen Datenpunkte $y$ als u.i.v. normal angenommen werden.
 
 Analog zum üblichen 2-seitigen t-Test ist der p-Wert definiert als:
-
 $$\begin{equation}
 2 \cdot \Pr\left(t>|t_s|\right)=2 \cdot \left(1-F_t\left(|t_s|\right)\right)
 (\#eq:pv)
 \end{equation}$$
 
-Das Symbol $F_t\left(|t_s|\right)$ bezeichnet den Wert der kumulativen Verteilungsfunktion der t-Verteilung an der Stelle des absoluten Wertes der Teststatistik ($|t_s|$, Abbildung \@ref(fig:tc)). Mit einem Signifikanzniveau von z.B. $\alpha=0,05$ gelangen wir zu einem kritischen Wert der Teststatistik $t_c=t_{n-2;0,975}$, bei dessen Überschreitung wir die Nullhypothese verwerfen und die Parameterschätzungen als signifikant bezeichnen (Abbildung \@ref(fig:tc)).
+Das Symbol $F_t\left(|t_s|\right)$ bezeichnet den Wert der kumulativen Verteilungsfunktion der t-Verteilung an der Stelle des absoluten Wertes der Teststatistik ($|t_s|$, Abbildung \@ref(fig:tc)). Mit einem Signifikanzniveau von z.B. $\alpha=0.01$ gelangen wir zu einem kritischen Wert der Teststatistik $t_c=t_{n-2;0.995}$, bei dessen Überschreitung wir die Nullhypothese ablehnen und die Parameterschätzer als signifikant bezeichnen (Abbildung \@ref(fig:tc)).
 
-```{r tc, echo=FALSE, fig.align='center', fig.cap='Schema des t-Tests der Signifikanz von Parameterschätzungen. Die Teststatistik folgt einer t-Verteilung unter der Nullhypothese. Der tatsächliche Wert der Teststatistik $t_s$ ist blau markiert und wird für den 2-seitigen Test bei Null gespiegelt. Der kritische Wert der Teststatistik $t_c$, den wir von einem Signifikanzniveau von $\\alpha=0.05$ erhalten, ist rot markiert; auch dieser wird für den 2-seitigen Test gespiegelt. Wir lehnen die Nullhypothese ab, wenn $|t_s|>t_c$, d.h. für Werte von $t_s$ unter $-t_c$ und über $t_c$, und nennen diese Parameterschätzung dann signifikant. Wir behalten die Nullhypothese if $|t_s|\\leq t_c$ bei, d.h. für Werte von $t_s$ zwischen $-t_c$ und $t_c$, und nennen diesen Parameterschätzwert dann (vorläufig) unbedeutend. In dem gezeigten Beispiel ist die Parameterschätzung unbedeutend.', out.width='80%'}
+```{r tc, echo=FALSE, fig.align='center', fig.cap='Schema des t-Tests auf Signifikanz dern Parameterschätzer. Die Teststatistik folgt einer t-Verteilung unter der Nullhypothese. Der tatsächliche Wert der Teststatistik $t_s$ ist blau markiert und wird für den 2-seitigen Test bei Null gespiegelt. Der kritische Wert der Teststatistik $t_c$, den wir von einem Signifikanzniveau von $\\alpha=0.01$ erhalten, ist rot markiert; auch dieser wird für den 2-seitigen Test gespiegelt. Wir lehnen die Nullhypothese ab, wenn $|t_s|>t_c$, d.h. für Werte von $t_s$ kleiner als $-t_c$ und größer als $t_c$, und nennen diese Parameterschätzer dann signifikant. Wir behalten die Nullhypothese bei wenn $|t_s|\\leq t_c$, d.h. für Werte von $t_s$ zwischen $-t_c$ und $t_c$, und nennen diesen Parameterschätzer dann (vorläufig) nicht signifikant. In dem gezeigten Beispiel ist der Parameterschätzer nicht signifikant.', out.width='80%'}
 knitr::include_graphics('figs/tc.jpg')
 ```
 
 ## Güte der Modellanpassung
 
-Der letzte Schritt bei der Regressionsanalyse ist die Beurteilung der Güte der Modellanpassung. In erster Linie kann dies durch das **Bestimmtheitsmaß** ($r^2$) erfolgen, welches als der Anteil der Variation (in y-Richtung) definiert ist, der durch das Modell erklärt wird. Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Quadrat (vgl. Kapitel \@ref(korrelation)).
+Die Signifikanz der Parameter der Regression ist eine Sache. Wie gut aber ist das Modell im Beschreiben der Daten? D.h. wieviel von der Varianz in den Daten wird vom Modell erklärt?
+
+Die Beurteilung der Güte der Modellanpassung kann in erster Linie durch das **Bestimmtheitsmaß** ($r^2$) erfolgen, welches als der Anteil der Varianz (in $y$-Richtung) definiert ist, der durch das Modell erklärt wird. Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Quadrat (vgl. Kapitel \@ref(korrelation)).
 
 $$\begin{equation}
 r^2=\frac{SSY-SSE}{SSY}=1-\frac{SSE}{SSY}
 (\#eq:r2)
 \end{equation}$$
 
-Wie man sehen kann, wenn das Modell nicht mehr Variation als die Gesamtvariation um den Mittelwert herum erklärt, d.h. $SSE=SSY$, dann $r^2=0$. Umgekehrt, wenn das Modell perfekt zu den Daten passt, d.h. $SSE=0$, dann ist $r^2=1$. Jeder Wert dazwischen stellt unterschiedliche Grade der Anpassungsgüte dar. Dies kann wiederum mit Abbildung \@ref(fig:ssysse) veranschaulicht werden, wobei der linke Teil $SSY$ und der rechte Teil $SSE$ bedeuten.
+Wie wir sehen, wenn das Modell nicht mehr Variation als die Gesamtvariation um den Mittelwert erklärt, d.h. $SSE=SSY$, dann $r^2=0$. Umgekehrt, wenn das Modell perfekt zu den Daten passt, d.h. $SSE=0$, dann ist $r^2=1$. Werte dazwischen stellen unterschiedliche Grade der Anpassungsgüte dar. Dies kann wiederum mit Abbildung \@ref(fig:ssysse) veranschaulicht werden, wobei der linke Teil $SSY$ und der rechte Teil $SSE$ verdeutlicht.
 
-Wenn es darum geht, Modelle unterschiedlicher Komplexität (d.h. mit mehr oder weniger Parametern) mit $r^2$ zu vergleichen, dann ist es sinnvoll, die Metrik durch die Anzahl der Modellparameter zu bestrafen, da komplexere Modelle (mehr Parameter) automatisch zu besseren Anpassungen führen, einfach aufgrund der größeren Freiheitsgrade, die komplexere Modelle bei der Anpassung der Daten haben. Dies führt zum **korregierten $r^2$**:
+Wenn es darum geht, Modelle unterschiedlicher Komplexität (d.h. mit mehr oder weniger Parametern) mit $r^2$ zu vergleichen, dann ist es sinnvoll, die Metrik mit der Anzahl der Modellparameter zu korrigieren, da komplexere Modelle (mehr Parameter) automatisch zu besseren Anpassungen führen, einfach aufgrund der größeren Freiheitsgrade, die komplexere Modelle bei der Anpassung der Daten haben. Dies führt zum **korregierten $r^2$**:
 
 $$\begin{equation}
 \bar r^2=1-\frac{\frac{SSE}{df_{SSE}}}{\frac{SSY}{df_{SSY}}}=1-\frac{SSE}{SSY} \cdot \frac{df_{SSY}}{df_{SSE}}
 (\#eq:adjr2)
 \end{equation}$$
 
-Das Bestimmungsmaß allein reicht jedoch nicht aus, um die Anpassungsgüte zu beurteilen. Wir führen nun eine lineare Regression mit dem Datensatz zu Reisezeiten durch (Abbildung \@ref(fig:abb12-3))
+<Beispiel>
 
-
-```{r echo=TRUE}
-
-# lineare Regression der Daten ausführen
-lm_dat <- lm(formula = zeit ~ distanz, data = daten)
-coef(summary(lm_dat))
-
-```
-
-In diese zusammenfassenden Tabelle steht "(Intercept)" für $\beta_0$, während "distanz" für $\beta_1$ steht. Die Spalte "Estimate" gibt $\hat\beta_0$ und $\hat\beta_1$ an, die Spalte "Std. Error" gibt $s_{\hat\beta_0}$ und $s_{\hat\beta_1}$ an, die Spalte "t value" gibt das Individuum $t_s$ an und die Spalte "Pr(>|t|)" gibt den jeweiligen p-Wert an.
-
-
-```{r abb12-3, echo=TRUE, fig.align='center', fig.cap='Lineares Modell der Reisezeit in Abhängigkeit zur Entfernung'}
-
-# Daten mit Regressionslinie plotten
-ggplot(data = daten, 
-       aes(x = distanz, y = zeit)) + 
-  geom_point() + 
-  xlab("Entfernung (km)") + 
-  ylab("Reisezeit (min)") +
-  geom_abline(intercept = 23.5475832, slope = 0.1931053, col = "red")
-```
-
-Das Bestimmtheitsmaß ist unempfindlich gegenüber systematischen Abweichungen von der Regressionsgeraden. Aber wir können diese Unzulänglichkeiten des Modells erkennen, indem wir ganz allgemein eine **Residualdiagnostik** durchführen, die die **Modellannahmen überprüft**.
-
-Folgende Annahmen ergeben sich aus der **Maximum-Likelihood-Theorie** (vgl. Schätzen von Verteilungsparametern, Kapitel \@ref(schaetzen)):
+Was heißt Güte der Modellanpassung? Sind alle Modellannahmen erfüllt? Folgende Annahmen ergeben sich aus der **Maximum-Likelihood-Theorie** (vgl. Schätzen von Verteilungsparametern, Kapitel \@ref(schaetzen)):
 
 - Die Residuen sind **unabhängig**, in diesem Fall gibt es keine serielle Korrelation in der Residuengraphik - dies kann mit dem Durbin-Watson-Test getestet werden
-- Die Residuen sind **normal verteilt** - dies kann visuell mit Hilfe der Quantil-Quantil-Darstellung (QQ-PLot) und dem Residuen-Histogramm/Boxplot beurteilt werden und kann mit dem Kolmogorov-Smirnov-Test und dem Shapiro-Wilk-Test getestet werden.
-- Die Varianz ist für alle Residuen konstant (= die Residuen sind **homoskedastisch**), d.h. es erfolgt keine "Auffächerung" der Residuen
+- Die Residuen sind **normalverteilt** - dies kann visuell mit Hilfe des Quantil-Quantil-Diagramms (QQ-Plot) und dem Residuen-Histogramm beurteilt werden, und kann mit dem Kolmogorov-Smirnov-Test (Kapitel \@ref(chi2testkstest)) und dem Shapiro-Wilk-Test getestet werden
+- Die Varianz ist für alle Residuen konstant (die Residuen sind **homoskedastisch**), d.h. es erfolgt kein "Auffächern" der Residuen
 
-Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder allgemeine lineare Modelle zurückgreifen (Letzteres ist die bevorzugte Option und wird im Master *Global Change Geography* unterrichtet).
+Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder Generalisierte Lineare Modelle zurückgreifen. Letzteres ist die bevorzugte Option und wird im Master *Global Change Geography* unterrichtet.
 
-
-Eine erste nützliche diagnostische Darstellung ist die der Residuen in Serie, d.h. nach Index $i$, um zu sehen, ob es ein Muster aufgrund des Datenerfassungsprozesses gibt (Abbildung \@ref(fig:abb12-4)). Dieser Datensatz zeigt kein erkennbares Muster an, was für eine Unabhängigkeit der Residuen spricht.
-
-```{r abb12-4, echo=TRUE, fig.align='center', fig.cap='Reisezeit. Darstellung ist die der Residuen in Serie, d.h. nach Index $i$', fig.show='hold', out.width='50%'}
+Zu unserem Beispiel: Eine erste nützliche diagnostische Darstellung ist die der Residuen in Serie, d.h. nach Index $i$, um zu sehen, ob es ein Muster aufgrund des Datenerfassungsprozesses gibt (Abbildung \@ref(fig:abb12-4)). Dieser Datensatz zeigt kein erkennbares Muster an, was für eine Unabhängigkeit der Residuen spricht.
+```{r abb12-4, echo=TRUE, fig.align='center', fig.cap='Lineare Regression der Reisedaten. Residuen in Serie, d.h. nach Index $i$.', out.width='80%'}
 # Residuen gegen Index plotten
-plot(residuals(lm_dat), pch = 19, type = 'p') +
+plot(residuals(fit3), pch = 19, type = 'p')
 abline(h = 0, lwd = 3, col = "red")
 
 ```
 
-Wir sollten auch die Residuen nach dem vorhergesagten Wert von $y$ plotten, um zu sehen, ob es ein Muster als Funktion der Größe gibt (Abbildung \@ref(fig:abb12-5)). Die Graphik deutet auf eine leichte Verzerrung der Punkte nach links an. Dies könnte auf eine Nichterfüllung der Unabhängigkeit und Homoskedastizität hindeuten.
-
-```{r abb12-5, echo=TRUE, fig.align='center', fig.cap='Reisezeit. Darstellung der Residuen nach dem vorausgesagten Wert von $y$.', fig.show='hold', out.width='50%'}
-
-# Residuen gegen vorausgesagten Wert von y plotten
-plot(fitted.values(lm_dat),residuals(lm_dat), pch = 19, type = 'p') +
+Wir sollten auch die Residuen nach dem vorhergesagten Wert von $y$ plotten, um zu sehen, ob es ein Muster als Funktion der Größenordnung von $y$ gibt (Abbildung \@ref(fig:abb12-5)). Die Graphik deutet auf eine Abnahme der Residuenvarianz von links nach rechts hin, d.h. Heteroskedastizität.
+```{r abb12-5, echo=TRUE, fig.align='center', fig.cap='Lineare Regression der Reisedaten. Residuen geordnet nach vorausgesagten Werten von $y$.', out.width='80%'}
+# Residuen gegen vorhergesagte Werte von y plotten
+plot(fitted.values(fit3),residuals(fit3), pch = 19, type = 'p')
 abline(h = 0, lwd = 3, col = "red")
 ```
 
 Die Annahme, dass die Residuen normalverteilt sind, kann anhand des QQ-Plots beurteilt werden (Abbildung \@ref(fig:abb12-6)).
-
-```{r abb12-6, echo=TRUE, fig.align='center', fig.cap='Reisezeit. Quantil-Quantil-Darstellung (QQ-Plot) der Residuen.', fig.show='hold', out.width='50%'}
-
-qqnorm(residuals(lm_dat))
-qqline(residuals(lm_dat))
-
+```{r abb12-6, echo=TRUE, fig.align='center', fig.cap='Lineare Regression der Reisedaten. Quantil-Quantil-Diagramm (QQ-Plot) der Residuen.', out.width='80%'}
+qqnorm(residuals(fit3))
+qqline(residuals(fit3))
 ```
-Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus (Abbildung \@ref(abb:qq)). Im Falle einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie. In unserem Fall deutet der QQ-Plot eine leichte Verzerrung der Residuen nach links ("skewed to the left") an.
 
+Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus (Abbildung \@ref(fig:qq)). Im Falle einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie. In unserem Fall deutet der QQ-Plot eine leichte Rechts-Schiefe der Residuen an.
 ```{r qq, echo=FALSE, fig.align='center', fig.cap='Charakteristische Formen des QQ-Plots und was sie für die Residuen bedeuten. Quelle: https://condor.depaul.edu/sjost/it223/documents/normal-plot.htm.', out.width='80%'}
 knitr::include_graphics('figs/qq.gif')
 ```
 
-Das Histogramm der Residuen deutet ebenfalls auf eine leichte Verzerrung nach links oder zu niedrideren Werten hin (Abbildung \@ref(fig:abb12-7)).
-
-```{r abb12-7, echo=TRUE, fig.align='center', fig.cap='Reisezeit. Histogramm der Residuen.', fig.show='hold', out.width='50%'}
-
+Das Histogramm der Residuen deutet ebenfalls auf eine leichte Rechts-Schiefe hin (Abbildung \@ref(fig:abb12-7)).
+```{r abb12-7, echo=TRUE, fig.align='center', fig.cap='ReisezeitLineare Regression der Reisedaten. Histogramm der Residuen.', out.width='80%'}
 # Histogramm der Residuen plotten
-hist(residuals(lm_dat))
-
+hist(residuals(fit3))
 ```
