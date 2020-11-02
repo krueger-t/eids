@@ -18,28 +18,29 @@ Dazu brauchen wir erstmal Begriffe wie **absolute Häufigkeit**, **relative Häu
 
 Schauen wir uns dazu die Reisedaten an, die die Studierenden im letzte Jahr eingegeben hatten, und zwar nur die Entfernungen (der R-Code wird in den PC-Übungen schnell klar werden):
 
-```{r include=FALSE}
-library("readxl")
-dat <- read_excel("data/Reisedaten.xlsx", na = "-999")
-dat <- as.data.frame(dat)
-names(dat) <- c('x','t')
-```
-
 ```{r echo=TRUE}
+# Paket laden, das für das Einlesen von xlsx gebraucht wird
+library("readxl")
+# Daten einlesen
+reisedat <- read_excel("data/Reisedaten.xlsx", na = "-999")
+# in data.frame umwandeln
+reisedat <- as.data.frame(reisedat)
+# Spalten umbenennen
+names(reisedat) <- c('x','t')
 # Ausgabe von dat$x
 # dies ist die Variable "Entfernung (Luftlinie) zum Wohnort (m)"
-dat$x
+reisedat$x
 ```
 Das ist eine ungeordnete Reihe von 122 Datenpunkten, die sogenannten **Rohdaten**. "NA" steht für "not available", d.h. fehlende Daten.
 
 Wenn wir die Rohdaten jetzt ordnen und in Klassen einteilen können wir **absolute Häufigkeiten** bestimmen, gewissermaßen durch Abzählen:
 
 ```{r echo=TRUE}
-# dat$x aufsteigend ordnen und ausgeben
-sort(dat$x)
+# reisedat$x aufsteigend ordnen und ausgeben
+sort(reisedat$x)
 # Daten in km umrechnen und absolute Häufigkeiten bestimmen
 # für Klassen von 0 bis 55km mit Breite 5km
-hist(dat$x/1000, breaks = seq(0, 55, 5),
+hist(reisedat$x/1000, breaks = seq(0, 55, 5),
      main = "", xlab = "Entfernung (km)", 
      ylab = "absolute Häufigkeit")
 ```
@@ -57,7 +58,7 @@ Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. 
 
 ```{r echo=TRUE}
 # Histogramm berechnen ohne Output
-h <- hist(dat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
+h <- hist(reisedat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
 # absolute in relative Häufigkeiten umrechnen
 h$counts <- h$counts / sum(h$counts)
 # Histogrammdaten plotten
@@ -74,7 +75,7 @@ Kommen wir nun zu den **Summenhäufigkeiten**, auch genannt **kumulative Häufig
 
 ```{r echo=TRUE, fig.show='hold', out.width='50%'}
 # Histogramm berechnen ohne Output
-h <- hist(dat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
+h <- hist(reisedat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
 # Häufigkeiten kumuliert aufsummieren
 h$counts <- cumsum(h$counts)
 # Histogrammdaten plotten
@@ -94,15 +95,15 @@ Abschließend noch ein paar Worte zur **Klassifizierung**. Äquidistante Klassen
 
 ```{r echo=TRUE, fig.show='hold', out.width='33%'}
 # Klassenbreite 5km
-hist(dat$x/1000, breaks = seq(0, 60, 5),
+hist(reisedat$x/1000, breaks = seq(0, 60, 5),
      main = "", xlab = "Entfernung (km)", 
      ylab = "absolute Häufigkeit")
 # Klassenbreite 10km
-hist(dat$x/1000, breaks = seq(0, 60, 10),
+hist(reisedat$x/1000, breaks = seq(0, 60, 10),
      main = "", xlab = "Entfernung (km)", 
      ylab = "absolute Häufigkeit")
 # Klassenbreite 20km
-hist(dat$x/1000, breaks = seq(0, 60, 20),
+hist(reisedat$x/1000, breaks = seq(0, 60, 20),
      main = "", xlab = "Entfernung (km)", 
      ylab = "absolute Häufigkeit")
 ```
@@ -115,7 +116,7 @@ Lageparameter sind Maße der zentralen Tendenz einer Häufigkeitsverteilung. Sie
 Der **Modus** $\bar x_{mod}$ entspricht jener Merkmalsausprägung $a_j$, die in der Häufigkeitsverteilung (lokal) _am häufigsten_ vorkommt. In unseren Entfernungsdaten wäre das der Wert 12.5:
 
 ```{r echo=TRUE}
-h <- hist(dat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
+h <- hist(reisedat$x/1000, breaks = seq(0, 55, 5), plot = FALSE)
 plot(h, freq = TRUE, col = "gray",
      main = "", xlab = "Entfernung (km)", 
      ylab = "absolute Häufigkeit")
@@ -136,7 +137,7 @@ Berechnen wir das arithmetische Mittel für unsere Entfernungsdaten mit der Funk
 ```{r echo=TRUE}
 # berechne arithmetisches Mittel für Variable "Entfernung" (x) in km,
 # wobei "NA" Werte ignoriert werden sollen (sonst wäre die Ausgabe ebenfalls "NA")
-mean(dat$x/1000, na.rm = TRUE)
+mean(reisedat$x/1000, na.rm = TRUE)
 ```
 
 Andere Mittelwerte sind das geometrische Mittel und das harmonische Mittel, siehe @zimmermann2014, S. 126-134.
@@ -150,7 +151,7 @@ $$\bar x_{med}=\frac{x_{\frac{n}{2}}+x_{\frac{n}{2}+1}}{2}$$
 Berechnen wir den Median für unsere Entfernungsdaten mit der Funktion `median`:
 
 ```{r echo=TRUE}
-median(dat$x/1000, na.rm = TRUE)
+median(reisedat$x/1000, na.rm = TRUE)
 ```
 
 Der Median wird auch **0,5-Quantil** genannt. Allgemein entspricht ein **p-Quantil** $\bar x_p$ mit $0\leq p\leq 1$ jenem Merkmalswert $x_j$ in einer Häufigkeitsverteilung, der eine geordnete Reihe von Merkmalswerten $x_1, x_2, \ldots, x_n$ in zwei Wertebereiche teilt, so dass ein Anteil $p$ der Werte kleiner oder gleich $x_j$ ist. Ist das Produkt $n\cdot p$ _nicht ganzzahlig_, wird für $j$ die dem Produkt nächstgrößere Zahl verwendet:

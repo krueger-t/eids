@@ -101,8 +101,18 @@ Bei dem Grünflächenanteil/Bildungsgrad Beispiel von @zimmermann2014 ist $r_s=0
 ## Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson
 
 An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Beide Merkmale ("Entfernung" und "Reisezeit") sind metrisch skaliert und somit können wir den Korrelationskoeffizienten nach Bravais-Pearson verwenden, der mehr Informationen über den Zusammenhang, nämlich **Linearität**, liefert. Einen ersten Eindruck verschafft der **Scatterplots** (oder Streudiagramms), den wir einfach mit der `plot()` Funktion in R generieren:
+```{r include=FALSE}
+# Paket laden, das für das Einlesen von xlsx gebraucht wird
+library("readxl")
+# Daten einlesen
+reisedat <- read_excel("data/Reisedaten.xlsx", na = "-999")
+# in data.frame umwandeln
+reisedat <- as.data.frame(reisedat)
+# Spalten umbenennen
+names(reisedat) <- c('x','t')
+```
 ```{r echo=TRUE}
-plot(dat$x/1000, dat$t, xlab="Entfernung (km)", ylab="Reisezeit (min)")
+plot(reisedat$x/1000, reisedat$t, xlab="Entfernung (km)", ylab="Reisezeit (min)")
 ```
 
 **Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird. (Auflösung weiter unten.)_
@@ -112,7 +122,7 @@ $$r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\le
 
 In R mit der `cor()` Funktion:
 ```{r echo=TRUE}
-cor(dat$x, dat$t, use="complete.obs", method="pearson")
+cor(reisedat$x, reisedat$t, use="complete.obs", method="pearson")
 ```
 Das Argument `use="complete.obs"` teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne "NA", ansonsten wäre der Output "NA". Anstatt `method="pearson"` sind ebenfalls `method="spearman"` und `method="kendall"` möglich; beides sind Rangkorrelationskoeffizienten.
 
