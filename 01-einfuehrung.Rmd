@@ -30,11 +30,7 @@ Lesen Sie dazu bitte Kapitel 2.4 von @zimmermann2014, s. Moodle. Gemäß der dor
 
 Statistik ist Teil des physisch- und humangeographischen Methodenpakets. Da die Erkenntnisse der Geographie in vielen Teilen auf dem empirischen Forschungsprozess basieren ist statistische Analyse als Argumentationsunterstützung und als Beweissicherung unumgänglich. Außerdem dient sie der Bestätigung oder Widerlegung theoretischer Ansätze und der Generierung neuer Informationen aus verfügbaren Daten. In der Praxis dient Statistik häufig als Entscheidungsgrundlage.
 
-Lesen Sie bitte Kapitel 2.3 [@zimmermann2014] für konkrete Anwendungsbeispiele der Statistik in der Geographie.
-
-**Aufgabe:** _Auf Moodle unter Woche 1 finden Sie ein kurzes Quiz zu diesem Kapitel. Bitte beantworten Sie die Fragen bis Ende der Woche. Dies werden wir jede Woche tun, als Lernstandskontrolle für Sie und als Überblick für uns über mögliche Verständnisprobleme._
-
-Am Ende von Kapitel 2.3 in @zimmermann2014 finden Sie außerdem eine Erklärung der Teilbereiche der Statistik. Mit der **deskriptiven (beschreibenden) Statistik** beschäftigen wir uns in den Wochen 3 - 5. Dazu ist das Lehrbuch von @zimmermann2014 wichtig. Mit der **induktiven (schließenden) Statistik** beschäfigen wir uns in den Wochen 8 - 13. Die Brücke zwischen diesen beiden Teilbereichen - wie es @zimmermann2014 darstellt - ist die **Wahrscheinlichkeitstheorie**, mit deren Grundlagen wir uns in den Wochen 6 - 7 auseinandersetzen.
+Lesen Sie bitte Kapitel 2.3 [@zimmermann2014] für konkrete Anwendungsbeispiele der Statistik in der Geographie. Am Ende jenes Kapitels finden Sie außerdem eine Erklärung der Teilbereiche der Statistik. Mit der **deskriptiven (beschreibenden) Statistik** beschäftigen wir uns in den Wochen 3 - 5. Dazu ist das Lehrbuch von @zimmermann2014 wichtig. Mit der **induktiven (schließenden) Statistik** beschäfigen wir uns in den Wochen 8 - 13. Die Brücke zwischen diesen beiden Teilbereichen - wie es @zimmermann2014 darstellt - ist die **Wahrscheinlichkeitstheorie**, mit deren Grundlagen wir uns in den Wochen 6 - 7 auseinandersetzen.
 
 ## Organisatorisches {#orga}
 
@@ -117,8 +113,6 @@ x_{n,1} & x_{n,2} & \cdots & x_{n,p}
 Hier hat jeder Merkmalswert zwei Indizes, einen für die statistische Einheit (hier bis Anzahl $n$) und einen für die Variable (hier bis Anzahl $p$).
 
 Vektoren und Matrizen werden in der Regel fett gedruckt, wobei Vektoren $\mathbf{x}$ mit Kleinbuchstaben und Matrizen $\mathbf{X}$ mit Großbuchstaben bezeichnet werden. Die Rechenregeln für Vektoren und Matrizen sind in der linearen Algebra zusammengefasst. Wir werden daraus nur Auszüge in den letzten Semesterwochen verwenden.
-
-**Aufgabe:** _Zu diesen Begriffen gibt es ebenfalls ein kleines Quiz zu beantworten, s. Moodle unter Woche 1._
 
 ### Exponential- und Logarithmusfunktion
 
@@ -236,3 +230,6 @@ plot(x, x^2, pch = 19, type = 'b')
 plot(x, sqrt(x^2), pch = 19, type = 'b')
 ```
 
+## Quiz
+
+Auf Moodle unter Woche 1 finden Sie ein kurzes Quiz zu diesem Kapitel des Skriptes. Bitte beantworten Sie die Fragen bis Ende der Woche. Dies werden wir jede Woche tun, als Lernstandskontrolle für Sie und als Überblick für uns über mögliche Verständnisprobleme.
