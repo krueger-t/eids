@@ -1,8 +1,16 @@
 bookdown::gitbook:
-  css: style.css
+  css: css/style.css
+  split_by: rmd
+  toc_depth: 1
   config:
+    sharing:
+      github: yes
+      facebook: no
+      twitter: no
     toc:
+      collapse: none
       before: |
-        <li><a href="./">Einfuehrung in die Statistik</a></li>
+        <li><a href="./">Einführung in die Statistik</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+

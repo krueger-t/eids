@@ -12,6 +12,17 @@ github-repo: krueger-t/eids
 description: "This is the script of the course 'Einführung in die Statistik' (in German) run at the Geography Department of Humboldt-Universität zu Berlin."
 ---
 
+```{r setup, include=FALSE}
+ options(
+   htmltools.dir.version = FALSE, formatR.indent = 2,
+   width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE
+ )
+
+ lapply(c(), function(pkg) {
+   if (system.file(package = pkg) == '') install.packages(pkg)
+ })
+```
+
 # Vorwort {-}
 
 Dies ist das Skript für den Kurs 'Einführung in die Statistik' am Geographischen Institut der Humboldt-Universität zu Berlin.
