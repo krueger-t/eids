@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,16 +201,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="regression" class="section level1">
 <h1><span class="header-section-number">Kapitel 12</span> Lineare Regression</h1>
-<p>Für die lineare Regression kehren wir zu einer Frage aus Kapitel <a href="korrelation.html#korrelation">5</a> zurück: <em>Kann man Ihre Reisezeit mit der Entfernung zu Ihrem Wohnort statistisch vorhersagen?</em></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="regression.html#cb56-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>x<span class="op">/</span><span class="dv">1000</span>, reisedat<span class="op">$</span>t, <span class="dt">xlab=</span><span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Reisezeit (min)&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<p>Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel <a href="korrelation.html#korrelation">5</a> 0.86 war. Das <strong>Ziel</strong> ist nun, eine Gerade durch die Punktwolke zu legen, die den <em>Trend</em> beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.</p>
+<p>Für die lineare Regression kehren wir zu einer Frage aus Kapitel <a href="korrelation.html#korrelation">5</a> zurück: <em>Kann man die Entfernung zu Ihrem Wohnort mit der Anzahl Stationen, die Sie bis Adlershof brauchen statistisch vorhersagen?</em></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="regression.html#cb57-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, <span class="dt">xlab=</span><span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Entfernung (km)&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel <a href="korrelation.html#korrelation">5</a> 0.81 war. Das <strong>Ziel</strong> ist nun, eine Gerade durch die Punktwolke zu legen, die den <em>Trend</em> beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.</p>
 <p>Es geht um <em>2 Variablen</em> (Merkmale):</p>
 <ul>
-<li>die <strong>abhängige Variable</strong> <span class="math inline">\(y\)</span> (im Bsp. Reisezeit)</li>
-<li>die <strong>unabhängige Variable</strong> <span class="math inline">\(x\)</span> (im Bsp. Entfernung)</li>
+<li>die <strong>abhängige Variable</strong> <span class="math inline">\(y\)</span> (im Bsp. Entfernung)</li>
+<li>die <strong>unabhängige Variable</strong> <span class="math inline">\(x\)</span> (im Bsp. Anzahl Stationen)</li>
 </ul>
-<p>Die Variablen müssen <em>metrisch</em> skaliert sein.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Wir wollen das generelle Verhalten von <span class="math inline">\(y\)</span> mit <span class="math inline">\(x\)</span> beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.</p>
+<p>Die Variablen müssen <em>metrisch</em> skaliert sein.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Wir wollen das generelle Verhalten von <span class="math inline">\(y\)</span> mit <span class="math inline">\(x\)</span> beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.</p>
 <div id="definitionen" class="section level2">
 <h2><span class="header-section-number">12.1</span> Definitionen</h2>
 <p>Im Falle einer einzigen unabhängigen Variable lautet die Gleichung des <strong>linearen Models</strong>:</p>
@@ -229,39 +229,39 @@ Abbildung 12.1: Lineare Regression: Definitionen.
 <div id="beschreibung-vs.-vorhersage" class="section level2">
 <h2><span class="header-section-number">12.2</span> Beschreibung vs. Vorhersage</h2>
 <p>Der primäre Zweck einer Regressionsanalyse ist die Beschreibung (oder Erklärung) der Daten im Sinne einer allgemeinen Beziehung, die sich auf die Grundgesamtheit übertragen lässt, aus der diese Daten entnommen wurden. Da diese Beziehung eine Eigenschaft der Grundgesamtheit ist, sollte diese demnach auch Vorhersagen ermöglichen. Hierbei ist jedoch Vorsicht geboten. Betrachten Sie den Zusammenhang von Jahr und Weltrekordzeit für die in Abbildung <a href="regression.html#fig:mile">12.2</a> dargestellten Daten (Meile, Herren). Wenn, wie hier, die Zeit die unabhängige Variable ist, wird die Regression zu einer Form der Trendanalyse, die in diesem Fall eine Verringerung der Rekordzeit mit den Jahren anzeigt. (Die <code>lm()</code> Funktion und ihren Output werden wir weiter unten kennenlernen, hier geht es um die Grafiken.)</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="regression.html#cb57-1"></a><span class="co"># Daten laden</span></span>
-<span id="cb57-2"><a href="regression.html#cb57-2"></a>mile &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile.csv&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)</span>
-<span id="cb57-3"><a href="regression.html#cb57-3"></a><span class="co"># lineares Modell an Daten aus 1. Hälfte des 20. Jahrh. anpassen</span></span>
-<span id="cb57-4"><a href="regression.html#cb57-4"></a>mile_fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(seconds <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> mile[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>,])</span>
-<span id="cb57-5"><a href="regression.html#cb57-5"></a><span class="co"># Informationen zu Parameterschätzern extrahieren</span></span>
-<span id="cb57-6"><a href="regression.html#cb57-6"></a><span class="kw">coef</span>(<span class="kw">summary</span>(mile_fit1))</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="regression.html#cb58-1"></a><span class="co"># Daten laden</span></span>
+<span id="cb58-2"><a href="regression.html#cb58-2"></a>mile &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile.csv&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)</span>
+<span id="cb58-3"><a href="regression.html#cb58-3"></a><span class="co"># lineares Modell an Daten aus 1. Hälfte des 20. Jahrh. anpassen</span></span>
+<span id="cb58-4"><a href="regression.html#cb58-4"></a>mile_fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(seconds <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> mile[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>,])</span>
+<span id="cb58-5"><a href="regression.html#cb58-5"></a><span class="co"># Informationen zu Parameterschätzern extrahieren</span></span>
+<span id="cb58-6"><a href="regression.html#cb58-6"></a><span class="kw">coef</span>(<span class="kw">summary</span>(mile_fit1))</span></code></pre></div>
 <pre><code>##                Estimate  Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept) 912.2339944 67.90139506 13.434687 3.614623e-08
 ## year         -0.3438721  0.03509494 -9.798337 9.058700e-07</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="regression.html#cb59-1"></a><span class="co"># lineares Modell an kompletten Datensatz anpassen</span></span>
-<span id="cb59-2"><a href="regression.html#cb59-2"></a>mile_fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(seconds <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> mile)</span>
-<span id="cb59-3"><a href="regression.html#cb59-3"></a><span class="kw">coef</span>(<span class="kw">summary</span>(mile_fit2))</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="regression.html#cb60-1"></a><span class="co"># lineares Modell an kompletten Datensatz anpassen</span></span>
+<span id="cb60-2"><a href="regression.html#cb60-2"></a>mile_fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(seconds <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> mile)</span>
+<span id="cb60-3"><a href="regression.html#cb60-3"></a><span class="kw">coef</span>(<span class="kw">summary</span>(mile_fit2))</span></code></pre></div>
 <pre><code>##                 Estimate Std. Error   t value     Pr(&gt;|t|)
 ## (Intercept) 1006.8760057 21.5319332  46.76199 1.360809e-29
 ## year          -0.3930488  0.0109992 -35.73431 3.779773e-26</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="regression.html#cb61-1"></a><span class="co"># Modellanpassung für 1. Hälfte des 20. Jahrh. plotten</span></span>
-<span id="cb61-2"><a href="regression.html#cb61-2"></a><span class="kw">plot</span>(mile<span class="op">$</span>year[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>], mile<span class="op">$</span>seconds[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>],</span>
-<span id="cb61-3"><a href="regression.html#cb61-3"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
-<span id="cb61-4"><a href="regression.html#cb61-4"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
-<span id="cb61-5"><a href="regression.html#cb61-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
-<span id="cb61-6"><a href="regression.html#cb61-6"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit1), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb61-7"><a href="regression.html#cb61-7"></a><span class="co"># Extrapolation für 2. Hälfte des 20. Jahrh. plotten</span></span>
-<span id="cb61-8"><a href="regression.html#cb61-8"></a><span class="kw">plot</span>(mile<span class="op">$</span>year, mile<span class="op">$</span>seconds,</span>
-<span id="cb61-9"><a href="regression.html#cb61-9"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
-<span id="cb61-10"><a href="regression.html#cb61-10"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
-<span id="cb61-11"><a href="regression.html#cb61-11"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
-<span id="cb61-12"><a href="regression.html#cb61-12"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit1), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb61-13"><a href="regression.html#cb61-13"></a><span class="co"># Modellanpassung für Gesamtdaten bis 2050 plotten</span></span>
-<span id="cb61-14"><a href="regression.html#cb61-14"></a><span class="kw">plot</span>(mile<span class="op">$</span>year, mile<span class="op">$</span>seconds,</span>
-<span id="cb61-15"><a href="regression.html#cb61-15"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2050</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
-<span id="cb61-16"><a href="regression.html#cb61-16"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
-<span id="cb61-17"><a href="regression.html#cb61-17"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
-<span id="cb61-18"><a href="regression.html#cb61-18"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit2), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="regression.html#cb62-1"></a><span class="co"># Modellanpassung für 1. Hälfte des 20. Jahrh. plotten</span></span>
+<span id="cb62-2"><a href="regression.html#cb62-2"></a><span class="kw">plot</span>(mile<span class="op">$</span>year[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>], mile<span class="op">$</span>seconds[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>],</span>
+<span id="cb62-3"><a href="regression.html#cb62-3"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
+<span id="cb62-4"><a href="regression.html#cb62-4"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
+<span id="cb62-5"><a href="regression.html#cb62-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
+<span id="cb62-6"><a href="regression.html#cb62-6"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit1), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb62-7"><a href="regression.html#cb62-7"></a><span class="co"># Extrapolation für 2. Hälfte des 20. Jahrh. plotten</span></span>
+<span id="cb62-8"><a href="regression.html#cb62-8"></a><span class="kw">plot</span>(mile<span class="op">$</span>year, mile<span class="op">$</span>seconds,</span>
+<span id="cb62-9"><a href="regression.html#cb62-9"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
+<span id="cb62-10"><a href="regression.html#cb62-10"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
+<span id="cb62-11"><a href="regression.html#cb62-11"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
+<span id="cb62-12"><a href="regression.html#cb62-12"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit1), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb62-13"><a href="regression.html#cb62-13"></a><span class="co"># Modellanpassung für Gesamtdaten bis 2050 plotten</span></span>
+<span id="cb62-14"><a href="regression.html#cb62-14"></a><span class="kw">plot</span>(mile<span class="op">$</span>year, mile<span class="op">$</span>seconds,</span>
+<span id="cb62-15"><a href="regression.html#cb62-15"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2050</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
+<span id="cb62-16"><a href="regression.html#cb62-16"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
+<span id="cb62-17"><a href="regression.html#cb62-17"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
+<span id="cb62-18"><a href="regression.html#cb62-18"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit2), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:mile"></span>
 <img src="eids_files/figure-html/mile-1.png" alt="Links: Trend des Weltrekords &quot;Meile, Herren&quot; in der ersten Hälfte des 20. Jahrhunderts (Beschreibung). Mitte: Extrapolation des Trends für die zweite Hälfte des 20. Jahrhunderts (Vorhersage). Rechts: Extrapolation des Trends bis zum Jahr 2050 (längere Vorhersage). Nach: @wainer2009" width="33%" /><img src="eids_files/figure-html/mile-2.png" alt="Links: Trend des Weltrekords &quot;Meile, Herren&quot; in der ersten Hälfte des 20. Jahrhunderts (Beschreibung). Mitte: Extrapolation des Trends für die zweite Hälfte des 20. Jahrhunderts (Vorhersage). Rechts: Extrapolation des Trends bis zum Jahr 2050 (längere Vorhersage). Nach: @wainer2009" width="33%" /><img src="eids_files/figure-html/mile-3.png" alt="Links: Trend des Weltrekords &quot;Meile, Herren&quot; in der ersten Hälfte des 20. Jahrhunderts (Beschreibung). Mitte: Extrapolation des Trends für die zweite Hälfte des 20. Jahrhunderts (Vorhersage). Rechts: Extrapolation des Trends bis zum Jahr 2050 (längere Vorhersage). Nach: @wainer2009" width="33%" />
 <p class="caption">
@@ -333,7 +333,7 @@ SSE=\sum_{i=1}^{n}\left(\epsilon_i\right)^2=\sum_{i=1}^{n}\left(y_i-\left(\beta_
 \tag{12.2}
 \end{equation}\]</span></p>
 <p>Das Residuum <span class="math inline">\(\epsilon_i\)</span> ist also gleich <span class="math inline">\(y_i-\left(\beta_0+\beta_1 \cdot x_i\right)\)</span>, dem vertikalen Abstand zwischen Datenpunkt und Regressionsgerade.</p>
-<p>Im Fall der linearen Regression kann <span class="math inline">\(SSE\)</span> analytisch minimiert werden, was z.B. bei nichtlinearen Modellen nicht der Fall ist. Analytisch finden wir das Minimum von <span class="math inline">\(SSE\)</span> wo dessen partielle Ableitungen in Bezug auf die beiden Modellparameter beide Null sind: <span class="math inline">\(\frac{\partial SSE}{\partial \beta_0}=0\)</span> und <span class="math inline">\(\frac{\partial SSE}{\partial \beta_1}=0\)</span>. Unter Anwendung der Definition von <span class="math inline">\(SEE\)</span> aus Gleichung <a href="regression.html#eq:sse">(12.2)</a> und der Summenregel<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> und der Kettenregel<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>, die Sie noch aus der Schule kennen werden, erhalten wir:</p>
+<p>Im Fall der linearen Regression kann <span class="math inline">\(SSE\)</span> analytisch minimiert werden, was z.B. bei nichtlinearen Modellen nicht der Fall ist. Analytisch finden wir das Minimum von <span class="math inline">\(SSE\)</span> wo dessen partielle Ableitungen in Bezug auf die beiden Modellparameter beide Null sind: <span class="math inline">\(\frac{\partial SSE}{\partial \beta_0}=0\)</span> und <span class="math inline">\(\frac{\partial SSE}{\partial \beta_1}=0\)</span>. Unter Anwendung der Definition von <span class="math inline">\(SEE\)</span> aus Gleichung <a href="regression.html#eq:sse">(12.2)</a> und der Summenregel<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> und der Kettenregel<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>, die Sie noch aus der Schule kennen werden, erhalten wir:</p>
 <p><span class="math display" id="eq:sseb0">\[\begin{equation}
 \frac{\partial SSE}{\partial \beta_0}=-2 \cdot \sum_{i=1}^{n}\left(y_i-\beta_0-\beta_1 \cdot x_i\right)=0
 \tag{12.3}
@@ -385,23 +385,20 @@ n \cdot \beta_0=\sum_{i=1}^{n}y_i-\beta_1 \cdot \sum_{i=1}^{n}x_i
 \end{equation}\]</span></p>
 <p><span class="math inline">\(SSX=\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^2\)</span> ist ein Maß für die Varianz der Daten in <span class="math inline">\(x\)</span>-Richtung. <span class="math inline">\(SSXY=\sum_{i=1}^{n}\left(x_i-\bar{x}\right) \cdot \left(y_i-\bar{y}\right)\)</span> ist ein Maß für die Kovarianz der Daten. Es gibt auch <span class="math inline">\(SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2\)</span>, das entsprechend ein Maß für die Varianz der Daten in <span class="math inline">\(y\)</span>-Richtung ist. Gleichung <a href="regression.html#eq:b13">(12.13)</a> ist eine exakte Lösung für <span class="math inline">\(\hat\beta_1\)</span>.</p>
 <p>Wir setzen nun Gleichung <a href="regression.html#eq:b13">(12.13)</a> in Gleichung <a href="regression.html#eq:b04">(12.8)</a> ein und haben eine exakte Lösung für <span class="math inline">\(\hat\beta_0\)</span>. Berechnen wir nun die Parameter für unsere Reisedaten mit der <code>lm()</code> Funktion:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="regression.html#cb62-1"></a><span class="co"># Entfernung in km umrechnen</span></span>
-<span id="cb62-2"><a href="regression.html#cb62-2"></a><span class="co"># das muss außerhalb der lm() Funktion geschehen</span></span>
-<span id="cb62-3"><a href="regression.html#cb62-3"></a>reisedat<span class="op">$</span>x &lt;-<span class="st"> </span>reisedat<span class="op">$</span>x<span class="op">/</span><span class="dv">1000</span></span>
-<span id="cb62-4"><a href="regression.html#cb62-4"></a><span class="co"># lineare Regression der Reisedaten</span></span>
-<span id="cb62-5"><a href="regression.html#cb62-5"></a>reise_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(t <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> reisedat)</span>
-<span id="cb62-6"><a href="regression.html#cb62-6"></a><span class="co"># Informationen über geschätzte Parameterwerte ausgeben</span></span>
-<span id="cb62-7"><a href="regression.html#cb62-7"></a><span class="kw">coef</span>(<span class="kw">summary</span>(reise_fit))</span></code></pre></div>
-<pre><code>##              Estimate Std. Error  t value     Pr(&gt;|t|)
-## (Intercept) 23.547946  1.9240147 12.23896 3.088712e-21
-## x            1.931042  0.1163789 16.59272 8.115580e-30</code></pre>
-<p>In der ersten Spalte (“Estimate”) dieses Outputs finden Sie die Werte der Parameterschätzer, wobei “(Intercept)” für <span class="math inline">\(\beta_0\)</span> steht und “x” für <span class="math inline">\(\beta_1\)</span>. Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgerade <span class="math inline">\(y_i=23.55+1.93\cdot x_i+\epsilon_i\)</span>:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="regression.html#cb64-1"></a><span class="co"># Modellanpassung plotten</span></span>
-<span id="cb64-2"><a href="regression.html#cb64-2"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>x, reisedat<span class="op">$</span>t,</span>
-<span id="cb64-3"><a href="regression.html#cb64-3"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
-<span id="cb64-4"><a href="regression.html#cb64-4"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit (Minuten)&quot;</span>)</span>
-<span id="cb64-5"><a href="regression.html#cb64-5"></a><span class="kw">abline</span>(<span class="kw">coef</span>(reise_fit), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="regression.html#cb63-1"></a><span class="co"># lineare Regression der Reisedaten</span></span>
+<span id="cb63-2"><a href="regression.html#cb63-2"></a>reise_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(distanz <span class="op">~</span><span class="st"> </span>stationen, <span class="dt">data =</span> reisedat)</span>
+<span id="cb63-3"><a href="regression.html#cb63-3"></a><span class="co"># Informationen über geschätzte Parameterwerte ausgeben</span></span>
+<span id="cb63-4"><a href="regression.html#cb63-4"></a><span class="kw">coef</span>(<span class="kw">summary</span>(reise_fit))</span></code></pre></div>
+<pre><code>##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 4.9232331 1.01873916  4.832673 7.533449e-06
+## stationen   0.6934252 0.05975613 11.604253 4.640936e-18</code></pre>
+<p>In der ersten Spalte (“Estimate”) dieses Outputs finden Sie die Werte der Parameterschätzer, wobei “(Intercept)” für <span class="math inline">\(\beta_0\)</span> steht und “stationen” für <span class="math inline">\(\beta_1\)</span>. Anhand von <span class="math inline">\(\beta_1\)</span> können wir ablesen, dass die Entfernung zwischen zwei Stationen im Mittel 0.7km beträgt. Der Achsenabschnitt <span class="math inline">\(\beta_0\)</span> hat keine direkte Entsprechung.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgerade <span class="math inline">\(y_i=4.9+0.7\cdot x_i+\epsilon_i\)</span>:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="regression.html#cb65-1"></a><span class="co"># Modellanpassung plotten</span></span>
+<span id="cb65-2"><a href="regression.html#cb65-2"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz,</span>
+<span id="cb65-3"><a href="regression.html#cb65-3"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
+<span id="cb65-4"><a href="regression.html#cb65-4"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>)</span>
+<span id="cb65-5"><a href="regression.html#cb65-5"></a><span class="kw">abline</span>(<span class="kw">coef</span>(reise_fit), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="signifikanz-der-regression" class="section level2">
 <h2><span class="header-section-number">12.5</span> Signifikanz der Regression</h2>
@@ -471,13 +468,13 @@ Abbildung 12.4: Verteilungsfunktion der F-Verteilung der F-Statistik <span class
 </p>
 </div>
 <p>Für die Regression der Reisedaten ist der p-Wert wesentlich kleiner als das konventionelle Signifikanzniveau <span class="math inline">\(\alpha=0.01\)</span>, daher lehnen wir die die Nullhypothese ab und bezeichnen die Regression als statistisch signifikant. Schauen wir uns die ANOVA-Tabelle fuer das Beispiel an:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="regression.html#cb65-1"></a><span class="kw">anova</span>(reise_fit)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="regression.html#cb66-1"></a><span class="kw">anova</span>(reise_fit)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
-## Response: t
-##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## x          1 26253.3 26253.3  275.32 &lt; 2.2e-16 ***
-## Residuals 95  9058.8    95.4                      
+## Response: distanz
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## stationen  1 3308.6  3308.6  134.66 &lt; 2.2e-16 ***
+## Residuals 71 1744.5    24.6                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Im Vergleich zu Tabelle <a href="regression.html#tab:anova">12.3</a> lässt <em>R</em> die letzte Zeile (<span class="math inline">\(SSY\)</span>) weg und tauscht die Spalten “Quadratsumme” und “Freiheitsgrad”.</p>
@@ -574,11 +571,11 @@ Abbildung 12.6: Schema des t-Tests auf Signifikanz der Parameterschätzer. Die T
 </p>
 </div>
 <p>Jetzt verstehen wir auch die restlichen Informationen des Outputs der <code>lm()</code> Funktion (s. oben):</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="regression.html#cb67-1"></a><span class="kw">coef</span>(<span class="kw">summary</span>(reise_fit))</span></code></pre></div>
-<pre><code>##              Estimate Std. Error  t value     Pr(&gt;|t|)
-## (Intercept) 23.547946  1.9240147 12.23896 3.088712e-21
-## x            1.931042  0.1163789 16.59272 8.115580e-30</code></pre>
-<p>Wie bereits oben erwähnt steht die Zeile “(Intercept)” für <span class="math inline">\(\beta_0\)</span> und die Zeile “x” für <span class="math inline">\(\beta_1\)</span>. In Spalte “Estimate” stehen die Werte der Parameterschätzer. In Spalte “Std. Error” stehen deren Standardfehler (Gleichungen <a href="regression.html#eq:seb0">(12.14)</a> und <a href="regression.html#eq:seb1">(12.15)</a>). In Spalte “t value” stehen die entsprechenden Werte der Teststatistik (Gleichungen <a href="regression.html#eq:tsb0">(12.25)</a> und <a href="regression.html#eq:tsb1">(12.26)</a>). In Spalte “Pr(&gt;|t|)” stehen die p-Werte der t-Tests auf Signifikanz der Parameter (Gleichung <a href="regression.html#eq:pv">(12.27)</a>). Wir sehen, dass in unserem Beispiel beide Parameter signifikant sind (die p-Werte sind wesentlich kleiner als das konventionelle <span class="math inline">\(\alpha=0.01\)</span>).</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="regression.html#cb68-1"></a><span class="kw">coef</span>(<span class="kw">summary</span>(reise_fit))</span></code></pre></div>
+<pre><code>##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) 4.9232331 1.01873916  4.832673 7.533449e-06
+## stationen   0.6934252 0.05975613 11.604253 4.640936e-18</code></pre>
+<p>Wie bereits oben erwähnt steht die Zeile “(Intercept)” für <span class="math inline">\(\beta_0\)</span> und die Zeile “stationen” für <span class="math inline">\(\beta_1\)</span>. In Spalte “Estimate” stehen die Werte der Parameterschätzer. In Spalte “Std. Error” stehen deren Standardfehler (Gleichungen <a href="regression.html#eq:seb0">(12.14)</a> und <a href="regression.html#eq:seb1">(12.15)</a>). In Spalte “t value” stehen die entsprechenden Werte der Teststatistik (Gleichungen <a href="regression.html#eq:tsb0">(12.25)</a> und <a href="regression.html#eq:tsb1">(12.26)</a>). In Spalte “Pr(&gt;|t|)” stehen die p-Werte der t-Tests auf Signifikanz der Parameter (Gleichung <a href="regression.html#eq:pv">(12.27)</a>). Wir sehen, dass in unserem Beispiel beide Parameter signifikant sind (die p-Werte sind wesentlich kleiner als das konventionelle <span class="math inline">\(\alpha=0.01\)</span>).</p>
 </div>
 <div id="güte-der-modellanpassung" class="section level2">
 <h2><span class="header-section-number">12.7</span> Güte der Modellanpassung</h2>
@@ -595,11 +592,11 @@ Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Q
 \tag{12.29}
 \end{equation}\]</span></p>
 <p>Rechnen wir <span class="math inline">\(r^2\)</span> und <span class="math inline">\(\bar r^2\)</span> für die Regression der Reisedaten aus:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="regression.html#cb69-1"></a><span class="kw">summary</span>(reise_fit)<span class="op">$</span>r.squared</span></code></pre></div>
-<pre><code>## [1] 0.743464</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="regression.html#cb71-1"></a><span class="kw">summary</span>(reise_fit)<span class="op">$</span>adj.r.squared</span></code></pre></div>
-<pre><code>## [1] 0.7407636</code></pre>
-<p>D.h. rund 74% der Varianz in den Reisezeit-Daten wird durch das lineare Modell mit Entfernung als Prädiktor erklärt.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="regression.html#cb70-1"></a><span class="kw">summary</span>(reise_fit)<span class="op">$</span>r.squared</span></code></pre></div>
+<pre><code>## [1] 0.6547678</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="regression.html#cb72-1"></a><span class="kw">summary</span>(reise_fit)<span class="op">$</span>adj.r.squared</span></code></pre></div>
+<pre><code>## [1] 0.6499054</code></pre>
+<p>D.h. rund 65% der Varianz in den Entfernungs-Daten wird durch das lineare Modell mit Anzahl Stationen als Prädiktor erklärt.</p>
 <p>Aber was heißt Güte der Modellanpassung? Sind alle Modellannahmen erfüllt? Folgende Annahmen ergeben sich aus der <strong>Maximum-Likelihood-Theorie</strong> (vgl. Schätzen von Verteilungsparametern, Kapitel <a href="schaetzen.html#schaetzen">8</a>):</p>
 <ul>
 <li>Die Residuen sind <strong>unabhängig</strong>, in diesem Fall gibt es keine serielle Korrelation in der Residuengrafik - dies kann mit dem Durbin-Watson-Test getestet werden</li>
@@ -608,25 +605,26 @@ Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Q
 </ul>
 <p>Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder Generalisierte Lineare Modelle zurückgreifen. Letzteres ist wird im Master <em>Global Change Geography</em> unterrichtet.</p>
 <p>Eine erste nützliche diagnostische Darstellung ist die der Residuen in Serie, d.h. nach Index <span class="math inline">\(i\)</span>, um zu sehen, ob es ein Muster aufgrund des Datenerfassungsprozesses gibt. Für unser Beispiel:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="regression.html#cb73-1"></a><span class="co"># Residuen gegen Index plotten</span></span>
-<span id="cb73-2"><a href="regression.html#cb73-2"></a><span class="kw">plot</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">35</span>,<span class="dv">35</span>))</span>
-<span id="cb73-3"><a href="regression.html#cb73-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-27-1.png" width="672" />
-Dieser Datensatz zeigt kein erkennbares Muster, was für eine Unabhängigkeit der Residuen spricht.</p>
-<p>Wir sollten auch die Residuen nach dem modellierten Wert von <span class="math inline">\(y\)</span> plotten, um zu sehen, ob es ein Muster als Funktion der Größenordnung von <span class="math inline">\(y\)</span> gibt:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="regression.html#cb74-1"></a><span class="co"># Residuen gegen modellierte Werte von y plotten</span></span>
-<span id="cb74-2"><a href="regression.html#cb74-2"></a><span class="kw">plot</span>(<span class="kw">fitted.values</span>(reise_fit),<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">35</span>,<span class="dv">35</span>))</span>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="regression.html#cb74-1"></a><span class="co"># Residuen gegen Index plotten</span></span>
+<span id="cb74-2"><a href="regression.html#cb74-2"></a><span class="kw">plot</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span>
 <span id="cb74-3"><a href="regression.html#cb74-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-28-1.png" width="672" />
-Diese Grafik zeigt eine leichte Abnahme der Residuenvarianz von links nach rechts, d.h. in Richtung größerer Werte - eine Form der Heteroskedastizität.</p>
+Dieser Datensatz zeigt kein erkennbares Muster, was für eine Unabhängigkeit der Residuen spricht.</p>
+<p>Wir sollten auch die Residuen nach dem modellierten Wert von <span class="math inline">\(y\)</span> plotten, um zu sehen, ob es ein Muster als Funktion der Größenordnung von <span class="math inline">\(y\)</span> gibt:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="regression.html#cb75-1"></a><span class="co"># Residuen gegen modellierte Werte von y plotten</span></span>
+<span id="cb75-2"><a href="regression.html#cb75-2"></a><span class="kw">plot</span>(<span class="kw">fitted.values</span>(reise_fit),<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span>
+<span id="cb75-3"><a href="regression.html#cb75-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+Diese Grafik zeigt eine leichte Zunahme der Residuenvarianz von links nach rechts, d.h. in Richtung größerer Werte - eine Form der Heteroskedastizität.</p>
 <p>Die Annahme, dass die Residuen normalverteilt sind, kann anhand des QQ-Plots beurteilt werden:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="regression.html#cb75-1"></a><span class="kw">qqnorm</span>(<span class="kw">residuals</span>(reise_fit))</span>
-<span id="cb75-2"><a href="regression.html#cb75-2"></a><span class="kw">qqline</span>(<span class="kw">residuals</span>(reise_fit))</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<p>Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus. Im Fall einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie (vgl. Kapitel <a href="schaetzen.html#schaetzen">8</a>). In unserem Beispiel deutet der QQ-Plot eine leichte Rechts-Schiefe der Residuen an. Die Rechts-Schiefe wid durch das Histogramm der Residuen bestätigt:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="regression.html#cb76-1"></a><span class="co"># Histogramm der Residuen plotten</span></span>
-<span id="cb76-2"><a href="regression.html#cb76-2"></a><span class="kw">hist</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">35</span>,<span class="dv">35</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="regression.html#cb76-1"></a><span class="kw">qqnorm</span>(<span class="kw">residuals</span>(reise_fit))</span>
+<span id="cb76-2"><a href="regression.html#cb76-2"></a><span class="kw">qqline</span>(<span class="kw">residuals</span>(reise_fit))</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus. Im Fall einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie (vgl. Kapitel <a href="schaetzen.html#schaetzen">8</a>). In unserem Beispiel deutet der QQ-Plot darauf hin, dass die Flanken der Residuenverteilung flacher als bei einer Normalverteilung abfallen, vermutlich auf aufgrund der o.g. Heteroskedastizität. Das können wir beim Histogramm der Residuen nicht so gut sehen da die Vergleichverteilung fehlt:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="regression.html#cb77-1"></a><span class="co"># Histogramm der Residuen plotten</span></span>
+<span id="cb77-2"><a href="regression.html#cb77-2"></a><span class="kw">hist</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+Die Heteroskedastizität würde man angehen, indem man mit einem Generalisierten Linearen Modell eine andere Residuenverteilung als die Normalverteilung annimmt. Das führt aber im Rahmen dieses Kurses zu weit. Es bleibt somit festzuhalten, dass das Regressionsproblem mit den hier behandelten Methoden noch nicht vollständig gelöst ist.</p>
 
 </div>
 </div>
@@ -638,10 +636,11 @@ Diese Grafik zeigt eine leichte Abnahme der Residuenvarianz von links nach recht
 </div>
 <div class="footnotes">
 <hr />
-<ol start="2">
-<li id="fn2"><p>Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten abhängigen Variablen sind mathematisch ähnlich. Das wird im Masterstudiengang <strong>Global Change Geography</strong> gelehrt.<a href="regression.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Summenregel: wenn <span class="math inline">\(y=u(t) \pm v(t)\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{du}{dt} \pm \frac{dv}{dt}\)</span><a href="regression.html#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>Kettenregel: wenn <span class="math inline">\(y=f[g(t)]\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{df[g]}{dg} \cdot \frac{dg}{dt}\)</span>, d.h. “äußere mal innere Ableitung”<a href="regression.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<ol start="3">
+<li id="fn3"><p>Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten abhängigen Variablen sind mathematisch ähnlich. Das wird im Masterstudiengang <strong>Global Change Geography</strong> gelehrt.<a href="regression.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Summenregel: wenn <span class="math inline">\(y=u(t) \pm v(t)\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{du}{dt} \pm \frac{dv}{dt}\)</span><a href="regression.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Kettenregel: wenn <span class="math inline">\(y=f[g(t)]\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{df[g]}{dg} \cdot \frac{dg}{dt}\)</span>, d.h. “äußere mal innere Ableitung”<a href="regression.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Wenn wir jedoch die unabhängige Variable “stationen” zentrieren würden, d.h. von allen Datenpunkten den Mittelwert abziehen würden, dann ergäbe sich ein Achsenabschnitt, der die Entfernung für die mittlere Anzahl Stationen darstellen würde.<a href="regression.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

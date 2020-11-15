@@ -1,27 +1,27 @@
 # Lineare Regression {#regression}
 
-Für die lineare Regression kehren wir zu einer Frage aus Kapitel \@ref(korrelation) zurück: _Kann man Ihre Reisezeit mit der Entfernung zu Ihrem Wohnort statistisch vorhersagen?_
+Für die lineare Regression kehren wir zu einer Frage aus Kapitel \@ref(korrelation) zurück: _Kann man die Entfernung zu Ihrem Wohnort mit der Anzahl Stationen, die Sie bis Adlershof brauchen statistisch vorhersagen?_
 
 ```{r include=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Reisedaten.xlsx", na = "-999")
-# in data.frame umwandeln
-reisedat <- as.data.frame(reisedat)
-# Spalten umbenennen
-names(reisedat) <- c('x','t')
+reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
+# in Zahlen und data.frame umwandeln
+reisedat <- as.data.frame(apply(reisedat,2,as.numeric))
+# 0 mit NA ersetzen
+reisedat$stationen[reisedat$stationen == 0] <- NA
 ```
 ```{r echo=TRUE}
-plot(reisedat$x/1000, reisedat$t, xlab="Entfernung (km)", ylab="Reisezeit (min)")
+plot(reisedat$stationen, reisedat$distanz, xlab="Anzahl Stationen", ylab="Entfernung (km)")
 ```
 
-Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel \@ref(korrelation) 0.86 war. Das **Ziel** ist nun, eine Gerade durch die Punktwolke zu legen, die den *Trend* beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.
+Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel \@ref(korrelation) 0.81 war. Das **Ziel** ist nun, eine Gerade durch die Punktwolke zu legen, die den *Trend* beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.
 
 Es geht um *2 Variablen* (Merkmale):
 
-- die **abhängige Variable** $y$ (im Bsp. Reisezeit)
-- die **unabhängige Variable** $x$ (im Bsp. Entfernung)
+- die **abhängige Variable** $y$ (im Bsp. Entfernung)
+- die **unabhängige Variable** $x$ (im Bsp. Anzahl Stationen)
 
 Die Variablen müssen *metrisch* skaliert sein.^[Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten abhängigen Variablen sind mathematisch ähnlich. Das wird im Masterstudiengang **Global Change Geography** gelehrt.] Wir wollen das generelle Verhalten von $y$ mit $x$ beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.
 
@@ -175,21 +175,18 @@ $SSX=\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^2$ ist ein Maß für die Varianz der
 Wir setzen nun Gleichung \@ref(eq:b13) in Gleichung \@ref(eq:b04) ein und haben eine exakte Lösung für $\hat\beta_0$. Berechnen wir nun die Parameter für unsere Reisedaten mit der `lm()` Funktion:
 
 ```{r echo=TRUE}
-# Entfernung in km umrechnen
-# das muss außerhalb der lm() Funktion geschehen
-reisedat$x <- reisedat$x/1000
 # lineare Regression der Reisedaten
-reise_fit <- lm(t ~ x, data = reisedat)
+reise_fit <- lm(distanz ~ stationen, data = reisedat)
 # Informationen über geschätzte Parameterwerte ausgeben
 coef(summary(reise_fit))
 ```
-In der ersten Spalte ("Estimate") dieses Outputs finden Sie die Werte der Parameterschätzer, wobei "(Intercept)" für $\beta_0$ steht und "x" für $\beta_1$. Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgerade $y_i=23.55+1.93\cdot x_i+\epsilon_i$:
+In der ersten Spalte ("Estimate") dieses Outputs finden Sie die Werte der Parameterschätzer, wobei "(Intercept)" für $\beta_0$ steht und "stationen" für $\beta_1$. Anhand von $\beta_1$ können wir ablesen, dass die Entfernung zwischen zwei Stationen im Mittel 0.7km beträgt. Der Achsenabschnitt $\beta_0$ hat keine direkte Entsprechung.^[Wenn wir jedoch die unabhängige Variable "stationen" zentrieren würden, d.h. von allen Datenpunkten den Mittelwert abziehen würden, dann ergäbe sich ein Achsenabschnitt, der die Entfernung für die mittlere Anzahl Stationen darstellen würde.] Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgerade $y_i=4.9+0.7\cdot x_i+\epsilon_i$:
 
 ```{r echo=TRUE}
 # Modellanpassung plotten
-plot(reisedat$x, reisedat$t,
+plot(reisedat$stationen, reisedat$distanz,
      pch = 19, type = 'p',
-     xlab = "Entfernung (km)", ylab = "Reisezeit (Minuten)")
+     xlab = "Anzahl Stationen", ylab = "Entfernung (km)")
 abline(coef(reise_fit), lwd = 3, col = "red")
 ```
 
@@ -338,7 +335,7 @@ Jetzt verstehen wir auch die restlichen Informationen des Outputs der `lm()` Fun
 ```{r echo=TRUE}
 coef(summary(reise_fit))
 ```
-Wie bereits oben erwähnt steht die Zeile "(Intercept)" für $\beta_0$ und die Zeile "x" für $\beta_1$. In Spalte "Estimate" stehen die Werte der Parameterschätzer. In Spalte "Std. Error" stehen deren Standardfehler (Gleichungen \@ref(eq:seb0) und \@ref(eq:seb1)). In Spalte "t value" stehen die entsprechenden Werte der Teststatistik (Gleichungen \@ref(eq:tsb0) und \@ref(eq:tsb1)). In Spalte "Pr(>|t|)" stehen die p-Werte der t-Tests auf Signifikanz der Parameter (Gleichung \@ref(eq:pv)). Wir sehen, dass in unserem Beispiel beide Parameter signifikant sind (die p-Werte sind wesentlich kleiner als das konventionelle $\alpha=0.01$).
+Wie bereits oben erwähnt steht die Zeile "(Intercept)" für $\beta_0$ und die Zeile "stationen" für $\beta_1$. In Spalte "Estimate" stehen die Werte der Parameterschätzer. In Spalte "Std. Error" stehen deren Standardfehler (Gleichungen \@ref(eq:seb0) und \@ref(eq:seb1)). In Spalte "t value" stehen die entsprechenden Werte der Teststatistik (Gleichungen \@ref(eq:tsb0) und \@ref(eq:tsb1)). In Spalte "Pr(>|t|)" stehen die p-Werte der t-Tests auf Signifikanz der Parameter (Gleichung \@ref(eq:pv)). Wir sehen, dass in unserem Beispiel beide Parameter signifikant sind (die p-Werte sind wesentlich kleiner als das konventionelle $\alpha=0.01$).
 
 ## Güte der Modellanpassung
 
@@ -362,7 +359,7 @@ Rechnen wir $r^2$ und $\bar r^2$ für die Regression der Reisedaten aus:
 summary(reise_fit)$r.squared
 summary(reise_fit)$adj.r.squared
 ```
-D.h. rund 74% der Varianz in den Reisezeit-Daten wird durch das lineare Modell mit Entfernung als Prädiktor erklärt.
+D.h. rund 65% der Varianz in den Entfernungs-Daten wird durch das lineare Modell mit Anzahl Stationen als Prädiktor erklärt.
 
 Aber was heißt Güte der Modellanpassung? Sind alle Modellannahmen erfüllt? Folgende Annahmen ergeben sich aus der **Maximum-Likelihood-Theorie** (vgl. Schätzen von Verteilungsparametern, Kapitel \@ref(schaetzen)):
 
@@ -375,7 +372,7 @@ Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewicht
 Eine erste nützliche diagnostische Darstellung ist die der Residuen in Serie, d.h. nach Index $i$, um zu sehen, ob es ein Muster aufgrund des Datenerfassungsprozesses gibt. Für unser Beispiel:
 ```{r echo=TRUE}
 # Residuen gegen Index plotten
-plot(residuals(reise_fit), pch = 19, type = 'p', ylim = c(-35,35))
+plot(residuals(reise_fit), pch = 19, type = 'p', ylim = c(-25,25))
 abline(h = 0, lwd = 3, col = "red")
 ```
 Dieser Datensatz zeigt kein erkennbares Muster, was für eine Unabhängigkeit der Residuen spricht.
@@ -383,10 +380,10 @@ Dieser Datensatz zeigt kein erkennbares Muster, was für eine Unabhängigkeit de
 Wir sollten auch die Residuen nach dem modellierten Wert von $y$ plotten, um zu sehen, ob es ein Muster als Funktion der Größenordnung von $y$ gibt:
 ```{r echo=TRUE}
 # Residuen gegen modellierte Werte von y plotten
-plot(fitted.values(reise_fit),residuals(reise_fit), pch = 19, type = 'p', ylim = c(-35,35))
+plot(fitted.values(reise_fit),residuals(reise_fit), pch = 19, type = 'p', ylim = c(-25,25))
 abline(h = 0, lwd = 3, col = "red")
 ```
-Diese Grafik zeigt eine leichte Abnahme der Residuenvarianz von links nach rechts, d.h. in Richtung größerer Werte - eine Form der Heteroskedastizität.
+Diese Grafik zeigt eine leichte Zunahme der Residuenvarianz von links nach rechts, d.h. in Richtung größerer Werte - eine Form der Heteroskedastizität.
 
 Die Annahme, dass die Residuen normalverteilt sind, kann anhand des QQ-Plots beurteilt werden:
 ```{r echo=TRUE}
@@ -394,8 +391,9 @@ qqnorm(residuals(reise_fit))
 qqline(residuals(reise_fit))
 ```
 
-Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus. Im Fall einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie (vgl. Kapitel \@ref(schaetzen)). In unserem Beispiel deutet der QQ-Plot eine leichte Rechts-Schiefe der Residuen an. Die Rechts-Schiefe wid durch das Histogramm der Residuen bestätigt:
+Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus. Im Fall einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie (vgl. Kapitel \@ref(schaetzen)). In unserem Beispiel deutet der QQ-Plot darauf hin, dass die Flanken der Residuenverteilung flacher als bei einer Normalverteilung abfallen, vermutlich auf aufgrund der o.g. Heteroskedastizität. Das können wir beim Histogramm der Residuen nicht so gut sehen da die Vergleichverteilung fehlt:
 ```{r echo=TRUE}
 # Histogramm der Residuen plotten
-hist(residuals(reise_fit), xlim = c(-35,35))
+hist(residuals(reise_fit), xlim = c(-25,25))
 ```
+Die Heteroskedastizität würde man angehen, indem man mit einem Generalisierten Linearen Modell eine andere Residuenverteilung als die Normalverteilung annimmt. Das führt aber im Rahmen dieses Kurses zu weit. Es bleibt somit festzuhalten, dass das Regressionsproblem mit den hier behandelten Methoden noch nicht vollständig gelöst ist.

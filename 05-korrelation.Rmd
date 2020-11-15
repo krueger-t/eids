@@ -100,29 +100,37 @@ Bei dem Grünflächenanteil/Bildungsgrad Beispiel von @zimmermann2014 ist $r_s=0
 
 ## Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson
 
-An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Beide Merkmale ("Entfernung" und "Reisezeit") sind metrisch skaliert und somit können wir den Korrelationskoeffizienten nach Bravais-Pearson verwenden, der mehr Informationen über den Zusammenhang, nämlich **Linearität**, liefert. Einen ersten Eindruck verschafft der **Scatterplots** (oder Streudiagramms), den wir einfach mit der `plot()` Funktion in R generieren:
+An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Beide Merkmale ("distanz" und "stationen") sind metrisch skaliert^[Die Variable "stationen" ist jedoch eine diskrete Variable, keine kontinuierliche.] und somit können wir den Korrelationskoeffizienten nach Bravais-Pearson verwenden, der mehr Informationen über den Zusammenhang, nämlich **Linearität**, liefert. Einen ersten Eindruck verschafft der **Scatterplots** (oder Streudiagramms), den wir einfach mit der `plot()` Funktion in R generieren:
 ```{r include=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Reisedaten.xlsx", na = "-999")
-# in data.frame umwandeln
-reisedat <- as.data.frame(reisedat)
-# Spalten umbenennen
-names(reisedat) <- c('x','t')
+reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
+# in Zahlen und data.frame umwandeln
+reisedat <- as.data.frame(apply(reisedat,2,as.numeric))
 ```
 ```{r echo=TRUE}
-plot(reisedat$x/1000, reisedat$t, xlab="Entfernung (km)", ylab="Reisezeit (min)")
+plot(reisedat$stationen, reisedat$distanz, xlab="Anzahl Stationen", ylab="Entfernung (km)")
 ```
 
-**Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird. (Auflösung weiter unten.)_
+An dieser Stelle fällt das Wertepaar (0,40) oben links auf. Hierbei handelt es sich wahrscheinlich um die Person, die garnicht in Berlin wohnt. Anstatt "0" wollen wir hier aber einen fehlenden Wert, der in _R_ mit "NA" markiert wird, da diese Frage auf die Person garnicht zutraf. Darstellungen wie diese sind enorm hilfreich für die Überprüfung der Daten!
+
+Ersetzen wir also "0" mit "NA" und plotten erneut:
+```{r echo=TRUE}
+# 0 mit NA ersetzen
+reisedat$stationen[reisedat$stationen == 0] <- NA
+# plotten
+plot(reisedat$stationen, reisedat$distanz, xlab="Anzahl Stationen", ylab="Entfernung (km)")
+```
+
+**Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird. (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in "Entfernung" kommen könnte._
 
 Die _lineare_ Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-**Korrelationskoeffizient** nach Bravais-Pearson $r_{x,y}$ für $n$ Wertepaare $\left(x_i,y_i\right)$ mit $i=1, 2, \ldots, n$ berechnet. Er ergibt sich aus den Standardabweichungen $s_x$ und $s_y$ und der standardisierten Kovarianz $s_{x,y}$ durch:
 $$r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}$$
 
 In R mit der `cor()` Funktion:
 ```{r echo=TRUE}
-cor(reisedat$x, reisedat$t, use="complete.obs", method="pearson")
+cor(reisedat$stationen, reisedat$distanz, use="complete.obs", method="pearson")
 ```
 Das Argument `use="complete.obs"` teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne "NA", ansonsten wäre der Output "NA". Anstatt `method="pearson"` sind ebenfalls `method="spearman"` und `method="kendall"` möglich; beides sind Rangkorrelationskoeffizienten.
 

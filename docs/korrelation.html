@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -290,15 +290,22 @@ Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beid
 </div>
 <div id="metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="section level2">
 <h2><span class="header-section-number">5.3</span> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson</h2>
-<p>An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Beide Merkmale (“Entfernung” und “Reisezeit”) sind metrisch skaliert und somit können wir den Korrelationskoeffizienten nach Bravais-Pearson verwenden, der mehr Informationen über den Zusammenhang, nämlich <strong>Linearität</strong>, liefert. Einen ersten Eindruck verschafft der <strong>Scatterplots</strong> (oder Streudiagramms), den wir einfach mit der <code>plot()</code> Funktion in R generieren:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="korrelation.html#cb53-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>x<span class="op">/</span><span class="dv">1000</span>, reisedat<span class="op">$</span>t, <span class="dt">xlab=</span><span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Reisezeit (min)&quot;</span>)</span></code></pre></div>
+<p>An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Beide Merkmale (“distanz” und “stationen”) sind metrisch skaliert<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> und somit können wir den Korrelationskoeffizienten nach Bravais-Pearson verwenden, der mehr Informationen über den Zusammenhang, nämlich <strong>Linearität</strong>, liefert. Einen ersten Eindruck verschafft der <strong>Scatterplots</strong> (oder Streudiagramms), den wir einfach mit der <code>plot()</code> Funktion in R generieren:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="korrelation.html#cb53-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, <span class="dt">xlab=</span><span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Entfernung (km)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p><strong>Aufgabe:</strong> <em>Überlegen Sie kurz, wie stark die Korrelation hier sein wird. (Auflösung weiter unten.)</em></p>
+<p>An dieser Stelle fällt das Wertepaar (0,40) oben links auf. Hierbei handelt es sich wahrscheinlich um die Person, die garnicht in Berlin wohnt. Anstatt “0” wollen wir hier aber einen fehlenden Wert, der in <em>R</em> mit “NA” markiert wird, da diese Frage auf die Person garnicht zutraf. Darstellungen wie diese sind enorm hilfreich für die Überprüfung der Daten!</p>
+<p>Ersetzen wir also “0” mit “NA” und plotten erneut:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="korrelation.html#cb54-1"></a><span class="co"># 0 mit NA ersetzen</span></span>
+<span id="cb54-2"><a href="korrelation.html#cb54-2"></a>reisedat<span class="op">$</span>stationen[reisedat<span class="op">$</span>stationen <span class="op">==</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb54-3"><a href="korrelation.html#cb54-3"></a><span class="co"># plotten</span></span>
+<span id="cb54-4"><a href="korrelation.html#cb54-4"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, <span class="dt">xlab=</span><span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Entfernung (km)&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><strong>Aufgabe:</strong> <em>Überlegen Sie kurz, wie stark die Korrelation hier sein wird. (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in “Entfernung” kommen könnte.</em></p>
 <p>Die <em>lineare</em> Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-<strong>Korrelationskoeffizient</strong> nach Bravais-Pearson <span class="math inline">\(r_{x,y}\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> berechnet. Er ergibt sich aus den Standardabweichungen <span class="math inline">\(s_x\)</span> und <span class="math inline">\(s_y\)</span> und der standardisierten Kovarianz <span class="math inline">\(s_{x,y}\)</span> durch:
 <span class="math display">\[r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}\]</span></p>
 <p>In R mit der <code>cor()</code> Funktion:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="korrelation.html#cb54-1"></a><span class="kw">cor</span>(reisedat<span class="op">$</span>x, reisedat<span class="op">$</span>t, <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>, <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] 0.8622436</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="korrelation.html#cb55-1"></a><span class="kw">cor</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, <span class="dt">use=</span><span class="st">&quot;complete.obs&quot;</span>, <span class="dt">method=</span><span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.8091772</code></pre>
 <p>Das Argument <code>use="complete.obs"</code> teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne “NA”, ansonsten wäre der Output “NA”. Anstatt <code>method="pearson"</code> sind ebenfalls <code>method="spearman"</code> und <code>method="kendall"</code> möglich; beides sind Rangkorrelationskoeffizienten.</p>
 <p>In Abbildung <a href="korrelation.html#fig:pearson">5.6</a> sehen Sie Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. Bei augenscheinlich nicht-linearen Zusammenhängen wählt man üblicherweise einen Rangkorrelationskoeffizienten, der dann aussagekräftiger ist.</p>
 <div class="figure" style="text-align: center"><span id="fig:pearson"></span>
@@ -323,6 +330,7 @@ Abbildung 5.6: Werte des Korrelationskoeffizienten für verschiedene Zusammenhä
 <hr />
 <ol start="1">
 <li id="fn1"><p>Die Daten sind <a href="https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html" class="uri">https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html</a> entnommen.<a href="korrelation.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Die Variable “stationen” ist jedoch eine diskrete Variable, keine kontinuierliche.<a href="korrelation.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

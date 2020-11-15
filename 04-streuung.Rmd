@@ -14,34 +14,32 @@ knitr::include_graphics('figs/boxplot.png')
 
 Der Boxplot ist eine vereinfachte Darstellung eines Histogramms. Schauen Sie sich dazu bitte Kapitel 4.3.6 von @zimmermann2014 an, besonders Abbildung 4.10. Sehen Sie welcher Boxplot in 4.10b zu welchem Histogramm in 4.10c gehört?
 
-Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl "Entfernung" als auch "Reisezeit"):
+Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl "distanz" als auch "stationen"):
 ```{r include=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Reisedaten.xlsx", na = "-999")
-# in data.frame umwandeln
-reisedat <- as.data.frame(reisedat)
-# Spalten umbenennen
-names(reisedat) <- c('x','t')
+reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
+# in Zahlen und data.frame umwandeln
+reisedat <- as.data.frame(apply(reisedat,2,as.numeric))
 ```
 ```{r echo=TRUE, fig.show='hold', out.width='50%'}
-# Histogramm "Entfernung" in km
-hist(reisedat$x/1000, breaks = seq(0, 55, 5),
+# Histogramm "distanz" in km
+hist(reisedat$distanz, breaks = seq(0, 55, 5),
      main = "", xlab = "Entfernung (km)", 
      ylab = "absolute Häufigkeit")
-# Histogramm "Reisezeit" in min
-hist(reisedat$t, breaks = seq(0, 120, 10),
-     main = "", xlab = "Reisezeit (min)", 
+# Histogramm "stationen"
+hist(reisedat$stationen, breaks = seq(0, 55, 5),
+     main = "", xlab = "Anzahl Stationen", 
      ylab = "absolute Häufigkeit")
-# Boxplot "Entfernung" in km
-boxplot(reisedat$x/1000, range = 0, horizontal = TRUE,
+# Boxplot "distanz" in km
+boxplot(reisedat$distanz, range = 0, horizontal = TRUE,
         ylim = c(0,55), xlab = "Entfernung (km)")
-# Boxplot "Reisezeit" in min
-boxplot(reisedat$t, range = 0, horizontal = TRUE,
-        ylim = c(0,120), xlab = "Reisezeit (min)")
+# Boxplot "stationen"
+boxplot(reisedat$stationen, range = 0, horizontal = TRUE,
+        ylim = c(0,55), xlab = "Anzahl Stationen")
 ```
-"Entfernung" ist schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. "Reisezeit" dagegen ist annähernd symmetrisch verteilt, mit der Box in Mitte des Plots. Es ist wichtig für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen), dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
+Sowohl "distanz" als auch "stationen" sind schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Es ist wichtig für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen), dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
 
 Nun zu den weiteren Streuungsparametern. Die **Varianz** $s^2$ ist die mittlere ("durchschnittliche") quadrierte Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ vom arithmetischen Mittel $\bar x$:
 $$s^2=\frac{\sum_{i-1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
@@ -61,36 +59,36 @@ Der Variationskoeffizient setzt die Streuung der Merkmalswerte in unmittelbare R
 Schauen wir uns die Streungsparameter für die Reisedaten mittels R an:
 
 ```{r echo=TRUE}
-# "Entfernung" in km
+# "distanz" in km
 # arithmethisches Mittel
-xbar <- mean(reisedat$x/1000, na.rm = TRUE)
+xbar <- mean(reisedat$distanz)
 xbar
 # Varianz
-s2x <- var(reisedat$x/1000, na.rm = TRUE)
+s2x <- var(reisedat$distanz)
 s2x
 # Standardabweichung
 sx <- sqrt(s2x)
 sx
-sx <- sd(reisedat$x/1000, na.rm = TRUE)
+sx <- sd(reisedat$distanz)
 sx
 # Variationskoeffizient
 vx <- sx / xbar
 vx
-# "Reisezeit" in min
+# "stationen"
 # arithmethisches Mittel
-tbar <- mean(reisedat$t, na.rm = TRUE)
+tbar <- mean(reisedat$stationen)
 tbar
 # Varianz
-s2t <- var(reisedat$t, na.rm = TRUE)
+s2t <- var(reisedat$stationen)
 s2t
 # Standardabweichung
-st <- sd(reisedat$t, na.rm = TRUE)
+st <- sd(reisedat$stationen)
 st
 # Variationskoeffizient
 vt <- st / tbar
 vt
 ```
-Obwohl "Reisezeit" im Vergleich zu "Entfernung" eine viel größere Varianz hat ist der Variationskoeffizient kleiner, da Reisezeit auf einer größeren Skala gemessen wird.
+Die Variable "stationen" hat im Vergleich zu "distanz" eine etwas größere Varianz bei etwas geringerem Mittelwert. Daher ist der Variationskoeffizient größer.
 
 ## Schiefe und Wölbung von Häufigkeitsverteilungen
 
@@ -108,26 +106,23 @@ $$a_3>0\quad \bar x_{mod}<\bar x_{med}<\bar x$$
 Für eine linkschiefe (rechtssteile) Verteilung gilt:
 $$a_3<0\quad \bar x_{mod}>\bar x_{med}>\bar x$$
 
-Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben ist die Verteilung des Merkmals "Entfernung" rechtsschief:
+Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben sind die Verteilungen der Merkmale "distanz" und "stationen" rechtsschief:
 
 ```{r echo=TRUE, warning=FALSE}
 # fuer diese Berechnung brauchen wir das Paket "moments"
 library(moments)
+# "distanz"
 # Schiefe
-skewness(reisedat$x/1000, na.rm = TRUE)
-# Modus(=12.5) < Median < arithm. Mittelwert
-median(reisedat$x/1000, na.rm = TRUE)
-mean(reisedat$x/1000, na.rm = TRUE)
-```
-
-Die Verteilung des Merkmals "Reisezeit" dagegen ist weniger rechtsschief, annähernd symmetrisch, was man auch daran sieht, dass der Median und das aritmetische Mittel fast identisch sind:
-
-```{r echo=TRUE}
+skewness(reisedat$distanz)
+# Modus(=7.5) < Median < arithm. Mittelwert
+median(reisedat$distanz)
+mean(reisedat$distanz)
+# "stationen"
 # Schiefe
-skewness(reisedat$t, na.rm = TRUE)
-# Modus(=45) < Median < arithm. Mittelwert
-median(reisedat$t, na.rm = TRUE)
-mean(reisedat$t, na.rm = TRUE)
+skewness(reisedat$stationen)
+# Modus(=7.5) < Median < arithm. Mittelwert
+median(reisedat$stationen)
+mean(reisedat$stationen)
 ```
 
 Die **Wölbung** $a_4$ einer Häufigkeitsverteilung von Merkmalswerten $x_1, x_2, \ldots, x_n$ mit dem arithmetischen Mittel $\bar x$ und der Standardabweichung $s$ bestimmt die _Steilheit_ einer Verteilung:
@@ -144,12 +139,12 @@ $$a_4>0$$
 Für eine flachere Verteilung als die Normalverteilung gilt:
 $$a_4<0$$
 
-Die Verteilungen der Merkmale unserer Reisedaten sind beide spitzer als die Normalverteilung, wobei "Entfernung" wegen der Rechtsschiefe garnicht mit der Normalverteilung vergleichbar ist:
+Die Verteilungen der Merkmale unserer Reisedaten sind beide spitzer als die Normalverteilung, wobei sie wegen ihrer Rechtsschiefe sowieso nicht mit der Normalverteilung vergleichbar sind:
 
 ```{r echo=TRUE}
-# Wölbung "Entfernung"
-kurtosis(reisedat$x/1000, na.rm = TRUE) - 3
-# Wölbung "Reisezeit"
-kurtosis(reisedat$t, na.rm = TRUE) - 3
+# Wölbung "distanz"
+kurtosis(reisedat$distanz) - 3
+# Wölbung "stationen"
+kurtosis(reisedat$stationen) - 3
 ```
 
