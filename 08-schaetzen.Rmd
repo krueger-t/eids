@@ -1,3 +1,5 @@
-# Schaetzen von Verteilungsparametern {#schaetzen}
+# (PART\*) Induktive Statistik {-}
+
+# Schätzen von Verteilungsparametern {#schaetzen}
 
 
