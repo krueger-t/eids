@@ -65,17 +65,17 @@ Schauen wir uns die Streungsparameter für die Reisedaten mittels *R* an:
 ```{r echo=TRUE}
 # "Distanz" in km
 # 1) arithmetisches Mittel
-xbar <- mean(reisedat$distanz)
+dbar <- mean(reisedat$distanz)
 # 2) Varianz
-s2x <- var(reisedat$distanz)
+s2d <- var(reisedat$distanz)
 # 3) Standardabweichung
-sx <- sqrt(s2x)
+sd <- sqrt(s2d)
         # oder
-sx <- sd(reisedat$distanz)
-# Variationskoeffizient
-vx <- sx / xbar
+sd <- sd(reisedat$distanz)
+# 4) Variationskoeffizient
+vd <- sd / dbar
 # Ergebnisse:
-print(c(xbar, s2x, sx, vx))
+print(c(dbar, s2d, sd, vd))
 
 ```
 
@@ -86,11 +86,11 @@ sbar <- mean(reisedat$stationen)
 # 2) Varianz
 s2s <- var(reisedat$stationen)
 # 3) Standardabweichung
-sd <- sd(reisedat$stationen)
+ss <- sd(reisedat$stationen)
 # 4) Variationskoeffizient
-vs <- sd / sbar
+vs <- ss / sbar
 # Ergebnisse:
-print(c(sbar, s2s, sd, vs))
+print(c(sbar, s2s, ss, vs))
 
 ```
 

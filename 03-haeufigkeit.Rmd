@@ -83,7 +83,7 @@ plot(h, freq = TRUE, col = "gray",
 
 ```
 
-Interpretation: Der ersten Balken z.B. geht bis knapp unter 0.05, d.h. knapp 5% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das etwa 3 von 74 Datenpunkten sind.
+Interpretation: Der ersten Balken z.B. geht bis knapp unter 0.05, d.h. knapp 5% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 3 von 74 Datenpunkten sind.
 
 Die Summe der relativen Häufigkeiten ist 1, was 100% entspricht:
 $$\sum_{j=1}^{m}f_j=1 \quad\text{mit}\quad m\leq n$$
