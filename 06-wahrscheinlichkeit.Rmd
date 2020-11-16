@@ -2,4 +2,55 @@
 
 # Grundlagen der Wahrscheinlichkeitsrechnung {#wahrscheinlichkeit}
 
+Die Wahrscheinlichkeitstheorie bildet die Brücke zwischen der deskriptiven und der induktiven Statistik, um bei dem Bild von @zimmermann2014 zu bleiben. Sie liefert Modelle in der Form von Wahrscheinlichkeitsverteilungen (s. Kapitel \@ref(verteilungen)), die es uns erlauben von Stichproben auf Grundgesamtheiten zu schließen.
 
+In diesem Kapitel geht es um folgende Inhalte: **Zufallsvorgänge**, **Ereignisse und Ergebnismengen**,^[Eine alternative Herleitung der Wahrscheinlichkeitstheorie ginge über Aussagenlogik. Diese sehen wir uns beispielsweise in meinem Masterkurs _Risk and Uncertainty in Science and Policy_ an.] die Darstellung des **Venn-Diagramms** aus der Mengenlehre, **Zufallsvariablen und Zufallsexperimente**, **Wahrscheinlichkeit**, **Bedingte Wahrscheinlichkeit**, **Unabhängigkeit von Ereignissen**. Im Quiz dieser Woche werden wir etwas mit Wahrscheinlichkeiten rechnen.
+
+## Zufallsvorgänge
+
+Wir alle kennen Zufallsvorgänge im Alltagsleben; z.B. Glücksspiele wie Roulette, Würfelspiele und die Ziehung der Lottozahlen. Aber auch Prozesse wie die Entwicklung von Börsenkursen, die Abschätzung von Schadensverläufen oder Lebenserwartungen (wichtig für Versicherungen) und Marktrisiken (wichtig für Unternehmen) werden als Zufallsvorgänge konzeptionalisiert und behandelt. Das sind Prozesse, die auf der Maßstabsebene, auf der wir sie betrachten gewisse Regularitäten aufweisen, die Glücksspielen ähneln und deshalb als Zufallsvorgänge betrachtet werden können. Das mag aber nur deshalb so sein weil wir die zugrunde liegenden Kausalketten nicht kennen oder nicht beschreiben können bzw. das zu aufwendig wäre. Das gleiche trift übrigens auch auf Glücksspiele zu, deren Verlauf wir theoretisch auch physikalisch beschreiben könnten wenn wir nur alle Randbedingungen bestimmen könnten. Aus diesem Blickwinkel sind Zufallsvorgänge also immer nur Modelle für Prozesse, die auf einer bestimmten Maßstabsebene funktionieren. Ob es am Ende einer Kausalkette unteilbare Zufallsvorgänge gibt wird beispielsweise in der Physik debatiert.
+
+Die Wahrscheinlichkeitsrechnung stellt jedenfalls Modelle bereit, die es erlauben, den Verlauf zufallsabhängiger Prozesse abzuschätzen und _von Stichproben auf Grundgesamtheiten zu schließen_. Die bisher thematisierte beschreibende Statistik charakterisiert gegebene Datensätze ohne einen Rückschluss auf Eigenschaften umfassenderer Grundgesamtheiten zu vermitteln.
+
+Formal gesehen konzeptionalisieren wir Zufallsvorgänge wie folgt. Nehmen wir z.B. einen Würfelwurf. Der _Wurf mit einem Würfel_ hat die sogenannte **Ergebnismenge** $\Omega=\{1,2,3,4,5,6\}$ aller möglicher sogenannter **Elementarereignissen** $\omega=1,2,\ldots,6$ (Abbildung \@ref(fig:wuerfel1)). Als **Ereignis** bezeichnen wir eine Teilmenge der Ergebnismenge; z.B. das Ereignis "gerade Zahl" $A=\{2,4,6\}$.
+```{r wuerfel1, echo=FALSE, fig.align='center', fig.cap='Ergebnismenge $\\Omega=\\{1,2,3,4,5,6\\}$ eines Würfelwurfes.', out.width='50%'}
+knitr::include_graphics('figs/Ergebnismenge_1Wuerfel.png')
+```
+
+Nehmen wir nun das Beispiel eines _Wurfes mit zwei Würfeln_. Hier ist die **Ergebnismenge** $\Omega=\{(1;1),(1;2),\ldots,(6;6)\}$ (Abbildung \@ref(fig:wuerfel2)). Ein **Ereignis** ist z.B. "Gesamtaugenzahl 7" $A=\{(1;6),(2;5),(3;4),(4;3),(5;2),(6;1)\}$.
+```{r wuerfel2, echo=FALSE, fig.align='center', fig.cap='Ergebnismenge $\\Omega=\\{(1;1),(1;2),\\ldots,(6;6)\\}$ eines Wurfes mit zwei Würfeln.', out.width='100%'}
+knitr::include_graphics('figs/Ergebnismenge_2Wuerfel.png')
+```
+
+Ein **Zufallsvorgang** ist formal definiert als ein Prozess, der zu einem von mehreren, sich gegenseitig ausschließenden Ergebnissen $\omega$ führt. Welches Ergebnis eintritt, ist vorab nicht bekannt.
+Mögliche Ergebnisse $\omega$ heissen **Elementarereignisse** und die **Ergebnismenge** $\Omega$ ist definert als $\Omega=\{x : x \text{ ist Elementarereignis}\}$. $\Omega$ kann endlich oder auch unendlich viele Elemente enthalten. Eine Teilmenge $A$ von $\Omega$ heißt Ereignis.
+
+## Ereignisse
+
+Das sogenannte **sichere Ereignis** ist $A=\Omega$; z.B. bei einem Würfelwurf $A=\Omega=\{1,2,3,4,5,6\}$. Das sogenannte **unmögliche Ereignis** ist $A=\bar\Omega=\emptyset$, wobei $\bar\Omega$ das Komplementärereignis ("nicht $\Omega$") und $\emptyset$ die leere Menge ist. Ein Beisiel fuer eine **unendliche Ergebnismenge** ist wie oft man Lotto spielen muss bis man "Sechs Richtige und Zusatzzahl" hat; $\Omega=\{1,2,\ldots,\infty\}=\mathbb{N}$, wobei $\mathbb{N}$ die Menge der natürlichen Zahlen ist.
+
+Das **Komplementärereignis** lässt sich mit einem sogenannten Venn-Diagramm veranschaulichen (Abbildung \@ref(fig:komplementaer)). Das **Venn-Diagramm** kommt aus der Mengenleere und symbolsiert verschiedene Arten von Mengen (hier Ereignisse) als Flächen, der Größe idealerweise proportional zur Größe der Menge ist, was aber in unseren Darstellungen nicht der Fall ist.
+```{r komplementaer, echo=FALSE, fig.align='center', fig.cap='Venn-Diagramm des Komplementärereignisses $\\bar A$. Wenn das Rechteck die Ergebnismenge $\\Omega$ ist dann sind alle Elementarereignisse, die nicht im Ereignis $A$ (weiß) sind im Komplementärereignis $\\bar A$ (grün).', out.width='80%'}
+knitr::include_graphics('figs/Komplementaerereignis.png')
+```
+
+Die **Schnittmenge zweier Ereignisse** $A$ und $B$ (Abbildung \@ref(fig:schnitt)) wird mit $A\cap B$ symbolisiert; die Ereignisse $A$ _und_ $B$ treten beide ein.
+```{r schnitt, echo=FALSE, fig.align='center', fig.cap='Venn-Diagramm der Schnittmenge zweier Ereignisse $A\\cap B$. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass $A$ und $B$ beide eintreten.', out.width='80%'}
+knitr::include_graphics('figs/Schnittmenge.png')
+```
+
+Die **Vereinigungsmenge zweier Ereignisse** $A$ und $B$ (Abbildung \@ref(fig:vereinigung)) wird mit $A\cup B$ symbolisiert; das Ereignis $A$ _oder_ das Ereignis $B$ tritt ein.
+```{r vereinigung, echo=FALSE, fig.align='center', fig.cap='Venn-Diagramm der Vereinigungsmenge zweier Ereignisse $A\\cup B$. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass $A$ oder $B$ eintritt.', out.width='80%'}
+knitr::include_graphics('figs/Vereinigungsmenge.png')
+```
+
+Die **Differenzmenge zweier Ereignisse** $A$ und $B$ schließlich (Abbildung \@ref(fig:differenz)) ist die Schnittmenge von $A$ und $\bar B$ (Komplementärereignis von $B$) und wird mit $A\setminus B=A\cap\bar B$ symbolisiert.
+```{r differenz, echo=FALSE, fig.align='center', fig.cap='Venn-Diagramm der Differenzmenge zweier Ereignisse $A\\setminus B=A\\cap\\bar B$. Die grüne Fläche beschreibt die Schnittmenge von $A$ und $\\bar B$.', out.width='80%'}
+knitr::include_graphics('figs/Differenzmenge.png')
+```
+
+## Zufallsvariablen
+
+Interpretiert man die Werte eines Merkmals als Ergebnis eines Zufallsvorgangs, dann nennt man das Merkmal **Zufallsvariable** und die möglichen Ergebnisse des Zufallsprozesses **Ausprägungen** oder **Realisierungen** der betreffenden Zufallsvariable (vgl. deskriptive Statistik). Wir unterscheiden diskrete und stetige Zufallsvariablen. Bei einer **diskreten Zufallsvariable** ist die Anzahl der Ausprägungen _abzählbar_; z.B. Anzahl der Richtigen beim Lotto. Bei einer **stetigen Zufallsvariable** (auch kontinuierlich genannt) ist die Anzahl der Ausprägungen _nicht abzählbar_; z.B. Entfernung zwischen Wohnort und Arbeitsplatz einer zufällig aus einer größeren Menschengruppe ausgewählten Person. Ebenfalls unterscheiden wir kontrollierte und nicht-kontrollierte Zufallsexperimente. Ein **kontrolliertes Zufallsexperiment** ist unter annähernd gleichbleibenden Bedingungen wiederholbar; z.B. Ziehung der Lottozahlen. Ein **nicht-kontrolliertes Zufallsexperiment** ist z.B. die Durchschnittstemperatur im Monat Juli an einem bestimmten Ort, die von Faktoren abhängt, die wir nicht experimentell kontrollieren können.
+
+## Wahrscheinlichkeit

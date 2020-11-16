@@ -33,14 +33,14 @@
   
 <link rel="prev" href="05-korrelation.html"/>
 <link rel="next" href="07-verteilungen.html"/>
-<script src="libs/jquery/jquery.min.js"></script>
-<link href="libs/gitbook/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -50,73 +50,9 @@
 
 
 
-<script src="libs/accessible-code-block/empty-anchor.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
-<style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -175,7 +111,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="wahrscheinlichkeit" class="section level1">
 <h1><span class="header-section-number">Kapitel 6</span> Grundlagen der Wahrscheinlichkeitsrechnung</h1>
+<p>Die Wahrscheinlichkeitstheorie bildet die Brücke zwischen der deskriptiven und der induktiven Statistik, um bei dem Bild von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> zu bleiben. Sie liefert Modelle in der Form von Wahrscheinlichkeitsverteilungen (s. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>), die es uns erlauben von Stichproben auf Grundgesamtheiten zu schließen.</p>
+<p>In diesem Kapitel geht es um folgende Inhalte: <strong>Zufallsvorgänge</strong>, <strong>Ereignisse und Ergebnismengen</strong>,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> die Darstellung des <strong>Venn-Diagramms</strong> aus der Mengenlehre, <strong>Zufallsvariablen und Zufallsexperimente</strong>, <strong>Wahrscheinlichkeit</strong>, <strong>Bedingte Wahrscheinlichkeit</strong>, <strong>Unabhängigkeit von Ereignissen</strong>. Im Quiz dieser Woche werden wir etwas mit Wahrscheinlichkeiten rechnen.</p>
+<div id="zufallsvorgänge" class="section level2">
+<h2><span class="header-section-number">6.1</span> Zufallsvorgänge</h2>
+<p>Wir alle kennen Zufallsvorgänge im Alltagsleben; z.B. Glücksspiele wie Roulette, Würfelspiele und die Ziehung der Lottozahlen. Aber auch Prozesse wie die Entwicklung von Börsenkursen, die Abschätzung von Schadensverläufen oder Lebenserwartungen (wichtig für Versicherungen) und Marktrisiken (wichtig für Unternehmen) werden als Zufallsvorgänge konzeptionalisiert und behandelt. Das sind Prozesse, die auf der Maßstabsebene, auf der wir sie betrachten gewisse Regularitäten aufweisen, die Glücksspielen ähneln und deshalb als Zufallsvorgänge betrachtet werden können. Das mag aber nur deshalb so sein weil wir die zugrunde liegenden Kausalketten nicht kennen oder nicht beschreiben können bzw. das zu aufwendig wäre. Das gleiche trift übrigens auch auf Glücksspiele zu, deren Verlauf wir theoretisch auch physikalisch beschreiben könnten wenn wir nur alle Randbedingungen bestimmen könnten. Aus diesem Blickwinkel sind Zufallsvorgänge also immer nur Modelle für Prozesse, die auf einer bestimmten Maßstabsebene funktionieren. Ob es am Ende einer Kausalkette unteilbare Zufallsvorgänge gibt wird beispielsweise in der Physik debatiert.</p>
+<p>Die Wahrscheinlichkeitsrechnung stellt jedenfalls Modelle bereit, die es erlauben, den Verlauf zufallsabhängiger Prozesse abzuschätzen und <em>von Stichproben auf Grundgesamtheiten zu schließen</em>. Die bisher thematisierte beschreibende Statistik charakterisiert gegebene Datensätze ohne einen Rückschluss auf Eigenschaften umfassenderer Grundgesamtheiten zu vermitteln.</p>
+Formal gesehen konzeptionalisieren wir Zufallsvorgänge wie folgt. Nehmen wir z.B. einen Würfelwurf. Der <em>Wurf mit einem Würfel</em> hat die sogenannte <strong>Ergebnismenge</strong> <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span> aller möglicher sogenannter <strong>Elementarereignissen</strong> <span class="math inline">\(\omega=1,2,\ldots,6\)</span> (Abbildung <a href="06-wahrscheinlichkeit.html#fig:wuerfel1">6.1</a>). Als <strong>Ereignis</strong> bezeichnen wir eine Teilmenge der Ergebnismenge; z.B. das Ereignis “gerade Zahl” <span class="math inline">\(A=\{2,4,6\}\)</span>.
+<div class="figure" style="text-align: center"><span id="fig:wuerfel1"></span>
+<img src="figs/Ergebnismenge_1Wuerfel.png" alt="Ergebnismenge $\Omega=\{1,2,3,4,5,6\}$ eines Würfelwurfes." width="50%" />
+<p class="caption">
+Abbildung 6.1: Ergebnismenge <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span> eines Würfelwurfes.
+</p>
+</div>
+Nehmen wir nun das Beispiel eines <em>Wurfes mit zwei Würfeln</em>. Hier ist die <strong>Ergebnismenge</strong> <span class="math inline">\(\Omega=\{(1;1),(1;2),\ldots,(6;6)\}\)</span> (Abbildung <a href="06-wahrscheinlichkeit.html#fig:wuerfel2">6.2</a>). Ein <strong>Ereignis</strong> ist z.B. “Gesamtaugenzahl 7” <span class="math inline">\(A=\{(1;6),(2;5),(3;4),(4;3),(5;2),(6;1)\}\)</span>.
+<div class="figure" style="text-align: center"><span id="fig:wuerfel2"></span>
+<img src="figs/Ergebnismenge_2Wuerfel.png" alt="Ergebnismenge $\Omega=\{(1;1),(1;2),\ldots,(6;6)\}$ eines Wurfes mit zwei Würfeln." width="100%" />
+<p class="caption">
+Abbildung 6.2: Ergebnismenge <span class="math inline">\(\Omega=\{(1;1),(1;2),\ldots,(6;6)\}\)</span> eines Wurfes mit zwei Würfeln.
+</p>
+</div>
+<p>Ein <strong>Zufallsvorgang</strong> ist formal definiert als ein Prozess, der zu einem von mehreren, sich gegenseitig ausschließenden Ergebnissen <span class="math inline">\(\omega\)</span> führt. Welches Ergebnis eintritt, ist vorab nicht bekannt.
+Mögliche Ergebnisse <span class="math inline">\(\omega\)</span> heissen <strong>Elementarereignisse</strong> und die <strong>Ergebnismenge</strong> <span class="math inline">\(\Omega\)</span> ist definert als <span class="math inline">\(\Omega=\{x : x \text{ ist Elementarereignis}\}\)</span>. <span class="math inline">\(\Omega\)</span> kann endlich oder auch unendlich viele Elemente enthalten. Eine Teilmenge <span class="math inline">\(A\)</span> von <span class="math inline">\(\Omega\)</span> heißt Ereignis.</p>
+</div>
+<div id="ereignisse" class="section level2">
+<h2><span class="header-section-number">6.2</span> Ereignisse</h2>
+<p>Das sogenannte <strong>sichere Ereignis</strong> ist <span class="math inline">\(A=\Omega\)</span>; z.B. bei einem Würfelwurf <span class="math inline">\(A=\Omega=\{1,2,3,4,5,6\}\)</span>. Das sogenannte <strong>unmögliche Ereignis</strong> ist <span class="math inline">\(A=\bar\Omega=\emptyset\)</span>, wobei <span class="math inline">\(\bar\Omega\)</span> das Komplementärereignis (“nicht <span class="math inline">\(\Omega\)</span>”) und <span class="math inline">\(\emptyset\)</span> die leere Menge ist. Ein Beisiel fuer eine <strong>unendliche Ergebnismenge</strong> ist wie oft man Lotto spielen muss bis man “Sechs Richtige und Zusatzzahl” hat; <span class="math inline">\(\Omega=\{1,2,\ldots,\infty\}=\mathbb{N}\)</span>, wobei <span class="math inline">\(\mathbb{N}\)</span> die Menge der natürlichen Zahlen ist.</p>
+Das <strong>Komplementärereignis</strong> lässt sich mit einem sogenannten Venn-Diagramm veranschaulichen (Abbildung <a href="06-wahrscheinlichkeit.html#fig:komplementaer">6.3</a>). Das <strong>Venn-Diagramm</strong> kommt aus der Mengenleere und symbolsiert verschiedene Arten von Mengen (hier Ereignisse) als Flächen, der Größe idealerweise proportional zur Größe der Menge ist, was aber in unseren Darstellungen nicht der Fall ist.
+<div class="figure" style="text-align: center"><span id="fig:komplementaer"></span>
+<img src="figs/Komplementaerereignis.png" alt="Venn-Diagramm des Komplementärereignisses $\bar A$. Wenn das Rechteck die Ergebnismenge $\Omega$ ist dann sind alle Elementarereignisse, die nicht im Ereignis $A$ (weiß) sind im Komplementärereignis $\bar A$ (grün)." width="80%" />
+<p class="caption">
+Abbildung 6.3: Venn-Diagramm des Komplementärereignisses <span class="math inline">\(\bar A\)</span>. Wenn das Rechteck die Ergebnismenge <span class="math inline">\(\Omega\)</span> ist dann sind alle Elementarereignisse, die nicht im Ereignis <span class="math inline">\(A\)</span> (weiß) sind im Komplementärereignis <span class="math inline">\(\bar A\)</span> (grün).
+</p>
+</div>
+Die <strong>Schnittmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> (Abbildung <a href="06-wahrscheinlichkeit.html#fig:schnitt">6.4</a>) wird mit <span class="math inline">\(A\cap B\)</span> symbolisiert; die Ereignisse <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span> treten beide ein.
+<div class="figure" style="text-align: center"><span id="fig:schnitt"></span>
+<img src="figs/Schnittmenge.png" alt="Venn-Diagramm der Schnittmenge zweier Ereignisse $A\cap B$. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass $A$ und $B$ beide eintreten." width="80%" />
+<p class="caption">
+Abbildung 6.4: Venn-Diagramm der Schnittmenge zweier Ereignisse <span class="math inline">\(A\cap B\)</span>. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> beide eintreten.
+</p>
+</div>
+Die <strong>Vereinigungsmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> (Abbildung <a href="06-wahrscheinlichkeit.html#fig:vereinigung">6.5</a>) wird mit <span class="math inline">\(A\cup B\)</span> symbolisiert; das Ereignis <span class="math inline">\(A\)</span> <em>oder</em> das Ereignis <span class="math inline">\(B\)</span> tritt ein.
+<div class="figure" style="text-align: center"><span id="fig:vereinigung"></span>
+<img src="figs/Vereinigungsmenge.png" alt="Venn-Diagramm der Vereinigungsmenge zweier Ereignisse $A\cup B$. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass $A$ oder $B$ eintritt." width="80%" />
+<p class="caption">
+Abbildung 6.5: Venn-Diagramm der Vereinigungsmenge zweier Ereignisse <span class="math inline">\(A\cup B\)</span>. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> eintritt.
+</p>
+</div>
+Die <strong>Differenzmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> schließlich (Abbildung <a href="06-wahrscheinlichkeit.html#fig:differenz">6.6</a>) ist die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span> (Komplementärereignis von <span class="math inline">\(B\)</span>) und wird mit <span class="math inline">\(A\setminus B=A\cap\bar B\)</span> symbolisiert.
+<div class="figure" style="text-align: center"><span id="fig:differenz"></span>
+<img src="figs/Differenzmenge.png" alt="Venn-Diagramm der Differenzmenge zweier Ereignisse $A\setminus B=A\cap\bar B$. Die grüne Fläche beschreibt die Schnittmenge von $A$ und $\bar B$." width="80%" />
+<p class="caption">
+Abbildung 6.6: Venn-Diagramm der Differenzmenge zweier Ereignisse <span class="math inline">\(A\setminus B=A\cap\bar B\)</span>. Die grüne Fläche beschreibt die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span>.
+</p>
+</div>
+</div>
+<div id="zufallsvariablen" class="section level2">
+<h2><span class="header-section-number">6.3</span> Zufallsvariablen</h2>
+<p>Interpretiert man die Werte eines Merkmals als Ergebnis eines Zufallsvorgangs, dann nennt man das Merkmal <strong>Zufallsvariable</strong> und die möglichen Ergebnisse des Zufallsprozesses <strong>Ausprägungen</strong> oder <strong>Realisierungen</strong> der betreffenden Zufallsvariable (vgl. deskriptive Statistik). Wir unterscheiden diskrete und stetige Zufallsvariablen. Bei einer <strong>diskreten Zufallsvariable</strong> ist die Anzahl der Ausprägungen <em>abzählbar</em>; z.B. Anzahl der Richtigen beim Lotto. Bei einer <strong>stetigen Zufallsvariable</strong> (auch kontinuierlich genannt) ist die Anzahl der Ausprägungen <em>nicht abzählbar</em>; z.B. Entfernung zwischen Wohnort und Arbeitsplatz einer zufällig aus einer größeren Menschengruppe ausgewählten Person. Ebenfalls unterscheiden wir kontrollierte und nicht-kontrollierte Zufallsexperimente. Ein <strong>kontrolliertes Zufallsexperiment</strong> ist unter annähernd gleichbleibenden Bedingungen wiederholbar; z.B. Ziehung der Lottozahlen. Ein <strong>nicht-kontrolliertes Zufallsexperiment</strong> ist z.B. die Durchschnittstemperatur im Monat Juli an einem bestimmten Ort, die von Faktoren abhängt, die wir nicht experimentell kontrollieren können.</p>
+</div>
+<div id="wahrscheinlichkeit-1" class="section level2">
+<h2><span class="header-section-number">6.4</span> Wahrscheinlichkeit</h2>
 
+</div>
+</div>
+<h3>Literatur</h3>
+<div id="refs" class="references">
+<div id="ref-zimmermann2014">
+<p>Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Eine alternative Herleitung der Wahrscheinlichkeitstheorie ginge über Aussagenlogik. Diese sehen wir uns beispielsweise in meinem Masterkurs <em>Risk and Uncertainty in Science and Policy</em> an.<a href="06-wahrscheinlichkeit.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -186,15 +196,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href="07-verteilungen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
-<script src="libs/gitbook/js/clipboard.min.js"></script>
-<script src="libs/gitbook/js/plugin-search.js"></script>
-<script src="libs/gitbook/js/plugin-sharing.js"></script>
-<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook/js/jquery.highlight.js"></script>
-<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
