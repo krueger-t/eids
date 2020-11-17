@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-11-16" />
+<meta name="date" content="2020-11-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,14 +33,14 @@
   
 <link rel="prev" href="05-korrelation.html"/>
 <link rel="next" href="07-verteilungen.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -50,9 +50,73 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/accessible-code-block/empty-anchor.js"></script>
 
 
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -112,10 +176,10 @@
 <div id="wahrscheinlichkeit" class="section level1">
 <h1><span class="header-section-number">Kapitel 6</span> Grundlagen der Wahrscheinlichkeitsrechnung</h1>
 <p>Die Wahrscheinlichkeitstheorie bildet die Brücke zwischen der deskriptiven und der induktiven Statistik, um bei dem Bild von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> zu bleiben. Sie liefert Modelle in der Form von Wahrscheinlichkeitsverteilungen (s. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>), die es uns erlauben von Stichproben auf Grundgesamtheiten zu schließen.</p>
-<p>In diesem Kapitel geht es um folgende Inhalte: <strong>Zufallsvorgänge</strong>, <strong>Ereignisse und Ergebnismengen</strong>,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> die Darstellung des <strong>Venn-Diagramms</strong> aus der Mengenlehre, <strong>Zufallsvariablen und Zufallsexperimente</strong>, <strong>Wahrscheinlichkeit</strong>, <strong>Bedingte Wahrscheinlichkeit</strong>, <strong>Unabhängigkeit von Ereignissen</strong>. Im Quiz dieser Woche werden wir etwas mit Wahrscheinlichkeiten rechnen.</p>
+<p>Dieses Kapitel motiviert zunächst <strong>Zufallsvorgänge</strong> und definiert ein paar grundlegende Begriffe. Sodann werden <strong>Ereignisse</strong> als Ergebnis eines Zufallsvorgangs über die Mengenleere eingeführt.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Dazu gehört die Darstellung des <strong>Venn-Diagramms</strong>. Sodann werden <strong>Zufallsvariablen</strong> und <strong>Zufallsexperimente</strong> definiert, bevor wir zum Begriff der <strong>Wahrscheinlichkeit</strong> kommen. Dabei schauen wir uns besonders Konzepte wie <strong>bedingte Wahrscheinlichkeit</strong> und <strong>Unabhängigkeit von Ereignissen</strong>, sowie die Rechenregeln der Wahrscheinlichkeitsrechnung an. Im Quiz dieser Woche werden wir diese Regeln anwenden indem wir etwas mit Wahrscheinlichkeiten rechnen.</p>
 <div id="zufallsvorgänge" class="section level2">
 <h2><span class="header-section-number">6.1</span> Zufallsvorgänge</h2>
-<p>Wir alle kennen Zufallsvorgänge im Alltagsleben; z.B. Glücksspiele wie Roulette, Würfelspiele und die Ziehung der Lottozahlen. Aber auch Prozesse wie die Entwicklung von Börsenkursen, die Abschätzung von Schadensverläufen oder Lebenserwartungen (wichtig für Versicherungen) und Marktrisiken (wichtig für Unternehmen) werden als Zufallsvorgänge konzeptionalisiert und behandelt. Das sind Prozesse, die auf der Maßstabsebene, auf der wir sie betrachten gewisse Regularitäten aufweisen, die Glücksspielen ähneln und deshalb als Zufallsvorgänge betrachtet werden können. Das mag aber nur deshalb so sein weil wir die zugrunde liegenden Kausalketten nicht kennen oder nicht beschreiben können bzw. das zu aufwendig wäre. Das gleiche trift übrigens auch auf Glücksspiele zu, deren Verlauf wir theoretisch auch physikalisch beschreiben könnten wenn wir nur alle Randbedingungen bestimmen könnten. Aus diesem Blickwinkel sind Zufallsvorgänge also immer nur Modelle für Prozesse, die auf einer bestimmten Maßstabsebene funktionieren. Ob es am Ende einer Kausalkette unteilbare Zufallsvorgänge gibt wird beispielsweise in der Physik debatiert.</p>
+<p>Wir alle kennen Zufallsvorgänge im Alltagsleben; z.B. Glücksspiele wie Roulette, Würfelspiele und die Ziehung der Lottozahlen. Aber auch Prozesse wie die Entwicklung von Börsenkursen, die Abschätzung von Schadensverläufen oder Lebenserwartungen (wichtig für Versicherungen) und Marktrisiken (wichtig für Unternehmen) werden als Zufallsvorgänge konzeptionalisiert und behandelt. Das sind Prozesse, die auf der Maßstabsebene, auf der wir sie betrachten gewisse Regularitäten aufweisen, die Glücksspielen ähneln und deshalb als Zufallsvorgänge betrachtet werden können. Das mag aber nur deshalb so sein weil wir die zugrunde liegenden Kausalketten nicht kennen oder nicht beschreiben können bzw. das zu aufwendig wäre. Das gleiche trifft übrigens auch auf Glücksspiele zu, deren Verlauf wir theoretisch auch physikalisch beschreiben könnten wenn wir nur alle Randbedingungen bestimmen könnten. Aus diesem Blickwinkel sind Zufallsvorgänge also immer nur grobskalige <em>Modelle</em> für Prozesse, die auf kleineren Skalen ablaufen und die wir nicht vollständig quantifizieren (können). Ob es am Ende einer Kausalkette unteilbare, “echte” Zufallsvorgänge gibt wird beispielsweise in der Physik debatiert.</p>
 <p>Die Wahrscheinlichkeitsrechnung stellt jedenfalls Modelle bereit, die es erlauben, den Verlauf zufallsabhängiger Prozesse abzuschätzen und <em>von Stichproben auf Grundgesamtheiten zu schließen</em>. Die bisher thematisierte beschreibende Statistik charakterisiert gegebene Datensätze ohne einen Rückschluss auf Eigenschaften umfassenderer Grundgesamtheiten zu vermitteln.</p>
 Formal gesehen konzeptionalisieren wir Zufallsvorgänge wie folgt. Nehmen wir z.B. einen Würfelwurf. Der <em>Wurf mit einem Würfel</em> hat die sogenannte <strong>Ergebnismenge</strong> <span class="math inline">\(\Omega=\{1,2,3,4,5,6\}\)</span> aller möglicher sogenannter <strong>Elementarereignissen</strong> <span class="math inline">\(\omega=1,2,\ldots,6\)</span> (Abbildung <a href="06-wahrscheinlichkeit.html#fig:wuerfel1">6.1</a>). Als <strong>Ereignis</strong> bezeichnen wir eine Teilmenge der Ergebnismenge; z.B. das Ereignis “gerade Zahl” <span class="math inline">\(A=\{2,4,6\}\)</span>.
 <div class="figure" style="text-align: center"><span id="fig:wuerfel1"></span>
@@ -132,59 +196,167 @@ Abbildung 6.2: Ergebnismenge <span class="math inline">\(\Omega=\{(1;1),(1;2),\l
 </p>
 </div>
 <p>Ein <strong>Zufallsvorgang</strong> ist formal definiert als ein Prozess, der zu einem von mehreren, sich gegenseitig ausschließenden Ergebnissen <span class="math inline">\(\omega\)</span> führt. Welches Ergebnis eintritt, ist vorab nicht bekannt.
-Mögliche Ergebnisse <span class="math inline">\(\omega\)</span> heissen <strong>Elementarereignisse</strong> und die <strong>Ergebnismenge</strong> <span class="math inline">\(\Omega\)</span> ist definert als <span class="math inline">\(\Omega=\{x : x \text{ ist Elementarereignis}\}\)</span>. <span class="math inline">\(\Omega\)</span> kann endlich oder auch unendlich viele Elemente enthalten. Eine Teilmenge <span class="math inline">\(A\)</span> von <span class="math inline">\(\Omega\)</span> heißt Ereignis.</p>
+Mögliche Ergebnisse <span class="math inline">\(\omega\)</span> heissen <strong>Elementarereignisse</strong> und die <strong>Ergebnismenge</strong> <span class="math inline">\(\Omega\)</span> ist definert als <span class="math inline">\(\Omega=\{x : x \text{ ist Elementarereignis}\}\)</span>. <span class="math inline">\(\Omega\)</span> kann endlich oder auch unendlich viele Elemente enthalten. Ein Beisiel für eine <strong>unendliche Ergebnismenge</strong> ist wie oft man Lotto spielen muss bis man “Sechs Richtige und Zusatzzahl” hat; <span class="math inline">\(\Omega=\{1,2,\ldots,\infty\}=\mathbb{N}\)</span>, wobei <span class="math inline">\(\mathbb{N}\)</span> die Menge der natürlichen Zahlen ist. Eine Teilmenge <span class="math inline">\(A\)</span> von <span class="math inline">\(\Omega\)</span> heißt <strong>Ereignis</strong>.</p>
 </div>
 <div id="ereignisse" class="section level2">
 <h2><span class="header-section-number">6.2</span> Ereignisse</h2>
-<p>Das sogenannte <strong>sichere Ereignis</strong> ist <span class="math inline">\(A=\Omega\)</span>; z.B. bei einem Würfelwurf <span class="math inline">\(A=\Omega=\{1,2,3,4,5,6\}\)</span>. Das sogenannte <strong>unmögliche Ereignis</strong> ist <span class="math inline">\(A=\bar\Omega=\emptyset\)</span>, wobei <span class="math inline">\(\bar\Omega\)</span> das Komplementärereignis (“nicht <span class="math inline">\(\Omega\)</span>”) und <span class="math inline">\(\emptyset\)</span> die leere Menge ist. Ein Beisiel fuer eine <strong>unendliche Ergebnismenge</strong> ist wie oft man Lotto spielen muss bis man “Sechs Richtige und Zusatzzahl” hat; <span class="math inline">\(\Omega=\{1,2,\ldots,\infty\}=\mathbb{N}\)</span>, wobei <span class="math inline">\(\mathbb{N}\)</span> die Menge der natürlichen Zahlen ist.</p>
-Das <strong>Komplementärereignis</strong> lässt sich mit einem sogenannten Venn-Diagramm veranschaulichen (Abbildung <a href="06-wahrscheinlichkeit.html#fig:komplementaer">6.3</a>). Das <strong>Venn-Diagramm</strong> kommt aus der Mengenleere und symbolsiert verschiedene Arten von Mengen (hier Ereignisse) als Flächen, der Größe idealerweise proportional zur Größe der Menge ist, was aber in unseren Darstellungen nicht der Fall ist.
+<p>Das sogenannte <strong>sichere Ereignis</strong> ist <span class="math inline">\(A=\Omega\)</span>; z.B. bei einem Würfelwurf <span class="math inline">\(A=\Omega=\{1,2,3,4,5,6\}\)</span>. Das sogenannte <strong>unmögliche Ereignis</strong> ist <span class="math inline">\(A=\bar\Omega=\emptyset\)</span>, wobei <span class="math inline">\(\bar\Omega\)</span> das Komplementärereignis (“nicht <span class="math inline">\(\Omega\)</span>”) und <span class="math inline">\(\emptyset\)</span> die leere Menge ist.</p>
+Das <strong>Komplementärereignis</strong> lässt sich mit einem sogenannten Venn-Diagramm veranschaulichen (Abbildung <a href="06-wahrscheinlichkeit.html#fig:komplementaer">6.3</a>). Das <strong>Venn-Diagramm</strong> kommt aus der Mengenleere und symbolsiert verschiedene Arten von Mengen (hier Ereignisse) als Flächen, deren Größe idealerweise proportional zur Größe der Menge ist, was aber in unseren Darstellungen nicht der Fall ist.
 <div class="figure" style="text-align: center"><span id="fig:komplementaer"></span>
-<img src="figs/Komplementaerereignis.png" alt="Venn-Diagramm des Komplementärereignisses $\bar A$. Wenn das Rechteck die Ergebnismenge $\Omega$ ist dann sind alle Elementarereignisse, die nicht im Ereignis $A$ (weiß) sind im Komplementärereignis $\bar A$ (grün)." width="80%" />
+<img src="figs/Komplementaerereignis.png" alt="Venn-Diagramm des Komplementärereignisses $\bar A$. Wenn das Rechteck die Ergebnismenge $\Omega$ ist dann sind alle Elementarereignisse, die nicht im Ereignis $A$ (weiß) sind im Komplementärereignis $\bar A$ (grün).&lt;br&gt;&lt;small&gt;Nach: @mittag2016.&lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 6.3: Venn-Diagramm des Komplementärereignisses <span class="math inline">\(\bar A\)</span>. Wenn das Rechteck die Ergebnismenge <span class="math inline">\(\Omega\)</span> ist dann sind alle Elementarereignisse, die nicht im Ereignis <span class="math inline">\(A\)</span> (weiß) sind im Komplementärereignis <span class="math inline">\(\bar A\)</span> (grün).
+Abbildung 6.3: Venn-Diagramm des Komplementärereignisses <span class="math inline">\(\bar A\)</span>. Wenn das Rechteck die Ergebnismenge <span class="math inline">\(\Omega\)</span> ist dann sind alle Elementarereignisse, die nicht im Ereignis <span class="math inline">\(A\)</span> (weiß) sind im Komplementärereignis <span class="math inline">\(\bar A\)</span> (grün).<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>.</small>
 </p>
 </div>
-Die <strong>Schnittmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> (Abbildung <a href="06-wahrscheinlichkeit.html#fig:schnitt">6.4</a>) wird mit <span class="math inline">\(A\cap B\)</span> symbolisiert; die Ereignisse <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span> treten beide ein.
+Die <strong>Schnittmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> wird mit <span class="math inline">\(A\cap B\)</span> symbolisiert; die Ereignisse <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span> treten beide ein (Abbildung <a href="06-wahrscheinlichkeit.html#fig:schnitt">6.4</a>).
 <div class="figure" style="text-align: center"><span id="fig:schnitt"></span>
-<img src="figs/Schnittmenge.png" alt="Venn-Diagramm der Schnittmenge zweier Ereignisse $A\cap B$. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass $A$ und $B$ beide eintreten." width="80%" />
+<img src="figs/Schnittmenge.png" alt="Venn-Diagramm der Schnittmenge zweier Ereignisse $A\cap B$. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass $A$ _und_ $B$ beide eintreten.&lt;br&gt;&lt;small&gt;Nach: @mittag2016.&lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 6.4: Venn-Diagramm der Schnittmenge zweier Ereignisse <span class="math inline">\(A\cap B\)</span>. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> beide eintreten.
+Abbildung 6.4: Venn-Diagramm der Schnittmenge zweier Ereignisse <span class="math inline">\(A\cap B\)</span>. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span> beide eintreten.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>.</small>
 </p>
 </div>
-Die <strong>Vereinigungsmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> (Abbildung <a href="06-wahrscheinlichkeit.html#fig:vereinigung">6.5</a>) wird mit <span class="math inline">\(A\cup B\)</span> symbolisiert; das Ereignis <span class="math inline">\(A\)</span> <em>oder</em> das Ereignis <span class="math inline">\(B\)</span> tritt ein.
+Die <strong>Vereinigungsmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> wird mit <span class="math inline">\(A\cup B\)</span> symbolisiert; das Ereignis <span class="math inline">\(A\)</span> <em>oder</em> das Ereignis <span class="math inline">\(B\)</span> tritt ein (Abbildung <a href="06-wahrscheinlichkeit.html#fig:vereinigung">6.5</a>).
 <div class="figure" style="text-align: center"><span id="fig:vereinigung"></span>
-<img src="figs/Vereinigungsmenge.png" alt="Venn-Diagramm der Vereinigungsmenge zweier Ereignisse $A\cup B$. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass $A$ oder $B$ eintritt." width="80%" />
+<img src="figs/Vereinigungsmenge.png" alt="Venn-Diagramm der Vereinigungsmenge zweier Ereignisse $A\cup B$. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass $A$ _oder_ $B$ eintritt.&lt;br&gt;&lt;small&gt;Nach: @mittag2016.&lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 6.5: Venn-Diagramm der Vereinigungsmenge zweier Ereignisse <span class="math inline">\(A\cup B\)</span>. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> eintritt.
+Abbildung 6.5: Venn-Diagramm der Vereinigungsmenge zweier Ereignisse <span class="math inline">\(A\cup B\)</span>. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> <em>oder</em> <span class="math inline">\(B\)</span> eintritt.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>.</small>
 </p>
 </div>
-Die <strong>Differenzmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> schließlich (Abbildung <a href="06-wahrscheinlichkeit.html#fig:differenz">6.6</a>) ist die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span> (Komplementärereignis von <span class="math inline">\(B\)</span>) und wird mit <span class="math inline">\(A\setminus B=A\cap\bar B\)</span> symbolisiert.
+Die <strong>Differenzmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> schließlich ist die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span> (Komplementärereignis von <span class="math inline">\(B\)</span>) und wird mit <span class="math inline">\(A\setminus B=A\cap\bar B\)</span> symbolisiert (Abbildung <a href="06-wahrscheinlichkeit.html#fig:differenz">6.6</a>).
 <div class="figure" style="text-align: center"><span id="fig:differenz"></span>
-<img src="figs/Differenzmenge.png" alt="Venn-Diagramm der Differenzmenge zweier Ereignisse $A\setminus B=A\cap\bar B$. Die grüne Fläche beschreibt die Schnittmenge von $A$ und $\bar B$." width="80%" />
+<img src="figs/Differenzmenge.png" alt="Venn-Diagramm der Differenzmenge zweier Ereignisse $A\setminus B=A\cap\bar B$. Die grüne Fläche beschreibt die Schnittmenge von $A$ und $\bar B$.&lt;br&gt;&lt;small&gt;Nach: @mittag2016.&lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 6.6: Venn-Diagramm der Differenzmenge zweier Ereignisse <span class="math inline">\(A\setminus B=A\cap\bar B\)</span>. Die grüne Fläche beschreibt die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span>.
+Abbildung 6.6: Venn-Diagramm der Differenzmenge zweier Ereignisse <span class="math inline">\(A\setminus B=A\cap\bar B\)</span>. Die grüne Fläche beschreibt die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span>.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>.</small>
 </p>
 </div>
 </div>
 <div id="zufallsvariablen" class="section level2">
 <h2><span class="header-section-number">6.3</span> Zufallsvariablen</h2>
-<p>Interpretiert man die Werte eines Merkmals als Ergebnis eines Zufallsvorgangs, dann nennt man das Merkmal <strong>Zufallsvariable</strong> und die möglichen Ergebnisse des Zufallsprozesses <strong>Ausprägungen</strong> oder <strong>Realisierungen</strong> der betreffenden Zufallsvariable (vgl. deskriptive Statistik). Wir unterscheiden diskrete und stetige Zufallsvariablen. Bei einer <strong>diskreten Zufallsvariable</strong> ist die Anzahl der Ausprägungen <em>abzählbar</em>; z.B. Anzahl der Richtigen beim Lotto. Bei einer <strong>stetigen Zufallsvariable</strong> (auch kontinuierlich genannt) ist die Anzahl der Ausprägungen <em>nicht abzählbar</em>; z.B. Entfernung zwischen Wohnort und Arbeitsplatz einer zufällig aus einer größeren Menschengruppe ausgewählten Person. Ebenfalls unterscheiden wir kontrollierte und nicht-kontrollierte Zufallsexperimente. Ein <strong>kontrolliertes Zufallsexperiment</strong> ist unter annähernd gleichbleibenden Bedingungen wiederholbar; z.B. Ziehung der Lottozahlen. Ein <strong>nicht-kontrolliertes Zufallsexperiment</strong> ist z.B. die Durchschnittstemperatur im Monat Juli an einem bestimmten Ort, die von Faktoren abhängt, die wir nicht experimentell kontrollieren können.</p>
+<p>Interpretiert man die Werte eines Merkmals als Ergebnis eines Zufallsvorgangs, dann nennt man das Merkmal <strong>Zufallsvariable</strong> und die möglichen Ergebnisse des Zufallsprozesses <strong>Ausprägungen</strong> oder <strong>Realisierungen</strong> der betreffenden Zufallsvariable (vgl. deskriptive Statistik). Wir unterscheiden diskrete und stetige Zufallsvariablen. Bei einer <strong>diskreten Zufallsvariable</strong> ist die Anzahl der Ausprägungen <em>abzählbar</em>; z.B. Anzahl der Richtigen beim Lotto. Bei einer <strong>stetigen Zufallsvariable</strong> (auch kontinuierlich genannt) ist die Anzahl der Ausprägungen theoretisch <em>nicht abzählbar</em>; z.B. Entfernung zwischen Wohnort und Arbeitsplatz einer zufällig aus einer größeren Menschengruppe ausgewählten Person. Praktisch wird es aber immer eine Messgenauigkeit geben - wir können Entfernung nicht mit beliebig vielen Nachkommastellen messen. D.h. auch hier ist die Stetigkeit von Zufallsvariablen ein mathematisches Modell für das, was wir in der Welt sehen.</p>
+<p>In der Wissenschaft sprechen wir oft von Zufallsexperimenten, wobei wir kontrollierte und nicht-kontrollierte Zufallsexperimente unterscheiden. Ein <strong>kontrolliertes Zufallsexperiment</strong> ist unter annähernd gleichbleibenden Bedingungen wiederholbar; z.B. Ziehung der Lottozahlen. Ein <strong>nicht-kontrolliertes Zufallsexperiment</strong> ist z.B. die Durchschnittstemperatur im Monat Juli an einem bestimmten Ort. Diese hängt von Faktoren ab, die wir nicht experimentell kontrollieren können.</p>
 </div>
 <div id="wahrscheinlichkeit-1" class="section level2">
 <h2><span class="header-section-number">6.4</span> Wahrscheinlichkeit</h2>
+<p>So wie wir Zufallsvorgänge und Ereignisse aus der Mengenleere kommend konzeptionalisiert haben<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> ist die <strong>Wahrscheinlichkeit</strong> für das Eintreten eines Ereignisses <span class="math inline">\(A\)</span> - <span class="math inline">\(\Pr(A)\)</span> - als <em>Grenzwert der relativen Häufigkeit</em> für das Eintreten von <span class="math inline">\(A\)</span> definiert:<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>
+<span class="math display" id="eq:wahrscheinlichkeit">\[\begin{equation}
+f_n(A)\xrightarrow{n\to\infty}\Pr(A)
+\tag{6.1}
+\end{equation}\]</span></p>
+<p>Veranschaulichen wir das mit dem Beispiel Münzwurf (Abbildung <a href="06-wahrscheinlichkeit.html#fig:muenze">6.7</a>): Mit zunehmender Anzahl Münzwürfe <span class="math inline">\(n\)</span> nähert sich die relative Häufigkeit <span class="math inline">\(f_n\)</span> des Ereignisses “Zahl” (ebenso “Kopf”) dem erwarteten Wert 0.5 an. Wenn <span class="math inline">\(n\)</span> (hypothetisch) gegen unendlich geht (<span class="math inline">\(n\to\infty\)</span>) dann nennen wir diesen Grenzwert Wahrscheinlichkeit.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="06-wahrscheinlichkeit.html#cb38-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
+<span id="cb38-2"><a href="06-wahrscheinlichkeit.html#cb38-2"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
+<span id="cb38-3"><a href="06-wahrscheinlichkeit.html#cb38-3"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
+<span id="cb38-4"><a href="06-wahrscheinlichkeit.html#cb38-4"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
+<span id="cb38-5"><a href="06-wahrscheinlichkeit.html#cb38-5"></a><span class="co"># daher der R-Befehl</span></span>
+<span id="cb38-6"><a href="06-wahrscheinlichkeit.html#cb38-6"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
+<span id="cb38-7"><a href="06-wahrscheinlichkeit.html#cb38-7"></a>zahl &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
+<span id="cb38-8"><a href="06-wahrscheinlichkeit.html#cb38-8"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
+<span id="cb38-9"><a href="06-wahrscheinlichkeit.html#cb38-9"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
+<span id="cb38-10"><a href="06-wahrscheinlichkeit.html#cb38-10"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
+<span id="cb38-11"><a href="06-wahrscheinlichkeit.html#cb38-11"></a>f =<span class="st"> </span><span class="kw">cumsum</span>(zahl) <span class="op">/</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
+<span id="cb38-12"><a href="06-wahrscheinlichkeit.html#cb38-12"></a><span class="co"># plot</span></span>
+<span id="cb38-13"><a href="06-wahrscheinlichkeit.html#cb38-13"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="dt">type =</span> <span class="st">&#39;n&#39;</span>,</span>
+<span id="cb38-14"><a href="06-wahrscheinlichkeit.html#cb38-14"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb38-15"><a href="06-wahrscheinlichkeit.html#cb38-15"></a>     <span class="dt">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
+<span id="cb38-16"><a href="06-wahrscheinlichkeit.html#cb38-16"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="fl">0.5</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb38-17"><a href="06-wahrscheinlichkeit.html#cb38-17"></a><span class="kw">points</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="dt">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb38-18"><a href="06-wahrscheinlichkeit.html#cb38-18"></a><span class="kw">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:muenze"></span>
+<img src="eids_files/figure-html/muenze-1.png" alt="Simulation von 1000 Münzwürfen und die Entwicklung der relativen Häufigkeit von &quot;Zahl&quot;. Wir sehen, dass sich die relative Häufigkeit mit zunehmender Anzahl Münzwürfe dem erwarteten Wert 0.5 annähert. Den Grenzwert der relativen Häufigkeit wenn die Anzahl der Münzwürfe gegen unendlich geht nennen wir Wahrscheinlichkeit." width="80%" />
+<p class="caption">
+Abbildung 6.7: Simulation von 1000 Münzwürfen und die Entwicklung der relativen Häufigkeit von “Zahl”. Wir sehen, dass sich die relative Häufigkeit mit zunehmender Anzahl Münzwürfe dem erwarteten Wert 0.5 annähert. Den Grenzwert der relativen Häufigkeit wenn die Anzahl der Münzwürfe gegen unendlich geht nennen wir Wahrscheinlichkeit.
+</p>
+</div>
+</div>
+<div id="axiome-der-wahrscheinlichkeitstheorie-nach-kolmogorow" class="section level2">
+<h2><span class="header-section-number">6.5</span> Axiome der Wahrscheinlichkeitstheorie nach Kolmogorow</h2>
+<p>Die Wahrscheinlichkeitstheorie beruht wie jede Theorie auf gewissen sogenannten Axiomen, d.h. Annahmen, die so grundlegend sind, dass sie in der Anwendung nicht in Frage gestellt werden. Ohne Axiome gibt es keine Wahrscheinlichkeitstheorie. Die Herleitung der Wahrscheinlichkeitstheorie aus der Mengenlehre formuliert die Axiome nach Kolmogorow:</p>
+<p><span class="math display">\[K1: \Pr(A)\geq0\]</span>
+Das ist die <strong>Nicht-Negativitätsbedingung</strong>, die besagt, dass die Wahrscheinlichkeit eines Ereignisses <span class="math inline">\(A\)</span> immer größer oder gleich 0 ist.</p>
+<p><span class="math display">\[K2: \Pr(\Omega)=1\]</span>
+Das ist die <strong>Normierung</strong>, die besagt, dass die Wahrscheinlichkeit der Ergebnismenge <span class="math inline">\(\Omega\)</span> immer 1 ist, das sichere Ereignis.</p>
+<p><span class="math display">\[K3: \Pr(A\cup B)=\Pr(A)+\Pr(B)\quad\text{falls}\quad A\cap B=\emptyset\]</span>
+Das ist die <strong>Additivität bei Ereignissen, die keine Schnittmenge haben</strong>, die besagt, dass, falls <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> keine Schnittmenge haben, die Wahrscheinlichkeit, dass <span class="math inline">\(A\)</span> <em>oder</em> <span class="math inline">\(B\)</span> eintritt die Summe der Wahrscheinlichkeiten von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> ist.</p>
+Axiom K3 machen wir uns am besten wieder anhand eines Venn-Diagramms klar (Abbildung <a href="06-wahrscheinlichkeit.html#fig:k3">6.8</a>): Nehmen wir zwei Ereignisse eines Würfelwurfes <span class="math inline">\(A=\{1,2\}\)</span> (“1 oder 2”) und <span class="math inline">\(B=\{3,4\}\)</span> (“3 oder 4”), die keine Schnittmenge haben, d.h. <span class="math inline">\(A\cap B=\emptyset\)</span>. Dann ist die Wahrscheinlichkeit des Ereignisses <span class="math inline">\(A\cup B=\{1,2,3,4\}\)</span> (“1 oder 2 oder 3 oder 4”) die Summe der Einzelwahrscheinlichkeiten von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span>; <span class="math inline">\(\Pr(A\cup B)=\Pr(A)+\Pr(B)=\frac{1}{3}+\frac{1}{3}=\frac{2}{3}\)</span>.
+<div class="figure" style="text-align: center"><span id="fig:k3"></span>
+<img src="figs/Kolmogorow3.png" alt="Venn-Diagramm zweier Ereignisse eines Würfelwurfes $A=\{1,2\}$ und $B=\{3,4\}$, die keine Schnittmenge haben $\left(A\cap B=\emptyset\right)$. Die Wahrscheinlichkeit des Ereignisses $A$ _oder_ $B$ $\left(A\cup B=\{1,2,3,4\}\right)$ ist die Summe der Einzelwahrscheinlichkeiten von $A$ und $B$." width="80%" />
+<p class="caption">
+Abbildung 6.8: Venn-Diagramm zweier Ereignisse eines Würfelwurfes <span class="math inline">\(A=\{1,2\}\)</span> und <span class="math inline">\(B=\{3,4\}\)</span>, die keine Schnittmenge haben <span class="math inline">\(\left(A\cap B=\emptyset\right)\)</span>. Die Wahrscheinlichkeit des Ereignisses <span class="math inline">\(A\)</span> <em>oder</em> <span class="math inline">\(B\)</span> <span class="math inline">\(\left(A\cup B=\{1,2,3,4\}\right)\)</span> ist die Summe der Einzelwahrscheinlichkeiten von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span>.
+</p>
+</div>
+</div>
+<div id="rechenregeln" class="section level2">
+<h2><span class="header-section-number">6.6</span> Rechenregeln</h2>
+<p>Aus den o.g. Axiomen lassen sich die Rechenregeln der Wahrscheinlichkeitsrechnung ableiten. Es mag phantastisch klingen, aber man braucht tatsächlich keine weiteren Annahmen als die Axiome, um zu relativ komplizierten Regeln zu kommen.</p>
+<p>Als erstes steht die <strong>Produktregel</strong>:
+<span class="math display" id="eq:produktregel">\[\begin{equation}
+\Pr(A\cap B)=\Pr(A|B)\cdot\Pr(B)=\Pr(B|A)\cdot\Pr(A)
+\tag{6.2}
+\end{equation}\]</span>
+In Worten: Die Wahrscheinlichkeit, dass <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> beide eintreten errechnet sich aus der bedingten Wahrscheinlichkeit von <span class="math inline">\(A\)</span> gegeben <span class="math inline">\(B\)</span> mal der Wahrscheinlichkeit von <span class="math inline">\(B\)</span>, oder umgekehrt. Neu hier ist der Begriff der <strong>bedingten Wahrscheinlichkeit</strong>, für die das Symbol “|” verwendet wird: <span class="math inline">\(\Pr(A|B)\)</span> ist die Wahrscheinlichkeit von <span class="math inline">\(A\)</span> falls <span class="math inline">\(B\)</span> ebenfalls eingetreten ist (“<span class="math inline">\(A\)</span> gegeben <span class="math inline">\(B\)</span>”). Das ist nicht zu verwechseln mit der Wahrscheinlichkeit <span class="math inline">\(\Pr(A\cap B)\)</span>, dass <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span> beide eintreten (dafür ist die Produktregel da); bei der bedingten Wahrscheinlichkeit geht es nur um die Wahrscheinlichkeit eines Ereignisses (hier <span class="math inline">\(A\)</span>), jedoch <em>bedingt</em> durch ein anderes Ereignis (hier <span class="math inline">\(B\)</span>). Die Reihenfolge von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> macht hier keinen Unterschied, d.h. <span class="math inline">\(\Pr(A|B)\cdot\Pr(B)=\Pr(B|A)\cdot\Pr(A)\)</span>.</p>
+Machen wir uns die Produktregel mit einem sogenannten <strong>Baumdiagramm</strong> zweier Würfelwürfe klar (Abbildung <a href="06-wahrscheinlichkeit.html#fig:produktregel">6.9</a>): Die Wahrscheinlichkeit im ersten Wurf eine 1 zu würfeln ist <span class="math inline">\(\Pr(A=1)=\frac{1}{6}\)</span>. Die Wahrscheinlichkeit im zweiten Wurf ebenfalls eine 1 zu würfeln, d.h. wenn man bereits eine gewürfelt hat, ist die bedingte Wahrscheinlichkeit <span class="math inline">\(\Pr(B=1|A=1)=\frac{1}{6}\)</span>. Die Wahrscheinlichkeit zwei Einsen zu würfeln ist laut Produktregel <span class="math inline">\(\Pr(A=1\cap B=1)=\Pr(B=1|A=1)\cdot\Pr(A=1)=\frac{1}{6}\cdot\frac{1}{6}=\frac{1}{36}\)</span>, was ebenfalls intuitiv Sinn macht. Auch wenn das Baumdiagramm eine Reihenfolge suggeriert, gilt die Rechnung nicht nur für sequenzielle sondern auch für gleichzeitige Würfelwürfe sein. Ebenfalls können <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> vertauscht werden, da laut Produktregel <span class="math inline">\(\Pr(A|B)\cdot\Pr(B)=\Pr(B|A)\cdot\Pr(A)\)</span>.
+<div class="figure" style="text-align: center"><span id="fig:produktregel"></span>
+<img src="figs/Produktregel.png" alt="Baumdiagramm zweier Würfelwürfe. Der erste Würfelwurf ist das Ereignis $A$ mit sechs Ausprägungen $1,2,\ldots,6$. Für jede dieser Ausprägungen gibt es wieder sechs Ausprägungen $1,2,\ldots,6$ des Ereignisses $B$, des zweiten Würfelwurfs. Jeder der Pfade, die sich so ergeben führt zu einer Ausprägung des Ereignisses $A\cap B$, $A$ _und_ $B$. Die Gesamtzahl dieser Ausprägungen ist $6\cdot 6=36$. Die Wahrscheinlichkeit von $A$ ist $\Pr(A)$, die Wahrscheinlichkeit von $B$ ist aber $\Pr(B|A)$, die Wahrscheinlichkeit von $B$ unter der Bedingung, dass $A$ ebenfalls eingetreten ist. Das können sequenzielle als auch gleichzeitige Würfelwürfe sein, und auch die Reihenfolge ist egal, da laut Produktregel $\Pr(A|B)\cdot\Pr(B)=\Pr(B|A)\cdot\Pr(A)$." width="80%" />
+<p class="caption">
+Abbildung 6.9: Baumdiagramm zweier Würfelwürfe. Der erste Würfelwurf ist das Ereignis <span class="math inline">\(A\)</span> mit sechs Ausprägungen <span class="math inline">\(1,2,\ldots,6\)</span>. Für jede dieser Ausprägungen gibt es wieder sechs Ausprägungen <span class="math inline">\(1,2,\ldots,6\)</span> des Ereignisses <span class="math inline">\(B\)</span>, des zweiten Würfelwurfs. Jeder der Pfade, die sich so ergeben führt zu einer Ausprägung des Ereignisses <span class="math inline">\(A\cap B\)</span>, <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span>. Die Gesamtzahl dieser Ausprägungen ist <span class="math inline">\(6\cdot 6=36\)</span>. Die Wahrscheinlichkeit von <span class="math inline">\(A\)</span> ist <span class="math inline">\(\Pr(A)\)</span>, die Wahrscheinlichkeit von <span class="math inline">\(B\)</span> ist aber <span class="math inline">\(\Pr(B|A)\)</span>, die Wahrscheinlichkeit von <span class="math inline">\(B\)</span> unter der Bedingung, dass <span class="math inline">\(A\)</span> ebenfalls eingetreten ist. Das können sequenzielle als auch gleichzeitige Würfelwürfe sein, und auch die Reihenfolge ist egal, da laut Produktregel <span class="math inline">\(\Pr(A|B)\cdot\Pr(B)=\Pr(B|A)\cdot\Pr(A)\)</span>.
+</p>
+</div>
+<p>Jetzt ist es etwas akademisch bei diesem Beispiel von bedingten Wahrscheinlichkeiten zu sprechen, da die bedingte Wahrscheinlichkeit <span class="math inline">\(\Pr(B|A)\)</span> im Fall der Würfelwürfe ja gleich <span class="math inline">\(\Pr(B)\)</span> ist, z.B. <span class="math inline">\(\Pr(B=1|A=1)=\Pr(B=1)=\frac{1}{6}\)</span>. Das Ergebnis des Wurfes <span class="math inline">\(A\)</span> hat keinen Auswirkungen auf die Wahrscheinlichkeit von <span class="math inline">\(B\)</span>; wir sagen die beiden Ereignisse sind unabhängig. Zwei Ereignisse <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> werden formal als <strong>unabhängig</strong> bezeichnet, wenn das Eintreten eines Ereignisses keinen Einfluss auf das andere Ereignis hat, z.B. <span class="math inline">\(\Pr(A\cap B)=\Pr(B|A)\cdot\Pr(A)=\Pr(B)\cdot\Pr(A)\)</span>. Grundsätzlich kann aber ein Ereignis <span class="math inline">\(A\)</span> die Wahrscheinlichkeit eines zweiten Ereignisses <span class="math inline">\(B\)</span> beeinflussen.</p>
+<p>Als zweites steht die <strong>Summenregel</strong>:
+<span class="math display" id="eq:summenregel">\[\begin{equation}
+\Pr(A)+\Pr(\bar A)=1
+\tag{6.3}
+\end{equation}\]</span>
+In Worten: Die Summe der Wahrscheinlichkeiten, dass <span class="math inline">\(A\)</span> eintritt oder nicht ist 1.</p>
+<p>Wichtiger ist die <strong>generalisierte Summenregel</strong>:
+<span class="math display" id="eq:gensummenregel">\[\begin{equation}
+\Pr(A\cup B)=\Pr(A)+\Pr(B)-\Pr(A\cap B)
+\tag{6.4}
+\end{equation}\]</span>
+In Worten: Die Wahrscheinlichkeit, dass <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> eintritt oder beide errechnet sich aus der Summe der Wahrscheinlichkeiten von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> minus der Wahrscheinlichkeit, dass <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> beide eintreten.</p>
+Das können wir uns wiederum mit einem Venn-Diagramm klar machen (Abbildung <a href="06-wahrscheinlichkeit.html#fig:gensummenregel">6.10</a>): Im Venn-Diagramm sind die Flächengrößen proportional zu den Wahrscheinlichkeiten der entsprechenden Ereignisse. Wenn uns die Wahrscheinlichkeit interessiert, dass <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> eintritt (oder beide)<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> dann ist das die Summe der beiden Flächen im Venn-Diagramm, d.h. die Summe der Einzelwahrscheinlichkeiten <span class="math inline">\(\Pr(A)\)</span> und <span class="math inline">\(\Pr(B)\)</span>. Wenn jetzt aber die beiden Flächen überlappen dann würde man mit der vorgenannten Summe die Schnittmenge doppelt zählen. Deshalb ziehen wir die Schnittmenge, die Wahrscheinlichkeit <span class="math inline">\(\Pr(A\cap B)\)</span>, in der generalisierten Summenregel einmal ab, um die reine Vereinigungsmenge, die Wahrscheinlichkeit <span class="math inline">\(\Pr(A\cup B)\)</span>, zu erhalten.
+<div class="figure" style="text-align: center"><span id="fig:gensummenregel"></span>
+<img src="figs/genSummenregel.png" alt="Venn-Diagramm der generalisierten Summenregel, wobei die Flächengrößen proportional zu den Wahrscheinlichkeiten der entsprechenden Ereignisse sind. Die Wahrscheinlichkeit, dass $A$ oder $B$ eintritt (oder beide) ist die Summe der beiden Flächen im Venn-Diagramm, d.h. die Summe der Einzelwahrscheinlichkeiten $\Pr(A)$ und $\Pr(B)$, minus der überlappenden Schnittmenge, die Wahrscheinlichkeit $\Pr(A\cap B)$, da wir diese sonst doppelt zählen würden." width="30%" />
+<p class="caption">
+Abbildung 6.10: Venn-Diagramm der generalisierten Summenregel, wobei die Flächengrößen proportional zu den Wahrscheinlichkeiten der entsprechenden Ereignisse sind. Die Wahrscheinlichkeit, dass <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> eintritt (oder beide) ist die Summe der beiden Flächen im Venn-Diagramm, d.h. die Summe der Einzelwahrscheinlichkeiten <span class="math inline">\(\Pr(A)\)</span> und <span class="math inline">\(\Pr(B)\)</span>, minus der überlappenden Schnittmenge, die Wahrscheinlichkeit <span class="math inline">\(\Pr(A\cap B)\)</span>, da wir diese sonst doppelt zählen würden.
+</p>
+</div>
+<p>Als dritte und letzte Regel steht die <strong>Additivität</strong>: Für <span class="math inline">\(n\)</span> sich gegenseitig ausschließende Ereignisse <span class="math inline">\(\{A_1,\ldots,A_n\}\)</span>, d.h. nur ein Ereignis kann auftreten, gilt:
+<span class="math display" id="eq:additivitaet1">\[\begin{equation}
+\Pr(A_1\cup \cdots \cup A_m)=\sum_{i=1}^{m}\Pr\left(A_i\right)\quad \text{für}\quad 1\leq m\leq n
+\tag{6.5}
+\end{equation}\]</span></p>
+<p>Für <span class="math inline">\(n\)</span> vollständige Ereignisse <span class="math inline">\(\{A_1,\ldots,A_n\}\)</span>, d.h. ein Ereignis muss auftreten, gilt:
+<span class="math display" id="eq:additivitaet2">\[\begin{equation}
+\sum_{i=1}^{n}\Pr\left(A_i\right)=1
+\tag{6.6}
+\end{equation}\]</span></p>
+Ein Beispiel liefert wieder das Baumdiagramm zweier Würfelwürfe (Abbildung <a href="06-wahrscheinlichkeit.html#fig:additivitaet">6.11</a>): Die Wahrscheinlichkeit, dass wir im ersten Wurf eine 1 <em>oder</em> eine 2 würfeln ist die Summe der Einzelwahrscheinlichkeiten: <span class="math inline">\(\Pr((A=1)\cup (A=2))=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}\)</span>. Die Wahrscheinlichkeit, bei zwei Würfen eine der 36 Ausprägungen zu würfeln ist logischerweise 1: <span class="math inline">\(\sum_{j=1}^{6}\sum_{i=1}^{6}\Pr(B_j\cup A_i)=\frac{1}{36}+\cdots+\frac{1}{36}=1\)</span>.
+<div class="figure" style="text-align: center"><span id="fig:additivitaet"></span>
+<img src="figs/Additivitaet.png" alt="Baumdiagramm zweier Würfelwürfe. Die Wahrscheinlichkeit, dass wir im ersten Wurf eine 1 _oder_ eine 2 würfeln ist die Summe der Einzelwahrscheinlichkeiten. Die Wahrscheinlichkeit, bei zwei Würfen eine der 36 Ausprägungen zu würfeln ist logischerweise 1." width="80%" />
+<p class="caption">
+Abbildung 6.11: Baumdiagramm zweier Würfelwürfe. Die Wahrscheinlichkeit, dass wir im ersten Wurf eine 1 <em>oder</em> eine 2 würfeln ist die Summe der Einzelwahrscheinlichkeiten. Die Wahrscheinlichkeit, bei zwei Würfen eine der 36 Ausprägungen zu würfeln ist logischerweise 1.
+</p>
+</div>
 
 </div>
 </div>
 <h3>Literatur</h3>
 <div id="refs" class="references">
+<div id="ref-mittag2016">
+<p>Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.</p>
+</div>
 <div id="ref-zimmermann2014">
 <p>Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Eine alternative Herleitung der Wahrscheinlichkeitstheorie ginge über Aussagenlogik. Diese sehen wir uns beispielsweise in meinem Masterkurs <em>Risk and Uncertainty in Science and Policy</em> an.<a href="06-wahrscheinlichkeit.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<ol start="3">
+<li id="fn3"><p>Eine alternative Herleitung der Wahrscheinlichkeitstheorie ginge über Aussagenlogik. Diese sehen wir uns beispielsweise in meinem Masterkurs <em>Risk and Uncertainty in Science and Policy</em> an.<a href="06-wahrscheinlichkeit.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Zufallsvorgänge und Ereignisse aus der Mengenleere kommend zu konzeptionalisiert ist der klassische Ansatz. Alternative Herangehensweisen können Sie im Masterstudium kennenlernen.<a href="06-wahrscheinlichkeit.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Streng genommen gilt der Grenzwert der relativen Häufigkeit als Wahrscheinlichkeit nur unter Voraussetzung der beliebigen Wiederholbarkeit eines Zufallsexperiments unter konstanten Bedingungen.<a href="06-wahrscheinlichkeit.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Das logische “oder” impliziert, dass beide Ereignisse eintreten.<a href="06-wahrscheinlichkeit.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -196,15 +368,15 @@ Abbildung 6.6: Venn-Diagramm der Differenzmenge zweier Ereignisse <span class="m
 <a href="07-verteilungen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
