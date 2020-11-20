@@ -46,7 +46,7 @@ boxplot(reisedat$stationen, range = 0, horizontal = TRUE,
 Sowohl "Distanz" als auch "Stationen" sind schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen) ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
 
 Nun zu den weiteren Streuungsparametern. Die **Varianz** $s^2$ ist die mittlere ("durchschnittliche") quadrierte Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ vom arithmetischen Mittel $\bar x$:
-$$s^2=\frac{\sum_{i-1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
+$$s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
 
 Genau genommen ist das die **korrigierte Varianz**, wo durch $n-1$ geteilt wird und nicht durch $n$ wie man bei einer Mittelung erwarten könnte. Das Teilen durch $n-1$ garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner $n-1$ wird **Anzahl Freiheitsgrade** genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) *frei* zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits "belegt" – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.
 
