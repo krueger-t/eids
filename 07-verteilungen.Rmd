@@ -88,7 +88,7 @@ F_X(x)=\Pr(X\leq x)
 
 Die Analogien zwischen empirischen und theoretischen Verteilungen können Sie auch nochmal in @mittag2016, Tabelle 10.3 auf S. 159 nachlesen.
 
-## Parameter und Kenngrößen theoretischer Verteilungen
+## Parameter theoretischer Verteilungen
 
 Die Form einer Verteilung wird grundsätzlich von der mathematischen Formel der entsprechenden Wahrscheinlichkeits- bzw. Dichtefunktion bestimmt. Die für uns wichtigsten Verteilungen und ihre Formen werden wir weiter unten kennenlernen. Auf die mathematischen Formeln werden wir in diesem Kurs nicht eingehen; sie können beispielsweise in @mittag2016 nachgeschlagen werden. Wichtig zu wissen ist aber, dass die Wahrscheinlichkeits- bzw. Dichtefunktion sogenannte **Parameter** hat, die die Lage und die Breite der Verteilung, und bei manchen Verteilungen auch die Form selber, bestimmen.
 
@@ -153,7 +153,9 @@ legend('topleft', legend=c('N(0,2)', 'N(0,1.5)', 'N(0,1)'),
 ```
 Wenn wir Abbildung \@ref(fig:npdfvariation) und Abbildung \@ref(fig:ncdfvariation) vergleichen dann sehen wir, dass die Verteilungsfunktion dort am steilsten ist wo die Dichtefunktion ihr Maximum hat; dort ändert sich sozusagen in der kumulierten Wahrscheinichkeit am meisten. Wenn die Dichtefunktion abflacht dann nimmt auch die Steigung der Verteilungsfunktion wieder ab. Es ist wichtig, dass Sie den Zusammenhang zwischen Dichte- und Verteilungsfunktion verstehen, der analog zum Zusammenhang zwischen Häufigkeit und Summenhäufigkeit ist (vgl. Kapitel \@ref(haeufigkeit)).
 
-Kommen wir nun zu den **Kenngrößen** theoretischer Verteilungen. Wiederum ist wichtig, dass wir die Parallelen zu den empirischen Verteilungen sehen.
+## Kenngrößen theoretischer Verteilungen
+
+Auch für die **Kenngrößen** theoretischer Verteilungen ist es wichtig, dass wir die Parallelen zu den empirischen Verteilungen sehen.
 
 Der **Erwartungswert** theoretischer Verteilungen ist:
 $$\begin{equation}
@@ -213,7 +215,7 @@ Hier soll auf ein paar Vetreilungen eingegangen werden, die für den weiteren Ve
 
 ### Normalverteilung
 
-Die Normalverteilung (Abbildung \@ef(fig:npdfvariation)) ist eine _symetrische_, _stetige_ Verteilung. Der Wertebereich geht von $-\infty$ bis $\infty$, d.h. die Verteilung ist für _negative_ als auch _positive_ Ausprägungen definiert. Die Normalverteilung ist die am häufigsten angenommene Verteilung. Das mag zum Einen daran liegen, dass die Normalverteilung mathematisch relativ einfach zu handhaben ist. Zum Anderen scheinen aber tatsächlich viele reale Zufallsvorgänge einer Normalverteilung zu folgen. Ein typisches Beispiel ist die Verteilung von zufälligen Messfehlern bei der Verwendung von Messinstrumenten im Feld und im Labor. Sehen Sie sich nochmal Abbildung \@ref(fig:npdf) an: Wenn kein systematischer Fehler vorliegt dann macht es Sinn, die Verteilung von Messfehlern um Null zu zentrieren - im Mittel misst das Instrument genau. Um diesen Mittelwert $\mu=0$ streuen die Daten mehr oder weniger stark - in Abhängigkeit der Standardabweichung $\sigma$ - wobei kleine Abweichungen wahrscheinlicher sind als große. Man bestimmt die Verteilungsparameter anhand von Wiederholungsmessungen an der selben Probe oder am selben Standort. Diese Konzeption des Messfehlers werden Sie beispielsweise im bodenkundlichen Praktikum verwenden.
+Die Normalverteilung (Abbildung \@ref(fig:npdfvariation)) ist eine _symetrische_, _stetige_ Verteilung. Der Wertebereich geht von $-\infty$ bis $\infty$, d.h. die Verteilung ist für _negative_ als auch _positive_ Ausprägungen definiert. Die Normalverteilung ist die am häufigsten angenommene Verteilung. Das mag zum Einen daran liegen, dass die Normalverteilung mathematisch relativ einfach zu handhaben ist. Zum Anderen scheinen aber tatsächlich viele reale Zufallsvorgänge einer Normalverteilung zu folgen. Ein typisches Beispiel ist die Verteilung von zufälligen Messfehlern bei der Verwendung von Messinstrumenten im Feld und im Labor. Sehen Sie sich nochmal Abbildung \@ref(fig:npdf) an: Wenn kein systematischer Fehler vorliegt dann macht es Sinn, die Verteilung von Messfehlern um Null zu zentrieren - im Mittel misst das Instrument genau. Um diesen Mittelwert $\mu=0$ streuen die Daten mehr oder weniger stark - in Abhängigkeit der Standardabweichung $\sigma$ - wobei kleine Abweichungen wahrscheinlicher sind als große. Man bestimmt die Verteilungsparameter anhand von Wiederholungsmessungen an der selben Probe oder am selben Standort. Diese Konzeption des Messfehlers werden Sie beispielsweise im bodenkundlichen Praktikum verwenden.
 
 Mathematisch lässt sich zeigen, dass die Normalverteilung aus der Summe vieler Einzelprozesse entsteht, selbst wenn die Einzelprozesse ganz anderen Verteilungen folgen; der aggregierte Zufallsprozess folgt einer Normalverteilung. Das ist der **zentrale Grenzwertsatz**. Theoretisch muss es die Summe _unendlich_ vieler Einzelprozesse sein; wir sehen eine Normalverteilung aber bereits bei wenigen Summanden auftauchen, was wir anhand wiederholter Würfelwürfe zeigen können (Abbildung \@ref(fig:grenzwertsatz)).
 
@@ -360,11 +362,11 @@ legend('bottomright', legend=c('B(0.5,20)', 'B(0.7,20)', 'B(0.5,40)'),
        col=c('black', 'red', 'blue'), pch=1)
 ```
 
-In der Geographie verwenden wir die Binomialverteilung häufig für _Zähldaten_ und _Proportionen_, z.B. in der Biogeographie die Anzahl Individuen einer bestimmten Tierart in einem Gebiet oder der Anteil überlebender Organismen als Funktion der Konzentration einer toxischen Substanz. Die Binomialverteilung dient aber auch als Wahrscheinlichkeitsmodell für _Präsenz bzw. Absenz_ beispielsweise einer Tierart in einem Gebiet. Dazu mehr im Masterstudiengang _Global Change Geography_.
+In der Geographie verwenden wir die Binomialverteilung häufig für _Zähldaten_ und _Proportionen_, z.B. in der Biogeographie die Anzahl Individuen einer bestimmten Tierart in einem Gebiet oder der Anteil überlebender Organismen als Funktion der Konzentration einer toxischen Substanz. Die Binomialverteilung dient aber auch als Wahrscheinlichkeitsmodell für _Präsenz bzw. Absenz_ beispielsweise einer Tierart in einem Gebiet.
 
 ### Poisson-Verteilung
 
-Die Poisson-Verteilung ist eine weitere _diskrete_ Verteilung für _Zähldaten_, z.B. die Anzahl Vogelarten in einem Gebiet als Funktion topographischer Parameter.^[Auch das werden wir uns im Masterstudiengang _Global Change Geography_ näher anschauen.] Wir schreiben:
+Die Poisson-Verteilung ist eine weitere _diskrete_ Verteilung für _Zähldaten_, z.B. die Anzahl Vogelarten in einem Gebiet als Funktion topographischer Parameter. Wir schreiben:
 $$\begin{equation}
 X\sim Pois(\lambda)
 (\#eq:xpoisverteilt)
