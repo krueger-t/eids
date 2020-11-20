@@ -177,3 +177,11 @@ kurtosis(reisedat$stationen) - 3
 
 ```
 
+## Standardisierung (z-Transformation)
+
+Abschliessend sei noch die **Standardisierung** von Datenreihen erwähnt, auch genannt z-Transformation. Diese zentriert Datenreihen um Null und transformiert die Streuung der Daten so, dass verschiedene Datenreihen auf den selben Maßstab gebracht und somit vergleichbar werden. Mathematisch passiert das, indem wir von jedem Datenpunkt $x_i$ in einer Stichprobe den Mittelwert der Stichprobe $\bar x$ abziehen und durch die Standardabweichug $s_x$ teilen. Die so transformierten neuen Datenpunkte nennen wir üblicherweise $z_i$:
+$$\begin{equation}
+z_i=\frac{x_i-\bar x}{s_x}
+(\#eq:standardisierung)
+\end{equation}$$
+Der neue Mittelwert ist $\bar z=0$, die neue Standardabweichung ist $s_z=1$. Sollten die $x$ Daten einer sogenannten Normalverteilung folgen (s. Kapitel \@ref(verteilungen)) dann folgen die $z$ Daten einer Standardnormalverteilung.
