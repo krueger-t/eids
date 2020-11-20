@@ -391,7 +391,32 @@ qqnorm(residuals(reise_fit))
 qqline(residuals(reise_fit))
 ```
 
-Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus. Im Fall einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie (vgl. Kapitel \@ref(schaetzen)). In unserem Beispiel deutet der QQ-Plot darauf hin, dass die Flanken der Residuenverteilung flacher als bei einer Normalverteilung abfallen, vermutlich auf aufgrund der o.g. Heteroskedastizität. Das können wir beim Histogramm der Residuen nicht so gut sehen da die Vergleichverteilung fehlt:
+Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus (Abbildung \@ref(fig:qq)). Im Fall einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie (vgl. Kapitel \@ref(schaetzen)).
+
+```{r qq, echo=TRUE, fig.align='center', fig.cap='Charakteristische Formen des QQ-Plots und was diese in unserem Fall für die Residuen bedeuten. Eine einfache Verteilung mit steileren Flanken als die der Normalverteilung konnte ich nicht finden. Dieser Fall würde ein S-Form aufweisen, wie die Variante mit flachen Flanken, nur an der Diagonale gespiegelt.', fig.show='hold', out.width='50%'}
+# 1) simuliere normalverteilte Daten
+x_norm <- rnorm(100, 0, 1)
+# QQ-Plot
+qqnorm(x_norm, xlim = c(-4, 4), ylim = c(-4, 4), main='normalverteilte Daten')
+qqline(x_norm)
+# 2) simuliere rechtsschiefe Daten
+x_right <- rlnorm(100, 0, 1)
+# QQ-Plot
+qqnorm(x_right, xlim = c(-4, 4), ylim = c(-2, 6), main='rechtsschiefe Daten')
+qqline(x_right)
+# 3) simuliere linksschiefe Daten
+x_left <- -x_right
+# QQ-Plot
+qqnorm(x_left, xlim = c(-4, 4), ylim = c(-6, 2), main='linksschiefe Daten')
+qqline(x_left)
+# 4) simuliere Verteilung mit flachen Flanken
+x_thick <- rcauchy(100, 0, 1)
+# QQ-Plot
+qqnorm(x_thick, xlim = c(-4, 4), ylim = c(-8, 8), main='Verteilung mit flachen Flanken')
+qqline(x_thick)
+```
+
+In unserem Beispiel deutet der QQ-Plot darauf hin, dass die Flanken der Residuenverteilung flacher als bei einer Normalverteilung abfallen, vermutlich auf aufgrund der o.g. Heteroskedastizität. Das können wir beim Histogramm der Residuen nicht so gut sehen da die Vergleichverteilung fehlt:
 ```{r echo=TRUE}
 # Histogramm der Residuen plotten
 hist(residuals(reise_fit), xlim = c(-25,25))
