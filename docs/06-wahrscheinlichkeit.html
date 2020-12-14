@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-11-20" />
+<meta name="date" content="2020-12-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,14 +33,14 @@
   
 <link rel="prev" href="05-korrelation.html"/>
 <link rel="next" href="07-verteilungen.html"/>
-<script src="libs/jquery/jquery.min.js"></script>
-<link href="libs/gitbook/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -50,7 +50,7 @@
 
 
 
-<script src="libs/accessible-code-block/empty-anchor.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -176,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wahrscheinlichkeit" class="section level1">
 <h1><span class="header-section-number">Kapitel 6</span> Grundlagen der Wahrscheinlichkeitsrechnung</h1>
 <p>Die Wahrscheinlichkeitstheorie bildet die Brücke zwischen der deskriptiven und der induktiven Statistik, um bei dem Bild von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> zu bleiben. Sie liefert Modelle in der Form von Wahrscheinlichkeitsverteilungen (s. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>), die es uns erlauben von Stichproben auf Grundgesamtheiten zu schließen.</p>
-<p>Dieses Kapitel motiviert zunächst <strong>Zufallsvorgänge</strong> und definiert ein paar grundlegende Begriffe. Sodann werden <strong>Ereignisse</strong> als Ergebnis eines Zufallsvorgangs über die Mengenleere eingeführt.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Dazu gehört die Darstellung des <strong>Venn-Diagramms</strong>. Sodann werden <strong>Zufallsvariablen</strong> und <strong>Zufallsexperimente</strong> definiert, bevor wir zum Begriff der <strong>Wahrscheinlichkeit</strong> kommen. Dabei schauen wir uns besonders Konzepte wie <strong>bedingte Wahrscheinlichkeit</strong> und <strong>Unabhängigkeit von Ereignissen</strong>, sowie die Rechenregeln der Wahrscheinlichkeitsrechnung an. Im Quiz dieser Woche werden wir diese Regeln anwenden indem wir etwas mit Wahrscheinlichkeiten rechnen.</p>
+<p>Dieses Kapitel motiviert zunächst <strong>Zufallsvorgänge</strong> und definiert ein paar grundlegende Begriffe. Sodann werden <strong>Ereignisse</strong> als Ergebnis eines Zufallsvorgangs über die Mengenleere eingeführt.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Dazu gehört die Darstellung des <strong>Venn-Diagramms</strong>. Sodann werden <strong>Zufallsvariablen</strong> und <strong>Zufallsexperimente</strong> definiert, bevor wir zum Begriff der <strong>Wahrscheinlichkeit</strong> kommen. Dabei schauen wir uns besonders Konzepte wie <strong>bedingte Wahrscheinlichkeit</strong> und <strong>Unabhängigkeit von Ereignissen</strong>, sowie die Rechenregeln der Wahrscheinlichkeitsrechnung an. Im Quiz dieser Woche werden wir diese Regeln anwenden indem wir etwas mit Wahrscheinlichkeiten rechnen.</p>
 <div id="zufallsvorgänge" class="section level2">
 <h2><span class="header-section-number">6.1</span> Zufallsvorgänge</h2>
 <p>Wir alle kennen Zufallsvorgänge im Alltagsleben; z.B. Glücksspiele wie Roulette, Würfelspiele und die Ziehung der Lottozahlen. Aber auch Prozesse wie die Entwicklung von Börsenkursen, die Abschätzung von Schadensverläufen oder Lebenserwartungen (wichtig für Versicherungen) und Marktrisiken (wichtig für Unternehmen) werden als Zufallsvorgänge konzeptionalisiert und behandelt. Das sind Prozesse, die auf der Maßstabsebene, auf der wir sie betrachten gewisse Regularitäten aufweisen, die Glücksspielen ähneln und deshalb als Zufallsvorgänge betrachtet werden können. Das mag aber nur deshalb so sein weil wir die zugrunde liegenden Kausalketten nicht kennen oder nicht beschreiben können bzw. das zu aufwendig wäre. Das gleiche trifft übrigens auch auf Glücksspiele zu, deren Verlauf wir theoretisch auch physikalisch beschreiben könnten wenn wir nur alle Randbedingungen bestimmen könnten. Aus diesem Blickwinkel sind Zufallsvorgänge also immer nur grobskalige <em>Modelle</em> für Prozesse, die auf kleineren Skalen ablaufen und die wir nicht vollständig quantifizieren (können). Ob es am Ende einer Kausalkette unteilbare, “echte” Zufallsvorgänge gibt wird beispielsweise in der Physik debatiert.</p>
@@ -237,30 +237,30 @@ Abbildung 6.6: Venn-Diagramm der Differenzmenge zweier Ereignisse <span class="m
 </div>
 <div id="wahrscheinlichkeit-1" class="section level2">
 <h2><span class="header-section-number">6.4</span> Wahrscheinlichkeit</h2>
-<p>So wie wir Zufallsvorgänge und Ereignisse aus der Mengenleere kommend konzeptionalisiert haben<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> ist die <strong>Wahrscheinlichkeit</strong> für das Eintreten eines Ereignisses <span class="math inline">\(A\)</span> - <span class="math inline">\(\Pr(A)\)</span> - als <em>Grenzwert der relativen Häufigkeit</em> für das Eintreten von <span class="math inline">\(A\)</span> definiert:<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>
+<p>So wie wir Zufallsvorgänge und Ereignisse aus der Mengenleere kommend konzeptionalisiert haben<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> ist die <strong>Wahrscheinlichkeit</strong> für das Eintreten eines Ereignisses <span class="math inline">\(A\)</span> - <span class="math inline">\(\Pr(A)\)</span> - als <em>Grenzwert der relativen Häufigkeit</em> für das Eintreten von <span class="math inline">\(A\)</span> definiert:<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>
 <span class="math display" id="eq:wahrscheinlichkeit">\[\begin{equation}
 f_n(A)\xrightarrow{n\to\infty}\Pr(A)
 \tag{6.1}
 \end{equation}\]</span></p>
 <p>Veranschaulichen wir das mit dem Beispiel Münzwurf (Abbildung <a href="06-wahrscheinlichkeit.html#fig:muenze">6.7</a>): Mit zunehmender Anzahl Münzwürfe <span class="math inline">\(n\)</span> nähert sich die relative Häufigkeit <span class="math inline">\(f_n\)</span> des Ereignisses “Zahl” (ebenso “Kopf”) dem erwarteten Wert 0.5 an. Wenn <span class="math inline">\(n\)</span> (hypothetisch) gegen unendlich geht (<span class="math inline">\(n\to\infty\)</span>) dann nennen wir diesen Grenzwert Wahrscheinlichkeit.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="06-wahrscheinlichkeit.html#cb38-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
-<span id="cb38-2"><a href="06-wahrscheinlichkeit.html#cb38-2"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
-<span id="cb38-3"><a href="06-wahrscheinlichkeit.html#cb38-3"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
-<span id="cb38-4"><a href="06-wahrscheinlichkeit.html#cb38-4"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
-<span id="cb38-5"><a href="06-wahrscheinlichkeit.html#cb38-5"></a><span class="co"># daher der R-Befehl</span></span>
-<span id="cb38-6"><a href="06-wahrscheinlichkeit.html#cb38-6"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
-<span id="cb38-7"><a href="06-wahrscheinlichkeit.html#cb38-7"></a>zahl &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
-<span id="cb38-8"><a href="06-wahrscheinlichkeit.html#cb38-8"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
-<span id="cb38-9"><a href="06-wahrscheinlichkeit.html#cb38-9"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
-<span id="cb38-10"><a href="06-wahrscheinlichkeit.html#cb38-10"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
-<span id="cb38-11"><a href="06-wahrscheinlichkeit.html#cb38-11"></a>f =<span class="st"> </span><span class="kw">cumsum</span>(zahl) <span class="op">/</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
-<span id="cb38-12"><a href="06-wahrscheinlichkeit.html#cb38-12"></a><span class="co"># plot</span></span>
-<span id="cb38-13"><a href="06-wahrscheinlichkeit.html#cb38-13"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="dt">type =</span> <span class="st">&#39;n&#39;</span>,</span>
-<span id="cb38-14"><a href="06-wahrscheinlichkeit.html#cb38-14"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
-<span id="cb38-15"><a href="06-wahrscheinlichkeit.html#cb38-15"></a>     <span class="dt">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
-<span id="cb38-16"><a href="06-wahrscheinlichkeit.html#cb38-16"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="fl">0.5</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb38-17"><a href="06-wahrscheinlichkeit.html#cb38-17"></a><span class="kw">points</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="dt">pch =</span> <span class="dv">20</span>)</span>
-<span id="cb38-18"><a href="06-wahrscheinlichkeit.html#cb38-18"></a><span class="kw">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="06-wahrscheinlichkeit.html#cb1-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
+<span id="cb1-2"><a href="06-wahrscheinlichkeit.html#cb1-2"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
+<span id="cb1-3"><a href="06-wahrscheinlichkeit.html#cb1-3"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
+<span id="cb1-4"><a href="06-wahrscheinlichkeit.html#cb1-4"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
+<span id="cb1-5"><a href="06-wahrscheinlichkeit.html#cb1-5"></a><span class="co"># daher der R-Befehl</span></span>
+<span id="cb1-6"><a href="06-wahrscheinlichkeit.html#cb1-6"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
+<span id="cb1-7"><a href="06-wahrscheinlichkeit.html#cb1-7"></a>zahl &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
+<span id="cb1-8"><a href="06-wahrscheinlichkeit.html#cb1-8"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
+<span id="cb1-9"><a href="06-wahrscheinlichkeit.html#cb1-9"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
+<span id="cb1-10"><a href="06-wahrscheinlichkeit.html#cb1-10"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
+<span id="cb1-11"><a href="06-wahrscheinlichkeit.html#cb1-11"></a>f =<span class="st"> </span><span class="kw">cumsum</span>(zahl) <span class="op">/</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
+<span id="cb1-12"><a href="06-wahrscheinlichkeit.html#cb1-12"></a><span class="co"># plot</span></span>
+<span id="cb1-13"><a href="06-wahrscheinlichkeit.html#cb1-13"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="dt">type =</span> <span class="st">&#39;n&#39;</span>,</span>
+<span id="cb1-14"><a href="06-wahrscheinlichkeit.html#cb1-14"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb1-15"><a href="06-wahrscheinlichkeit.html#cb1-15"></a>     <span class="dt">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
+<span id="cb1-16"><a href="06-wahrscheinlichkeit.html#cb1-16"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="fl">0.5</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb1-17"><a href="06-wahrscheinlichkeit.html#cb1-17"></a><span class="kw">points</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="dt">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb1-18"><a href="06-wahrscheinlichkeit.html#cb1-18"></a><span class="kw">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:muenze"></span>
 <img src="eids_files/figure-html/muenze-1.png" alt="Simulation von 1000 Münzwürfen und die Entwicklung der relativen Häufigkeit von &quot;Zahl&quot;. Wir sehen, dass sich die relative Häufigkeit mit zunehmender Anzahl Münzwürfe dem erwarteten Wert 0.5 annähert. Den Grenzwert der relativen Häufigkeit wenn die Anzahl der Münzwürfe gegen unendlich geht nennen wir Wahrscheinlichkeit." width="80%" />
 <p class="caption">
@@ -314,7 +314,7 @@ In Worten: Die Summe der Wahrscheinlichkeiten, dass <span class="math inline">\(
 \tag{6.4}
 \end{equation}\]</span>
 In Worten: Die Wahrscheinlichkeit, dass <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> eintritt oder beide errechnet sich aus der Summe der Wahrscheinlichkeiten von <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> minus der Wahrscheinlichkeit, dass <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> beide eintreten.</p>
-Das können wir uns wiederum mit einem Venn-Diagramm klar machen (Abbildung <a href="06-wahrscheinlichkeit.html#fig:gensummenregel">6.10</a>): Im Venn-Diagramm sind die Flächengrößen proportional zu den Wahrscheinlichkeiten der entsprechenden Ereignisse. Wenn uns die Wahrscheinlichkeit interessiert, dass <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> eintritt (oder beide)<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> dann ist das die Summe der beiden Flächen im Venn-Diagramm, d.h. die Summe der Einzelwahrscheinlichkeiten <span class="math inline">\(\Pr(A)\)</span> und <span class="math inline">\(\Pr(B)\)</span>. Wenn jetzt aber die beiden Flächen überlappen dann würde man mit der vorgenannten Summe die Schnittmenge doppelt zählen. Deshalb ziehen wir die Schnittmenge, die Wahrscheinlichkeit <span class="math inline">\(\Pr(A\cap B)\)</span>, in der generalisierten Summenregel einmal ab, um die reine Vereinigungsmenge, die Wahrscheinlichkeit <span class="math inline">\(\Pr(A\cup B)\)</span>, zu erhalten.
+Das können wir uns wiederum mit einem Venn-Diagramm klar machen (Abbildung <a href="06-wahrscheinlichkeit.html#fig:gensummenregel">6.10</a>): Im Venn-Diagramm sind die Flächengrößen proportional zu den Wahrscheinlichkeiten der entsprechenden Ereignisse. Wenn uns die Wahrscheinlichkeit interessiert, dass <span class="math inline">\(A\)</span> oder <span class="math inline">\(B\)</span> eintritt (oder beide)<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> dann ist das die Summe der beiden Flächen im Venn-Diagramm, d.h. die Summe der Einzelwahrscheinlichkeiten <span class="math inline">\(\Pr(A)\)</span> und <span class="math inline">\(\Pr(B)\)</span>. Wenn jetzt aber die beiden Flächen überlappen dann würde man mit der vorgenannten Summe die Schnittmenge doppelt zählen. Deshalb ziehen wir die Schnittmenge, die Wahrscheinlichkeit <span class="math inline">\(\Pr(A\cap B)\)</span>, in der generalisierten Summenregel einmal ab, um die reine Vereinigungsmenge, die Wahrscheinlichkeit <span class="math inline">\(\Pr(A\cup B)\)</span>, zu erhalten.
 <div class="figure" style="text-align: center"><span id="fig:gensummenregel"></span>
 <img src="figs/genSummenregel.png" alt="Venn-Diagramm der generalisierten Summenregel, wobei die Flächengrößen proportional zu den Wahrscheinlichkeiten der entsprechenden Ereignisse sind. Die Wahrscheinlichkeit, dass $A$ oder $B$ eintritt (oder beide) ist die Summe der beiden Flächen im Venn-Diagramm, d.h. die Summe der Einzelwahrscheinlichkeiten $\Pr(A)$ und $\Pr(B)$, minus der überlappenden Schnittmenge, die Wahrscheinlichkeit $\Pr(A\cap B)$, da wir diese sonst doppelt zählen würden." width="30%" />
 <p class="caption">
@@ -331,7 +331,7 @@ Abbildung 6.10: Venn-Diagramm der generalisierten Summenregel, wobei die Fläche
 \sum_{i=1}^{n}\Pr\left(A_i\right)=1
 \tag{6.6}
 \end{equation}\]</span></p>
-Ein Beispiel liefert wieder das Baumdiagramm zweier Würfelwürfe (Abbildung <a href="06-wahrscheinlichkeit.html#fig:additivitaet">6.11</a>): Die Wahrscheinlichkeit, dass wir im ersten Wurf eine 1 <em>oder</em> eine 2 würfeln ist die Summe der Einzelwahrscheinlichkeiten: <span class="math inline">\(\Pr((A=1)\cup (A=2))=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}\)</span>. Die Wahrscheinlichkeit, bei zwei Würfen eine der 36 Ausprägungen zu würfeln ist logischerweise 1: <span class="math inline">\(\sum_{j=1}^{6}\sum_{i=1}^{6}\Pr(B_j\cup A_i)=\frac{1}{36}+\cdots+\frac{1}{36}=1\)</span>.
+Ein Beispiel liefert wieder das Baumdiagramm zweier Würfelwürfe (Abbildung <a href="06-wahrscheinlichkeit.html#fig:additivitaet">6.11</a>): Die Wahrscheinlichkeit, dass wir im ersten Wurf eine 1 <em>oder</em> eine 2 würfeln ist die Summe der Einzelwahrscheinlichkeiten: <span class="math inline">\(\Pr((A=1)\cup (A=2))=\frac{1}{6}+\frac{1}{6}=\frac{1}{3}\)</span>. Die Wahrscheinlichkeit, bei zwei Würfen eine der 36 Ausprägungen zu würfeln ist logischerweise 1: <span class="math inline">\(\sum_{j=1}^{6}\sum_{i=1}^{6}\Pr(B_j\cap A_i)=\frac{1}{36}+\cdots+\frac{1}{36}=1\)</span>.
 <div class="figure" style="text-align: center"><span id="fig:additivitaet"></span>
 <img src="figs/Additivitaet.png" alt="Baumdiagramm zweier Würfelwürfe. Die Wahrscheinlichkeit, dass wir im ersten Wurf eine 1 _oder_ eine 2 würfeln ist die Summe der Einzelwahrscheinlichkeiten. Die Wahrscheinlichkeit, bei zwei Würfen eine der 36 Ausprägungen zu würfeln ist logischerweise 1." width="80%" />
 <p class="caption">
@@ -352,11 +352,11 @@ Abbildung 6.11: Baumdiagramm zweier Würfelwürfe. Die Wahrscheinlichkeit, dass 
 </div>
 <div class="footnotes">
 <hr />
-<ol start="3">
-<li id="fn3"><p>Eine alternative Herleitung der Wahrscheinlichkeitstheorie ginge über Aussagenlogik. Diese sehen wir uns beispielsweise in meinem Masterkurs <em>Risk and Uncertainty in Science and Policy</em> an.<a href="06-wahrscheinlichkeit.html#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>Zufallsvorgänge und Ereignisse aus der Mengenleere kommend zu konzeptionalisiert ist der klassische Ansatz. Alternative Herangehensweisen können Sie im Masterstudium kennenlernen.<a href="06-wahrscheinlichkeit.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>Streng genommen gilt der Grenzwert der relativen Häufigkeit als Wahrscheinlichkeit nur unter Voraussetzung der beliebigen Wiederholbarkeit eines Zufallsexperiments unter konstanten Bedingungen.<a href="06-wahrscheinlichkeit.html#fnref5" class="footnote-back">↩︎</a></p></li>
-<li id="fn6"><p>Das logische “oder” impliziert, dass beide Ereignisse eintreten.<a href="06-wahrscheinlichkeit.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>Eine alternative Herleitung der Wahrscheinlichkeitstheorie ginge über Aussagenlogik. Diese sehen wir uns beispielsweise in meinem Masterkurs <em>Risk and Uncertainty in Science and Policy</em> an.<a href="06-wahrscheinlichkeit.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Zufallsvorgänge und Ereignisse aus der Mengenleere kommend zu konzeptionalisiert ist der klassische Ansatz. Alternative Herangehensweisen können Sie im Masterstudium kennenlernen.<a href="06-wahrscheinlichkeit.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Streng genommen gilt der Grenzwert der relativen Häufigkeit als Wahrscheinlichkeit nur unter Voraussetzung der beliebigen Wiederholbarkeit eines Zufallsexperiments unter konstanten Bedingungen.<a href="06-wahrscheinlichkeit.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Das logische “oder” impliziert, dass beide Ereignisse eintreten.<a href="06-wahrscheinlichkeit.html#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -368,15 +368,15 @@ Abbildung 6.11: Baumdiagramm zweier Würfelwürfe. Die Wahrscheinlichkeit, dass 
 <a href="07-verteilungen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
-<script src="libs/gitbook/js/clipboard.min.js"></script>
-<script src="libs/gitbook/js/plugin-search.js"></script>
-<script src="libs/gitbook/js/plugin-sharing.js"></script>
-<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook/js/jquery.highlight.js"></script>
-<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
