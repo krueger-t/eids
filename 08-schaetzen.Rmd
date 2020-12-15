@@ -2,4 +2,277 @@
 
 # Schätzen von Verteilungsparametern {#schaetzen}
 
+Mit diesem Kapitel beginnt die schließende oder induktive Statistik, mit der wir anhand von Stichproben etwas über größere Grundgesamtheiten aussagen möchten. Der Anspruch geht also über die beschreibende oder deskriptive Statistik hinaus, wobei die Wahrscheinlichkeitstheorie und Verteilungen (Kapitel \@ref(wahrscheinlichkeit) und \@ref(verteilungen)) gewissermaßen die Brücke zwischen den beiden Teilbereichen der Statistik bildet, um bei dem Bild von @zimmermann2014 zu bleiben.
 
+Die deskriptive Statistik wird uns die nächsten sechs Wochen beschäftigen. Nach diesem Kapitel zu **Schätzen von Verteilungsparametern** gibt es drei Kapitel zu **statistischen Tests** (Kapitel \@ref(ttest)-\@ref(chi2testkstest)) und abschließend Kapitel \@ref(regression) zu **linearer Regression**, das wir über zwei Wochen lesen werden. In Kapitel \@ref(regression) werden viele Lehrveranstaltungsinhalte zusammen kommen - also bleiben Sie dran.
+
+In diesem Kapitel diskutieren wir:
+
+- die Anforderungen an Schätzer
+- den Schätzer des Mittelwertes $\mu$ einer Normalverteilung und dessen Standardfehler und Konfidenzintervall
+- den Schätzer der Standardabweichung $\sigma$ einer Normalverteilung
+- das Quantil-Quantil-Diagramm (QQ-Plot) als visueller Verteilungstest
+
+Zunächst aber ein paar Worte zum Grundprinzip der schließenden Statistik (vgl. @mittag2016, Abb. 14.1, S. 212). Wie wir wissen ist eine Stichprobe (im besten Fall) eine zufällige Auswahl von Merkmalsträgern aus einer Grundgesamtheit von Merkmalsträgern. In der schließenden Statistik geht es jetzt um die Verdichtung der Informationen in der Stichprobe in Form von Stichprobenfunktionen, mit denen wir _bestimmte Parameter der Grundgesamtheit schätzen_. Im Fall von Verteilungsparametern handelt es sich bei den Stichprobenfunktionen v.a. um den Mittelwert und die Standardabweichung.
+
+## Anforderungen an Schätzer
+
+Die Parameter der Stichprobe (Mittelwert, Standardabweichung etc.) dienen als **Schätzer** der Parameter der Grundgesamtheit. Die Anforderungen an einen solchen Schätzer sind:
+
+- _Erwartungstreue_: Der Schätzer soll den wahren (unbekannten) Wert der Grundgesamtheit möglichst genau wiedergeben
+- _Konsistenz_: Die Genauigkeit der Schätzung soll mit wachsender Stichprobengröße zunehmen
+- _Effizienz_: Unterschiede der Schätzwerte sollen bei Ziehung verschiedener Stichproben möglichst gering sein
+
+In wie weit diese Anforderungen erfüllt sind ergibt sich aus dem _statistischen Modell der Grundgesamtheit_, z.B. dass Merkmalsausprägungen normalverteilt ist. Schauen Sie sich dazu nochmal Kapitel \@ref(verteilungen) an. Die Abbildungen \@ref(fig:fFempirisch) und \@ref(fig:fFtheoretisch) zeigen wie wir von der empirischen zur theoretischen Verteilung kommen. In Abbildungen \@ref(fig:npdfvariation) und \@ref(fig:ncdfvariation) sehen wir die Normalverteilung als ein solches theoretisches Modell der Grundgesamtheit für verschiedene Konstellationen der Parameter $\mu$ und $\sigma$.
+
+Da die Stichprobendaten als Realisationen von Zufallsvariablen interpretiert werden (vgl. Kapitel \@ref(verteilungen)), ist auch der aus ihnen errechnete Schätzwert eine Realisation einer Zufallsvariablen, die **Schätzer** genannt wird. Dazu die folgende Notation:
+
+- für einen nicht näher spezifizierten Parameter verwenden wir das Symbol $\theta$ ("theta")
+- den Schätzer dieses Parameters bezeichnen wir mit $\hat\theta$ ("theta-Dach")
+- ein Parametervektor wird fett gedruckt: $\boldsymbol\theta=\begin{pmatrix}\theta_1 & \theta_2 & \cdots & \theta_p\end{pmatrix}$
+- z.B. Im Fall der Normalverteilung: $X\sim N(\boldsymbol\theta=\begin{pmatrix}\mu & \sigma\end{pmatrix}$)
+
+**Erwartungstreue** bedeutet mathematisch:
+$$\begin{equation}
+E(\hat\theta)=\theta
+(\#eq:erwartungstreu)
+\end{equation}$$
+
+> In Worten: Der Erwartungswert des Schätzers ist der wahre Wert des Parameters. D.h. der Schätzer trifft "im Mittel" den zu schätzenden Wert genau.
+
+Wenn ein Schätzer nicht erwartungstreu ist, heißt die Differenz **Verzerrung** oder **Bias**:
+$$\begin{equation}
+B(\hat\theta)=E(\hat\theta)-\theta
+(\#eq:bias)
+\end{equation}$$
+
+Ein verzerrter Schätzer, dessen Verzerrung gegen Null geht wenn der Stichprobenumfang $n$ gegen Unendlich geht heißt **asymptotisch erwartungstreu**:
+$$\begin{equation}
+\lim_{n\to\infty}E(\hat\theta)=\theta
+(\#eq:asymptotischerwartungstreu)
+\end{equation}$$
+
+## Normalverteilung: Schätzer für $\mu$
+
+Der Schätzer für $\mu$ ist:
+$$\begin{equation}
+\hat\mu=\bar x
+(\#eq:muhat)
+\end{equation}$$
+
+> In Worten: Der Schätzer des Mittelwertes einer normalverteilten Grundgesamheit $\hat\mu$ ist der arithmetische Mittelwert einer Stichprobe aus dieser Grundgesamtheit.
+
+Der Schätzer wird in der Regel nicht exakt mit dem wahren Wert übereinstimmen, nur im Mittel - er ist _erwartungstreu_ (s.o.). Da $\hat\mu$ als Zufallsvariable interpretiert wird, kann diese Unsicherheit als sogenannter **Standardfehler des Mittelwertschätzers** $s_{\hat\mu}$ ausgedrückt werden:
+$$\begin{equation}
+s_{\hat\mu}=\frac{s}{\sqrt{n}}
+(\#eq:smuhat)
+\end{equation}$$
+
+Wobei $s$ die Standardabweichung der Stichprobe ist (vgl. Kapitel \@ref(streuung)) und $n$ der Stichprobenumfang. Wir sehen an der Formel, dass je kleiner die Standardabweichung der Stichprobe ist und je größer der Stichprobenumfang ist desto besser die Schätzung wird - das ist die o.g. _Konsistenzeigenschaft_, die wir von einem Schätzer erwarten.
+
+Der Standardfehler wird mit wahrscheinlichkeitstheoretischen Annahmen verknüpft und geht so in die Berechnung des sogenannten **Konfidenzintervalls** ein, das die Unsicherheit des Schätzers mit Wahrscheinlichkeiten ausdrückt. Das Konfidenzintervall des Mittelwertschätzers wollen wir im Folgenden einmal herleiten. Das bildet die Grundlage für viele ähnliche Herleitungen, die später bei den Tests und bei der Regression kommen, die wir dann aber nicht mehr so ausführlich behandeln werden.
+
+_Unter Annahme einer normalverteilten Grundgesamtheit_ folgt der standardisierte Schätzer des Mittelwertes _bei wiederholtem Stichprobenziehen_ einer sogenannten t-Verteilung:
+$$\begin{equation}
+\frac{\hat\mu-\mu}{s_{\hat\mu}}\sim t_{n-1}
+(\#eq:muhatstand)
+\end{equation}$$
+
+Die Herleitung können Sie z.B. in @mittag2016, S. 218ff nachlesen. Hier soll uns nur die Bedeutung dieser Formel interessieren. $\hat\mu-\mu$ ist die Differenz des Schätzers vom wahren Mittelwert (den wir nicht kennen). Diese Differenz wird mit dem Standardfehler des Schätzers $s_{\hat\mu}$ normalisiert. Das Symbold $\sim$ ("Tilde") heißt "ist verteilt gemäß" (vgl. Kapitel \@ref(verteilungen)). Und $t_{n-1}$ steht für die t-Verteilung, die einen Parameter hat (genannt "Freiheitsgrade"), der hier den Wert $n-1$ annimmt. Man spricht von einer t-Verteilung mit $n-1$ Freiheitsgraden. Je größer diese Zahl desto schmaler die t-Verteilung. Abbildung \@ref(fig:tpdfcdfvariation) zeigt die t-Verteilung für verschiedene Freiheitsgrade. Wenn $n$ gegen Unendlich geht geht die t-Verteilung in die Standardnormalverteilung $N(0,1)$ über (vgl. Abbildung \@ref(fig:npdf)). Man sieht in Abbildung \@ref(fig:tpdfcdfvariation), dass sich schon zwischen 100 und 1000 Freiheitsgraden nicht mehr viel an der Breite der t-Verteilung ändert. Wie die Standardnormalverteilung geht die t-Verteilung von $-\infty$ bis $+\infty$ und ist symmetrisch um einen Mittelwert 0. D.h. mit dieser Verteilung erwarten wir bei wiederholter Stichprobenziehung _im Mittel_ den wahren Mittelwert der Grundgesamtheit genau zu schätzen, $E\left(\hat\mu-\mu\right)=0$. Aber von Stichprobe zu Stichprobe erwarten wir eine Variation des Schätzwertes gemäß der t-Verteilung, Formel \@ref(eq:muhatstand).
+
+```{r tpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Freiheitsgrade (der einzige Parameter der t-Verteilung heißt "Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden t-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+# pdf
+plot(seq(-5,5,0.01), dt(seq(-5,5,0.01), 1), ylim=c(0,0.4), type='l',
+     xlab='Z=z', ylab='Dichtefunktion')
+lines(seq(-5,5,0.01), dt(seq(-5,5,0.01), 10), col='red')
+lines(seq(-5,5,0.01), dt(seq(-5,5,0.01), 100), col='blue')
+lines(seq(-5,5,0.01), dt(seq(-5,5,0.01), 1000), col='green')
+legend('topright', legend=c('t(1)', 't(10)', 't(100)', 't(1000)'),
+       col=c('black', 'red', 'blue', 'green'), lty=1)
+# cdf
+plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), 1), ylim=c(0,1), type='l',
+     xlab='Z=z', ylab='Verteilungsfunktion')
+lines(seq(-5,5,0.01), pt(seq(-5,5,0.01), 10), ylim=c(0,1), col='red')
+lines(seq(-5,5,0.01), pt(seq(-5,5,0.01), 100), ylim=c(0,1), col='blue')
+lines(seq(-5,5,0.01), pt(seq(-5,5,0.01), 1000), ylim=c(0,1), col='green')
+legend('bottomright', legend=c('t(1)', 't(10)', 't(100)', 't(1000)'),
+       col=c('black', 'red', 'blue', 'green'), lty=1)
+```
+
+Das **zentrale 95% Konfidenzintervall** einer beliebigen Zufallsvariablen $Z\sim t_{n-1}$ ist:
+$$\begin{equation}
+\Pr\left(-t_{n-1;0.975}\leq Z\leq t_{n-1;0.975}\right)=0.95
+(\#eq:kiz)
+\end{equation}$$
+
+$t_{n-1;0.975}$ steht für das 0.975-Quantil der t-Verteilung mit $n-1$ Freiheitsgraden (Abbildung \@ref(fig:kiz)). Da die t-Verteilung symmetrisch ist gilt $-t_{n-1;0.975}=t_{n-1;0.025}$.
+
+```{r kiz, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariablen $Z$, hier mit 10 Freiheitsgraden. Die Grenzen des zentralen 95% Konfidenzintervalls sind rot markiert. Es umschließt die zentralen 95% der Verteilung, so dass 2.5% links und 2.5% rechts davon liegen. Rechts: Verteilungsfunktion der entsprechenden t-Verteilung. Die Grenzen des Konfidenzintervalls kann man hier direkt ablesen, als 0.025- und 0.975-Quantil. Da die t-Verteilung symmetrisch ist gilt $-t_{n-1;0.975}=t_{n-1;0.025}$.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+# pdf
+plot(seq(-5,5,0.01), dt(seq(-5,5,0.01), 10), ylim=c(0,0.4), type='l',
+     xlab='Z=z', ylab='Dichtefunktion')
+lines(c(1, 1)*qt(0.025, 10), c(0, dt(qt(0.025, 10), 10)), col='red')
+lines(c(1, 1)*qt(0.975, 10), c(0, dt(qt(0.975, 10), 10)), col='red')
+text(0,0.05,"95%", col="red")
+text(-4,0.05,"2.5%", col="red")
+text(4,0.05,"2.5%", col="red")
+# cdf
+plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), 10), ylim=c(0,1), type='l',
+     xlab='Z=z', ylab='Verteilungsfunktion')
+lines(c(1, 1)*qt(0.025, 10), c(0, pt(qt(0.025, 10), 10)), col='red')
+lines(c(-5, qt(0.025, 10)), c(1, 1)*pt(qt(0.025, 10), 10), col='red')
+lines(c(1, 1)*qt(0.975, 10), c(0, pt(qt(0.975, 10), 10)), col='red')
+lines(c(-5, qt(0.975, 10)), c(1, 1)*pt(qt(0.975, 10), 10), col='red')
+text(qt(0.025, 10),-0.2,"-t_n-1;0.975", col="red", xpd=TRUE)
+text(qt(0.025, 10),-0.3,"=t_n-1;0.025", col="red", xpd=TRUE)
+text(qt(0.975, 10),-0.2,"t_n-1;0.975", col="red", xpd=TRUE)
+```
+
+Setzen wir nun Formel \@ref(eq:muhatstand) für $Z$ in Formel \@ref(eq:kiz) ein erhalten wir:
+$$\begin{equation}
+\Pr\left(-t_{n-1;0.975}\leq\frac{\hat\mu-\mu}{s_{\hat\mu}}\leq t_{n-1;0.975}\right)=0.95
+(\#eq:kihatmustand1)
+\end{equation}$$
+
+Multplizieren der inneren Ungleichung mit $s_{\hat\mu}$ ergibt:
+$$\begin{equation}
+\Pr\left(-t_{n-1;0.975}\cdot s_{\hat\mu}\leq\hat\mu-\mu\leq t_{n-1;0.975}\cdot s_{\hat\mu}\right)=0.95
+(\#eq:kihatmustand2)
+\end{equation}$$
+
+Subtraktion von $\hat\mu$ ergibt:
+$$\begin{equation}
+\Pr\left(-\hat\mu-t_{n-1;0.975}\cdot s_{\hat\mu}\leq-\mu\leq -\hat\mu+t_{n-1;0.975}\cdot s_{\hat\mu}\right)=0.95
+(\#eq:kihatmustand2)
+\end{equation}$$
+
+Und schlussendlich Multiplikation mit $-1$:
+$$\begin{equation}
+\Pr\left(\hat\mu-t_{n-1;0.975}\cdot s_{\hat\mu}\leq\mu\leq \hat\mu+t_{n-1;0.975}\cdot s_{\hat\mu}\right)=0.95
+(\#eq:kihatmustand3)
+\end{equation}$$
+
+> Merke: Um den letzten Schritt zu verstehen muss man wissen, dass sich bei der Multiplikation einer Ungleichung mit einer negativen Zahl die Vergleichszeichen (hier $\leq$) umdrehen. Danach wurde die Ungleichung wieder von klein nach groß geordnet.
+
+Setzen wir nun die Formeln \@ref(eq:muhat) und \@ref(eq:smuhat) in Formel \@ref(eq:kihatmustand3) ein erhalten wir:
+$$\begin{equation}
+\Pr\left(\bar x-t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}\leq\mu\leq\bar x+t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}\right)=0.95
+(\#eq:kihatmustand4)
+\end{equation}$$
+
+Das ist nun das zentrale 95% Konfidenzintervall, das besagt: Die Wahrscheinlichkeit, dass der wahre Wert $\mu$ größer oder gleich $\bar x-t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}$ und kleiner oder gleich $\bar x+t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}$ ist, ist 0.95. Man kann das Konfidenzintervall auch mit den Intervallgrenzen so schreiben:
+$$\begin{equation}
+KI=\left[\bar x-t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}};\bar x+t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}\right]
+(\#eq:kihatmustand5)
+\end{equation}$$
+
+Beachten Sie die **Interpretation** des Konfidenzintervalls, die sich aus dem klassischen Wahrscheinlichkeitsbegriff ergibt (vgl. Kapitel \@ref(wahrscheinlichkeit)): Bei hypothetischer wiederholter Stichprobenziehung des selben Umfangs aus der selben Grundgesamtheit enthält in 95% der Fälle das Konfidenzintervall den wahren Wert, während die restlichen 5% der Intervalle den wahren Wert nicht enthalten (Abbildung \@ref(fig:kiinterpretation)). Für die einzige Stichprobe, die wir jeweils vorliegen haben ist das _keine_ Wahrscheinlichkeit, dass der wahre Wert in den Grenzen des Konfidenzinervalls liegt! Das wird in der Praxis often verwechselt, also behalten Sie sich das gut.
+
+```{r kiinterpretation, echo=TRUE, fig.align='center', fig.cap='50 Wiederholungen von Stichprobenziehungen aus der gleichen Grundgesamtheit, $N(0,1)$, aus denen jeweils der Mittelwert geschätzt wurde, einmal mit $n=5$ (links) und einmal mit $n=10$ (rechts). Gezeigt ist jeweils der geschätzte Mittelwert mit Konfidenzintervall. Konfidenzintervalle, die den wahren Wert $\\mu=0$ nicht einschließen sind rot markiert; das sind bei einer ausreichenden Anzahl Wiederholungen 5%, d.h. in diesem Fall 2-3 von 50. Wenn hier die Grafiken abweichen dann liegt das an der geringen Anzahl Wiederholungen. Außerdem sehen wir, dass bei größerem Stichprobenumfang der Standardfehler und damit die Breite der Konfidenzintervalle kleiner sind ($n=10$ rechts im Vergleich zu $n=5$ links); vgl. Gleichung \\@ref(eq:smuhat). Nach: @mittag2016.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+# plot 1: 5 Zufallszahlen
+# initialise
+xbar <- rep(NA,50)
+ki <- cbind(rep(NA,50),rep(NA,50))
+# Schleife über 50 Wiederholungen
+for(i in 1:50){
+  # ziehe 5 Zufallszahlen aus Standardnormalverteilung N(0,1)
+  n <- 5
+  x <- rnorm(n, mean=0, sd=1)
+  # Mittelwert
+  xbar[i] <- mean(x)
+  # zentrales 95% Konfidenzintervall
+  ki[i,1:2] <- xbar[i] + c(-1,1)*qt(0.975,df=n-1)*sd(x)/sqrt(n)
+}
+# plotte Mittelwerte und Konfidenzintervalle für Wiederholungen
+wh <- seq(1,50,1)
+plot(wh, xbar, type='p', pch=15, ylim=c(-4,4),
+     xlab="Wiederholung", ylab="Mittelwertschätzer", main="n=5")
+segments(x0=wh, y0=ki[,1], x1=wh, y1=ki[,2])
+# markiere jene Wiederholungen rot,
+#  deren Konfidenzintervall nicht den wahren Mittelwert 0 einschließt
+id <- ki[,1] >= 0 | ki[,2] <= 0
+points(wh[id], xbar[id], pch=15, col="red")
+segments(x0=wh[id], y0=ki[id,1], x1=wh[id], y1=ki[id,2], col="red")
+# plot 2: 10 Zufallszahlen
+# initialise
+xbar <- rep(NA,50)
+ki <- cbind(rep(NA,50),rep(NA,50))
+# Schleife über 50 Wiederholungen
+for(i in 1:50){
+  # ziehe 10 Zufallszahlen aus Standardnormalverteilung N(0,1)
+  n <- 10
+  x <- rnorm(n, mean=0, sd=1)
+  # Mittelwert
+  xbar[i] <- mean(x)
+  # zentrales 95% Konfidenzintervall
+  ki[i,1:2] <- xbar[i] + c(-1,1)*qt(0.975,df=n-1)*sd(x)/sqrt(n)
+}
+# plotte Mittelwerte und Konfidenzintervalle für Wiederholungen
+wh <- seq(1,50,1)
+plot(wh, xbar, type='p', pch=15, ylim=c(-4,4),
+     xlab="Wiederholung", ylab="Mittelwertschätzer", main="n=10")
+segments(x0=wh, y0=ki[,1], x1=wh, y1=ki[,2])
+# markiere jene Wiederholungen rot,
+#  deren Konfidenzintervall nicht den wahren Mittelwert 0 einschließt
+id <- ki[,1] >= 0 | ki[,2] <= 0
+points(wh[id], xbar[id], pch=15, col="red")
+segments(x0=wh[id], y0=ki[id,1], x1=wh[id], y1=ki[id,2], col="red")
+```
+
+## Normalverteilung: Schätzer für $\sigma$
+
+Der Schätzer für $\sigma$ ist:
+$$\begin{equation}
+\hat\sigma=s=\sqrt{\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}}
+(\#eq:sigmahat)
+\end{equation}$$
+
+> In Worten: Der Schätzer der Standardabweichung einer normalverteilten Grundgesamheit $\hat\sigma$ ist die Standardabweichung einer Stichprobe aus dieser Grundgesamtheit.
+
+Die Herleitung beider Schätzer erfolgt über die sogenannte Maximum-Likelihood-Theorie, auf die wir hier nicht näher eingehen wollen. Sie können die Herleitung aber z.B. in @dormann2013, S. 48ff nachlesen. Auf der Maximum-Likelihood-Theorie basiert die Annahme _unabhängig identisch verteilter (u.i.v.) Daten_. Nur wenn diese erfüllt ist, sind wahrscheinlichkeitstheoretische Aussagen wie Standardfehler und Konfidenzintervalle gültig! Oft, z.B. wenn Daten korrelieren, ist dies nur annäherungsweise der Fall.
+
+## Quantil-Quantil-Diagramm (QQ-Plot)
+
+Ein visueller Test, ob eine Stichprobe aus einer bestimmten Verteilung entstammt ist das sogenannte Quantil-Quantil-Diagramm (QQ-Plot). Abbildung \@ref(fig:qqentfernung) zeigt QQ-Plots für unsere Entfernungsdaten, einmal original und einmal log-transformiert.
+```{r echo=FALSE}
+# Paket laden, das für das Einlesen von xlsx gebraucht wird
+library("readxl")
+# Daten einlesen
+reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
+# in Zahlen und data.frame umwandeln
+reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
+```
+
+```{r qqentfernung, echo=TRUE, fig.align='center', fig.cap='Links: QQ-Plot der Entfernungsdaten. Wie wir in Kapitel \\@ref(haeufigkeit) und Kapitel \\@ref(verteilungen) gesehen haben sind die Originaldaten rechtsschief, was wir an dem nach oben gewölbten QQ-Plot sehen (vgl. Abbildung \\@ref(fig:qqvariation)). Eine Lognormalverteilung passte hier ganz gut. Rechts: QQ-Plot der log-transformierten Entfernungsdaten. Hier passt die Normalverteilung ganz gut, was wir an dem etwa geraden QQ-Plot sehen.', fig.show='hold', out.width='50%'}
+# QQ-Plot für Originaldaten
+qqnorm(reisedat$distanz)
+qqline(reisedat$distanz)
+# QQ-Plot für log-transformierte Daten
+qqnorm(log(reisedat$distanz))
+qqline(log(reisedat$distanz))
+```
+
+Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar (vgl. Kapitel \@ref(haeufigkeit)). Dieses Quantil (nach Standardisierung; vgl. Kapitel \@ref(streuung)) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung aus (Abbildung \@ref(fig:qqvariation)). Im Fall einer Normalverteilung fallen alle Punkte auf eine gerade Linie.
+
+```{r qqvariation, echo=TRUE, fig.align='center', fig.cap='Charakteristische Formen des QQ-Plots und was diese für die Verteilung bedeuten. Eine einfache Verteilung mit steileren Flanken als die der Normalverteilung konnte ich nicht finden. Dieser Fall würde ein S-Form aufweisen, wie die Variante mit flachen Flanken, nur an der Diagonale gespiegelt.', fig.show='hold', out.width='50%'}
+# 1) simuliere normalverteilte Daten
+x_norm <- rnorm(100, 0, 1)
+# QQ-Plot
+qqnorm(x_norm, xlim = c(-4, 4), ylim = c(-4, 4), main='normalverteilte Daten')
+qqline(x_norm)
+# 2) simuliere rechtsschiefe Daten
+x_right <- rlnorm(100, 0, 1)
+# QQ-Plot
+qqnorm(x_right, xlim = c(-4, 4), ylim = c(-2, 6), main='rechtsschiefe Daten')
+qqline(x_right)
+# 3) simuliere linksschiefe Daten
+x_left <- -x_right
+# QQ-Plot
+qqnorm(x_left, xlim = c(-4, 4), ylim = c(-6, 2), main='linksschiefe Daten')
+qqline(x_left)
+# 4) simuliere Verteilung mit flachen Flanken
+x_thick <- rcauchy(100, 0, 1)
+# QQ-Plot
+qqnorm(x_thick, xlim = c(-4, 4), ylim = c(-8, 8), main='Verteilung mit flachen Flanken')
+qqline(x_thick)
+```

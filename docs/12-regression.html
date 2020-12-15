@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2020-12-14" />
+<meta name="date" content="2020-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,8 +176,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="regression" class="section level1">
 <h1><span class="header-section-number">Kapitel 12</span> Lineare Regression</h1>
 <p>Für die lineare Regression kehren wir zu einer Frage aus Kapitel <a href="05-korrelation.html#korrelation">5</a> zurück: <em>Kann man die Entfernung zu Ihrem Wohnort mit der Anzahl Stationen, die Sie bis Adlershof brauchen statistisch vorhersagen?</em></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="12-regression.html#cb45-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, <span class="dt">xlab=</span><span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Entfernung (km)&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="12-regression.html#cb48-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, <span class="dt">xlab=</span><span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Entfernung (km)&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel <a href="05-korrelation.html#korrelation">5</a> 0.81 war. Das <strong>Ziel</strong> ist nun, eine Gerade durch die Punktwolke zu legen, die den <em>Trend</em> beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.</p>
 <p>Es geht um <em>2 Variablen</em> (Merkmale):</p>
 <ul>
@@ -203,39 +203,39 @@ Abbildung 12.1: Lineare Regression: Definitionen.
 <div id="beschreibung-vs.-vorhersage" class="section level2">
 <h2><span class="header-section-number">12.2</span> Beschreibung vs. Vorhersage</h2>
 <p>Der primäre Zweck einer Regressionsanalyse ist die Beschreibung (oder Erklärung) der Daten im Sinne einer allgemeinen Beziehung, die sich auf die Grundgesamtheit übertragen lässt, aus der diese Daten entnommen wurden. Da diese Beziehung eine Eigenschaft der Grundgesamtheit ist, sollte diese demnach auch Vorhersagen ermöglichen. Hierbei ist jedoch Vorsicht geboten. Betrachten Sie den Zusammenhang von Jahr und Weltrekordzeit für die in Abbildung <a href="12-regression.html#fig:mile">12.2</a> dargestellten Daten (Meile, Herren). Wenn, wie hier, die Zeit die unabhängige Variable ist, wird die Regression zu einer Form der Trendanalyse, die in diesem Fall eine Verringerung der Rekordzeit mit den Jahren anzeigt. (Die <code>lm()</code> Funktion und ihren Output werden wir weiter unten kennenlernen, hier geht es um die Grafiken.)</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="12-regression.html#cb46-1"></a><span class="co"># Daten laden</span></span>
-<span id="cb46-2"><a href="12-regression.html#cb46-2"></a>mile &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile.csv&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)</span>
-<span id="cb46-3"><a href="12-regression.html#cb46-3"></a><span class="co"># lineares Modell an Daten aus 1. Hälfte des 20. Jahrh. anpassen</span></span>
-<span id="cb46-4"><a href="12-regression.html#cb46-4"></a>mile_fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(seconds <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> mile[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>,])</span>
-<span id="cb46-5"><a href="12-regression.html#cb46-5"></a><span class="co"># Informationen zu Parameterschätzern extrahieren</span></span>
-<span id="cb46-6"><a href="12-regression.html#cb46-6"></a><span class="kw">coef</span>(<span class="kw">summary</span>(mile_fit1))</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="12-regression.html#cb49-1"></a><span class="co"># Daten laden</span></span>
+<span id="cb49-2"><a href="12-regression.html#cb49-2"></a>mile &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile.csv&quot;</span>, <span class="dt">header=</span><span class="ot">TRUE</span>)</span>
+<span id="cb49-3"><a href="12-regression.html#cb49-3"></a><span class="co"># lineares Modell an Daten aus 1. Hälfte des 20. Jahrh. anpassen</span></span>
+<span id="cb49-4"><a href="12-regression.html#cb49-4"></a>mile_fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(seconds <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> mile[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>,])</span>
+<span id="cb49-5"><a href="12-regression.html#cb49-5"></a><span class="co"># Informationen zu Parameterschätzern extrahieren</span></span>
+<span id="cb49-6"><a href="12-regression.html#cb49-6"></a><span class="kw">coef</span>(<span class="kw">summary</span>(mile_fit1))</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
 ## (Intercept) 912.2340   67.90140  13.435 3.615e-08
 ## year         -0.3439    0.03509  -9.798 9.059e-07</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="12-regression.html#cb48-1"></a><span class="co"># lineares Modell an kompletten Datensatz anpassen</span></span>
-<span id="cb48-2"><a href="12-regression.html#cb48-2"></a>mile_fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(seconds <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> mile)</span>
-<span id="cb48-3"><a href="12-regression.html#cb48-3"></a><span class="kw">coef</span>(<span class="kw">summary</span>(mile_fit2))</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="12-regression.html#cb51-1"></a><span class="co"># lineares Modell an kompletten Datensatz anpassen</span></span>
+<span id="cb51-2"><a href="12-regression.html#cb51-2"></a>mile_fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(seconds <span class="op">~</span><span class="st"> </span>year, <span class="dt">data =</span> mile)</span>
+<span id="cb51-3"><a href="12-regression.html#cb51-3"></a><span class="kw">coef</span>(<span class="kw">summary</span>(mile_fit2))</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
 ## (Intercept) 1006.876     21.532   46.76 1.361e-29
 ## year          -0.393      0.011  -35.73 3.780e-26</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="12-regression.html#cb50-1"></a><span class="co"># Modellanpassung für 1. Hälfte des 20. Jahrh. plotten</span></span>
-<span id="cb50-2"><a href="12-regression.html#cb50-2"></a><span class="kw">plot</span>(mile<span class="op">$</span>year[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>], mile<span class="op">$</span>seconds[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>],</span>
-<span id="cb50-3"><a href="12-regression.html#cb50-3"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
-<span id="cb50-4"><a href="12-regression.html#cb50-4"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
-<span id="cb50-5"><a href="12-regression.html#cb50-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
-<span id="cb50-6"><a href="12-regression.html#cb50-6"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit1), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb50-7"><a href="12-regression.html#cb50-7"></a><span class="co"># Extrapolation für 2. Hälfte des 20. Jahrh. plotten</span></span>
-<span id="cb50-8"><a href="12-regression.html#cb50-8"></a><span class="kw">plot</span>(mile<span class="op">$</span>year, mile<span class="op">$</span>seconds,</span>
-<span id="cb50-9"><a href="12-regression.html#cb50-9"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
-<span id="cb50-10"><a href="12-regression.html#cb50-10"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
-<span id="cb50-11"><a href="12-regression.html#cb50-11"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
-<span id="cb50-12"><a href="12-regression.html#cb50-12"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit1), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb50-13"><a href="12-regression.html#cb50-13"></a><span class="co"># Modellanpassung für Gesamtdaten bis 2050 plotten</span></span>
-<span id="cb50-14"><a href="12-regression.html#cb50-14"></a><span class="kw">plot</span>(mile<span class="op">$</span>year, mile<span class="op">$</span>seconds,</span>
-<span id="cb50-15"><a href="12-regression.html#cb50-15"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2050</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
-<span id="cb50-16"><a href="12-regression.html#cb50-16"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
-<span id="cb50-17"><a href="12-regression.html#cb50-17"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
-<span id="cb50-18"><a href="12-regression.html#cb50-18"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit2), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="12-regression.html#cb53-1"></a><span class="co"># Modellanpassung für 1. Hälfte des 20. Jahrh. plotten</span></span>
+<span id="cb53-2"><a href="12-regression.html#cb53-2"></a><span class="kw">plot</span>(mile<span class="op">$</span>year[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>], mile<span class="op">$</span>seconds[mile<span class="op">$</span>year<span class="op">&lt;</span><span class="dv">1950</span>],</span>
+<span id="cb53-3"><a href="12-regression.html#cb53-3"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
+<span id="cb53-4"><a href="12-regression.html#cb53-4"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
+<span id="cb53-5"><a href="12-regression.html#cb53-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
+<span id="cb53-6"><a href="12-regression.html#cb53-6"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit1), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb53-7"><a href="12-regression.html#cb53-7"></a><span class="co"># Extrapolation für 2. Hälfte des 20. Jahrh. plotten</span></span>
+<span id="cb53-8"><a href="12-regression.html#cb53-8"></a><span class="kw">plot</span>(mile<span class="op">$</span>year, mile<span class="op">$</span>seconds,</span>
+<span id="cb53-9"><a href="12-regression.html#cb53-9"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
+<span id="cb53-10"><a href="12-regression.html#cb53-10"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
+<span id="cb53-11"><a href="12-regression.html#cb53-11"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
+<span id="cb53-12"><a href="12-regression.html#cb53-12"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit1), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb53-13"><a href="12-regression.html#cb53-13"></a><span class="co"># Modellanpassung für Gesamtdaten bis 2050 plotten</span></span>
+<span id="cb53-14"><a href="12-regression.html#cb53-14"></a><span class="kw">plot</span>(mile<span class="op">$</span>year, mile<span class="op">$</span>seconds,</span>
+<span id="cb53-15"><a href="12-regression.html#cb53-15"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">1900</span>, <span class="dv">2050</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">260</span>),</span>
+<span id="cb53-16"><a href="12-regression.html#cb53-16"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
+<span id="cb53-17"><a href="12-regression.html#cb53-17"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Jahr&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Weltrekord, Meile, Herren (Sekunden)&quot;</span>)</span>
+<span id="cb53-18"><a href="12-regression.html#cb53-18"></a><span class="kw">abline</span>(<span class="kw">coef</span>(mile_fit2), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:mile"></span>
 <img src="eids_files/figure-html/mile-1.png" alt="Links: Trend des Weltrekords &quot;Meile, Herren&quot; in der ersten Hälfte des 20. Jahrhunderts (Beschreibung). Mitte: Extrapolation des Trends für die zweite Hälfte des 20. Jahrhunderts (Vorhersage). Rechts: Extrapolation des Trends bis zum Jahr 2050 (längere Vorhersage). Nach: @wainer2009" width="33%" /><img src="eids_files/figure-html/mile-2.png" alt="Links: Trend des Weltrekords &quot;Meile, Herren&quot; in der ersten Hälfte des 20. Jahrhunderts (Beschreibung). Mitte: Extrapolation des Trends für die zweite Hälfte des 20. Jahrhunderts (Vorhersage). Rechts: Extrapolation des Trends bis zum Jahr 2050 (längere Vorhersage). Nach: @wainer2009" width="33%" /><img src="eids_files/figure-html/mile-3.png" alt="Links: Trend des Weltrekords &quot;Meile, Herren&quot; in der ersten Hälfte des 20. Jahrhunderts (Beschreibung). Mitte: Extrapolation des Trends für die zweite Hälfte des 20. Jahrhunderts (Vorhersage). Rechts: Extrapolation des Trends bis zum Jahr 2050 (längere Vorhersage). Nach: @wainer2009" width="33%" />
 <p class="caption">
@@ -359,20 +359,20 @@ n \cdot \beta_0=\sum_{i=1}^{n}y_i-\beta_1 \cdot \sum_{i=1}^{n}x_i
 \end{equation}\]</span></p>
 <p><span class="math inline">\(SSX=\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^2\)</span> ist ein Maß für die Varianz der Daten in <span class="math inline">\(x\)</span>-Richtung. <span class="math inline">\(SSXY=\sum_{i=1}^{n}\left(x_i-\bar{x}\right) \cdot \left(y_i-\bar{y}\right)\)</span> ist ein Maß für die Kovarianz der Daten. Es gibt auch <span class="math inline">\(SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2\)</span>, das entsprechend ein Maß für die Varianz der Daten in <span class="math inline">\(y\)</span>-Richtung ist. Gleichung <a href="12-regression.html#eq:b13">(12.13)</a> ist eine exakte Lösung für <span class="math inline">\(\hat\beta_1\)</span>.</p>
 <p>Wir setzen nun Gleichung <a href="12-regression.html#eq:b13">(12.13)</a> in Gleichung <a href="12-regression.html#eq:b04">(12.8)</a> ein und haben eine exakte Lösung für <span class="math inline">\(\hat\beta_0\)</span>. Berechnen wir nun die Parameter für unsere Reisedaten mit der <code>lm()</code> Funktion:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="12-regression.html#cb51-1"></a><span class="co"># lineare Regression der Reisedaten</span></span>
-<span id="cb51-2"><a href="12-regression.html#cb51-2"></a>reise_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(distanz <span class="op">~</span><span class="st"> </span>stationen, <span class="dt">data =</span> reisedat)</span>
-<span id="cb51-3"><a href="12-regression.html#cb51-3"></a><span class="co"># Informationen über geschätzte Parameterwerte ausgeben</span></span>
-<span id="cb51-4"><a href="12-regression.html#cb51-4"></a><span class="kw">coef</span>(<span class="kw">summary</span>(reise_fit))</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="12-regression.html#cb54-1"></a><span class="co"># lineare Regression der Reisedaten</span></span>
+<span id="cb54-2"><a href="12-regression.html#cb54-2"></a>reise_fit &lt;-<span class="st"> </span><span class="kw">lm</span>(distanz <span class="op">~</span><span class="st"> </span>stationen, <span class="dt">data =</span> reisedat)</span>
+<span id="cb54-3"><a href="12-regression.html#cb54-3"></a><span class="co"># Informationen über geschätzte Parameterwerte ausgeben</span></span>
+<span id="cb54-4"><a href="12-regression.html#cb54-4"></a><span class="kw">coef</span>(<span class="kw">summary</span>(reise_fit))</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
 ## (Intercept)   4.9232    1.01874   4.833 7.533e-06
 ## stationen     0.6934    0.05976  11.604 4.641e-18</code></pre>
 <p>In der ersten Spalte (“Estimate”) dieses Outputs finden Sie die Werte der Parameterschätzer, wobei “(Intercept)” für <span class="math inline">\(\beta_0\)</span> steht und “stationen” für <span class="math inline">\(\beta_1\)</span>. Anhand von <span class="math inline">\(\beta_1\)</span> können wir ablesen, dass die Entfernung zwischen zwei Stationen im Mittel 0.7km beträgt. Der Achsenabschnitt <span class="math inline">\(\beta_0\)</span> hat keine direkte Entsprechung.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgerade <span class="math inline">\(y_i=4.9+0.7\cdot x_i+\epsilon_i\)</span>:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="12-regression.html#cb53-1"></a><span class="co"># Modellanpassung plotten</span></span>
-<span id="cb53-2"><a href="12-regression.html#cb53-2"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz,</span>
-<span id="cb53-3"><a href="12-regression.html#cb53-3"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
-<span id="cb53-4"><a href="12-regression.html#cb53-4"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>)</span>
-<span id="cb53-5"><a href="12-regression.html#cb53-5"></a><span class="kw">abline</span>(<span class="kw">coef</span>(reise_fit), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="12-regression.html#cb56-1"></a><span class="co"># Modellanpassung plotten</span></span>
+<span id="cb56-2"><a href="12-regression.html#cb56-2"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz,</span>
+<span id="cb56-3"><a href="12-regression.html#cb56-3"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
+<span id="cb56-4"><a href="12-regression.html#cb56-4"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>)</span>
+<span id="cb56-5"><a href="12-regression.html#cb56-5"></a><span class="kw">abline</span>(<span class="kw">coef</span>(reise_fit), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 </div>
 <div id="signifikanz-der-regression" class="section level2">
 <h2><span class="header-section-number">12.5</span> Signifikanz der Regression</h2>
@@ -442,7 +442,7 @@ Abbildung 12.4: Verteilungsfunktion der F-Verteilung der F-Statistik <span class
 </p>
 </div>
 <p>Für die Regression der Reisedaten ist der p-Wert wesentlich kleiner als das konventionelle Signifikanzniveau <span class="math inline">\(\alpha=0.01\)</span>, daher lehnen wir die die Nullhypothese ab und bezeichnen die Regression als statistisch signifikant. Schauen wir uns die ANOVA-Tabelle fuer das Beispiel an:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="12-regression.html#cb54-1"></a><span class="kw">anova</span>(reise_fit)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="12-regression.html#cb57-1"></a><span class="kw">anova</span>(reise_fit)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: distanz
@@ -546,7 +546,7 @@ Abbildung 12.6: Schema des t-Tests auf Signifikanz der Parameterschätzer. Die T
 </p>
 </div>
 <p>Jetzt verstehen wir auch die restlichen Informationen des Outputs der <code>lm()</code> Funktion (s. oben):</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="12-regression.html#cb56-1"></a><span class="kw">coef</span>(<span class="kw">summary</span>(reise_fit))</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="12-regression.html#cb59-1"></a><span class="kw">coef</span>(<span class="kw">summary</span>(reise_fit))</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
 ## (Intercept)   4.9232    1.01874   4.833 7.533e-06
 ## stationen     0.6934    0.05976  11.604 4.641e-18</code></pre>
@@ -567,9 +567,9 @@ Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Q
 \tag{12.29}
 \end{equation}\]</span></p>
 <p>Rechnen wir <span class="math inline">\(r^2\)</span> und <span class="math inline">\(\bar r^2\)</span> für die Regression der Reisedaten aus:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="12-regression.html#cb58-1"></a><span class="kw">summary</span>(reise_fit)<span class="op">$</span>r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="12-regression.html#cb61-1"></a><span class="kw">summary</span>(reise_fit)<span class="op">$</span>r.squared</span></code></pre></div>
 <pre><code>## [1] 0.6548</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="12-regression.html#cb60-1"></a><span class="kw">summary</span>(reise_fit)<span class="op">$</span>adj.r.squared</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="12-regression.html#cb63-1"></a><span class="kw">summary</span>(reise_fit)<span class="op">$</span>adj.r.squared</span></code></pre></div>
 <pre><code>## [1] 0.6499</code></pre>
 <p>D.h. rund 65% der Varianz in den Entfernungs-Daten wird durch das lineare Modell mit Anzahl Stationen als Prädiktor erklärt.</p>
 <p>Aber was heißt Güte der Modellanpassung? Sind alle Modellannahmen erfüllt? Folgende Annahmen ergeben sich aus der <strong>Maximum-Likelihood-Theorie</strong> (vgl. Schätzen von Verteilungsparametern, Kapitel <a href="08-schaetzen.html#schaetzen">8</a>):</p>
@@ -580,42 +580,42 @@ Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Q
 </ul>
 <p>Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder Generalisierte Lineare Modelle zurückgreifen. Letzteres ist wird im Master <em>Global Change Geography</em> unterrichtet.</p>
 <p>Eine erste nützliche diagnostische Darstellung ist die der Residuen in Serie, d.h. nach Index <span class="math inline">\(i\)</span>, um zu sehen, ob es ein Muster aufgrund des Datenerfassungsprozesses gibt. Für unser Beispiel:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="12-regression.html#cb62-1"></a><span class="co"># Residuen gegen Index plotten</span></span>
-<span id="cb62-2"><a href="12-regression.html#cb62-2"></a><span class="kw">plot</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span>
-<span id="cb62-3"><a href="12-regression.html#cb62-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="12-regression.html#cb65-1"></a><span class="co"># Residuen gegen Index plotten</span></span>
+<span id="cb65-2"><a href="12-regression.html#cb65-2"></a><span class="kw">plot</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span>
+<span id="cb65-3"><a href="12-regression.html#cb65-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 Dieser Datensatz zeigt kein erkennbares Muster, was für eine Unabhängigkeit der Residuen spricht.</p>
 <p>Wir sollten auch die Residuen nach dem modellierten Wert von <span class="math inline">\(y\)</span> plotten, um zu sehen, ob es ein Muster als Funktion der Größenordnung von <span class="math inline">\(y\)</span> gibt:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="12-regression.html#cb63-1"></a><span class="co"># Residuen gegen modellierte Werte von y plotten</span></span>
-<span id="cb63-2"><a href="12-regression.html#cb63-2"></a><span class="kw">plot</span>(<span class="kw">fitted.values</span>(reise_fit),<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span>
-<span id="cb63-3"><a href="12-regression.html#cb63-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="12-regression.html#cb66-1"></a><span class="co"># Residuen gegen modellierte Werte von y plotten</span></span>
+<span id="cb66-2"><a href="12-regression.html#cb66-2"></a><span class="kw">plot</span>(<span class="kw">fitted.values</span>(reise_fit),<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span>
+<span id="cb66-3"><a href="12-regression.html#cb66-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 Diese Grafik zeigt eine leichte Zunahme der Residuenvarianz von links nach rechts, d.h. in Richtung größerer Werte - eine Form der Heteroskedastizität.</p>
 <p>Die Annahme, dass die Residuen normalverteilt sind, kann anhand des QQ-Plots beurteilt werden:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="12-regression.html#cb64-1"></a><span class="kw">qqnorm</span>(<span class="kw">residuals</span>(reise_fit))</span>
-<span id="cb64-2"><a href="12-regression.html#cb64-2"></a><span class="kw">qqline</span>(<span class="kw">residuals</span>(reise_fit))</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="12-regression.html#cb67-1"></a><span class="kw">qqnorm</span>(<span class="kw">residuals</span>(reise_fit))</span>
+<span id="cb67-2"><a href="12-regression.html#cb67-2"></a><span class="kw">qqline</span>(<span class="kw">residuals</span>(reise_fit))</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <p>Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar. Dieses Quantil (nach Standardisierung) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung der Residuen aus (Abbildung <a href="12-regression.html#fig:qq">12.7</a>). Im Fall einer Normalverteilung zum Beispiel, fallen alle Residuen auf eine gerade Linie (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>).</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="12-regression.html#cb65-1"></a><span class="co"># 1) simuliere normalverteilte Daten</span></span>
-<span id="cb65-2"><a href="12-regression.html#cb65-2"></a>x_norm &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb65-3"><a href="12-regression.html#cb65-3"></a><span class="co"># QQ-Plot</span></span>
-<span id="cb65-4"><a href="12-regression.html#cb65-4"></a><span class="kw">qqnorm</span>(x_norm, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">main=</span><span class="st">&#39;normalverteilte Daten&#39;</span>)</span>
-<span id="cb65-5"><a href="12-regression.html#cb65-5"></a><span class="kw">qqline</span>(x_norm)</span>
-<span id="cb65-6"><a href="12-regression.html#cb65-6"></a><span class="co"># 2) simuliere rechtsschiefe Daten</span></span>
-<span id="cb65-7"><a href="12-regression.html#cb65-7"></a>x_right &lt;-<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb65-8"><a href="12-regression.html#cb65-8"></a><span class="co"># QQ-Plot</span></span>
-<span id="cb65-9"><a href="12-regression.html#cb65-9"></a><span class="kw">qqnorm</span>(x_right, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">main=</span><span class="st">&#39;rechtsschiefe Daten&#39;</span>)</span>
-<span id="cb65-10"><a href="12-regression.html#cb65-10"></a><span class="kw">qqline</span>(x_right)</span>
-<span id="cb65-11"><a href="12-regression.html#cb65-11"></a><span class="co"># 3) simuliere linksschiefe Daten</span></span>
-<span id="cb65-12"><a href="12-regression.html#cb65-12"></a>x_left &lt;-<span class="st"> </span><span class="op">-</span>x_right</span>
-<span id="cb65-13"><a href="12-regression.html#cb65-13"></a><span class="co"># QQ-Plot</span></span>
-<span id="cb65-14"><a href="12-regression.html#cb65-14"></a><span class="kw">qqnorm</span>(x_left, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>, <span class="dv">2</span>), <span class="dt">main=</span><span class="st">&#39;linksschiefe Daten&#39;</span>)</span>
-<span id="cb65-15"><a href="12-regression.html#cb65-15"></a><span class="kw">qqline</span>(x_left)</span>
-<span id="cb65-16"><a href="12-regression.html#cb65-16"></a><span class="co"># 4) simuliere Verteilung mit flachen Flanken</span></span>
-<span id="cb65-17"><a href="12-regression.html#cb65-17"></a>x_thick &lt;-<span class="st"> </span><span class="kw">rcauchy</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb65-18"><a href="12-regression.html#cb65-18"></a><span class="co"># QQ-Plot</span></span>
-<span id="cb65-19"><a href="12-regression.html#cb65-19"></a><span class="kw">qqnorm</span>(x_thick, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>), <span class="dt">main=</span><span class="st">&#39;Verteilung mit flachen Flanken&#39;</span>)</span>
-<span id="cb65-20"><a href="12-regression.html#cb65-20"></a><span class="kw">qqline</span>(x_thick)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="12-regression.html#cb68-1"></a><span class="co"># 1) simuliere normalverteilte Daten</span></span>
+<span id="cb68-2"><a href="12-regression.html#cb68-2"></a>x_norm &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb68-3"><a href="12-regression.html#cb68-3"></a><span class="co"># QQ-Plot</span></span>
+<span id="cb68-4"><a href="12-regression.html#cb68-4"></a><span class="kw">qqnorm</span>(x_norm, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">main=</span><span class="st">&#39;normalverteilte Daten&#39;</span>)</span>
+<span id="cb68-5"><a href="12-regression.html#cb68-5"></a><span class="kw">qqline</span>(x_norm)</span>
+<span id="cb68-6"><a href="12-regression.html#cb68-6"></a><span class="co"># 2) simuliere rechtsschiefe Daten</span></span>
+<span id="cb68-7"><a href="12-regression.html#cb68-7"></a>x_right &lt;-<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb68-8"><a href="12-regression.html#cb68-8"></a><span class="co"># QQ-Plot</span></span>
+<span id="cb68-9"><a href="12-regression.html#cb68-9"></a><span class="kw">qqnorm</span>(x_right, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">6</span>), <span class="dt">main=</span><span class="st">&#39;rechtsschiefe Daten&#39;</span>)</span>
+<span id="cb68-10"><a href="12-regression.html#cb68-10"></a><span class="kw">qqline</span>(x_right)</span>
+<span id="cb68-11"><a href="12-regression.html#cb68-11"></a><span class="co"># 3) simuliere linksschiefe Daten</span></span>
+<span id="cb68-12"><a href="12-regression.html#cb68-12"></a>x_left &lt;-<span class="st"> </span><span class="op">-</span>x_right</span>
+<span id="cb68-13"><a href="12-regression.html#cb68-13"></a><span class="co"># QQ-Plot</span></span>
+<span id="cb68-14"><a href="12-regression.html#cb68-14"></a><span class="kw">qqnorm</span>(x_left, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>, <span class="dv">2</span>), <span class="dt">main=</span><span class="st">&#39;linksschiefe Daten&#39;</span>)</span>
+<span id="cb68-15"><a href="12-regression.html#cb68-15"></a><span class="kw">qqline</span>(x_left)</span>
+<span id="cb68-16"><a href="12-regression.html#cb68-16"></a><span class="co"># 4) simuliere Verteilung mit flachen Flanken</span></span>
+<span id="cb68-17"><a href="12-regression.html#cb68-17"></a>x_thick &lt;-<span class="st"> </span><span class="kw">rcauchy</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb68-18"><a href="12-regression.html#cb68-18"></a><span class="co"># QQ-Plot</span></span>
+<span id="cb68-19"><a href="12-regression.html#cb68-19"></a><span class="kw">qqnorm</span>(x_thick, <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>), <span class="dt">main=</span><span class="st">&#39;Verteilung mit flachen Flanken&#39;</span>)</span>
+<span id="cb68-20"><a href="12-regression.html#cb68-20"></a><span class="kw">qqline</span>(x_thick)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:qq"></span>
 <img src="eids_files/figure-html/qq-1.png" alt="Charakteristische Formen des QQ-Plots und was diese in unserem Fall für die Residuen bedeuten. Eine einfache Verteilung mit steileren Flanken als die der Normalverteilung konnte ich nicht finden. Dieser Fall würde ein S-Form aufweisen, wie die Variante mit flachen Flanken, nur an der Diagonale gespiegelt." width="50%" /><img src="eids_files/figure-html/qq-2.png" alt="Charakteristische Formen des QQ-Plots und was diese in unserem Fall für die Residuen bedeuten. Eine einfache Verteilung mit steileren Flanken als die der Normalverteilung konnte ich nicht finden. Dieser Fall würde ein S-Form aufweisen, wie die Variante mit flachen Flanken, nur an der Diagonale gespiegelt." width="50%" /><img src="eids_files/figure-html/qq-3.png" alt="Charakteristische Formen des QQ-Plots und was diese in unserem Fall für die Residuen bedeuten. Eine einfache Verteilung mit steileren Flanken als die der Normalverteilung konnte ich nicht finden. Dieser Fall würde ein S-Form aufweisen, wie die Variante mit flachen Flanken, nur an der Diagonale gespiegelt." width="50%" /><img src="eids_files/figure-html/qq-4.png" alt="Charakteristische Formen des QQ-Plots und was diese in unserem Fall für die Residuen bedeuten. Eine einfache Verteilung mit steileren Flanken als die der Normalverteilung konnte ich nicht finden. Dieser Fall würde ein S-Form aufweisen, wie die Variante mit flachen Flanken, nur an der Diagonale gespiegelt." width="50%" />
 <p class="caption">
@@ -623,9 +623,9 @@ Abbildung 12.7: Charakteristische Formen des QQ-Plots und was diese in unserem F
 </p>
 </div>
 <p>In unserem Beispiel deutet der QQ-Plot darauf hin, dass die Flanken der Residuenverteilung flacher als bei einer Normalverteilung abfallen, vermutlich auf aufgrund der o.g. Heteroskedastizität. Das können wir beim Histogramm der Residuen nicht so gut sehen da die Vergleichverteilung fehlt:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="12-regression.html#cb66-1"></a><span class="co"># Histogramm der Residuen plotten</span></span>
-<span id="cb66-2"><a href="12-regression.html#cb66-2"></a><span class="kw">hist</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="12-regression.html#cb69-1"></a><span class="co"># Histogramm der Residuen plotten</span></span>
+<span id="cb69-2"><a href="12-regression.html#cb69-2"></a><span class="kw">hist</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 Die Heteroskedastizität würde man angehen, indem man mit einem Generalisierten Linearen Modell eine andere Residuenverteilung als die Normalverteilung annimmt. Das führt aber im Rahmen dieses Kurses zu weit. Es bleibt somit festzuhalten, dass das Regressionsproblem mit den hier behandelten Methoden noch nicht vollständig gelöst ist.</p>
 
 </div>
