@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-01-05" />
+<meta name="date" content="2021-01-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,14 +33,14 @@
   
 <link rel="prev" href="08-schaetzen.html"/>
 <link rel="next" href="10-regression.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -50,7 +50,7 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/accessible-code-block/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -173,40 +173,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="tests" class="section level1">
 <h1><span class="header-section-number">Kapitel 9</span> Statistische Tests</h1>
-<p>Wie wir in Kapitel <a href="08-schaetzen.html#schaetzen">8</a> gelernt haben geht es in der schließenden Statistik um die Verdichtung der Informationen in einer Stichprobe in Form von Stichprobenfunktionen, mit denen wir <em>bestimmte Parameter der Grundgesamtheit schätzen</em> (vgl. <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>, Abb. 14.1, S. 212). Waehrend es sich im Fall von Verteilungsparametern bei den Stichprobenfunktionen v.a. um den Mittelwert und die Standardabweichung handelt, sind die Stichprobenfunktionen im Fall von statistischen Tests sogenannte <strong>Teststatistiken</strong>, die die Informationen in der Stichprobe verdichten.</p>
-<p>Wir werden das vorliegende Kapitel ueber die naechsten drei Wochen lesen. Dabei werden wir anhand der folgenden neun Beispiele vier verschiedene Tests kennenlernen:</p>
+<p>Wie wir in Kapitel <a href="08-schaetzen.html#schaetzen">8</a> gelernt haben geht es in der schließenden Statistik um die Verdichtung der Informationen in einer Stichprobe in Form von Stichprobenfunktionen, mit denen wir <em>bestimmte Parameter der Grundgesamtheit schätzen</em> (vgl. <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>, Abb. 14.1, S. 212). Während es sich im Fall von Verteilungsparametern bei den Stichprobenfunktionen v.a. um den Mittelwert und die Standardabweichung handelt, sind die Stichprobenfunktionen im Fall von statistischen Tests sogenannte <strong>Teststatistiken</strong>, die die Informationen in der Stichprobe verdichten.</p>
+<p>Wir werden das vorliegende Kapitel über die nächsten drei Wochen lesen. Dabei werden wir anhand der folgenden neun Beispiele vier verschiedene Tests kennenlernen:</p>
 <ul>
-<li><strong>Beispiel 1</strong>: Laut <a href="https://www.personalwirtschaft.de/der-job-hr/arbeitswelt/artikel/pendelstrecken-werden-immer-laenger.html">dieser Umfrage</a> hält jeder zweite Berufspendler eine durchschnittliche Fahrtzeit von bis zu 60 min pro Strecke für akzeptabel. Im Wintersemester 2019/20 haben wir die Anreisezeiten der Studierenden dieses Kurses abgefragt.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Ein Histogramm dieser Stichprobe sehen Sie in Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>. Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>kleiner</em> als der Vergleichswert <span class="math inline">\(\mu_0=60\)</span> aus der Studie? Beziehungsweise, ist der <em>Unterschied statistisch signifikant</em>, wenn wir die Streuung der Stichprobe berücksichtigen? Die Frage “kleiner als” wenn es um einen Mittelwert geht beantwortet der sogenannte <strong>linksseitige Einstichproben-t-Test</strong> (Kapitel <a href="09-tests.html#ttest1">9.2.1</a>).</li>
-<li><strong>Beispiel 2</strong>: Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>ungleich</em> dem Vergleichswert <span class="math inline">\(\mu_0=60\)</span> aus der Studie? Wenn wir die Frage so formulieren brauchen wir einen sogenannten <strong>zweiseitigen Einstichproben-t-Test</strong> (Kapitel <a href="09-tests.html#ttest1">9.2.1</a>).</li>
-<li><strong>Beispiel 3</strong>: Laut <a href="https://www.personalwirtschaft.de/der-job-hr/arbeitswelt/artikel/pendelstrecken-werden-immer-laenger.html">derselben Umfrage</a> nehmen 21% der Pendler eine Fahrtzeit zwischen 30 und 45 min in Kauf. Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>groesser</em> als der Vergleichswert <span class="math inline">\(\mu_0=45\)</span> aus der Studie? Beziehungsweise, ist der <em>Unterschied statistisch signifikant</em>, wenn wir die Streuung der Stichprobe berücksichtigen? Die Frage “groesser als” beantwortet der <strong>rechtsseitige Einstichproben-t-Test</strong> (Kapitel <a href="09-tests.html#ttest1">9.2.1</a>).<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></li>
-<li><strong>Beispiel 4</strong>: Die Stichprobe wurde zufällig geteilt (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>). Sind die mit den neuen Stichprobenmitteln <span class="math inline">\(\bar x_1=50.4\)</span> und <span class="math inline">\(\bar x_2=51.2\)</span> geschätzten Mittelwerte <span class="math inline">\(\mu_1\)</span> und <span class="math inline">\(\mu_2\)</span> ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen? Diese Frage beantwortet der sogenannte <strong>Zweistichproben-t-Test (zweiseitig)</strong> (Kapitel <a href="09-tests.html#ttest2">9.2.2</a>).</li>
-<li><strong>Beispiel 5</strong> <span class="citation">(Dormann <a href="#ref-dormann2013" role="doc-biblioref">2013</a>)</span>: Auf den Nord- und Suedseiten einer Stichprobe von Baeumen wurde jeweils die Anzahl Moosarten bestimmt (Abbildung <a href="09-tests.html#fig:fmoose">9.3</a>). Ist die Anzahl Moosarten auf der Nord- und Südseite <em>derselben</em> Bäume unterschiedlich? Dafuer brauchen wir den <strong>gepaarten Zweistichproben-t-Test (zweiseitig)</strong> (Kapitel <a href="09-tests.html#ttest2gepaart">9.2.3</a>).</li>
-<li><strong>Beispiel 6</strong>: Zurueck zu den beiden neuen Stichproben aus Beispiel 4 (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>). Ist die Varianz <span class="math inline">\(\sigma_2^2\)</span> (gegeben <span class="math inline">\(s_2^2=384\)</span>) groesser als die Varianz <span class="math inline">\(\sigma_1^2\)</span> (gegeben <span class="math inline">\(s_1^2=352\)</span>)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen? Diese Frage beantwortet der sogenannte <strong>F-Test (rechtsseitig)</strong> (Kapitel <a href="09-tests.html#ftest">9.5</a>).</li>
-<li><strong>Beispiel 7</strong>: Entstammt die Stichprobe der Reisezeit (Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>) einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt. Diese Frage beantwortet der sogenannte <strong>Einstichproben-Kolmogorow-Smirnow-Test</strong> (Kapitel <a href="09-tests.html#kstest">9.6</a>).</li>
-<li><strong>Beispiel 8</strong>: Entstammen die beiden Teilstichproben der Reisezeit (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>) einer gemeinsamen Verteilung? Beziehungsweise, koennen wir das statistisch nachvollziehen? Dafuer brauchen wir den <strong>Zweistichproben-Kolmogorow-Smirnow-Test</strong> (Kapitel <a href="09-tests.html#kstest">9.6</a>).</li>
-<li><strong>Beispiel 9</strong>: Zurueck zum Volksentscheid Tegel aus Kapitel <a href="05-korrelation.html#korrelation">5</a>. Gibt es einen Zusammenhang zwischen “Bezirk” und “Votum” beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant? Diese Frage beantwortet der sogenannte <strong>Chi-Quadrat-Test</strong> (Kapitel <a href="09-tests.html#chi2test">9.7</a>).</li>
+<li><strong>Beispiel 1</strong>: Laut <a href="https://www.personalwirtschaft.de/der-job-hr/arbeitswelt/artikel/pendelstrecken-werden-immer-laenger.html">dieser Umfrage</a> hält jeder zweite Berufspendler eine durchschnittliche Fahrtzeit von bis zu 60 min pro Strecke für akzeptabel. Im Wintersemester 2019/20 haben wir die Anreisezeiten der Studierenden dieses Kurses abgefragt.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> Ein Histogramm dieser Stichprobe sehen Sie in Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>. Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>kleiner</em> als der Vergleichswert <span class="math inline">\(\mu_0=60\)</span> aus der Studie? Beziehungsweise, ist der <em>Unterschied statistisch signifikant</em>, wenn wir die Streuung der Stichprobe berücksichtigen? Die Frage “kleiner als” wenn es um einen Mittelwert geht beantwortet der sogenannte <strong>linksseitige Einstichproben-t-Test</strong> (Kapitel <a href="09-tests.html#ttest1">9.2.1</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:freisezeit"></span>
-<img src="eids_files/figure-html/freisezeit-1.png" alt="Histogramm des Merkmals &quot;Anreisezeit&quot; der Reisedaten aus dem Wintersemester 2019/20. Die vertikale Linie markiert den Mittelwert von 50.8 min." width="80%" />
+<img src="eids_files/figure-html/freisezeit-1.png" alt="Histogramm des Merkmals &quot;Anreisezeit&quot; der Reisedaten aus dem Wintersemester 2019/20. Die vertikale Linie markiert den Mittelwert von 50.8 min." width="50%" />
 <p class="caption">
 Abbildung 9.1: Histogramm des Merkmals “Anreisezeit” der Reisedaten aus dem Wintersemester 2019/20. Die vertikale Linie markiert den Mittelwert von 50.8 min.
 </p>
 </div>
+<ul>
+<li><strong>Beispiel 2</strong>: Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>ungleich</em> dem Vergleichswert <span class="math inline">\(\mu_0=60\)</span> aus der Studie? Wenn wir die Frage so formulieren brauchen wir einen sogenannten <strong>zweiseitigen Einstichproben-t-Test</strong> (Kapitel <a href="09-tests.html#ttest1">9.2.1</a>).</li>
+<li><strong>Beispiel 3</strong>: Laut <a href="https://www.personalwirtschaft.de/der-job-hr/arbeitswelt/artikel/pendelstrecken-werden-immer-laenger.html">derselben Umfrage</a> nehmen 21% der Pendler eine Fahrtzeit zwischen 30 und 45 min in Kauf. Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>größer</em> als der Vergleichswert <span class="math inline">\(\mu_0=45\)</span> aus der Studie? Beziehungsweise, ist der <em>Unterschied statistisch signifikant</em>, wenn wir die Streuung der Stichprobe berücksichtigen? Die Frage “größer als” beantwortet der <strong>rechtsseitige Einstichproben-t-Test</strong> (Kapitel <a href="09-tests.html#ttest1">9.2.1</a>).<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></li>
+<li><strong>Beispiel 4</strong>: Die Stichprobe wurde zufällig geteilt (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>). Sind die mit den neuen Stichprobenmitteln <span class="math inline">\(\bar x_1=50.4\)</span> und <span class="math inline">\(\bar x_2=51.2\)</span> geschätzten Mittelwerte <span class="math inline">\(\mu_1\)</span> und <span class="math inline">\(\mu_2\)</span> ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen? Diese Frage beantwortet der sogenannte <strong>Zweistichproben-t-Test (zweiseitig)</strong> (Kapitel <a href="09-tests.html#ttest2">9.2.2</a>).</li>
+</ul>
 <div class="figure" style="text-align: center"><span id="fig:freisezeit2"></span>
-<img src="eids_files/figure-html/freisezeit2-1.png" alt="Histogramme des Merkmals &quot;Anreisezeit&quot; der Reisedaten aus dem Wintersemester 2019/20. Die Stichprobe wurde zufaellig geteilt. Die vertikalen Linien markieren die Mittelwerte $\bar x_1=50.4$ (links) und $\bar x_2=51.2$ (rechts). Die Varianzen sind $s_1^2=352$ und $s_2^2=384$." width="50%" /><img src="eids_files/figure-html/freisezeit2-2.png" alt="Histogramme des Merkmals &quot;Anreisezeit&quot; der Reisedaten aus dem Wintersemester 2019/20. Die Stichprobe wurde zufaellig geteilt. Die vertikalen Linien markieren die Mittelwerte $\bar x_1=50.4$ (links) und $\bar x_2=51.2$ (rechts). Die Varianzen sind $s_1^2=352$ und $s_2^2=384$." width="50%" />
+<img src="eids_files/figure-html/freisezeit2-1.png" alt="Histogramme des Merkmals &quot;Anreisezeit&quot; der Reisedaten aus dem Wintersemester 2019/20. Die Stichprobe wurde zufällig geteilt. Die vertikalen Linien markieren die Mittelwerte $\bar x_1=50.4$ (links) und $\bar x_2=51.2$ (rechts). Die Varianzen sind $s_1^2=352$ und $s_2^2=384$." width="50%" /><img src="eids_files/figure-html/freisezeit2-2.png" alt="Histogramme des Merkmals &quot;Anreisezeit&quot; der Reisedaten aus dem Wintersemester 2019/20. Die Stichprobe wurde zufällig geteilt. Die vertikalen Linien markieren die Mittelwerte $\bar x_1=50.4$ (links) und $\bar x_2=51.2$ (rechts). Die Varianzen sind $s_1^2=352$ und $s_2^2=384$." width="50%" />
 <p class="caption">
-Abbildung 9.2: Histogramme des Merkmals “Anreisezeit” der Reisedaten aus dem Wintersemester 2019/20. Die Stichprobe wurde zufaellig geteilt. Die vertikalen Linien markieren die Mittelwerte <span class="math inline">\(\bar x_1=50.4\)</span> (links) und <span class="math inline">\(\bar x_2=51.2\)</span> (rechts). Die Varianzen sind <span class="math inline">\(s_1^2=352\)</span> und <span class="math inline">\(s_2^2=384\)</span>.
+Abbildung 9.2: Histogramme des Merkmals “Anreisezeit” der Reisedaten aus dem Wintersemester 2019/20. Die Stichprobe wurde zufällig geteilt. Die vertikalen Linien markieren die Mittelwerte <span class="math inline">\(\bar x_1=50.4\)</span> (links) und <span class="math inline">\(\bar x_2=51.2\)</span> (rechts). Die Varianzen sind <span class="math inline">\(s_1^2=352\)</span> und <span class="math inline">\(s_2^2=384\)</span>.
 </p>
 </div>
+<ul>
+<li><strong>Beispiel 5</strong> <span class="citation">(Dormann <a href="#ref-dormann2013" role="doc-biblioref">2013</a>)</span>: Auf den Nord- und Südseiten einer Stichprobe von Bäumen wurde jeweils die Anzahl Moosarten bestimmt (Abbildung <a href="09-tests.html#fig:fmoose">9.3</a>). Ist die Anzahl Moosarten auf der Nord- und Südseite <em>derselben</em> Bäume unterschiedlich? Dafür brauchen wir den <strong>gepaarten Zweistichproben-t-Test (zweiseitig)</strong> (Kapitel <a href="09-tests.html#ttest2gepaart">9.2.4</a>).</li>
+</ul>
 <div class="figure" style="text-align: center"><span id="fig:fmoose"></span>
-<img src="eids_files/figure-html/fmoose-1.png" alt="Verteilung der Anzahl Moosarten auf der Suedseite (links) und Nordseite (rechts) derselben Baeume. Daten aus: @dormann2013." width="50%" /><img src="eids_files/figure-html/fmoose-2.png" alt="Verteilung der Anzahl Moosarten auf der Suedseite (links) und Nordseite (rechts) derselben Baeume. Daten aus: @dormann2013." width="50%" />
+<img src="eids_files/figure-html/fmoose-1.png" alt="Verteilung der Anzahl Moosarten auf der Südseite (links) und Nordseite (rechts) derselben Bäume. Daten aus: @dormann2013." width="50%" /><img src="eids_files/figure-html/fmoose-2.png" alt="Verteilung der Anzahl Moosarten auf der Südseite (links) und Nordseite (rechts) derselben Bäume. Daten aus: @dormann2013." width="50%" />
 <p class="caption">
-Abbildung 9.3: Verteilung der Anzahl Moosarten auf der Suedseite (links) und Nordseite (rechts) derselben Baeume. Daten aus: <span class="citation">Dormann (<a href="#ref-dormann2013" role="doc-biblioref">2013</a>)</span>.
+Abbildung 9.3: Verteilung der Anzahl Moosarten auf der Südseite (links) und Nordseite (rechts) derselben Bäume. Daten aus: <span class="citation">Dormann (<a href="#ref-dormann2013" role="doc-biblioref">2013</a>)</span>.
 </p>
 </div>
+<ul>
+<li><strong>Beispiel 6</strong>: Zurück zu den beiden neuen Stichproben aus Beispiel 4 (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>). Ist die Varianz <span class="math inline">\(\sigma_2^2\)</span> (gegeben <span class="math inline">\(s_2^2=384\)</span>) größer als die Varianz <span class="math inline">\(\sigma_1^2\)</span> (gegeben <span class="math inline">\(s_1^2=352\)</span>)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen? Diese Frage beantwortet der sogenannte <strong>F-Test (rechtsseitig)</strong> (Kapitel <a href="09-tests.html#ftest">9.4</a>).</li>
+<li><strong>Beispiel 7</strong>: Entstammt die Stichprobe der Reisezeit (Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>) einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt. Diese Frage beantwortet der sogenannte <strong>Einstichproben-Kolmogorow-Smirnow-Test</strong> (Kapitel <a href="09-tests.html#kstest">9.5</a>).</li>
+<li><strong>Beispiel 8</strong>: Entstammen die beiden Teilstichproben der Reisezeit (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>) einer gemeinsamen Verteilung? Beziehungsweise, können wir das statistisch nachvollziehen? Dafür brauchen wir den <strong>Zweistichproben-Kolmogorow-Smirnow-Test</strong> (Kapitel <a href="09-tests.html#kstest">9.5</a>).</li>
+<li><strong>Beispiel 9</strong>: Zurück zum Volksentscheid Tegel aus Kapitel <a href="05-korrelation.html#korrelation">5</a>. Gibt es einen Zusammenhang zwischen “Bezirk” und “Votum” beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant? Diese Frage beantwortet der sogenannte <strong>Chi-Quadrat-Test</strong> (Kapitel <a href="09-tests.html#chi2test">9.6</a>).</li>
+</ul>
 <div id="grundprinzipien-statistischer-tests" class="section level2">
 <h2><span class="header-section-number">9.1</span> Grundprinzipien statistischer Tests</h2>
-<p>Die folgenden Prinzipien liegen allen statistischen Tests zugrunde, wobei wir vieles am Beispiel des t-Tests demonstrieren, der dann in Kapitel <a href="09-tests.html#ttest">9.2</a> vollstaendig behandelt wird.</p>
+<p>Die folgenden Prinzipien liegen allen statistischen Tests zugrunde, wobei wir vieles am Beispiel des t-Tests demonstrieren, der dann in Kapitel <a href="09-tests.html#ttest">9.2</a> vollständig behandelt wird.</p>
 <div id="nullhypothese-und-alternativhypothese" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Nullhypothese und Alternativhypothese</h3>
 <p>Das Formulieren von Hypothesen ist die formale Vorgehensweise, Fragestellungen wie die oben genannten Beispiele statistisch zu übersetzen.</p>
@@ -242,164 +248,362 @@ Abbildung 9.3: Verteilung der Anzahl Moosarten auf der Suedseite (links) und Nor
 t_s=\frac{\hat\mu-\mu_0}{s_{\hat\mu}}\sim t_{n-1}
 \tag{9.1}
 \end{equation}\]</span></p>
-<p><span class="math inline">\(\hat\mu\)</span> ist der Mittelwertschaetzer; in Bsp. 1 <span class="math inline">\(\hat\mu=\bar x=50.8\)</span>. <span class="math inline">\(\mu_0\)</span> ist der Wert, mit dem wir den Schätzer vergleichen; in Bsp. 1 <span class="math inline">\(\mu_0=60\)</span>. <span class="math inline">\(s_{\hat\mu}\)</span> ist der Standardfehler des Mittelwertschaetzers. Ist die Grundgesamtheit normalverteilt, dann ist der so standardisierte Schätzer des Mittelwertes (die Teststatistik <span class="math inline">\(t_s\)</span>) bei wiederholtem Stichprobenziehen t-verteilt mit <span class="math inline">\(n-1\)</span> Freiheitsgraden (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>).<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p><span class="math inline">\(\hat\mu\)</span> ist der Mittelwertschätzer; in Bsp. 1 <span class="math inline">\(\hat\mu=\bar x=50.8\)</span>. <span class="math inline">\(\mu_0\)</span> ist der Wert, mit dem wir den Schätzer vergleichen; in Bsp. 1 <span class="math inline">\(\mu_0=60\)</span>. <span class="math inline">\(s_{\hat\mu}\)</span> ist der Standardfehler des Mittelwertschätzers. Ist die Grundgesamtheit normalverteilt, dann ist der so standardisierte Schätzer des Mittelwertes (die Teststatistik <span class="math inline">\(t_s\)</span>) bei wiederholtem Stichprobenziehen t-verteilt mit <span class="math inline">\(n-1\)</span> Freiheitsgraden (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>).<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
 </div>
 <div id="was-genau-getestet-wird" class="section level3">
 <h3><span class="header-section-number">9.1.4</span> Was genau getestet wird</h3>
-<p>Wenn die Teststatistik nahe dem Zentrum der Verteilung ist, die unter der Nullhypothese zu erwarten ist, d.h. in einem Bereich hoher Wahrscheinlichkeit, dann lehnen wir die Nullhypothese <em>nicht</em> ab. In Abbildung <a href="09-tests.html#fig:testprinzip">9.4</a> ist das fuer die Teststatistik <span class="math inline">\(t_s\)</span> in blau und die t-Verteilung dargestellt. Im Bsp. 2 würden wir in so einem Fall bis auf weiteres schließen, dass <span class="math inline">\(\mu\)</span> (gegeben <span class="math inline">\(\bar x=50.8\)</span>) gleich <span class="math inline">\(\mu_0=60\)</span> ist.</p>
-<p>Ist die Teststatistik dagegen in den Extremen der Verteilung, d.h. in einem Bereich geringer Wahrscheinlichkeit, dann lehnen wir die Nullhypothese ab. In Abbildung <a href="09-tests.html#fig:testprinzip">9.4</a> ist das mit den roten Pfeilen verdeutlicht. Im Bsp. 2 würden wir in so einem Fall schließen, dass <span class="math inline">\(\mu\)</span> (gegeben <span class="math inline">\(\bar x=50.8\)</span>) ungleich <span class="math inline">\(\mu_0=60\)</span> ist. Das ist in dem Beispiel tatsaechlich das Ergebnis - wie wir noch sehen werden.</p>
+<p>Wenn die Teststatistik nahe dem Zentrum der Verteilung ist, die unter der Nullhypothese zu erwarten ist, d.h. in einem Bereich hoher Wahrscheinlichkeit, dann lehnen wir die Nullhypothese <em>nicht</em> ab. In Abbildung <a href="09-tests.html#fig:testprinzip">9.4</a> ist das für die Teststatistik <span class="math inline">\(t_s\)</span> in blau und die t-Verteilung dargestellt. Im Bsp. 2 würden wir in so einem Fall bis auf weiteres schließen, dass <span class="math inline">\(\mu\)</span> (gegeben <span class="math inline">\(\bar x=50.8\)</span>) gleich <span class="math inline">\(\mu_0=60\)</span> ist.</p>
+<p>Ist die Teststatistik dagegen in den Extremen der Verteilung, d.h. in einem Bereich geringer Wahrscheinlichkeit, dann lehnen wir die Nullhypothese ab. In Abbildung <a href="09-tests.html#fig:testprinzip">9.4</a> ist das mit den roten Pfeilen verdeutlicht. Im Bsp. 2 würden wir in so einem Fall schließen, dass <span class="math inline">\(\mu\)</span> (gegeben <span class="math inline">\(\bar x=50.8\)</span>) ungleich <span class="math inline">\(\mu_0=60\)</span> ist. Das ist in dem Beispiel tatsächlich das Ergebnis - wie wir noch sehen werden.</p>
 <div class="figure" style="text-align: center"><span id="fig:testprinzip"></span>
-<img src="eids_files/figure-html/testprinzip-1.png" alt="Grundprinzip des statistischen Testens, hier dargestellt fuer einen konstruierten t-Test: Verteilungsfunktion der t-Verteilung mit 97 Freiheitsgraden, mit Teststatistik $t_s$ (blau) im Zentrum der Verteilung, d.h. im Bereich hoher Wahrscheinlichkeit unter der Nullhypothese. Wir lehnen die Nullhypothese _nicht_ ab. Waere die Teststatistik dagegen in den Extremen der Verteilung (mit roten Pfeilen verdeutlicht), waere sie im Bereich geringer Wahrscheinlichkeit unter der Nullhypothese. In dem Fall lehnen wir die Nulhypothese ab." width="80%" />
+<img src="eids_files/figure-html/testprinzip-1.png" alt="Grundprinzip des statistischen Testens, hier dargestellt für einen konstruierten t-Test: Verteilungsfunktion der t-Verteilung mit 97 Freiheitsgraden, mit Teststatistik $t_s$ (blau) im Zentrum der Verteilung, d.h. im Bereich hoher Wahrscheinlichkeit unter der Nullhypothese. Wir lehnen die Nullhypothese _nicht_ ab. Wäre die Teststatistik dagegen in den Extremen der Verteilung (mit roten Pfeilen verdeutlicht), wäre sie im Bereich geringer Wahrscheinlichkeit unter der Nullhypothese. In dem Fall lehnen wir die Nulhypothese ab." width="80%" />
 <p class="caption">
-Abbildung 9.4: Grundprinzip des statistischen Testens, hier dargestellt fuer einen konstruierten t-Test: Verteilungsfunktion der t-Verteilung mit 97 Freiheitsgraden, mit Teststatistik <span class="math inline">\(t_s\)</span> (blau) im Zentrum der Verteilung, d.h. im Bereich hoher Wahrscheinlichkeit unter der Nullhypothese. Wir lehnen die Nullhypothese <em>nicht</em> ab. Waere die Teststatistik dagegen in den Extremen der Verteilung (mit roten Pfeilen verdeutlicht), waere sie im Bereich geringer Wahrscheinlichkeit unter der Nullhypothese. In dem Fall lehnen wir die Nulhypothese ab.
+Abbildung 9.4: Grundprinzip des statistischen Testens, hier dargestellt für einen konstruierten t-Test: Verteilungsfunktion der t-Verteilung mit 97 Freiheitsgraden, mit Teststatistik <span class="math inline">\(t_s\)</span> (blau) im Zentrum der Verteilung, d.h. im Bereich hoher Wahrscheinlichkeit unter der Nullhypothese. Wir lehnen die Nullhypothese <em>nicht</em> ab. Wäre die Teststatistik dagegen in den Extremen der Verteilung (mit roten Pfeilen verdeutlicht), wäre sie im Bereich geringer Wahrscheinlichkeit unter der Nullhypothese. In dem Fall lehnen wir die Nulhypothese ab.
 </p>
 </div>
 <blockquote>
-<p>Beachte: Bei der zweiseitigen Version des Tests schauen wir auf beiden Seiten der Verteilung (beide Extreme), waehrend wir bei dem linksseitigen Test nur auf die linke und bei dem rechtsseitigen Test nur auf die rechte Seite schauen. Auf der linken Seite von Abbildung <a href="09-tests.html#fig:testprinzip">9.4</a> befinden wir uns mit der Teststatistik <span class="math inline">\(t_s\)</span> wenn <span class="math inline">\(\hat\mu&lt;\mu_0\)</span>, d.h. wir testen kleiner/nicht kleiner. Auf der rechten Seite befinden wir uns wenn <span class="math inline">\(\hat\mu&gt;\mu_0\)</span>, d.h. wir testen groesser/nicht groesser.</p>
+<p>Beachte: Bei der zweiseitigen Version des Tests schauen wir auf beiden Seiten der Verteilung (beide Extreme), während wir bei dem linksseitigen Test nur auf die linke und bei dem rechtsseitigen Test nur auf die rechte Seite schauen. Auf der linken Seite von Abbildung <a href="09-tests.html#fig:testprinzip">9.4</a> befinden wir uns mit der Teststatistik <span class="math inline">\(t_s\)</span> wenn <span class="math inline">\(\hat\mu&lt;\mu_0\)</span>, d.h. wir testen kleiner/nicht kleiner. Auf der rechten Seite befinden wir uns wenn <span class="math inline">\(\hat\mu&gt;\mu_0\)</span>, d.h. wir testen größer/nicht größer.</p>
 </blockquote>
 </div>
 </div>
 <div id="ttest" class="section level2">
 <h2><span class="header-section-number">9.2</span> t-Test (Vergleich von Mittelwerten)</h2>
-<p>Jetzt haben wir schon viel ueber den t-Test gehoert; er ist dazu da, <em>Mittelwerte zu vergleichen</em>. Wenn wir den Mittelwert einer Stichprobe gegen einen Vergleichswert testen dann ist das der <strong>Einstichproben-t-Test</strong>. Wenn wir die Mittelwerte zweier Stichproben vergleichen dann ist das der <strong>Zweistichproben-t-Test</strong>. Wenn die beiden Stichproben <em>gepaart</em> sind, d.h. wenn die Merkmalswerte jeweils fuer <em>die selbe statistische Einheit</em> erhoben wurden, dann spricht man vom <strong>gepaarten Zweistichproben-t-Test</strong>. Die Teststatistik ist in allen diesen Faellen aehnlich. Schauen wir uns nun die Varianten des t-Tests anhand der Beispiele an.</p>
+<p>Jetzt haben wir schon viel über den t-Test gehört; er ist dazu da, <em>Mittelwerte zu vergleichen</em>. Wenn wir den Mittelwert einer Stichprobe gegen einen Vergleichswert testen dann ist das der <strong>Einstichproben-t-Test</strong>. Wenn wir die Mittelwerte zweier Stichproben vergleichen dann ist das der <strong>Zweistichproben-t-Test</strong>. Wenn die beiden Stichproben <em>gepaart</em> sind, d.h. wenn die Merkmalswerte jeweils für <em>die selbe statistische Einheit</em> erhoben wurden, dann spricht man vom <strong>gepaarten Zweistichproben-t-Test</strong>. Die Teststatistik ist in allen diesen Fällen ähnlich. Schauen wir uns nun die Varianten des t-Tests anhand der Beispiele an.</p>
 <div id="ttest1" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Einstichproben-t-Test</h3>
+<div id="beispiel-1-linksseitiger-einstichproben-t-test" class="section level4">
+<h4><span class="header-section-number">9.2.1.1</span> Beispiel 1 (linksseitiger Einstichproben-t-Test)</h4>
+<p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>:</p>
 <blockquote>
-<p>Bsp. 1 (Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>): Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>kleiner</em> als der Vergleichswert <span class="math inline">\(\mu_0=60\)</span>? Beziehungsweise, ist der <em>Unterschied statistisch signifikant</em>, wenn wir die Streuung der Stichprobe berücksichtigen?</p>
+<p>Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>kleiner</em> als der Vergleichswert <span class="math inline">\(\mu_0=60\)</span>? Beziehungsweise, ist der <em>Unterschied statistisch signifikant</em>, wenn wir die Streuung der Stichprobe berücksichtigen?</p>
 </blockquote>
 <p>Die Nullhypothese ist in diesem Fall, dass der Mittelwert größer oder gleich dem Vergleichswert ist:
 <span class="math display">\[H_0:\mu\geq\mu_0\]</span>
 Die Alternativhypothese ist, dass der Mittelwert <em>kleiner</em> als der Vergleichswert ist:
 <span class="math display">\[H_1:\mu&lt;\mu_0\]</span></p>
-<p>Das ist die Formulierung des <strong>linksseitigen</strong> Testes. Die Teststatistik (Formel <a href="09-tests.html#eq:ts">(9.1)</a>) rechnen wir anhand der Stichprobe wie folgt aus (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>):
+<p>Die Alternativhypothese ergibt sich wie gesagt aus den Zahlenwerten der Stichprobe, deren Mittelwert tatsächlich kleiner is als <span class="math inline">\(\mu_0=60\)</span>. Wir hoffen, die Alternativhypothese zu bestätigen indem wir die Nullhypothese ablehnen. Die vorliegende Formulierung der Hypothesen ist der <strong>linksseitige</strong> Test. Die Teststatistik (Formel <a href="09-tests.html#eq:ts">(9.1)</a>) rechnen wir anhand der Stichprobe wie folgt aus (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>):
 <span class="math display">\[t_s=\frac{\hat\mu-\mu_0}{s_{\hat\mu}}\sim t_{n-1}\]</span>
 <span class="math display">\[t_s=\frac{\bar x-\mu_0}{s_{\bar x}}\sim t_{n-1}\]</span>
 <span class="math display">\[t_s=\frac{\bar x-\mu_0}{s}\cdot\sqrt{n}\sim t_{n-1}\]</span></p>
-<p>Setzen wir die Zahlenwerte aus der Stichprobe ein (“reisedat19$t” enthaelt die Merkmalswerte fuer “Anreisezeit” aus dem Wintersemester 2019/20):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="09-tests.html#cb1-1"></a><span class="co"># Mittelwert</span></span>
-<span id="cb1-2"><a href="09-tests.html#cb1-2"></a><span class="co"># na.rm=TRUE ignoriert NAs</span></span>
-<span id="cb1-3"><a href="09-tests.html#cb1-3"></a>xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat19<span class="op">$</span>t, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb1-4"><a href="09-tests.html#cb1-4"></a>xbar</span></code></pre></div>
-<pre><code>## [1] 50.80612</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="09-tests.html#cb3-1"></a><span class="co"># Vergleichswert</span></span>
-<span id="cb3-2"><a href="09-tests.html#cb3-2"></a>mu0 &lt;-<span class="st"> </span><span class="dv">60</span></span>
-<span id="cb3-3"><a href="09-tests.html#cb3-3"></a><span class="co"># Standardabweichung</span></span>
-<span id="cb3-4"><a href="09-tests.html#cb3-4"></a><span class="co"># na.rm=TRUE ignoriert NAs</span></span>
-<span id="cb3-5"><a href="09-tests.html#cb3-5"></a>s &lt;-<span class="st"> </span><span class="kw">sd</span>(reisedat19<span class="op">$</span>t, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb3-6"><a href="09-tests.html#cb3-6"></a>s</span></code></pre></div>
-<pre><code>## [1] 19.10614</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="09-tests.html#cb5-1"></a><span class="co"># Stichprobenumfang</span></span>
-<span id="cb5-2"><a href="09-tests.html#cb5-2"></a><span class="co"># !is.na(reisedat19$t) verweist auf die Werte, die nicht NA sind</span></span>
-<span id="cb5-3"><a href="09-tests.html#cb5-3"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(reisedat19<span class="op">$</span>t[<span class="op">!</span><span class="kw">is.na</span>(reisedat19<span class="op">$</span>t)])</span>
-<span id="cb5-4"><a href="09-tests.html#cb5-4"></a>n</span></code></pre></div>
+<p>Setzen wir die Zahlenwerte aus der Stichprobe ein (“reisedat19$t” enthält die Merkmalswerte für “Anreisezeit” aus dem Wintersemester 2019/20):</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="09-tests.html#cb48-1"></a><span class="co"># Mittelwert</span></span>
+<span id="cb48-2"><a href="09-tests.html#cb48-2"></a><span class="co"># na.rm=TRUE ignoriert NAs</span></span>
+<span id="cb48-3"><a href="09-tests.html#cb48-3"></a>xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat19<span class="op">$</span>t, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb48-4"><a href="09-tests.html#cb48-4"></a>xbar</span></code></pre></div>
+<pre><code>## [1] 50.81</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="09-tests.html#cb50-1"></a><span class="co"># Vergleichswert</span></span>
+<span id="cb50-2"><a href="09-tests.html#cb50-2"></a>mu0 &lt;-<span class="st"> </span><span class="dv">60</span></span>
+<span id="cb50-3"><a href="09-tests.html#cb50-3"></a><span class="co"># Standardabweichung</span></span>
+<span id="cb50-4"><a href="09-tests.html#cb50-4"></a><span class="co"># na.rm=TRUE ignoriert NAs</span></span>
+<span id="cb50-5"><a href="09-tests.html#cb50-5"></a>s &lt;-<span class="st"> </span><span class="kw">sd</span>(reisedat19<span class="op">$</span>t, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb50-6"><a href="09-tests.html#cb50-6"></a>s</span></code></pre></div>
+<pre><code>## [1] 19.11</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="09-tests.html#cb52-1"></a><span class="co"># Stichprobenumfang</span></span>
+<span id="cb52-2"><a href="09-tests.html#cb52-2"></a><span class="co"># !is.na(reisedat19$t) verweist auf die Werte, die nicht NA sind</span></span>
+<span id="cb52-3"><a href="09-tests.html#cb52-3"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(reisedat19<span class="op">$</span>t[<span class="op">!</span><span class="kw">is.na</span>(reisedat19<span class="op">$</span>t)])</span>
+<span id="cb52-4"><a href="09-tests.html#cb52-4"></a>n</span></code></pre></div>
 <pre><code>## [1] 98</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="09-tests.html#cb7-1"></a><span class="co"># Teststatistik</span></span>
-<span id="cb7-2"><a href="09-tests.html#cb7-2"></a>ts &lt;-<span class="st"> </span>(xbar <span class="op">-</span><span class="st"> </span>mu0)<span class="op">/</span>s<span class="op">*</span><span class="kw">sqrt</span>(n)</span>
-<span id="cb7-3"><a href="09-tests.html#cb7-3"></a>ts</span></code></pre></div>
-<pre><code>## [1] -4.763639</code></pre>
-<p>Dieser Wert der Teststatistik ist in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="09-tests.html#cb9-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pt</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
-<span id="cb9-2"><a href="09-tests.html#cb9-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
-<span id="cb9-3"><a href="09-tests.html#cb9-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb9-4"><a href="09-tests.html#cb9-4"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="09-tests.html#cb54-1"></a><span class="co"># Teststatistik</span></span>
+<span id="cb54-2"><a href="09-tests.html#cb54-2"></a>ts &lt;-<span class="st"> </span>(xbar <span class="op">-</span><span class="st"> </span>mu0)<span class="op">/</span>s<span class="op">*</span><span class="kw">sqrt</span>(n)</span>
+<span id="cb54-3"><a href="09-tests.html#cb54-3"></a>ts</span></code></pre></div>
+<pre><code>## [1] -4.764</code></pre>
+<p>Dieser Wert der Teststatistik liegt in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="09-tests.html#cb56-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pt</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
+<span id="cb56-2"><a href="09-tests.html#cb56-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
+<span id="cb56-3"><a href="09-tests.html#cb56-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb56-4"><a href="09-tests.html#cb56-4"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-25-1.png" width="80%" /></p>
 <p>Wie extrem der Wert der Teststatistik ist (wie unwahrscheinlich er unter der Nullhypothese ist) misst der sogenannte p-Wert. Der <strong>p-Wert</strong> ist die Wahrscheinlichkeit, unter Annahme der Nullhypothese, durch Zufall einen extremeren Wert als den der Teststatistik zu erhalten. In Formelsprache:
-<span class="math display">\[\Pr\left(Z&lt;t_s\right)=F_t\left(t_s\right)\]</span>
-Die Wahrscheinlichkeit eines kleineren Wertes als den der vorliegenden Teststatistik ist gleich der Verteilungsfunktion an der Stelle der Teststatistik (vgl. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>). Mit Zahlenwerten:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="09-tests.html#cb10-1"></a><span class="kw">pt</span>(ts, n<span class="dv">-1</span>)</span></code></pre></div>
-<pre><code>## [1] 3.331443e-06</code></pre>
-<p>Der p-Wert ist sehr klein, d.h. es ist sehr unwahrscheinlich, dass dieser Wert der Teststatisk durch Zufall zustande kam falls die Nullhypothese wahr ist, d.h. wir sollten die Nullhypothese ablehnen. In der Praxis entscheiden wir das auf Basis eines sogenannten <strong>Signifikanzniveaus</strong> von 0.01: Ist der p-Wert kleiner oder gleich 0.01 lehnen wir Nullhypothese ab. Ist der p-Wert groesser als 0.01 behalten wir die Nullhypothese (bis auf weiteres) bei. Das Signifikanzniveau von 0.01 ist reine Konvention! Tatsaechlich gab es dazu kuerzlich eine <a href="https://doi.org/10.1038/d41586-019-00874-8">Debatte unter Statistikern</a>. <em>R</em> gibt Signifikanz zu mehreren Niveaus an. Grundsaetzlich ist immer der p-Wert anzugeben; dann kann jede Person ihr eigenes Signifikanzniveau ansetzen.</p>
-<p>Fuer unser Beispiel 1 schliessen wir also: Der Unterschied zwischen dem mit dem Stichprobenmittel <span class="math inline">\(\bar x\)</span> geschätzten Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit und dem Vergleichswert <span class="math inline">\(\mu_0=60\)</span> ist <em>statistisch signifikant</em>.</p>
-<p>Wir koennen die Fragestellung aber auch etwas schwaecher formulieren, als <strong>zweiseitiges</strong> Testproblem:</p>
+<span class="math display">\[\Pr\left(Z&lt;t_s\right)=F_t\left(t_s\right)\]</span></p>
 <blockquote>
-<p>Bsp. 2 (Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>): Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>ungleich</em> dem Vergleichswert $_0=60?</p>
+<p>Die Wahrscheinlichkeit eines kleineren Wertes als den der vorliegenden Teststatistik ist gleich der Verteilungsfunktion der t-Verteilung an der Stelle der Teststatistik (vgl. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>).</p>
+</blockquote>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="09-tests.html#cb57-1"></a><span class="kw">pt</span>(ts, n<span class="dv">-1</span>)</span></code></pre></div>
+<pre><code>## [1] 3.331e-06</code></pre>
+<p>Der p-Wert ist sehr klein, d.h. es ist sehr unwahrscheinlich, dass dieser Wert der Teststatisk durch Zufall zustande kam falls die Nullhypothese wahr ist, d.h. wir sollten die Nullhypothese ablehnen. In der Praxis entscheiden wir das auf Basis eines sogenannten <strong>Signifikanzniveaus</strong> von 0.01: Ist der p-Wert kleiner oder gleich 0.01 lehnen wir die Nullhypothese ab. Ist der p-Wert größer als 0.01 behalten wir die Nullhypothese bis auf weiteres bei. Das Signifikanzniveau von 0.01 ist dabei reine Konvention! Tatsächlich gab es dazu kürzlich eine <a href="https://doi.org/10.1038/d41586-019-00874-8">Debatte unter Statistikern</a>. Und <em>R</em> beispielsweise gibt Signifikanz zu mehreren Niveaus an. Grundsätzlich ist immer der p-Wert anzugeben; dann kann jede Person ihr eigenes Signifikanzniveau ansetzen.</p>
+<p>Für unser Beispiel 1 schließen wir also:</p>
+<blockquote>
+<p>Der Unterschied zwischen dem mit dem Stichprobenmittel <span class="math inline">\(\bar x\)</span> geschätzten Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit und dem Vergleichswert <span class="math inline">\(\mu_0=60\)</span> ist <em>statistisch signifikant</em>.</p>
+</blockquote>
+</div>
+<div id="beispiel-2-zweiseitiger-einstichproben-t-test" class="section level4">
+<h4><span class="header-section-number">9.2.1.2</span> Beispiel 2 (zweiseitiger Einstichproben-t-Test)</h4>
+<p>Wir können die Fragestellung auch schwächer formulieren, als <strong>zweiseitiges</strong> Testproblem:</p>
+<blockquote>
+<p>Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>ungleich</em> dem Vergleichswert $_0=60?</p>
 </blockquote>
 <p>Die Nullhypothese ist in diesem Fall, dass der Mittelwert gleich dem Vergleichswert ist:
 <span class="math display">\[H_0:\mu=\mu_0\]</span>
 Die Alternativhypothese ist, dass die beiden Wert <em>nicht</em> gleich sind:
 <span class="math display">\[H_1:\mu\ne\mu_0\]</span></p>
 <p>Die Teststatistik ist die gleiche wie im linksseitigen Fall, nur dass wir jetzt auf beide Extreme der t-Verteilung schauen, die unter der Nullhypothese zu erwarten ist:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="09-tests.html#cb12-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pt</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
-<span id="cb12-2"><a href="09-tests.html#cb12-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
-<span id="cb12-3"><a href="09-tests.html#cb12-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb12-4"><a href="09-tests.html#cb12-4"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>(<span class="op">-</span>ts), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(<span class="op">-</span>ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb12-5"><a href="09-tests.html#cb12-5"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="09-tests.html#cb59-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pt</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
+<span id="cb59-2"><a href="09-tests.html#cb59-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
+<span id="cb59-3"><a href="09-tests.html#cb59-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb59-4"><a href="09-tests.html#cb59-4"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>(<span class="op">-</span>ts), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(<span class="op">-</span>ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb59-5"><a href="09-tests.html#cb59-5"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-27-1.png" width="80%" /></p>
 <p>Wir spiegeln also den Wert der Teststatistik an Null, und der p-Wert ist jetzt die Wahrscheinlichkeit eines Wertes der Teststatistik jenseits dieser <em>beiden</em> Grenzen:
-<span class="math display">\[\Pr\left(Z&lt;t_s\right)+\Pr\left(Z&gt;-t_s\right)=2\cdot\Pr\left(Z&gt;\left|t_s\right|\right)=2\cdot \left(1-F_t\left(\left|t_s\right|\right)\right)\]</span>
-Die Wahrscheinlichkeit eines extremeren Wertes als den der vorliegenden Teststatistik (auf beiden Seiten) ist zweimal die Wahrscheinlichkeit eines groesseren Wertes als den Absolutwert <span class="math inline">\(\left|t_s\right|\)</span> der vorliegenden Teststatistik - wegen der Symmetrie der t-Verteilung um Null. Die Wahrscheinlichkeit eines groesseren Wertes ist Eins minus die Verteilungsfunktion an der entsprechenden Stelle (vgl. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>). Mit Zahlenwerten:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="09-tests.html#cb13-1"></a><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(<span class="kw">abs</span>(ts),n<span class="dv">-1</span>))</span></code></pre></div>
-<pre><code>## [1] 6.662886e-06</code></pre>
-<p>Wie wir sehen ist der p-Wert des zweiseitigen Tests genau zweimal der p-Wert des einseitigen Tests. D.h. wenn der zweiseitige Test signifikant ist, dann ist auch der einseitige Test signifikant. In der Praxis wird oft ein zweiseitiger Test durchgefuehrt und dann fuer die einseitige Variante, die sich aus den Zahlenwerten ergibt (hier Bsp. 1), der p-Wert halbiert.</p>
-<p>Fuer Beispiel 2 schliessen wir jedenfalls: Es kann ausgeschlossen werden, dass der mit dem Stichprobenmittel <span class="math inline">\(\bar x\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit gleich dem Vergleichswert <span class="math inline">\(\mu_0=60\)</span> ist. Der zweiseitige Test ist wie gesagt ein schwaecherer Test als der einseitige, den wir bereits in Bsp. 1 durchgefuehrt haben. In der Praxis wuerde man die Tests nicht so hintereinander schalten, sondern umgekehrt.</p>
-<p>Es fehlt noch der <strong>rechtsseitige</strong> Test, fuer den wir eine Fragestellung wie folgt konstruiert haben:</p>
+<span class="math display">\[\Pr\left(Z&lt;t_s\right)+\Pr\left(Z&gt;-t_s\right)=2\cdot\Pr\left(Z&gt;\left|t_s\right|\right)=2\cdot \left(1-F_t\left(\left|t_s\right|\right)\right)\]</span></p>
 <blockquote>
-<p>Bsp. 3 (Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>): Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>groesser</em> als der Vergleichswert <span class="math inline">\(\mu_0=45\)</span>? Beziehungsweise, ist der <em>Unterschied statistisch signifikant</em>, wenn wir die Streuung der Stichprobe berücksichtigen?</p>
+<p>Die Wahrscheinlichkeit eines extremeren Wertes als den der vorliegenden Teststatistik (auf beiden Seiten) ist zweimal die Wahrscheinlichkeit eines größeren Wertes als den Absolutwert <span class="math inline">\(\left|t_s\right|\)</span> der vorliegenden Teststatistik - wegen der Symmetrie der t-Verteilung um Null. Die Wahrscheinlichkeit eines größeren Wertes ist Eins minus die Verteilungsfunktion an der entsprechenden Stelle (vgl. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>).</p>
+</blockquote>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="09-tests.html#cb60-1"></a><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(<span class="kw">abs</span>(ts),n<span class="dv">-1</span>))</span></code></pre></div>
+<pre><code>## [1] 6.663e-06</code></pre>
+<p>Wie wir sehen ist der p-Wert des zweiseitigen Tests genau zweimal der p-Wert des einseitigen Tests. D.h. wenn der zweiseitige Test signifikant ist, dann ist auch der einseitige Test signifikant. In der Praxis wird oft ein zweiseitiger Test durchgeführt und dann für die einseitige Variante, die sich aus den Zahlenwerten ergibt (hier Bsp. 1), der p-Wert halbiert.</p>
+<p>Für Beispiel 2 schließen wir jedenfalls:</p>
+<blockquote>
+<p>Es kann ausgeschlossen werden, dass der mit dem Stichprobenmittel <span class="math inline">\(\bar x\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit gleich dem Vergleichswert <span class="math inline">\(\mu_0=60\)</span> ist.</p>
+</blockquote>
+<p>Der zweiseitige Test ist wie gesagt ein schwächerer Test als der einseitige, den wir bereits in Bsp. 1 durchgeführt haben. In der Praxis würde man die Tests wie gesagt nicht so hintereinander schalten, sondern umgekehrt.</p>
+</div>
+<div id="beispiel-3-rechtsseitiger-einstichproben-t-test" class="section level4">
+<h4><span class="header-section-number">9.2.1.3</span> Beispiel 3 (rechtsseitiger Einstichproben-t-Test)</h4>
+<p>Es fehlt noch der <strong>rechtsseitige</strong> Test, für den wir eine Fragestellung wie folgt konstruiert haben:</p>
+<blockquote>
+<p>Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>größer</em> als der Vergleichswert <span class="math inline">\(\mu_0=45\)</span>? Beziehungsweise, ist der <em>Unterschied statistisch signifikant</em>, wenn wir die Streuung der Stichprobe berücksichtigen?</p>
 </blockquote>
 <p>Die Nullhypothese ist in diesem Fall, dass der Mittelwert kleiner oder gleich dem Vergleichswert ist:
 <span class="math display">\[H_0:\mu\leq\mu_0\]</span>
 Die Alternativhypothese ist, dass der Mittelwert <em>größer</em> als der Vergleichswert ist:
 <span class="math display">\[H_1:\mu&gt;\mu_0\]</span></p>
-<p>Die Formel der Teststatistik ist die gleiche wie im links- und zeiseitigen Fall, nur dass wir jetzt gemaess der Fragestellung <span class="math inline">\(\mu_0=45\)</span> einsetzen:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="09-tests.html#cb15-1"></a>ts &lt;-<span class="st"> </span>(xbar <span class="op">-</span><span class="st"> </span><span class="dv">45</span>)<span class="op">/</span>s<span class="op">*</span><span class="kw">sqrt</span>(n)</span>
-<span id="cb15-2"><a href="09-tests.html#cb15-2"></a>ts</span></code></pre></div>
-<pre><code>## [1] 3.008336</code></pre>
-<p>Der Wert der Teststatistik ist jetzt positiv, da <span class="math inline">\(\bar x\)</span> groesser ist als <span class="math inline">\(\mu_0\)</span>. Er ist ebenfalls in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="09-tests.html#cb17-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pt</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
-<span id="cb17-2"><a href="09-tests.html#cb17-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
-<span id="cb17-3"><a href="09-tests.html#cb17-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb17-4"><a href="09-tests.html#cb17-4"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Wieder ist die Alternativhypothese die, die sich aus den Zahlenwerten der Stichprobe ergibt, deren Mittelwert tatsächlich größer is als <span class="math inline">\(\mu_0=45\)</span>. Die Formel der Teststatistik ist die gleiche wie im links- und zweiseitigen Fall, nur dass wir jetzt gemäß der Fragestellung <span class="math inline">\(\mu_0=45\)</span> einsetzen:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="09-tests.html#cb62-1"></a>ts &lt;-<span class="st"> </span>(xbar <span class="op">-</span><span class="st"> </span><span class="dv">45</span>)<span class="op">/</span>s<span class="op">*</span><span class="kw">sqrt</span>(n)</span>
+<span id="cb62-2"><a href="09-tests.html#cb62-2"></a>ts</span></code></pre></div>
+<pre><code>## [1] 3.008</code></pre>
+<p>Der Wert der Teststatistik ist jetzt positiv, da <span class="math inline">\(\bar x\)</span> größer ist als <span class="math inline">\(\mu_0\)</span>. Er liegt ebenfalls in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist, nur eben auf der rechten Seite:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="09-tests.html#cb64-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pt</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
+<span id="cb64-2"><a href="09-tests.html#cb64-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
+<span id="cb64-3"><a href="09-tests.html#cb64-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb64-4"><a href="09-tests.html#cb64-4"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-30-1.png" width="80%" /></p>
 <p>Der p-Wert im rechtseitigen Fall ist:
-<span class="math display">\[\Pr\left(Z&gt;t_s\right)=1-F_t\left(t_s\right)\]</span>
-Die Wahrscheinlichkeit eines groesseren Wertes als den der vorliegenden Teststatistik ist Eins minus die Verteilungsfunktion an der Stelle der Teststatistik (vgl. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>). Mit Zahlenwerten:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="09-tests.html#cb18-1"></a><span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(ts, n<span class="dv">-1</span>)</span></code></pre></div>
-<pre><code>## [1] 0.001673177</code></pre>
-<p>Der p-Wert ist ebenfalls kleiner als das konventionelle <strong>Signifikanzniveau</strong> von 0.01, d.h. wir lehnen die Nullhypothese ab und schliessen fuer Beispiel 3: Der Unterschied zwischen dem mit dem Stichprobenmittel <span class="math inline">\(\bar x\)</span> geschätzten Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit und dem Vergleichswert <span class="math inline">\(\mu_0=45\)</span> ist <em>statistisch signifikant</em>.</p>
+<span class="math display">\[\Pr\left(Z&gt;t_s\right)=1-F_t\left(t_s\right)\]</span></p>
+<blockquote>
+<p>Die Wahrscheinlichkeit eines größeren Wertes als den der vorliegenden Teststatistik ist Eins minus die Verteilungsfunktion an der Stelle der Teststatistik (vgl. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>).</p>
+</blockquote>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="09-tests.html#cb65-1"></a><span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(ts, n<span class="dv">-1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.001673</code></pre>
+<p>Dieser p-Wert ist ebenfalls kleiner als das konventionelle Signifikanzniveau von 0.01, d.h. wir lehnen diese Nullhypothese ebenfalls ab und schließen für Beispiel 3:</p>
+<blockquote>
+<p>Der Unterschied zwischen dem mit dem Stichprobenmittel <span class="math inline">\(\bar x\)</span> geschätzten Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit und dem Vergleichswert <span class="math inline">\(\mu_0=45\)</span> ist <em>statistisch signifikant</em>.</p>
+</blockquote>
+</div>
 </div>
 <div id="ttest2" class="section level3">
 <h3><span class="header-section-number">9.2.2</span> Zweistichproben-t-Test</h3>
+<div id="beispiel-4-zweiseitiger-zweistichproben-t-test" class="section level4">
+<h4><span class="header-section-number">9.2.2.1</span> Beispiel 4 (zweiseitiger Zweistichproben-t-Test)</h4>
+<p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>:</p>
 <blockquote>
-<p>Bsp. 4 (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>): Sind die mit den Stichprobenmitteln <span class="math inline">\(\bar x_1=50.4\)</span> und <span class="math inline">\(\bar x_2=51.2\)</span> geschätzten Mittelwerte <span class="math inline">\(\mu_1\)</span> und <span class="math inline">\(\mu_2\)</span> ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen?</p>
+<p>Sind die mit den Stichprobenmitteln <span class="math inline">\(\bar x_1=50.4\)</span> und <span class="math inline">\(\bar x_2=51.2\)</span> geschätzten Mittelwerte <span class="math inline">\(\mu_1\)</span> und <span class="math inline">\(\mu_2\)</span> ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen?</p>
 </blockquote>
+<p>Die Nullhypothese ist in diesem Fall, dass die beiden Mittelwerte gleich sind:
+<span class="math display">\[H_0:\mu_1=\mu_2\]</span>
+Die Alternativhypothese ist, dass die beiden Werte <em>nicht</em> gleich sind:
+<span class="math display">\[H_1:\mu_1\ne\mu_2\]</span></p>
+<p>Wir vergleichen also jetzt zwei Mittelwerte aus zwei Stichproben und nicht mehr gegen einen Vergleichswert. Die Alternativhypothese ergibt sich wiederum aus den Zahlenwerten der Stichproben, deren Mittelwerte tatsächlich ungleich sind. Die Teststatistik ist leicht anders als im einseitigen Fall, da die Differenz der beiden Mittelwerte jetzt mit beiden Standardfehlern standardisiert wird:
+<span class="math display" id="eq:ts2">\[\begin{equation}
+t_s=\frac{\bar x_1-\bar x_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}\sim t_{n_1+n_2-2}
+\tag{9.2}
+\end{equation}\]</span></p>
+<p>Auch in die Anzahl Freiheitsgrade der t-Verteilung, die unter der Nullhypothese zu erwarten ist, gehen beide Stichprobenumfänge ein. Setzen wir die Zahlenwerte aus den Stichproben ein (“t1” und “t2” stehen für die Merkmalswerte für “Anreisezeit” der ersten bzw. zweiten Stichprobe):</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="09-tests.html#cb67-1"></a><span class="co"># Mittelwerte</span></span>
+<span id="cb67-2"><a href="09-tests.html#cb67-2"></a><span class="co"># na.rm=TRUE ignoriert NAs</span></span>
+<span id="cb67-3"><a href="09-tests.html#cb67-3"></a>xbar1 &lt;-<span class="st"> </span><span class="kw">mean</span>(t1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb67-4"><a href="09-tests.html#cb67-4"></a>xbar1</span></code></pre></div>
+<pre><code>## [1] 50.35</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="09-tests.html#cb69-1"></a>xbar2 &lt;-<span class="st"> </span><span class="kw">mean</span>(t2, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb69-2"><a href="09-tests.html#cb69-2"></a>xbar2</span></code></pre></div>
+<pre><code>## [1] 51.24</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="09-tests.html#cb71-1"></a><span class="co"># Varianzen</span></span>
+<span id="cb71-2"><a href="09-tests.html#cb71-2"></a>var1 &lt;-<span class="st"> </span><span class="kw">var</span>(t1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb71-3"><a href="09-tests.html#cb71-3"></a>var1</span></code></pre></div>
+<pre><code>## [1] 352.2</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="09-tests.html#cb73-1"></a>var2 &lt;-<span class="st"> </span><span class="kw">var</span>(t2, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb73-2"><a href="09-tests.html#cb73-2"></a>var2</span></code></pre></div>
+<pre><code>## [1] 384.4</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="09-tests.html#cb75-1"></a><span class="co"># Stichprobenumfänge</span></span>
+<span id="cb75-2"><a href="09-tests.html#cb75-2"></a><span class="co"># !is.na(t1) verweist auf die Werte, die nicht NA sind</span></span>
+<span id="cb75-3"><a href="09-tests.html#cb75-3"></a>n1 &lt;-<span class="st"> </span><span class="kw">length</span>(t1[<span class="op">!</span><span class="kw">is.na</span>(t1)])</span>
+<span id="cb75-4"><a href="09-tests.html#cb75-4"></a>n1</span></code></pre></div>
+<pre><code>## [1] 48</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="09-tests.html#cb77-1"></a>n2 &lt;-<span class="st"> </span><span class="kw">length</span>(t2[<span class="op">!</span><span class="kw">is.na</span>(t2)])</span>
+<span id="cb77-2"><a href="09-tests.html#cb77-2"></a>n2</span></code></pre></div>
+<pre><code>## [1] 50</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="09-tests.html#cb79-1"></a><span class="co"># Teststatistik</span></span>
+<span id="cb79-2"><a href="09-tests.html#cb79-2"></a>ts &lt;-<span class="st"> </span>(xbar1 <span class="op">-</span><span class="st"> </span>xbar2)<span class="op">/</span><span class="kw">sqrt</span>(var1<span class="op">/</span>n1<span class="op">+</span>var2<span class="op">/</span>n2)</span>
+<span id="cb79-3"><a href="09-tests.html#cb79-3"></a>ts</span></code></pre></div>
+<pre><code>## [1] -0.2285</code></pre>
+<p>Dieser Wert der Teststatistik liegt, anders als in den vorherigen Beispielen, im Zentrum der t-Verteilung, die unter der Nullhypothese zu erwarten ist:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="09-tests.html#cb81-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pt</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n1<span class="op">+</span>n2<span class="dv">-2</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
+<span id="cb81-2"><a href="09-tests.html#cb81-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
+<span id="cb81-3"><a href="09-tests.html#cb81-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n1<span class="op">+</span>n2<span class="dv">-2</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb81-4"><a href="09-tests.html#cb81-4"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>(<span class="op">-</span>ts), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(<span class="op">-</span>ts, n1<span class="op">+</span>n2<span class="dv">-2</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb81-5"><a href="09-tests.html#cb81-5"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-33-1.png" width="80%" /></p>
+<p>Der p-Wert ist, analog zum zweiseitigen Einstichproben-t-Test:
+<span class="math display">\[\Pr\left(Z&lt;t_s\right)+\Pr\left(Z&gt;-t_s\right)=2\cdot\Pr\left(Z&gt;\left|t_s\right|\right)=2\cdot \left(1-F_t\left(\left|t_s\right|\right)\right)\]</span></p>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="09-tests.html#cb82-1"></a><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(<span class="kw">abs</span>(ts),n1<span class="op">+</span>n2<span class="dv">-2</span>))</span></code></pre></div>
+<pre><code>## [1] 0.8197</code></pre>
+<p>Der einseitige (hier linksseitige) p-Wert wäre:
+<span class="math display">\[\Pr\left(Z&lt;t_s\right)=F_t\left(t_s\right)\]</span></p>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="09-tests.html#cb84-1"></a><span class="kw">pt</span>(ts,n1<span class="op">+</span>n2<span class="dv">-2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4099</code></pre>
+<p>Also wieder halb so groß wie der zweiseitige p-Wert. Der p-Wert ist viel größer als das konventionelle Signifikanzniveau von 0.01, d.h. es ist sehr wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist, d.h. wir können die Nullhypothese <em>nicht</em> ablehnen.</p>
+<p>Für Beispiel 4 schließen wir also:</p>
+<blockquote>
+<p>Der kleine Unterschied der mit den Stichprobenmitteln <span class="math inline">\(\bar x_1\)</span> und <span class="math inline">\(\bar x_2\)</span> geschätzten Mittelwerte <span class="math inline">\(\mu_1\)</span> und <span class="math inline">\(\mu_2\)</span> ist <em>nicht signifikant</em>. D.h. wir schließen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen.</p>
+</blockquote>
+<p>Tatsächlich entstammen sie der selben Grundgesamtheit. Um das zu zeigen, müssen wir noch die Varianzen testen. Das macht der F-Test in Bsp. 6.</p>
+</div>
+</div>
+<div id="varianten-der-teststatistik" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Varianten der Teststatistik</h3>
+<p>Die Teststatistik in Formel <a href="09-tests.html#eq:ts2">(9.2)</a> ist der allgemein gültige Fall, in dem die Varianzen und Umfänge der beiden Stichproben ungleich sein können. Für die Fälle, in denen Varianzen und/oder Stichprobenumfänge gleich sind, vereinfacht sich Formel <a href="09-tests.html#eq:ts2">(9.2)</a> wie folgt.</p>
+<p>Bei ungleicher Varianz und gleichem Stichprobenumfang:
+<span class="math display" id="eq:ts22">\[\begin{equation}
+t_s=\frac{\bar x_1-\bar x_2}{\sqrt{\frac{s_1^2+s_2^2}{n}}}\sim t_{2\cdot n-2}
+\tag{9.3}
+\end{equation}\]</span></p>
+<p>Bei gleicher Varianz und gleichem Stichprobenumfang:
+<span class="math display" id="eq:ts23">\[\begin{equation}
+t_s=\frac{\bar x_1-\bar x_2}{\sqrt{\frac{2\cdot s^2}{n}}}\sim t_{2\cdot n-2}
+\tag{9.4}
+\end{equation}\]</span>
+Wobei der Schätzer der gemeinsamen theoretischen Varianz die sogenannte <strong>gewichtete Stichprobenvarianz</strong> <span class="math inline">\(s^2=\frac{\left(n_1-1\right)\cdot s_1^2+\left(n_2-1\right)\cdot s_2^2}{n_1+n_2-2}\)</span> ist.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+<p>Bei gleicher Varianz und ungleichem Stichprobenumfang ist die Teststatistik:
+<span class="math display" id="eq:ts24">\[\begin{equation}
+t_s=\frac{\bar x_1-\bar x_2}{\sqrt{\left(\frac{1}{n_1}+\frac{1}{n_2}\right)\cdot s^2}}\sim t_{n_1+n_2-2}
+\tag{9.5}
+\end{equation}\]</span></p>
+<p>Aufgrund der unterschiedlichen Teststatistiken in Abhängigkeit der Varianzannahme muss dem Zweistichproben-t-Test ein F-Test auf Ungleichheit/Gleichheit der Varianzen vorgeschaltet werden (siehe Bsp. 6).</p>
 </div>
 <div id="ttest2gepaart" class="section level3">
-<h3><span class="header-section-number">9.2.3</span> Gepaarter Zweistichproben-t-Test</h3>
+<h3><span class="header-section-number">9.2.4</span> Gepaarter Zweistichproben-t-Test</h3>
+<p><strong>Gepaarte Stichproben</strong> liegen vor, wenn für die <em>selben statistischen Einheiten</em> zwei Merkmale aufgenommen wurden, die vergleichbar sind, z.B.:</p>
+<ul>
+<li>Die Anzahl Moosarten auf der Süd- und Nordseite der <em>selben</em> Bäume</li>
+<li>Krankheitsmerkmale von Patienten <em>vor und nach</em> der Behandlung</li>
+<li>Behandlung und Kontrolle im selben Block (sogenanntes <em>Blockdesign</em>)</li>
+</ul>
+<p>Was Blockdesign genau bedeutet können Sie in <span class="citation">Dormann (<a href="#ref-dormann2013" role="doc-biblioref">2013</a>)</span>, Kapitel 14.2.1 nachlesen. Das wird in der Biogeographie noch eine Rolle spielen.</p>
+<div id="beispiel-5-zweiseitiger-gepaarter-zweistichproben-t-test" class="section level4">
+<h4><span class="header-section-number">9.2.4.1</span> Beispiel 5 (zweiseitiger gepaarter Zweistichproben-t-Test)</h4>
+<p>Siehe Abbildung <a href="09-tests.html#fig:fmoose">9.3</a>:</p>
 <blockquote>
-<p>Bsp. 5 (Abbildung <a href="09-tests.html#fig:fmoose">9.3</a>): Ist die Anzahl Moosarten auf der Nord- und Südseite <em>derselben</em> Bäume unterschiedlich?</p>
+<p>Ist die Anzahl Moosarten auf der Nord- und Südseite <em>derselben</em> Bäume unterschiedlich?</p>
 </blockquote>
+<p>In diesem Beispiel liegt eine gepaarte Stichprobe vor, da die Anzahl Moosarten jeweils auf der Nord- und Südseite <em>derselben</em> Bäume bestimmt wurde. Deshalb wird hier getestet, ob die <em>Differenz</em> der Anzahl Moosarten <span class="math inline">\(d\)</span> gleich oder ungleich Null ist. Die Nullhypothese ist, dass die Differenz gleich Null ist:
+<span class="math display">\[H_0:d=0\]</span>
+Die Alternativhypothese ist, dass die Differenz <em>ungleich</em> Null ist:
+<span class="math display">\[H_1:d\ne0\]</span></p>
+<p>Wir bilden die Differenz einfach indem wir die Merkmalswerte paarweise subtrahieren (“moosdat” enthält die Originaldaten):</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="09-tests.html#cb86-1"></a>d &lt;-<span class="st"> </span>moosdat<span class="op">$</span>n <span class="op">-</span><span class="st"> </span>moosdat<span class="op">$</span>s</span>
+<span id="cb86-2"><a href="09-tests.html#cb86-2"></a><span class="co"># Histogramm mit Mittelwert</span></span>
+<span id="cb86-3"><a href="09-tests.html#cb86-3"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(d, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">16</span>, <span class="dv">16</span>, <span class="dv">4</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb86-4"><a href="09-tests.html#cb86-4"></a>h<span class="op">$</span>counts &lt;-<span class="st"> </span>h<span class="op">$</span>counts <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(h<span class="op">$</span>counts)</span>
+<span id="cb86-5"><a href="09-tests.html#cb86-5"></a><span class="kw">plot</span>(h, <span class="dt">freq =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>),</span>
+<span id="cb86-6"><a href="09-tests.html#cb86-6"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Differenz Anzahl Moosarten&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;relative Häufigkeit&quot;</span>)</span>
+<span id="cb86-7"><a href="09-tests.html#cb86-7"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">mean</span>(d, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.6</span>), <span class="dt">col=</span><span class="st">&#39;black&#39;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-36-1.png" width="80%" /></p>
+<p>Aus dem Zweistichproben-t-Test ist so ein Einstichproben-t-Test geworden, mit der Teststatistik:
+<span class="math display" id="eq:ts2gepaart">\[\begin{equation}
+t_s=\frac{\hat d-0}{s}\cdot\sqrt{n}\sim t_{n-1}
+\tag{9.6}
+\end{equation}\]</span></p>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="09-tests.html#cb87-1"></a><span class="co"># Mittelwert</span></span>
+<span id="cb87-2"><a href="09-tests.html#cb87-2"></a>dbar &lt;-<span class="st"> </span><span class="kw">mean</span>(d)</span>
+<span id="cb87-3"><a href="09-tests.html#cb87-3"></a>dbar</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="09-tests.html#cb89-1"></a><span class="co"># Standardabweichung</span></span>
+<span id="cb89-2"><a href="09-tests.html#cb89-2"></a>s &lt;-<span class="st"> </span><span class="kw">sd</span>(d)</span>
+<span id="cb89-3"><a href="09-tests.html#cb89-3"></a>s</span></code></pre></div>
+<pre><code>## [1] 3.162</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="09-tests.html#cb91-1"></a><span class="co"># Stichprobenumfang</span></span>
+<span id="cb91-2"><a href="09-tests.html#cb91-2"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(d)</span>
+<span id="cb91-3"><a href="09-tests.html#cb91-3"></a>n</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="09-tests.html#cb93-1"></a><span class="co"># Teststatistik</span></span>
+<span id="cb93-2"><a href="09-tests.html#cb93-2"></a>ts &lt;-<span class="st"> </span>(dbar <span class="op">-</span><span class="st"> </span><span class="dv">0</span>)<span class="op">/</span>s<span class="op">*</span><span class="kw">sqrt</span>(n)</span>
+<span id="cb93-3"><a href="09-tests.html#cb93-3"></a>ts</span></code></pre></div>
+<pre><code>## [1] 7.071</code></pre>
+<p>Dieser Wert der Teststatistik liegt wieder in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="09-tests.html#cb95-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.01</span>), <span class="kw">pt</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.01</span>), n<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
+<span id="cb95-2"><a href="09-tests.html#cb95-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
+<span id="cb95-3"><a href="09-tests.html#cb95-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb95-4"><a href="09-tests.html#cb95-4"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>(<span class="op">-</span>ts), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(<span class="op">-</span>ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb95-5"><a href="09-tests.html#cb95-5"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-38-1.png" width="80%" /></p>
+<p>Der p-Wert ist, wie in jedem zweiseitigem Fall:
+<span class="math display">\[\Pr\left(Z&lt;t_s\right)+\Pr\left(Z&gt;-t_s\right)=2\cdot\Pr\left(Z&gt;\left|t_s\right|\right)=2\cdot \left(1-F_t\left(\left|t_s\right|\right)\right)\]</span></p>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="09-tests.html#cb96-1"></a><span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(<span class="kw">abs</span>(ts),n<span class="dv">-1</span>))</span></code></pre></div>
+<pre><code>## [1] 0.002111</code></pre>
+<p>Der einseitige (hier rechtsseitige) p-Wert wäre:
+<span class="math display">\[\Pr\left(Z&gt;t_s\right)=1-F_t\left(t_s\right)\]</span></p>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="09-tests.html#cb98-1"></a><span class="dv">1</span><span class="op">-</span><span class="kw">pt</span>(ts,n<span class="dv">-1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.001055</code></pre>
+<p>Da der p-Wert kleiner ist als das konventionelle Signifikanzniveau von 0.01 ist lehnen wir die Nullhypothese ab und schließen für Beispiel 5:</p>
+<blockquote>
+<p>Auf der Nordseite der Bäume wachsen <em>signifikant mehr</em> Moosarten als auf der Südseite.</p>
+</blockquote>
+</div>
 </div>
 </div>
 <div id="interpretation-des-p-wertes" class="section level2">
 <h2><span class="header-section-number">9.3</span> Interpretation des p-Wertes</h2>
-<p>An dieser Stelle ein paar Worte zur Interpretation des p-Wertes. Der p-Wert und das Signifikanzniveau (hier 0.01) hängen zusammen: Ist der p-Wert kleiner oder gleich 0.01 wird die Nullhypothese abgelehnt; ist der p-Wert groesser als 0.01 wird die Nullhypothese bis auf weiteres beibehalten. Andere Signifikanzniveaus sind üblich (0.001, 0.05 etc.) und <em>R</em> beispielsweise gibt immer mehrere an.</p>
-<p>Ein p-Wert von 0.01 sagt nun aus, dass wir bei <em>hypothetisch wiederholter Stichprobenziehung</em> des selben Umfangs aus der selben Grundgesamtheit in 1% der Fälle die Nullhypothese ablehnen würden obwohl sie wahr ist - ein sogenannter <strong>Fehler 1. Art</strong>.</p>
-<p>In den Worten des Wissenschaftsphilosophen Ian <span class="citation">Hacking (<a href="#ref-hacking2001" role="doc-biblioref">2001</a>)</span>: “<em>Entweder</em> ist die Nullhypothese wahr und etwas ungewöhnliches ist per Zufall geschehen (Wahrscheinlichkeit 1%), <em>oder</em> die Nullhypothese ist falsch.”</p>
-</div>
-<div id="fehler-1.-und-2.-art-teststaerke" class="section level2">
-<h2><span class="header-section-number">9.4</span> Fehler 1. und 2. Art, Teststaerke</h2>
+<p>An dieser Stelle ein paar Worte zur Interpretation des p-Wertes. Der p-Wert und das Signifikanzniveau (hier 0.01) hängen wie gesagt zusammen: Ist der p-Wert kleiner oder gleich 0.01 wird die Nullhypothese abgelehnt; ist der p-Wert größer als 0.01 wird die Nullhypothese bis auf weiteres beibehalten. Andere Signifikanzniveaus sind üblich (0.001, 0.05 etc.) und <em>R</em> gibt wie gesagt immer mehrere an. Aber was sagt ein p-Wert von 0.01 nun genau aus?</p>
+<p>Ein p-Wert von 0.01 sagt aus, dass wir bei <em>hypothetisch wiederholter Stichprobenziehung</em> des selben Umfangs aus der selben Grundgesamtheit in 1% der Fälle die Nullhypothese ablehnen würden obwohl sie wahr ist - ein sogenannter <strong>Fehler 1. Art</strong>.</p>
+<p>In den Worten des Wissenschaftsphilosophen Ian <span class="citation">Hacking (<a href="#ref-hacking2001" role="doc-biblioref">2001</a>)</span>:</p>
+<blockquote>
+<p>“<em>Entweder</em> ist die Nullhypothese wahr und etwas ungewöhnliches ist per Zufall geschehen (Wahrscheinlichkeit 1%), <em>oder</em> die Nullhypothese ist falsch.”</p>
+</blockquote>
+<p>Der p-Wert ist also <em>keine</em> Wahrscheinlichkeit, dass die Nullhypothese wahr ist!</p>
 </div>
 <div id="ftest" class="section level2">
-<h2><span class="header-section-number">9.5</span> F-Test (Vergleich von Varianzen)</h2>
+<h2><span class="header-section-number">9.4</span> F-Test (Vergleich von Varianzen)</h2>
+<div id="beispiel-6-rechtsseitiger-f-test" class="section level3">
+<h3><span class="header-section-number">9.4.1</span> Beispiel 6 (rechtsseitiger F-test)</h3>
+<p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>:</p>
 <blockquote>
-<p>Bsp. 6 (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>): Ist die Varianz <span class="math inline">\(\sigma_2^2\)</span> (gegeben <span class="math inline">\(s_2^2=384\)</span>) groesser als die Varianz <span class="math inline">\(\sigma_1^2\)</span> (gegeben <span class="math inline">\(s_1^2=352\)</span>)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen?</p>
+<p>Ist die Varianz <span class="math inline">\(\sigma_2^2\)</span> (gegeben <span class="math inline">\(s_2^2=384\)</span>) größer als die Varianz <span class="math inline">\(\sigma_1^2\)</span> (gegeben <span class="math inline">\(s_1^2=352\)</span>)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen?</p>
 </blockquote>
+</div>
 </div>
 <div id="kstest" class="section level2">
-<h2><span class="header-section-number">9.6</span> Verteilungstest (Kolmogorow-Smirnow-Test)</h2>
+<h2><span class="header-section-number">9.5</span> Verteilungstest (Kolmogorow-Smirnow-Test)</h2>
+<div id="beispiel-7-einstichproben-kolmogorow-smirnow-test" class="section level3">
+<h3><span class="header-section-number">9.5.1</span> Beispiel 7 (Einstichproben-Kolmogorow-Smirnow-Test)</h3>
+<p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>:</p>
 <blockquote>
-<p>Bsp. 7 (Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>): Entstammt die Stichprobe der Reisezeit einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt.</p>
-</blockquote>
-<blockquote>
-<p>Bsp. 8 (Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>): Entstammen die beiden Teilstichproben der Reisezeit einer gemeinsamen Verteilung? Beziehungsweise, koennen wir das statistisch nachvollziehen?</p>
+<p>Entstammt die Stichprobe der Reisezeit einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt.</p>
 </blockquote>
 </div>
-<div id="chi2test" class="section level2">
-<h2><span class="header-section-number">9.7</span> Unabhängigkeitstest (Chi-Quadrat-Test)</h2>
+<div id="beispiel-8-zweistichproben-kolmogorow-smirnow-test" class="section level3">
+<h3><span class="header-section-number">9.5.2</span> Beispiel 8 (Zweistichproben-Kolmogorow-Smirnow-Test)</h3>
+<p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>:</p>
 <blockquote>
-<p>Bsp. 9 (Kapitel <a href="05-korrelation.html#korrelation">5</a>): Gibt es einen Zusammenhang zwischen “Bezirk” und “Votum” beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant?</p>
+<p>Entstammen die beiden Teilstichproben der Reisezeit einer gemeinsamen Verteilung? Beziehungsweise, können wir das statistisch nachvollziehen?</p>
+</blockquote>
+</div>
+</div>
+<div id="chi2test" class="section level2">
+<h2><span class="header-section-number">9.6</span> Unabhängigkeitstest (Chi-Quadrat-Test)</h2>
+<div id="beispiel-9-chi-quadrat-test" class="section level3">
+<h3><span class="header-section-number">9.6.1</span> Beispiel 9 (Chi-Quadrat-Test)</h3>
+<p>Siehe Kapitel <a href="05-korrelation.html#korrelation">5</a>:</p>
+<blockquote>
+<p>Gibt es einen Zusammenhang zwischen “Bezirk” und “Votum” beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant?</p>
 </blockquote>
 
+</div>
 </div>
 </div>
 <h3>Literatur</h3>
@@ -416,10 +620,11 @@ Die Wahrscheinlichkeit eines groesseren Wertes als den der vorliegenden Teststat
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Die Erhebung der Anreisezeiten war im digitalen Wintersemester 2020/21 leider nicht moeglich, weshalb wir hier auf die Daten vom letzten Jahr zurueckgreifen.<a href="09-tests.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Die Fragestellungen sind etwas konstruiert, damit wir die gaengigsten Versionen des t-Tests kennenlernen, sind aber halbwegs realistisch.<a href="09-tests.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.<a href="09-tests.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<ol start="10">
+<li id="fn10"><p>Die Erhebung der Anreisezeiten war im digitalen Wintersemester 2020/21 leider nicht möglich, weshalb wir hier auf die Daten vom letzten Jahr zurückgreifen.<a href="09-tests.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Die Fragestellungen sind etwas konstruiert, damit wir die gängigsten Versionen des t-Tests kennenlernen, sind aber halbwegs realistisch.<a href="09-tests.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.<a href="09-tests.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>Die gewichtete Stichprobenvarianz ist nur ein möglicher Schätzer der gemeinsamen theoretischen Varianz.<a href="09-tests.html#fnref13" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -431,15 +636,15 @@ Die Wahrscheinlichkeit eines groesseren Wertes als den der vorliegenden Teststat
 <a href="10-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
