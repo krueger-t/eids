@@ -97,7 +97,7 @@ $$\mathcal{X}^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{\left(h_{ij}-\tilde h_{ij}\rig
 
 Bei Unabhängigkeit der Merkmale ist $\mathcal{X}^2=0$. Bei vollständiger Abhängigkeit ist $\mathcal{X}^2=\mathcal{X}_{max}^2$, wobei $\mathcal{X}_{max}^2=n\cdot(M-1)$ mit $M=\min(k;m)$. D.h. der maximal mögliche Wert der $\mathcal{X}^2$ Statistik ergibt sich durch die Dimensionen der Kontingenztabelle, die Zeilenanzahl $k$ und die Spaltenanzahl $m$. Dadurch können wir leider die Größenordnung der $\mathcal{X}^2$ Statistik schlecht intuitiv einordnen, was unser Beispiel verdeutlicht:
 
-> Für den Volksentscheid Tegel ergibt sich ein Wert von $\mathcal{X}^2=49895.1$, wobei $\mathcal{X}_{max}^2=1732940$. Da $\mathcal{X}^2$ näher an $0$ ist als an $1 732 940$, scheint die Abhängigkeit der Merkmale "Bezirk" und "Abstimmungsverhalten" gering zu sein. Ob sie dennoch _statistisch signifikant_ ist können wir erst mit einem sogenannten **Chi-Quadrat-Test** beurteilen, den wir als Teil der schließenden Statistik in Kapitel \@ref(chi2testkstest) kennenlernen.
+> Für den Volksentscheid Tegel ergibt sich ein Wert von $\mathcal{X}^2=49895.1$, wobei $\mathcal{X}_{max}^2=1732940$. Da $\mathcal{X}^2$ näher an $0$ ist als an $1 732 940$, scheint die Abhängigkeit der Merkmale "Bezirk" und "Abstimmungsverhalten" gering zu sein. Ob sie dennoch _statistisch signifikant_ ist können wir erst mit einem sogenannten **Chi-Quadrat-Test** beurteilen, den wir als Teil der schließenden Statistik in Kapitel \@ref(chi2test) kennenlernen.
 
 ## Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman
 

@@ -1,0 +1,282 @@
+# Statistische Tests {#tests}
+
+Wie wir in Kapitel \@ref(schaetzen) gelernt haben geht es in der schließenden Statistik um die Verdichtung der Informationen in einer Stichprobe in Form von Stichprobenfunktionen, mit denen wir _bestimmte Parameter der Grundgesamtheit schätzen_ (vgl. @mittag2016, Abb. 14.1, S. 212). Waehrend es sich im Fall von Verteilungsparametern bei den Stichprobenfunktionen v.a. um den Mittelwert und die Standardabweichung handelt, sind die Stichprobenfunktionen im Fall von statistischen Tests sogenannte **Teststatistiken**, die die Informationen in der Stichprobe verdichten.
+
+Wir werden das vorliegende Kapitel ueber die naechsten drei Wochen lesen. Dabei werden wir anhand der folgenden neun Beispiele vier verschiedene Tests kennenlernen:
+
+- **Beispiel 1**: Laut [dieser Umfrage](https://www.personalwirtschaft.de/der-job-hr/arbeitswelt/artikel/pendelstrecken-werden-immer-laenger.html) hält jeder zweite Berufspendler eine durchschnittliche Fahrtzeit von bis zu 60 min pro Strecke für akzeptabel. Im Wintersemester 2019/20 haben wir die Anreisezeiten der Studierenden dieses Kurses abgefragt.^[Die Erhebung der Anreisezeiten war im digitalen Wintersemester 2020/21 leider nicht moeglich, weshalb wir hier auf die Daten vom letzten Jahr zurueckgreifen.] Ein Histogramm dieser Stichprobe sehen Sie in Abbildung \@ref(fig:freisezeit). Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _kleiner_ als der Vergleichswert $\mu_0=60$ aus der Studie? Beziehungsweise, ist der _Unterschied statistisch signifikant_, wenn wir die Streuung der Stichprobe berücksichtigen? Die Frage "kleiner als" wenn es um einen Mittelwert geht beantwortet der sogenannte **linksseitige Einstichproben-t-Test** (Kapitel \@ref(ttest1)).
+- **Beispiel 2**: Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _ungleich_ dem Vergleichswert $\mu_0=60$ aus der Studie? Wenn wir die Frage so formulieren brauchen wir einen sogenannten **zweiseitigen Einstichproben-t-Test** (Kapitel \@ref(ttest1)).
+- **Beispiel 3**: Laut [derselben Umfrage](https://www.personalwirtschaft.de/der-job-hr/arbeitswelt/artikel/pendelstrecken-werden-immer-laenger.html) nehmen 21% der Pendler eine Fahrtzeit zwischen 30 und 45 min in Kauf. Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _groesser_ als der Vergleichswert $\mu_0=45$ aus der Studie? Beziehungsweise, ist der _Unterschied statistisch signifikant_, wenn wir die Streuung der Stichprobe berücksichtigen? Die Frage "groesser als" beantwortet der **rechtsseitige Einstichproben-t-Test** (Kapitel \@ref(ttest1)).^[Die Fragestellungen sind etwas konstruiert, damit wir die gaengigsten Versionen des t-Tests kennenlernen, sind aber halbwegs realistisch.]
+- **Beispiel 4**: Die Stichprobe wurde zufällig geteilt (Abbildung \@ref(fig:freisezeit2)). Sind die mit den neuen Stichprobenmitteln $\bar x_1=50.4$ und $\bar x_2=51.2$ geschätzten Mittelwerte $\mu_1$ und $\mu_2$ ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen? Diese Frage beantwortet der sogenannte **Zweistichproben-t-Test (zweiseitig)** (Kapitel \@ref(ttest2)).
+- **Beispiel 5** [@dormann2013]: Auf den Nord- und Suedseiten einer Stichprobe von Baeumen wurde jeweils die Anzahl Moosarten bestimmt (Abbildung \@ref(fig:fmoose)). Ist die Anzahl Moosarten auf der Nord- und Südseite _derselben_ Bäume unterschiedlich? Dafuer brauchen wir den **gepaarten Zweistichproben-t-Test (zweiseitig)** (Kapitel \@ref(ttest2gepaart)).
+- **Beispiel 6**: Zurueck zu den beiden neuen Stichproben aus Beispiel 4 (Abbildung \@ref(fig:freisezeit2)). Ist die Varianz $\sigma_2^2$ (gegeben $s_2^2=384$) groesser als die Varianz $\sigma_1^2$ (gegeben $s_1^2=352$)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen? Diese Frage beantwortet der sogenannte **F-Test (rechtsseitig)** (Kapitel \@ref(ftest)).
+- **Beispiel 7**: Entstammt die Stichprobe der Reisezeit (Abbildung \@ref(fig:freisezeit)) einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt. Diese Frage beantwortet der sogenannte **Einstichproben-Kolmogorow-Smirnow-Test** (Kapitel \@ref(kstest)).
+- **Beispiel 8**: Entstammen die beiden Teilstichproben der Reisezeit (Abbildung \@ref(fig:freisezeit2)) einer gemeinsamen Verteilung? Beziehungsweise, koennen wir das statistisch nachvollziehen? Dafuer brauchen wir den **Zweistichproben-Kolmogorow-Smirnow-Test** (Kapitel \@ref(kstest)).
+- **Beispiel 9**: Zurueck zum Volksentscheid Tegel aus Kapitel \@ref(korrelation). Gibt es einen Zusammenhang zwischen "Bezirk" und "Votum" beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant? Diese Frage beantwortet der sogenannte **Chi-Quadrat-Test** (Kapitel \@ref(chi2test)).
+
+```{r freisezeit, echo=FALSE, fig.align='center', fig.cap='Histogramm des Merkmals "Anreisezeit" der Reisedaten aus dem Wintersemester 2019/20. Die vertikale Linie markiert den Mittelwert von 50.8 min.', out.width='80%'}
+# Paket laden, das für das Einlesen von xlsx gebraucht wird
+library("readxl")
+# Daten einlesen
+reisedat19 <- read_excel("data/Reisedaten.xlsx", na = "-999")
+# in data.frame umwandeln
+reisedat19 <- as.data.frame(reisedat19)
+# Spalten umbenennen
+names(reisedat19) <- c('x', 't')
+# Histogramm berechnen ohne Output
+h <- hist(reisedat19$t, breaks = seq(0, 120, 10), plot = FALSE)
+# absolute in relative Häufigkeiten umrechnen
+h$counts <- h$counts / sum(h$counts)
+# Histogrammdaten plotten
+plot(h, freq = TRUE, col = "gray", ylim = c(0,0.3),
+     main = "", xlab = "Anreisezeit (min)", ylab = "relative Häufigkeit")
+lines(c(1,1)*mean(reisedat19$t, na.rm=TRUE), c(0, 0.3), col='black')
+```
+
+```{r freisezeit2, echo=FALSE, fig.align='center', fig.cap='Histogramme des Merkmals "Anreisezeit" der Reisedaten aus dem Wintersemester 2019/20. Die Stichprobe wurde zufaellig geteilt. Die vertikalen Linien markieren die Mittelwerte $\\bar x_1=50.4$ (links) und $\\bar x_2=51.2$ (rechts). Die Varianzen sind $s_1^2=352$ und $s_2^2=384$.', fig.show='hold', out.width='50%'}
+# "seed" waehlen, so dass Zufallszahlen reproduziert werden koennen
+set.seed(20210105)
+# zufaellig die Haelfte der Reisezeitdaten von 2019 auswaehlen
+loc <- sample(seq(1,122,1), 61, replace = FALSE)
+# Teilstichprobe 1
+t1 <- reisedat19$t[loc]
+# Teilstichprobe 2 (Komplementaermenge)
+t2 <- reisedat19$t[!is.element(seq(1,122,1),loc)]
+# Histogramme
+h1 <- hist(t1, breaks = seq(0, 120, 10), plot = FALSE)
+h1$counts <- h1$counts / sum(h1$counts)
+plot(h1, freq = TRUE, col = "gray", ylim = c(0,0.3),
+     main = "", xlab = "Reisezeit (min)", ylab = "relative Häufigkeit")
+lines(c(1,1)*mean(t1, na.rm=TRUE), c(0, 0.3), col='black')
+h2 <- hist(t2, breaks = seq(0, 120, 10), plot = FALSE)
+h2$counts <- h2$counts / sum(h2$counts)
+plot(h2, freq = TRUE, col = "gray", ylim = c(0,0.3),
+     main = "", xlab = "Reisezeit (min)", ylab = "relative Häufigkeit")
+lines(c(1,1)*mean(t2, na.rm=TRUE), c(0, 0.3), col='black')
+```
+
+```{r fmoose, echo=FALSE, fig.align='center', fig.cap='Verteilung der Anzahl Moosarten auf der Suedseite (links) und Nordseite (rechts) derselben Baeume. Daten aus: @dormann2013.', fig.show='hold', out.width='50%'}
+# Daten aus Dormannn (2013), S. 190
+moosdat = data.frame(s=c(5,8,7,9,9), n=c(12,23,15,18,20))
+# Histogramme
+hs <- hist(moosdat$s, breaks = seq(0, 28, 4), plot = FALSE)
+hs$counts <- hs$counts / sum(hs$counts)
+plot(hs, freq = TRUE, col = "gray", ylim = c(0,0.6),
+     main = "Suedseite", xlab = "Anzahl Moosarten", ylab = "relative Häufigkeit")
+hn <- hist(moosdat$n, breaks = seq(0, 28, 4), plot = FALSE)
+hn$counts <- hn$counts / sum(hn$counts)
+plot(hn, freq = TRUE, col = "gray", ylim = c(0,0.6),
+     main = "Nordseite", xlab = "Anzahl Moosarten", ylab = "relative Häufigkeit")
+```
+
+## Grundprinzipien statistischer Tests
+
+Die folgenden Prinzipien liegen allen statistischen Tests zugrunde, wobei wir vieles am Beispiel des t-Tests demonstrieren, der dann in Kapitel \@ref(ttest) vollstaendig behandelt wird.
+
+### Nullhypothese und Alternativhypothese
+
+Das Formulieren von Hypothesen ist die formale Vorgehensweise, Fragestellungen wie die oben genannten Beispiele statistisch zu übersetzen.
+
+> Bsp. 3: Ist $\mu$ (gegeben $\bar x=50.8$) größer als $\mu_0=45$?
+
+Jeder statistische Test verlangt eine bestimmte **Nullhypothese** $H_0$.
+
+> Bsp. 3: $H_0: \mu\leq\mu_0$
+
+Diese wird getestet. Die **Alternativhypothese** $H_1$ ist aber die, die sich zunächst aus den Zahlenwerten ergibt.
+
+> Bsp. 3: $H_1: \mu>\mu_0$
+
+Hypothesen können nur abgelehnt (falsifiziert) werden. Das Annehmen von Hypothesen gilt nur _bis auf weiteres_.
+
+### Zweiseitig und einseitig
+
+Wir unterscheiden zweiseitige und einseitige Tests. Bei **zweiseitigen** Tests wird auf _ungleich/gleich_ getestet.
+
+> Bsp. 2: Ist $\mu$ (gegeben $\bar x=50.8$) ungleich $\mu_0=60$?
+
+Bei **einseitigen** Tests wird auf _kleiner/nicht kleiner_ oder _größer/nicht größer_ getestet.
+
+> Bsp. 1: Ist $\mu$ (gegeben $\bar x=50.8$) kleiner als $\mu_0=60$?
+
+Ein einseitiger Test ist in der Regel aussagekräftiger. Die Ergebnisse beider Tests lassen sich aber einfach ineinander überführen - wie wir noch sehen werden.
+
+### Die Teststatistik
+
+Jeder Test hat eine bestimmte **Teststatistik** (Prüfwert) von der wir wissen, wie sie verteilt ist (unter bestimmten Annahmen), _falls die Nullhypothese wahr ist_. Die Teststatistik eines Einstichproben-t-Tests beispielsweise ist:
+$$\begin{equation}
+t_s=\frac{\hat\mu-\mu_0}{s_{\hat\mu}}\sim t_{n-1}
+(\#eq:ts)
+\end{equation}$$
+
+$\hat\mu$ ist der Mittelwertschaetzer; in Bsp. 1 $\hat\mu=\bar x=50.8$. $\mu_0$ ist der Wert, mit dem wir den Schätzer vergleichen; in Bsp. 1 $\mu_0=60$. $s_{\hat\mu}$ ist der Standardfehler des Mittelwertschaetzers. Ist die Grundgesamtheit normalverteilt, dann ist der so standardisierte Schätzer des Mittelwertes (die Teststatistik $t_s$) bei wiederholtem Stichprobenziehen t-verteilt mit $n-1$ Freiheitsgraden (vgl. Kapitel \@ref(schaetzen)).^[In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.]
+
+### Was genau getestet wird
+
+Wenn die Teststatistik nahe dem Zentrum der Verteilung ist, die unter der Nullhypothese zu erwarten ist, d.h. in einem Bereich hoher Wahrscheinlichkeit, dann lehnen wir die Nullhypothese _nicht_ ab. In Abbildung \@ref(fig:testprinzip) ist das fuer die Teststatistik $t_s$ in blau und die t-Verteilung dargestellt. Im Bsp. 2 würden wir in so einem Fall bis auf weiteres schließen, dass $\mu$ (gegeben $\bar x=50.8$) gleich $\mu_0=60$ ist.
+
+Ist die Teststatistik dagegen in den Extremen der Verteilung, d.h. in einem Bereich geringer Wahrscheinlichkeit, dann lehnen wir die Nullhypothese ab. In Abbildung \@ref(fig:testprinzip) ist das mit den roten Pfeilen verdeutlicht. Im Bsp. 2 würden wir in so einem Fall schließen, dass $\mu$ (gegeben $\bar x=50.8$) ungleich $\mu_0=60$ ist. Das ist in dem Beispiel tatsaechlich das Ergebnis - wie wir noch sehen werden.
+
+```{r testprinzip, echo=FALSE, fig.align='center', fig.cap='Grundprinzip des statistischen Testens, hier dargestellt fuer einen konstruierten t-Test: Verteilungsfunktion der t-Verteilung mit 97 Freiheitsgraden, mit Teststatistik $t_s$ (blau) im Zentrum der Verteilung, d.h. im Bereich hoher Wahrscheinlichkeit unter der Nullhypothese. Wir lehnen die Nullhypothese _nicht_ ab. Waere die Teststatistik dagegen in den Extremen der Verteilung (mit roten Pfeilen verdeutlicht), waere sie im Bereich geringer Wahrscheinlichkeit unter der Nullhypothese. In dem Fall lehnen wir die Nulhypothese ab.', out.width='80%'}
+plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), 97), ylim=c(0,1), type='l',
+     xlab='Z=t_s', ylab='Verteilungsfunktion')
+lines(c(1, 1)*(-0.5), c(0, pt(-0.5, 97)), col='blue')
+text(-0.5,-0.2,"t_s", col="blue", xpd=TRUE)
+arrows(x0=0.6, y0=0.15, x1=5, y1=0.15, length=0.1, angle=15, col="red")
+arrows(x0=-0.6, y0=0.15, x1=-5, y1=0.15, length=0.1, angle=15, col="red")
+```
+
+> Beachte: Bei der zweiseitigen Version des Tests schauen wir auf beiden Seiten der Verteilung (beide Extreme), waehrend wir bei dem linksseitigen Test nur auf die linke und bei dem rechtsseitigen Test nur auf die rechte Seite schauen. Auf der linken Seite von Abbildung \@ref(fig:testprinzip) befinden wir uns mit der Teststatistik $t_s$ wenn $\hat\mu<\mu_0$, d.h. wir testen kleiner/nicht kleiner. Auf der rechten Seite befinden wir uns wenn $\hat\mu>\mu_0$, d.h. wir testen groesser/nicht groesser.
+
+## t-Test (Vergleich von Mittelwerten) {#ttest}
+
+Jetzt haben wir schon viel ueber den t-Test gehoert; er ist dazu da, _Mittelwerte zu vergleichen_. Wenn wir den Mittelwert einer Stichprobe gegen einen Vergleichswert testen dann ist das der **Einstichproben-t-Test**. Wenn wir die Mittelwerte zweier Stichproben vergleichen dann ist das der **Zweistichproben-t-Test**. Wenn die beiden Stichproben _gepaart_ sind, d.h. wenn die Merkmalswerte jeweils fuer _die selbe statistische Einheit_ erhoben wurden, dann spricht man vom **gepaarten Zweistichproben-t-Test**. Die Teststatistik ist in allen diesen Faellen aehnlich. Schauen wir uns nun die Varianten des t-Tests anhand der Beispiele an.
+
+### Einstichproben-t-Test {#ttest1}
+
+> Bsp. 1 (Abbildung \@ref(fig:freisezeit)): Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _kleiner_ als der Vergleichswert $\mu_0=60$? Beziehungsweise, ist der _Unterschied statistisch signifikant_, wenn wir die Streuung der Stichprobe berücksichtigen?
+
+Die Nullhypothese ist in diesem Fall, dass der Mittelwert größer oder gleich dem Vergleichswert ist:
+$$H_0:\mu\geq\mu_0$$
+Die Alternativhypothese ist, dass der Mittelwert _kleiner_ als der Vergleichswert ist:
+$$H_1:\mu<\mu_0$$
+
+Das ist die Formulierung des **linksseitigen** Testes. Die Teststatistik (Formel \@ref(eq:ts)) rechnen wir anhand der Stichprobe wie folgt aus (vgl. Kapitel \@ref(schaetzen)):
+$$t_s=\frac{\hat\mu-\mu_0}{s_{\hat\mu}}\sim t_{n-1}$$
+$$t_s=\frac{\bar x-\mu_0}{s_{\bar x}}\sim t_{n-1}$$
+$$t_s=\frac{\bar x-\mu_0}{s}\cdot\sqrt{n}\sim t_{n-1}$$
+
+Setzen wir die Zahlenwerte aus der Stichprobe ein ("reisedat19$t" enthaelt die Merkmalswerte fuer "Anreisezeit" aus dem Wintersemester 2019/20):
+```{r echo=TRUE}
+# Mittelwert
+# na.rm=TRUE ignoriert NAs
+xbar <- mean(reisedat19$t, na.rm=TRUE)
+xbar
+# Vergleichswert
+mu0 <- 60
+# Standardabweichung
+# na.rm=TRUE ignoriert NAs
+s <- sd(reisedat19$t, na.rm=TRUE)
+s
+# Stichprobenumfang
+# !is.na(reisedat19$t) verweist auf die Werte, die nicht NA sind
+n <- length(reisedat19$t[!is.na(reisedat19$t)])
+n
+# Teststatistik
+ts <- (xbar - mu0)/s*sqrt(n)
+ts
+```
+
+Dieser Wert der Teststatistik ist in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist:
+```{r echo=TRUE}
+plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), n-1), ylim=c(0,1), type='l',
+     xlab='Z=t_s', ylab='Verteilungsfunktion')
+lines(c(1, 1)*ts, c(0, pt(ts, n-1)), col='blue')
+text(ts,-0.2,"t_s", col="blue", xpd=TRUE)
+```
+
+Wie extrem der Wert der Teststatistik ist (wie unwahrscheinlich er unter der Nullhypothese ist) misst der sogenannte p-Wert. Der **p-Wert** ist die Wahrscheinlichkeit, unter Annahme der Nullhypothese, durch Zufall einen extremeren Wert als den der Teststatistik zu erhalten. In Formelsprache:
+$$\Pr\left(Z<t_s\right)=F_t\left(t_s\right)$$
+Die Wahrscheinlichkeit eines kleineren Wertes als den der vorliegenden Teststatistik ist gleich der Verteilungsfunktion an der Stelle der Teststatistik (vgl. Kapitel \@ref(verteilungen)). Mit Zahlenwerten:
+```{r echo=TRUE}
+pt(ts, n-1)
+```
+
+Der p-Wert ist sehr klein, d.h. es ist sehr unwahrscheinlich, dass dieser Wert der Teststatisk durch Zufall zustande kam falls die Nullhypothese wahr ist, d.h. wir sollten die Nullhypothese ablehnen. In der Praxis entscheiden wir das auf Basis eines sogenannten **Signifikanzniveaus** von 0.01: Ist der p-Wert kleiner oder gleich 0.01 lehnen wir Nullhypothese ab. Ist der p-Wert groesser als 0.01 behalten wir die Nullhypothese (bis auf weiteres) bei. Das Signifikanzniveau von 0.01 ist reine Konvention! Tatsaechlich gab es dazu kuerzlich eine [Debatte unter Statistikern](https://doi.org/10.1038/d41586-019-00874-8). _R_ gibt Signifikanz zu mehreren Niveaus an. Grundsaetzlich ist immer der p-Wert anzugeben; dann kann jede Person ihr eigenes Signifikanzniveau ansetzen.
+
+Fuer unser Beispiel 1 schliessen wir also: Der Unterschied zwischen dem mit dem Stichprobenmittel $\bar x$ geschätzten Mittelwert $\mu$ der Grundgesamtheit und dem Vergleichswert $\mu_0=60$ ist _statistisch signifikant_.
+
+Wir koennen die Fragestellung aber auch etwas schwaecher formulieren, als **zweiseitiges** Testproblem:
+
+> Bsp. 2 (Abbildung \@ref(fig:freisezeit)): Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _ungleich_ dem Vergleichswert $\mu_0=60?
+
+Die Nullhypothese ist in diesem Fall, dass der Mittelwert gleich dem Vergleichswert ist:
+$$H_0:\mu=\mu_0$$
+Die Alternativhypothese ist, dass die beiden Wert _nicht_ gleich sind:
+$$H_1:\mu\ne\mu_0$$
+
+Die Teststatistik ist die gleiche wie im linksseitigen Fall, nur dass wir jetzt auf beide Extreme der t-Verteilung schauen, die unter der Nullhypothese zu erwarten ist:
+```{r echo=TRUE}
+plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), n-1), ylim=c(0,1), type='l',
+     xlab='Z=t_s', ylab='Verteilungsfunktion')
+lines(c(1, 1)*ts, c(0, pt(ts, n-1)), col='blue')
+lines(c(1, 1)*(-ts), c(0, pt(-ts, n-1)), col='blue')
+text(ts,-0.2,"t_s", col="blue", xpd=TRUE)
+```
+
+Wir spiegeln also den Wert der Teststatistik an Null, und der p-Wert ist jetzt die Wahrscheinlichkeit eines Wertes der Teststatistik jenseits dieser _beiden_ Grenzen:
+$$\Pr\left(Z<t_s\right)+\Pr\left(Z>-t_s\right)=2\cdot\Pr\left(Z>\left|t_s\right|\right)=2\cdot \left(1-F_t\left(\left|t_s\right|\right)\right)$$
+Die Wahrscheinlichkeit eines extremeren Wertes als den der vorliegenden Teststatistik (auf beiden Seiten) ist zweimal die Wahrscheinlichkeit eines groesseren Wertes als den Absolutwert $\left|t_s\right|$ der vorliegenden Teststatistik - wegen der Symmetrie der t-Verteilung um Null. Die Wahrscheinlichkeit eines groesseren Wertes ist Eins minus die Verteilungsfunktion an der entsprechenden Stelle (vgl. Kapitel \@ref(verteilungen)). Mit Zahlenwerten:
+```{r echo=TRUE}
+2*(1-pt(abs(ts),n-1))
+```
+
+Wie wir sehen ist der p-Wert des zweiseitigen Tests genau zweimal der p-Wert des einseitigen Tests. D.h. wenn der zweiseitige Test signifikant ist, dann ist auch der einseitige Test signifikant. In der Praxis wird oft ein zweiseitiger Test durchgefuehrt und dann fuer die einseitige Variante, die sich aus den Zahlenwerten ergibt (hier Bsp. 1), der p-Wert halbiert.
+
+Fuer Beispiel 2 schliessen wir jedenfalls: Es kann ausgeschlossen werden, dass der mit dem Stichprobenmittel $\bar x$ geschätzte Mittelwert $\mu$ der Grundgesamtheit gleich dem Vergleichswert $\mu_0=60$ ist. Der zweiseitige Test ist wie gesagt ein schwaecherer Test als der einseitige, den wir bereits in Bsp. 1 durchgefuehrt haben. In der Praxis wuerde man die Tests nicht so hintereinander schalten, sondern umgekehrt.
+
+Es fehlt noch der **rechtsseitige** Test, fuer den wir eine Fragestellung wie folgt konstruiert haben:
+
+> Bsp. 3 (Abbildung \@ref(fig:freisezeit)): Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _groesser_ als der Vergleichswert $\mu_0=45$? Beziehungsweise, ist der _Unterschied statistisch signifikant_, wenn wir die Streuung der Stichprobe berücksichtigen?
+
+Die Nullhypothese ist in diesem Fall, dass der Mittelwert kleiner oder gleich dem Vergleichswert ist:
+$$H_0:\mu\leq\mu_0$$
+Die Alternativhypothese ist, dass der Mittelwert _größer_ als der Vergleichswert ist:
+$$H_1:\mu>\mu_0$$
+
+Die Formel der Teststatistik ist die gleiche wie im links- und zeiseitigen Fall, nur dass wir jetzt gemaess der Fragestellung $\mu_0=45$ einsetzen:
+```{r echo=TRUE}
+ts <- (xbar - 45)/s*sqrt(n)
+ts
+```
+
+Der Wert der Teststatistik ist jetzt positiv, da $\bar x$ groesser ist als $\mu_0$. Er ist ebenfalls in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist:
+```{r echo=TRUE}
+plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), n-1), ylim=c(0,1), type='l',
+     xlab='Z=t_s', ylab='Verteilungsfunktion')
+lines(c(1, 1)*ts, c(0, pt(ts, n-1)), col='blue')
+text(ts,-0.2,"t_s", col="blue", xpd=TRUE)
+```
+
+Der p-Wert im rechtseitigen Fall ist:
+$$\Pr\left(Z>t_s\right)=1-F_t\left(t_s\right)$$
+Die Wahrscheinlichkeit eines groesseren Wertes als den der vorliegenden Teststatistik ist Eins minus die Verteilungsfunktion an der Stelle der Teststatistik (vgl. Kapitel \@ref(verteilungen)). Mit Zahlenwerten:
+```{r echo=TRUE}
+1-pt(ts, n-1)
+```
+
+Der p-Wert ist ebenfalls kleiner als das konventionelle **Signifikanzniveau** von 0.01, d.h. wir lehnen die Nullhypothese ab und schliessen fuer Beispiel 3: Der Unterschied zwischen dem mit dem Stichprobenmittel $\bar x$ geschätzten Mittelwert $\mu$ der Grundgesamtheit und dem Vergleichswert $\mu_0=45$ ist _statistisch signifikant_.
+
+### Zweistichproben-t-Test {#ttest2}
+
+> Bsp. 4 (Abbildung \@ref(fig:freisezeit2)): Sind die mit den Stichprobenmitteln $\bar x_1=50.4$ und $\bar x_2=51.2$ geschätzten Mittelwerte $\mu_1$ und $\mu_2$ ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen?
+
+### Gepaarter Zweistichproben-t-Test {#ttest2gepaart}
+
+> Bsp. 5 (Abbildung \@ref(fig:fmoose)): Ist die Anzahl Moosarten auf der Nord- und Südseite _derselben_ Bäume unterschiedlich?
+
+## Interpretation des p-Wertes
+
+An dieser Stelle ein paar Worte zur Interpretation des p-Wertes. Der p-Wert und das Signifikanzniveau (hier 0.01) hängen zusammen: Ist der p-Wert kleiner oder gleich 0.01 wird die Nullhypothese abgelehnt; ist der p-Wert groesser als 0.01 wird die Nullhypothese bis auf weiteres beibehalten. Andere Signifikanzniveaus sind üblich (0.001, 0.05 etc.) und _R_ beispielsweise gibt immer mehrere an.
+
+Ein p-Wert von 0.01 sagt nun aus, dass wir bei _hypothetisch wiederholter Stichprobenziehung_ des selben Umfangs aus der selben Grundgesamtheit in 1% der Fälle die Nullhypothese ablehnen würden obwohl sie wahr ist - ein sogenannter **Fehler 1. Art**.
+
+In den Worten des Wissenschaftsphilosophen Ian @hacking2001: "_Entweder_ ist die Nullhypothese wahr und etwas ungewöhnliches ist per Zufall geschehen (Wahrscheinlichkeit 1%), _oder_ die Nullhypothese ist falsch."
+
+Der p-Wert ist also _keine_ Wahrscheinlichkeit, dass die Nullhypothese wahr ist!
+
+## Fehler 1. und 2. Art, Teststaerke
+
+## F-Test (Vergleich von Varianzen) {#ftest}
+
+> Bsp. 6 (Abbildung \@ref(fig:freisezeit2)): Ist die Varianz $\sigma_2^2$ (gegeben $s_2^2=384$) groesser als die Varianz $\sigma_1^2$ (gegeben $s_1^2=352$)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen?
+
+## Verteilungstest (Kolmogorow-Smirnow-Test) {#kstest}
+
+> Bsp. 7 (Abbildung \@ref(fig:freisezeit)): Entstammt die Stichprobe der Reisezeit einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt.
+
+> Bsp. 8 (Abbildung \@ref(fig:freisezeit2)): Entstammen die beiden Teilstichproben der Reisezeit einer gemeinsamen Verteilung? Beziehungsweise, koennen wir das statistisch nachvollziehen?
+
+## Unabhängigkeitstest (Chi-Quadrat-Test) {#chi2test}
+
+> Bsp. 9 (Kapitel \@ref(korrelation)): Gibt es einen Zusammenhang zwischen "Bezirk" und "Votum" beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant?

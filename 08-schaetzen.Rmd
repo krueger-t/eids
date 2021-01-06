@@ -4,7 +4,7 @@
 
 Mit diesem Kapitel beginnt die schließende oder induktive Statistik, mit der wir anhand von Stichproben etwas über größere Grundgesamtheiten aussagen möchten. Der Anspruch geht also über die beschreibende oder deskriptive Statistik hinaus, wobei die Wahrscheinlichkeitstheorie und Verteilungen (Kapitel \@ref(wahrscheinlichkeit) und \@ref(verteilungen)) gewissermaßen die Brücke zwischen den beiden Teilbereichen der Statistik bildet, um bei dem Bild von @zimmermann2014 zu bleiben.
 
-Die deskriptive Statistik wird uns die nächsten sechs Wochen beschäftigen. Nach diesem Kapitel zu **Schätzen von Verteilungsparametern** gibt es drei Kapitel zu **statistischen Tests** (Kapitel \@ref(ttest)-\@ref(chi2testkstest)) und abschließend Kapitel \@ref(regression) zu **linearer Regression**, das wir über zwei Wochen lesen werden. In Kapitel \@ref(regression) werden viele Lehrveranstaltungsinhalte zusammen kommen - also bleiben Sie dran.
+Die deskriptive Statistik wird uns die nächsten sechs Wochen beschäftigen. Nach diesem Kapitel zu **Schätzen von Verteilungsparametern** gibt es ein Kapitel zu **statistischen Tests** (Kapitel \@ref(tests)), das wir über drei Wochen lesen werden, und abschließend Kapitel \@ref(regression) zu **linearer Regression**, das wir über zwei Wochen lesen werden. In Kapitel \@ref(regression) werden viele Lehrveranstaltungsinhalte zusammen kommen - also bleiben Sie dran.
 
 In diesem Kapitel diskutieren wir:
 

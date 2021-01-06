@@ -1,3 +1,0 @@
-# Chi-Quadrat- und Kolmogorow-Smirnow-Test {#chi2testkstest}
-
-

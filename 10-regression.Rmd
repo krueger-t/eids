@@ -364,7 +364,7 @@ D.h. rund 65% der Varianz in den Entfernungs-Daten wird durch das lineare Modell
 Aber was heißt Güte der Modellanpassung? Sind alle Modellannahmen erfüllt? Folgende Annahmen ergeben sich aus der **Maximum-Likelihood-Theorie** (vgl. Schätzen von Verteilungsparametern, Kapitel \@ref(schaetzen)):
 
 - Die Residuen sind **unabhängig**, in diesem Fall gibt es keine serielle Korrelation in der Residuengrafik - dies kann mit dem Durbin-Watson-Test getestet werden
-- Die Residuen sind **normalverteilt** - dies kann visuell mit Hilfe des Quantil-Quantil-Diagramms (QQ-Plot) und dem Residuen-Histogramm beurteilt werden, und kann mit dem Kolmogorov-Smirnov-Test (Kapitel \@ref(chi2testkstest)) und dem Shapiro-Wilk-Test getestet werden
+- Die Residuen sind **normalverteilt** - dies kann visuell mit Hilfe des Quantil-Quantil-Diagramms (QQ-Plot) und dem Residuen-Histogramm beurteilt werden, und kann mit dem Kolmogorov-Smirnov-Test (Kapitel \@ref(kstest)) und dem Shapiro-Wilk-Test getestet werden
 - Die Varianz ist für alle Residuen konstant (die Residuen sind **homoskedastisch**), d.h. es erfolgt kein "Auffächern" der Residuen
 
 Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder Generalisierte Lineare Modelle zurückgreifen. Letzteres ist wird im Master *Global Change Geography* unterrichtet.
