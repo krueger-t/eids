@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-01-06" />
+<meta name="date" content="2021-01-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -623,12 +623,64 @@ t_s=\frac{\hat d-0}{s}\cdot\sqrt{n}\sim t_{n-1}
 </div>
 <div id="ftest" class="section level2">
 <h2><span class="header-section-number">9.4</span> F-Test (Vergleich von Varianzen)</h2>
+<p>Während der t-Test für den Vergleich von Mittelwerten zuständig ist, dient der F-Test dem <em>Vergleich von Varianzen</em>. Schauen wir uns das an einem Beispiel an.</p>
 <div id="beispiel-6-rechtsseitiger-f-test" class="section level3">
 <h3><span class="header-section-number">9.4.1</span> Beispiel 6 (rechtsseitiger F-test)</h3>
 <p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>:</p>
 <blockquote>
 <p>Ist die Varianz <span class="math inline">\(\sigma_2^2\)</span> (gegeben <span class="math inline">\(s_2^2=384\)</span>) größer als die Varianz <span class="math inline">\(\sigma_1^2\)</span> (gegeben <span class="math inline">\(s_1^2=352\)</span>)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen?</p>
 </blockquote>
+<p>Die Nullhypothese ist in diesem Fall, dass die beiden Varianzen gleich sind:
+<span class="math display">\[H_0:\sigma_2^2=\sigma_1^2\]</span>
+Die Alternativhypothese ist, dass <span class="math inline">\(\sigma_2^2\)</span> <em>größer</em> ist als <span class="math inline">\(\sigma_1^2\)</span>:
+<span class="math display">\[H_1:\sigma_2^2&gt;\sigma_1^2\]</span></p>
+<p>Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo <span class="math inline">\(s_2^2\)</span> tatsächlich größer ist als <span class="math inline">\(s_1^2\)</span>. Die Formulierung ist immer die eines rechtsseitigen Tests, wo die größere Varianz links steht. Die Teststatistik <span class="math inline">\(F_s\)</span> ist:
+<span class="math display" id="eq:fs">\[\begin{equation}
+F_s=\frac{s_2^2}{s_1^2}\sim F_{n_1-1;n_2-1}
+\tag{9.7}
+\end{equation}\]</span></p>
+<p>Die größere Stichprobenvarianz steht für den rechtsseitigen Test immer im Zähler. Sind die beiden Stichprobenvarianzen annähernd gleich dann ist <span class="math inline">\(F_s\)</span> annähernd <span class="math inline">\(1\)</span>. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten <strong>F-Verteilung</strong> mit den Parameterwerten <span class="math inline">\(n_1-1\)</span> und <span class="math inline">\(n_2-1\)</span> (auch hier genannt “Freiheitsgrade”, wobei es im Gegensatz zur t-Verteilung zwei gibt).<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> Abbildung <a href="09-tests.html#fig:fpdfcdfvariation">9.5</a> zeigt die F-Verteilung für verschiedene Kombinationen der beiden Freiheitsgrade. Die F-Verteilung geht von <span class="math inline">\(0\)</span> bis <span class="math inline">\(+\infty\)</span>, d.h. ist nur für positive Werte definiert. Das passt für Varianzen, da diese nie negativ sind. Die F-Verteilung wird schmaler mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmenden Stichprobengrößen <span class="math inline">\(n_1-1\)</span> und <span class="math inline">\(n_2-1\)</span> im Falle des F-Tests.</p>
+<div class="figure" style="text-align: center"><span id="fig:fpdfcdfvariation"></span>
+<img src="eids_files/figure-html/fpdfcdfvariation-1.png" alt="Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen &quot;Freiheitsgrade&quot;). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten." width="50%" /><img src="eids_files/figure-html/fpdfcdfvariation-2.png" alt="Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen &quot;Freiheitsgrade&quot;). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten." width="50%" />
+<p class="caption">
+Abbildung 9.5: Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen <span class="math inline">\(Z\)</span> für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen “Freiheitsgrade”). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten.
+</p>
+</div>
+<p>Setzen wir nun die Zahlenwerten der Stichproben in Formel <a href="09-tests.html#eq:fs">(9.7)</a> ein:</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="09-tests.html#cb100-1"></a><span class="co"># Varianzen</span></span>
+<span id="cb100-2"><a href="09-tests.html#cb100-2"></a>var1 &lt;-<span class="st"> </span><span class="kw">var</span>(t1, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb100-3"><a href="09-tests.html#cb100-3"></a>var1</span></code></pre></div>
+<pre><code>## [1] 352.2</code></pre>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="09-tests.html#cb102-1"></a>var2 &lt;-<span class="st"> </span><span class="kw">var</span>(t2, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb102-2"><a href="09-tests.html#cb102-2"></a>var2</span></code></pre></div>
+<pre><code>## [1] 384.4</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="09-tests.html#cb104-1"></a><span class="co"># Stichprobenumfänge</span></span>
+<span id="cb104-2"><a href="09-tests.html#cb104-2"></a>n1 &lt;-<span class="st"> </span><span class="kw">length</span>(t1[<span class="op">!</span><span class="kw">is.na</span>(t1)])</span>
+<span id="cb104-3"><a href="09-tests.html#cb104-3"></a>n1</span></code></pre></div>
+<pre><code>## [1] 48</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="09-tests.html#cb106-1"></a>n2 &lt;-<span class="st"> </span><span class="kw">length</span>(t2[<span class="op">!</span><span class="kw">is.na</span>(t2)])</span>
+<span id="cb106-2"><a href="09-tests.html#cb106-2"></a>n2</span></code></pre></div>
+<pre><code>## [1] 50</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="09-tests.html#cb108-1"></a><span class="co"># Teststatistik</span></span>
+<span id="cb108-2"><a href="09-tests.html#cb108-2"></a>fs &lt;-<span class="st"> </span>var2 <span class="op">/</span><span class="st"> </span>var1</span>
+<span id="cb108-3"><a href="09-tests.html#cb108-3"></a>fs</span></code></pre></div>
+<pre><code>## [1] 1.092</code></pre>
+<p>Dieser Wert der Teststatistik liegt im Zentrum der F-Verteilung, die unter der Nullhypothese zu erwarten ist:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="09-tests.html#cb110-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pf</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n1<span class="dv">-1</span>, n2<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
+<span id="cb110-2"><a href="09-tests.html#cb110-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
+<span id="cb110-3"><a href="09-tests.html#cb110-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>fs, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pf</span>(fs, n1<span class="dv">-1</span>, n2<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb110-4"><a href="09-tests.html#cb110-4"></a><span class="kw">text</span>(fs,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;F_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-42-1.png" width="80%" /></p>
+<p>Der <strong>p-Wert</strong> ist (vgl. rechtsseitiger t-Test):
+<span class="math display">\[\Pr\left(Z&gt;F_s\right)=1-F_F\left(F_s\right)\]</span></p>
+<p>Mit Zahlenwerten:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="09-tests.html#cb111-1"></a><span class="dv">1</span><span class="op">-</span><span class="kw">pf</span>(fs, n1<span class="dv">-1</span>, n2<span class="dv">-1</span>)</span></code></pre></div>
+<pre><code>## [1] 0.3806</code></pre>
+<p>Da der p-Wert viel größer ist als das konventionelle Signifikanzniveau von 0.01, ist sehr wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir können demnach die Nullhypothese <em>nicht</em> ablehnen und schließen für Beispiel 6:</p>
+<blockquote>
+<p>Der Unterschied der beiden Varianzen ist statistisch <em>nicht signifikant</em>. D.h. wir schließen, dass die beiden Stichproben Grundgesamtheiten mit der selben Varianz entstammen.</p>
+</blockquote>
+<p>Zusammen mit Bsp. 4 habe wir so statistisch nachvollzogen, dass die beiden Stichproben der selben Grundgesamtheit entstammen.</p>
 </div>
 </div>
 <div id="kstest" class="section level2">
@@ -679,6 +731,7 @@ t_s=\frac{\hat d-0}{s}\cdot\sqrt{n}\sim t_{n-1}
 <li id="fn11"><p>Die Fragestellungen sind etwas konstruiert, damit wir die gängigsten Versionen des t-Tests kennenlernen, sind aber halbwegs realistisch.<a href="09-tests.html#fnref11" class="footnote-back">↩︎</a></p></li>
 <li id="fn12"><p>In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.<a href="09-tests.html#fnref12" class="footnote-back">↩︎</a></p></li>
 <li id="fn13"><p>Die gewichtete Stichprobenvarianz ist nur ein möglicher Schätzer der gemeinsamen theoretischen Varianz.<a href="09-tests.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.<a href="09-tests.html#fnref14" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

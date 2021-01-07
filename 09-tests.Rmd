@@ -473,11 +473,86 @@ Der p-Wert ist also _keine_ Wahrscheinlichkeit, dass die Nullhypothese wahr ist!
 
 ## F-Test (Vergleich von Varianzen) {#ftest}
 
+Während der t-Test für den Vergleich von Mittelwerten zuständig ist, dient der F-Test dem _Vergleich von Varianzen_. Schauen wir uns das an einem Beispiel an.
+
 ### Beispiel 6 (rechtsseitiger F-test)
 
 Siehe Abbildung \@ref(fig:freisezeit2):
 
 > Ist die Varianz $\sigma_2^2$ (gegeben $s_2^2=384$) größer als die Varianz $\sigma_1^2$ (gegeben $s_1^2=352$)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen?
+
+Die Nullhypothese ist in diesem Fall, dass die beiden Varianzen gleich sind:
+$$H_0:\sigma_2^2=\sigma_1^2$$
+Die Alternativhypothese ist, dass $\sigma_2^2$ _größer_ ist als $\sigma_1^2$:
+$$H_1:\sigma_2^2>\sigma_1^2$$
+
+Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo $s_2^2$ tatsächlich größer ist als $s_1^2$. Die Formulierung ist immer die eines rechtsseitigen Tests, wo die größere Varianz links steht. Die Teststatistik $F_s$ ist:
+$$\begin{equation}
+F_s=\frac{s_2^2}{s_1^2}\sim F_{n_1-1;n_2-1}
+(\#eq:fs)
+\end{equation}$$
+
+Die größere Stichprobenvarianz steht für den rechtsseitigen Test immer im Zähler. Sind die beiden Stichprobenvarianzen annähernd gleich dann ist $F_s$ annähernd $1$. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten **F-Verteilung** mit den Parameterwerten $n_1-1$ und $n_2-1$ (auch hier genannt "Freiheitsgrade", wobei es im Gegensatz zur t-Verteilung zwei gibt).^[Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.] Abbildung \@ref(fig:fpdfcdfvariation) zeigt die F-Verteilung für verschiedene Kombinationen der beiden Freiheitsgrade. Die F-Verteilung geht von $0$ bis $+\infty$, d.h. ist nur für positive Werte definiert. Das passt für Varianzen, da diese nie negativ sind. Die F-Verteilung wird schmaler mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmenden Stichprobengrößen $n_1-1$ und $n_2-1$ im Falle des F-Tests.
+
+```{r fpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen "Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+# pdf
+plot(seq(0,5,0.01), df(seq(0,5,0.01), 1, 1), ylim=c(0,4), type='l',
+     xlab='Z=z', ylab='Dichtefunktion')
+lines(seq(0,5,0.01), df(seq(0,5,0.01), 2, 1), col='red')
+lines(seq(0,5,0.01), df(seq(0,5,0.01), 5, 2), col='blue')
+lines(seq(0,5,0.01), df(seq(0,5,0.01), 10, 1), col='green')
+lines(seq(0,5,0.01), df(seq(0,5,0.01), 100, 100), col='purple')
+legend('topright', legend=c('F(1,1)', 'F(2,1)', 'F(5,2)', 'F(10,1)', 'F(100,100)'),
+       col=c('black', 'red', 'blue', 'green', 'purple'), lty=1)
+# cdf
+plot(seq(0,5,0.01), pf(seq(0,5,0.01), 1, 1), ylim=c(0,1), type='l',
+     xlab='Z=z', ylab='Verteilungsfunktion')
+lines(seq(0,5,0.01), pf(seq(0,5,0.01), 2, 1), col='red')
+lines(seq(0,5,0.01), pf(seq(0,5,0.01), 5, 2), col='blue')
+lines(seq(0,5,0.01), pf(seq(0,5,0.01), 10, 1), col='green')
+lines(seq(0,5,0.01), pf(seq(0,5,0.01), 100, 100), col='purple')
+legend('bottomright', legend=c('F(1,1)', 'F(2,1)', 'F(5,2)', 'F(10,1)', 'F(100,100)'),
+       col=c('black', 'red', 'blue', 'green', 'purple'), lty=1)
+```
+
+Setzen wir nun die Zahlenwerten der Stichproben in Formel \@ref(eq:fs) ein:
+```{r echo=TRUE}
+# Varianzen
+var1 <- var(t1, na.rm=TRUE)
+var1
+var2 <- var(t2, na.rm=TRUE)
+var2
+# Stichprobenumfänge
+n1 <- length(t1[!is.na(t1)])
+n1
+n2 <- length(t2[!is.na(t2)])
+n2
+# Teststatistik
+fs <- var2 / var1
+fs
+```
+
+Dieser Wert der Teststatistik liegt im Zentrum der F-Verteilung, die unter der Nullhypothese zu erwarten ist:
+```{r echo=TRUE, out.width='80%'}
+plot(seq(0,5,0.01), pf(seq(0,5,0.01), n1-1, n2-1), ylim=c(0,1), type='l',
+     xlab='Z=t_s', ylab='Verteilungsfunktion')
+lines(c(1, 1)*fs, c(0, pf(fs, n1-1, n2-1)), col='blue')
+text(fs,-0.2,"F_s", col="blue", xpd=TRUE)
+```
+
+Der **p-Wert** ist (vgl. rechtsseitiger t-Test):
+$$\Pr\left(Z>F_s\right)=1-F_F\left(F_s\right)$$
+
+Mit Zahlenwerten:
+```{r echo=TRUE}
+1-pf(fs, n1-1, n2-1)
+```
+
+Da der p-Wert viel größer ist als das konventionelle Signifikanzniveau von 0.01, ist sehr wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir können demnach die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 6:
+
+> Der Unterschied der beiden Varianzen ist statistisch _nicht signifikant_. D.h. wir schließen, dass die beiden Stichproben Grundgesamtheiten mit der selben Varianz entstammen.
+
+Zusammen mit Bsp. 4 habe wir so statistisch nachvollzogen, dass die beiden Stichproben der selben Grundgesamtheit entstammen.
 
 ## Verteilungstest (Kolmogorow-Smirnow-Test) {#kstest}
 
