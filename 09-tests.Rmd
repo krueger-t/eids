@@ -556,22 +556,201 @@ Zusammen mit Bsp. 4 habe wir so statistisch nachvollzogen, dass die beiden Stich
 
 ## Verteilungstest (Kolmogorow-Smirnow-Test) {#kstest}
 
+In Kapitel \@ref(schaetzen) haben wir den QQ-Plot als visuelles Maß der Übereinstimmung einer Stichprobe mit einer theoretischen Verteilungsannahme kennengelernt. Hier soll nun diese Frage als Test formalisiert werden.
+
 ### Beispiel 7 (Einstichproben-Kolmogorow-Smirnow-Test)
 
 Siehe Abbildung \@ref(fig:freisezeit):
 
 > Entstammt die Stichprobe der Reisezeit einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt.
 
+Die Nullhypothese ist in diesem Fall, dass die Verteilungsfunktion der Zufallsvariable - nennen wir sie $X$ - gleich einer bestimmten Verteilungsfunktion $F_0$ - hier einer Normalverteilung - ist:
+$$H_0:F_X(x)=F_0(x)$$
+Die Alternativhypothese ist, dass die Verteilungsfunktion von $X$ _ungleich_ $F_0$ ist:
+$$H_0:F_X(x)\ne F_0(x)$$
+
+In diesem Beispiel testen wir auf eine Normalverteilung, grundsätzlich können wir aber auf jede andere Verteilung testen. Die Teststatistik - hier genannt $d_n$ - ist im Falle des KS-Testes der maximale absolute Abstand zwischen empirischer und theoretischer Verteilungsfunktion:
+$$\begin{equation}
+d_n=\sup\left|F_X(x)-F_0(x)\right|
+(\#eq:dn)
+\end{equation}$$
+
+Die Bezeichung $\sup$ steht für "Supremum", also "Maximum"; sie bezeichnet hier den größten Wert aller vorliegenden absoluten Abstände $\left|F_X(x)-F_0(x)\right|$ (Abbildung \@ref(fig:ks1), links).
+
+```{r ks1, echo=FALSE, fig.align='center', fig.cap='Links: Empirische (schwarz) und theoretische (rot) Verteilungsfunktion des Merkmals "Reisezeit" vom WiSe 2019/20. Für die theoretische Verteilungsfunktion wurde eine Normalverteilung angenommen, deren Parameter anhand der Stichprobe geschätzt wurden. Der maximale absolute Abstand der beiden Verteilungsfunktionen, die Teststatistik $d_n$ des KS-Testes, ist in blau markiert. Rechts: Histogramm derselben Daten mit geschätzter Dichtefunktion.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+# (1)
+# Mittelwertschätzer
+xbar <- mean(reisedat19$t, na.rm=TRUE)
+# Schätzer der Standardabweichung
+s <- sd(reisedat19$t, na.rm=TRUE)
+# Werte der empirischen und geschätzten theoretischen Verteilungsfunktionen für jeden Merkmalswert der Stichprobe
+# Merkmalswerte sortieren
+t_sort <- sort(reisedat19$t)
+# empirische Verteilungsfunktion
+cdf_e <- seq(1/length(t_sort), 1, 1/length(t_sort))
+# theoretische Verteilungsfunktion
+cdf_t <- pnorm(t_sort, mean=xbar, sd=s)
+# absolute Differenzen
+diff <- abs(cdf_e-cdf_t)
+# maximale Differenz = Teststatistik dn
+dn <- max(diff)
+# plotte empirische Verteilungsfunktion
+plot(t_sort, cdf_e, type='l', xlab='Reisezeit (min)', ylab='Verteilungsfunktion')
+# plotte geschätzte theoretische Verteilungsfunktion
+lines(seq(0,120,1), pnorm(seq(0,120,1), mean=xbar, sd=s), ylim=c(0,1), col='red')
+# plotte maxiamle absolute Differenz
+lines(c(1, 1)*t_sort[diff==dn], c(cdf_e[diff==dn], cdf_t[diff==dn]), col='blue', lwd=3)
+# (2)
+# Histogramm berechnen ohne Output
+h <- hist(reisedat19$t, breaks = seq(0, 120, 10), plot = FALSE)
+# absolute in relative Häufigkeiten umrechnen
+h$counts <- h$counts / sum(h$counts)
+# Histogrammdaten plotten
+plot(h, freq = FALSE, col = "gray",
+     main = "", xlab = "Reisezeit (min)", ylab = "Dichtefunktion")
+curve(dnorm(x, mean=xbar, sd=s), add=TRUE, col = "red")
+```
+
+Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten **Kolmogorow-Verteilung**. Diese ist in _R_ nicht implementiert und generell aufwendig zu berechnen. Deshalb zeigen wir hier keine Darstellung, sondern benutzen sofort den in _R_ implementierten KS-Test. Das Prinzip ist aber dasselbe wie bei t- und F-Test und allen anderen Tests. Die Teststatistik können wir weiterhin "per Hand" ausrechnen:
+
+```{r echo=TRUE}
+# Mittelwertschätzer
+xbar <- mean(reisedat19$t, na.rm=TRUE)
+# Schätzer der Standardabweichung
+s <- sd(reisedat19$t, na.rm=TRUE)
+# Werte der empirischen und geschätzten theoretischen Verteilungsfunktionen
+#  für jeden Merkmalswert der Stichprobe
+#  Merkmalswerte sortieren
+t_sort <- sort(reisedat19$t)
+#  empirische Verteilungsfunktion
+cdf_e <- seq(1/length(t_sort), 1, 1/length(t_sort))
+#  theoretische Verteilungsfunktion
+cdf_t <- pnorm(t_sort, mean=xbar, sd=s)
+# absolute Differenzen
+diff <- abs(cdf_e-cdf_t)
+# maximale Differenz = Teststatistik dn
+dn <- max(diff)
+dn
+# KS-Test
+ks.test(reisedat19$t, "pnorm", xbar, s)
+```
+
+Der Wert der Teststatistik $d_n$ ist 0.1; wir haben ihn "per Hand" ausgerechnet also auch als Ausgabe "D" des KS-Testes erhalten. Die Warnung bezüglich der gleichen Stichprobenwerte ("ties") ist unvermeidlich bei realen Stichproben und für unsere Zwecke zu vernachlässigen. Da der p-Wert viel größer ist als das konventionelle Signifikanzniveau von 0.01, ist sehr wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir können demnach die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 7:
+
+> Die Verteilungen sind statistisch gleich. D.h. wir können nicht ausschließen, dass die Stichprobe der Reisezeit einer normalverteilten Grundgesamtheit entstammt, obwohl die empirische Verteilung steiler aussieht.
+
 ### Beispiel 8 (Zweistichproben-Kolmogorow-Smirnow-Test)
 
-Siehe Abbildung \@ref(fig:freisezeit2):
+Beim Zweistichproben-KS-Test werden zwei empirische Verteilungen miteinander verglichen. Siehe Abbildung \@ref(fig:freisezeit2):
 
 > Entstammen die beiden Teilstichproben der Reisezeit einer gemeinsamen Verteilung? Beziehungsweise, können wir das statistisch nachvollziehen?
 
+Die Nullhypothese ist in diesem Fall, dass die Verteilungsfunktionen der beiden Zufallsvariablen - nennen wir sie $X_1$ und $X_2$ - gleich sind:
+$$H_0:F_{X_1}(x)=F_{X_2}(x)$$
+Die Alternativhypothese ist, dass die beiden Verteilungsfunktionen _ungleich_ sind:
+$$H_1:F_{X_1}(x)\ne F_{X_2}(x)$$
+
+Die Teststatistik $d_n$ ist wieder ein maximaler absoluter Abstand, diesmal zwischen den beiden empirischen Verteilungsfunktionen (Abbildung \@ref(fig:ks2)):
+$$\begin{equation}
+d_n=\sup\left|F_{X_1}(x)-F_{X_2}(x)\right|
+(\#eq:dn2)
+\end{equation}$$
+
+```{r ks2, echo=FALSE, fig.align='center', fig.cap='Empirische Verteilungsfunktionen der beiden Teilstichproben des Merkmals "Reisezeit" vom WiSe 2019//20.', message=FALSE, warning=FALSE}
+# Werte der empirischen Verteilungsfunktionen für jeden Merkmalswert der beiden Stichproben
+# Merkmalswerte sortieren
+t1_sort <- sort(t1)
+t2_sort <- sort(t2)
+# empirische Verteilungsfunktion
+cdf_e1 <- seq(1/length(t1_sort), 1, 1/length(t1_sort))
+cdf_e2 <- seq(1/length(t2_sort), 1, 1/length(t2_sort))
+# plotte empirische Verteilungsfunktionen
+plot(t1_sort, cdf_e1, type='l', xlab='Reisezeit (min)', ylab='Verteilungsfunktion')
+lines(t2_sort, cdf_e2, ylim=c(0,1), col='red')
+```
+
+Die Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, wiederum einer **Kolmogorow-Verteilung**. Wir benutzen direkt den in _R_ implementierten KS-Test:
+
+```{r echo=TRUE}
+# KS-Test
+ks.test(t1, t2)
+```
+
+Der Wert der Teststatistik $d_n$ ist wieder etwa 0.1; diesmal können wir ihn wegen der unterschiedlichen Stichprobengröße aufgrund von "NA" Werten nicht so einfach "per Hand" ausrechnen und sparen uns das hier. Da der p-Wert wiederum viel größer ist als das konventionelle Signifikanzniveau von 0.01, können wir die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 8:
+
+> Die beiden Teilstichproben entstammen einer gemeinsamen Verteilungen. Bzw., wir können diesen Tatbestand statistisch nachvollziehen.
+
+In der Tat wurden die beiden Teilstichproben ja der gleichen Stichprobe zufällig entnommen
+
 ## Unabhängigkeitstest (Chi-Quadrat-Test) {#chi2test}
+
+Der Chi-Quadrat-Test testet die Unabhängigkeit zweier nominal skalierter Merkmale mit Hilfe der Chi-Quadrat-Statistik $\mathcal{X}^2$, die wir bereits in Kapitel \@ref(korrelation) anhand der Kontingenztabelle kennengelernt haben. Erinnern wir uns, dass $\mathcal{X}^2$ die Stärke des Zusammenhangs der Merkmale misst, ohne aber eine Aussage über Signifkanz zu treffen.
 
 ### Beispiel 9 (Chi-Quadrat-Test)
 
 Siehe Kapitel \@ref(korrelation):
 
 > Gibt es einen Zusammenhang zwischen "Bezirk" und "Votum" beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant?
+
+Die Nullhypothese ist in diesem Fall, dass die Merkmale "Bezirk" $X$ und "Votum" $Y$ unabhängig sind. Die Alternativhypothese ist, dass die beiden Merkmale _abhängig_ sind. In Kapitel \@ref(korrelation) vermuteten wir, da $\mathcal{X}^2=49895.1$ klein ist im Vergleich zum maximal möglichen Wert von $1 732 940$, dass die Abhängigkeit zwischen "Bezirk" und "Votum" gering ist. Aber ist sie trotzdem statistisch signifikant?
+
+Schauen Sie sich nochmal die Kontingenztabelle in Abbildung \@ref(fig:ctvergleich) an: In der linken Tabelle stehen die beobachteten absoluten Häufigkeiten $h_{ij}$ für alle Kombinationen der beiden Merkmalsausprägungen. In der rechten Tabelle stehen die entsprechenden bei empirischer Unabhängigkeit erwarteten absoluten Häufigkeiten $\tilde h_{ij}$. Zu letzteren Werten kamen wir mit der Formel:
+$$h_{ij}=\frac{h_{i\cdot}\cdot h_{\cdot j}}{n}:=\tilde h_{ij}$$
+
+Wobei $h_{i\cdot}$ und $h_{\cdot j}$ die absoluten Häufigkeiten der Randverteilungen von $X$ und $Y$ sind und $n$ wie üblich der Stichprobenumfang ist (Abbildung \@ref(fig:ctlegend)).
+```{r ctlegend, echo=FALSE, fig.align='center', fig.cap='Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tegel aus Kapitel \\@ref(korrelation) mit Legende.', out.width='50%'}
+knitr::include_graphics('figs/ct_legende.png')
+```
+
+Seit Kapitel \@ref(wahrscheinlichkeit) haben wir jetzt auch das Handwerkszeug, diese Gleichung besser zu verstehen. Die Wahrscheinlichkeit, dass $X$ und $Y$ beide eintreten ist das Produkt der Einzelwahrscheinlichkeiten, falls $X$ und $Y$ _unabhängig_ sind:
+$$\Pr(X\cap Y)=\Pr(X)\cdot\Pr(Y)$$
+
+Das ist die Produktregel (Geichung \@ref(eq:produktregel)) für unabhängige Ereignisse. Übertragen auf die relativen Häufigkeiten der Kontingenztabelle heißt das:
+$$\frac{h_{ij}}{n}=\frac{h_{i\cdot}}{n}\cdot\frac{h_{\cdot j}}{n}$$
+
+Nach $h_{ij}$ aufgelöst kommen wir auf:
+$$h_{ij}=\frac{h_{i\cdot}\cdot h_{\cdot j}}{n}:=\tilde h_{ij}$$
+
+Die Chi-Quadrat-Statistik, die wir in Kapitel \@ref(korrelation) ausgerechnet haben ist die Teststatistik des Chi-Quadrat-Testes:
+$$\begin{equation}
+\mathcal{X}^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{\left(h_{ij}-\tilde h_{ij}\right)^2}{\tilde h_{ij}}
+(\#eq:chi2)
+\end{equation}$$
+
+In Worten: Die Summe der relativen quadratischen Abweichungen der beobachteten Häufigkeiten $h_{ij}$ von den bei Unabhängigkeit erwarteten Häufigkeiten $\tilde h_{ij}$. In unserem Beispiel ist $\mathcal{X}^2=49895.1$. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer **Chi-Quadrat-Verteilung** mit Parameterwert $(k-1)\cdot(m-1)$ (auch hier genannt "Anzahl Freiheitsgrade").^[Wiederum ist es die Verteilung, die Teststatistik und Test ihren Namen gibt.] Abbildung \@ref(fig:chi2pdfcdfvariation) zeigt die Chi-Quadrat-Verteilung für verschiedene Anzahl Freiheitsgrade. Die Chi-Quadrat-Verteilung ist wie die F-Verteilung nur für positive Werte definiert. Das passt für $\mathcal{X}^2$, das nie negativ ist. Die Chi-Quadrat-Verteilung wird breiter mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmender Anzahl Ausprägungen der beiden Merkmale. Das trägt dem mit zunehmender Anzahl Merkmalsausprägungen größer werdenden Maximalwert von  $\mathcal{X}^2$ Rechnung.
+
+```{r chi2pdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Anzahl Freiheitsgrade (der einzige Parameter der Chi-Quadrat-Verteilung heißt "Anzahl Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden Chi-Quadrat-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+# pdf
+plot(seq(0,10,0.1), dchisq(seq(0,10,0.1), 1), ylim=c(0,0.5), type='l',
+     xlab='Z=z', ylab='Dichtefunktion')
+lines(seq(0,10,0.1), dchisq(seq(0,10,0.1), 3), col='red')
+lines(seq(0,10,0.1), dchisq(seq(0,10,0.1), 5), col='blue')
+lines(seq(0,10,0.1), dchisq(seq(0,10,0.1), 7), col='green')
+lines(seq(0,10,0.1), dchisq(seq(0,10,0.1), 9), col='purple')
+legend('topright', legend=c('Chi2(1)', 'Chi2(3)', 'Chi2(5)', 'Chi2(7)', 'Chi2(9)'),
+       col=c('black', 'red', 'blue', 'green', 'purple'), lty=1)
+# cdf
+plot(seq(0,10,0.1), pchisq(seq(0,10,0.1), 1), ylim=c(0,1), type='l',
+     xlab='Z=z', ylab='Verteilungsfunktion')
+lines(seq(0,10,0.1), pchisq(seq(0,10,0.1), 3), col='red')
+lines(seq(0,10,0.1), pchisq(seq(0,10,0.1), 5), col='blue')
+lines(seq(0,10,0.1), pchisq(seq(0,10,0.1), 7), col='green')
+lines(seq(0,10,0.1), pchisq(seq(0,10,0.1), 9), col='purple')
+legend('bottomright', legend=c('Chi2(1)', 'Chi2(3)', 'Chi2(5)', 'Chi2(7)', 'Chi2(9)'),
+       col=c('black', 'red', 'blue', 'green', 'purple'), lty=1)
+```
+
+Der Wert $\mathcal{X}^2=49895.1$ für unser Beispiel befindet sich am rechten Rand der Chi-Quadrat-Verteilung, weit jenseits des hier dargestellten Bereichs:
+```{r echo=TRUE, out.width='80%'}
+plot(seq(0,100,1), pchisq(seq(0,100,1), (12-1)*(2-1)), ylim=c(0,1), type='l',
+     xlab='Z=Chi2', ylab='Verteilungsfunktion')
+```
+
+Der p-Wert ist damit viel kleiner als das konventionelle Signifikanzniveau von 0.01 (_R_ rundet den Wert auf null):
+```{r}
+1-pchisq(49895.1, (12-1)*(2-1))
+```
+
+Somit ist es sehr unwahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir lehnen demnach die Nullhypothese ab und schließen für Beispiel 9:
+
+> Der geringe Abhängigkeit zwischen "Bezirk" und "Votum" ist tatsächlich statistisch signifikant.

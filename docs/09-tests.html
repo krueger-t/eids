@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-01-07" />
+<meta name="date" content="2021-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -685,28 +685,150 @@ Abbildung 9.5: Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsva
 </div>
 <div id="kstest" class="section level2">
 <h2><span class="header-section-number">9.5</span> Verteilungstest (Kolmogorow-Smirnow-Test)</h2>
+<p>In Kapitel <a href="08-schaetzen.html#schaetzen">8</a> haben wir den QQ-Plot als visuelles Maß der Übereinstimmung einer Stichprobe mit einer theoretischen Verteilungsannahme kennengelernt. Hier soll nun diese Frage als Test formalisiert werden.</p>
 <div id="beispiel-7-einstichproben-kolmogorow-smirnow-test" class="section level3">
 <h3><span class="header-section-number">9.5.1</span> Beispiel 7 (Einstichproben-Kolmogorow-Smirnow-Test)</h3>
 <p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit">9.1</a>:</p>
 <blockquote>
 <p>Entstammt die Stichprobe der Reisezeit einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt.</p>
 </blockquote>
+<p>Die Nullhypothese ist in diesem Fall, dass die Verteilungsfunktion der Zufallsvariable - nennen wir sie <span class="math inline">\(X\)</span> - gleich einer bestimmten Verteilungsfunktion <span class="math inline">\(F_0\)</span> - hier einer Normalverteilung - ist:
+<span class="math display">\[H_0:F_X(x)=F_0(x)\]</span>
+Die Alternativhypothese ist, dass die Verteilungsfunktion von <span class="math inline">\(X\)</span> <em>ungleich</em> <span class="math inline">\(F_0\)</span> ist:
+<span class="math display">\[H_0:F_X(x)\ne F_0(x)\]</span></p>
+<p>In diesem Beispiel testen wir auf eine Normalverteilung, grundsätzlich können wir aber auf jede andere Verteilung testen. Die Teststatistik - hier genannt <span class="math inline">\(d_n\)</span> - ist im Falle des KS-Testes der maximale absolute Abstand zwischen empirischer und theoretischer Verteilungsfunktion:
+<span class="math display" id="eq:dn">\[\begin{equation}
+d_n=\sup\left|F_X(x)-F_0(x)\right|
+\tag{9.8}
+\end{equation}\]</span></p>
+<p>Die Bezeichung <span class="math inline">\(\sup\)</span> steht für “Supremum”, also “Maximum”; sie bezeichnet hier den größten Wert aller vorliegenden absoluten Abstände <span class="math inline">\(\left|F_X(x)-F_0(x)\right|\)</span> (Abbildung <a href="09-tests.html#fig:ks1">9.6</a>, links).</p>
+<div class="figure" style="text-align: center"><span id="fig:ks1"></span>
+<img src="eids_files/figure-html/ks1-1.png" alt="Links: Empirische (schwarz) und theoretische (rot) Verteilungsfunktion des Merkmals &quot;Reisezeit&quot; vom WiSe 2019/20. Für die theoretische Verteilungsfunktion wurde eine Normalverteilung angenommen, deren Parameter anhand der Stichprobe geschätzt wurden. Der maximale absolute Abstand der beiden Verteilungsfunktionen, die Teststatistik $d_n$ des KS-Testes, ist in blau markiert. Rechts: Histogramm derselben Daten mit geschätzter Dichtefunktion." width="50%" /><img src="eids_files/figure-html/ks1-2.png" alt="Links: Empirische (schwarz) und theoretische (rot) Verteilungsfunktion des Merkmals &quot;Reisezeit&quot; vom WiSe 2019/20. Für die theoretische Verteilungsfunktion wurde eine Normalverteilung angenommen, deren Parameter anhand der Stichprobe geschätzt wurden. Der maximale absolute Abstand der beiden Verteilungsfunktionen, die Teststatistik $d_n$ des KS-Testes, ist in blau markiert. Rechts: Histogramm derselben Daten mit geschätzter Dichtefunktion." width="50%" />
+<p class="caption">
+Abbildung 9.6: Links: Empirische (schwarz) und theoretische (rot) Verteilungsfunktion des Merkmals “Reisezeit” vom WiSe 2019/20. Für die theoretische Verteilungsfunktion wurde eine Normalverteilung angenommen, deren Parameter anhand der Stichprobe geschätzt wurden. Der maximale absolute Abstand der beiden Verteilungsfunktionen, die Teststatistik <span class="math inline">\(d_n\)</span> des KS-Testes, ist in blau markiert. Rechts: Histogramm derselben Daten mit geschätzter Dichtefunktion.
+</p>
+</div>
+<p>Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten <strong>Kolmogorow-Verteilung</strong>. Diese ist in <em>R</em> nicht implementiert und generell aufwendig zu berechnen. Deshalb zeigen wir hier keine Darstellung, sondern benutzen sofort den in <em>R</em> implementierten KS-Test. Das Prinzip ist aber dasselbe wie bei t- und F-Test und allen anderen Tests. Die Teststatistik können wir weiterhin “per Hand” ausrechnen:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="09-tests.html#cb113-1"></a><span class="co"># Mittelwertschätzer</span></span>
+<span id="cb113-2"><a href="09-tests.html#cb113-2"></a>xbar &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat19<span class="op">$</span>t, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb113-3"><a href="09-tests.html#cb113-3"></a><span class="co"># Schätzer der Standardabweichung</span></span>
+<span id="cb113-4"><a href="09-tests.html#cb113-4"></a>s &lt;-<span class="st"> </span><span class="kw">sd</span>(reisedat19<span class="op">$</span>t, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb113-5"><a href="09-tests.html#cb113-5"></a><span class="co"># Werte der empirischen und geschätzten theoretischen Verteilungsfunktionen</span></span>
+<span id="cb113-6"><a href="09-tests.html#cb113-6"></a><span class="co">#  für jeden Merkmalswert der Stichprobe</span></span>
+<span id="cb113-7"><a href="09-tests.html#cb113-7"></a><span class="co">#  Merkmalswerte sortieren</span></span>
+<span id="cb113-8"><a href="09-tests.html#cb113-8"></a>t_sort &lt;-<span class="st"> </span><span class="kw">sort</span>(reisedat19<span class="op">$</span>t)</span>
+<span id="cb113-9"><a href="09-tests.html#cb113-9"></a><span class="co">#  empirische Verteilungsfunktion</span></span>
+<span id="cb113-10"><a href="09-tests.html#cb113-10"></a>cdf_e &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(t_sort), <span class="dv">1</span>, <span class="dv">1</span><span class="op">/</span><span class="kw">length</span>(t_sort))</span>
+<span id="cb113-11"><a href="09-tests.html#cb113-11"></a><span class="co">#  theoretische Verteilungsfunktion</span></span>
+<span id="cb113-12"><a href="09-tests.html#cb113-12"></a>cdf_t &lt;-<span class="st"> </span><span class="kw">pnorm</span>(t_sort, <span class="dt">mean=</span>xbar, <span class="dt">sd=</span>s)</span>
+<span id="cb113-13"><a href="09-tests.html#cb113-13"></a><span class="co"># absolute Differenzen</span></span>
+<span id="cb113-14"><a href="09-tests.html#cb113-14"></a>diff &lt;-<span class="st"> </span><span class="kw">abs</span>(cdf_e<span class="op">-</span>cdf_t)</span>
+<span id="cb113-15"><a href="09-tests.html#cb113-15"></a><span class="co"># maximale Differenz = Teststatistik dn</span></span>
+<span id="cb113-16"><a href="09-tests.html#cb113-16"></a>dn &lt;-<span class="st"> </span><span class="kw">max</span>(diff)</span>
+<span id="cb113-17"><a href="09-tests.html#cb113-17"></a>dn</span></code></pre></div>
+<pre><code>## [1] 0.09932</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="09-tests.html#cb115-1"></a><span class="co"># KS-Test</span></span>
+<span id="cb115-2"><a href="09-tests.html#cb115-2"></a><span class="kw">ks.test</span>(reisedat19<span class="op">$</span>t, <span class="st">&quot;pnorm&quot;</span>, xbar, s)</span></code></pre></div>
+<pre><code>## Warning in ks.test(reisedat19$t, &quot;pnorm&quot;, xbar, s):
+## ties should not be present for the Kolmogorov-Smirnov
+## test</code></pre>
+<pre><code>## 
+## 	One-sample Kolmogorov-Smirnov test
+## 
+## data:  reisedat19$t
+## D = 0.099, p-value = 0.3
+## alternative hypothesis: two-sided</code></pre>
+<p>Der Wert der Teststatistik <span class="math inline">\(d_n\)</span> ist 0.1; wir haben ihn “per Hand” ausgerechnet also auch als Ausgabe “D” des KS-Testes erhalten. Die Warnung bezüglich der gleichen Stichprobenwerte (“ties”) ist unvermeidlich bei realen Stichproben und für unsere Zwecke zu vernachlässigen. Da der p-Wert viel größer ist als das konventionelle Signifikanzniveau von 0.01, ist sehr wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir können demnach die Nullhypothese <em>nicht</em> ablehnen und schließen für Beispiel 7:</p>
+<blockquote>
+<p>Die Verteilungen sind statistisch gleich. D.h. wir können nicht ausschließen, dass die Stichprobe der Reisezeit einer normalverteilten Grundgesamtheit entstammt, obwohl die empirische Verteilung steiler aussieht.</p>
+</blockquote>
 </div>
 <div id="beispiel-8-zweistichproben-kolmogorow-smirnow-test" class="section level3">
 <h3><span class="header-section-number">9.5.2</span> Beispiel 8 (Zweistichproben-Kolmogorow-Smirnow-Test)</h3>
-<p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>:</p>
+<p>Beim Zweistichproben-KS-Test werden zwei empirische Verteilungen miteinander verglichen. Siehe Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>:</p>
 <blockquote>
 <p>Entstammen die beiden Teilstichproben der Reisezeit einer gemeinsamen Verteilung? Beziehungsweise, können wir das statistisch nachvollziehen?</p>
 </blockquote>
+<p>Die Nullhypothese ist in diesem Fall, dass die Verteilungsfunktionen der beiden Zufallsvariablen - nennen wir sie <span class="math inline">\(X_1\)</span> und <span class="math inline">\(X_2\)</span> - gleich sind:
+<span class="math display">\[H_0:F_{X_1}(x)=F_{X_2}(x)\]</span>
+Die Alternativhypothese ist, dass die beiden Verteilungsfunktionen <em>ungleich</em> sind:
+<span class="math display">\[H_1:F_{X_1}(x)\ne F_{X_2}(x)\]</span></p>
+<p>Die Teststatistik <span class="math inline">\(d_n\)</span> ist wieder ein maximaler absoluter Abstand, diesmal zwischen den beiden empirischen Verteilungsfunktionen (Abbildung <a href="09-tests.html#fig:ks2">9.7</a>):
+<span class="math display" id="eq:dn2">\[\begin{equation}
+d_n=\sup\left|F_{X_1}(x)-F_{X_2}(x)\right|
+\tag{9.9}
+\end{equation}\]</span></p>
+<div class="figure" style="text-align: center"><span id="fig:ks2"></span>
+<img src="eids_files/figure-html/ks2-1.png" alt="Empirische Verteilungsfunktionen der beiden Teilstichproben des Merkmals &quot;Reisezeit&quot; vom WiSe 2019//20." width="672" />
+<p class="caption">
+Abbildung 9.7: Empirische Verteilungsfunktionen der beiden Teilstichproben des Merkmals “Reisezeit” vom WiSe 2019//20.
+</p>
+</div>
+<p>Die Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, wiederum einer <strong>Kolmogorow-Verteilung</strong>. Wir benutzen direkt den in <em>R</em> implementierten KS-Test:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="09-tests.html#cb118-1"></a><span class="co"># KS-Test</span></span>
+<span id="cb118-2"><a href="09-tests.html#cb118-2"></a><span class="kw">ks.test</span>(t1, t2)</span></code></pre></div>
+<pre><code>## Warning in ks.test(t1, t2): cannot compute exact p-
+## value with ties</code></pre>
+<pre><code>## 
+## 	Two-sample Kolmogorov-Smirnov test
+## 
+## data:  t1 and t2
+## D = 0.074, p-value = 1
+## alternative hypothesis: two-sided</code></pre>
+<p>Der Wert der Teststatistik <span class="math inline">\(d_n\)</span> ist wieder etwa 0.1; diesmal können wir ihn wegen der unterschiedlichen Stichprobengröße aufgrund von “NA” Werten nicht so einfach “per Hand” ausrechnen und sparen uns das hier. Da der p-Wert wiederum viel größer ist als das konventionelle Signifikanzniveau von 0.01, können wir die Nullhypothese <em>nicht</em> ablehnen und schließen für Beispiel 8:</p>
+<blockquote>
+<p>Die beiden Teilstichproben entstammen einer gemeinsamen Verteilungen. Bzw., wir können diesen Tatbestand statistisch nachvollziehen.</p>
+</blockquote>
+<p>In der Tat wurden die beiden Teilstichproben ja der gleichen Stichprobe zufällig entnommen</p>
 </div>
 </div>
 <div id="chi2test" class="section level2">
 <h2><span class="header-section-number">9.6</span> Unabhängigkeitstest (Chi-Quadrat-Test)</h2>
+<p>Der Chi-Quadrat-Test testet die Unabhängigkeit zweier nominal skalierter Merkmale mit Hilfe der Chi-Quadrat-Statistik <span class="math inline">\(\mathcal{X}^2\)</span>, die wir bereits in Kapitel <a href="05-korrelation.html#korrelation">5</a> anhand der Kontingenztabelle kennengelernt haben. Erinnern wir uns, dass <span class="math inline">\(\mathcal{X}^2\)</span> die Stärke des Zusammenhangs der Merkmale misst, ohne aber eine Aussage über Signifkanz zu treffen.</p>
 <div id="beispiel-9-chi-quadrat-test" class="section level3">
 <h3><span class="header-section-number">9.6.1</span> Beispiel 9 (Chi-Quadrat-Test)</h3>
 <p>Siehe Kapitel <a href="05-korrelation.html#korrelation">5</a>:</p>
 <blockquote>
 <p>Gibt es einen Zusammenhang zwischen “Bezirk” und “Votum” beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant?</p>
+</blockquote>
+<p>Die Nullhypothese ist in diesem Fall, dass die Merkmale “Bezirk” <span class="math inline">\(X\)</span> und “Votum” <span class="math inline">\(Y\)</span> unabhängig sind. Die Alternativhypothese ist, dass die beiden Merkmale <em>abhängig</em> sind. In Kapitel <a href="05-korrelation.html#korrelation">5</a> vermuteten wir, da <span class="math inline">\(\mathcal{X}^2=49895.1\)</span> klein ist im Vergleich zum maximal möglichen Wert von <span class="math inline">\(1 732 940\)</span>, dass die Abhängigkeit zwischen “Bezirk” und “Votum” gering ist. Aber ist sie trotzdem statistisch signifikant?</p>
+<p>Schauen Sie sich nochmal die Kontingenztabelle in Abbildung <a href="05-korrelation.html#fig:ctvergleich">5.5</a> an: In der linken Tabelle stehen die beobachteten absoluten Häufigkeiten <span class="math inline">\(h_{ij}\)</span> für alle Kombinationen der beiden Merkmalsausprägungen. In der rechten Tabelle stehen die entsprechenden bei empirischer Unabhängigkeit erwarteten absoluten Häufigkeiten <span class="math inline">\(\tilde h_{ij}\)</span>. Zu letzteren Werten kamen wir mit der Formel:
+<span class="math display">\[h_{ij}=\frac{h_{i\cdot}\cdot h_{\cdot j}}{n}:=\tilde h_{ij}\]</span></p>
+Wobei <span class="math inline">\(h_{i\cdot}\)</span> und <span class="math inline">\(h_{\cdot j}\)</span> die absoluten Häufigkeiten der Randverteilungen von <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> sind und <span class="math inline">\(n\)</span> wie üblich der Stichprobenumfang ist (Abbildung <a href="09-tests.html#fig:ctlegend">9.8</a>).
+<div class="figure" style="text-align: center"><span id="fig:ctlegend"></span>
+<img src="figs/ct_legende.png" alt="Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tegel aus Kapitel \@ref(korrelation) mit Legende." width="50%" />
+<p class="caption">
+Abbildung 9.8: Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tegel aus Kapitel <a href="05-korrelation.html#korrelation">5</a> mit Legende.
+</p>
+</div>
+<p>Seit Kapitel <a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit">6</a> haben wir jetzt auch das Handwerkszeug, diese Gleichung besser zu verstehen. Die Wahrscheinlichkeit, dass <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> beide eintreten ist das Produkt der Einzelwahrscheinlichkeiten, falls <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> <em>unabhängig</em> sind:
+<span class="math display">\[\Pr(X\cap Y)=\Pr(X)\cdot\Pr(Y)\]</span></p>
+<p>Das ist die Produktregel (Geichung <a href="06-wahrscheinlichkeit.html#eq:produktregel">(6.2)</a>) für unabhängige Ereignisse. Übertragen auf die relativen Häufigkeiten der Kontingenztabelle heißt das:
+<span class="math display">\[\frac{h_{ij}}{n}=\frac{h_{i\cdot}}{n}\cdot\frac{h_{\cdot j}}{n}\]</span></p>
+<p>Nach <span class="math inline">\(h_{ij}\)</span> aufgelöst kommen wir auf:
+<span class="math display">\[h_{ij}=\frac{h_{i\cdot}\cdot h_{\cdot j}}{n}:=\tilde h_{ij}\]</span></p>
+<p>Die Chi-Quadrat-Statistik, die wir in Kapitel <a href="05-korrelation.html#korrelation">5</a> ausgerechnet haben ist die Teststatistik des Chi-Quadrat-Testes:
+<span class="math display" id="eq:chi2">\[\begin{equation}
+\mathcal{X}^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{\left(h_{ij}-\tilde h_{ij}\right)^2}{\tilde h_{ij}}
+\tag{9.10}
+\end{equation}\]</span></p>
+<p>In Worten: Die Summe der relativen quadratischen Abweichungen der beobachteten Häufigkeiten <span class="math inline">\(h_{ij}\)</span> von den bei Unabhängigkeit erwarteten Häufigkeiten <span class="math inline">\(\tilde h_{ij}\)</span>. In unserem Beispiel ist <span class="math inline">\(\mathcal{X}^2=49895.1\)</span>. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer <strong>Chi-Quadrat-Verteilung</strong> mit Parameterwert <span class="math inline">\((k-1)\cdot(m-1)\)</span> (auch hier genannt “Anzahl Freiheitsgrade”).<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> Abbildung <a href="09-tests.html#fig:chi2pdfcdfvariation">9.9</a> zeigt die Chi-Quadrat-Verteilung für verschiedene Anzahl Freiheitsgrade. Die Chi-Quadrat-Verteilung ist wie die F-Verteilung nur für positive Werte definiert. Das passt für <span class="math inline">\(\mathcal{X}^2\)</span>, das nie negativ ist. Die Chi-Quadrat-Verteilung wird breiter mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmender Anzahl Ausprägungen der beiden Merkmale. Das trägt dem mit zunehmender Anzahl Merkmalsausprägungen größer werdenden Maximalwert von <span class="math inline">\(\mathcal{X}^2\)</span> Rechnung.</p>
+<div class="figure" style="text-align: center"><span id="fig:chi2pdfcdfvariation"></span>
+<img src="eids_files/figure-html/chi2pdfcdfvariation-1.png" alt="Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Anzahl Freiheitsgrade (der einzige Parameter der Chi-Quadrat-Verteilung heißt &quot;Anzahl Freiheitsgrade&quot;). Rechts: Verteilungsfunktion der entsprechenden Chi-Quadrat-Verteilungsvarianten." width="50%" /><img src="eids_files/figure-html/chi2pdfcdfvariation-2.png" alt="Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Anzahl Freiheitsgrade (der einzige Parameter der Chi-Quadrat-Verteilung heißt &quot;Anzahl Freiheitsgrade&quot;). Rechts: Verteilungsfunktion der entsprechenden Chi-Quadrat-Verteilungsvarianten." width="50%" />
+<p class="caption">
+Abbildung 9.9: Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen Zufallsvariablen <span class="math inline">\(Z\)</span> für verschiedene Anzahl Freiheitsgrade (der einzige Parameter der Chi-Quadrat-Verteilung heißt “Anzahl Freiheitsgrade”). Rechts: Verteilungsfunktion der entsprechenden Chi-Quadrat-Verteilungsvarianten.
+</p>
+</div>
+<p>Der Wert <span class="math inline">\(\mathcal{X}^2=49895.1\)</span> für unser Beispiel befindet sich am rechten Rand der Chi-Quadrat-Verteilung, weit jenseits des hier dargestellten Bereichs:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="09-tests.html#cb121-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">1</span>), <span class="kw">pchisq</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">1</span>), (<span class="dv">12-1</span>)<span class="op">*</span>(<span class="dv">2-1</span>)), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
+<span id="cb121-2"><a href="09-tests.html#cb121-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=Chi2&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-46-1.png" width="80%" /></p>
+<p>Der p-Wert ist damit viel kleiner als das konventionelle Signifikanzniveau von 0.01 (<em>R</em> rundet den Wert auf null):</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="09-tests.html#cb122-1"></a><span class="dv">1</span><span class="op">-</span><span class="kw">pchisq</span>(<span class="fl">49895.1</span>, (<span class="dv">12-1</span>)<span class="op">*</span>(<span class="dv">2-1</span>))</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>Somit ist es sehr unwahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir lehnen demnach die Nullhypothese ab und schließen für Beispiel 9:</p>
+<blockquote>
+<p>Der geringe Abhängigkeit zwischen “Bezirk” und “Votum” ist tatsächlich statistisch signifikant.</p>
 </blockquote>
 
 </div>
@@ -732,6 +854,7 @@ Abbildung 9.5: Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsva
 <li id="fn12"><p>In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.<a href="09-tests.html#fnref12" class="footnote-back">↩︎</a></p></li>
 <li id="fn13"><p>Die gewichtete Stichprobenvarianz ist nur ein möglicher Schätzer der gemeinsamen theoretischen Varianz.<a href="09-tests.html#fnref13" class="footnote-back">↩︎</a></p></li>
 <li id="fn14"><p>Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.<a href="09-tests.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>Wiederum ist es die Verteilung, die Teststatistik und Test ihren Namen gibt.<a href="09-tests.html#fnref15" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
