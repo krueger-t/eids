@@ -202,7 +202,7 @@ Für unser Beispiel 1 schließen wir also:
 
 Wir können die Fragestellung auch schwächer formulieren, als **zweiseitiges** Testproblem:
 
-> Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _ungleich_ dem Vergleichswert $\mu_0=60?
+> Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _ungleich_ dem Vergleichswert $\mu_0=60$?
 
 Die Nullhypothese ist in diesem Fall, dass der Mittelwert gleich dem Vergleichswert ist:
 $$H_0:\mu=\mu_0$$
