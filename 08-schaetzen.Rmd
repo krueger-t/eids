@@ -231,7 +231,7 @@ $$\begin{equation}
 
 Die Herleitung beider Schätzer erfolgt über die sogenannte Maximum-Likelihood-Theorie, auf die wir hier nicht näher eingehen wollen. Sie können die Herleitung aber z.B. in @dormann2013, S. 48ff nachlesen. Auf der Maximum-Likelihood-Theorie basiert die Annahme _unabhängig identisch verteilter (u.i.v.) Daten_. Nur wenn diese erfüllt ist, sind wahrscheinlichkeitstheoretische Aussagen wie Standardfehler und Konfidenzintervalle gültig! Oft, z.B. wenn Daten korrelieren, ist dies nur annäherungsweise der Fall.
 
-## Quantil-Quantil-Diagramm (QQ-Plot)
+## Quantil-Quantil-Diagramm (QQ-Plot) {#qqplot}
 
 Ein visueller Test, ob eine Stichprobe aus einer bestimmten Verteilung entstammt ist das sogenannte Quantil-Quantil-Diagramm (QQ-Plot). Abbildung \@ref(fig:qqentfernung) zeigt QQ-Plots für unsere Entfernungsdaten, einmal original und einmal log-transformiert.
 ```{r echo=FALSE}

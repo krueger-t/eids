@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-01-15" />
+<meta name="date" content="2021-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-schätzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
 <li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
 <li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
-<li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#quantil-quantil-diagramm-qq-plot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
+<li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#qqplot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a><ul>
 <li class="chapter" data-level="9.1" data-path="09-tests.html"><a href="09-tests.html#grundprinzipien-statistischer-tests"><i class="fa fa-check"></i><b>9.1</b> Grundprinzipien statistischer Tests</a></li>
@@ -384,7 +384,7 @@ Die Alternativhypothese ist, dass der Mittelwert <em>kleiner</em> als der Vergle
 <h4><span class="header-section-number">9.2.1.2</span> Beispiel 2 (zweiseitiger Einstichproben-t-Test)</h4>
 <p>Wir können die Fragestellung auch schwächer formulieren, als <strong>zweiseitiges</strong> Testproblem:</p>
 <blockquote>
-<p>Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>ungleich</em> dem Vergleichswert $_0=60?</p>
+<p>Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>ungleich</em> dem Vergleichswert <span class="math inline">\(\mu_0=60\)</span>?</p>
 </blockquote>
 <p>Die Nullhypothese ist in diesem Fall, dass der Mittelwert gleich dem Vergleichswert ist:
 <span class="math display">\[H_0:\mu=\mu_0\]</span>
@@ -667,7 +667,7 @@ Abbildung 9.5: Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsva
 <pre><code>## [1] 1.092</code></pre>
 <p>Dieser Wert der Teststatistik liegt im Zentrum der F-Verteilung, die unter der Nullhypothese zu erwarten ist:</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="09-tests.html#cb110-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="kw">pf</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n1<span class="dv">-1</span>, n2<span class="dv">-1</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
-<span id="cb110-2"><a href="09-tests.html#cb110-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
+<span id="cb110-2"><a href="09-tests.html#cb110-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=F_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
 <span id="cb110-3"><a href="09-tests.html#cb110-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>fs, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pf</span>(fs, n1<span class="dv">-1</span>, n2<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb110-4"><a href="09-tests.html#cb110-4"></a><span class="kw">text</span>(fs,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;F_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-42-1.png" width="80%" /></p>

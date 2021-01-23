@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-01-15" />
+<meta name="date" content="2021-01-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-schätzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
 <li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
 <li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
-<li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#quantil-quantil-diagramm-qq-plot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
+<li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#qqplot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a><ul>
 <li class="chapter" data-level="9.1" data-path="09-tests.html"><a href="09-tests.html#grundprinzipien-statistischer-tests"><i class="fa fa-check"></i><b>9.1</b> Grundprinzipien statistischer Tests</a></li>
@@ -414,7 +414,7 @@ Abbildung 8.3: 50 Wiederholungen von Stichprobenziehungen aus der gleichen Grund
 </blockquote>
 <p>Die Herleitung beider Schätzer erfolgt über die sogenannte Maximum-Likelihood-Theorie, auf die wir hier nicht näher eingehen wollen. Sie können die Herleitung aber z.B. in <span class="citation">Dormann (<a href="#ref-dormann2013" role="doc-biblioref">2013</a>)</span>, S. 48ff nachlesen. Auf der Maximum-Likelihood-Theorie basiert die Annahme <em>unabhängig identisch verteilter (u.i.v.) Daten</em>. Nur wenn diese erfüllt ist, sind wahrscheinlichkeitstheoretische Aussagen wie Standardfehler und Konfidenzintervalle gültig! Oft, z.B. wenn Daten korrelieren, ist dies nur annäherungsweise der Fall.</p>
 </div>
-<div id="quantil-quantil-diagramm-qq-plot" class="section level2">
+<div id="qqplot" class="section level2">
 <h2><span class="header-section-number">8.4</span> Quantil-Quantil-Diagramm (QQ-Plot)</h2>
 <p>Ein visueller Test, ob eine Stichprobe aus einer bestimmten Verteilung entstammt ist das sogenannte Quantil-Quantil-Diagramm (QQ-Plot). Abbildung <a href="08-schaetzen.html#fig:qqentfernung">8.4</a> zeigt QQ-Plots für unsere Entfernungsdaten, einmal original und einmal log-transformiert.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="08-schaetzen.html#cb46-1"></a><span class="co"># QQ-Plot für Originaldaten</span></span>

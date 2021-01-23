@@ -535,7 +535,7 @@ fs
 Dieser Wert der Teststatistik liegt im Zentrum der F-Verteilung, die unter der Nullhypothese zu erwarten ist:
 ```{r echo=TRUE, out.width='80%'}
 plot(seq(0,5,0.01), pf(seq(0,5,0.01), n1-1, n2-1), ylim=c(0,1), type='l',
-     xlab='Z=t_s', ylab='Verteilungsfunktion')
+     xlab='Z=F_s', ylab='Verteilungsfunktion')
 lines(c(1, 1)*fs, c(0, pf(fs, n1-1, n2-1)), col='blue')
 text(fs,-0.2,"F_s", col="blue", xpd=TRUE)
 ```
