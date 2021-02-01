@@ -106,13 +106,13 @@ Ein einseitiger Test ist in der Regel aussagekräftiger. Die Ergebnisse beider T
 
 ### Die Teststatistik
 
-Jeder Test hat eine bestimmte **Teststatistik** (Prüfwert) von der wir wissen, wie sie verteilt ist (unter bestimmten Annahmen), _falls die Nullhypothese wahr ist_. Die Teststatistik eines Einstichproben-t-Tests beispielsweise ist:
+Jeder Test hat eine bestimmte **Teststatistik** (Prüfwert) von der wir wissen, wie sie bei wiederholtem Stichprobenziehen verteilt ist (unter bestimmten Annahmen), _falls die Nullhypothese wahr ist_.^[Genau genommen bezieht sich das auf die Nullhypothese im zweiseitigen Fall, z.B. $H_0: \mu =\mu_0$ im Fall des t-Tests. Das liegt daran, dass wir nur für den Fall "=" eine theoretische Wahrscheinlichkeitverteilung aufstellen können.] Die Teststatistik eines Einstichproben-t-Tests beispielsweise ist:
 $$\begin{equation}
 t_s=\frac{\hat\mu-\mu_0}{s_{\hat\mu}}\sim t_{n-1}
 (\#eq:ts)
 \end{equation}$$
 
-$\hat\mu$ ist der Mittelwertschätzer; in Bsp. 1 $\hat\mu=\bar x=50.8$. $\mu_0$ ist der Wert, mit dem wir den Schätzer vergleichen; in Bsp. 1 $\mu_0=60$. $s_{\hat\mu}$ ist der Standardfehler des Mittelwertschätzers. Ist die Grundgesamtheit normalverteilt, dann ist der so standardisierte Schätzer des Mittelwertes (die Teststatistik $t_s$) bei wiederholtem Stichprobenziehen t-verteilt mit $n-1$ Freiheitsgraden (vgl. Kapitel \@ref(schaetzen)).^[In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.]
+$\hat\mu$ ist der Mittelwertschätzer; in Bsp. 1 $\hat\mu=\bar x=50.8$. $\mu_0$ ist der Wert, mit dem wir den Schätzer vergleichen; in Bsp. 1 $\mu_0=60$. $s_{\hat\mu}$ ist der Standardfehler des Mittelwertschätzers. Ist die Grundgesamtheit normalverteilt mit $\mu=\mu_0$, dann ist der so standardisierte Schätzer des Mittelwertes (die Teststatistik $t_s$) bei wiederholtem Stichprobenziehen t-verteilt mit $n-1$ Freiheitsgraden (vgl. Kapitel \@ref(schaetzen)).^[In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.]
 
 ### Was genau getestet wird
 
@@ -204,7 +204,7 @@ Wir können die Fragestellung auch schwächer formulieren, als **zweiseitiges** 
 
 > Ist der mit dem Stichprobenmittel $\bar x=50.8$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _ungleich_ dem Vergleichswert $\mu_0=60$?
 
-Die Nullhypothese ist in diesem Fall, dass der Mittelwert gleich dem Vergleichswert ist:
+Die Nullhypothese ist in diesem Fall, dass der Mittelwert gleich dem Vergleichswert ist:^[Genau genommen ist es diese Nullhypothese, also der zweiseitige Fall, für die die Wahrscheinlichkeitsverteilung der Teststatistik gilt. Für den einseitigen Fall wird die Nullhypothese trotzdem üblicherweise als "$\leq$" bzw. "$\geq$" angegeben.]
 $$H_0:\mu=\mu_0$$
 Die Alternativhypothese ist, dass die beiden Wert _nicht_ gleich sind:
 $$H_1:\mu\ne\mu_0$$
@@ -486,13 +486,13 @@ $$H_0:\sigma_2^2=\sigma_1^2$$
 Die Alternativhypothese ist, dass $\sigma_2^2$ _größer_ ist als $\sigma_1^2$:
 $$H_1:\sigma_2^2>\sigma_1^2$$
 
-Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo $s_2^2$ tatsächlich größer ist als $s_1^2$. Die Formulierung ist immer die eines rechtsseitigen Tests, wo die größere Varianz links steht. Die Teststatistik $F_s$ ist:
+Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo $s_2^2$ tatsächlich größer ist als $s_1^2$. Die Formulierung ist immer die eines rechtsseitigen Tests, wo die größere Varianz links steht.^[Trotzdem wird die Nullhypothese üblicherweise mit "=" angegeben, was zwar der Fall ist, für den die Wahrscheinlichkeitsverteilung der Teststatistik gilt, was aber nicht konsistent mit der Formulierung der Nullhypothese beim einseitigen t-Test ist. Für diese Inkonsistenz konnte ich bisher keine Lösung finden.] Die Teststatistik $F_s$ ist:
 $$\begin{equation}
 F_s=\frac{s_2^2}{s_1^2}\sim F_{n_1-1;n_2-1}
 (\#eq:fs)
 \end{equation}$$
 
-Die größere Stichprobenvarianz steht für den rechtsseitigen Test immer im Zähler. Sind die beiden Stichprobenvarianzen annähernd gleich dann ist $F_s$ annähernd $1$. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten **F-Verteilung** mit den Parameterwerten $n_1-1$ und $n_2-1$ (auch hier genannt "Freiheitsgrade", wobei es im Gegensatz zur t-Verteilung zwei gibt).^[Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.] Abbildung \@ref(fig:fpdfcdfvariation) zeigt die F-Verteilung für verschiedene Kombinationen der beiden Freiheitsgrade. Die F-Verteilung geht von $0$ bis $+\infty$, d.h. ist nur für positive Werte definiert. Das passt für Varianzen, da diese nie negativ sind. Die F-Verteilung wird schmaler mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmenden Stichprobengrößen $n_1-1$ und $n_2-1$ im Falle des F-Tests.
+Die größere Stichprobenvarianz steht für den rechtsseitigen Test immer im Zähler.^[Das hat wahrscheinlich numerische Gründe: Seht die größere Stichprobenvarianz immer im Zähler, dann nimmt die Teststatistik nur Werte größer oder gleich 1 an. So werden Rundungsfehler bei Zahlen kleiner 1 vermieden, die stärker ins Gewicht fallen würden.] Sind die beiden Stichprobenvarianzen annähernd gleich dann ist $F_s$ annähernd $1$. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten **F-Verteilung** mit den Parameterwerten $n_1-1$ und $n_2-1$ (auch hier genannt "Freiheitsgrade", wobei es im Gegensatz zur t-Verteilung zwei gibt).^[Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.] Abbildung \@ref(fig:fpdfcdfvariation) zeigt die F-Verteilung für verschiedene Kombinationen der beiden Freiheitsgrade. Die F-Verteilung geht von $0$ bis $+\infty$, d.h. ist nur für positive Werte definiert. Das passt für Varianzen, da diese nie negativ sind. Die F-Verteilung wird schmaler mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmenden Stichprobengrößen $n_1-1$ und $n_2-1$ im Falle des F-Tests.
 
 ```{r fpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen "Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # pdf

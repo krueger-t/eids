@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-01-23" />
+<meta name="date" content="2021-02-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -297,12 +297,12 @@ Abbildung 9.3: Verteilung der Anzahl Moosarten auf der Südseite (links) und Nor
 </div>
 <div id="die-teststatistik" class="section level3">
 <h3><span class="header-section-number">9.1.3</span> Die Teststatistik</h3>
-<p>Jeder Test hat eine bestimmte <strong>Teststatistik</strong> (Prüfwert) von der wir wissen, wie sie verteilt ist (unter bestimmten Annahmen), <em>falls die Nullhypothese wahr ist</em>. Die Teststatistik eines Einstichproben-t-Tests beispielsweise ist:
+<p>Jeder Test hat eine bestimmte <strong>Teststatistik</strong> (Prüfwert) von der wir wissen, wie sie bei wiederholtem Stichprobenziehen verteilt ist (unter bestimmten Annahmen), <em>falls die Nullhypothese wahr ist</em>.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> Die Teststatistik eines Einstichproben-t-Tests beispielsweise ist:
 <span class="math display" id="eq:ts">\[\begin{equation}
 t_s=\frac{\hat\mu-\mu_0}{s_{\hat\mu}}\sim t_{n-1}
 \tag{9.1}
 \end{equation}\]</span></p>
-<p><span class="math inline">\(\hat\mu\)</span> ist der Mittelwertschätzer; in Bsp. 1 <span class="math inline">\(\hat\mu=\bar x=50.8\)</span>. <span class="math inline">\(\mu_0\)</span> ist der Wert, mit dem wir den Schätzer vergleichen; in Bsp. 1 <span class="math inline">\(\mu_0=60\)</span>. <span class="math inline">\(s_{\hat\mu}\)</span> ist der Standardfehler des Mittelwertschätzers. Ist die Grundgesamtheit normalverteilt, dann ist der so standardisierte Schätzer des Mittelwertes (die Teststatistik <span class="math inline">\(t_s\)</span>) bei wiederholtem Stichprobenziehen t-verteilt mit <span class="math inline">\(n-1\)</span> Freiheitsgraden (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>).<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+<p><span class="math inline">\(\hat\mu\)</span> ist der Mittelwertschätzer; in Bsp. 1 <span class="math inline">\(\hat\mu=\bar x=50.8\)</span>. <span class="math inline">\(\mu_0\)</span> ist der Wert, mit dem wir den Schätzer vergleichen; in Bsp. 1 <span class="math inline">\(\mu_0=60\)</span>. <span class="math inline">\(s_{\hat\mu}\)</span> ist der Standardfehler des Mittelwertschätzers. Ist die Grundgesamtheit normalverteilt mit <span class="math inline">\(\mu=\mu_0\)</span>, dann ist der so standardisierte Schätzer des Mittelwertes (die Teststatistik <span class="math inline">\(t_s\)</span>) bei wiederholtem Stichprobenziehen t-verteilt mit <span class="math inline">\(n-1\)</span> Freiheitsgraden (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>).<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
 </div>
 <div id="was-genau-getestet-wird" class="section level3">
 <h3><span class="header-section-number">9.1.4</span> Was genau getestet wird</h3>
@@ -386,7 +386,7 @@ Die Alternativhypothese ist, dass der Mittelwert <em>kleiner</em> als der Vergle
 <blockquote>
 <p>Ist der mit dem Stichprobenmittel <span class="math inline">\(\bar x=50.8\)</span> geschätzte Mittelwert <span class="math inline">\(\mu\)</span> der Grundgesamtheit <em>ungleich</em> dem Vergleichswert <span class="math inline">\(\mu_0=60\)</span>?</p>
 </blockquote>
-<p>Die Nullhypothese ist in diesem Fall, dass der Mittelwert gleich dem Vergleichswert ist:
+<p>Die Nullhypothese ist in diesem Fall, dass der Mittelwert gleich dem Vergleichswert ist:<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>
 <span class="math display">\[H_0:\mu=\mu_0\]</span>
 Die Alternativhypothese ist, dass die beiden Wert <em>nicht</em> gleich sind:
 <span class="math display">\[H_1:\mu\ne\mu_0\]</span></p>
@@ -529,7 +529,7 @@ t_s=\frac{\bar x_1-\bar x_2}{\sqrt{\frac{s_1^2+s_2^2}{n}}}\sim t_{2\cdot n-2}
 t_s=\frac{\bar x_1-\bar x_2}{\sqrt{\frac{2\cdot s^2}{n}}}\sim t_{2\cdot n-2}
 \tag{9.4}
 \end{equation}\]</span>
-Wobei der Schätzer der gemeinsamen theoretischen Varianz die sogenannte <strong>gewichtete Stichprobenvarianz</strong> <span class="math inline">\(s^2=\frac{\left(n_1-1\right)\cdot s_1^2+\left(n_2-1\right)\cdot s_2^2}{n_1+n_2-2}\)</span> ist.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+Wobei der Schätzer der gemeinsamen theoretischen Varianz die sogenannte <strong>gewichtete Stichprobenvarianz</strong> <span class="math inline">\(s^2=\frac{\left(n_1-1\right)\cdot s_1^2+\left(n_2-1\right)\cdot s_2^2}{n_1+n_2-2}\)</span> ist.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
 <p>Bei gleicher Varianz und ungleichem Stichprobenumfang ist die Teststatistik:
 <span class="math display" id="eq:ts24">\[\begin{equation}
 t_s=\frac{\bar x_1-\bar x_2}{\sqrt{\left(\frac{1}{n_1}+\frac{1}{n_2}\right)\cdot s^2}}\sim t_{n_1+n_2-2}
@@ -634,12 +634,12 @@ t_s=\frac{\hat d-0}{s}\cdot\sqrt{n}\sim t_{n-1}
 <span class="math display">\[H_0:\sigma_2^2=\sigma_1^2\]</span>
 Die Alternativhypothese ist, dass <span class="math inline">\(\sigma_2^2\)</span> <em>größer</em> ist als <span class="math inline">\(\sigma_1^2\)</span>:
 <span class="math display">\[H_1:\sigma_2^2&gt;\sigma_1^2\]</span></p>
-<p>Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo <span class="math inline">\(s_2^2\)</span> tatsächlich größer ist als <span class="math inline">\(s_1^2\)</span>. Die Formulierung ist immer die eines rechtsseitigen Tests, wo die größere Varianz links steht. Die Teststatistik <span class="math inline">\(F_s\)</span> ist:
+<p>Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo <span class="math inline">\(s_2^2\)</span> tatsächlich größer ist als <span class="math inline">\(s_1^2\)</span>. Die Formulierung ist immer die eines rechtsseitigen Tests, wo die größere Varianz links steht.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> Die Teststatistik <span class="math inline">\(F_s\)</span> ist:
 <span class="math display" id="eq:fs">\[\begin{equation}
 F_s=\frac{s_2^2}{s_1^2}\sim F_{n_1-1;n_2-1}
 \tag{9.7}
 \end{equation}\]</span></p>
-<p>Die größere Stichprobenvarianz steht für den rechtsseitigen Test immer im Zähler. Sind die beiden Stichprobenvarianzen annähernd gleich dann ist <span class="math inline">\(F_s\)</span> annähernd <span class="math inline">\(1\)</span>. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten <strong>F-Verteilung</strong> mit den Parameterwerten <span class="math inline">\(n_1-1\)</span> und <span class="math inline">\(n_2-1\)</span> (auch hier genannt “Freiheitsgrade”, wobei es im Gegensatz zur t-Verteilung zwei gibt).<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> Abbildung <a href="09-tests.html#fig:fpdfcdfvariation">9.5</a> zeigt die F-Verteilung für verschiedene Kombinationen der beiden Freiheitsgrade. Die F-Verteilung geht von <span class="math inline">\(0\)</span> bis <span class="math inline">\(+\infty\)</span>, d.h. ist nur für positive Werte definiert. Das passt für Varianzen, da diese nie negativ sind. Die F-Verteilung wird schmaler mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmenden Stichprobengrößen <span class="math inline">\(n_1-1\)</span> und <span class="math inline">\(n_2-1\)</span> im Falle des F-Tests.</p>
+<p>Die größere Stichprobenvarianz steht für den rechtsseitigen Test immer im Zähler.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> Sind die beiden Stichprobenvarianzen annähernd gleich dann ist <span class="math inline">\(F_s\)</span> annähernd <span class="math inline">\(1\)</span>. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten <strong>F-Verteilung</strong> mit den Parameterwerten <span class="math inline">\(n_1-1\)</span> und <span class="math inline">\(n_2-1\)</span> (auch hier genannt “Freiheitsgrade”, wobei es im Gegensatz zur t-Verteilung zwei gibt).<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> Abbildung <a href="09-tests.html#fig:fpdfcdfvariation">9.5</a> zeigt die F-Verteilung für verschiedene Kombinationen der beiden Freiheitsgrade. Die F-Verteilung geht von <span class="math inline">\(0\)</span> bis <span class="math inline">\(+\infty\)</span>, d.h. ist nur für positive Werte definiert. Das passt für Varianzen, da diese nie negativ sind. Die F-Verteilung wird schmaler mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmenden Stichprobengrößen <span class="math inline">\(n_1-1\)</span> und <span class="math inline">\(n_2-1\)</span> im Falle des F-Tests.</p>
 <div class="figure" style="text-align: center"><span id="fig:fpdfcdfvariation"></span>
 <img src="eids_files/figure-html/fpdfcdfvariation-1.png" alt="Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen &quot;Freiheitsgrade&quot;). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten." width="50%" /><img src="eids_files/figure-html/fpdfcdfvariation-2.png" alt="Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen &quot;Freiheitsgrade&quot;). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten." width="50%" />
 <p class="caption">
@@ -812,7 +812,7 @@ Abbildung 9.8: Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tege
 \mathcal{X}^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{\left(h_{ij}-\tilde h_{ij}\right)^2}{\tilde h_{ij}}
 \tag{9.10}
 \end{equation}\]</span></p>
-<p>In Worten: Die Summe der relativen quadratischen Abweichungen der beobachteten Häufigkeiten <span class="math inline">\(h_{ij}\)</span> von den bei Unabhängigkeit erwarteten Häufigkeiten <span class="math inline">\(\tilde h_{ij}\)</span>. In unserem Beispiel ist <span class="math inline">\(\mathcal{X}^2=49895.1\)</span>. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer <strong>Chi-Quadrat-Verteilung</strong> mit Parameterwert <span class="math inline">\((k-1)\cdot(m-1)\)</span> (auch hier genannt “Anzahl Freiheitsgrade”).<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> Abbildung <a href="09-tests.html#fig:chi2pdfcdfvariation">9.9</a> zeigt die Chi-Quadrat-Verteilung für verschiedene Anzahl Freiheitsgrade. Die Chi-Quadrat-Verteilung ist wie die F-Verteilung nur für positive Werte definiert. Das passt für <span class="math inline">\(\mathcal{X}^2\)</span>, das nie negativ ist. Die Chi-Quadrat-Verteilung wird breiter mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmender Anzahl Ausprägungen der beiden Merkmale. Das trägt dem mit zunehmender Anzahl Merkmalsausprägungen größer werdenden Maximalwert von <span class="math inline">\(\mathcal{X}^2\)</span> Rechnung.</p>
+<p>In Worten: Die Summe der relativen quadratischen Abweichungen der beobachteten Häufigkeiten <span class="math inline">\(h_{ij}\)</span> von den bei Unabhängigkeit erwarteten Häufigkeiten <span class="math inline">\(\tilde h_{ij}\)</span>. In unserem Beispiel ist <span class="math inline">\(\mathcal{X}^2=49895.1\)</span>. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer <strong>Chi-Quadrat-Verteilung</strong> mit Parameterwert <span class="math inline">\((k-1)\cdot(m-1)\)</span> (auch hier genannt “Anzahl Freiheitsgrade”).<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> Abbildung <a href="09-tests.html#fig:chi2pdfcdfvariation">9.9</a> zeigt die Chi-Quadrat-Verteilung für verschiedene Anzahl Freiheitsgrade. Die Chi-Quadrat-Verteilung ist wie die F-Verteilung nur für positive Werte definiert. Das passt für <span class="math inline">\(\mathcal{X}^2\)</span>, das nie negativ ist. Die Chi-Quadrat-Verteilung wird breiter mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmender Anzahl Ausprägungen der beiden Merkmale. Das trägt dem mit zunehmender Anzahl Merkmalsausprägungen größer werdenden Maximalwert von <span class="math inline">\(\mathcal{X}^2\)</span> Rechnung.</p>
 <div class="figure" style="text-align: center"><span id="fig:chi2pdfcdfvariation"></span>
 <img src="eids_files/figure-html/chi2pdfcdfvariation-1.png" alt="Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Anzahl Freiheitsgrade (der einzige Parameter der Chi-Quadrat-Verteilung heißt &quot;Anzahl Freiheitsgrade&quot;). Rechts: Verteilungsfunktion der entsprechenden Chi-Quadrat-Verteilungsvarianten." width="50%" /><img src="eids_files/figure-html/chi2pdfcdfvariation-2.png" alt="Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Anzahl Freiheitsgrade (der einzige Parameter der Chi-Quadrat-Verteilung heißt &quot;Anzahl Freiheitsgrade&quot;). Rechts: Verteilungsfunktion der entsprechenden Chi-Quadrat-Verteilungsvarianten." width="50%" />
 <p class="caption">
@@ -851,10 +851,14 @@ Abbildung 9.9: Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen
 <ol start="10">
 <li id="fn10"><p>Die Erhebung der Anreisezeiten war im digitalen Wintersemester 2020/21 leider nicht möglich, weshalb wir hier auf die Daten vom letzten Jahr zurückgreifen.<a href="09-tests.html#fnref10" class="footnote-back">↩︎</a></p></li>
 <li id="fn11"><p>Die Fragestellungen sind etwas konstruiert, damit wir die gängigsten Versionen des t-Tests kennenlernen, sind aber halbwegs realistisch.<a href="09-tests.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p>In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.<a href="09-tests.html#fnref12" class="footnote-back">↩︎</a></p></li>
-<li id="fn13"><p>Die gewichtete Stichprobenvarianz ist nur ein möglicher Schätzer der gemeinsamen theoretischen Varianz.<a href="09-tests.html#fnref13" class="footnote-back">↩︎</a></p></li>
-<li id="fn14"><p>Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.<a href="09-tests.html#fnref14" class="footnote-back">↩︎</a></p></li>
-<li id="fn15"><p>Wiederum ist es die Verteilung, die Teststatistik und Test ihren Namen gibt.<a href="09-tests.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Genau genommen bezieht sich das auf die Nullhypothese im zweiseitigen Fall, z.B. <span class="math inline">\(H_0: \mu =\mu_0\)</span> im Fall des t-Tests. Das liegt daran, dass wir nur für den Fall “=” eine theoretische Wahrscheinlichkeitverteilung aufstellen können.<a href="09-tests.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>In der Tat hat der t-Test seinen Namen von der t-Verteilung seiner Teststatistik.<a href="09-tests.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>Genau genommen ist es diese Nullhypothese, also der zweiseitige Fall, für die die Wahrscheinlichkeitsverteilung der Teststatistik gilt. Für den einseitigen Fall wird die Nullhypothese trotzdem üblicherweise als “<span class="math inline">\(\leq\)</span>” bzw. “<span class="math inline">\(\geq\)</span>” angegeben.<a href="09-tests.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>Die gewichtete Stichprobenvarianz ist nur ein möglicher Schätzer der gemeinsamen theoretischen Varianz.<a href="09-tests.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>Trotzdem wird die Nullhypothese üblicherweise mit “=” angegeben, was zwar der Fall ist, für den die Wahrscheinlichkeitsverteilung der Teststatistik gilt, was aber nicht konsistent mit der Formulierung der Nullhypothese beim einseitigen t-Test ist. Für diese Inkonsistenz konnte ich bisher keine Lösung finden.<a href="09-tests.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>Das hat wahrscheinlich numerische Gründe: Seht die größere Stichprobenvarianz immer im Zähler, dann nimmt die Teststatistik nur Werte größer oder gleich 1 an. So werden Rundungsfehler bei Zahlen kleiner 1 vermieden, die stärker ins Gewicht fallen würden.<a href="09-tests.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.<a href="09-tests.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>Wiederum ist es die Verteilung, die Teststatistik und Test ihren Namen gibt.<a href="09-tests.html#fnref19" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
