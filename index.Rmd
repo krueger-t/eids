@@ -28,3 +28,5 @@ description: "This is the script of the course 'Einführung in die Statistik' (i
 Dies ist das Skript für den Kurs 'Einführung in die Statistik' am Geographischen Institut der Humboldt-Universität zu Berlin.
 
 **Danksagung:** Besonderer Dank gebührt Kassandra Jensch und Maeve Smyth für die Unterstützung bei der Erstellung dieses Skriptes.
+
+**License:** This script is licensed under the Creative Commons Zero v1.0 Universal license. You can learn the details [here](https://github.com/krueger-t/eids/blob/main/LICENSE). In short, you can use my work. Just make sure you give me the appropriate credit the same way you would for any other scholarly resource.
