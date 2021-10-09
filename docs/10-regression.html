@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 10 Lineare Regression | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 10 Lineare Regression | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-02-01" />
+<meta name="date" content="2021-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,9 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
 <li class="chapter" data-level="1.1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.1</b> Statistik im empirischen Forschungsprozess</a></li>
 <li class="chapter" data-level="1.2" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.2</b> Warum Statistik?</a></li>
-<li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#orga"><i class="fa fa-check"></i><b>1.3</b> Organisatorisches</a></li>
-<li class="chapter" data-level="1.4" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.4</b> Mathematische Notation und Grundlagen</a></li>
-<li class="chapter" data-level="1.5" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#quiz"><i class="fa fa-check"></i><b>1.5</b> Quiz</a></li>
+<li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.3</b> Mathematische Notation und Grundlagen</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a><ul>
 <li class="chapter" data-level="2.1" data-path="02-begriffe.html"><a href="02-begriffe.html#statistische-grundbegriffe"><i class="fa fa-check"></i><b>2.1</b> Statistische Grundbegriffe</a></li>
@@ -229,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Kapitel 10</span> Lineare Regression</h1>
 <p>Für die lineare Regression kehren wir zu einer Frage aus Kapitel <a href="05-korrelation.html#korrelation">5</a> zurück: <em>Kann man die Entfernung zu Ihrem Wohnort mit der Anzahl Stationen, die Sie bis Adlershof brauchen statistisch vorhersagen?</em></p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="10-regression.html#cb124-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, <span class="dt">xlab=</span><span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab=</span><span class="st">&quot;Entfernung (km)&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel <a href="05-korrelation.html#korrelation">5</a> 0.81 war. Das Ziel ist nun, eine Gerade durch die Punktwolke zu legen, die den <em>Trend</em> beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.</p>
 <p>Es geht um <em>2 Variablen</em> (Merkmale):</p>
 <ul>
@@ -246,7 +244,7 @@ y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i \quad \text{mit} \quad i=1,2,\ldo
 \end{equation}\]</span></p>
 <p><span class="math inline">\(y_i\)</span> bezeichnet den Wert der <strong>abhängigen Variable</strong> für Datenpunkt <span class="math inline">\(i\)</span>, und <span class="math inline">\(x_i\)</span> den Wert der <strong>unabhängigen Variable</strong> für Datenpunkt <span class="math inline">\(i\)</span>. Der Parameter <span class="math inline">\(\beta_0\)</span> beschreibt den <strong>Achsenabschnitt</strong> der Geraden, also der Punkt an dem die Gerade die y-Achse schneidet. Der Parameter <span class="math inline">\(\beta_1\)</span> beschreibt die <strong>Steigung</strong> der Geraden. <span class="math inline">\(\epsilon_i\)</span> stellt das <strong>Residuum</strong> (also den Fehler) für Datenpunkt <span class="math inline">\(i\)</span> dar (Abbildung <a href="10-regression.html#fig:linreg">10.1</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:linreg"></span>
-<img src="figs/abb12-2.png" alt="Lineare Regression: Definitionen."  />
+<img src="figs/abb12-2.png" alt="Lineare Regression: Definitionen." width="468" />
 <p class="caption">
 Abbildung 10.1: Lineare Regression: Definitionen.
 </p>
@@ -424,7 +422,7 @@ n \cdot \beta_0=\sum_{i=1}^{n}y_i-\beta_1 \cdot \sum_{i=1}^{n}x_i
 <span id="cb132-3"><a href="10-regression.html#cb132-3"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
 <span id="cb132-4"><a href="10-regression.html#cb132-4"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>)</span>
 <span id="cb132-5"><a href="10-regression.html#cb132-5"></a><span class="kw">abline</span>(<span class="kw">coef</span>(reise_fit), <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </div>
 <div id="signifikanz-der-regression" class="section level2">
 <h2><span class="header-section-number">10.5</span> Signifikanz der Regression</h2>
@@ -622,22 +620,22 @@ Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Q
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="10-regression.html#cb141-1"></a><span class="co"># Residuen gegen Index plotten</span></span>
 <span id="cb141-2"><a href="10-regression.html#cb141-2"></a><span class="kw">plot</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span>
 <span id="cb141-3"><a href="10-regression.html#cb141-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 <p>Dieser Datensatz zeigt kein erkennbares Muster, was für eine Unabhängigkeit der Residuen spricht.</p>
 <p>Wir sollten auch die Residuen nach dem modellierten Wert von <span class="math inline">\(y\)</span> plotten, um zu sehen, ob es ein Muster als Funktion der Größenordnung von <span class="math inline">\(y\)</span> gibt:</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="10-regression.html#cb142-1"></a><span class="co"># Residuen gegen modellierte Werte von y plotten</span></span>
 <span id="cb142-2"><a href="10-regression.html#cb142-2"></a><span class="kw">plot</span>(<span class="kw">fitted.values</span>(reise_fit),<span class="kw">residuals</span>(reise_fit), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span>
 <span id="cb142-3"><a href="10-regression.html#cb142-3"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">0</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
 <p>Diese Grafik zeigt eine leichte Zunahme der Residuenvarianz von links nach rechts, d.h. in Richtung größerer Werte - eine Form der Heteroskedastizität.</p>
 <p>Die Annahme, dass die Residuen normalverteilt sind, kann anhand des QQ-Plots beurteilt werden (vgl. Kapitel <a href="08-schaetzen.html#qqplot">8.4</a>):</p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="10-regression.html#cb143-1"></a><span class="kw">qqnorm</span>(<span class="kw">residuals</span>(reise_fit))</span>
 <span id="cb143-2"><a href="10-regression.html#cb143-2"></a><span class="kw">qqline</span>(<span class="kw">residuals</span>(reise_fit))</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 <p>In unserem Beispiel deutet der QQ-Plot darauf hin, dass die Flanken der Residuenverteilung flacher als bei einer Normalverteilung abfallen, vermutlich aufgrund der o.g. Heteroskedastizität. Das können wir beim Histogramm der Residuen nicht so gut sehen da die Vergleichsverteilung fehlt:</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="10-regression.html#cb144-1"></a><span class="co"># Histogramm der Residuen plotten</span></span>
 <span id="cb144-2"><a href="10-regression.html#cb144-2"></a><span class="kw">hist</span>(<span class="kw">residuals</span>(reise_fit), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">25</span>,<span class="dv">25</span>))</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 <p>Die Heteroskedastizität würde man angehen, indem man mit einem Generalisierten Linearen Modell eine andere Residuenverteilung als die Normalverteilung annimmt. Das führt aber im Rahmen dieses Kurses zu weit. Es bleibt somit festzuhalten, dass das Regressionsproblem mit den hier behandelten Methoden noch nicht vollständig gelöst ist.</p>
 
 </div>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 9 Statistische Tests | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 9 Statistische Tests | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-02-01" />
+<meta name="date" content="2021-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,9 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
 <li class="chapter" data-level="1.1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.1</b> Statistik im empirischen Forschungsprozess</a></li>
 <li class="chapter" data-level="1.2" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.2</b> Warum Statistik?</a></li>
-<li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#orga"><i class="fa fa-check"></i><b>1.3</b> Organisatorisches</a></li>
-<li class="chapter" data-level="1.4" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.4</b> Mathematische Notation und Grundlagen</a></li>
-<li class="chapter" data-level="1.5" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#quiz"><i class="fa fa-check"></i><b>1.5</b> Quiz</a></li>
+<li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.3</b> Mathematische Notation und Grundlagen</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a><ul>
 <li class="chapter" data-level="2.1" data-path="02-begriffe.html"><a href="02-begriffe.html#statistische-grundbegriffe"><i class="fa fa-check"></i><b>2.1</b> Statistische Grundbegriffe</a></li>
@@ -365,7 +363,7 @@ Die Alternativhypothese ist, dass der Mittelwert <em>kleiner</em> als der Vergle
 <span id="cb56-2"><a href="09-tests.html#cb56-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
 <span id="cb56-3"><a href="09-tests.html#cb56-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb56-4"><a href="09-tests.html#cb56-4"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-25-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-24-1.png" width="80%" /></p>
 <p>Wie extrem der Wert der Teststatistik ist (wie unwahrscheinlich er unter der Nullhypothese ist) misst der sogenannte p-Wert. Der <strong>p-Wert</strong> ist die Wahrscheinlichkeit, unter Annahme der Nullhypothese, durch Zufall einen extremeren Wert als den der Teststatistik zu erhalten. In Formelsprache:
 <span class="math display">\[\Pr\left(Z&lt;t_s\right)=F_t\left(t_s\right)\]</span></p>
 <blockquote>
@@ -396,7 +394,7 @@ Die Alternativhypothese ist, dass die beiden Wert <em>nicht</em> gleich sind:
 <span id="cb59-3"><a href="09-tests.html#cb59-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb59-4"><a href="09-tests.html#cb59-4"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>(<span class="op">-</span>ts), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(<span class="op">-</span>ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb59-5"><a href="09-tests.html#cb59-5"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-27-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-26-1.png" width="80%" /></p>
 <p>Wir spiegeln also den Wert der Teststatistik an Null, und der p-Wert ist jetzt die Wahrscheinlichkeit eines Wertes der Teststatistik jenseits dieser <em>beiden</em> Grenzen:
 <span class="math display">\[\Pr\left(Z&lt;t_s\right)+\Pr\left(Z&gt;-t_s\right)=2\cdot\Pr\left(Z&gt;\left|t_s\right|\right)=2\cdot \left(1-F_t\left(\left|t_s\right|\right)\right)\]</span></p>
 <blockquote>
@@ -431,7 +429,7 @@ Die Alternativhypothese ist, dass der Mittelwert <em>größer</em> als der Vergl
 <span id="cb64-2"><a href="09-tests.html#cb64-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=t_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
 <span id="cb64-3"><a href="09-tests.html#cb64-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb64-4"><a href="09-tests.html#cb64-4"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-30-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-29-1.png" width="80%" /></p>
 <p>Der p-Wert im rechtseitigen Fall ist:
 <span class="math display">\[\Pr\left(Z&gt;t_s\right)=1-F_t\left(t_s\right)\]</span></p>
 <blockquote>
@@ -497,7 +495,7 @@ t_s=\frac{\bar x_1-\bar x_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}\sim t_{
 <span id="cb81-3"><a href="09-tests.html#cb81-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n1<span class="op">+</span>n2<span class="dv">-2</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb81-4"><a href="09-tests.html#cb81-4"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>(<span class="op">-</span>ts), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(<span class="op">-</span>ts, n1<span class="op">+</span>n2<span class="dv">-2</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb81-5"><a href="09-tests.html#cb81-5"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-33-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-32-1.png" width="80%" /></p>
 <p>Der p-Wert ist, analog zum zweiseitigen Einstichproben-t-Test:
 <span class="math display">\[\Pr\left(Z&lt;t_s\right)+\Pr\left(Z&gt;-t_s\right)=2\cdot\Pr\left(Z&gt;\left|t_s\right|\right)=2\cdot \left(1-F_t\left(\left|t_s\right|\right)\right)\]</span></p>
 <p>Mit Zahlenwerten:</p>
@@ -564,7 +562,7 @@ Die Alternativhypothese ist, dass die Differenz <em>ungleich</em> Null ist:
 <span id="cb86-5"><a href="09-tests.html#cb86-5"></a><span class="kw">plot</span>(h, <span class="dt">freq =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">0.6</span>),</span>
 <span id="cb86-6"><a href="09-tests.html#cb86-6"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Differenz Anzahl Moosarten&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;relative Häufigkeit&quot;</span>)</span>
 <span id="cb86-7"><a href="09-tests.html#cb86-7"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)<span class="op">*</span><span class="kw">mean</span>(d, <span class="dt">na.rm=</span><span class="ot">TRUE</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.6</span>), <span class="dt">col=</span><span class="st">&#39;black&#39;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-36-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-35-1.png" width="80%" /></p>
 <p>Aus dem Zweistichproben-t-Test ist so ein Einstichproben-t-Test geworden, mit der Teststatistik:
 <span class="math display" id="eq:ts2gepaart">\[\begin{equation}
 t_s=\frac{\hat d-0}{s}\cdot\sqrt{n}\sim t_{n-1}
@@ -593,7 +591,7 @@ t_s=\frac{\hat d-0}{s}\cdot\sqrt{n}\sim t_{n-1}
 <span id="cb95-3"><a href="09-tests.html#cb95-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>ts, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb95-4"><a href="09-tests.html#cb95-4"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>(<span class="op">-</span>ts), <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pt</span>(<span class="op">-</span>ts, n<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb95-5"><a href="09-tests.html#cb95-5"></a><span class="kw">text</span>(ts,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;t_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-38-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-37-1.png" width="80%" /></p>
 <p>Der p-Wert ist, wie in jedem zweiseitigem Fall:
 <span class="math display">\[\Pr\left(Z&lt;t_s\right)+\Pr\left(Z&gt;-t_s\right)=2\cdot\Pr\left(Z&gt;\left|t_s\right|\right)=2\cdot \left(1-F_t\left(\left|t_s\right|\right)\right)\]</span></p>
 <p>Mit Zahlenwerten:</p>
@@ -670,7 +668,7 @@ Abbildung 9.5: Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsva
 <span id="cb110-2"><a href="09-tests.html#cb110-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=F_s&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
 <span id="cb110-3"><a href="09-tests.html#cb110-3"></a><span class="kw">lines</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)<span class="op">*</span>fs, <span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">pf</span>(fs, n1<span class="dv">-1</span>, n2<span class="dv">-1</span>)), <span class="dt">col=</span><span class="st">&#39;blue&#39;</span>)</span>
 <span id="cb110-4"><a href="09-tests.html#cb110-4"></a><span class="kw">text</span>(fs,<span class="op">-</span><span class="fl">0.2</span>,<span class="st">&quot;F_s&quot;</span>, <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">xpd=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-42-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-41-1.png" width="80%" /></p>
 <p>Der <strong>p-Wert</strong> ist (vgl. rechtsseitiger t-Test):
 <span class="math display">\[\Pr\left(Z&gt;F_s\right)=1-F_F\left(F_s\right)\]</span></p>
 <p>Mit Zahlenwerten:</p>
@@ -733,7 +731,7 @@ Abbildung 9.6: Links: Empirische (schwarz) und theoretische (rot) Verteilungsfun
 ## ties should not be present for the Kolmogorov-Smirnov
 ## test</code></pre>
 <pre><code>## 
-## 	One-sample Kolmogorov-Smirnov test
+##  One-sample Kolmogorov-Smirnov test
 ## 
 ## data:  reisedat19$t
 ## D = 0.099, p-value = 0.3
@@ -770,7 +768,7 @@ Abbildung 9.7: Empirische Verteilungsfunktionen der beiden Teilstichproben des M
 <pre><code>## Warning in ks.test(t1, t2): cannot compute exact p-
 ## value with ties</code></pre>
 <pre><code>## 
-## 	Two-sample Kolmogorov-Smirnov test
+##  Two-sample Kolmogorov-Smirnov test
 ## 
 ## data:  t1 and t2
 ## D = 0.074, p-value = 1
@@ -822,7 +820,7 @@ Abbildung 9.9: Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen
 <p>Der Wert <span class="math inline">\(\mathcal{X}^2=49895.1\)</span> für unser Beispiel befindet sich am rechten Rand der Chi-Quadrat-Verteilung, weit jenseits des hier dargestellten Bereichs:</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="09-tests.html#cb121-1"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">1</span>), <span class="kw">pchisq</span>(<span class="kw">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">1</span>), (<span class="dv">12-1</span>)<span class="op">*</span>(<span class="dv">2-1</span>)), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,</span>
 <span id="cb121-2"><a href="09-tests.html#cb121-2"></a>     <span class="dt">xlab=</span><span class="st">&#39;Z=Chi2&#39;</span>, <span class="dt">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-46-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-45-1.png" width="80%" /></p>
 <p>Der p-Wert ist damit viel kleiner als das konventionelle Signifikanzniveau von 0.01 (<em>R</em> rundet den Wert auf null):</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="09-tests.html#cb122-1"></a><span class="dv">1</span><span class="op">-</span><span class="kw">pchisq</span>(<span class="fl">49895.1</span>, (<span class="dv">12-1</span>)<span class="op">*</span>(<span class="dv">2-1</span>))</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>

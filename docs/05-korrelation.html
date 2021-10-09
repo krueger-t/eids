@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 5 Korrelationsanalyse | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 5 Korrelationsanalyse | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-02-01" />
+<meta name="date" content="2021-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,9 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
 <li class="chapter" data-level="1.1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.1</b> Statistik im empirischen Forschungsprozess</a></li>
 <li class="chapter" data-level="1.2" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.2</b> Warum Statistik?</a></li>
-<li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#orga"><i class="fa fa-check"></i><b>1.3</b> Organisatorisches</a></li>
-<li class="chapter" data-level="1.4" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.4</b> Mathematische Notation und Grundlagen</a></li>
-<li class="chapter" data-level="1.5" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#quiz"><i class="fa fa-check"></i><b>1.5</b> Quiz</a></li>
+<li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.3</b> Mathematische Notation und Grundlagen</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a><ul>
 <li class="chapter" data-level="2.1" data-path="02-begriffe.html"><a href="02-begriffe.html#statistische-grundbegriffe"><i class="fa fa-check"></i><b>2.1</b> Statistische Grundbegriffe</a></li>
@@ -334,7 +332,7 @@ Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beid
 <p>An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Beide Merkmale (“Distanz” und “Stationen”) sind metrisch skaliert<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> und somit können wir den <strong>Korrelationskoeffizienten nach Bravais-Pearson</strong> verwenden, der mehr Informationen über den Zusammenhang, nämlich <strong>Linearität</strong>, liefert. Einen ersten Eindruck verschafft der <strong>Scatterplot</strong> (auch Streudiagramm), den wir einfach mit der <code>plot()</code> Funktion in <em>R</em> generieren:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="05-korrelation.html#cb34-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, </span>
 <span id="cb34-2"><a href="05-korrelation.html#cb34-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-20-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-19-1.png" width="80%" /></p>
 <p>An dieser Stelle fällt das Wertepaar <span class="math inline">\((0, 40)\)</span> oben links auf. Hierbei handelt es sich wahrscheinlich um eine Person, die gar nicht in Berlin wohnt. Anstatt <span class="math inline">\(0\)</span> wollen wir hier aber einen fehlenden Wert erzeugen, der in <em>R</em> mit “NA” markiert wird, da diese Frage auf die Person gar nicht zutraf. Darstellungen wie diese sind somit enorm hilfreich für die Überprüfung der Daten!</p>
 <p>Ersetzen wir also <span class="math inline">\(0\)</span> Stationen mit “NA” und plotten erneut:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="05-korrelation.html#cb35-1"></a><span class="co"># 0 mit NA ersetzen</span></span>
@@ -342,7 +340,7 @@ Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beid
 <span id="cb35-3"><a href="05-korrelation.html#cb35-3"></a><span class="co"># plotten</span></span>
 <span id="cb35-4"><a href="05-korrelation.html#cb35-4"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz, </span>
 <span id="cb35-5"><a href="05-korrelation.html#cb35-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Anzahl Stationen&quot;</span>, <span class="dt">ylab =</span>  <span class="st">&quot;Entfernung (km)&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-21-1.png" width="80%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-20-1.png" width="80%" /></p>
 <p><strong>Aufgabe:</strong> <em>Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in “Entfernung” kommen könnte.</em></p>
 <p>Die <em>lineare</em> Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-<strong>Korrelationskoeffizient nach Bravais-Pearson</strong> <span class="math inline">\(r_{x,y}\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> berechnet. Er ergibt sich aus den Standardabweichungen <span class="math inline">\(s_x\)</span> und <span class="math inline">\(s_y\)</span> und der standardisierten Kovarianz <span class="math inline">\(s_{x,y}\)</span> durch:
 <span class="math display">\[r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}\]</span></p>

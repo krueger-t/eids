@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 4 Streuungsparameter, Schiefe und Wölbung | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 4 Streuungsparameter, Schiefe und Wölbung | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-02-01" />
+<meta name="date" content="2021-10-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,9 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
 <li class="chapter" data-level="1.1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.1</b> Statistik im empirischen Forschungsprozess</a></li>
 <li class="chapter" data-level="1.2" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.2</b> Warum Statistik?</a></li>
-<li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#orga"><i class="fa fa-check"></i><b>1.3</b> Organisatorisches</a></li>
-<li class="chapter" data-level="1.4" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.4</b> Mathematische Notation und Grundlagen</a></li>
-<li class="chapter" data-level="1.5" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#quiz"><i class="fa fa-check"></i><b>1.5</b> Quiz</a></li>
+<li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.3</b> Mathematische Notation und Grundlagen</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a><ul>
 <li class="chapter" data-level="2.1" data-path="02-begriffe.html"><a href="02-begriffe.html#statistische-grundbegriffe"><i class="fa fa-check"></i><b>2.1</b> Statistische Grundbegriffe</a></li>
@@ -252,7 +250,7 @@ Abbildung 4.1: Boxplot mit Quartilsabstand und Spannweite.
 <span id="cb18-10"><a href="04-streuung.html#cb18-10"></a><span class="co"># Boxplot &quot;Stationen&quot;</span></span>
 <span id="cb18-11"><a href="04-streuung.html#cb18-11"></a><span class="kw">boxplot</span>(reisedat<span class="op">$</span>stationen, <span class="dt">range =</span> <span class="dv">0</span>, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</span>
 <span id="cb18-12"><a href="04-streuung.html#cb18-12"></a>        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">55</span>), <span class="dt">xlab =</span> <span class="st">&quot;Anzahl Stationen&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-12-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-12-2.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-12-3.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-12-4.png" width="50%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-11-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-2.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-3.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-4.png" width="50%" /></p>
 <p>Sowohl “Distanz” als auch “Stationen” sind schief verteilt, die zentralen 50% der Verteilung - die “Box” im Boxplot - befinden sich links der Mitte. Für das Verständnis von Verteilungen in Kapitel <a href="07-verteilungen.html#verteilungen">7</a> ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!</p>
 <p>Nun zu den weiteren Streuungsparametern. Die <strong>Varianz</strong> <span class="math inline">\(s^2\)</span> ist die mittlere (“durchschnittliche”) quadrierte Abweichung der Merkmalswerte <span class="math inline">\(x_i\quad\left(i=1, 2, \ldots, x_n\right)\)</span> vom arithmetischen Mittel <span class="math inline">\(\bar x\)</span>:
 <span class="math display">\[s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}\]</span></p>
