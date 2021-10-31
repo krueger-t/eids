@@ -24,7 +24,7 @@ Der **Merkmalswert** $x_i$ mit $i=1, \ldots, n$ schließlich ist jener Wert, den
 - _Wozu sind sie wichtig?_
 - _Was ist der Unterschied zwischen **Gesamterhebung** und **Teilerhebung**?_
 
-Zur Primärdatenerhebung hören Sie mehr von Henning Nuissl im Seminar _Einführung in die Geographie_. An dieser Stelle aber noch ein paar Worte zur Auswahl einer Stichprobe aus einer Grundgesamtheit. Aus statistischer Perspektive sind dabei prinzipiell **drei** Aspekte zu beachten:
+Zur Primärdatenerhebung hören Sie mehr im Seminar _Einführung in die Geographie_. An dieser Stelle aber noch ein paar Worte zur Auswahl einer Stichprobe aus einer Grundgesamtheit. Aus statistischer Perspektive sind dabei prinzipiell **drei** Aspekte zu beachten:
 
 1. **Repräsentativität**: Eine Stichprobe sollte die Variabilität der Grundgesamtheit möglichst genau abbilden, z.B. bezüglich Demographien oder räumlicher Unterschiede.
 2. **Zufälligkeit**: Jede Merkmalsausprägung der Grundgesamtheit sollte die gleiche "Chance" haben ausgewählt zu werden. In der Praxis ist dies oft nur näherungsweise möglich.
@@ -41,11 +41,11 @@ Qualitative, klassifikatorische Merkmale befinden sich auf der **Nominalskala**.
 | 1 | 2 | 3 | 4 |
 Table: (\#tab:nominal) Art des Vulkanausbruchs.
 
-Qualitative, komparative Merkmale (Rangmerkmale) finden Sie auf der **Ordinalskala**. Wieder können die Kategorien verbale Bezeichnungen sein oder mittels Zahlen codiert. Die Zulässigen mathematischen Operationen sind der **Vergleich** sowie **Wertung/Reihung/Ordnung**. Es sind keine Aussagen über Distanz oder Ähnlichkeit benachbarter Merkmalsausprägungen möglich. Beispiel: Komfort der Unterkunft (Tabelle \@ref(tab:ordinal)). Der Komfort eines \*\*\*Hotels ist größer als der Komfort eines \*Hotels, aber nicht 3x so groß!
+Qualitative, komparative Merkmale (Rangmerkmale) finden Sie auf der **Ordinalskala**. Wieder können die Kategorien verbale Bezeichnungen sein oder mittels Zahlen codiert. Die Zulässigen mathematischen Operationen sind der **Vergleich** sowie **Wertung/Reihung/Ordnung**. Es sind keine Aussagen über Distanz oder Ähnlichkeit benachbarter Merkmalsausprägungen möglich. Beispiel: Komfort der Unterkunft (Tabelle \@ref(tab:ordinal)). Der Komfort eines \*\*\*Hotels ist größer als der Komfort eines \*Hotels, aber nicht unbedingt 3x so groß!
 
 | Jugendherberge | \*Hotel | \*\*Hotel | \*\*\*Hotel |
 | :---: | :---: | :---: | :---: |
 | 0 | 1 | 2 | 3 |
 Table: (\#tab:ordinal) Komfort der Unterkunft.
 
-Quantitative Merkmale befinden sich auf **metrischen Skalen**. Sie werden mit reellen Zahlen bezeichnet. Die zulässigen mathematischen Operationen sind der **Vergleich**, **Wertung/Reihung/Ordnung** sowie **Addition/Subtraktion** und im Falle der Rationalskala auch **Multiplikation/Division**. Die Unterscheidung **Intervallskala** und **Rationalskala (Verhältnisskala)** ist für uns nicht so wichtig. Intervallskalen fehlt ein natürlicher Nullpunkt und daher ist die Berechnung von Relationen nicht möglich. Sie kann aber auf einen Referenznullpunkt umgerechnet werden, wodurch Multiplikation und Division möglich wedren. Wenn wir also in diesem Kurs von einer **metrischen Skala** sprechen dann sind die mathematischen Operationen Vergleich, Wertung/Reihung/Ordnung, Addition/Subtraktion und Multiplikation/Division alle zulässig.
+Quantitative Merkmale befinden sich auf **metrischen Skalen**. Sie werden mit reellen Zahlen bezeichnet. Die zulässigen mathematischen Operationen sind der **Vergleich**, **Wertung/Reihung/Ordnung** sowie **Addition/Subtraktion** und im Falle der Rationalskala auch **Multiplikation/Division**. Die Unterscheidung **Intervallskala** und **Rationalskala (Verhältnisskala)** ist für uns nicht so wichtig. Intervallskalen fehlt ein natürlicher Nullpunkt und daher ist die Berechnung von Relationen nicht möglich. Sie kann aber auf einen Referenznullpunkt umgerechnet werden, wodurch Multiplikation und Division möglich werden. Wenn wir also in diesem Kurs von einer **metrischen Skala** sprechen dann sind die mathematischen Operationen Vergleich, Wertung/Reihung/Ordnung, Addition/Subtraktion und Multiplikation/Division alle zulässig.

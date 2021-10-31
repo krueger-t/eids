@@ -18,7 +18,7 @@ Dazu brauchen wir erstmal Begriffe wie **absolute Häufigkeit**, **relative Häu
 
 ## Häufigkeiten
 
-Schauen wir uns dazu die Reisedaten an, die Sie als Studierende in diesem Jahr eingegeben haben, und zwar nur die Entfernungen (der *R*-Code wird in den PC-Übungen schnell klar werden):
+Schauen wir uns dazu die Reisedaten an, die die Studierenden im Jahr 2020 eingegeben haben, und zwar nur die Entfernungen (der *R*-Code wird in den PC-Übungen schnell klar werden):
 
 ```{r eval=FALSE, include=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
