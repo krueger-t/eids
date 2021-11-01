@@ -36,8 +36,42 @@ y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i \quad \text{mit} \quad i=1,2,\ldo
 
 $y_i$ bezeichnet den Wert der **abhängigen Variable** für Datenpunkt $i$, und $x_i$ den Wert der **unabhängigen Variable** für Datenpunkt $i$. Der Parameter $\beta_0$ beschreibt den **Achsenabschnitt** der Geraden, also der Punkt an dem die Gerade die y-Achse schneidet. Der Parameter $\beta_1$ beschreibt die **Steigung** der Geraden. $\epsilon_i$ stellt das **Residuum** (also den Fehler) für Datenpunkt $i$ dar (Abbildung \@ref(fig:linreg)).
 
-```{r linreg, echo=FALSE, fig.align='center', fig.cap='Lineare Regression: Definitionen.'}
-knitr::include_graphics('figs/abb12-2.png')
+```{r linreg, echo=FALSE, message = FALSE, fig.align='center', fig.cap='Lineare Regression: Definitionen.'}
+#knitr::include_graphics('figs/abb12-2.png')
+
+library(tidyverse)
+
+# make up data that visually matches the data from 'figs/abb12-2.png' and recreate the plot
+tibble( x = c(-0.407, 1, 2, 3, 3.5, 4, 5, 6, 7, 8),
+        y = c(2.72, 2.8, 3, 2.9, 3.1, 3.1, 3.2, 3.5, 3.3, 3.4)) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point(col = "blue") +
+  geom_smooth(method = "lm", se = FALSE, col = "red") +
+  theme_classic() +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.x = element_text(angle = 0, hjust = 1, vjust = 0.1 ,face = "italic", size = 25),
+        axis.title.y = element_text(angle = 0, hjust = 0.1, vjust = 1, face = "italic", size = 25),
+        axis.line.y = element_line(arrow = grid::arrow(length = unit(0.25, "cm")),size = 1.5),
+        axis.line.x = element_line(arrow = grid::arrow(length = unit(0.25, "cm")),size = 1.5),
+        plot.margin = unit(c(1, 1, 1, 3.5), "lines")) +
+  coord_cartesian(ylim = c(2.6, 3.7), xlim = c(0,8), clip = "off") +
+  annotate(geom="text", x=1.5, y=2.72, label="Achsenabschnitt", size = 8) +
+  annotate(geom="text", x=3.1, y=2.95, label="Residuum", size = 8) +
+  annotate(geom="text", x=1.5, y=2.95, label= "italic(epsilon)[i]", size = 8, parse = TRUE) +
+  annotate(geom="text", x=5, y=3.05, label="~Delta~ italic(x)", size = 8, parse = TRUE) +
+  annotate(geom="text", x=5.85, y=3.15, label="~Delta~ italic(y)", size = 8, parse = TRUE) +
+  annotate(geom="text", x=4, y=3.4, label= "'('~italic(bar(x))~','~italic(bar(y))~')'" , size = 8, parse = TRUE) +
+  annotate(geom="text", x=6.5, y=2.75, size = 8, parse = TRUE,
+           label = "~frac(~Delta~ italic(y), ~Delta~ italic(x)) == beta[1]~ 'Steigung' ") +
+  annotate(geom="text", x=-1.2, y=2.72, label="italic(beta)[0]", size = 8, parse = TRUE) +
+  geom_segment(aes(x=-0.9,xend=-0.4,y=2.72,yend=2.72), linetype = 3, size = 1) +
+  geom_segment(aes(x= 2,xend= 2, y=2.94, yend=3), linetype = 3, size = 1) +
+  geom_segment(aes(x=4.3,xend=4,y=3.15,yend=3.3), linetype = 3, size = 1) +
+  geom_segment(aes(x=4,xend=5.5,y=3.1,yend=3.1), linetype = 3, size = 1) +
+  geom_segment(aes(x=5.5,xend=5.5,y=3.1,yend=3.245), linetype = 3, size = 1) +
+  geom_point(data = tibble(x=4.33 , y=3.135), shape = 1, size = 4)
 ```
 
 ## Beschreibung vs. Vorhersage
@@ -203,8 +237,40 @@ Table: (\#tab:anova) ANOVA-Tabelle der linearen Regression.
 
 Schauen wir uns zunächst die zweiten Spalte der Tabelle \@ref(tab:anova) an: $SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2$ ist ein Maß für die Gesamtvarianz der Daten (in $y$-Richtung), d.h. wie stark die Datenpunkte um den Gesamtmittelwert streuen (Abbildung \@ref(fig:ssysse), links). $SSE=\sum_{i=1}^{n}\left(\epsilon_i\right)^2=\sum_{i=1}^{n}\left(y_i-\left(\beta_0+\beta_1 \cdot x_i\right)\right)^2$ ist ein Maß für die Fehlervarianz, d.h. wie stark die Datenpunkte um die Regressionsgerade streuen (Abbildung \@ref(fig:ssysse), rechts). Das ist die Varianz, die nach der Modellanpassung übrig ist ("nicht erklärt"). $SSR=SSY-SSE$ ist folglich ein Maß für die vom Modell erklärte Varianz.
 
-```{r ssysse, echo=FALSE, fig.align='center', fig.cap='Variation der Datenpunkte um den Mittelwert, zusammengefasst durch $SSY$ (links), und um die Regressionsgerade, zusammengefasst durch $SSE$ (rechts).', fig.show='hold', out.width='50%'}
-knitr::include_graphics(c('figs/ssy.jpg','figs/sse.jpg'))
+```{r ssysse, echo=FALSE, fig.align='center',message = FALSE, fig.cap='Variation der Datenpunkte um den Mittelwert, zusammengefasst durch $SSY$ (links), und um die Regressionsgerade, zusammengefasst durch $SSE$ (rechts).', fig.show='hold', out.width='50%'}
+#knitr::include_graphics(c('figs/ssy.jpg','figs/sse.jpg'))
+
+tibble(x = c(2, 2.5, 4.9, 5.1, 6, 6.7, 6.8, 8, 8.5, 9),
+       y = c(2.1, 7, 7.5, 6.5, 5, 9.1, 9, 8.5, 6.9, 9)) %>% 
+  mutate(y_mean = mean(y)) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  # ylim(c(0, 10)) +
+  # xlim(c(0, 10)) +
+  geom_hline(yintercept = 7.06, col = "red") +
+  theme_classic() +
+  geom_linerange(aes(ymax = y, ymin = y_mean)) +
+  scale_x_continuous(breaks = seq(0, 10, by = 5), limits = c(0, 10)) +
+  scale_y_continuous(breaks = seq(0, 10, by = 2), limits = c(0, 10)) +
+  theme(text = element_text(size=20))
+
+modelFit <- data.frame(predict(lm(y ~ x, data = tibble(x = c(2, 2.5, 4.9, 5.1, 6, 6.7, 6.8, 8, 8.5, 9),
+                                                       y = c(2.1, 7, 7.5, 6.5, 5, 9.1, 9, 8.5, 6.9, 9))), se = TRUE))
+
+tibble(x = c(2, 2.5, 4.9, 5.1, 6, 6.7, 6.8, 8, 8.5, 9),
+       y = c(2.1, 7, 7.5, 6.5, 5, 9.1, 9, 8.5, 6.9, 9)) %>% 
+  mutate(y_mean = mean(y),
+         fit = modelFit$fit) %>% 
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth( method = "lm", se = FALSE, fullrange = TRUE, col = "red") +
+  theme_classic() +
+  geom_linerange(aes(ymax = y, ymin = fit)) +
+  scale_x_continuous(breaks = seq(0, 10, by = 5), limits = c(0, 10)) +
+  scale_y_continuous(breaks = seq(0, 10, by = 2), limits = c(0, 10)) +
+  theme(text = element_text(size=20))
+
+
 ```
 
 In der dritten Spalte der Tabelle \@ref(tab:anova) stehen die Freiheitsgrade der drei Varianzterme. Diese können als Anzahl der Werte in einer Stichprobe, die für die Berechnung der jeweiligen Parameter frei zur Verfügung stehen, verstanden werden (vgl. Kapitel \@ref(streuung)): In die Berechnung von $SSY$ geht $\bar y$ ein, für dessen Berechnung die Werte der Stichprobe bereits einmal verwendet wurden; dadurch ist die Anzahl Freiheitsgrade $df_{SSY}=n-1$. In die Berechnung von $SSE$ gehen $\beta_0$ und $\beta_1$ ein (Gleichung \@ref(eq:sse)), d.h. die Anzahl Freiheitsgrade ist $df_{SSE}=n-2$. Für $SSR$ gilt dann einfach $df_{SSR}=df_{SSY}-df_{SSE}=1$. Die Freiheitsgrade werden verwendet, um die Varianzterme in der vierten Spalte der Tabelle \@ref(tab:anova) zu normalisieren, wobei $s^2$ Fehlervarianz genannt wird.
