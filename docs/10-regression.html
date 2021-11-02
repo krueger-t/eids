@@ -244,7 +244,7 @@ y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i \quad \text{mit} \quad i=1,2,\ldo
 \end{equation}\]</span></p>
 <p><span class="math inline">\(y_i\)</span> bezeichnet den Wert der <strong>abhängigen Variable</strong> für Datenpunkt <span class="math inline">\(i\)</span>, und <span class="math inline">\(x_i\)</span> den Wert der <strong>unabhängigen Variable</strong> für Datenpunkt <span class="math inline">\(i\)</span>. Der Parameter <span class="math inline">\(\beta_0\)</span> beschreibt den <strong>Achsenabschnitt</strong> der Geraden, also der Punkt an dem die Gerade die y-Achse schneidet. Der Parameter <span class="math inline">\(\beta_1\)</span> beschreibt die <strong>Steigung</strong> der Geraden. <span class="math inline">\(\epsilon_i\)</span> stellt das <strong>Residuum</strong> (also den Fehler) für Datenpunkt <span class="math inline">\(i\)</span> dar (Abbildung <a href="10-regression.html#fig:linreg">10.1</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:linreg"></span>
-<img src="figs/abb12-2.png" alt="Lineare Regression: Definitionen." width="468" />
+<img src="eids_files/figure-html/linreg-1.png" alt="Lineare Regression: Definitionen." width="672" />
 <p class="caption">
 Abbildung 10.1: Lineare Regression: Definitionen.
 </p>
@@ -476,7 +476,7 @@ n \cdot \beta_0=\sum_{i=1}^{n}y_i-\beta_1 \cdot \sum_{i=1}^{n}x_i
 </table>
 <p>Schauen wir uns zunächst die zweiten Spalte der Tabelle <a href="10-regression.html#tab:anova">10.3</a> an: <span class="math inline">\(SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2\)</span> ist ein Maß für die Gesamtvarianz der Daten (in <span class="math inline">\(y\)</span>-Richtung), d.h. wie stark die Datenpunkte um den Gesamtmittelwert streuen (Abbildung <a href="10-regression.html#fig:ssysse">10.3</a>, links). <span class="math inline">\(SSE=\sum_{i=1}^{n}\left(\epsilon_i\right)^2=\sum_{i=1}^{n}\left(y_i-\left(\beta_0+\beta_1 \cdot x_i\right)\right)^2\)</span> ist ein Maß für die Fehlervarianz, d.h. wie stark die Datenpunkte um die Regressionsgerade streuen (Abbildung <a href="10-regression.html#fig:ssysse">10.3</a>, rechts). Das ist die Varianz, die nach der Modellanpassung übrig ist (“nicht erklärt”). <span class="math inline">\(SSR=SSY-SSE\)</span> ist folglich ein Maß für die vom Modell erklärte Varianz.</p>
 <div class="figure" style="text-align: center"><span id="fig:ssysse"></span>
-<img src="figs/ssy.jpg" alt="Variation der Datenpunkte um den Mittelwert, zusammengefasst durch $SSY$ (links), und um die Regressionsgerade, zusammengefasst durch $SSE$ (rechts)." width="50%" /><img src="figs/sse.jpg" alt="Variation der Datenpunkte um den Mittelwert, zusammengefasst durch $SSY$ (links), und um die Regressionsgerade, zusammengefasst durch $SSE$ (rechts)." width="50%" />
+<img src="eids_files/figure-html/ssysse-1.png" alt="Variation der Datenpunkte um den Mittelwert, zusammengefasst durch $SSY$ (links), und um die Regressionsgerade, zusammengefasst durch $SSE$ (rechts)." width="50%" /><img src="eids_files/figure-html/ssysse-2.png" alt="Variation der Datenpunkte um den Mittelwert, zusammengefasst durch $SSY$ (links), und um die Regressionsgerade, zusammengefasst durch $SSE$ (rechts)." width="50%" />
 <p class="caption">
 Abbildung 10.3: Variation der Datenpunkte um den Mittelwert, zusammengefasst durch <span class="math inline">\(SSY\)</span> (links), und um die Regressionsgerade, zusammengefasst durch <span class="math inline">\(SSE\)</span> (rechts).
 </p>
