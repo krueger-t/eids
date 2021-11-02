@@ -13,15 +13,18 @@ Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-W
 knitr::include_graphics('figs/boxplot.png')
 ```
 
-Der Boxplot ist eine vereinfachte Darstellung eines Histogramms. Schauen Sie sich dazu bitte Kapitel 4.3.6 von @zimmermann2014 an, v.a. Abbildung 4.10. *Erkennen Sie welcher Boxplot in 4.10b zu welchem Histogramm in 4.10c gehört?*
+Der Boxplot ist eine vereinfachte Darstellung eines Histogramms. Schauen Sie sich dazu bitte Kapitel 4.3.6 von @zimmermann2014 an, v.a. Abbildung 4.10.
 
-Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl "Distanz" als auch "Stationen"):
+> Erkennen Sie welcher Boxplot in 4.10b zu welchem Histogramm in 4.10c gehört?
+
+Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl "Distanz" als auch "Zeit"):
 
 ```{r include=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
+# reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
@@ -31,19 +34,19 @@ reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 # Histogramm "Distanz" in km
 hist(reisedat$distanz, breaks = seq(0, 55, 5),
      main = "", xlab = "Entfernung (km)", ylab = "absolute Häufigkeit")
-# Histogramm "Stationen"
-hist(reisedat$stationen, breaks = seq(0, 55, 5),
-     main = "", xlab = "Anzahl Stationen", ylab = "absolute Häufigkeit")
+# Histogramm "Zeit" in min
+hist(reisedat$zeit, breaks = seq(0, 130, 10),
+     main = "", xlab = "Reisezeit (min)", ylab = "absolute Häufigkeit")
 # Boxplot "Distanz" in km
 boxplot(reisedat$distanz, range = 0, horizontal = TRUE,
         ylim = c(0, 55), xlab = "Entfernung (km)")
-# Boxplot "Stationen"
-boxplot(reisedat$stationen, range = 0, horizontal = TRUE,
-        ylim = c(0, 55), xlab = "Anzahl Stationen")
+# Boxplot "Zeit" in min
+boxplot(reisedat$zeit, range = 0, horizontal = TRUE,
+        ylim = c(0, 130), xlab = "Reisezeit (min)")
 
 ```
 
-Sowohl "Distanz" als auch "Stationen" sind schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen) ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
+Sowohl "Distanz" als auch "Zeit" sind schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen) ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
 
 Nun zu den weiteren Streuungsparametern. Die **Varianz** $s^2$ ist die mittlere ("durchschnittliche") quadrierte Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ vom arithmetischen Mittel $\bar x$:
 $$s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
@@ -80,13 +83,13 @@ print(c(dbar, s2d, sd, vd))
 ```
 
 ```{r}
-# "Stationen"
+# "Zeit" in min
 # 1) arithmetisches Mittel
-sbar <- mean(reisedat$stationen)
+sbar <- mean(reisedat$zeit)
 # 2) Varianz
-s2s <- var(reisedat$stationen)
+s2s <- var(reisedat$zeit)
 # 3) Standardabweichung
-ss <- sd(reisedat$stationen)
+ss <- sd(reisedat$zeit)
 # 4) Variationskoeffizient
 vs <- ss / sbar
 # Ergebnisse:
@@ -94,7 +97,7 @@ print(c(sbar, s2s, ss, vs))
 
 ```
 
-Die Variable "Stationen" hat im Vergleich zu "Distanz" eine etwas größere Varianz bei etwas geringerem Mittelwert. Daher ist der Variationskoeffizient größer.
+Die Variable "Distanz" hat im Vergleich zu "Zeit" eine größere Varianz relativ zum Mittelwert. Daher ist der Variationskoeffizient größer.
 
 ## Schiefe und Wölbung von Häufigkeitsverteilungen
 
@@ -113,7 +116,7 @@ $$a_3>0\quad \bar x_{mod}<\bar x_{med}<\bar x$$
 Für eine **linkschiefe** (rechtssteile) Verteilung gilt: </center>
 $$a_3<0\quad \bar x_{mod}>\bar x_{med}>\bar x$$
 
-Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben, sind die Verteilungen der Merkmale "Distanz" und "Stationen" rechtsschief:
+Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben, sind die Verteilungen der Merkmale "Distanz" und "Zeit" rechtsschief:
 
 ```{r echo=TRUE, warning=FALSE}
 # für diese Berechnung brauchen wir das Paket "moments"
@@ -134,24 +137,18 @@ print(c(skew_d, med_d, mean_d))
 
 ```
 
-        Daraus folgt: Modus(=7.5) < Median < arithm. Mittelwert  
-        Das Merkmal "Distanz" ist rechtsschief verteilt.
-
 ```{r echo=TRUE, warning=FALSE}
-# "Stationen"
+# "Zeit" in min
 # 1) Schiefe
-skew_s <- skewness(reisedat$stationen)
+skew_s <- skewness(reisedat$zeit)
 # 2) Median
-med_s <- median(reisedat$stationen)
+med_s <- median(reisedat$zeit)
 # 3) arithmetisches Mittel
-mean_s <- mean(reisedat$stationen)
+mean_s <- mean(reisedat$zeit)
 # Ergebnisse:
 print(c(skew_s, med_s, mean_s))
 
 ```
-
-        Daraus folgt: Modus(=7.5) < Median < arithm. Mittelwert  
-        Das Merkmal "Stationen" ist rechtsschief verteilt.
 
 Die **Wölbung** $a_4$ einer Häufigkeitsverteilung von Merkmalswerten $x_1, x_2, \ldots, x_n$ mit dem arithmetischen Mittel $\bar x$ und der Standardabweichung $s$ bestimmt die _Steilheit_ einer Verteilung:
 $$a_4=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^4}{n\cdot s^4}-3$$
@@ -173,7 +170,7 @@ Die Verteilungen der Merkmale unserer Reisedaten sind beide spitzer als die Norm
 # Wölbung der "Distanz"
 kurtosis(reisedat$distanz) - 3
 # Wölbung der "Stationen"
-kurtosis(reisedat$stationen) - 3
+kurtosis(reisedat$zeit) - 3
 
 ```
 
