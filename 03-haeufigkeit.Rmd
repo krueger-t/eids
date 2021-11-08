@@ -2,7 +2,7 @@
 
 # Häufigkeiten und Lageparameter {#haeufigkeit}
 
-Mit diesem Kapitel des Skriptes steigen wir in die **deskriptive Statistik** ein. Lesen Sie hierzu bitte Kapitel 3.2.1 und 3.2.2 von @zimmermann2014. Im Folgenden finden Sie wie gehabt Leitfragen und Ergänzungen zu diesen Kapiteln.
+Mit diesem Kapitel des Skriptes steigen wir in die **deskriptive Statistik** ein. Lesen Sie hierzu bitte Kapitel 3.2.1 und 3.2.2 von @zimmermann2014. Im Folgenden finden Sie wie gehabt Ergänzungen zu diesen Kapiteln.
 
 ## Ziel der deskriptiven Statistik
 
