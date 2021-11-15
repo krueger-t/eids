@@ -209,7 +209,7 @@ Die Verteilungen der Merkmale unserer Reisedaten sind beide spitzer als die Norm
 ```{r echo=TRUE}
 # Wölbung der "Distanz"
 kurtosis(reisedat$distanz) - 3
-# Wölbung der "Stationen"
+# Wölbung der "Zeit"
 kurtosis(reisedat$zeit) - 3
 
 ```
