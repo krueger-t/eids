@@ -1,13 +1,13 @@
 # Verteilungen {#verteilungen}
 
-In Kapitel \@ref(wahrscheinlichkeit) haben wir gesehen, dass alle $36$ Elementarereignisse zweier Würfelwürfe $\omega=(1;1),(1;2),\ldots,(6;6)$ (vgl. Abbildung \@ref(fig:wuerfel2)) die gleiche Wahrscheinlichkeit haben, nämlich $\Pr(\omega_i)=\frac{1}{6}\cdot\frac{1}{6}=\frac{1}{36}$. In Abbildung \@ref(fig:prverteilung) links, sehen wir eine Verteilung dieser Wahrscheinlichkeiten; in diesem Fall ist es eine sogenannte _diskrete Gleichverteilung_. Im Quiz haben wir gesehen, dass wenn uns das Ereignis "Gesamtaugenzahl" interessiert, hier mit $E$ symbolisiert, es Ergebnisse gibt, die wahrscheinlicher sind als andere (das deckt sich mit unserer Erfahrung mit Würfelspielen). Die Verteilung ist symmetrisch um ein Maximum bei $7$ (Abbildung \@ref(fig:prverteilung) rechts), eine sogenannte _diskrete Dreiecksverteilung_. Formal schreiben wir:
+In Kapitel \@ref(wahrscheinlichkeit) haben wir gesehen, dass alle $36$ Elementarereignisse zweier Würfelwürfe $\omega=(1;1),(1;2),\ldots,(6;6)$ (vgl. Abbildung \@ref(fig:wuerfel2)) die gleiche Wahrscheinlichkeit haben, nämlich $\Pr(\omega_i)=\frac{1}{6}\cdot\frac{1}{6}=\frac{1}{36}$. In Abbildung \@ref(fig:prverteilung) links, sehen wir eine Verteilung dieser Wahrscheinlichkeiten; in diesem Fall ist es eine sogenannte _diskrete Gleichverteilung_. Wenn uns das Ereignis "Gesamtaugenzahl" interessiert, hier mit $E$ symbolisiert, gibt es Ergebnisse, die wahrscheinlicher sind als andere (das deckt sich mit unserer Erfahrung mit Würfelspielen). Die Verteilung ist symmetrisch um ein Maximum bei $7$ (Abbildung \@ref(fig:prverteilung) rechts), eine sogenannte _diskrete Dreiecksverteilung_. Formal schreiben wir:
 $$\begin{equation}
 \Pr(E)=\sum_{\omega_i\in E}\Pr\left(\omega_i\right)
 (\#eq:prereignis)
 \end{equation}$$
 <center> > In Worten: Die Wahrscheinlichkeit des Ereignisses $E$ ist gleich der Summe der Wahrscheinlichkeiten aller Elementarereignisse $\omega_i$, die zu $E$ gehören.</center>
 
-```{r prverteilung, echo=FALSE, fig.align='center', fig.cap='Links: Die $36$ Elementarereignisse zweier Würfelwürfe sind gleichverteilt mit $\\Pr(\\omega_i)=\\frac{1}{36}$; die Wahrscheinlichkeitsverteilung ist eine Gleichverteilung. Rechts: Die Wahrscheinlichkeitsverteilung des Ereignisses $E$, der Gesamtaugenzahl zweier Würfelwürfe, ist eine Dreiecksverteilung; das Ergebnis $7$ ist am wahrscheinlichsten (vgl. Quiz zu Kapitel \\@ref(wahrscheinlichkeit)).', fig.show='hold', out.width='50%'}
+```{r prverteilung, echo=FALSE, fig.align='center', fig.cap='Links: Die $36$ Elementarereignisse zweier Würfelwürfe sind gleichverteilt mit $\\Pr(\\omega_i)=\\frac{1}{36}$; die Wahrscheinlichkeitsverteilung ist eine Gleichverteilung. Rechts: Die Wahrscheinlichkeitsverteilung des Ereignisses $E$, der Gesamtaugenzahl zweier Würfelwürfe, ist eine Dreiecksverteilung; das Ergebnis $7$ ist am wahrscheinlichsten.', fig.show='hold', out.width='50%'}
 barplot(rep(1/36,36),
         names = c(11,12,21,13,31,22,14,41,23,32,15,51,24,42,33,16,61,25,52,34,43,26,62,35,53,44,36,63,45,54,46,64,55,56,65,66),
         xlab = 'Elementarereignis',
@@ -20,19 +20,20 @@ barplot(c(1,2,3,4,5,6,5,4,3,2,1)/36,
         ylim = c(0,0.2))
 ```
 
-In diesem Kapitel soll es um solche Wahrscheinlichkeitsverteilungen gehen. Erinnern wir uns, dass eine **Zufallsvariable** ein Merkmal ist, dessen Werte als Ergebnisse eines Zufallsvorgangs _interpretiert_ werden (vgl. Kapitel \@ref(wahrscheinlichkeit)). Die **Wahrscheinlichkeitsverteilung** der Zufallsvariablen ist nun ein _Modell_, das das Verhalten der Zufallsvariablen vollständig beschreibt. Alternative Bezeichnungen sind **Verteilung** und **theoretische Verteilung**.
+In diesem Kapitel soll es um solche Wahrscheinlichkeitsverteilungen gehen. Erinnern wir uns, dass eine **Zufallsvariable** ein Merkmal ist, dessen Werte als Ergebnisse eines Zufallsvorgangs _interpretiert_ werden (vgl. Kapitel \@ref(wahrscheinlichkeit)). Die **Wahrscheinlichkeitsverteilung** der Zufallsvariable ist nun ein _Modell_, das das Verhalten der Zufallsvariable vollständig beschreibt. Alternative Bezeichnungen sind **Verteilung** und **theoretische Verteilung**.
 
 So wie wir **diskrete und stetige Zufallsvariablen** unterscheiden (vgl. Kapitel \@ref(wahrscheinlichkeit)), unterscheiden wir auch **diskrete und stetige Verteilungen**. Für diskrete Verteilungen werden wir den Begriff **Wahrscheinlichkeitsfunktion** kennenlernen und für stetige Verteilungen den Begriff **Dichtefunktion**. Für kumulierte Wahrscheinlichkeiten lernen wir den Begriff **Verteilungsfunktion** kennen, der für diskrete und stetige Verteilungen gleichermaßen gilt. Am Ende des Kapitels stellen wir wichtige Verteilungen und ihre Anwendungen kurz vor.
 
 ## Von der empirischen zur theoretischen Verteilung
 
-Wir haben bereits Darstellungen von **empirischen Verteilungen** in der Form von Histogrammen (und Boxplots) kennengelernt (vgl Kapitel \@ref(haeufigkeit)). Nehmen wir das Beispiel "Entfernung" aus Ihren Reisedaten (Abbildung \@ref(fig:fFempirisch)). "Entfernung" ist eine stetige Zufallsvariable, die hier aber klassiert dargestellt ist. Ein Beispiel für eine diskrete Zufallsvariable ist das Merkmal "Anzahl Vulkanausbrüche" aus @zimmermann2014.
+Wir haben bereits Darstellungen von **empirischen Verteilungen** in der Form von Histogrammen (und Boxplots) kennengelernt (vgl Kapitel \@ref(haeufigkeit)). Nehmen wir das Beispiel "Entfernung" aus den Reisedaten (Abbildung \@ref(fig:fFempirisch)). "Entfernung" ist eine stetige Zufallsvariable, die hier aber klassiert dargestellt ist. Ein Beispiel für eine diskrete Zufallsvariable ist das Merkmal "Anzahl Vulkanausbrüche" aus @zimmermann2014.
 
-```{r fFempirisch, echo=FALSE, fig.align='center', fig.cap='Links: Empirische **Verteilung** des Merkmals "Entfernung". Der 5. Balken z.B. hat eine Höhe von etwa $0.05$; d.h. rund 5% der Merkmalswerte sind in Klasse 5 (20 - 25km). Rechts: Empirische **Verteilungsfunktion** des Merkmals "Entfernung". Der 5. Balken hat eine Höhe von etwa $0.88$; d.h. rund 88% der Merkmalswerte sind kleiner oder gleich 25km.', fig.show='hold', out.width='50%'}
+```{r fFempirisch, echo=FALSE, fig.align='center', fig.cap='Links: Empirische **Verteilung** des Merkmals "Entfernung". Der 5. Balken z.B. hat eine Höhe von etwa $0.1$; d.h. rund 10% der Merkmalswerte sind in Klasse 5 (20 - 25km). Rechts: Empirische **Verteilungsfunktion** des Merkmals "Entfernung". Der 5. Balken hat eine Höhe von etwa $0.87$; d.h. rund 87% der Merkmalswerte sind kleiner oder gleich 25km.', fig.show='hold', out.width='50%'}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
+# reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 # Histogramm berechnen ohne Output
@@ -67,7 +68,7 @@ f_X(x)=\Pr(X=x)
 (\#eq:prfunktion)
 \end{equation}$$
 
-> In Worten: Die Wahrscheinlichkeitsfunktion einer diskreten Zufallsvariablen $X$ in Abhängigkeit der Ausprägung $x$ ist die Eintrittswahrscheinlichkeit von $x$. Vgl. Abbildung \@ref(fig:wuerfel2) und Abbildung \@ref(fig:prverteilung), links.
+> In Worten: Die Wahrscheinlichkeitsfunktion einer diskreten Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Eintrittswahrscheinlichkeit von $x$. Vgl. Abbildung \@ref(fig:wuerfel2) und Abbildung \@ref(fig:prverteilung), links.
 
 Im Fall von _stetigen_ Zufallsvariablen sprechen wir von der **Dichtefunktion**:
 $$\begin{equation}
@@ -75,7 +76,7 @@ $$\begin{equation}
 (\#eq:dichtefunktion)
 \end{equation}$$
 
-> In Worten: Das Integral von $x=a$ bis $x=b$ der Dichtefunktion einer stetigen Zufallsvariablen $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ zwischen $a$ und $b$ liegt. Vgl. Abbildung \@ref(fig:fFtheoretisch), links.
+> In Worten: Das Integral von $x=a$ bis $x=b$ der Dichtefunktion einer stetigen Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ zwischen $a$ und $b$ liegt. Vgl. Abbildung \@ref(fig:fFtheoretisch), links.
 
 Die kumulierten Wahrscheinlichkeiten beschreibt in beiden Fällen die **Verteilungsfunktion**:
 $$\begin{equation}
@@ -295,9 +296,9 @@ legend('bottomright', legend = c('logN(0, 0.25)', 'logN(0, 0.5)', 'logN(0, 1)'),
        col = c('black', 'red', 'blue'), lty = 1)
 ```
 
-Da unsere Entfernungsdaten rechtsschief verteilt sind - mit relativ kleinen Werten (wenige Kilometer) und relativ großen Werten (Zehner von Kilometern), bietet sich die Lognormalverteilung als theoretische Verteilung an und lässt sich auch gut an die Daten anpassen (vgl. Abbildung \@ref(fig:fFempirisch)). Interessanterweise waren die Entfernungsdaten aus dem vergangenen Semester eher normalverteilt, ohne die Rechtsschiefe, die wir in diesem Semester sehen. Vielleicht liegt das daran, dass aufgrund der Corona-bedingten digitalen Lehre einige von Ihnen außerhalb von Berlin wohnen, da sie nicht nach Adlershof pendeln müssen.
+Da unsere Entfernungsdaten rechtsschief verteilt sind - mit relativ kleinen Werten (wenige Kilometer) und relativ großen Werten (Zehner von Kilometern), bietet sich die Lognormalverteilung als theoretische Verteilung an und lässt sich auch gut an die Daten anpassen (vgl. Abbildung \@ref(fig:fFempirisch)).
 
-Nutzen wir jedenfalls die Entfernungsdaten, um uns den Zusammenhang zwischen Lognormal- und Normalverteilung zu veranschaulichen. Wir hatten gesagt, wenn $X$ lognormalverteilt ist (Abbildung \@ref(fig:lognn) links) dann ist $\log(X)$ normalverteilt mit den gleichen Parametern; das sehen wir in Abbildung \@ref(fig:lognn) rechts.
+Nutzen wir die Entfernungsdaten, um uns den Zusammenhang zwischen Lognormal- und Normalverteilung zu veranschaulichen. Wir hatten gesagt, wenn $X$ lognormalverteilt ist (Abbildung \@ref(fig:lognn) links) dann ist $\log(X)$ normalverteilt mit den gleichen Parametern; das sehen wir in Abbildung \@ref(fig:lognn) rechts.
 
 ```{r lognn, echo=TRUE, fig.align='center', fig.cap='Links: Empirische Verteilung der Entfernungsdaten mit theoretischer Lognormalverteilung. Rechts: Empirische Verteilung der log-transformierten Entfernungsdaten mit theoretischer Normalverteilung.', fig.show='hold', out.width='50%'}
 # Lognormalverteilung von X
@@ -323,7 +324,7 @@ curve(dnorm(x, mean = mean(log(reisedat$distanz)),
             sd = sd(log(reisedat$distanz))), add = TRUE, col = 'red')
 ```
 
-Abschließend sei erwähnt, dass wir für Zufallsvariablen, die nur positive Ausprägungen haben, wie z.B. Entfernung, sinnvollerweise eine theoretische Verteilung annehmen sollten, die auch nur für positive Werte definiert ist, wie z.B. die Lognormalverteilung. Leider sind die meisten dieser Verteilungen schiefe Verteilungen. Wenn wir eine symmetrische Verteilung wollen, dann bietet sich weiterhin die Normalverteilung an, obwohl sie theoretisch negative Werte erzeugt, die physikalisch unrealistisch sind. In der Praxis wird die Normalverteilung oft relativ weit genug von Null weg sein, so dass negative Werte eine vernachlässigbar kleine Wahrscheinlichkeit haben. Wenn uns negative Werte trotzdem Probleme bereiten, dann können wir auf die sogenannte **abgeschnittene Normalverteilung** zurückgreifen, die bei Null abgeschnitten und dann reskaliert ist, so dass die Fläche unter der Dichtefunktion weiterhin $1$ ist.
+Abschließend sei erwähnt, dass wir für Zufallsvariablen, die nur positive Ausprägungen haben, wie z.B. Entfernung, sinnvollerweise eine theoretische Verteilung annehmen sollten, die auch nur für positive Werte definiert ist, wie z.B. die Lognormalverteilung. Leider sind die meisten dieser Verteilungen schiefe Verteilungen. Wenn wir eine symmetrische Verteilung wollen, dann bietet sich weiterhin die Normalverteilung an, obwohl sie theoretisch negative Werte erzeugt, die physikalisch unrealistisch sind. In der Praxis wird die Normalverteilung oft relativ weit genug von Null weg sein, so dass negative Werte eine vernachlässigbar kleine Wahrscheinlichkeit haben. Wenn uns negative Werte trotzdem Probleme bereiten, dann können wir auf die sogenannte **abgeschnittene Normalverteilung** zurückgreifen, die bei Null abgeschnitten und dann skaliert ist, so dass die Fläche unter der Dichtefunktion weiterhin $1$ ist.
 
 ### Gleichverteilung
 
