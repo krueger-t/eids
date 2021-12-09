@@ -32,7 +32,7 @@ lines(c(1,1)*mean(reisedat$zeit, na.rm=TRUE), c(0, 0.4), col='black')
 - **Beispiel 3**: Laut [derselben Umfrage](https://www.personalwirtschaft.de/der-job-hr/arbeitswelt/artikel/pendelstrecken-werden-immer-laenger.html) nehmen 21% der Pendler eine Fahrtzeit zwischen 30 und 45 min in Kauf. Ist der mit dem Stichprobenmittel $\bar x=55.4$ geschätzte Mittelwert $\mu$ der Grundgesamtheit _größer_ als der Vergleichswert $\mu_0=45$ aus der Studie? Beziehungsweise, ist der _Unterschied statistisch signifikant_, wenn wir die Streuung der Stichprobe berücksichtigen? Die Frage "größer als" beantwortet der **rechtsseitige Einstichproben-t-Test** (Kapitel \@ref(ttest1)).^[Die Fragestellungen sind etwas konstruiert, damit wir die gängigsten Versionen des t-Tests kennenlernen, sind aber halbwegs realistisch.]
 - **Beispiel 4**: Die Stichprobe wurde zufällig geteilt (Abbildung \@ref(fig:freisezeit2)). Sind die mit den neuen Stichprobenmitteln $\bar x_1=48.5$ und $\bar x_2=62.0$ geschätzten Mittelwerte $\mu_1$ und $\mu_2$ ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen? Diese Frage beantwortet der sogenannte **Zweistichproben-t-Test (zweiseitig)** (Kapitel \@ref(ttest2)).
 
-```{r freisezeit2, echo=FALSE, fig.align='center', fig.cap='Histogramme des Merkmals "Reisezeit" der Reisedaten aus dem Wintersemester 2021/22. Die Stichprobe wurde zufällig geteilt. Die vertikalen Linien markieren die Mittelwerte $\\bar x_1=48.5$ (links) und $\\bar x_2=62.0$ (rechts). Die Varianzen sind $s_1^2=221$ und $s_2^2=643$.', fig.show='hold', out.width='50%'}
+```{r freisezeit2, echo=FALSE, fig.align='center', fig.cap='Histogramme des Merkmals "Reisezeit" der Reisedaten aus dem Wintersemester 2021/22. Die Stichprobe wurde zufällig geteilt. Die vertikalen Linien markieren die Mittelwerte $\\bar x_1=51.2$ (links) und $\\bar x_2=59.4$ (rechts). Die Varianzen sind $s_1^2=478$ und $s_2^2=454$.', fig.show='hold', out.width='50%'}
 # "seed" wählen, so dass Zufallszahlen reproduziert werden können
 set.seed(20210105)
 # zufällig die Hälfte der Reisezeitdaten von 2021 auswählen
@@ -70,7 +70,7 @@ plot(hn, freq = TRUE, col = "gray", ylim = c(0,0.6),
      main = "Nordseite", xlab = "Anzahl Moosarten", ylab = "relative Häufigkeit")
 ```
 
-- **Beispiel 6**: Zurück zu den beiden neuen Stichproben aus Beispiel 4 (Abbildung \@ref(fig:freisezeit2)). Ist die Varianz $\sigma_2^2$ (gegeben $s_2^2=643$) größer als die Varianz $\sigma_1^2$ (gegeben $s_1^2=221$)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen? Diese Frage beantwortet der sogenannte **F-Test (rechtsseitig)** (Kapitel \@ref(ftest)).
+- **Beispiel 6**: Zurück zu den beiden neuen Stichproben aus Beispiel 4 (Abbildung \@ref(fig:freisezeit2)). Ist die Varianz $\sigma_1^2$ (gegeben $s_1^2=478$) größer als die Varianz $\sigma_2^2$ (gegeben $s_2^2=454$)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen? Diese Frage beantwortet der sogenannte **F-Test (rechtsseitig)** (Kapitel \@ref(ftest)).
 - **Beispiel 7**: Entstammt die Stichprobe der Reisezeit (Abbildung \@ref(fig:freisezeit)) einer normalverteilten Grundgesamtheit? Die Parameter dieser Normalverteilung werden anhand der Stichprobe geschätzt. Diese Frage beantwortet der sogenannte **Einstichproben-Kolmogorow-Smirnow-Test** (Kapitel \@ref(kstest)).
 - **Beispiel 8**: Entstammen die beiden Teilstichproben der Reisezeit (Abbildung \@ref(fig:freisezeit2)) einer gemeinsamen Verteilung? Beziehungsweise, können wir das statistisch nachvollziehen? Dafür brauchen wir den **Zweistichproben-Kolmogorow-Smirnow-Test** (Kapitel \@ref(kstest)).
 - **Beispiel 9**: Zurück zum Volksentscheid Tegel aus Kapitel \@ref(korrelation). Gibt es einen Zusammenhang zwischen "Bezirk" und "Votum" beim Volksentscheid Tegel? Beziehungsweise, ist der geringe Zusammenhang, den wir bereits festgestellt haben, statistisch signifikant? Diese Frage beantwortet der sogenannte **Chi-Quadrat-Test** (Kapitel \@ref(chi2test)).
@@ -286,7 +286,7 @@ Dieser p-Wert ist wesentlich kleiner als das konventionelle Signifikanzniveau vo
 
 Siehe Abbildung \@ref(fig:freisezeit2):
 
-> Sind die mit den Stichprobenmitteln $\bar x_1=48.5$ und $\bar x_2=62.0$ geschätzten Mittelwerte $\mu_1$ und $\mu_2$ ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen?
+> Sind die mit den Stichprobenmitteln $\bar x_1=51.2$ und $\bar x_2=59.4$ geschätzten Mittelwerte $\mu_1$ und $\mu_2$ ungleich? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen?
 
 Die Nullhypothese ist in diesem Fall, dass die beiden Mittelwerte gleich sind:
 $$H_0:\mu_1=\mu_2$$
@@ -323,7 +323,7 @@ ts <- (xbar1 - xbar2)/sqrt(var1/n1+var2/n2)
 ts
 ```
 
-Dieser Wert der Teststatistik liegt tendenziel in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist:
+Dieser Wert der Teststatistik liegt tendenziel im Zentrum der t-Verteilung, die unter der Nullhypothese zu erwarten ist:
 ```{r echo=TRUE, out.width='80%'}
 plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), n1+n2-2), ylim=c(0,1), type='l',
      xlab='Z=t_s', ylab='Verteilungsfunktion')
@@ -348,11 +348,11 @@ Mit Zahlenwerten:
 pt(ts,n1+n2-2)
 ```
 
-Also wieder halb so groß wie der zweiseitige p-Wert. Der p-Wert ist kleiner als das konventionelle Signifikanzniveau von 0.01, d.h. es ist sehr wahrscheinlich, dass ein solcher Wert der Teststatistik durch Zufall zustande kommt falls die Nullhypothese wahr ist, d.h. wir lehnen die Nullhypothese ab. Dies ist so obwohl wir wissen, dass beide Stichproben der selben Grundgesamtheit entstammen - wir können diesen Tatbestand nur nicht _statistisch_ nachweisen! Der Grund ist wahrscheinlich, dass die Teilstichproben zu klein sind.
+Also wieder halb so groß wie der zweiseitige p-Wert. Der p-Wert ist größer als das konventionelle Signifikanzniveau von 0.01, d.h. es ist wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist, d.h. wir lehnen die Nullhypothese nicht ab.
 
 Für Beispiel 4 schließen wir also:
 
-> Der Unterschied der mit den Stichprobenmitteln $\bar x_1$ und $\bar x_2$ geschätzten Mittelwerte $\mu_1$ und $\mu_2$ ist _signifikant_. D.h. wir können statistisch nicht nachweisen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen.
+> Der Unterschied der mit den Stichprobenmitteln $\bar x_1$ und $\bar x_2$ geschätzten Mittelwerte $\mu_1$ und $\mu_2$ ist _nicht signifikant_. D.h. wir können statistisch nachweisen, dass die beiden Stichproben Grundgesamtheiten mit dem selben Mittelwert entstammen.
 
 ### Varianten der Teststatistik
 
@@ -482,16 +482,16 @@ Während der t-Test für den Vergleich von Mittelwerten zuständig ist, dient de
 
 Siehe Abbildung \@ref(fig:freisezeit2):
 
-> Ist die Varianz $\sigma_2^2$ (gegeben $s_2^2=643$) größer als die Varianz $\sigma_1^2$ (gegeben $s_1^2=221$)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen?
+> Ist die Varianz $\sigma_1^2$ (gegeben $s_1^2=478$) größer als die Varianz $\sigma_2^2$ (gegeben $s_2^2=454$)? Beziehungsweise, können wir statistisch nachvollziehen, dass die beiden Stichproben Grundgesamtheiten mit derselben Varianz entstammen?
 
 Die Nullhypothese ist in diesem Fall, dass die beiden Varianzen gleich sind:
-$$H_0:\sigma_2^2=\sigma_1^2$$
-Die Alternativhypothese ist, dass $\sigma_2^2$ _größer_ ist als $\sigma_1^2$:
-$$H_1:\sigma_2^2>\sigma_1^2$$
+$$H_0:\sigma_1^2=\sigma_2^2$$
+Die Alternativhypothese ist, dass $\sigma_1^2$ _größer_ ist als $\sigma_2^2$:
+$$H_1:\sigma_1^2>\sigma_2^2$$
 
-Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo $s_2^2$ tatsächlich größer ist als $s_1^2$. Die Formulierung ist immer die eines rechtsseitigen Tests, wo die größere Varianz links steht.^[Trotzdem wird die Nullhypothese üblicherweise mit "=" angegeben, was zwar der Fall ist, für den die Wahrscheinlichkeitsverteilung der Teststatistik gilt, was aber nicht konsistent mit der Formulierung der Nullhypothese beim einseitigen t-Test ist. Für diese Inkonsistenz konnte ich bisher keine Lösung finden.] Die Teststatistik $F_s$ ist:
+Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo $s_1^2$ tatsächlich größer ist als $s_2^2$. Die Formulierung ist immer die eines rechtsseitigen Tests, wo die größere Varianz links steht.^[Trotzdem wird die Nullhypothese üblicherweise mit "=" angegeben, was zwar der Fall ist, für den die Wahrscheinlichkeitsverteilung der Teststatistik gilt, was aber nicht konsistent mit der Formulierung der Nullhypothese beim einseitigen t-Test ist. Für diese Inkonsistenz konnte ich bisher keine Lösung finden.] Die Teststatistik $F_s$ ist:
 $$\begin{equation}
-F_s=\frac{s_2^2}{s_1^2}\sim F_{n_1-1;n_2-1}
+F_s=\frac{s_1^2}{s_2^2}\sim F_{n_1-1;n_2-1}
 (\#eq:fs)
 \end{equation}$$
 
@@ -535,7 +535,7 @@ fs <- var2 / var1
 fs
 ```
 
-Dieser Wert der Teststatistik liegt in den Extremen der F-Verteilung, die unter der Nullhypothese zu erwarten ist:
+Dieser Wert der Teststatistik liegt im Zentrum der F-Verteilung, die unter der Nullhypothese zu erwarten ist:
 ```{r echo=TRUE, out.width='80%'}
 plot(seq(0,5,0.01), pf(seq(0,5,0.01), n1-1, n2-1), ylim=c(0,1), type='l',
      xlab='Z=F_s', ylab='Verteilungsfunktion')
@@ -551,11 +551,11 @@ Mit Zahlenwerten:
 1-pf(fs, n1-1, n2-1)
 ```
 
-Da der p-Wert viel kleiner ist als das konventionelle Signifikanzniveau von 0.01, ist sehr wahrscheinlich, dass ein solcher Wert der Teststatistik durch Zufall zustande kommt falls die Nullhypothese wahr ist. Wir lehnen demnach die Nullhypothese ab und schließen für Beispiel 6:
+Da der p-Wert viel größer ist als das konventionelle Signifikanzniveau von 0.01, ist sehr wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir lehnen demnach die Nullhypothese nicht ab und schließen für Beispiel 6:
 
-> Der Unterschied der beiden Varianzen ist statistisch _signifikant_. D.h. wir konnten nicht nachweisen, dass die beiden Stichproben Grundgesamtheiten mit der selben Varianz entstammen.
+> Der Unterschied der beiden Varianzen ist statistisch _nicht signifikant_. D.h. wir konnten nachweisen, dass die beiden Stichproben Grundgesamtheiten mit der selben Varianz entstammen.
 
-Das ist analog zum Bsp. 4; statistisch konnten wir nicht nachvollziehen, dass die beiden Stichproben der selben Grundgesamtheit entstammen. Das liegt, wie gesagt, vermutlich an der geringen Teilstichprobengröße.
+Zusammen mit Bsp. 4 konnten wir nun statistisch nachvollziehen, dass die beiden Stichproben der selben Grundgesamtheit entstammen.
 
 ## Verteilungstest (Kolmogorow-Smirnow-Test) {#kstest}
 
@@ -681,11 +681,11 @@ Die Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypoth
 ks.test(t1, t2)
 ```
 
-Der Wert der Teststatistik $d_n$ ist diesmal 0.32; diesmal können wir ihn wegen der unterschiedlichen Stichprobengrößen nicht so einfach "per Hand" ausrechnen und sparen uns das hier. Da der p-Wert wiederum größer ist als das konventionelle Signifikanzniveau von 0.01, können wir die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 8:
+Der Wert der Teststatistik $d_n$ ist diesmal 0.25; diesmal können wir ihn wegen der unterschiedlichen Stichprobengrößen nicht so einfach "per Hand" ausrechnen und sparen uns das hier. Da der p-Wert wiederum größer ist als das konventionelle Signifikanzniveau von 0.01, können wir die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 8:
 
 > Die beiden Teilstichproben entstammen einer gemeinsamen Verteilungen. Bzw., wir können diesen Tatbestand statistisch nachvollziehen.
 
-In der Tat wurden die beiden Teilstichproben ja der gleichen Stichprobe zufällig entnommen. Hier zeigt sich aber einmal mehr, wie insensitiv der KS-Test ist; die zwei empirischen Verteilungen sehen sehr unterschiedlich aus (und gemeinsamen Mittelwert und Varianz konnten wir nicht nachweisen), trotzdem laesst der KS-Test die Nullhypothese einer gemeinsamen Verteilung nicht ablehnen.
+In der Tat wurden die beiden Teilstichproben ja der gleichen Stichprobe zufällig entnommen.
 
 ## Unabhängigkeitstest (Chi-Quadrat-Test) {#chi2test}
 
