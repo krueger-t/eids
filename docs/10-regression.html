@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-11-30" />
+<meta name="date" content="2021-12-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -234,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>die <strong>abhängige Variable</strong> <span class="math inline">\(y\)</span> (im Bsp. Entfernung)</li>
 <li>die <strong>unabhängige Variable</strong> <span class="math inline">\(x\)</span> (im Bsp. Anzahl Stationen)</li>
 </ul>
-<p>Die Variablen müssen <em>metrisch</em> skaliert sein.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> Wir wollen das generelle Verhalten von <span class="math inline">\(y\)</span> mit <span class="math inline">\(x\)</span> beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.</p>
+<p>Die Variablen müssen <em>metrisch</em> skaliert sein.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> Wir wollen das generelle Verhalten von <span class="math inline">\(y\)</span> mit <span class="math inline">\(x\)</span> beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.</p>
 <div id="definitionen" class="section level2">
 <h2><span class="header-section-number">10.1</span> Definitionen</h2>
 <p>Im Falle einer einzigen unabhängigen Variable lautet die Gleichung des <strong>linearen Models</strong>:</p>
@@ -357,7 +357,7 @@ SSE=\sum_{i=1}^{n}\left(\epsilon_i\right)^2=\sum_{i=1}^{n}\left(y_i-\left(\beta_
 \tag{10.2}
 \end{equation}\]</span></p>
 <p>Das Residuum <span class="math inline">\(\epsilon_i\)</span> ist also gleich <span class="math inline">\(y_i-\left(\beta_0+\beta_1 \cdot x_i\right)\)</span>, dem vertikalen Abstand zwischen Datenpunkt und Regressionsgerade.</p>
-<p>Im Fall der linearen Regression kann <span class="math inline">\(SSE\)</span> analytisch minimiert werden, was z.B. bei nichtlinearen Modellen nicht der Fall ist. Analytisch finden wir das Minimum von <span class="math inline">\(SSE\)</span> wo dessen partielle Ableitungen in Bezug auf die beiden Modellparameter beide Null sind: <span class="math inline">\(\frac{\partial SSE}{\partial \beta_0}=0\)</span> und <span class="math inline">\(\frac{\partial SSE}{\partial \beta_1}=0\)</span>. Unter Anwendung der Definition von <span class="math inline">\(SEE\)</span> aus Gleichung <a href="10-regression.html#eq:sse">(10.2)</a> und der Summenregel<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> und der Kettenregel<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, die Sie noch aus der Schule kennen werden, erhalten wir:</p>
+<p>Im Fall der linearen Regression kann <span class="math inline">\(SSE\)</span> analytisch minimiert werden, was z.B. bei nichtlinearen Modellen nicht der Fall ist. Analytisch finden wir das Minimum von <span class="math inline">\(SSE\)</span> wo dessen partielle Ableitungen in Bezug auf die beiden Modellparameter beide Null sind: <span class="math inline">\(\frac{\partial SSE}{\partial \beta_0}=0\)</span> und <span class="math inline">\(\frac{\partial SSE}{\partial \beta_1}=0\)</span>. Unter Anwendung der Definition von <span class="math inline">\(SEE\)</span> aus Gleichung <a href="10-regression.html#eq:sse">(10.2)</a> und der Summenregel<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> und der Kettenregel<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>, die Sie noch aus der Schule kennen werden, erhalten wir:</p>
 <p><span class="math display" id="eq:sseb0">\[\begin{equation}
 \frac{\partial SSE}{\partial \beta_0}=-2 \cdot \sum_{i=1}^{n}\left(y_i-\beta_0-\beta_1 \cdot x_i\right)=0
 \tag{10.3}
@@ -416,7 +416,7 @@ n \cdot \beta_0=\sum_{i=1}^{n}y_i-\beta_1 \cdot \sum_{i=1}^{n}x_i
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
 ## (Intercept)   4.9232    1.01874   4.833 7.533e-06
 ## stationen     0.6934    0.05976  11.604 4.641e-18</code></pre>
-<p>In der ersten Spalte (“Estimate”) dieses Outputs finden Sie die Werte der Parameterschätzer, wobei “(Intercept)” für <span class="math inline">\(\beta_0\)</span> steht und “stationen” für <span class="math inline">\(\beta_1\)</span>. Anhand von <span class="math inline">\(\beta_1\)</span> können wir ablesen, dass die Entfernung zwischen zwei Stationen im Mittel 0.7 km beträgt. Der Achsenabschnitt <span class="math inline">\(\beta_0\)</span> hat keine direkte Entsprechung.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgerade <span class="math inline">\(y_i=4.9+0.7\cdot x_i+\epsilon_i\)</span>:</p>
+<p>In der ersten Spalte (“Estimate”) dieses Outputs finden Sie die Werte der Parameterschätzer, wobei “(Intercept)” für <span class="math inline">\(\beta_0\)</span> steht und “stationen” für <span class="math inline">\(\beta_1\)</span>. Anhand von <span class="math inline">\(\beta_1\)</span> können wir ablesen, dass die Entfernung zwischen zwei Stationen im Mittel 0.7 km beträgt. Der Achsenabschnitt <span class="math inline">\(\beta_0\)</span> hat keine direkte Entsprechung.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgerade <span class="math inline">\(y_i=4.9+0.7\cdot x_i+\epsilon_i\)</span>:</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="10-regression.html#cb129-1"></a><span class="co"># Modellanpassung plotten</span></span>
 <span id="cb129-2"><a href="10-regression.html#cb129-2"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>stationen, reisedat<span class="op">$</span>distanz,</span>
 <span id="cb129-3"><a href="10-regression.html#cb129-3"></a>     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;p&#39;</span>,</span>
@@ -531,7 +531,7 @@ s_{\hat y}=\sqrt{s^2 \cdot \left(\frac{1}{n}+\frac{\left(\hat x-\bar x\right)^2}
 \Pr\left(\hat\beta_0-t_{n-2;0.975} \cdot s_{\hat\beta_0}\leq \beta_0\leq \hat\beta_0+t_{n-2;0.975} \cdot s_{\hat\beta_0}\right)=0.95
 \tag{10.17}
 \end{equation}\]</span></p>
-<p>Gleichung <a href="10-regression.html#eq:cib01">(10.17)</a> ist das zentrale 95%-Konfidenzintervall, in dem der wahre Parameterwert, hier <span class="math inline">\(\beta_0\)</span>, mit einer Wahrscheinlichkeit von 0.95 liegt.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a></p>
+<p>Gleichung <a href="10-regression.html#eq:cib01">(10.17)</a> ist das zentrale 95%-Konfidenzintervall, in dem der wahre Parameterwert, hier <span class="math inline">\(\beta_0\)</span>, mit einer Wahrscheinlichkeit von 0.95 liegt.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
 <p>Wir können das Intervall auch wie folgt schreiben:
 <span class="math display" id="eq:cib02">\[\begin{equation}
 KI=\left[\hat\beta_0-t_{n-2;0.975} \cdot s_{\hat\beta_0};\hat\beta_0+t_{n-2;0.975} \cdot s_{\hat\beta_0}\right]
@@ -651,12 +651,12 @@ Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Q
 </div>
 <div class="footnotes">
 <hr />
-<ol start="19">
-<li id="fn19"><p>Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten abhängigen Variablen sind mathematisch ähnlich. Das wird im Masterstudiengang <em>Global Change Geography</em> gelehrt.<a href="10-regression.html#fnref19" class="footnote-back">↩︎</a></p></li>
-<li id="fn20"><p>Summenregel: wenn <span class="math inline">\(y=u(t) \pm v(t)\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{du}{dt} \pm \frac{dv}{dt}\)</span><a href="10-regression.html#fnref20" class="footnote-back">↩︎</a></p></li>
-<li id="fn21"><p>Kettenregel: wenn <span class="math inline">\(y=f[g(t)]\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{df[g]}{dg} \cdot \frac{dg}{dt}\)</span>, d.h. “äußere mal innere Ableitung”<a href="10-regression.html#fnref21" class="footnote-back">↩︎</a></p></li>
-<li id="fn22"><p>Wenn wir jedoch die unabhängige Variable “stationen” zentrieren würden, d.h. von allen Datenpunkten den Mittelwert abziehen würden, dann ergäbe sich ein Achsenabschnitt, der die Entfernung für die mittlere Anzahl Stationen darstellen würde.<a href="10-regression.html#fnref22" class="footnote-back">↩︎</a></p></li>
-<li id="fn23"><p>Wahrscheinlichkeit heisst hier wieder, dass bei wiederholtem Stichprobenziehen in 95% der Fälle das so konstruierte Konfidenzintervall den wahren Wert <span class="math inline">\(\beta_0\)</span> umschließt und in 5% der Fälle nicht.<a href="10-regression.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<ol start="18">
+<li id="fn18"><p>Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten abhängigen Variablen sind mathematisch ähnlich. Das wird im Masterstudiengang <em>Global Change Geography</em> gelehrt.<a href="10-regression.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>Summenregel: wenn <span class="math inline">\(y=u(t) \pm v(t)\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{du}{dt} \pm \frac{dv}{dt}\)</span><a href="10-regression.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>Kettenregel: wenn <span class="math inline">\(y=f[g(t)]\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{df[g]}{dg} \cdot \frac{dg}{dt}\)</span>, d.h. “äußere mal innere Ableitung”<a href="10-regression.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>Wenn wir jedoch die unabhängige Variable “stationen” zentrieren würden, d.h. von allen Datenpunkten den Mittelwert abziehen würden, dann ergäbe sich ein Achsenabschnitt, der die Entfernung für die mittlere Anzahl Stationen darstellen würde.<a href="10-regression.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>Wahrscheinlichkeit heisst hier wieder, dass bei wiederholtem Stichprobenziehen in 95% der Fälle das so konstruierte Konfidenzintervall den wahren Wert <span class="math inline">\(\beta_0\)</span> umschließt und in 5% der Fälle nicht.<a href="10-regression.html#fnref22" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
