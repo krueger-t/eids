@@ -117,26 +117,55 @@ Bei dem Grünflächenanteil/Bildungsgrad Beispiel von @zimmermann2014 ist $r_s=0
 
 ## Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson
 
-An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Beide Merkmale ("Distanz" und "Zeit") sind metrisch skaliert und somit können wir den **Korrelationskoeffizienten nach Bravais-Pearson** verwenden, der mehr Informationen über den Zusammenhang, nämlich **Linearität**, liefert. Einen ersten Eindruck verschafft der **Scatterplot** (auch Streudiagramm), den wir einfach mit der `plot()` Funktion in *R* generieren:
+An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Alle Merkmale ("Distanz" und "Zeit") sind metrisch skaliert und somit können wir den **Korrelationskoeffizienten nach Bravais-Pearson** verwenden, der mehr Informationen über den Zusammenhang, nämlich **Linearität**, liefert. Einen ersten Eindruck verschafft der **Scatterplot** (auch Streudiagramm), den wir einfach mit der `plot()` Funktion in *R* generieren. Als erstes plotten wir die beiden Zeiten ("morgens" und "nachmittags") gegeneinander:
 
 ```{r include=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
 # reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
+# reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
 ```
 
 ```{r echo=TRUE, out.width='80%'}
-plot(reisedat$distanz, reisedat$zeit, 
-     xlab = "Entfernung (km)", ylab = "Reisezeit (min)")
+plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags, 
+     xlab = "Reisezeit, morgens (min)", ylab = "Reisezeit, nachmittags (min)")
 
 ```
 
-An dieser Stelle fällt das Wertepaar $(16, 126)$ oben, links der Mitte auf. Hierbei handelt es sich wahrscheinlich um eine Person, die eine vergleichsweise lange Strecke mit dem Fahrrad gefahren ist.
+Hier fällt das Wertepaar $(55, 1)$ unten, in der Mitte auf. Meine Vermutung ist, dass jemand hier nachmittags $1$ im Sinne von einer Stunde eingetragen hat, anstatt $60$ Minuten. Ich ändere das in einem korrigierten Datensatz und lade diesen erneut ein (grundsätzlich muss so eine Änderung gut begründet und dokumentiert sein; alternativ kann man auch zweifelhafte Werte entfernen):
+
+```{r echo=TRUE, message=FALSE}
+# Paket laden, das für das Einlesen von xlsx gebraucht wird
+library("readxl")
+# Daten einlesen
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022_korrigiert.xlsx", na = "-999")
+# in Zahlen und data.frame umwandeln
+reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
+
+```
+
+```{r echo=TRUE, out.width='80%'}
+plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags, 
+     xlab = "Reisezeit, morgens (min)", ylab = "Reisezeit, nachmittags (min)")
+
+```
+
+Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker.
+
+Plotten wir nun eine der Zeiten ("morgens") gegen die Entfernung:
+
+```{r echo=TRUE, out.width='80%'}
+plot(reisedat$distanz, reisedat$zeit_morgens, 
+     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
+
+```
+
+An dieser Stelle fallen die vier Datenpunkte ganz rechts auf, sowie der Datenpunkte unten $(14.8, 1.2)$. Bei letzterem hat sich vielleicht wieder jemand mit Minuten und Stunden vertan und meint hier $1.2$ Stunden, also $72$ Minuten. Die vier Punkte ganz rechts könnten Personen sein, die relativ weite Strecken mit dem Auto zurücklegen. Darauf schauen wir in späteren Kapitel noch etwas näher. Vorerst nutzen wir die Daten so, wie sie sind.
 
 **Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in "Reisezeit" kommen könnte._
 
@@ -146,7 +175,7 @@ $$r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\le
 In *R* mit der `cor()` Funktion: 
 
 ```{r echo=TRUE}
-cor(reisedat$distanz, reisedat$zeit, use = "complete.obs", method = "pearson")
+cor(reisedat$distanz, reisedat$zeit_morgens, use = "complete.obs", method = "pearson")
 
 ```
 Das Argument `use = "complete.obs"` teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne "NA", ansonsten wäre der Output "NA". Da hier nur vollständige Datenpaare vorhanden sind, ist das Argument nur vorsorglich gesetzt. Anstatt `method = "pearson"` sind ebenfalls `method = "spearman"` und `method = "kendall"` möglich; beides sind Rangkorrelationskoeffizienten.

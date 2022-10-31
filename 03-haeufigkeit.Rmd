@@ -41,6 +41,7 @@ reisedat$x
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
+# der Zusatz na = "-999" sagt R, dass fehlende Werte mit -999 kodiert sind
 # reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
 # reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
 reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")

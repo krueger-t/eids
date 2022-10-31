@@ -64,29 +64,36 @@ Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl "Dist
 library("readxl")
 # Daten einlesen
 # reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
+# reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
 ```
 
-```{r echo=TRUE, fig.show='hold', out.width='50%'}
+```{r echo=TRUE, fig.show='hold', out.width='33%'}
 # Histogramm "Distanz" in km
-hist(reisedat$distanz, breaks = seq(0, 55, 5),
+hist(reisedat$distanz, breaks = seq(0, 75, 5),
      main = "", xlab = "Entfernung (km)", ylab = "absolute Häufigkeit")
-# Histogramm "Zeit" in min
-hist(reisedat$zeit, breaks = seq(0, 130, 10),
-     main = "", xlab = "Reisezeit (min)", ylab = "absolute Häufigkeit")
+# Histogramm "Zeit, morgens" in min
+hist(reisedat$zeit_morgens, breaks = seq(0, 130, 10),
+     main = "", xlab = "Reisezeit, morgens (min)", ylab = "absolute Häufigkeit")
+# Histogramm "Zeit, nachmittags" in min
+hist(reisedat$zeit_nachmittags, breaks = seq(0, 130, 10),
+     main = "", xlab = "Reisezeit, nachmittags (min)", ylab = "absolute Häufigkeit")
 # Boxplot "Distanz" in km
 boxplot(reisedat$distanz, range = 0, horizontal = TRUE,
-        ylim = c(0, 55), xlab = "Entfernung (km)")
-# Boxplot "Zeit" in min
-boxplot(reisedat$zeit, range = 0, horizontal = TRUE,
-        ylim = c(0, 130), xlab = "Reisezeit (min)")
+        ylim = c(0, 75), xlab = "Entfernung (km)")
+# Boxplot "Zeit, morgens" in min
+boxplot(reisedat$zeit_morgens, range = 0, horizontal = TRUE,
+        ylim = c(0, 130), xlab = "Reisezeit, morgens (min)")
+# Boxplot "Zeit, nachmittags" in min
+boxplot(reisedat$zeit_nachmittags, range = 0, horizontal = TRUE,
+        ylim = c(0, 130), xlab = "Reisezeit, nachmittags (min)")
 
 ```
 
-Sowohl "Distanz" als auch "Zeit" sind schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen) ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
+Die Variable "Distanz" ist schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Die beiden Variablen "Zeit" sind fast symmetrisch verteilt, die zentralen 50% der Verteilungen - die "Boxen" im Boxplot - befinden sich fast in der Mitte. Für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen) ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
 
 Nun zu den weiteren Streuungsparametern. Die **Varianz** $s^2$ ist die mittlere ("durchschnittliche") quadrierte Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ vom arithmetischen Mittel $\bar x$:
 $$s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
@@ -123,13 +130,13 @@ print(c(dbar, s2d, sd, vd))
 ```
 
 ```{r}
-# "Zeit" in min
+# "Zeit, morgens" in min
 # 1) arithmetisches Mittel
-sbar <- mean(reisedat$zeit)
+sbar <- mean(reisedat$zeit_morgens)
 # 2) Varianz
-s2s <- var(reisedat$zeit)
+s2s <- var(reisedat$zeit_morgens)
 # 3) Standardabweichung
-ss <- sd(reisedat$zeit)
+ss <- sd(reisedat$zeit_morgens)
 # 4) Variationskoeffizient
 vs <- ss / sbar
 # Ergebnisse:
@@ -137,7 +144,23 @@ print(c(sbar, s2s, ss, vs))
 
 ```
 
-Die Variable "Distanz" hat im Vergleich zu "Zeit" eine größere Varianz relativ zum Mittelwert. Daher ist der Variationskoeffizient größer.
+```{r}
+# "Zeit, nachmittags" in min
+# 1) arithmetisches Mittel
+#  na.rm = TRUE ignoriert die fehlenden Werte im Datensatz
+sbar <- mean(reisedat$zeit_nachmittags, na.rm = TRUE)
+# 2) Varianz
+s2s <- var(reisedat$zeit_nachmittags, na.rm = TRUE)
+# 3) Standardabweichung
+ss <- sd(reisedat$zeit_nachmittags, na.rm = TRUE)
+# 4) Variationskoeffizient
+vs <- ss / sbar
+# Ergebnisse:
+print(c(sbar, s2s, ss, vs))
+
+```
+
+Die Variable "Distanz" hat im Vergleich zu "Zeit, morgens" und "Zeit, nachmitttags" eine größere Varianz relativ zum Mittelwert. Daher ist der Variationskoeffizient größer.
 
 ## Schiefe und Wölbung von Häufigkeitsverteilungen
 
@@ -156,7 +179,7 @@ $$a_3>0\quad \bar x_{mod}<\bar x_{med}<\bar x$$
 Für eine **linkschiefe** (rechtssteile) Verteilung gilt: </center>
 $$a_3<0\quad \bar x_{mod}>\bar x_{med}>\bar x$$
 
-Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben, sind die Verteilungen der Merkmale "Distanz" und "Zeit" rechtsschief:
+Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben, ist die Verteilung des Merkmals "Distanz" rechtsschief:
 
 ```{r echo=TRUE, warning=FALSE}
 # für diese Berechnung brauchen wir das Paket "moments"
@@ -177,14 +200,29 @@ print(c(skew_d, med_d, mean_d))
 
 ```
 
+Die Verteilungen der Merkmale "Zeit, morgens" und "Zeit, nachmittags" sind eher symmetrisch:
+
 ```{r echo=TRUE, warning=FALSE}
-# "Zeit" in min
+# "Zeit, morgens" in min
 # 1) Schiefe
-skew_s <- skewness(reisedat$zeit)
+skew_s <- skewness(reisedat$zeit_morgens)
 # 2) Median
-med_s <- median(reisedat$zeit)
+med_s <- median(reisedat$zeit_morgens)
 # 3) arithmetisches Mittel
-mean_s <- mean(reisedat$zeit)
+mean_s <- mean(reisedat$zeit_morgens)
+# Ergebnisse:
+print(c(skew_s, med_s, mean_s))
+
+```
+
+```{r echo=TRUE, warning=FALSE}
+# "Zeit, nachmittags" in min
+# 1) Schiefe
+skew_s <- skewness(reisedat$zeit_nachmittags, na.rm = TRUE)
+# 2) Median
+med_s <- median(reisedat$zeit_nachmittags, na.rm = TRUE)
+# 3) arithmetisches Mittel
+mean_s <- mean(reisedat$zeit_nachmittags, na.rm = TRUE)
 # Ergebnisse:
 print(c(skew_s, med_s, mean_s))
 
@@ -204,13 +242,15 @@ $$a_4>0$$
 Für eine "flachere" Verteilung als die Normalverteilung gilt: </center>
 $$a_4<0$$
 
-Die Verteilungen der Merkmale unserer Reisedaten sind beide spitzer als die Normalverteilung, wobei beide Variablen wegen ihrer Rechtsschiefe ohnehin nicht mit der Normalverteilung vergleichbar sind:
+Die Verteilungen der Merkmale unserer Reisedaten sind alle spitzer als die Normalverteilung, wobei die Variable "Distanz" wegen ihrer Rechtsschiefe ohnehin nicht mit der Normalverteilung vergleichbar ist:
 
 ```{r echo=TRUE}
 # Wölbung der "Distanz"
 kurtosis(reisedat$distanz) - 3
-# Wölbung der "Zeit"
-kurtosis(reisedat$zeit) - 3
+# Wölbung der "Zeit, morgens"
+kurtosis(reisedat$zeit_morgens) - 3
+# Wölbung der "Zeit, nachmittags"
+kurtosis(reisedat$zeit_nachmittags, na.rm = TRUE) - 3
 
 ```
 

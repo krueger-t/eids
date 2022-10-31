@@ -242,19 +242,25 @@ Abbildung 4.1: Boxplot mit Quartilsabstand und Spannweite.
 </blockquote>
 <p>Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl “Distanz” als auch “Zeit”):</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="04-streuung.html#cb18-1"></a><span class="co"># Histogramm &quot;Distanz&quot; in km</span></span>
-<span id="cb18-2"><a href="04-streuung.html#cb18-2"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">55</span>, <span class="dv">5</span>),</span>
+<span id="cb18-2"><a href="04-streuung.html#cb18-2"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>),</span>
 <span id="cb18-3"><a href="04-streuung.html#cb18-3"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span>
-<span id="cb18-4"><a href="04-streuung.html#cb18-4"></a><span class="co"># Histogramm &quot;Zeit&quot; in min</span></span>
-<span id="cb18-5"><a href="04-streuung.html#cb18-5"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>zeit, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">130</span>, <span class="dv">10</span>),</span>
-<span id="cb18-6"><a href="04-streuung.html#cb18-6"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit (min)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span>
-<span id="cb18-7"><a href="04-streuung.html#cb18-7"></a><span class="co"># Boxplot &quot;Distanz&quot; in km</span></span>
-<span id="cb18-8"><a href="04-streuung.html#cb18-8"></a><span class="kw">boxplot</span>(reisedat<span class="op">$</span>distanz, <span class="dt">range =</span> <span class="dv">0</span>, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb18-9"><a href="04-streuung.html#cb18-9"></a>        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">55</span>), <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>)</span>
-<span id="cb18-10"><a href="04-streuung.html#cb18-10"></a><span class="co"># Boxplot &quot;Zeit&quot; in min</span></span>
-<span id="cb18-11"><a href="04-streuung.html#cb18-11"></a><span class="kw">boxplot</span>(reisedat<span class="op">$</span>zeit, <span class="dt">range =</span> <span class="dv">0</span>, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb18-12"><a href="04-streuung.html#cb18-12"></a>        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">130</span>), <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit (min)&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-11-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-2.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-3.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-11-4.png" width="50%" /></p>
-<p>Sowohl “Distanz” als auch “Zeit” sind schief verteilt, die zentralen 50% der Verteilung - die “Box” im Boxplot - befinden sich links der Mitte. Für das Verständnis von Verteilungen in Kapitel <a href="07-verteilungen.html#verteilungen">7</a> ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!</p>
+<span id="cb18-4"><a href="04-streuung.html#cb18-4"></a><span class="co"># Histogramm &quot;Zeit, morgens&quot; in min</span></span>
+<span id="cb18-5"><a href="04-streuung.html#cb18-5"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>zeit_morgens, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">130</span>, <span class="dv">10</span>),</span>
+<span id="cb18-6"><a href="04-streuung.html#cb18-6"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span>
+<span id="cb18-7"><a href="04-streuung.html#cb18-7"></a><span class="co"># Histogramm &quot;Zeit, nachmittags&quot; in min</span></span>
+<span id="cb18-8"><a href="04-streuung.html#cb18-8"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">130</span>, <span class="dv">10</span>),</span>
+<span id="cb18-9"><a href="04-streuung.html#cb18-9"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span>
+<span id="cb18-10"><a href="04-streuung.html#cb18-10"></a><span class="co"># Boxplot &quot;Distanz&quot; in km</span></span>
+<span id="cb18-11"><a href="04-streuung.html#cb18-11"></a><span class="kw">boxplot</span>(reisedat<span class="op">$</span>distanz, <span class="dt">range =</span> <span class="dv">0</span>, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb18-12"><a href="04-streuung.html#cb18-12"></a>        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">75</span>), <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>)</span>
+<span id="cb18-13"><a href="04-streuung.html#cb18-13"></a><span class="co"># Boxplot &quot;Zeit, morgens&quot; in min</span></span>
+<span id="cb18-14"><a href="04-streuung.html#cb18-14"></a><span class="kw">boxplot</span>(reisedat<span class="op">$</span>zeit_morgens, <span class="dt">range =</span> <span class="dv">0</span>, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb18-15"><a href="04-streuung.html#cb18-15"></a>        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">130</span>), <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span>
+<span id="cb18-16"><a href="04-streuung.html#cb18-16"></a><span class="co"># Boxplot &quot;Zeit, nachmittags&quot; in min</span></span>
+<span id="cb18-17"><a href="04-streuung.html#cb18-17"></a><span class="kw">boxplot</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">range =</span> <span class="dv">0</span>, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb18-18"><a href="04-streuung.html#cb18-18"></a>        <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">130</span>), <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-11-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-11-2.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-11-3.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-11-4.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-11-5.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-11-6.png" width="33%" /></p>
+<p>Die Variable “Distanz” ist schief verteilt, die zentralen 50% der Verteilung - die “Box” im Boxplot - befinden sich links der Mitte. Die beiden Variablen “Zeit” sind fast symmetrisch verteilt, die zentralen 50% der Verteilungen - die “Boxen” im Boxplot - befinden sich fast in der Mitte. Für das Verständnis von Verteilungen in Kapitel <a href="07-verteilungen.html#verteilungen">7</a> ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!</p>
 <p>Nun zu den weiteren Streuungsparametern. Die <strong>Varianz</strong> <span class="math inline">\(s^2\)</span> ist die mittlere (“durchschnittliche”) quadrierte Abweichung der Merkmalswerte <span class="math inline">\(x_i\quad\left(i=1, 2, \ldots, x_n\right)\)</span> vom arithmetischen Mittel <span class="math inline">\(\bar x\)</span>:
 <span class="math display">\[s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}\]</span></p>
 <p>Genau genommen ist das die <strong>korrigierte Varianz</strong>, wo durch <span class="math inline">\(n-1\)</span> geteilt wird und nicht durch <span class="math inline">\(n\)</span> wie man bei einer Mittelung erwarten könnte. Das Teilen durch <span class="math inline">\(n-1\)</span> garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner <span class="math inline">\(n-1\)</span> wird <strong>Anzahl Freiheitsgrade</strong> genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) <em>frei</em> zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits “belegt” – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.</p>
@@ -278,20 +284,33 @@ Abbildung 4.1: Boxplot mit Quartilsabstand und Spannweite.
 <span id="cb19-11"><a href="04-streuung.html#cb19-11"></a>vd &lt;-<span class="st"> </span>sd <span class="op">/</span><span class="st"> </span>dbar</span>
 <span id="cb19-12"><a href="04-streuung.html#cb19-12"></a><span class="co"># Ergebnisse:</span></span>
 <span id="cb19-13"><a href="04-streuung.html#cb19-13"></a><span class="kw">print</span>(<span class="kw">c</span>(dbar, s2d, sd, vd))</span></code></pre></div>
-<pre><code>## [1] 16.8907 67.1952  8.1973  0.4853</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="04-streuung.html#cb21-1"></a><span class="co"># &quot;Zeit&quot; in min</span></span>
+<pre><code>## [1]  15.9801 156.6242  12.5150   0.7832</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="04-streuung.html#cb21-1"></a><span class="co"># &quot;Zeit, morgens&quot; in min</span></span>
 <span id="cb21-2"><a href="04-streuung.html#cb21-2"></a><span class="co"># 1) arithmetisches Mittel</span></span>
-<span id="cb21-3"><a href="04-streuung.html#cb21-3"></a>sbar &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat<span class="op">$</span>zeit)</span>
+<span id="cb21-3"><a href="04-streuung.html#cb21-3"></a>sbar &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat<span class="op">$</span>zeit_morgens)</span>
 <span id="cb21-4"><a href="04-streuung.html#cb21-4"></a><span class="co"># 2) Varianz</span></span>
-<span id="cb21-5"><a href="04-streuung.html#cb21-5"></a>s2s &lt;-<span class="st"> </span><span class="kw">var</span>(reisedat<span class="op">$</span>zeit)</span>
+<span id="cb21-5"><a href="04-streuung.html#cb21-5"></a>s2s &lt;-<span class="st"> </span><span class="kw">var</span>(reisedat<span class="op">$</span>zeit_morgens)</span>
 <span id="cb21-6"><a href="04-streuung.html#cb21-6"></a><span class="co"># 3) Standardabweichung</span></span>
-<span id="cb21-7"><a href="04-streuung.html#cb21-7"></a>ss &lt;-<span class="st"> </span><span class="kw">sd</span>(reisedat<span class="op">$</span>zeit)</span>
+<span id="cb21-7"><a href="04-streuung.html#cb21-7"></a>ss &lt;-<span class="st"> </span><span class="kw">sd</span>(reisedat<span class="op">$</span>zeit_morgens)</span>
 <span id="cb21-8"><a href="04-streuung.html#cb21-8"></a><span class="co"># 4) Variationskoeffizient</span></span>
 <span id="cb21-9"><a href="04-streuung.html#cb21-9"></a>vs &lt;-<span class="st"> </span>ss <span class="op">/</span><span class="st"> </span>sbar</span>
 <span id="cb21-10"><a href="04-streuung.html#cb21-10"></a><span class="co"># Ergebnisse:</span></span>
 <span id="cb21-11"><a href="04-streuung.html#cb21-11"></a><span class="kw">print</span>(<span class="kw">c</span>(sbar, s2s, ss, vs))</span></code></pre></div>
-<pre><code>## [1]  55.3662 475.0589  21.7958   0.3937</code></pre>
-<p>Die Variable “Distanz” hat im Vergleich zu “Zeit” eine größere Varianz relativ zum Mittelwert. Daher ist der Variationskoeffizient größer.</p>
+<pre><code>## [1]  52.8597 543.9306  23.3223   0.4412</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="04-streuung.html#cb23-1"></a><span class="co"># &quot;Zeit, nachmittags&quot; in min</span></span>
+<span id="cb23-2"><a href="04-streuung.html#cb23-2"></a><span class="co"># 1) arithmetisches Mittel</span></span>
+<span id="cb23-3"><a href="04-streuung.html#cb23-3"></a><span class="co">#  na.rm = TRUE ignoriert die fehlenden Werte im Datensatz</span></span>
+<span id="cb23-4"><a href="04-streuung.html#cb23-4"></a>sbar &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb23-5"><a href="04-streuung.html#cb23-5"></a><span class="co"># 2) Varianz</span></span>
+<span id="cb23-6"><a href="04-streuung.html#cb23-6"></a>s2s &lt;-<span class="st"> </span><span class="kw">var</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb23-7"><a href="04-streuung.html#cb23-7"></a><span class="co"># 3) Standardabweichung</span></span>
+<span id="cb23-8"><a href="04-streuung.html#cb23-8"></a>ss &lt;-<span class="st"> </span><span class="kw">sd</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb23-9"><a href="04-streuung.html#cb23-9"></a><span class="co"># 4) Variationskoeffizient</span></span>
+<span id="cb23-10"><a href="04-streuung.html#cb23-10"></a>vs &lt;-<span class="st"> </span>ss <span class="op">/</span><span class="st"> </span>sbar</span>
+<span id="cb23-11"><a href="04-streuung.html#cb23-11"></a><span class="co"># Ergebnisse:</span></span>
+<span id="cb23-12"><a href="04-streuung.html#cb23-12"></a><span class="kw">print</span>(<span class="kw">c</span>(sbar, s2s, ss, vs))</span></code></pre></div>
+<pre><code>## [1]  53.8027 584.3908  24.1742   0.4493</code></pre>
+<p>Die Variable “Distanz” hat im Vergleich zu “Zeit, morgens” und “Zeit, nachmitttags” eine größere Varianz relativ zum Mittelwert. Daher ist der Variationskoeffizient größer.</p>
 </div>
 <div id="schiefe-und-wölbung-von-häufigkeitsverteilungen" class="section level2">
 <h2><span class="header-section-number">4.2</span> Schiefe und Wölbung von Häufigkeitsverteilungen</h2>
@@ -307,29 +326,40 @@ D.h. Modus, Median und Arithmetisches Mittel sind <em>identisch</em>.</p>
 Für eine <strong>linkschiefe</strong> (rechtssteile) Verteilung gilt:
 </center>
 <p><span class="math display">\[a_3&lt;0\quad \bar x_{mod}&gt;\bar x_{med}&gt;\bar x\]</span></p>
-<p>Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben, sind die Verteilungen der Merkmale “Distanz” und “Zeit” rechtsschief:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="04-streuung.html#cb23-1"></a><span class="co"># für diese Berechnung brauchen wir das Paket &quot;moments&quot;</span></span>
-<span id="cb23-2"><a href="04-streuung.html#cb23-2"></a><span class="kw">library</span>(moments)</span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="04-streuung.html#cb24-1"></a><span class="co"># &quot;Distanz&quot; in km</span></span>
-<span id="cb24-2"><a href="04-streuung.html#cb24-2"></a><span class="co"># 1) Schiefe</span></span>
-<span id="cb24-3"><a href="04-streuung.html#cb24-3"></a>skew_d &lt;-<span class="st"> </span><span class="kw">skewness</span>(reisedat<span class="op">$</span>distanz)</span>
-<span id="cb24-4"><a href="04-streuung.html#cb24-4"></a><span class="co"># 2) Median</span></span>
-<span id="cb24-5"><a href="04-streuung.html#cb24-5"></a>med_d &lt;-<span class="st"> </span><span class="kw">median</span>(reisedat<span class="op">$</span>distanz)</span>
-<span id="cb24-6"><a href="04-streuung.html#cb24-6"></a><span class="co"># 3) arithmetisches Mittel</span></span>
-<span id="cb24-7"><a href="04-streuung.html#cb24-7"></a>mean_d &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat<span class="op">$</span>distanz)</span>
-<span id="cb24-8"><a href="04-streuung.html#cb24-8"></a><span class="co"># Ergebnisse:</span></span>
-<span id="cb24-9"><a href="04-streuung.html#cb24-9"></a><span class="kw">print</span>(<span class="kw">c</span>(skew_d, med_d, mean_d))</span></code></pre></div>
-<pre><code>## [1]  1.167 15.800 16.891</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="04-streuung.html#cb26-1"></a><span class="co"># &quot;Zeit&quot; in min</span></span>
+<p>Wie wir an Histogramm und Boxplot der Entfernungsdaten bereits gesehen haben, ist die Verteilung des Merkmals “Distanz” rechtsschief:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="04-streuung.html#cb25-1"></a><span class="co"># für diese Berechnung brauchen wir das Paket &quot;moments&quot;</span></span>
+<span id="cb25-2"><a href="04-streuung.html#cb25-2"></a><span class="kw">library</span>(moments)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="04-streuung.html#cb26-1"></a><span class="co"># &quot;Distanz&quot; in km</span></span>
 <span id="cb26-2"><a href="04-streuung.html#cb26-2"></a><span class="co"># 1) Schiefe</span></span>
-<span id="cb26-3"><a href="04-streuung.html#cb26-3"></a>skew_s &lt;-<span class="st"> </span><span class="kw">skewness</span>(reisedat<span class="op">$</span>zeit)</span>
+<span id="cb26-3"><a href="04-streuung.html#cb26-3"></a>skew_d &lt;-<span class="st"> </span><span class="kw">skewness</span>(reisedat<span class="op">$</span>distanz)</span>
 <span id="cb26-4"><a href="04-streuung.html#cb26-4"></a><span class="co"># 2) Median</span></span>
-<span id="cb26-5"><a href="04-streuung.html#cb26-5"></a>med_s &lt;-<span class="st"> </span><span class="kw">median</span>(reisedat<span class="op">$</span>zeit)</span>
+<span id="cb26-5"><a href="04-streuung.html#cb26-5"></a>med_d &lt;-<span class="st"> </span><span class="kw">median</span>(reisedat<span class="op">$</span>distanz)</span>
 <span id="cb26-6"><a href="04-streuung.html#cb26-6"></a><span class="co"># 3) arithmetisches Mittel</span></span>
-<span id="cb26-7"><a href="04-streuung.html#cb26-7"></a>mean_s &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat<span class="op">$</span>zeit)</span>
+<span id="cb26-7"><a href="04-streuung.html#cb26-7"></a>mean_d &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat<span class="op">$</span>distanz)</span>
 <span id="cb26-8"><a href="04-streuung.html#cb26-8"></a><span class="co"># Ergebnisse:</span></span>
-<span id="cb26-9"><a href="04-streuung.html#cb26-9"></a><span class="kw">print</span>(<span class="kw">c</span>(skew_s, med_s, mean_s))</span></code></pre></div>
-<pre><code>## [1]  0.9914 50.0000 55.3662</code></pre>
+<span id="cb26-9"><a href="04-streuung.html#cb26-9"></a><span class="kw">print</span>(<span class="kw">c</span>(skew_d, med_d, mean_d))</span></code></pre></div>
+<pre><code>## [1]  2.925 14.000 15.980</code></pre>
+<p>Die Verteilungen der Merkmale “Zeit, morgens” und “Zeit, nachmittags” sind eher symmetrisch:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="04-streuung.html#cb28-1"></a><span class="co"># &quot;Zeit, morgens&quot; in min</span></span>
+<span id="cb28-2"><a href="04-streuung.html#cb28-2"></a><span class="co"># 1) Schiefe</span></span>
+<span id="cb28-3"><a href="04-streuung.html#cb28-3"></a>skew_s &lt;-<span class="st"> </span><span class="kw">skewness</span>(reisedat<span class="op">$</span>zeit_morgens)</span>
+<span id="cb28-4"><a href="04-streuung.html#cb28-4"></a><span class="co"># 2) Median</span></span>
+<span id="cb28-5"><a href="04-streuung.html#cb28-5"></a>med_s &lt;-<span class="st"> </span><span class="kw">median</span>(reisedat<span class="op">$</span>zeit_morgens)</span>
+<span id="cb28-6"><a href="04-streuung.html#cb28-6"></a><span class="co"># 3) arithmetisches Mittel</span></span>
+<span id="cb28-7"><a href="04-streuung.html#cb28-7"></a>mean_s &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat<span class="op">$</span>zeit_morgens)</span>
+<span id="cb28-8"><a href="04-streuung.html#cb28-8"></a><span class="co"># Ergebnisse:</span></span>
+<span id="cb28-9"><a href="04-streuung.html#cb28-9"></a><span class="kw">print</span>(<span class="kw">c</span>(skew_s, med_s, mean_s))</span></code></pre></div>
+<pre><code>## [1]  0.6261 53.0000 52.8597</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="04-streuung.html#cb30-1"></a><span class="co"># &quot;Zeit, nachmittags&quot; in min</span></span>
+<span id="cb30-2"><a href="04-streuung.html#cb30-2"></a><span class="co"># 1) Schiefe</span></span>
+<span id="cb30-3"><a href="04-streuung.html#cb30-3"></a>skew_s &lt;-<span class="st"> </span><span class="kw">skewness</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb30-4"><a href="04-streuung.html#cb30-4"></a><span class="co"># 2) Median</span></span>
+<span id="cb30-5"><a href="04-streuung.html#cb30-5"></a>med_s &lt;-<span class="st"> </span><span class="kw">median</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb30-6"><a href="04-streuung.html#cb30-6"></a><span class="co"># 3) arithmetisches Mittel</span></span>
+<span id="cb30-7"><a href="04-streuung.html#cb30-7"></a>mean_s &lt;-<span class="st"> </span><span class="kw">mean</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb30-8"><a href="04-streuung.html#cb30-8"></a><span class="co"># Ergebnisse:</span></span>
+<span id="cb30-9"><a href="04-streuung.html#cb30-9"></a><span class="kw">print</span>(<span class="kw">c</span>(skew_s, med_s, mean_s))</span></code></pre></div>
+<pre><code>## [1]  0.4196 53.0000 53.8027</code></pre>
 <p>Die <strong>Wölbung</strong> <span class="math inline">\(a_4\)</span> einer Häufigkeitsverteilung von Merkmalswerten <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> mit dem arithmetischen Mittel <span class="math inline">\(\bar x\)</span> und der Standardabweichung <span class="math inline">\(s\)</span> bestimmt die <em>Steilheit</em> einer Verteilung:
 <span class="math display">\[a_4=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^4}{n\cdot s^4}-3\]</span></p>
 <p>Die Subtraktion von <span class="math inline">\(-3\)</span> dient der Standardisierung auf die sogenannte Normalverteilung, eine symmetrische, glockenförmige Verteilung <span class="citation">(s. Zimmermann-Janschitz <a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>, Kapitel 3.2.5)</span>. Mehr zur Normalverteilung in Kapitel <a href="07-verteilungen.html#verteilungen">7</a>.</p>
@@ -341,13 +371,16 @@ Für eine <strong>linkschiefe</strong> (rechtssteile) Verteilung gilt:
 Für eine “flachere” Verteilung als die Normalverteilung gilt:
 </center>
 <p><span class="math display">\[a_4&lt;0\]</span></p>
-<p>Die Verteilungen der Merkmale unserer Reisedaten sind beide spitzer als die Normalverteilung, wobei beide Variablen wegen ihrer Rechtsschiefe ohnehin nicht mit der Normalverteilung vergleichbar sind:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="04-streuung.html#cb28-1"></a><span class="co"># Wölbung der &quot;Distanz&quot;</span></span>
-<span id="cb28-2"><a href="04-streuung.html#cb28-2"></a><span class="kw">kurtosis</span>(reisedat<span class="op">$</span>distanz) <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] 2.111</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="04-streuung.html#cb30-1"></a><span class="co"># Wölbung der &quot;Zeit&quot;</span></span>
-<span id="cb30-2"><a href="04-streuung.html#cb30-2"></a><span class="kw">kurtosis</span>(reisedat<span class="op">$</span>zeit) <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] 1.007</code></pre>
+<p>Die Verteilungen der Merkmale unserer Reisedaten sind alle spitzer als die Normalverteilung, wobei die Variable “Distanz” wegen ihrer Rechtsschiefe ohnehin nicht mit der Normalverteilung vergleichbar ist:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="04-streuung.html#cb32-1"></a><span class="co"># Wölbung der &quot;Distanz&quot;</span></span>
+<span id="cb32-2"><a href="04-streuung.html#cb32-2"></a><span class="kw">kurtosis</span>(reisedat<span class="op">$</span>distanz) <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 10.84</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="04-streuung.html#cb34-1"></a><span class="co"># Wölbung der &quot;Zeit, morgens&quot;</span></span>
+<span id="cb34-2"><a href="04-streuung.html#cb34-2"></a><span class="kw">kurtosis</span>(reisedat<span class="op">$</span>zeit_morgens) <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 1.336</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="04-streuung.html#cb36-1"></a><span class="co"># Wölbung der &quot;Zeit, nachmittags&quot;</span></span>
+<span id="cb36-2"><a href="04-streuung.html#cb36-2"></a><span class="kw">kurtosis</span>(reisedat<span class="op">$</span>zeit_nachmittags, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">-</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 0.9663</code></pre>
 </div>
 <div id="standardisierung-z-transformation" class="section level2">
 <h2><span class="header-section-number">4.3</span> Standardisierung (z-Transformation)</h2>

@@ -243,13 +243,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="03-haeufigkeit.html#cb3-1"></a><span class="co"># Paket laden, das für das Einlesen von xlsx gebraucht wird</span></span>
 <span id="cb3-2"><a href="03-haeufigkeit.html#cb3-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
 <span id="cb3-3"><a href="03-haeufigkeit.html#cb3-3"></a><span class="co"># Daten einlesen</span></span>
-<span id="cb3-4"><a href="03-haeufigkeit.html#cb3-4"></a><span class="co"># reisedat &lt;- read_excel(&quot;data/Daten_Distanz_Stationen.xlsx&quot;)</span></span>
-<span id="cb3-5"><a href="03-haeufigkeit.html#cb3-5"></a><span class="co"># reisedat &lt;- read_excel(&quot;data/Daten_Distanz_Reisezeit_2021.xlsx&quot;)</span></span>
-<span id="cb3-6"><a href="03-haeufigkeit.html#cb3-6"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022.xlsx&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
-<span id="cb3-7"><a href="03-haeufigkeit.html#cb3-7"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
-<span id="cb3-8"><a href="03-haeufigkeit.html#cb3-8"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span>
-<span id="cb3-9"><a href="03-haeufigkeit.html#cb3-9"></a><span class="co"># Ausgabe von reisedat$distanz</span></span>
-<span id="cb3-10"><a href="03-haeufigkeit.html#cb3-10"></a>reisedat<span class="op">$</span>distanz</span></code></pre></div>
+<span id="cb3-4"><a href="03-haeufigkeit.html#cb3-4"></a><span class="co"># der Zusatz na = &quot;-999&quot; sagt R, dass fehlende Werte mit -999 kodiert sind</span></span>
+<span id="cb3-5"><a href="03-haeufigkeit.html#cb3-5"></a><span class="co"># reisedat &lt;- read_excel(&quot;data/Daten_Distanz_Stationen.xlsx&quot;)</span></span>
+<span id="cb3-6"><a href="03-haeufigkeit.html#cb3-6"></a><span class="co"># reisedat &lt;- read_excel(&quot;data/Daten_Distanz_Reisezeit_2021.xlsx&quot;)</span></span>
+<span id="cb3-7"><a href="03-haeufigkeit.html#cb3-7"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022.xlsx&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
+<span id="cb3-8"><a href="03-haeufigkeit.html#cb3-8"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
+<span id="cb3-9"><a href="03-haeufigkeit.html#cb3-9"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span>
+<span id="cb3-10"><a href="03-haeufigkeit.html#cb3-10"></a><span class="co"># Ausgabe von reisedat$distanz</span></span>
+<span id="cb3-11"><a href="03-haeufigkeit.html#cb3-11"></a>reisedat<span class="op">$</span>distanz</span></code></pre></div>
 <pre><code>##  [1] 21.00  1.80 14.50  9.60 11.40 16.30 12.30 13.50
 ##  [9]  9.10 17.60 14.10 11.00 14.80 17.00 14.10 10.42
 ## [17]  0.90 22.40  9.10 11.50 14.10 14.90 11.40 17.40
