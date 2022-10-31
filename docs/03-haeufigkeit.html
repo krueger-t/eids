@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2021-12-14" />
+<meta name="date" content="2022-10-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,33 +244,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-2"><a href="03-haeufigkeit.html#cb3-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
 <span id="cb3-3"><a href="03-haeufigkeit.html#cb3-3"></a><span class="co"># Daten einlesen</span></span>
 <span id="cb3-4"><a href="03-haeufigkeit.html#cb3-4"></a><span class="co"># reisedat &lt;- read_excel(&quot;data/Daten_Distanz_Stationen.xlsx&quot;)</span></span>
-<span id="cb3-5"><a href="03-haeufigkeit.html#cb3-5"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2021.xlsx&quot;</span>)</span>
-<span id="cb3-6"><a href="03-haeufigkeit.html#cb3-6"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
-<span id="cb3-7"><a href="03-haeufigkeit.html#cb3-7"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span>
-<span id="cb3-8"><a href="03-haeufigkeit.html#cb3-8"></a><span class="co"># Ausgabe von reisedat$distanz</span></span>
-<span id="cb3-9"><a href="03-haeufigkeit.html#cb3-9"></a>reisedat<span class="op">$</span>distanz</span></code></pre></div>
-<pre><code>##  [1] 13.10 18.90 13.60 14.00 26.50 25.50  1.31  9.70
-##  [9] 12.50 31.20 12.90 18.00 19.80 13.90 16.00 18.00
-## [17] 16.00 17.00 33.50 12.00  5.90  6.30 19.50 19.05
-## [25] 10.00  7.20 16.20 24.00  9.30 21.00  5.60 46.50
-## [33]  8.40 14.30 27.50 10.50 12.50 22.00 15.80 14.20
-## [41] 34.40 11.10 23.00  4.90 13.10 18.50 17.39 14.00
-## [49] 14.60  9.00 15.78 20.00 15.00 16.00 24.00 12.00
-## [57] 37.80 17.00 16.40 15.20 22.00</code></pre>
-<p>Das ist eine ungeordnete Reihe von 61 Datenpunkten, den sogenannten <strong>Rohdaten</strong>.</p>
+<span id="cb3-5"><a href="03-haeufigkeit.html#cb3-5"></a><span class="co"># reisedat &lt;- read_excel(&quot;data/Daten_Distanz_Reisezeit_2021.xlsx&quot;)</span></span>
+<span id="cb3-6"><a href="03-haeufigkeit.html#cb3-6"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022.xlsx&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
+<span id="cb3-7"><a href="03-haeufigkeit.html#cb3-7"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
+<span id="cb3-8"><a href="03-haeufigkeit.html#cb3-8"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span>
+<span id="cb3-9"><a href="03-haeufigkeit.html#cb3-9"></a><span class="co"># Ausgabe von reisedat$distanz</span></span>
+<span id="cb3-10"><a href="03-haeufigkeit.html#cb3-10"></a>reisedat<span class="op">$</span>distanz</span></code></pre></div>
+<pre><code>##  [1] 21.00  1.80 14.50  9.60 11.40 16.30 12.30 13.50
+##  [9]  9.10 17.60 14.10 11.00 14.80 17.00 14.10 10.42
+## [17]  0.90 22.40  9.10 11.50 14.10 14.90 11.40 17.40
+## [25] 25.00 19.50  8.60 18.00 19.10 38.80 15.00 13.90
+## [33] 13.30 12.17 19.10  6.60 74.10 14.00 10.90 27.37
+## [41] 16.00  3.34  1.30 12.40  2.00 16.40 14.00 13.60
+## [49] 21.80  3.40 12.20 18.20 20.40 24.50 17.40 15.30
+## [57]  9.30 10.90  2.91  3.70 12.40 18.90 52.20 19.10
+## [65] 16.25 28.85 11.60  5.50 13.10 12.10 74.40 22.00
+## [73]  2.50  7.40 16.90  8.80 23.76</code></pre>
+<p>Das ist eine ungeordnete Reihe von 77 Datenpunkten, den sogenannten <strong>Rohdaten</strong>.</p>
 <p>Wenn wir die Rohdaten jetzt ordnen und in Klassen einteilen können wir <strong>absolute Häufigkeiten</strong> bestimmen, gewissermaßen durch Abzählen:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="03-haeufigkeit.html#cb5-1"></a><span class="co"># reisedat$distanz aufsteigend ordnen und ausgeben</span></span>
 <span id="cb5-2"><a href="03-haeufigkeit.html#cb5-2"></a><span class="kw">sort</span>(reisedat<span class="op">$</span>distanz)</span></code></pre></div>
-<pre><code>##  [1]  1.31  4.90  5.60  5.90  6.30  7.20  8.40  9.00
-##  [9]  9.30  9.70 10.00 10.50 11.10 12.00 12.00 12.50
-## [17] 12.50 12.90 13.10 13.10 13.60 13.90 14.00 14.00
-## [25] 14.20 14.30 14.60 15.00 15.20 15.78 15.80 16.00
-## [33] 16.00 16.00 16.20 16.40 17.00 17.00 17.39 18.00
-## [41] 18.00 18.50 18.90 19.05 19.50 19.80 20.00 21.00
-## [49] 22.00 22.00 23.00 24.00 24.00 25.50 26.50 27.50
-## [57] 31.20 33.50 34.40 37.80 46.50</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="03-haeufigkeit.html#cb7-1"></a><span class="co"># absolute Häufigkeiten bestimmen für Klassen von 0 bis 55km, mit Breite 5km</span></span>
-<span id="cb7-2"><a href="03-haeufigkeit.html#cb7-2"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">55</span>, <span class="dv">5</span>),</span>
+<pre><code>##  [1]  0.90  1.30  1.80  2.00  2.50  2.91  3.34  3.40
+##  [9]  3.70  5.50  6.60  7.40  8.60  8.80  9.10  9.10
+## [17]  9.30  9.60 10.42 10.90 10.90 11.00 11.40 11.40
+## [25] 11.50 11.60 12.10 12.17 12.20 12.30 12.40 12.40
+## [33] 13.10 13.30 13.50 13.60 13.90 14.00 14.00 14.10
+## [41] 14.10 14.10 14.50 14.80 14.90 15.00 15.30 16.00
+## [49] 16.25 16.30 16.40 16.90 17.00 17.40 17.40 17.60
+## [57] 18.00 18.20 18.90 19.10 19.10 19.10 19.50 20.40
+## [65] 21.00 21.80 22.00 22.40 23.76 24.50 25.00 27.37
+## [73] 28.85 38.80 52.20 74.10 74.40</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="03-haeufigkeit.html#cb7-1"></a><span class="co"># absolute Häufigkeiten bestimmen für Klassen von 0 bis 75km, mit Breite 5km</span></span>
+<span id="cb7-2"><a href="03-haeufigkeit.html#cb7-2"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>),</span>
 <span id="cb7-3"><a href="03-haeufigkeit.html#cb7-3"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, </span>
 <span id="cb7-4"><a href="03-haeufigkeit.html#cb7-4"></a>     <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-3-1.png" width="80%" /></p>
@@ -282,19 +287,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[f_j=f\left(a_j\right)=\frac{h\left(a_j\right)}{n}\]</span></p>
 <p>Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. Da das in der <code>hist()</code>-Funktion nicht vorgesehen ist, ist der <em>R</em>-Code etwas länger:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="03-haeufigkeit.html#cb8-1"></a><span class="co"># Histogramm berechnen ohne Output</span></span>
-<span id="cb8-2"><a href="03-haeufigkeit.html#cb8-2"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">55</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb8-2"><a href="03-haeufigkeit.html#cb8-2"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb8-3"><a href="03-haeufigkeit.html#cb8-3"></a><span class="co"># absolute in relative Häufigkeiten umrechnen</span></span>
 <span id="cb8-4"><a href="03-haeufigkeit.html#cb8-4"></a>h<span class="op">$</span>counts &lt;-<span class="st"> </span>h<span class="op">$</span>counts <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(h<span class="op">$</span>counts)</span>
 <span id="cb8-5"><a href="03-haeufigkeit.html#cb8-5"></a><span class="co"># Histogrammdaten plotten</span></span>
 <span id="cb8-6"><a href="03-haeufigkeit.html#cb8-6"></a><span class="kw">plot</span>(h, <span class="dt">freq =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
 <span id="cb8-7"><a href="03-haeufigkeit.html#cb8-7"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;relative Häufigkeit&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-4-1.png" width="80%" /></p>
-<p>Interpretation: Der ersten Balken z.B. geht bis knapp unter 0.05, d.h. knapp 5% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 2 von 61 Datenpunkten sind.</p>
+<p>Interpretation: Der ersten Balken z.B. geht bis knapp über 0.1, d.h. etwas mehr als 10% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 9 von 77 Datenpunkten sind.</p>
 <p>Die Summe der relativen Häufigkeiten ist 1, was 100% entspricht:
 <span class="math display">\[\sum_{j=1}^{m}f_j=1 \quad\text{mit}\quad m\leq n\]</span></p>
 <p>Kommen wir nun zu den <strong>Summenhäufigkeiten</strong>, auch genannt <strong>kumulative Häufigkeit</strong> oder <strong>kumulierte Häufigkeit</strong>. Die absolute Summenhäufigkeit einer Merkmalsausprägung <span class="math inline">\(a_j\)</span> ist die Anzahl der Merkmalswerte, die kleiner oder gleich <span class="math inline">\(a_j\)</span> sind. Die relative Summenhäufigkeit von <span class="math inline">\(a_j\)</span> ist dementsprechend der Anteil der Merkmalswerte, die kleiner oder gleich <span class="math inline">\(a_j\)</span> sind. Am besten visualisieren wir das kurz in <em>R</em>:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="03-haeufigkeit.html#cb9-1"></a><span class="co"># Histogramm berechnen ohne Output</span></span>
-<span id="cb9-2"><a href="03-haeufigkeit.html#cb9-2"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">55</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb9-2"><a href="03-haeufigkeit.html#cb9-2"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb9-3"><a href="03-haeufigkeit.html#cb9-3"></a><span class="co"># Häufigkeiten kumuliert aufsummieren</span></span>
 <span id="cb9-4"><a href="03-haeufigkeit.html#cb9-4"></a>h<span class="op">$</span>counts &lt;-<span class="st"> </span><span class="kw">cumsum</span>(h<span class="op">$</span>counts)</span>
 <span id="cb9-5"><a href="03-haeufigkeit.html#cb9-5"></a><span class="co"># Histogrammdaten plotten</span></span>
@@ -306,18 +311,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-11"><a href="03-haeufigkeit.html#cb9-11"></a><span class="kw">plot</span>(h, <span class="dt">freq =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
 <span id="cb9-12"><a href="03-haeufigkeit.html#cb9-12"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;relative Summenhäufigkeit&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-5-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-5-2.png" width="50%" /></p>
-<p>Die Häufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Höhe 61, die Gesamtzahl der Datenpunkte <span class="math inline">\(n\)</span>, bzw. die relative Höhe 1 (100%). Sehen die dazu auch das Beispiel in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Tabelle 3.10 auf Seite 87.</p>
-<p>Abschließend noch ein paar Worte zur <strong>Klassifizierung</strong>. Äquidistante Klassen, d.h. Klassen gleicher Breite, sind grundsätzlich zu bevorzugen. In <em>R</em> können Sie eine gewünschte Anzahl Klassen angeben, die dann äquidistant über den Wertebereich verteilt werden. Das ist sinnvoll für einen ersten Eindruck. Die Grundeinstellung von 10 Klassen ist dabei meist ausreichend. Im Laufe der Analyse wird es manchmal sinnvoller sein, bestimmte Klassen vorzugeben, auch (oder gerade) wenn manche Klasse in der betrachteten Stichprobe nicht vorkommen. Auch das ist in <em>R</em> möglich, indem Sie die Klassengrenzen (“breaks”) angeben. Probieren wir das in <em>R</em> aus:</p>
+<p>Die Häufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Höhe 77, die Gesamtzahl der Datenpunkte <span class="math inline">\(n\)</span>, bzw. die relative Höhe 1 (100%). Sehen die dazu auch das Beispiel in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Tabelle 3.10 auf Seite 87.</p>
+<p>Abschließend noch ein paar Worte zur <strong>Klassifizierung</strong>. Äquidistante Klassen, d.h. Klassen gleicher Breite, sind grundsätzlich zu bevorzugen. In <em>R</em> können Sie eine gewünschte Anzahl Klassen angeben, die dann äquidistant über den Wertebereich verteilt werden. Das ist sinnvoll für einen ersten Eindruck. Die Grundeinstellung von 10 Klassen ist dabei meist ausreichend. Im Laufe der Analyse wird es manchmal sinnvoller sein, bestimmte Klassen vorzugeben, auch (oder gerade) wenn manche Klasse in der betrachteten Stichprobe nicht vorkommen, wie bei unserem Beispiel der Entfernungsdaten. Sie können in <em>R</em> Klassen vorzugeben, indem Sie die Klassengrenzen (“breaks”) angeben. Hier eine Variation:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="03-haeufigkeit.html#cb10-1"></a><span class="co"># Klassenbreite 5km</span></span>
-<span id="cb10-2"><a href="03-haeufigkeit.html#cb10-2"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">60</span>, <span class="dv">5</span>),</span>
+<span id="cb10-2"><a href="03-haeufigkeit.html#cb10-2"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">80</span>, <span class="dv">5</span>),</span>
 <span id="cb10-3"><a href="03-haeufigkeit.html#cb10-3"></a>     <span class="dt">main =</span> <span class="st">&quot;5km Klassenbreite&quot;</span>, </span>
 <span id="cb10-4"><a href="03-haeufigkeit.html#cb10-4"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span>
 <span id="cb10-5"><a href="03-haeufigkeit.html#cb10-5"></a><span class="co"># Klassenbreite 10km</span></span>
-<span id="cb10-6"><a href="03-haeufigkeit.html#cb10-6"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">60</span>, <span class="dv">10</span>),</span>
+<span id="cb10-6"><a href="03-haeufigkeit.html#cb10-6"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">80</span>, <span class="dv">10</span>),</span>
 <span id="cb10-7"><a href="03-haeufigkeit.html#cb10-7"></a>     <span class="dt">main =</span> <span class="st">&quot;10km Klassenbreite&quot;</span>, </span>
 <span id="cb10-8"><a href="03-haeufigkeit.html#cb10-8"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span>
 <span id="cb10-9"><a href="03-haeufigkeit.html#cb10-9"></a><span class="co"># Klassenbreite 20km</span></span>
-<span id="cb10-10"><a href="03-haeufigkeit.html#cb10-10"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">60</span>, <span class="dv">20</span>),</span>
+<span id="cb10-10"><a href="03-haeufigkeit.html#cb10-10"></a><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">80</span>, <span class="dv">20</span>),</span>
 <span id="cb10-11"><a href="03-haeufigkeit.html#cb10-11"></a>     <span class="dt">main =</span> <span class="st">&quot;20km Klassenbreite&quot;</span>, </span>
 <span id="cb10-12"><a href="03-haeufigkeit.html#cb10-12"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-6-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-6-2.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-6-3.png" width="50%" /></p>
@@ -326,15 +331,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="lageparameter" class="section level2">
 <h2><span class="header-section-number">3.3</span> Lageparameter</h2>
 <p>Lageparameter sind Maße der zentralen Tendenz einer Häufigkeitsverteilung. Siehe <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.2.2. Wichtig sind uns in dieser Veranstaltung der <strong>Modus</strong>, das <strong>arithmetische Mittel</strong> und der <strong>Median</strong>, weniger das harmonische Mittel und das geometrische Mittel, die Sie aber bei <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> nachlesen können.</p>
-<p>Der <strong>Modus</strong> <span class="math inline">\(\bar x_{mod}\)</span> entspricht jener Merkmalsausprägung <span class="math inline">\(a_j\)</span>, die in der Häufigkeitsverteilung (lokal) <em>am häufigsten</em> vorkommt. In unseren Entfernungsdaten wäre das der Wert <span class="math inline">\(17.5\)</span>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="03-haeufigkeit.html#cb11-1"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">55</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
+<p>Der <strong>Modus</strong> <span class="math inline">\(\bar x_{mod}\)</span> entspricht jener Merkmalsausprägung <span class="math inline">\(a_j\)</span>, die in der Häufigkeitsverteilung (lokal) <em>am häufigsten</em> vorkommt. In unseren Entfernungsdaten wäre das der Wert <span class="math inline">\(12.5\)</span>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="03-haeufigkeit.html#cb11-1"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb11-2"><a href="03-haeufigkeit.html#cb11-2"></a><span class="kw">plot</span>(h, <span class="dt">freq =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&quot;gray&quot;</span>,</span>
 <span id="cb11-3"><a href="03-haeufigkeit.html#cb11-3"></a>     <span class="dt">main =</span> <span class="st">&quot;&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;absolute Häufigkeit&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-7-1.png" width="80%" /></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="03-haeufigkeit.html#cb12-1"></a><span class="co"># gib Klassenmitte aus (an der Stelle, wo die Häufigkeiten gleich dem Maximum sind)</span></span>
 <span id="cb12-2"><a href="03-haeufigkeit.html#cb12-2"></a>h<span class="op">$</span>mids[h<span class="op">$</span>counts <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(h<span class="op">$</span>counts)]</span></code></pre></div>
-<pre><code>## [1] 17.5</code></pre>
-<p>Bei “künstlichen” Klassen wie in unserem Beispiel wird typischerweise die Mitte der häufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhängig von der gewählten Klassifizierung und nicht eindeutig. In der obigen Darstellung sehen wir außerdem ein weiteres lokales Maximum bei <span class="math inline">\(47.5\)</span>, es handelt sich also in dieser Klassifizierung um eine <strong>multimodale</strong> Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung, der hier vorliegt, ist die <strong>bimodale</strong> Verteilung, die zwei lokale Maxima hat.</p>
+<pre><code>## [1] 12.5</code></pre>
+<p>Bei “künstlichen” Klassen wie in unserem Beispiel wird typischerweise die Mitte der häufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhängig von der gewählten Klassifizierung und nicht eindeutig. In der obigen Darstellung sehen wir außerdem weitere lokale Maxima bei <span class="math inline">\(37.5\)</span>, <span class="math inline">\(52.5\)</span> und <span class="math inline">\(72.5\)</span>, es handelt sich also in dieser Klassifizierung um eine <strong>multimodale</strong> Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die <strong>bimodale</strong> Verteilung, die zwei lokale Maxima hat.</p>
 <p>Das <strong>arithmetische Mittel</strong> <span class="math inline">\(\bar x\)</span> der Merkmalswerte <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> ist die Summe aller Merkmalswerte <span class="math inline">\(x_i\)</span> relativ zur Stichprobengröße <span class="math inline">\(n\)</span>:
 <span class="math display">\[\bar x=\frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
 <p>Liegen absolute oder relative Häufigkeiten für die Merkmalsausprägungen <span class="math inline">\(a_j\)</span> vor, kann das arithmetische Mittel <span class="math inline">\(\bar x\)</span> <strong>gewichtet</strong> berechnet werden:</p>
@@ -342,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Berechnen wir das arithmetische Mittel für unsere Entfernungsdaten mit der Funktion <code>mean()</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="03-haeufigkeit.html#cb14-1"></a><span class="co"># berechne arithmetisches Mittel für Variable &quot;Distanz&quot; in km</span></span>
 <span id="cb14-2"><a href="03-haeufigkeit.html#cb14-2"></a><span class="kw">mean</span>(reisedat<span class="op">$</span>distanz)</span></code></pre></div>
-<pre><code>## [1] 16.89</code></pre>
+<pre><code>## [1] 15.98</code></pre>
 <p>Andere Mittelwerte sind das geometrische Mittel und das harmonische Mittel, siehe <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, S. 126 - 134.</p>
 <p>Der <strong>Median</strong> <span class="math inline">\(\bar x_{med}\)</span> schließlich entspricht jenem Merkmalswert <span class="math inline">\(x_j\)</span> in einer Häufigkeitsverteilung, der eine <em>geordnete</em> Reihe von Merkmalswerten <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> in zwei <em>gleich große</em> Wertebereiche teilt. Für eine <em>ungerade</em> Anzahl von Merkmalswerten entspricht der Median dem mittleren Wert:
 <span class="math display">\[\bar x_{med}=x_{\frac{n+1}{2}}\]</span></p>
@@ -350,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display">\[\bar x_{med}=\frac{x_{\frac{n}{2}}+x_{\frac{n}{2}+1}}{2}\]</span></p>
 <p>Berechnen wir den Median für unsere Entfernungsdaten mit der Funktion <code>median()</code>:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="03-haeufigkeit.html#cb16-1"></a><span class="kw">median</span>(reisedat<span class="op">$</span>distanz)</span></code></pre></div>
-<pre><code>## [1] 15.8</code></pre>
+<pre><code>## [1] 14</code></pre>
 <p>Der Median wird auch <strong>0.5-Quantil</strong> genannt. Allgemein entspricht ein <strong>p-Quantil</strong> <span class="math inline">\(\bar x_p\)</span> mit <span class="math inline">\(0\leq p\leq 1\)</span> jenem Merkmalswert <span class="math inline">\(x_j\)</span> in einer Häufigkeitsverteilung, der eine <strong>geordnete</strong> Reihe von Merkmalswerten <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> in zwei Wertebereiche teilt, so dass ein Anteil <span class="math inline">\(p\)</span> der Werte kleiner oder gleich <span class="math inline">\(x_j\)</span> ist. Ist das Produkt <span class="math inline">\(n\cdot p\)</span> <em>nicht ganzzahlig</em>, wird für <span class="math inline">\(j\)</span> die dem Produkt nächstgrößere Zahl verwendet:
 <span class="math display">\[\bar x_p=x_j\]</span></p>
 <p>Ist das Produkt <span class="math inline">\(n\cdot p\)</span> <em>ganzzahlig</em>, dann ist <span class="math inline">\(j=n\cdot p\)</span>:
