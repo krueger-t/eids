@@ -149,7 +149,7 @@ h$mids[h$counts == max(h$counts)]
 Bei "künstlichen" Klassen wie in unserem Beispiel wird typischerweise die Mitte der häufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhängig von der gewählten Klassifizierung und nicht eindeutig. Bei @zimmermann2014, S. 110 - 112 finden Sie eine "Korrektur" des Modus für ungleiche Klassenbreiten; von der Klassenmitte hin zu der Nachbarklasse, die häufiger ist als die andere Nachbarklasse. Mit dem gleichen Argument könnte man auch den Modus bei gleicher Klassenbreite korrigieren. Diese Art der Korrektur des Modus wird aber immer ein Kompromiss bleiben. Deshalb würde ich folgendes empfehlen:
 
 1. Ungleiche Klassenbreiten vermeiden.
-2. Ein Klasse für den Modus ("Modalklasse") angeben, z.B. für unsere Entfernungsdaten: "Bei einer Klassierung der Entfernungsdaten mit Klassenbreite 5km ist die häufigste Klasse $$(10;15]$$."
+2. Ein Klasse für den Modus ("Modalklasse") angeben, z.B. für unsere Entfernungsdaten: "Bei einer Klassierung der Entfernungsdaten mit Klassenbreite 5km ist die häufigste Klasse $(10;15]$."
 
 Im obigen Histogramm der Entfernungsdaten sehen wir außerdem weitere lokale Maxima bei $37.5$, $52.5$ und $72.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die **bimodale** Verteilung, die zwei lokale Maxima hat.
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-10-31" />
+<meta name="date" content="2022-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,13 +244,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-2"><a href="03-haeufigkeit.html#cb3-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
 <span id="cb3-3"><a href="03-haeufigkeit.html#cb3-3"></a><span class="co"># Daten einlesen</span></span>
 <span id="cb3-4"><a href="03-haeufigkeit.html#cb3-4"></a><span class="co"># der Zusatz na = &quot;-999&quot; sagt R, dass fehlende Werte mit -999 kodiert sind</span></span>
-<span id="cb3-5"><a href="03-haeufigkeit.html#cb3-5"></a><span class="co"># reisedat &lt;- read_excel(&quot;data/Daten_Distanz_Stationen.xlsx&quot;)</span></span>
-<span id="cb3-6"><a href="03-haeufigkeit.html#cb3-6"></a><span class="co"># reisedat &lt;- read_excel(&quot;data/Daten_Distanz_Reisezeit_2021.xlsx&quot;)</span></span>
-<span id="cb3-7"><a href="03-haeufigkeit.html#cb3-7"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022.xlsx&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
-<span id="cb3-8"><a href="03-haeufigkeit.html#cb3-8"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
-<span id="cb3-9"><a href="03-haeufigkeit.html#cb3-9"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span>
-<span id="cb3-10"><a href="03-haeufigkeit.html#cb3-10"></a><span class="co"># Ausgabe von reisedat$distanz</span></span>
-<span id="cb3-11"><a href="03-haeufigkeit.html#cb3-11"></a>reisedat<span class="op">$</span>distanz</span></code></pre></div>
+<span id="cb3-5"><a href="03-haeufigkeit.html#cb3-5"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022.xlsx&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
+<span id="cb3-6"><a href="03-haeufigkeit.html#cb3-6"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
+<span id="cb3-7"><a href="03-haeufigkeit.html#cb3-7"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span>
+<span id="cb3-8"><a href="03-haeufigkeit.html#cb3-8"></a><span class="co"># Ausgabe von reisedat$distanz</span></span>
+<span id="cb3-9"><a href="03-haeufigkeit.html#cb3-9"></a>reisedat<span class="op">$</span>distanz</span></code></pre></div>
 <pre><code>##  [1] 21.00  1.80 14.50  9.60 11.40 16.30 12.30 13.50
 ##  [9]  9.10 17.60 14.10 11.00 14.80 17.00 14.10 10.42
 ## [17]  0.90 22.40  9.10 11.50 14.10 14.90 11.40 17.40
@@ -283,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Diese Darstellung ist ein <strong>Histogramm</strong>. Dazu später mehr. Das Ordnen geschieht bei der Errechnung des Histogramms automatisch, hier haben wir den dazugehörigen <em>R</em>-Code nur der Anschaulichkeit halber eingefügt.</p>
 <p>Die <strong>absolute Häufigkeit</strong>, bezeichnet mit <span class="math inline">\(h_j\)</span> für <span class="math inline">\(h\left(a_j\right)\)</span> und <span class="math inline">\(j=1,\ldots,m\)</span>, gibt also die <em>Anzahl</em> der statistischen Einheiten in einer Stichprobe an, welche die Merkmalsausprägung <span class="math inline">\(a_j\)</span> für ein Merkmal <span class="math inline">\(X\)</span> annehmen. In unserem Beispiel haben wir die Merkmalsausprägungen durch Klassifizierung gewissermaßen “künstlich” erzeugt, da die Menge der Ausprägungen des Merkmals “Entfernung” ja nicht abzählbar ist. Im Beispiel der Anzahl Vulkanausbrüche in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> gibt es dagegen abzählbare Merkmalsausprägungen.</p>
 <p>Die Summe der absoluten Häufigkeiten ist der Stichprobenumfang <span class="math inline">\(n\)</span>:
-<span class="math display">\[\sum_{j=1}^{m}h_j=n \quad\text{mit}\quad m\leq n\]</span></p>
+<span class="math display">\[\sum_{j=1}^{m}h_j=n\]</span></p>
 <p>Die <strong>relative Häufigkeit</strong>, bezeichnet mit <span class="math inline">\(f_j\)</span> für <span class="math inline">\(f\left(a_j\right)\)</span> und <span class="math inline">\(j=1,\ldots,m\)</span>, gibt dann den <em>Anteil</em> der statistischen Einheiten an einer Stichprobe an, welche die Merkmalsausprägung <span class="math inline">\(a_j\)</span> für ein Merkmal <span class="math inline">\(X\)</span> annehmen:
 <span class="math display">\[f_j=f\left(a_j\right)=\frac{h\left(a_j\right)}{n}\]</span></p>
 <p>Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. Da das in der <code>hist()</code>-Funktion nicht vorgesehen ist, ist der <em>R</em>-Code etwas länger:</p>
@@ -297,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="eids_files/figure-html/unnamed-chunk-4-1.png" width="80%" /></p>
 <p>Interpretation: Der ersten Balken z.B. geht bis knapp über 0.1, d.h. etwas mehr als 10% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 9 von 77 Datenpunkten sind.</p>
 <p>Die Summe der relativen Häufigkeiten ist 1, was 100% entspricht:
-<span class="math display">\[\sum_{j=1}^{m}f_j=1 \quad\text{mit}\quad m\leq n\]</span></p>
+<span class="math display">\[\sum_{j=1}^{m}f_j=1\]</span></p>
 <p>Kommen wir nun zu den <strong>Summenhäufigkeiten</strong>, auch genannt <strong>kumulative Häufigkeit</strong> oder <strong>kumulierte Häufigkeit</strong>. Die absolute Summenhäufigkeit einer Merkmalsausprägung <span class="math inline">\(a_j\)</span> ist die Anzahl der Merkmalswerte, die kleiner oder gleich <span class="math inline">\(a_j\)</span> sind. Die relative Summenhäufigkeit von <span class="math inline">\(a_j\)</span> ist dementsprechend der Anteil der Merkmalswerte, die kleiner oder gleich <span class="math inline">\(a_j\)</span> sind. Am besten visualisieren wir das kurz in <em>R</em>:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="03-haeufigkeit.html#cb9-1"></a><span class="co"># Histogramm berechnen ohne Output</span></span>
 <span id="cb9-2"><a href="03-haeufigkeit.html#cb9-2"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
@@ -340,11 +338,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="03-haeufigkeit.html#cb12-1"></a><span class="co"># gib Klassenmitte aus (an der Stelle, wo die Häufigkeiten gleich dem Maximum sind)</span></span>
 <span id="cb12-2"><a href="03-haeufigkeit.html#cb12-2"></a>h<span class="op">$</span>mids[h<span class="op">$</span>counts <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(h<span class="op">$</span>counts)]</span></code></pre></div>
 <pre><code>## [1] 12.5</code></pre>
-<p>Bei “künstlichen” Klassen wie in unserem Beispiel wird typischerweise die Mitte der häufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhängig von der gewählten Klassifizierung und nicht eindeutig. In der obigen Darstellung sehen wir außerdem weitere lokale Maxima bei <span class="math inline">\(37.5\)</span>, <span class="math inline">\(52.5\)</span> und <span class="math inline">\(72.5\)</span>, es handelt sich also in dieser Klassifizierung um eine <strong>multimodale</strong> Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die <strong>bimodale</strong> Verteilung, die zwei lokale Maxima hat.</p>
+<p>Bei “künstlichen” Klassen wie in unserem Beispiel wird typischerweise die Mitte der häufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhängig von der gewählten Klassifizierung und nicht eindeutig. Bei <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, S. 110 - 112 finden Sie eine “Korrektur” des Modus für ungleiche Klassenbreiten; von der Klassenmitte hin zu der Nachbarklasse, die häufiger ist als die andere Nachbarklasse. Mit dem gleichen Argument könnte man auch den Modus bei gleicher Klassenbreite korrigieren. Diese Art der Korrektur des Modus wird aber immer ein Kompromiss bleiben. Deshalb würde ich folgendes empfehlen:</p>
+<ol style="list-style-type: decimal">
+<li>Ungleiche Klassenbreiten vermeiden.</li>
+<li>Ein Klasse für den Modus (“Modalklasse”) angeben, z.B. für unsere Entfernungsdaten: “Bei einer Klassierung der Entfernungsdaten mit Klassenbreite 5km ist die häufigste Klasse <span class="math inline">\((10;15]\)</span>.”</li>
+</ol>
+<p>Im obigen Histogramm der Entfernungsdaten sehen wir außerdem weitere lokale Maxima bei <span class="math inline">\(37.5\)</span>, <span class="math inline">\(52.5\)</span> und <span class="math inline">\(72.5\)</span>, es handelt sich also in dieser Klassifizierung um eine <strong>multimodale</strong> Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die <strong>bimodale</strong> Verteilung, die zwei lokale Maxima hat.</p>
 <p>Das <strong>arithmetische Mittel</strong> <span class="math inline">\(\bar x\)</span> der Merkmalswerte <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> ist die Summe aller Merkmalswerte <span class="math inline">\(x_i\)</span> relativ zur Stichprobengröße <span class="math inline">\(n\)</span>:
 <span class="math display">\[\bar x=\frac{\sum_{i=1}^{n}x_i}{n}\]</span></p>
 <p>Liegen absolute oder relative Häufigkeiten für die Merkmalsausprägungen <span class="math inline">\(a_j\)</span> vor, kann das arithmetische Mittel <span class="math inline">\(\bar x\)</span> <strong>gewichtet</strong> berechnet werden:</p>
-<p><span class="math display">\[\bar x=\frac{\sum_{j=1}^{m}a_j\cdot h_j}{n}=\sum_{j=1}^{m}a_j\cdot f_j\quad\text{mit}\quad m\leq n\]</span></p>
+<p><span class="math display">\[\bar x=\frac{\sum_{j=1}^{m}a_j\cdot h_j}{n}=\sum_{j=1}^{m}a_j\cdot f_j\]</span></p>
 <p>Berechnen wir das arithmetische Mittel für unsere Entfernungsdaten mit der Funktion <code>mean()</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="03-haeufigkeit.html#cb14-1"></a><span class="co"># berechne arithmetisches Mittel für Variable &quot;Distanz&quot; in km</span></span>
 <span id="cb14-2"><a href="03-haeufigkeit.html#cb14-2"></a><span class="kw">mean</span>(reisedat<span class="op">$</span>distanz)</span></code></pre></div>
