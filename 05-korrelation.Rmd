@@ -24,7 +24,7 @@ knitr::include_graphics('figs/tegel_h.png')
 
 ```
 
-In dieser Tabelle stehen absolute Häufigkeiten (vgl. Kapitel \@ref(haeufigkeit)) für alle Kombinationen von Merkmalsausprägungen der Variablen $X$ und $Y$. $X$ bezeichnet "Bezirk" mit den Ausprägungen $a_1, a_2, \ldots, a_n$. $Y$ bezeichnet "Abstimmungsverhalten" mit den Ausprägungen $b_1$ ("ja") und $b_2$ ("nein"). Die Spalten- bzw. Zeilensummen sind die sogenannten Randverteilungen von $Y$ und $X$. Ganz unten rechts steht der Stichprobenumfang (die Anzahl der Personen, die abgestimmt haben). Der Stichprobenumfang kann sowohl als Summe der Randverteilungswerte von $X$, als auch als Summe der Randverteilungswerte von $Y$ errechnet werden. 
+In dieser Tabelle stehen absolute Häufigkeiten (vgl. Kapitel \@ref(haeufigkeit)) für alle Kombinationen von Merkmalsausprägungen der Variablen $X$ und $Y$. $X$ bezeichnet "Bezirk" mit den Ausprägungen $a_1, a_2, \ldots, a_k$. $Y$ bezeichnet "Abstimmungsverhalten" mit den Ausprägungen $b_1$ ("ja") und $b_2$ ("nein"). Die Spalten- bzw. Zeilensummen sind die sogenannten Randverteilungen von $Y$ und $X$. Ganz unten rechts steht der Stichprobenumfang (die Anzahl der Personen, die abgestimmt haben). Der Stichprobenumfang kann sowohl als Summe der Randverteilungswerte von $X$, als auch als Summe der Randverteilungswerte von $Y$ errechnet werden. 
 
 Die allgemeine Notation der absoluten Häufigkeiten einer Kontingenztabelle finden Sie in Abbildung \@ref(fig:cth). In dieser Notation stehen $h_{\cdot j}$ und $h_{i \cdot}$ für die Werte der beiden Randverteilungen.
 
@@ -133,7 +133,8 @@ reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
 ```{r echo=TRUE, out.width='80%'}
 plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags, 
-     xlab = "Reisezeit, morgens (min)", ylab = "Reisezeit, nachmittags (min)")
+     xlab = "Reisezeit, morgens (min)",
+     ylab = "Reisezeit, nachmittags (min)")
 
 ```
 
@@ -142,7 +143,7 @@ Hier fällt das Wertepaar $(55, 1)$ unten, in der Mitte auf. Meine Vermutung ist
 ```{r echo=TRUE, message=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
-# Daten einlesen
+# "korrigierte" Daten einlesen
 reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022_korrigiert.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
@@ -151,7 +152,8 @@ reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
 ```{r echo=TRUE, out.width='80%'}
 plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags, 
-     xlab = "Reisezeit, morgens (min)", ylab = "Reisezeit, nachmittags (min)")
+     xlab = "Reisezeit, morgens (min)",
+     ylab = "Reisezeit, nachmittags (min)")
 
 ```
 
@@ -175,7 +177,8 @@ $$r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\le
 In *R* mit der `cor()` Funktion: 
 
 ```{r echo=TRUE}
-cor(reisedat$distanz, reisedat$zeit_morgens, use = "complete.obs", method = "pearson")
+cor(reisedat$distanz, reisedat$zeit_morgens,
+    use = "complete.obs", method = "pearson")
 
 ```
 Das Argument `use = "complete.obs"` teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne "NA", ansonsten wäre der Output "NA". Da hier nur vollständige Datenpaare vorhanden sind, ist das Argument nur vorsorglich gesetzt. Anstatt `method = "pearson"` sind ebenfalls `method = "spearman"` und `method = "kendall"` möglich; beides sind Rangkorrelationskoeffizienten.

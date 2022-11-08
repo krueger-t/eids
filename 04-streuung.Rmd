@@ -95,17 +95,17 @@ boxplot(reisedat$zeit_nachmittags, range = 0, horizontal = TRUE,
 
 Die Variable "Distanz" ist schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Die beiden Variablen "Zeit" sind fast symmetrisch verteilt, die zentralen 50% der Verteilungen - die "Boxen" im Boxplot - befinden sich fast in der Mitte. Für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen) ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
 
-Nun zu den weiteren Streuungsparametern. Die **Varianz** $s^2$ ist die mittlere ("durchschnittliche") quadrierte Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ vom arithmetischen Mittel $\bar x$:
+Nun zu den weiteren Streuungsparametern. Die **Varianz** $s^2$ ist die mittlere ("durchschnittliche") quadrierte Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, n\right)$ vom arithmetischen Mittel $\bar x$:
 $$s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
 
 Genau genommen ist das die **korrigierte Varianz**, wo durch $n-1$ geteilt wird und nicht durch $n$ wie man bei einer Mittelung erwarten könnte. Das Teilen durch $n-1$ garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner $n-1$ wird **Anzahl Freiheitsgrade** genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) *frei* zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits "belegt" – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.
 
-Die **Standardabweichung** $s$ ist die Quadratwurzel der mittleren quadrierten Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ vom arithmetischen Mittel $\bar x$, d.h. die Quadratwurzel der Varianz:
+Die **Standardabweichung** $s$ ist die Quadratwurzel der mittleren quadrierten Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, n\right)$ vom arithmetischen Mittel $\bar x$, d.h. die Quadratwurzel der Varianz:
 $$s=\sqrt{s^2}=\sqrt{\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}}$$
 
 Die Standardabweichung besitzt die gleiche Einheit wie die Merkmalswerte und ist deshalb einfacher zu interpretieren als die Varianz. Sie drückt die Streuung der Merkmalswerte um den Mittelwert bzw. deren Abweichung vom Mittelwert in einer anschaulichen Größe aus. Je größer die Werte der Standardabweichung sind, desto mehr streuen die Daten.
 
-Der **Variationskoeffizient** $v$ einer Häufigkeitsverteilung mit den Merkmalswerten $x_i\quad\left(i=1, 2, \ldots, x_n\right)$ schließlich ist die Standardabweichung $s$ im Verhältnis zum Mittelwert $\bar x$:
+Der **Variationskoeffizient** $v$ einer Häufigkeitsverteilung mit den Merkmalswerten $x_i\quad\left(i=1, 2, \ldots, n\right)$ schließlich ist die Standardabweichung $s$ im Verhältnis zum Mittelwert $\bar x$:
 $$v=\frac{s}{\bar x}$$
 
 Der Variationskoeffizient setzt die Streuung der Merkmalswerte in unmittelbare Relation zum arithmetischen Mittel. Dadurch werden unterschiedliche Verteilungen vergleichbar.

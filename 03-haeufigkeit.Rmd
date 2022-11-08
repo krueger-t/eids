@@ -42,8 +42,6 @@ reisedat$x
 library("readxl")
 # Daten einlesen
 # der Zusatz na = "-999" sagt R, dass fehlende Werte mit -999 kodiert sind
-# reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
-# reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
 reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
@@ -70,7 +68,7 @@ Diese Darstellung ist ein **Histogramm**. Dazu später mehr. Das Ordnen geschieh
 Die **absolute Häufigkeit**, bezeichnet mit $h_j$ für $h\left(a_j\right)$ und $j=1,\ldots,m$, gibt also die _Anzahl_ der statistischen Einheiten in einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $X$ annehmen. In unserem Beispiel haben wir die Merkmalsausprägungen durch Klassifizierung gewissermaßen "künstlich" erzeugt, da die Menge der Ausprägungen des Merkmals "Entfernung" ja nicht abzählbar ist. Im Beispiel der Anzahl Vulkanausbrüche in @zimmermann2014 gibt es dagegen abzählbare Merkmalsausprägungen.
 
 Die Summe der absoluten Häufigkeiten ist der Stichprobenumfang $n$:
-$$\sum_{j=1}^{m}h_j=n \quad\text{mit}\quad m\leq n$$
+$$\sum_{j=1}^{m}h_j=n$$
 
 Die **relative Häufigkeit**, bezeichnet mit $f_j$ für $f\left(a_j\right)$ und $j=1,\ldots,m$, gibt dann den _Anteil_ der statistischen Einheiten an einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $X$ annehmen:
 $$f_j=f\left(a_j\right)=\frac{h\left(a_j\right)}{n}$$
@@ -91,7 +89,7 @@ plot(h, freq = TRUE, col = "gray",
 Interpretation: Der ersten Balken z.B. geht bis knapp über 0.1, d.h. etwas mehr als 10% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 9 von 77 Datenpunkten sind.
 
 Die Summe der relativen Häufigkeiten ist 1, was 100% entspricht:
-$$\sum_{j=1}^{m}f_j=1 \quad\text{mit}\quad m\leq n$$
+$$\sum_{j=1}^{m}f_j=1$$
 
 Kommen wir nun zu den **Summenhäufigkeiten**, auch genannt **kumulative Häufigkeit** oder **kumulierte Häufigkeit**. Die absolute Summenhäufigkeit einer Merkmalsausprägung $a_j$ ist die Anzahl der Merkmalswerte, die kleiner oder gleich $a_j$ sind. Die relative Summenhäufigkeit von $a_j$ ist dementsprechend der Anteil der Merkmalswerte, die kleiner oder gleich $a_j$ sind. Am besten visualisieren wir das kurz in *R*:
 
@@ -148,14 +146,19 @@ h$mids[h$counts == max(h$counts)]
 
 ```
 
-Bei "künstlichen" Klassen wie in unserem Beispiel wird typischerweise die Mitte der häufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhängig von der gewählten Klassifizierung und nicht eindeutig. In der obigen Darstellung sehen wir außerdem weitere lokale Maxima bei $37.5$, $52.5$ und $72.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die **bimodale** Verteilung, die zwei lokale Maxima hat.
+Bei "künstlichen" Klassen wie in unserem Beispiel wird typischerweise die Mitte der häufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhängig von der gewählten Klassifizierung und nicht eindeutig. Bei @zimmermann2014, S. 110 - 112 finden Sie eine "Korrektur" des Modus für ungleiche Klassenbreiten; von der Klassenmitte hin zu der Nachbarklasse, die häufiger ist als die andere Nachbarklasse. Mit dem gleichen Argument könnte man auch den Modus bei gleicher Klassenbreite korrigieren. Diese Art der Korrektur des Modus wird aber immer ein Kompromiss bleiben. Deshalb würde ich folgendes empfehlen:
+
+1. Ungleiche Klassenbreiten vermeiden.
+2. Ein Klasse für den Modus ("Modalklasse") angeben, z.B. für unsere Entfernungsdaten: "Bei einer Klassierung der Entfernungsdaten mit Klassenbreite 5km ist die häufigste Klasse $$(10;15]$$."
+
+Im obigen Histogramm der Entfernungsdaten sehen wir außerdem weitere lokale Maxima bei $37.5$, $52.5$ und $72.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die **bimodale** Verteilung, die zwei lokale Maxima hat.
 
 Das **arithmetische Mittel** $\bar x$ der Merkmalswerte $x_1, x_2, \ldots, x_n$ ist die Summe aller Merkmalswerte $x_i$ relativ zur Stichprobengröße $n$:
 $$\bar x=\frac{\sum_{i=1}^{n}x_i}{n}$$
 
 Liegen absolute oder relative Häufigkeiten für die Merkmalsausprägungen $a_j$ vor, kann das arithmetische Mittel $\bar x$ **gewichtet** berechnet werden:
 
-$$\bar x=\frac{\sum_{j=1}^{m}a_j\cdot h_j}{n}=\sum_{j=1}^{m}a_j\cdot f_j\quad\text{mit}\quad m\leq n$$
+$$\bar x=\frac{\sum_{j=1}^{m}a_j\cdot h_j}{n}=\sum_{j=1}^{m}a_j\cdot f_j$$
 
 Berechnen wir das arithmetische Mittel für unsere Entfernungsdaten mit der Funktion `mean()`:
 
