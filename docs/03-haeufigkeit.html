@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 3 Häufigkeiten und Lageparameter | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 3 Häufigkeiten und Lageparameter | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
   <meta name="github-repo" content="krueger-t/eids" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-11-08" />
+<meta name="date" content="2022-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,8 @@
   
 <link rel="prev" href="02-begriffe.html"/>
 <link rel="next" href="04-streuung.html"/>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,8 +49,10 @@
 
 
 
-
 <script src="libs/accessible-code-block/empty-anchor.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -223,11 +226,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="haeufigkeit" class="section level1">
-<h1><span class="header-section-number">Kapitel 3</span> Häufigkeiten und Lageparameter</h1>
+<div id="haeufigkeit" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Kapitel 3</span> Häufigkeiten und Lageparameter<a href="03-haeufigkeit.html#haeufigkeit" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Mit diesem Kapitel des Skriptes steigen wir in die <strong>deskriptive Statistik</strong> ein. Lesen Sie hierzu bitte Kapitel 3.2.1 und 3.2.2 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>. Im Folgenden finden Sie wie gehabt Ergänzungen zu diesen Kapiteln.</p>
-<div id="ziel-der-deskriptiven-statistik" class="section level2">
-<h2><span class="header-section-number">3.1</span> Ziel der deskriptiven Statistik</h2>
+<div id="ziel-der-deskriptiven-statistik" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.1</span> Ziel der deskriptiven Statistik<a href="03-haeufigkeit.html#ziel-der-deskriptiven-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Jene <em>Eigenschaft</em> eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als <strong>Merkmal</strong> <span class="math inline">\(X\)</span> des Elements bezeichnet. Der <strong>Merkmalswert</strong> <span class="math inline">\(x_i\)</span> mit <span class="math inline">\(i=1,\ldots,n\)</span> ist jener Wert, den ein Merkmal <span class="math inline">\(X\)</span> in einer statistischen Untersuchung <em>tatsächlich</em> annimmt. Ziel der <strong>deskriptiven Statistik</strong> ist es, die <em>Verteilung</em> der Merkmalswerte eines Merkmals über den möglichen Wertebereich (Ausprägungen) mit einzelnen <em>Parametern</em> näher zu charakterisieren. Z.B. die Anzahl der Ausbrüche eines Vulkans an verschiedenen Tagen.</p>
 <p>Die Parameter, die uns hier interessieren, sind:</p>
 <ol style="list-style-type: decimal">
@@ -237,8 +240,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Dazu brauchen wir erstmal Begriffe wie <strong>absolute Häufigkeit</strong>, <strong>relative Häufigkeit</strong> und <strong>Summenhäufigkeit</strong>, sowie Diagramme wie <strong>Histogramme</strong> und <strong>Boxplots</strong>, die Verteilungen graphisch darstellen.</p>
 </div>
-<div id="häufigkeiten" class="section level2">
-<h2><span class="header-section-number">3.2</span> Häufigkeiten</h2>
+<div id="häufigkeiten" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.2</span> Häufigkeiten<a href="03-haeufigkeit.html#häufigkeiten" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Schauen wir uns dazu die Reisedaten an, die Sie eingegeben haben, und zwar nur die Entfernungen (der <em>R</em>-Code wird in den PC-Übungen schnell klar werden):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="03-haeufigkeit.html#cb3-1"></a><span class="co"># Paket laden, das für das Einlesen von xlsx gebraucht wird</span></span>
 <span id="cb3-2"><a href="03-haeufigkeit.html#cb3-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
@@ -327,8 +330,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="eids_files/figure-html/unnamed-chunk-6-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-6-2.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-6-3.png" width="50%" /></p>
 <p>Je größer die Klassenbreite, desto mehr Nuancen der Verteilung der Werte gehen verloren. Je kleiner die Klassenbreite, desto mehr Lücken entstehen im Histogramm und die generelle Form der Verteilung tritt in den Hintergrund. Eine geeignete mittlere Klassenbreite wird man nur durch Ausprobieren hinbekommen. Siehe aber <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, S. 91 - 102 für Richtlinien zur Klassenbildung.</p>
 </div>
-<div id="lageparameter" class="section level2">
-<h2><span class="header-section-number">3.3</span> Lageparameter</h2>
+<div id="lageparameter" class="section level2 hasAnchor">
+<h2><span class="header-section-number">3.3</span> Lageparameter<a href="03-haeufigkeit.html#lageparameter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lageparameter sind Maße der zentralen Tendenz einer Häufigkeitsverteilung. Siehe <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.2.2. Wichtig sind uns in dieser Veranstaltung der <strong>Modus</strong>, das <strong>arithmetische Mittel</strong> und der <strong>Median</strong>, weniger das harmonische Mittel und das geometrische Mittel, die Sie aber bei <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> nachlesen können.</p>
 <p>Der <strong>Modus</strong> <span class="math inline">\(\bar x_{mod}\)</span> entspricht jener Merkmalsausprägung <span class="math inline">\(a_j\)</span>, die in der Häufigkeitsverteilung (lokal) <em>am häufigsten</em> vorkommt. In unseren Entfernungsdaten wäre das der Wert <span class="math inline">\(12.5\)</span>:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="03-haeufigkeit.html#cb11-1"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
@@ -368,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 </div>
-<h3>Literatur</h3>
+<h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references">
 <div id="ref-zimmermann2014">
 <p>Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.</p>
@@ -384,7 +387,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -403,6 +405,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -423,6 +426,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "none"
 }
@@ -436,7 +443,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

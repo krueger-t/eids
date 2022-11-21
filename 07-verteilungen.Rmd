@@ -1,13 +1,13 @@
 # Verteilungen {#verteilungen}
 
-In Kapitel \@ref(wahrscheinlichkeit) haben wir gesehen, dass alle $36$ Elementarereignisse zweier Würfelwürfe $\omega=(1;1),(1;2),\ldots,(6;6)$ (vgl. Abbildung \@ref(fig:wuerfel2)) die gleiche Wahrscheinlichkeit haben, nämlich $\Pr(\omega_i)=\frac{1}{6}\cdot\frac{1}{6}=\frac{1}{36}$. In Abbildung \@ref(fig:prverteilung) links, sehen wir eine Verteilung dieser Wahrscheinlichkeiten; in diesem Fall ist es eine sogenannte _diskrete Gleichverteilung_. Wenn uns das Ereignis "Gesamtaugenzahl" interessiert, hier mit $E$ symbolisiert, gibt es Ergebnisse, die wahrscheinlicher sind als andere (das deckt sich mit unserer Erfahrung mit Würfelspielen). Die Verteilung ist symmetrisch um ein Maximum bei $7$ (Abbildung \@ref(fig:prverteilung) rechts), eine sogenannte _diskrete Dreiecksverteilung_. Formal schreiben wir:
+In Kapitel \@ref(wahrscheinlichkeit) haben wir gesehen, dass alle $36$ Elementarereignisse zweier Würfelwürfe $\omega=(1;1),(1;2),\ldots,(6;6)$ (vgl. Abbildung \@ref(fig:wuerfel2)) die gleiche Wahrscheinlichkeit haben, nämlich $\Pr(\omega_i)=\frac{1}{6}\cdot\frac{1}{6}=\frac{1}{36}$. In Abbildung \@ref(fig:prverteilung) links, sehen wir eine Verteilung dieser Wahrscheinlichkeiten; in diesem Fall ist es eine sogenannte _diskrete Gleichverteilung_. Wenn uns die Gesamtaugenzahl interessiert, gibt es Ereignisse (z.B. "Gesamtaugenzahl 7"), hier mit $E$ symbolisiert, die wahrscheinlicher sind als andere. Das deckt sich mit unserer Erfahrung mit Würfelspielen. Die Verteilung ist symmetrisch um ein Maximum bei $7$ (Abbildung \@ref(fig:prverteilung) rechts), eine sogenannte _diskrete Dreiecksverteilung_. Formal schreiben wir:
 $$\begin{equation}
 \Pr(E)=\sum_{\omega_i\in E}\Pr\left(\omega_i\right)
 (\#eq:prereignis)
 \end{equation}$$
 <center> > In Worten: Die Wahrscheinlichkeit des Ereignisses $E$ ist gleich der Summe der Wahrscheinlichkeiten aller Elementarereignisse $\omega_i$, die zu $E$ gehören.</center>
 
-```{r prverteilung, echo=FALSE, fig.align='center', fig.cap='Links: Die $36$ Elementarereignisse zweier Würfelwürfe sind gleichverteilt mit $\\Pr(\\omega_i)=\\frac{1}{36}$; die Wahrscheinlichkeitsverteilung ist eine Gleichverteilung. Rechts: Die Wahrscheinlichkeitsverteilung des Ereignisses $E$, der Gesamtaugenzahl zweier Würfelwürfe, ist eine Dreiecksverteilung; das Ergebnis $7$ ist am wahrscheinlichsten.', fig.show='hold', out.width='50%'}
+```{r prverteilung, echo=FALSE, fig.align='center', fig.cap='Links: Die $36$ Elementarereignisse zweier Würfelwürfe sind gleichverteilt mit $\\Pr(\\omega_i)=\\frac{1}{36}$; die Wahrscheinlichkeitsverteilung ist eine Gleichverteilung. Rechts: Die Wahrscheinlichkeitsverteilung der Ereignisse $E$, der Gesamtaugenzahl zweier Würfelwürfe, ist eine Dreiecksverteilung; das Ereignis $7$ ist am wahrscheinlichsten.', fig.show='hold', out.width='50%'}
 barplot(rep(1/36,36),
         names = c(11,12,21,13,31,22,14,41,23,32,15,51,24,42,33,16,61,25,52,34,43,26,62,35,53,44,36,63,45,54,46,64,55,56,65,66),
         xlab = 'Elementarereignis',
@@ -26,18 +26,17 @@ So wie wir **diskrete und stetige Zufallsvariablen** unterscheiden (vgl. Kapitel
 
 ## Von der empirischen zur theoretischen Verteilung
 
-Wir haben bereits Darstellungen von **empirischen Verteilungen** in der Form von Histogrammen (und Boxplots) kennengelernt (vgl Kapitel \@ref(haeufigkeit)). Nehmen wir das Beispiel "Entfernung" aus den Reisedaten (Abbildung \@ref(fig:fFempirisch)). "Entfernung" ist eine stetige Zufallsvariable, die hier aber klassiert dargestellt ist. Ein Beispiel für eine diskrete Zufallsvariable ist das Merkmal "Anzahl Vulkanausbrüche" aus @zimmermann2014.
+Wir haben bereits Darstellungen von **empirischen Verteilungen** in der Form von Histogrammen (und Boxplots) kennengelernt (vgl. Kapitel \@ref(haeufigkeit)). Nehmen wir das Beispiel "Entfernung" aus den Reisedaten (Abbildung \@ref(fig:fFempirisch)). "Entfernung" ist eine stetige Zufallsvariable, die hier aber klassiert dargestellt ist. Ein Beispiel für eine diskrete Zufallsvariable ist das Merkmal "Anzahl Vulkanausbrüche" aus @zimmermann2014.
 
-```{r fFempirisch, echo=FALSE, fig.align='center', fig.cap='Links: Empirische **Verteilung** des Merkmals "Entfernung". Der 5. Balken z.B. hat eine Höhe von etwa $0.1$; d.h. rund 10% der Merkmalswerte sind in Klasse 5 (20 - 25km). Rechts: Empirische **Verteilungsfunktion** des Merkmals "Entfernung". Der 5. Balken hat eine Höhe von etwa $0.87$; d.h. rund 87% der Merkmalswerte sind kleiner oder gleich 25km.', fig.show='hold', out.width='50%'}
+```{r fFempirisch, echo=FALSE, fig.align='center', fig.cap='Links: Empirische **Verteilung** des Merkmals "Entfernung". Der 5. Balken z.B. hat eine Höhe von etwa $0.1$; d.h. rund 10% der Merkmalswerte sind in Klasse 5 (20 - 25km). Rechts: Empirische **Verteilungsfunktion** des Merkmals "Entfernung". Der 5. Balken hat eine Höhe von etwa $0.92$; d.h. rund 92% der Merkmalswerte sind kleiner oder gleich 25km.', fig.show='hold', out.width='50%'}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-# reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 # Histogramm berechnen ohne Output
-h <- hist(reisedat$distanz, breaks = seq(0, 55, 5), plot = FALSE)
+h <- hist(reisedat$distanz, breaks = seq(0, 75, 5), plot = FALSE)
 # absolute in relative Häufigkeiten umrechnen
 h$counts <- h$counts / sum(h$counts)
 # Histogrammdaten plotten
@@ -51,7 +50,7 @@ plot(h2, freq = TRUE, col = "gray",
      main = "", xlab = "Entfernung (km)", ylab = "relative Summenhäufigkeit")
 ```
 
-Die **theoretische Verteilung** ist eine mathematische Funktion, die an die Daten der Stichprobe angepasst wurde (Abbildung \@ref(fig:fFtheoretisch)). Genau genommen ist die theoretische Verteilung unser Modell für die Grundgesamtheit, aus der die Stichprobe entnommen wurde. Aber die Parameter dieses Modells werden anhand der Stichprobendaten geschätzt (wie genau lernen wir in Kapitel \@ref(schaetzen)). Für die Entfernungsdaten passt die _Lognormalverteilung_ ganz gut - mehr dazu [weiter unten](#log).
+Die **theoretische Verteilung** ist eine mathematische Funktion, die an die Daten der Stichprobe angepasst wurde (Abbildung \@ref(fig:fFtheoretisch)). Genau genommen ist die theoretische Verteilung unser Modell für die Grundgesamtheit, aus der die Stichprobe entnommen wurde. Aber die Parameter dieses Modells werden anhand der Stichprobendaten geschätzt (wie genau lernen wir in Kapitel \@ref(schaetzen)). Für die Entfernungsdaten passt die _Lognormalverteilung_ ganz gut - aber nicht perfekt - mehr dazu [weiter unten](#log).
 
 ```{r fFtheoretisch, echo=FALSE, fig.align='center', fig.cap='Links: Theoretische **Verteilung** des Merkmals "Entfernung" über der empirischen Verteilung. Hier wurde eine _Lognormalverteilung_ angepasst. Rechts: Theoretische **Verteilungsfunktion** des Merkmals "Entfernung" über der empirischen Verteilungsfunktion.', fig.show='hold', out.width='50%'}
 plot(h, freq = FALSE, col = "gray",
@@ -62,13 +61,13 @@ plot(h2, freq = TRUE, col = "gray",
 curve(plnorm(x, meanlog=mean(log(reisedat$distanz)), sdlog=sd(log(reisedat$distanz))), add=TRUE, col = "red")
 ```
 
-<center>Im Fall von _diskreten_ Zufallsvariablen sprechen wir von der **Wahrscheinlichkeitsfunktion**:
+Im Fall von _diskreten_ Zufallsvariablen sprechen wir von der **Wahrscheinlichkeitsfunktion**:
 $$\begin{equation}
 f_X(x)=\Pr(X=x)
 (\#eq:prfunktion)
 \end{equation}$$
 
-> In Worten: Die Wahrscheinlichkeitsfunktion einer diskreten Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Eintrittswahrscheinlichkeit von $x$. Vgl. Abbildung \@ref(fig:wuerfel2) und Abbildung \@ref(fig:prverteilung), links.
+<center> > In Worten: Die Wahrscheinlichkeitsfunktion einer diskreten Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Eintrittswahrscheinlichkeit von $x$. Vgl. Abbildung \@ref(fig:wuerfel2) und Abbildung \@ref(fig:prverteilung), links.</center>
 
 Im Fall von _stetigen_ Zufallsvariablen sprechen wir von der **Dichtefunktion**:
 $$\begin{equation}
@@ -76,7 +75,7 @@ $$\begin{equation}
 (\#eq:dichtefunktion)
 \end{equation}$$
 
-> In Worten: Das Integral von $x=a$ bis $x=b$ der Dichtefunktion einer stetigen Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ zwischen $a$ und $b$ liegt. Vgl. Abbildung \@ref(fig:fFtheoretisch), links.
+<center> > In Worten: Das Integral von $x=a$ bis $x=b$ der Dichtefunktion einer stetigen Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ zwischen $a$ und $b$ liegt. Vgl. Abbildung \@ref(fig:fFtheoretisch), links.</center>
 
 Die kumulierten Wahrscheinlichkeiten beschreibt in beiden Fällen die **Verteilungsfunktion**:
 $$\begin{equation}
@@ -84,9 +83,9 @@ F_X(x)=\Pr(X\leq x)
 (\#eq:verteilungsfunktion)
 \end{equation}$$
 
-> In Worten: Die Verteilungsfunktion einer beliebigen Zufallsvariablen $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ kleiner oder gleich $x$ ist. Vgl. Abbildung \@ref(fig:fFtheoretisch), rechts.</center>
+<center> > In Worten: Die Verteilungsfunktion einer beliebigen Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ kleiner oder gleich $x$ ist. Vgl. Abbildung \@ref(fig:fFtheoretisch), rechts.</center>
 
-<br>Die Analogien zwischen empirischen und theoretischen Verteilungen können Sie auch nochmal in @mittag2016, Tabelle 10.3 auf S. 159 nachlesen.
+Die Analogien zwischen empirischen und theoretischen Verteilungen können Sie auch nochmal in @mittag2016, Tabelle 10.3 auf S. 159 nachlesen.
 
 ## Parameter theoretischer Verteilungen
 
@@ -94,7 +93,7 @@ Die Form einer Verteilung wird grundsätzlich von der mathematischen Formel der 
 
 Schauen wir uns das für den einfachsten Fall der sogenannten _Normalverteilung_ an (Abbildung \@ref(fig:npdf))^[Der Name Normalverteilung heißt nicht, dass diese Verteilung im umgangssprachlichen Sinn "normaler" ist als andere Verteilungen. Sie ist jedoch, wie wir noch sehen werden, tatsächlich ein gutes Modell für viele Zufallsvorgänge.].
 
-```{r npdf, echo=TRUE, fig.align='center', fig.cap='Form der Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariablen $X$. Hier ist die **Standardnormalverteilung** $N(0,1)$ dargestellt, mit Mittelwert $\\mu=0$ und Standardabweichung $\\sigma=1$.', out.width='80%'}
+```{r npdf, echo=TRUE, fig.align='center', fig.cap='Form der Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable $X$. Hier ist die **Standardnormalverteilung** $N(0,1)$ dargestellt, mit Mittelwert $\\mu=0$ und Standardabweichung $\\sigma=1$.', out.width='80%'}
 # generiere x-Werte von -5 bis 5 in 0.1-Schritten
 x <- seq(-5, 5, 0.1)
 # plotte Dichtefunktion der Normalverteilung mit µ = 0 und sigma = 1 für x
@@ -106,11 +105,11 @@ $$\begin{equation}
 X\sim N(\mu,\sigma)
 (\#eq:xnverteilt)
 \end{equation}$$
-Das Tildesymbol $\sim$ bedeutet "ist verteilt gemäß", das $N$ steht für die Normalverteilung und in Klammern stehen die Parameter der Verteilung, in diesem Fall $\mu$ und $\sigma$. Andere Verteilungen haben eine höhere oder auch geringere Anzahl an Parametern und diese haben oft auch andere Bezeichnungen. Im Fall der Normalverteilung ist $\mu$ der Mittelwert (Erwartungswert) und $\sigma$ ist die Standardabweichung der Zufallsvariablen $X$^[Manchmal finden wir die Notation $X\sim N(\mu,\sigma^2)$ mit der Varianz $\sigma^2$.]. Es handelt sich hier um _theoretische_ Parameter der Grundgesamtheit, nicht zu verwechseln mit den _empirischen_ Parametern einer Stichprobe. Wenn die Stichprobe aber tatsächlich aus einer normalverteilten Grundgesamtheit stammt, dann sind empirischer Mittelwert und Standardabweichung die _Schätzer_ der entsprechenden theoretischen Parameter! Das Schätzen von Verteilungsparametern wird uns in Kapitel \@ref(schaetzen) beschäftigen.
+Das Tildesymbol $\sim$ bedeutet "ist verteilt gemäß", das $N$ steht für die Normalverteilung und in Klammern stehen die Parameter der Verteilung, in diesem Fall $\mu$ und $\sigma$. Andere Verteilungen haben eine höhere oder auch geringere Anzahl Parameter und diese haben oft auch andere Bezeichnungen. Im Fall der Normalverteilung ist $\mu$ der Mittelwert (Erwartungswert) und $\sigma$ ist die Standardabweichung der Zufallsvariable $X$^[Manchmal finden wir die Notation $X\sim N(\mu,\sigma^2)$ mit der Varianz $\sigma^2$.]. Es handelt sich hier um _theoretische_ Parameter der Grundgesamtheit, nicht zu verwechseln mit den _empirischen_ Parametern einer Stichprobe. Wenn die Stichprobe aber tatsächlich aus einer normalverteilten Grundgesamtheit stammt, dann sind empirischer Mittelwert und Standardabweichung die _Schätzer_ der entsprechenden theoretischen Parameter! Das Schätzen von Verteilungsparametern wird uns in Kapitel \@ref(schaetzen) beschäftigen.
 
 Den Effekt verschiedener Werte für $\mu$ und $\sigma$ auf die Lage und Breite der Verteilung sehen wir wenn wir $\mu$ und $\sigma$ variieren (Abbildung \@ref(fig:npdfvariation)).
 
-```{r npdfvariation, echo=TRUE, fig.align='center', fig.cap='Links: Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariablen $X$ für verschiedene Werte $\\mu$. Wir sehen, dass der Parameter $\\mu$ die Verteilung nach rechts bzw. links verschiebt. Rechts: Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariablen $X$ für verschiedene Werte $\\sigma$. Wir sehen, dass der Parameter $\\sigma$ die Verteilung breiter bzw. schmaler macht.', fig.show='hold', out.width='50%'}
+```{r npdfvariation, echo=TRUE, fig.align='center', fig.cap='Links: Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\\mu$. Wir sehen, dass der Parameter $\\mu$ die Verteilung nach rechts bzw. links verschiebt. Rechts: Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\\sigma$. Wir sehen, dass der Parameter $\\sigma$ die Verteilung breiter bzw. schmaler macht.', fig.show='hold', out.width='50%'}
 # generiere x-Werte von -5 bis 5 in 0.1-Schritten
 x <- seq(-5, 5, 0.1)
 
@@ -139,7 +138,7 @@ Der Parameter $\mu$ verschiebt also die Verteilung nach rechts bzw. links; Breit
 
 Bisher haben wir uns nur die Dichtefunktion der Normalverteilung angeschaut. Es fehlt die Verteilungsfunktion als Darstellung der kumulierten Wahrscheinlichkeit. Diese ist wichtig, da wir damit einfach Quantile berechnen können, die in der induktiven Statistik häufig zum Einsatz kommen. Die Verteilungsfunktion der Normalverteilung ist in Abbildung \@ref(fig:ncdfvariation) für verschiedene Werte $\mu$ und $\sigma$ dargestellt (vgl. Abbildung \@ref(fig:npdfvariation)).
 
-```{r ncdfvariation, echo=TRUE, fig.align='center', fig.cap='Links: Verteilungsfunktion der Normalverteilung einer beliebigen Zufallsvariablen $X$ für verschiedene Werte $\\mu$. Rechts: Verteilungsfunktion der Normalverteilung einer beliebigen Zufallsvariablen $X$ für verschiedene Werte $\\sigma$. Vgl. Abbildung \\@ref(fig:npdfvariation).', fig.show='hold', out.width='50%'}
+```{r ncdfvariation, echo=TRUE, fig.align='center', fig.cap='Links: Verteilungsfunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\\mu$. Rechts: Verteilungsfunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\\sigma$. Vgl. Abbildung \\@ref(fig:npdfvariation).', fig.show='hold', out.width='50%'}
 # generiere x-Werte von -5 bis 5 in 0.1-Schritten
 x <- seq(-5, 5, 0.1)
 
@@ -168,7 +167,7 @@ Wenn wir Abbildung \@ref(fig:npdfvariation) und Abbildung \@ref(fig:ncdfvariatio
 
 Auch für die **Kenngrößen** theoretischer Verteilungen ist es wichtig, dass wir die Parallelen zu den empirischen Verteilungen sehen.
 
-<center>Der **Erwartungswert** theoretischer Verteilungen ist:
+Der **Erwartungswert** theoretischer Verteilungen ist:
 $$\begin{equation}
 E(X)=\mu=\sum_{j=1}^{m}x_j\cdot \Pr\left(X=x_j\right)\quad\text{für diskrete Verteilungen}
 (\#eq:erwartungswertdiskret)
@@ -178,7 +177,7 @@ E(X)=\mu=\int_{-\infty}^{\infty}x\cdot f_X(x)\;dx\quad\text{für stetige Verteil
 (\#eq:erwartungswertstetig)
 \end{equation}$$
 
-> Merke: Für den theoretischen Erwartungswert wird häufig das Symbol $\mu$ verwendet. Damit ist aber nicht unbedingt der Parameter gleichen Namens der Normalverteilung gemeint, obwohl natürlich beide Größen identisch sind, wenn die Zufallsvariable normalverteilt ist. Aber auch der Erwartungswert anderer theoretischer Verteilungen wird häufig mit $\mu$ bezeichnet. Das ist leider so verwirrend.
+<center> > Merke: Für den theoretischen Erwartungswert wird häufig das Symbol $\mu$ verwendet. Damit ist aber nicht unbedingt der Parameter gleichen Namens der Normalverteilung gemeint, obwohl natürlich beide Größen identisch sind, wenn die Zufallsvariable normalverteilt ist. Aber auch der Erwartungswert anderer theoretischer Verteilungen wird häufig mit $\mu$ bezeichnet. Das ist leider so verwirrend.</center> 
 
 Die Formulierung des Erwartungswertes ist analog zur gewichteten Formulierung des arithmetischen Mittels empirischer Verteilungen (vgl. Kapitel \@ref(haeufigkeit)):
 $$\bar x=\sum_{j=1}^{m}a_j\cdot f_j$$
@@ -195,9 +194,9 @@ V(X)=\sigma^2=\int_{-\infty}^{\infty}\left(x-\mu\right)^2\cdot f_X(x)\;dx\quad\t
 (\#eq:varianzstetig)
 \end{equation}$$
 
-> Merke: Wiederum wird hier häufig das Symbol des entsprechenden Parameters der Normalverteilung, $\sigma^2$, verwendet. Beide Größen sind identisch, wenn die Zufallsvariable normalverteilt ist. Aber auch die Varianze anderer theoretischer Verteilungen wird häufig mit $\sigma^2$ bezeichnet.
+<center> > Merke: Wiederum wird hier häufig das Symbol des entsprechenden Parameters der Normalverteilung, $\sigma^2$, verwendet. Beide Größen sind identisch, wenn die Zufallsvariable normalverteilt ist. Aber auch die Varianze anderer theoretischer Verteilungen wird häufig mit $\sigma^2$ bezeichnet.</center>
 
-Die Formulierung der Varianz ist analog zur Formulierung der Varianz empirischer Verteilungen (vgl. Kapitel \@ref(streuung)):
+Die Formulierung der Varianz ist analog zur Formulierung der Varianz empirischer Verteilungen, hier wie gehabt korrigiert angegeben (vgl. Kapitel \@ref(streuung)):
 $$s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
 
 Die **Standardabweichung** theoretischer Verteilungen ist dementsprechend:
@@ -214,11 +213,11 @@ F_X(x_p)=\Pr\left(X\leq x_p\right)=p
 (\#eq:quantile)
 \end{equation}$$
 
-> In Worten: Das $p$-Quantil einer beliebigen Zufallsvariablen $X$ ist die Stelle $x_p$, an der die Verteilungsfunktion $F_X$ der Zufallsvariablen gleich $p$ ist. Die Verteilungsfunktion gibt die Wahrscheinlichkeit an, dass die Zufallsvariable $X$ einen Wert kleiner oder gleich $x_p$ annimmt.
+<center> > In Worten: Das $p$-Quantil einer beliebigen Zufallsvariable $X$ ist die Stelle $x_p$, an der die Verteilungsfunktion $F_X$ der Zufallsvariable gleich $p$ ist. Die Verteilungsfunktion gibt die Wahrscheinlichkeit an, dass die Zufallsvariable $X$ einen Wert kleiner oder gleich $x_p$ annimmt.</center>
 
 Das Prinzip ist das gleiche für empirische Verteilungen, wobei die folgenden Rechenregeln gelten (vgl. Kapitel \@ref(streuung)):
 $$\bar x_p=\frac{x_{n\cdot p}+x_{n\cdot p+1}}{2}\quad\text{falls}\quad n\cdot p\quad\text{ganzzahlig}$$
-$$\bar x_p=x_i\quad\text{falls}\quad n\cdot p\quad\text{nicht ganzzahlig, wobei}\quad i\quad\text{die nächstgrößere Zahl ist}$$</center>
+$$\bar x_p=x_i\quad\text{falls}\quad n\cdot p\quad\text{nicht ganzzahlig, wobei}\quad i\quad\text{die nächstgrößere Zahl ist}$$
 
 ## Wichtige Verteilungen und ihre Anwendungen {#distr}
 
@@ -267,13 +266,13 @@ X\sim logN(\mu,\sigma)
 (\#eq:xlognverteilt)
 \end{equation}$$
 
-Die Parameter der Lognormalverteilung sind, leider wie die der Normalverteilung, ebenfalls mit $\mu$ und $\sigma$ bezeichnet. Diese sind aber nicht mehr gleich mit Erwartungswert und Standardabweichung der Zufallsvariablen; hier sind es lediglich Symbole für die Parameter. Die Symbole haben sich etabliert, weil es eine einfache Entsprechung zwischen Lognormal- und Normalverteilung gibt:  
+Die Parameter der Lognormalverteilung sind, leider wie die der Normalverteilung, ebenfalls mit $\mu$ und $\sigma$ bezeichnet. Diese sind aber nicht mehr gleich mit Erwartungswert und Standardabweichung der Zufallsvariable; hier sind es lediglich Symbole für die Parameter. Die Symbole haben sich etabliert, weil es eine einfache Entsprechung zwischen Lognormal- und Normalverteilung gibt:  
 Wenn $X$ lognormalverteilt ist, $X\sim logN(\mu,\sigma)$, dann ist das log-transformierte $X$ normalverteilt, $\log(X)\sim N(\mu,\sigma)$, mit den gleichen Parametern $\mu$ und $\sigma$.  
 D.h. die Schätzer für die beiden Parameter sind das arithmetische Mittel bzw. die Standardabweichung der _log-transformierten_ Daten einer Stichprobe (s. Kapitel \@ref(schaetzen)).
 
 Schauen wir uns die Form der Lognormalverteilung für verschiedene Parameterkonstellationen an (Abbildung \@ref(fig:lognvariation)). Beide Parameter kontrollieren hier sowohl den Erwartungswert als auch die Varianz und damit auch die Form der Verteilung; im Beispiel sehen wir das nur für $\sigma$ während $\mu$ konstant gehalten ist. An den Formeln für Erwartungswert und Varianz könnten wir sehen, dass dort jeweils beide Parameter eingehen. Das können Sie beispielsweise in @mittag2016 nachlesen.
 
-```{r lognvariation, echo=TRUE, fig.align='center', fig.cap='Links: Dichtefunktion der Lognormalverteilung einer beliebigen Zufallsvariablen $X$ für verschiedene Werte $\\sigma$, wobei $\\mu=0$ gesetzt ist. Wir sehen, dass der Parameter $\\sigma$ sowohl die Lage als auch die Breite, sowie die Form der Verteilung kontrolliert. Gleiches gilt für $\\mu$, ist aber hier nicht dargestellt. Sie können den _R_-Code anpassen, um Variationen von $\\mu$ zu simulieren. Rechts: Verteilungsfunktionfunktion der entsprechenden Variationen der Lognormalverteilung.', fig.show='hold', out.width='50%'}
+```{r lognvariation, echo=TRUE, fig.align='center', fig.cap='Links: Dichtefunktion der Lognormalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\\sigma$, wobei $\\mu=0$ gesetzt ist. Wir sehen, dass der Parameter $\\sigma$ sowohl die Lage als auch die Breite, sowie die Form der Verteilung kontrolliert. Gleiches gilt für $\\mu$, ist aber hier nicht dargestellt. Sie können den _R_-Code anpassen, um Variationen von $\\mu$ zu simulieren. Rechts: Verteilungsfunktionfunktion der entsprechenden Variationen der Lognormalverteilung.', fig.show='hold', out.width='50%'}
 # generiere x-Werte von 0 bis 3 in 0.05-Schritten
 x <- seq(0, 3, 0.05)
 
@@ -296,14 +295,14 @@ legend('bottomright', legend = c('logN(0, 0.25)', 'logN(0, 0.5)', 'logN(0, 1)'),
        col = c('black', 'red', 'blue'), lty = 1)
 ```
 
-Da unsere Entfernungsdaten rechtsschief verteilt sind - mit relativ kleinen Werten (wenige Kilometer) und relativ großen Werten (Zehner von Kilometern), bietet sich die Lognormalverteilung als theoretische Verteilung an und lässt sich auch gut an die Daten anpassen (vgl. Abbildung \@ref(fig:fFempirisch)).
+Da unsere Entfernungsdaten rechtsschief verteilt sind - mit relativ kleinen Werten (wenige Kilometer) und relativ großen Werten (Zehner von Kilometern), bietet sich die Lognormalverteilung als theoretische Verteilung an, auch wenn sie sich nicht perfekt an die Daten anpassen lässt (vgl. Abbildung \@ref(fig:fFempirisch)).
 
 Nutzen wir die Entfernungsdaten, um uns den Zusammenhang zwischen Lognormal- und Normalverteilung zu veranschaulichen. Wir hatten gesagt, wenn $X$ lognormalverteilt ist (Abbildung \@ref(fig:lognn) links) dann ist $\log(X)$ normalverteilt mit den gleichen Parametern; das sehen wir in Abbildung \@ref(fig:lognn) rechts.
 
 ```{r lognn, echo=TRUE, fig.align='center', fig.cap='Links: Empirische Verteilung der Entfernungsdaten mit theoretischer Lognormalverteilung. Rechts: Empirische Verteilung der log-transformierten Entfernungsdaten mit theoretischer Normalverteilung.', fig.show='hold', out.width='50%'}
 # Lognormalverteilung von X
 # Histogramm berechnen (ohne Output)
-h <- hist(reisedat$distanz, breaks = seq(0, 55, 5), plot = FALSE)
+h <- hist(reisedat$distanz, breaks = seq(0, 75, 5), plot = FALSE)
 # absolute in relative Häufigkeiten umrechnen
 h$counts <- h$counts / sum(h$counts)
 # plot
@@ -314,7 +313,7 @@ curve(dlnorm(x, meanlog = mean(log(reisedat$distanz)),
 
 # Normalverteilung von log(X)
 # Histogramm berechnen (ohne Output)
-hlog <- hist(log(reisedat$distanz), breaks = seq(0, 5, 0.5), plot = FALSE)
+hlog <- hist(log(reisedat$distanz), breaks = seq(-0.5, 4.5, 0.5), plot = FALSE)
 # absolute in relative Häufigkeiten umrechnen
 hlog$counts <- hlog$counts / sum(hlog$counts)
 # plot
@@ -334,7 +333,7 @@ X\sim U(a,b)
 (\#eq:xuverteilt)
 \end{equation}$$
 
-> In Worten: Die Zufallsvariable $X$ ist gleichverteilt über dem Intervall $[a,b]$ ($a$ und $b$ sind die Parameter der Gleichverteilung).
+<center> > In Worten: Die Zufallsvariable $X$ ist gleichverteilt über dem Intervall $[a,b]$ ($a$ und $b$ sind die Parameter der Gleichverteilung).</center>
 
 ```{r u, echo=FALSE, fig.align='center', fig.cap='Links: Diskrete Gleichverteilung der Elementarereignisse zweier Würfelwürfe. Rechts: Stetige Gleichverteilung zwischen $2$ und $4$.', fig.show='hold', out.width='50%'}
 # diskret
@@ -358,9 +357,9 @@ X\sim B(p,n)
 (\#eq:xbverteilt)
 \end{equation}$$
 
-> In Worten: Die Zufallsvariable $X$ ist binomialverteilt mit Erfolgswahrscheinlichkeit $p$ und Anzahl der Versuche $n$.
+<center> > In Worten: Die Zufallsvariable $X$ ist binomialverteilt mit Erfolgswahrscheinlichkeit $p$ und Anzahl der Versuche $n$.</center>
 
-Der Parameter $p$ ist die Erfolgswahrscheinlichkeit, z.B. der Anteil blauer Murmeln in einer Urne mit blauen und roten Murmeln, aus der wir mit Zurücklegen ziehen. Dann ist die Wahrscheinlichkeit bei einem Versuch eine blaue Murmel zu ziehen gleich $p$, und bei mehreren Versuchen $n$ erwarten wir insgesamt $p\cdot n$ blaue Kugeln zu ziehen^[Die Anzahl $p\cdot n$ ist der Erwartungswert bei ziehen mit Zurücklegen, der sich aber lediglich als Mittelwert bei vielen (theoretisch unendlich vielen) Wiederholungen des Experiments mit $n$ Versuchen einstellen wird. Genau das ist ja die klassische Definition der Wahrscheinlichkeit (vgl. Kapitel \@ref(wahrscheinlichkeit)).].
+Der Parameter $p$ ist die "Erfolgswahrscheinlichkeit", z.B. der Anteil blauer Murmeln in einer Urne mit blauen und roten Murmeln, aus der wir mit Zurücklegen ziehen. Dann ist die Wahrscheinlichkeit bei einem Versuch eine blaue Murmel zu ziehen gleich $p$, und bei mehreren Versuchen $n$ erwarten wir insgesamt $p\cdot n$ blaue Kugeln zu ziehen^[Die Anzahl $p\cdot n$ ist der Erwartungswert bei ziehen mit Zurücklegen, der sich aber lediglich als Mittelwert bei vielen (theoretisch unendlich vielen) Wiederholungen des Experiments mit $n$ Versuchen einstellen wird. Genau das ist ja die klassische Definition der Wahrscheinlichkeit (vgl. Kapitel \@ref(wahrscheinlichkeit)).].
 
 Die Binomialverteilung ist eine _diskrete_ Verteilung. Abbildung \@ref(fig:b) verdeutlicht ihre Form für verschiedene Parameterkonstellationen.
 
@@ -381,17 +380,17 @@ legend('bottomright', legend=c('B(0.5, 20)', 'B(0.7, 20)', 'B(0.5, 40)'),
        col=c('black', 'red', 'blue'), pch=20)
 ```
 
-In der Geographie verwenden wir die Binomialverteilung häufig für _Zähldaten_ und _Proportionen_, z.B. in der Biogeographie (Anzahl Individuen einer bestimmten Tierart in einem Gebiet oder der Anteil überlebender Organismen als Funktion der Konzentration einer toxischen Substanz). Die Binomialverteilung dient aber auch als Wahrscheinlichkeitsmodell für _Präsenz bzw. Absenz_ beispielsweise einer Tierart in einem Gebiet.
+In der Geographie verwenden wir die Binomialverteilung häufig für _Zähldaten_ und _Proportionen_, z.B. in der Biogeographie. Ein Beispiel ist der Anteil überlebender Organismen als Funktion der Konzentration einer toxischen Substanz. Die Binomialverteilung dient aber auch als Wahrscheinlichkeitsmodell für _Präsenz bzw. Absenz_ beispielsweise einer Tierart in einem Gebiet.
 
 ### Poisson-Verteilung
 
-Die Poisson-Verteilung ist eine weitere _diskrete_ Verteilung für _Zähldaten_, z.B. die Anzahl Vogelarten in einem Gebiet als Funktion topographischer Parameter. Wir schreiben:
+Die Poisson-Verteilung ist eine weitere _diskrete_ Verteilung für _Zähldaten_, z.B. fuer die Anzahl beobachteter Tierarten in einem Gebiet. Wir schreiben:
 $$\begin{equation}
 X\sim Pois(\lambda)
 (\#eq:xpoisverteilt)
 \end{equation}$$
 
-> In Worten: Die Zufallsvariable $X$ ist Poisson-verteilt mit Parameter $\lambda$.
+<center> > In Worten: Die Zufallsvariable $X$ ist Poisson-verteilt mit Parameter $\lambda$.</center>
 
 Die Poisson-Verteilung hat nur einen Parameter, $\lambda$, der sowohl der Erwartungswert ist, als auch die Breite und damit auch die Form der Verteilung steuert (Abbildung \@ref(fig:pois)).
 
@@ -420,7 +419,7 @@ X\sim Gum(\mu,\beta)
 (\#eq:xgumverteilt)
 \end{equation}$$
 
-> In Worten: Die Zufallsvariable $X$ ist Gumbel-verteilt mit Lageparameter $\mu$ und Skalierungsparameter $\beta$.
+<center> > In Worten: Die Zufallsvariable $X$ ist Gumbel-verteilt mit Lageparameter $\mu$ und Skalierungsparameter $\beta$.</center>
 
 Wiederum sind $\mu$ und $\beta$ lediglich Symbole für die Parameter der Verteilung und $\mu$ hat keine Entsprechung im theoretischen Mittelwert oder in dem $\mu$ der Normalverteilung. Abbildung \@ref(fig:gum) illustriert die Form der Gumbel-Verteilung.
 
@@ -452,7 +451,7 @@ X\sim Wei(\lambda,k)
 (\#eq:xweiverteilt)
 \end{equation}$$
 
-> In Worten: Die Zufallsvariable $X$ ist Weibull-verteilt mit Skalierungsparameter $\lambda$ und Formparameter $k$.
+<center> > In Worten: Die Zufallsvariable $X$ ist Weibull-verteilt mit Skalierungsparameter $\lambda$ und Formparameter $k$.</center>
 
 Die Weibull-Verteilung hat die Besonderheit, in Abhängigkeit der Parameter _rechts- oder linksschief oder annähernd symmetrisch_ zu sein (Abbildung \@ref(fig:wei)). Sie ist daher sehr flexibel einsetzbar.
 

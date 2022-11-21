@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 5 Korrelationsanalyse | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 5 Korrelationsanalyse | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
   <meta name="github-repo" content="krueger-t/eids" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-11-08" />
+<meta name="date" content="2022-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,8 @@
   
 <link rel="prev" href="04-streuung.html"/>
 <link rel="next" href="06-wahrscheinlichkeit.html"/>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,8 +49,10 @@
 
 
 
-
 <script src="libs/accessible-code-block/empty-anchor.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -223,8 +226,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="korrelation" class="section level1">
-<h1><span class="header-section-number">Kapitel 5</span> Korrelationsanalyse</h1>
+<div id="korrelation" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Kapitel 5</span> Korrelationsanalyse<a href="05-korrelation.html#korrelation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Lesen Sie hierzu bitte Kapitel 3.4.2 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>. Die Fragen, die uns besonders interessieren sind:</p>
 <ul>
 <li><em>Gibt es einen Zusammenhang zwischen zwei Merkmalen?</em></li>
@@ -233,15 +236,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><em>Wie kann man den Zusammenhang visualisieren?</em></li>
 </ul>
 <p>Die Verfahren sind unterschiedlich für nominalskalierte, ordinalskalierte und metrische Merkmale. Wir werden diese jetzt nacheinander einführen. Die Themen können Sie in <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>, Kapitel 8 und 9 vertiefen.</p>
-<div id="nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="section level2">
-<h2><span class="header-section-number">5.1</span> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik</h2>
+<div id="nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="section level2 hasAnchor">
+<h2><span class="header-section-number">5.1</span> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik<a href="05-korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Wir wollen diese Methode am Beispiel des Volksentscheids Tegel von 2017 verdeutlichen.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Der Beschlussentwurf lautete:</p>
 <blockquote>
 <p>“Der Flughafen Berlin-Tegel „Otto-Lilienthal“ ergänzt und entlastet den geplanten Flughafen Berlin Brandenburg „Willy Brandt“ (BER). Der Berliner Senat wird aufgefordert, sofort die Schließungsabsichten aufzugeben und alle Maßnahmen einzuleiten, die erforderlich sind, um den unbefristeten Fortbetrieb des Flughafens Tegel als Verkehrsflughafen zu sichern!”</p>
 </blockquote>
 <p>Wir stellen uns die Frage: <em>Gibt es einen Zusammenhang zwischen Abstimmungsverhalten und Bezirk?</em> Man könnte meinen, dass Anwohner:innen in der Einflugschneise von Tegel eher für “nein” stimmten (d.h. für die Schließung), Anwohner:innen in der Einflugschneise des neuen BER dagegen eher für “ja” (d.h. gegen die Schließung). Überlegungen wie diese motivieren unsere Fragestellung.</p>
 <p>Die <strong>Kontingenztabelle</strong> (oder Kreuztabelle) zu diesem Beispiel finden Sie in Abbildung <a href="05-korrelation.html#fig:tegelh">5.1</a>.</p>
-<div class="figure" style="text-align: center"><span id="fig:tegelh"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tegelh"></span>
 <img src="figs/tegel_h.png" alt="Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tegel 2017 nach Bezirk. &lt;br&gt;&lt;small&gt; Quelle: https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html. &lt;/small&gt;" width="85%" />
 <p class="caption">
 Abbildung 5.1: Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tegel 2017 nach Bezirk. <br><small> Quelle: <a href="https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html" class="uri">https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html</a>. </small>
@@ -249,21 +252,21 @@ Abbildung 5.1: Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tege
 </div>
 <p>In dieser Tabelle stehen absolute Häufigkeiten (vgl. Kapitel <a href="03-haeufigkeit.html#haeufigkeit">3</a>) für alle Kombinationen von Merkmalsausprägungen der Variablen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span>. <span class="math inline">\(X\)</span> bezeichnet “Bezirk” mit den Ausprägungen <span class="math inline">\(a_1, a_2, \ldots, a_k\)</span>. <span class="math inline">\(Y\)</span> bezeichnet “Abstimmungsverhalten” mit den Ausprägungen <span class="math inline">\(b_1\)</span> (“ja”) und <span class="math inline">\(b_2\)</span> (“nein”). Die Spalten- bzw. Zeilensummen sind die sogenannten Randverteilungen von <span class="math inline">\(Y\)</span> und <span class="math inline">\(X\)</span>. Ganz unten rechts steht der Stichprobenumfang (die Anzahl der Personen, die abgestimmt haben). Der Stichprobenumfang kann sowohl als Summe der Randverteilungswerte von <span class="math inline">\(X\)</span>, als auch als Summe der Randverteilungswerte von <span class="math inline">\(Y\)</span> errechnet werden.</p>
 <p>Die allgemeine Notation der absoluten Häufigkeiten einer Kontingenztabelle finden Sie in Abbildung <a href="05-korrelation.html#fig:cth">5.2</a>. In dieser Notation stehen <span class="math inline">\(h_{\cdot j}\)</span> und <span class="math inline">\(h_{i \cdot}\)</span> für die Werte der beiden Randverteilungen.</p>
-<div class="figure" style="text-align: center"><span id="fig:cth"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cth"></span>
 <img src="figs/ct_h.png" alt="Notation der absoluten Häufigkeiten in einer Kontingenztabelle. &lt;br&gt;&lt;small&gt; Nach: @mittag2016. &lt;/small&gt;" width="60%" />
 <p class="caption">
 Abbildung 5.2: Notation der absoluten Häufigkeiten in einer Kontingenztabelle. <br><small> Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>. </small>
 </p>
 </div>
 <p>Wir können die Kontingenztabelle für dieses Beispiel auch mit relativen Häufigkeiten darstellen (Abbildung <a href="05-korrelation.html#fig:tegelf">5.3</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:tegelf"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tegelf"></span>
 <img src="figs/tegel_f.png" alt="Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tegel mit relativen Häufigkeiten." width="85%" />
 <p class="caption">
 Abbildung 5.3: Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tegel mit relativen Häufigkeiten.
 </p>
 </div>
 <p>Als nächstes müssen wir den Begriff der <strong>bedingten relativen Häufigkeit</strong> einführen. Die bedingte relative Häufigkeit ist die Häufigkeit einer Ausprägung des einen Merkmals relativ zur Häufigkeit einer bestimmten Ausprägung des zweiten Merkmals, d.h. “bedingt” dadurch, dass wir uns auf eine Ausprägung des zweiten Merkmals festlegen. Relative Häufigkeiten existieren somit in zwei “Richtungen” in einer Kontingenztabelle (Abbildung <a href="05-korrelation.html#fig:ctf">5.4</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:ctf"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ctf"></span>
 <img src="figs/ct_fy.png" alt="Illustration relativer Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von $Y$ unter der Bedingung $X=a_i$. Rechts: Absolute Häufigkeiten der Ausprägungen von $X$ unter der Bedingung $Y=b_j$. &lt;br&gt;&lt;small&gt; Nach: @mittag2016. &lt;/small&gt;" width="50%" /><img src="figs/ct_fx.png" alt="Illustration relativer Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von $Y$ unter der Bedingung $X=a_i$. Rechts: Absolute Häufigkeiten der Ausprägungen von $X$ unter der Bedingung $Y=b_j$. &lt;br&gt;&lt;small&gt; Nach: @mittag2016. &lt;/small&gt;" width="50%" />
 <p class="caption">
 Abbildung 5.4: Illustration relativer Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von <span class="math inline">\(Y\)</span> unter der Bedingung <span class="math inline">\(X=a_i\)</span>. Rechts: Absolute Häufigkeiten der Ausprägungen von <span class="math inline">\(X\)</span> unter der Bedingung <span class="math inline">\(Y=b_j\)</span>. <br><small> Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>. </small>
@@ -303,7 +306,7 @@ Das Umstellen dieser Gleichung nach <span class="math inline">\(h_{ij}\)</span> 
 </center>
 <p><span class="math display">\[h_{ij}=\frac{h_{i\cdot}\cdot h_{\cdot j}}{n}:=\tilde h_{ij}\]</span>
 Diese absolute Häufigkeit, die wir mit <span class="math inline">\(\tilde h_{ij}\)</span> bezeichnen, ist die <em>bei empirischer Unabhängigkeit erwartete absolute Häufigkeit</em>. Das Zeichen <span class="math inline">\(:=\)</span> bedeutet “wird definiert als”. Wir haben uns also mit Hilfe der relativen Häufigkeiten in der Kontingenztabelle und unserer Konzeption der empirischen Unabhängigkeit neue, bei Unabhängigkeit erwartete absolute Häufigkeiten an jeder Stelle der Kontingenztabelle generiert. Diese können wir jetzt mit den tatsächlichen absoluten Häufigkeiten in der Kontingenztabelle vergleichen (Abbildung <a href="05-korrelation.html#fig:ctvergleich">5.5</a>). Sind die Abweichungen <em>klein</em> können wir von <strong>Unabhängigkeit</strong> der Merkmale ausgehen. Sind die Abweichungen <em>groß</em> können wir von <strong>Abhängigkeit</strong> ausgehen.</p>
-<div class="figure" style="text-align: center"><span id="fig:ctvergleich"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ctvergleich"></span>
 <img src="figs/ct_vergleich.png" alt="Vergleich der beobachteten absoluten Häufigkeiten $h_{ij}$ und der bei empirischer Unabhängigkeit erwarteten absoluten Häufigkeiten $\tilde h_{ij}$." width="85%" />
 <p class="caption">
 Abbildung 5.5: Vergleich der beobachteten absoluten Häufigkeiten <span class="math inline">\(h_{ij}\)</span> und der bei empirischer Unabhängigkeit erwarteten absoluten Häufigkeiten <span class="math inline">\(\tilde h_{ij}\)</span>.
@@ -316,8 +319,8 @@ Abbildung 5.5: Vergleich der beobachteten absoluten Häufigkeiten <span class="m
 <p>Für den Volksentscheid Tegel ergibt sich ein Wert von <span class="math inline">\(\mathcal{X}^2=49895.1\)</span>, wobei <span class="math inline">\(\mathcal{X}_{max}^2=1732940\)</span>. Da <span class="math inline">\(\mathcal{X}^2\)</span> näher an <span class="math inline">\(0\)</span> ist als an <span class="math inline">\(1 732 940\)</span>, scheint die Abhängigkeit der Merkmale “Bezirk” und “Abstimmungsverhalten” gering zu sein. Ob sie dennoch <em>statistisch signifikant</em> ist können wir erst mit einem sogenannten <strong>Chi-Quadrat-Test</strong> beurteilen, den wir als Teil der schließenden Statistik in Kapitel <a href="09-tests.html#chi2test">9.6</a> kennenlernen.</p>
 </blockquote>
 </div>
-<div id="ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="section level2">
-<h2><span class="header-section-number">5.2</span> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman</h2>
+<div id="ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="section level2 hasAnchor">
+<h2><span class="header-section-number">5.2</span> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman<a href="05-korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Hier ist das Beispiel des Zusammenhangs von Grünflächenanteil und Bildungsgrad in Stadbezirken aus <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.4.2, S. 274 - 278 sehr anschaulich. Das Merkmal “Grünflächenanteil” ist zwar metrisch skaliert, muss aber ordinal skaliert werden, um es mit dem Merkmal “Bildungsgrad” vergleichbar zu machen, das bereits ordinal vorliegt; siehe Tabelle 3.36 in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, S. 277.</p>
 <p>Der <strong>Rangkorrelationskoeffizient nach Spearman</strong> <span class="math inline">\(r_s\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> wird dann berechnet durch:
 <span class="math display">\[r_s=1-\frac{6\cdot\sum_{i=1}^{n}d_i^2}{n\cdot\left(n^2-1\right)}\]</span>
@@ -327,40 +330,40 @@ Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beid
 <p>Wenn keine Rangkorrelation vorliegt ist <span class="math inline">\(r_s=0\)</span>.</p>
 <p>Bei dem Grünflächenanteil/Bildungsgrad Beispiel von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> ist <span class="math inline">\(r_s=0.84\)</span>, die beiden Merkmale sind also stark positiv korreliert. D.h. größere Anteile von Grünflächen sind tendenziell mit höheren Bildungsgraden assoziiert und kleinere Anteile von Grünflächen sind tendenziell mit geringeren Bildungsgraden assoziiert. <em>Überlegen Sie gerne, in welche Richtung hier die Kausalität wirkt.</em></p>
 </div>
-<div id="metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="section level2">
-<h2><span class="header-section-number">5.3</span> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson</h2>
+<div id="metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="section level2 hasAnchor">
+<h2><span class="header-section-number">5.3</span> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson<a href="05-korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Alle Merkmale (“Distanz” und “Zeit”) sind metrisch skaliert und somit können wir den <strong>Korrelationskoeffizienten nach Bravais-Pearson</strong> verwenden, der mehr Informationen über den Zusammenhang, nämlich <strong>Linearität</strong>, liefert. Einen ersten Eindruck verschafft der <strong>Scatterplot</strong> (auch Streudiagramm), den wir einfach mit der <code>plot()</code> Funktion in <em>R</em> generieren. Als erstes plotten wir die beiden Zeiten (“morgens” und “nachmittags”) gegeneinander:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="05-korrelation.html#cb38-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>zeit_morgens, reisedat<span class="op">$</span>zeit_nachmittags, </span>
-<span id="cb38-2"><a href="05-korrelation.html#cb38-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
-<span id="cb38-3"><a href="05-korrelation.html#cb38-3"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="05-korrelation.html#cb39-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>zeit_morgens, reisedat<span class="op">$</span>zeit_nachmittags, </span>
+<span id="cb39-2"><a href="05-korrelation.html#cb39-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
+<span id="cb39-3"><a href="05-korrelation.html#cb39-3"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-21-1.png" width="80%" /></p>
 <p>Hier fällt das Wertepaar <span class="math inline">\((55, 1)\)</span> unten, in der Mitte auf. Meine Vermutung ist, dass jemand hier nachmittags <span class="math inline">\(1\)</span> im Sinne von einer Stunde eingetragen hat, anstatt <span class="math inline">\(60\)</span> Minuten. Ich ändere das in einem korrigierten Datensatz und lade diesen erneut ein (grundsätzlich muss so eine Änderung gut begründet und dokumentiert sein; alternativ kann man auch zweifelhafte Werte entfernen):</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="05-korrelation.html#cb39-1"></a><span class="co"># Paket laden, das für das Einlesen von xlsx gebraucht wird</span></span>
-<span id="cb39-2"><a href="05-korrelation.html#cb39-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
-<span id="cb39-3"><a href="05-korrelation.html#cb39-3"></a><span class="co"># &quot;korrigierte&quot; Daten einlesen</span></span>
-<span id="cb39-4"><a href="05-korrelation.html#cb39-4"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022_korrigiert.xlsx&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
-<span id="cb39-5"><a href="05-korrelation.html#cb39-5"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
-<span id="cb39-6"><a href="05-korrelation.html#cb39-6"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span></code></pre></div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="05-korrelation.html#cb40-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>zeit_morgens, reisedat<span class="op">$</span>zeit_nachmittags, </span>
-<span id="cb40-2"><a href="05-korrelation.html#cb40-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
-<span id="cb40-3"><a href="05-korrelation.html#cb40-3"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="05-korrelation.html#cb40-1"></a><span class="co"># Paket laden, das für das Einlesen von xlsx gebraucht wird</span></span>
+<span id="cb40-2"><a href="05-korrelation.html#cb40-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
+<span id="cb40-3"><a href="05-korrelation.html#cb40-3"></a><span class="co"># &quot;korrigierte&quot; Daten einlesen</span></span>
+<span id="cb40-4"><a href="05-korrelation.html#cb40-4"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022_korrigiert.xlsx&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
+<span id="cb40-5"><a href="05-korrelation.html#cb40-5"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
+<span id="cb40-6"><a href="05-korrelation.html#cb40-6"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="05-korrelation.html#cb41-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>zeit_morgens, reisedat<span class="op">$</span>zeit_nachmittags, </span>
+<span id="cb41-2"><a href="05-korrelation.html#cb41-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
+<span id="cb41-3"><a href="05-korrelation.html#cb41-3"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-23-1.png" width="80%" /></p>
 <p>Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker.</p>
 <p>Plotten wir nun eine der Zeiten (“morgens”) gegen die Entfernung:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="05-korrelation.html#cb41-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>distanz, reisedat<span class="op">$</span>zeit_morgens, </span>
-<span id="cb41-2"><a href="05-korrelation.html#cb41-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="05-korrelation.html#cb42-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>distanz, reisedat<span class="op">$</span>zeit_morgens, </span>
+<span id="cb42-2"><a href="05-korrelation.html#cb42-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-24-1.png" width="80%" /></p>
 <p>An dieser Stelle fallen die vier Datenpunkte ganz rechts auf, sowie der Datenpunkte unten <span class="math inline">\((14.8, 1.2)\)</span>. Bei letzterem hat sich vielleicht wieder jemand mit Minuten und Stunden vertan und meint hier <span class="math inline">\(1.2\)</span> Stunden, also <span class="math inline">\(72\)</span> Minuten. Die vier Punkte ganz rechts könnten Personen sein, die relativ weite Strecken mit dem Auto zurücklegen. Darauf schauen wir in späteren Kapitel noch etwas näher. Vorerst nutzen wir die Daten so, wie sie sind.</p>
 <p><strong>Aufgabe:</strong> <em>Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in “Reisezeit” kommen könnte.</em></p>
 <p>Die <em>lineare</em> Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-<strong>Korrelationskoeffizient nach Bravais-Pearson</strong> <span class="math inline">\(r_{x,y}\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> berechnet. Er ergibt sich aus den Standardabweichungen <span class="math inline">\(s_x\)</span> und <span class="math inline">\(s_y\)</span> und der standardisierten Kovarianz <span class="math inline">\(s_{x,y}\)</span> durch:
 <span class="math display">\[r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}\]</span></p>
 <p>In <em>R</em> mit der <code>cor()</code> Funktion:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="05-korrelation.html#cb42-1"></a><span class="kw">cor</span>(reisedat<span class="op">$</span>distanz, reisedat<span class="op">$</span>zeit_morgens,</span>
-<span id="cb42-2"><a href="05-korrelation.html#cb42-2"></a>    <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="05-korrelation.html#cb43-1"></a><span class="kw">cor</span>(reisedat<span class="op">$</span>distanz, reisedat<span class="op">$</span>zeit_morgens,</span>
+<span id="cb43-2"><a href="05-korrelation.html#cb43-2"></a>    <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0.8221</code></pre>
 <p>Das Argument <code>use = "complete.obs"</code> teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne “NA”, ansonsten wäre der Output “NA”. Da hier nur vollständige Datenpaare vorhanden sind, ist das Argument nur vorsorglich gesetzt. Anstatt <code>method = "pearson"</code> sind ebenfalls <code>method = "spearman"</code> und <code>method = "kendall"</code> möglich; beides sind Rangkorrelationskoeffizienten.</p>
 <p>In Abbildung <a href="05-korrelation.html#fig:pearson">5.6</a> sehen Sie Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. Bei augenscheinlich nicht-linearen Zusammenhängen wählt man üblicherweise einen Rangkorrelationskoeffizienten, der dann aussagekräftiger ist.</p>
-<div class="figure" style="text-align: center"><span id="fig:pearson"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:pearson"></span>
 <img src="figs/pearson.png" alt="Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. &lt;br&gt;&lt;small&gt; Quelle: https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Correlation_examples.png/440px-Correlation_examples.png. &lt;/small&gt;" width="80%" />
 <p class="caption">
 Abbildung 5.6: Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. <br><small> Quelle: <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Correlation_examples.png/440px-Correlation_examples.png" class="uri">https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Correlation_examples.png/440px-Correlation_examples.png</a>. </small>
@@ -372,7 +375,7 @@ Abbildung 5.6: Werte des Korrelationskoeffizienten für verschiedene Zusammenhä
 
 
 
-<h3>Literatur</h3>
+<h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references">
 <div id="ref-mittag2016">
 <p>Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.</p>
@@ -397,7 +400,6 @@ Abbildung 5.6: Werte des Korrelationskoeffizienten für verschiedene Zusammenhä
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -416,6 +418,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -436,6 +439,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "none"
 }
@@ -449,7 +456,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

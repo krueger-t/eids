@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 2 Grundbegriffe und Datenerhebung | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 2 Grundbegriffe und Datenerhebung | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
   <meta name="github-repo" content="krueger-t/eids" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-11-08" />
+<meta name="date" content="2022-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,8 @@
   
 <link rel="prev" href="01-einfuehrung.html"/>
 <link rel="next" href="03-haeufigkeit.html"/>
-<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,8 +49,10 @@
 
 
 
-
 <script src="libs/accessible-code-block/empty-anchor.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +119,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -223,19 +226,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="begriffe" class="section level1">
-<h1><span class="header-section-number">Kapitel 2</span> Grundbegriffe und Datenerhebung</h1>
+<div id="begriffe" class="section level1 hasAnchor">
+<h1><span class="header-section-number">Kapitel 2</span> Grundbegriffe und Datenerhebung<a href="02-begriffe.html#begriffe" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Lesen Sie hierzu bitte Kapitel 3.1.2 und 3.1.3 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>. Im Folgenden finden Sie Leitfragen und Ergänzungen zu diesen Kapiteln.</p>
-<div id="statistische-grundbegriffe" class="section level2">
-<h2><span class="header-section-number">2.1</span> Statistische Grundbegriffe</h2>
+<div id="statistische-grundbegriffe" class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.1</span> Statistische Grundbegriffe<a href="02-begriffe.html#statistische-grundbegriffe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Die <strong>statistische Masse</strong> umfasst all jene Elemente (Anzahl <span class="math inline">\(N\)</span>), die für eine statistische Untersuchung <em>Relevanz</em> besitzen. Für die Bestimmung der statistischen Masse sind inhaltliche, zeitliche und räumliche Abgrenzungskriterien erforderlich. Alternative Begriffe sind (die geläufigsten fett gedruckt): statistische Grundmenge, <strong>Grundgesamtheit</strong>, <strong>Population</strong>, Kollektiv. Beispiele finden Sie in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.1.3.</p>
 <p>Die <strong>statistische Einheit</strong> <span class="math inline">\(e_i\)</span> mit <span class="math inline">\(i=1, \ldots, n\)</span> stellt das <em>Untersuchungselement</em> und somit die kleinste, nicht weiter unterteilbare Einheit in einer statistischen Untersuchung dar. Diese statistische Einheit trägt jene Information (auch als Merkmal <span class="math inline">\(X\)</span> bezeichnet), die im Zentrum der statistischen Untersuchung steht. Alternative Begriffe sind, je nach Kontext: <strong>Untersuchungseinheit</strong>, Proband, <strong>Merkmalsträger</strong>. Siehe <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.1.3 für Beispiele.</p>
 <p>Jene <em>Eigenschaft</em> eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als <strong>Merkmal</strong> <span class="math inline">\(X\)</span> des Elements bezeichnet. Eine statistische Einheit weist mindestens ein Merkmal auf, kann aber ebenso durch mehrere Merkmale gekennzeichnet sein. Alternative Begriffe sind: <strong>Variable</strong>, Indikator. Beispiele finden Sie wiederum in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.1.3.</p>
 <p>Die <strong>Merkmalsausprägungen</strong> <span class="math inline">\(a_j\)</span> mit <span class="math inline">\(j=1, \ldots, m\)</span> eines Merkmals <span class="math inline">\(X\)</span> umfassen jene Manifestationen, die ein Merkmal im Rahmen einer statistischen Untersuchung annehmen <em>kann</em>. Alternative Begriffe sind: Merkmalskategorien, Modalitäten. Z.B. kann das Merkmal Schneedeckenhöhe Werte von null (kein Schnee vorhanden) bis zu mehreren Metern einnehmen.</p>
 <p>Der <strong>Merkmalswert</strong> <span class="math inline">\(x_i\)</span> mit <span class="math inline">\(i=1, \ldots, n\)</span> schließlich ist jener Wert, den ein Merkmal <span class="math inline">\(X\)</span> in einer statistischen Untersuchung <em>tatsächlich</em> annimmt. Alternative Begriffe sind: Beobachtungswert, Datum (Plural: Daten). Beispiel: Tatsächliche Schneedeckenmessung an einem Punkt von 285,5cm.</p>
 </div>
-<div id="datenerhebung" class="section level2">
-<h2><span class="header-section-number">2.2</span> Datenerhebung</h2>
+<div id="datenerhebung" class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.2</span> Datenerhebung<a href="02-begriffe.html#datenerhebung" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Leitfragen</strong> zu <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.1.2:</p>
 <ul>
 <li><em>Was ist der Unterschied zwischen <strong>Primärdaten</strong> und <strong>Sekundärdaten</strong>?</em></li>
@@ -251,8 +254,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Stichprobenumfang</strong>: Eine Stichprobe sollte ausreichend groß sein. Mehr dazu in der schließenden Statistik (Kapitel <a href="08-schaetzen.html#schaetzen">8</a> - <a href="10-regression.html#regression">10</a>).</li>
 </ol>
 </div>
-<div id="skalenniveaus" class="section level2">
-<h2><span class="header-section-number">2.3</span> Skalenniveaus</h2>
+<div id="skalenniveaus" class="section level2 hasAnchor">
+<h2><span class="header-section-number">2.3</span> Skalenniveaus<a href="02-begriffe.html#skalenniveaus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Die Skalenniveaus von Daten bestimmen den Informationsgehalt der Daten und damit das Analyse- und Interpretationspotenzial. In der Reihenfolge <em>Nominalskala</em> - <em>Ordinalskala</em> - <em>metrische Skalen</em> werden jeweils zusätzliche mathematische Operationen erschlossen <span class="citation">(s. Zimmermann-Janschitz <a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>, Tabelle 3.8, S. 79)</span>.</p>
 <p>Qualitative, klassifikatorische Merkmale befinden sich auf der <strong>Nominalskala</strong>. Die Kategorien können verbale Bezeichnungen oder Zahlencodes sein (Achtung: Die Zahl ist in dem Fall ein Code und keine natürliche Zahl mit der gerechnet werden kann.) Die zulässige mathematische Operation ist der <strong>Vergleich</strong>, d.h. Merkmalswerte von statistischen Einheiten sind entweder gleich oder verschieden. Beispiel: Art des Vulkanausbruchs (Tabelle <a href="02-begriffe.html#tab:nominal">2.1</a>). Obwohl <span class="math inline">\(1+2=3\)</span> ist, ist Lava plus Gestein nicht gleich Gas!</p>
 <table>
@@ -301,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<h3>Literatur</h3>
+<h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references">
 <div id="ref-zimmermann2014">
 <p>Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.</p>
@@ -317,7 +320,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
-<script src="libs/gitbook/js/lunr.js"></script>
 <script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
@@ -336,6 +338,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -356,6 +359,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "none"
 }
@@ -369,7 +376,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
