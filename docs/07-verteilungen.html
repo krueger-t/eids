@@ -228,16 +228,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="verteilungen" class="section level1 hasAnchor">
 <h1><span class="header-section-number">Kapitel 7</span> Verteilungen<a href="07-verteilungen.html#verteilungen" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-In Kapitel <a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit">6</a> haben wir gesehen, dass alle <span class="math inline">\(36\)</span> Elementarereignisse zweier Würfelwürfe <span class="math inline">\(\omega=(1;1),(1;2),\ldots,(6;6)\)</span> (vgl. Abbildung <a href="06-wahrscheinlichkeit.html#fig:wuerfel2">6.2</a>) die gleiche Wahrscheinlichkeit haben, nämlich <span class="math inline">\(\Pr(\omega_i)=\frac{1}{6}\cdot\frac{1}{6}=\frac{1}{36}\)</span>. In Abbildung <a href="07-verteilungen.html#fig:prverteilung">7.1</a> links, sehen wir eine Verteilung dieser Wahrscheinlichkeiten; in diesem Fall ist es eine sogenannte <em>diskrete Gleichverteilung</em>. Wenn uns die Gesamtaugenzahl interessiert, gibt es Ereignisse (z.B. “Gesamtaugenzahl 7”), hier mit <span class="math inline">\(E\)</span> symbolisiert, die wahrscheinlicher sind als andere. Das deckt sich mit unserer Erfahrung mit Würfelspielen. Die Verteilung ist symmetrisch um ein Maximum bei <span class="math inline">\(7\)</span> (Abbildung <a href="07-verteilungen.html#fig:prverteilung">7.1</a> rechts), eine sogenannte <em>diskrete Dreiecksverteilung</em>. Formal schreiben wir:
+<p>In Kapitel <a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit">6</a> haben wir gesehen, dass alle <span class="math inline">\(36\)</span> Elementarereignisse zweier Würfelwürfe <span class="math inline">\(\omega=(1;1),(1;2),\ldots,(6;6)\)</span> (vgl. Abbildung <a href="06-wahrscheinlichkeit.html#fig:wuerfel2">6.2</a>) die gleiche Wahrscheinlichkeit haben, nämlich <span class="math inline">\(\Pr(\omega_i)=\frac{1}{6}\cdot\frac{1}{6}=\frac{1}{36}\)</span>. In Abbildung <a href="07-verteilungen.html#fig:prverteilung">7.1</a> links, sehen wir eine Verteilung dieser Wahrscheinlichkeiten; in diesem Fall ist es eine sogenannte <em>diskrete Gleichverteilung</em>. Wenn uns die Gesamtaugenzahl interessiert, gibt es Ereignisse (z.B. “Gesamtaugenzahl 7”), hier mit <span class="math inline">\(E\)</span> symbolisiert, die wahrscheinlicher sind als andere. Das deckt sich mit unserer Erfahrung mit Würfelspielen. Die Verteilung ist symmetrisch um ein Maximum bei <span class="math inline">\(7\)</span> (Abbildung <a href="07-verteilungen.html#fig:prverteilung">7.1</a> rechts), eine sogenannte <em>diskrete Dreiecksverteilung</em>. Formal schreiben wir:
 <span class="math display" id="eq:prereignis">\[\begin{equation}
 \Pr(E)=\sum_{\omega_i\in E}\Pr\left(\omega_i\right)
 \tag{7.1}
 \end{equation}\]</span>
-<center>
-<blockquote>
-In Worten: Die Wahrscheinlichkeit des Ereignisses <span class="math inline">\(E\)</span> ist gleich der Summe der Wahrscheinlichkeiten aller Elementarereignisse <span class="math inline">\(\omega_i\)</span>, die zu <span class="math inline">\(E\)</span> gehören.
-</center>
-</blockquote>
+&gt; In Worten: Die Wahrscheinlichkeit des Ereignisses <span class="math inline">\(E\)</span> ist gleich der Summe der Wahrscheinlichkeiten aller Elementarereignisse <span class="math inline">\(\omega_i\)</span>, die zu <span class="math inline">\(E\)</span> gehören.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:prverteilung"></span>
 <img src="eids_files/figure-html/prverteilung-1.png" alt="Links: Die $36$ Elementarereignisse zweier Würfelwürfe sind gleichverteilt mit $\Pr(\omega_i)=\frac{1}{36}$; die Wahrscheinlichkeitsverteilung ist eine Gleichverteilung. Rechts: Die Wahrscheinlichkeitsverteilung der Ereignisse $E$, der Gesamtaugenzahl zweier Würfelwürfe, ist eine Dreiecksverteilung; das Ereignis $7$ ist am wahrscheinlichsten." width="50%" /><img src="eids_files/figure-html/prverteilung-2.png" alt="Links: Die $36$ Elementarereignisse zweier Würfelwürfe sind gleichverteilt mit $\Pr(\omega_i)=\frac{1}{36}$; die Wahrscheinlichkeitsverteilung ist eine Gleichverteilung. Rechts: Die Wahrscheinlichkeitsverteilung der Ereignisse $E$, der Gesamtaugenzahl zweier Würfelwürfe, ist eine Dreiecksverteilung; das Ereignis $7$ ist am wahrscheinlichsten." width="50%" />
 <p class="caption">
@@ -267,30 +263,24 @@ Abbildung 7.3: Links: Theoretische <strong>Verteilung</strong> des Merkmals “E
 f_X(x)=\Pr(X=x)
 \tag{7.2}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Die Wahrscheinlichkeitsfunktion einer diskreten Zufallsvariable <span class="math inline">\(X\)</span> in Abhängigkeit der Ausprägung <span class="math inline">\(x\)</span> ist die Eintrittswahrscheinlichkeit von <span class="math inline">\(x\)</span>. Vgl. Abbildung <a href="06-wahrscheinlichkeit.html#fig:wuerfel2">6.2</a> und Abbildung <a href="07-verteilungen.html#fig:prverteilung">7.1</a>, links.
-</center>
+<p>In Worten: Die Wahrscheinlichkeitsfunktion einer diskreten Zufallsvariable <span class="math inline">\(X\)</span> in Abhängigkeit der Ausprägung <span class="math inline">\(x\)</span> ist die Eintrittswahrscheinlichkeit von <span class="math inline">\(x\)</span>. Vgl. Abbildung <a href="06-wahrscheinlichkeit.html#fig:wuerfel2">6.2</a> und Abbildung <a href="07-verteilungen.html#fig:prverteilung">7.1</a>, links.</p>
 </blockquote>
 <p>Im Fall von <em>stetigen</em> Zufallsvariablen sprechen wir von der <strong>Dichtefunktion</strong>:
 <span class="math display" id="eq:dichtefunktion">\[\begin{equation}
 \int_{a}^{b}f_X(x)\;dx=\Pr(a\leq x\leq b)
 \tag{7.3}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Das Integral von <span class="math inline">\(x=a\)</span> bis <span class="math inline">\(x=b\)</span> der Dichtefunktion einer stetigen Zufallsvariable <span class="math inline">\(X\)</span> in Abhängigkeit der Ausprägung <span class="math inline">\(x\)</span> ist die Wahrscheinlichkeit, dass <span class="math inline">\(X\)</span> zwischen <span class="math inline">\(a\)</span> und <span class="math inline">\(b\)</span> liegt. Vgl. Abbildung <a href="07-verteilungen.html#fig:fFtheoretisch">7.3</a>, links.
-</center>
+<p>In Worten: Das Integral von <span class="math inline">\(x=a\)</span> bis <span class="math inline">\(x=b\)</span> der Dichtefunktion einer stetigen Zufallsvariable <span class="math inline">\(X\)</span> in Abhängigkeit der Ausprägung <span class="math inline">\(x\)</span> ist die Wahrscheinlichkeit, dass <span class="math inline">\(X\)</span> zwischen <span class="math inline">\(a\)</span> und <span class="math inline">\(b\)</span> liegt. Vgl. Abbildung <a href="07-verteilungen.html#fig:fFtheoretisch">7.3</a>, links.</p>
 </blockquote>
 <p>Die kumulierten Wahrscheinlichkeiten beschreibt in beiden Fällen die <strong>Verteilungsfunktion</strong>:
 <span class="math display" id="eq:verteilungsfunktion">\[\begin{equation}
 F_X(x)=\Pr(X\leq x)
 \tag{7.4}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Die Verteilungsfunktion einer beliebigen Zufallsvariable <span class="math inline">\(X\)</span> in Abhängigkeit der Ausprägung <span class="math inline">\(x\)</span> ist die Wahrscheinlichkeit, dass <span class="math inline">\(X\)</span> kleiner oder gleich <span class="math inline">\(x\)</span> ist. Vgl. Abbildung <a href="07-verteilungen.html#fig:fFtheoretisch">7.3</a>, rechts.
-</center>
+<p>In Worten: Die Verteilungsfunktion einer beliebigen Zufallsvariable <span class="math inline">\(X\)</span> in Abhängigkeit der Ausprägung <span class="math inline">\(x\)</span> ist die Wahrscheinlichkeit, dass <span class="math inline">\(X\)</span> kleiner oder gleich <span class="math inline">\(x\)</span> ist. Vgl. Abbildung <a href="07-verteilungen.html#fig:fFtheoretisch">7.3</a>, rechts.</p>
 </blockquote>
 <p>Die Analogien zwischen empirischen und theoretischen Verteilungen können Sie auch nochmal in <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>, Tabelle 10.3 auf S. 159 nachlesen.</p>
 </div>
@@ -308,10 +298,8 @@ In Worten: Die Verteilungsfunktion einer beliebigen Zufallsvariable <span class=
 Abbildung 7.4: Form der Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable <span class="math inline">\(X\)</span>. Hier ist die <strong>Standardnormalverteilung</strong> <span class="math inline">\(N(0,1)\)</span> dargestellt, mit Mittelwert <span class="math inline">\(\mu=0\)</span> und Standardabweichung <span class="math inline">\(\sigma=1\)</span>.
 </p>
 </div>
-<center>
-Wenn wir ausdrücken wollen, dass eine Zufallsvariable <span class="math inline">\(X\)</span> normalverteilt ist schreiben wir:
-</center>
-<p><span class="math display" id="eq:xnverteilt">\[\begin{equation}
+<p>Wenn wir ausdrücken wollen, dass eine Zufallsvariable <span class="math inline">\(X\)</span> normalverteilt ist schreiben wir:
+<span class="math display" id="eq:xnverteilt">\[\begin{equation}
 X\sim N(\mu,\sigma)
 \tag{7.5}
 \end{equation}\]</span>
@@ -388,10 +376,8 @@ E(X)=\mu=\sum_{j=1}^{m}x_j\cdot \Pr\left(X=x_j\right)\quad\text{für diskrete Ve
 E(X)=\mu=\int_{-\infty}^{\infty}x\cdot f_X(x)\;dx\quad\text{für stetige Verteilungen}
 \tag{7.7}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-Merke: Für den theoretischen Erwartungswert wird häufig das Symbol <span class="math inline">\(\mu\)</span> verwendet. Damit ist aber nicht unbedingt der Parameter gleichen Namens der Normalverteilung gemeint, obwohl natürlich beide Größen identisch sind, wenn die Zufallsvariable normalverteilt ist. Aber auch der Erwartungswert anderer theoretischer Verteilungen wird häufig mit <span class="math inline">\(\mu\)</span> bezeichnet. Das ist leider so verwirrend.
-</center>
+<p>Merke: Für den theoretischen Erwartungswert wird häufig das Symbol <span class="math inline">\(\mu\)</span> verwendet. Damit ist aber nicht unbedingt der Parameter gleichen Namens der Normalverteilung gemeint, obwohl natürlich beide Größen identisch sind, wenn die Zufallsvariable normalverteilt ist. Aber auch der Erwartungswert anderer theoretischer Verteilungen wird häufig mit <span class="math inline">\(\mu\)</span> bezeichnet. Das ist leider so verwirrend.</p>
 </blockquote>
 <p>Die Formulierung des Erwartungswertes ist analog zur gewichteten Formulierung des arithmetischen Mittels empirischer Verteilungen (vgl. Kapitel <a href="03-haeufigkeit.html#haeufigkeit">3</a>):
 <span class="math display">\[\bar x=\sum_{j=1}^{m}a_j\cdot f_j\]</span>
@@ -406,10 +392,8 @@ V(X)=\sigma^2=\sum_{j=1}^{m}\left(x_j-\mu\right)^2\cdot \Pr\left(X=x_j\right)\qu
 V(X)=\sigma^2=\int_{-\infty}^{\infty}\left(x-\mu\right)^2\cdot f_X(x)\;dx\quad\text{für stetige Verteilungen}
 \tag{7.9}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-Merke: Wiederum wird hier häufig das Symbol des entsprechenden Parameters der Normalverteilung, <span class="math inline">\(\sigma^2\)</span>, verwendet. Beide Größen sind identisch, wenn die Zufallsvariable normalverteilt ist. Aber auch die Varianze anderer theoretischer Verteilungen wird häufig mit <span class="math inline">\(\sigma^2\)</span> bezeichnet.
-</center>
+<p>Merke: Wiederum wird hier häufig das Symbol des entsprechenden Parameters der Normalverteilung, <span class="math inline">\(\sigma^2\)</span>, verwendet. Beide Größen sind identisch, wenn die Zufallsvariable normalverteilt ist. Aber auch die Varianze anderer theoretischer Verteilungen wird häufig mit <span class="math inline">\(\sigma^2\)</span> bezeichnet.</p>
 </blockquote>
 <p>Die Formulierung der Varianz ist analog zur Formulierung der Varianz empirischer Verteilungen, hier wie gehabt korrigiert angegeben (vgl. Kapitel <a href="04-streuung.html#streuung">4</a>):
 <span class="math display">\[s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}\]</span></p>
@@ -425,10 +409,8 @@ Das ist für diskrete und stetige Zufallsvariablen gleich, und analog zur Formul
 F_X(x_p)=\Pr\left(X\leq x_p\right)=p
 \tag{7.11}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Das <span class="math inline">\(p\)</span>-Quantil einer beliebigen Zufallsvariable <span class="math inline">\(X\)</span> ist die Stelle <span class="math inline">\(x_p\)</span>, an der die Verteilungsfunktion <span class="math inline">\(F_X\)</span> der Zufallsvariable gleich <span class="math inline">\(p\)</span> ist. Die Verteilungsfunktion gibt die Wahrscheinlichkeit an, dass die Zufallsvariable <span class="math inline">\(X\)</span> einen Wert kleiner oder gleich <span class="math inline">\(x_p\)</span> annimmt.
-</center>
+<p>In Worten: Das <span class="math inline">\(p\)</span>-Quantil einer beliebigen Zufallsvariable <span class="math inline">\(X\)</span> ist die Stelle <span class="math inline">\(x_p\)</span>, an der die Verteilungsfunktion <span class="math inline">\(F_X\)</span> der Zufallsvariable gleich <span class="math inline">\(p\)</span> ist. Die Verteilungsfunktion gibt die Wahrscheinlichkeit an, dass die Zufallsvariable <span class="math inline">\(X\)</span> einen Wert kleiner oder gleich <span class="math inline">\(x_p\)</span> annimmt.</p>
 </blockquote>
 <p>Das Prinzip ist das gleiche für empirische Verteilungen, wobei die folgenden Rechenregeln gelten (vgl. Kapitel <a href="04-streuung.html#streuung">4</a>):
 <span class="math display">\[\bar x_p=\frac{x_{n\cdot p}+x_{n\cdot p+1}}{2}\quad\text{falls}\quad n\cdot p\quad\text{ganzzahlig}\]</span>
@@ -549,10 +531,8 @@ Abbildung 7.9: Links: Empirische Verteilung der Entfernungsdaten mit theoretisch
 X\sim U(a,b)
 \tag{7.13}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist gleichverteilt über dem Intervall <span class="math inline">\([a,b]\)</span> (<span class="math inline">\(a\)</span> und <span class="math inline">\(b\)</span> sind die Parameter der Gleichverteilung).
-</center>
+<p>In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist gleichverteilt über dem Intervall <span class="math inline">\([a,b]\)</span> (<span class="math inline">\(a\)</span> und <span class="math inline">\(b\)</span> sind die Parameter der Gleichverteilung).</p>
 </blockquote>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:u"></span>
 <img src="eids_files/figure-html/u-1.png" alt="Links: Diskrete Gleichverteilung der Elementarereignisse zweier Würfelwürfe. Rechts: Stetige Gleichverteilung zwischen $2$ und $4$." width="50%" /><img src="eids_files/figure-html/u-2.png" alt="Links: Diskrete Gleichverteilung der Elementarereignisse zweier Würfelwürfe. Rechts: Stetige Gleichverteilung zwischen $2$ und $4$." width="50%" />
@@ -568,10 +548,8 @@ Abbildung 7.10: Links: Diskrete Gleichverteilung der Elementarereignisse zweier 
 X\sim B(p,n)
 \tag{7.14}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist binomialverteilt mit Erfolgswahrscheinlichkeit <span class="math inline">\(p\)</span> und Anzahl der Versuche <span class="math inline">\(n\)</span>.
-</center>
+<p>In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist binomialverteilt mit Erfolgswahrscheinlichkeit <span class="math inline">\(p\)</span> und Anzahl der Versuche <span class="math inline">\(n\)</span>.</p>
 </blockquote>
 <p>Der Parameter <span class="math inline">\(p\)</span> ist die “Erfolgswahrscheinlichkeit”, z.B. der Anteil blauer Murmeln in einer Urne mit blauen und roten Murmeln, aus der wir mit Zurücklegen ziehen. Dann ist die Wahrscheinlichkeit bei einem Versuch eine blaue Murmel zu ziehen gleich <span class="math inline">\(p\)</span>, und bei mehreren Versuchen <span class="math inline">\(n\)</span> erwarten wir insgesamt <span class="math inline">\(p\cdot n\)</span> blaue Kugeln zu ziehen<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
 <p>Die Binomialverteilung ist eine <em>diskrete</em> Verteilung. Abbildung <a href="07-verteilungen.html#fig:b">7.11</a> verdeutlicht ihre Form für verschiedene Parameterkonstellationen.</p>
@@ -590,10 +568,8 @@ Abbildung 7.11: Links: Wahrscheinlichkeitsfunktion der Binomialverteilung für v
 X\sim Pois(\lambda)
 \tag{7.15}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist Poisson-verteilt mit Parameter <span class="math inline">\(\lambda\)</span>.
-</center>
+<p>In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist Poisson-verteilt mit Parameter <span class="math inline">\(\lambda\)</span>.</p>
 </blockquote>
 <p>Die Poisson-Verteilung hat nur einen Parameter, <span class="math inline">\(\lambda\)</span>, der sowohl der Erwartungswert ist, als auch die Breite und damit auch die Form der Verteilung steuert (Abbildung <a href="07-verteilungen.html#fig:pois">7.12</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:pois"></span>
@@ -610,10 +586,8 @@ Abbildung 7.12: Links: Wahrscheinlichkeitsfunktion der Poisson-Verteilung für v
 X\sim Gum(\mu,\beta)
 \tag{7.16}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist Gumbel-verteilt mit Lageparameter <span class="math inline">\(\mu\)</span> und Skalierungsparameter <span class="math inline">\(\beta\)</span>.
-</center>
+<p>In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist Gumbel-verteilt mit Lageparameter <span class="math inline">\(\mu\)</span> und Skalierungsparameter <span class="math inline">\(\beta\)</span>.</p>
 </blockquote>
 <p>Wiederum sind <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\beta\)</span> lediglich Symbole für die Parameter der Verteilung und <span class="math inline">\(\mu\)</span> hat keine Entsprechung im theoretischen Mittelwert oder in dem <span class="math inline">\(\mu\)</span> der Normalverteilung. Abbildung <a href="07-verteilungen.html#fig:gum">7.13</a> illustriert die Form der Gumbel-Verteilung.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:gum"></span>
@@ -630,10 +604,8 @@ Abbildung 7.13: Links: Dichtefunktion der Gumbel-Verteilung für verschiedene We
 X\sim Wei(\lambda,k)
 \tag{7.17}
 \end{equation}\]</span></p>
-<center>
 <blockquote>
-In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist Weibull-verteilt mit Skalierungsparameter <span class="math inline">\(\lambda\)</span> und Formparameter <span class="math inline">\(k\)</span>.
-</center>
+<p>In Worten: Die Zufallsvariable <span class="math inline">\(X\)</span> ist Weibull-verteilt mit Skalierungsparameter <span class="math inline">\(\lambda\)</span> und Formparameter <span class="math inline">\(k\)</span>.</p>
 </blockquote>
 <p>Die Weibull-Verteilung hat die Besonderheit, in Abhängigkeit der Parameter <em>rechts- oder linksschief oder annähernd symmetrisch</em> zu sein (Abbildung <a href="07-verteilungen.html#fig:wei">7.14</a>). Sie ist daher sehr flexibel einsetzbar.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:wei"></span>

@@ -96,7 +96,6 @@ eq:kihatmustand5
 fig:kiinterpretation
 eq:sigmahat
 fig:qqentfernung
-fig:qqvariation
 fig:freisezeit
 fig:freisezeit2
 fig:fmoose

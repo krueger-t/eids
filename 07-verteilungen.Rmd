@@ -5,7 +5,7 @@ $$\begin{equation}
 \Pr(E)=\sum_{\omega_i\in E}\Pr\left(\omega_i\right)
 (\#eq:prereignis)
 \end{equation}$$
-<center> > In Worten: Die Wahrscheinlichkeit des Ereignisses $E$ ist gleich der Summe der Wahrscheinlichkeiten aller Elementarereignisse $\omega_i$, die zu $E$ gehören.</center>
+> In Worten: Die Wahrscheinlichkeit des Ereignisses $E$ ist gleich der Summe der Wahrscheinlichkeiten aller Elementarereignisse $\omega_i$, die zu $E$ gehören.
 
 ```{r prverteilung, echo=FALSE, fig.align='center', fig.cap='Links: Die $36$ Elementarereignisse zweier Würfelwürfe sind gleichverteilt mit $\\Pr(\\omega_i)=\\frac{1}{36}$; die Wahrscheinlichkeitsverteilung ist eine Gleichverteilung. Rechts: Die Wahrscheinlichkeitsverteilung der Ereignisse $E$, der Gesamtaugenzahl zweier Würfelwürfe, ist eine Dreiecksverteilung; das Ereignis $7$ ist am wahrscheinlichsten.', fig.show='hold', out.width='50%'}
 barplot(rep(1/36,36),
@@ -67,7 +67,7 @@ f_X(x)=\Pr(X=x)
 (\#eq:prfunktion)
 \end{equation}$$
 
-<center> > In Worten: Die Wahrscheinlichkeitsfunktion einer diskreten Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Eintrittswahrscheinlichkeit von $x$. Vgl. Abbildung \@ref(fig:wuerfel2) und Abbildung \@ref(fig:prverteilung), links.</center>
+> In Worten: Die Wahrscheinlichkeitsfunktion einer diskreten Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Eintrittswahrscheinlichkeit von $x$. Vgl. Abbildung \@ref(fig:wuerfel2) und Abbildung \@ref(fig:prverteilung), links.
 
 Im Fall von _stetigen_ Zufallsvariablen sprechen wir von der **Dichtefunktion**:
 $$\begin{equation}
@@ -75,7 +75,7 @@ $$\begin{equation}
 (\#eq:dichtefunktion)
 \end{equation}$$
 
-<center> > In Worten: Das Integral von $x=a$ bis $x=b$ der Dichtefunktion einer stetigen Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ zwischen $a$ und $b$ liegt. Vgl. Abbildung \@ref(fig:fFtheoretisch), links.</center>
+> In Worten: Das Integral von $x=a$ bis $x=b$ der Dichtefunktion einer stetigen Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ zwischen $a$ und $b$ liegt. Vgl. Abbildung \@ref(fig:fFtheoretisch), links.
 
 Die kumulierten Wahrscheinlichkeiten beschreibt in beiden Fällen die **Verteilungsfunktion**:
 $$\begin{equation}
@@ -83,7 +83,7 @@ F_X(x)=\Pr(X\leq x)
 (\#eq:verteilungsfunktion)
 \end{equation}$$
 
-<center> > In Worten: Die Verteilungsfunktion einer beliebigen Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ kleiner oder gleich $x$ ist. Vgl. Abbildung \@ref(fig:fFtheoretisch), rechts.</center>
+> In Worten: Die Verteilungsfunktion einer beliebigen Zufallsvariable $X$ in Abhängigkeit der Ausprägung $x$ ist die Wahrscheinlichkeit, dass $X$ kleiner oder gleich $x$ ist. Vgl. Abbildung \@ref(fig:fFtheoretisch), rechts.
 
 Die Analogien zwischen empirischen und theoretischen Verteilungen können Sie auch nochmal in @mittag2016, Tabelle 10.3 auf S. 159 nachlesen.
 
@@ -100,7 +100,7 @@ x <- seq(-5, 5, 0.1)
 plot(x, dnorm(x, mean = 0, sd = 1), type = 'l', xlab = 'X = x', ylab = 'Dichtefunktion')
 ```
 
-<center>Wenn wir ausdrücken wollen, dass eine Zufallsvariable $X$ normalverteilt ist schreiben wir:</center>
+Wenn wir ausdrücken wollen, dass eine Zufallsvariable $X$ normalverteilt ist schreiben wir:
 $$\begin{equation}
 X\sim N(\mu,\sigma)
 (\#eq:xnverteilt)
@@ -177,7 +177,7 @@ E(X)=\mu=\int_{-\infty}^{\infty}x\cdot f_X(x)\;dx\quad\text{für stetige Verteil
 (\#eq:erwartungswertstetig)
 \end{equation}$$
 
-<center> > Merke: Für den theoretischen Erwartungswert wird häufig das Symbol $\mu$ verwendet. Damit ist aber nicht unbedingt der Parameter gleichen Namens der Normalverteilung gemeint, obwohl natürlich beide Größen identisch sind, wenn die Zufallsvariable normalverteilt ist. Aber auch der Erwartungswert anderer theoretischer Verteilungen wird häufig mit $\mu$ bezeichnet. Das ist leider so verwirrend.</center> 
+> Merke: Für den theoretischen Erwartungswert wird häufig das Symbol $\mu$ verwendet. Damit ist aber nicht unbedingt der Parameter gleichen Namens der Normalverteilung gemeint, obwohl natürlich beide Größen identisch sind, wenn die Zufallsvariable normalverteilt ist. Aber auch der Erwartungswert anderer theoretischer Verteilungen wird häufig mit $\mu$ bezeichnet. Das ist leider so verwirrend. 
 
 Die Formulierung des Erwartungswertes ist analog zur gewichteten Formulierung des arithmetischen Mittels empirischer Verteilungen (vgl. Kapitel \@ref(haeufigkeit)):
 $$\bar x=\sum_{j=1}^{m}a_j\cdot f_j$$
@@ -194,7 +194,7 @@ V(X)=\sigma^2=\int_{-\infty}^{\infty}\left(x-\mu\right)^2\cdot f_X(x)\;dx\quad\t
 (\#eq:varianzstetig)
 \end{equation}$$
 
-<center> > Merke: Wiederum wird hier häufig das Symbol des entsprechenden Parameters der Normalverteilung, $\sigma^2$, verwendet. Beide Größen sind identisch, wenn die Zufallsvariable normalverteilt ist. Aber auch die Varianze anderer theoretischer Verteilungen wird häufig mit $\sigma^2$ bezeichnet.</center>
+> Merke: Wiederum wird hier häufig das Symbol des entsprechenden Parameters der Normalverteilung, $\sigma^2$, verwendet. Beide Größen sind identisch, wenn die Zufallsvariable normalverteilt ist. Aber auch die Varianze anderer theoretischer Verteilungen wird häufig mit $\sigma^2$ bezeichnet.
 
 Die Formulierung der Varianz ist analog zur Formulierung der Varianz empirischer Verteilungen, hier wie gehabt korrigiert angegeben (vgl. Kapitel \@ref(streuung)):
 $$s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
@@ -213,7 +213,7 @@ F_X(x_p)=\Pr\left(X\leq x_p\right)=p
 (\#eq:quantile)
 \end{equation}$$
 
-<center> > In Worten: Das $p$-Quantil einer beliebigen Zufallsvariable $X$ ist die Stelle $x_p$, an der die Verteilungsfunktion $F_X$ der Zufallsvariable gleich $p$ ist. Die Verteilungsfunktion gibt die Wahrscheinlichkeit an, dass die Zufallsvariable $X$ einen Wert kleiner oder gleich $x_p$ annimmt.</center>
+> In Worten: Das $p$-Quantil einer beliebigen Zufallsvariable $X$ ist die Stelle $x_p$, an der die Verteilungsfunktion $F_X$ der Zufallsvariable gleich $p$ ist. Die Verteilungsfunktion gibt die Wahrscheinlichkeit an, dass die Zufallsvariable $X$ einen Wert kleiner oder gleich $x_p$ annimmt.
 
 Das Prinzip ist das gleiche für empirische Verteilungen, wobei die folgenden Rechenregeln gelten (vgl. Kapitel \@ref(streuung)):
 $$\bar x_p=\frac{x_{n\cdot p}+x_{n\cdot p+1}}{2}\quad\text{falls}\quad n\cdot p\quad\text{ganzzahlig}$$
@@ -333,7 +333,7 @@ X\sim U(a,b)
 (\#eq:xuverteilt)
 \end{equation}$$
 
-<center> > In Worten: Die Zufallsvariable $X$ ist gleichverteilt über dem Intervall $[a,b]$ ($a$ und $b$ sind die Parameter der Gleichverteilung).</center>
+> In Worten: Die Zufallsvariable $X$ ist gleichverteilt über dem Intervall $[a,b]$ ($a$ und $b$ sind die Parameter der Gleichverteilung).
 
 ```{r u, echo=FALSE, fig.align='center', fig.cap='Links: Diskrete Gleichverteilung der Elementarereignisse zweier Würfelwürfe. Rechts: Stetige Gleichverteilung zwischen $2$ und $4$.', fig.show='hold', out.width='50%'}
 # diskret
@@ -357,7 +357,7 @@ X\sim B(p,n)
 (\#eq:xbverteilt)
 \end{equation}$$
 
-<center> > In Worten: Die Zufallsvariable $X$ ist binomialverteilt mit Erfolgswahrscheinlichkeit $p$ und Anzahl der Versuche $n$.</center>
+> In Worten: Die Zufallsvariable $X$ ist binomialverteilt mit Erfolgswahrscheinlichkeit $p$ und Anzahl der Versuche $n$.
 
 Der Parameter $p$ ist die "Erfolgswahrscheinlichkeit", z.B. der Anteil blauer Murmeln in einer Urne mit blauen und roten Murmeln, aus der wir mit Zurücklegen ziehen. Dann ist die Wahrscheinlichkeit bei einem Versuch eine blaue Murmel zu ziehen gleich $p$, und bei mehreren Versuchen $n$ erwarten wir insgesamt $p\cdot n$ blaue Kugeln zu ziehen^[Die Anzahl $p\cdot n$ ist der Erwartungswert bei ziehen mit Zurücklegen, der sich aber lediglich als Mittelwert bei vielen (theoretisch unendlich vielen) Wiederholungen des Experiments mit $n$ Versuchen einstellen wird. Genau das ist ja die klassische Definition der Wahrscheinlichkeit (vgl. Kapitel \@ref(wahrscheinlichkeit)).].
 
@@ -390,7 +390,7 @@ X\sim Pois(\lambda)
 (\#eq:xpoisverteilt)
 \end{equation}$$
 
-<center> > In Worten: Die Zufallsvariable $X$ ist Poisson-verteilt mit Parameter $\lambda$.</center>
+> In Worten: Die Zufallsvariable $X$ ist Poisson-verteilt mit Parameter $\lambda$.
 
 Die Poisson-Verteilung hat nur einen Parameter, $\lambda$, der sowohl der Erwartungswert ist, als auch die Breite und damit auch die Form der Verteilung steuert (Abbildung \@ref(fig:pois)).
 
@@ -419,7 +419,7 @@ X\sim Gum(\mu,\beta)
 (\#eq:xgumverteilt)
 \end{equation}$$
 
-<center> > In Worten: Die Zufallsvariable $X$ ist Gumbel-verteilt mit Lageparameter $\mu$ und Skalierungsparameter $\beta$.</center>
+> In Worten: Die Zufallsvariable $X$ ist Gumbel-verteilt mit Lageparameter $\mu$ und Skalierungsparameter $\beta$.
 
 Wiederum sind $\mu$ und $\beta$ lediglich Symbole für die Parameter der Verteilung und $\mu$ hat keine Entsprechung im theoretischen Mittelwert oder in dem $\mu$ der Normalverteilung. Abbildung \@ref(fig:gum) illustriert die Form der Gumbel-Verteilung.
 
@@ -451,7 +451,7 @@ X\sim Wei(\lambda,k)
 (\#eq:xweiverteilt)
 \end{equation}$$
 
-<center> > In Worten: Die Zufallsvariable $X$ ist Weibull-verteilt mit Skalierungsparameter $\lambda$ und Formparameter $k$.</center>
+> In Worten: Die Zufallsvariable $X$ ist Weibull-verteilt mit Skalierungsparameter $\lambda$ und Formparameter $k$.
 
 Die Weibull-Verteilung hat die Besonderheit, in Abhängigkeit der Parameter _rechts- oder linksschief oder annähernd symmetrisch_ zu sein (Abbildung \@ref(fig:wei)). Sie ist daher sehr flexibel einsetzbar.
 

@@ -38,7 +38,7 @@ E(\hat\theta)=\theta
 (\#eq:erwartungstreu)
 \end{equation}$$
 
-> In Worten: Der Erwartungswert des Schätzers ist der wahre Wert des Parameters. D.h. der Schätzer trifft "im Mittel" den zu schätzenden Wert genau.
+> In Worten: Der Erwartungswert des Schätzers ist der wahre Wert des Parameters. D.h. der Schätzer trifft "im Mittel" (bei wiederholter Stichprobenziehung) den zu schätzenden Wert genau.
 
 Wenn ein Schätzer nicht erwartungstreu ist, heißt die Differenz **Verzerrung** oder **Bias**:
 $$\begin{equation}
@@ -62,7 +62,7 @@ $$\begin{equation}
 
 > In Worten: Der Schätzer des Mittelwertes einer normalverteilten Grundgesamheit $\hat\mu$ ist der arithmetische Mittelwert einer Stichprobe aus dieser Grundgesamtheit.
 
-Der Schätzer wird in der Regel nicht exakt mit dem wahren Wert übereinstimmen, nur im Mittel - er ist _erwartungstreu_ (s.o.). Da $\hat\mu$ als Zufallsvariable interpretiert wird, kann diese Unsicherheit als sogenannter **Standardfehler des Mittelwertschätzers** $s_{\hat\mu}$ ausgedrückt werden:
+Der Schätzer wird in der Regel nicht exakt mit dem wahren Wert übereinstimmen, nur im Mittel (bei wiederholter Stichprobenziehung) - er ist _erwartungstreu_ (s.o.). Da $\hat\mu$ als Zufallsvariable interpretiert wird, kann diese Unsicherheit als sogenannter **Standardfehler des Mittelwertschätzers** $s_{\hat\mu}$ ausgedrückt werden:
 $$\begin{equation}
 s_{\hat\mu}=\frac{s}{\sqrt{n}}
 (\#eq:smuhat)
@@ -78,9 +78,9 @@ $$\begin{equation}
 (\#eq:muhatstand)
 \end{equation}$$
 
-Die Herleitung können Sie z.B. in @mittag2016, S. 218ff nachlesen. Hier soll uns nur die Bedeutung dieser Formel interessieren. $\hat\mu-\mu$ ist die Differenz des Schätzers vom wahren Mittelwert (den wir nicht kennen). Diese Differenz wird mit dem Standardfehler des Schätzers $s_{\hat\mu}$ normalisiert. Das Symbol $\sim$ ("Tilde") heißt "ist verteilt gemäß" (vgl. Kapitel \@ref(verteilungen)). Und $t_{n-1}$ steht für die t-Verteilung, die einen Parameter hat (genannt "Freiheitsgrade"), der hier den Wert $n-1$ annimmt. Man spricht von einer t-Verteilung mit $n-1$ Freiheitsgraden. Je größer diese Zahl desto schmaler die t-Verteilung. Abbildung \@ref(fig:tpdfcdfvariation) zeigt die t-Verteilung für verschiedene Freiheitsgrade. Wenn $n$ gegen Unendlich geht geht die t-Verteilung in die Standardnormalverteilung $N(0,1)$ über (vgl. Abbildung \@ref(fig:npdf)). Man sieht in Abbildung \@ref(fig:tpdfcdfvariation), dass sich schon zwischen 100 und 1000 Freiheitsgraden nicht mehr viel an der Breite der t-Verteilung ändert. Wie die Standardnormalverteilung geht die t-Verteilung von $-\infty$ bis $+\infty$ und ist symmetrisch um einen Mittelwert 0. D.h. mit dieser Verteilung erwarten wir bei wiederholter Stichprobenziehung _im Mittel_ den wahren Mittelwert der Grundgesamtheit genau zu schätzen, $E\left(\hat\mu-\mu\right)=0$. Aber von Stichprobe zu Stichprobe erwarten wir eine Variation des Schätzwertes gemäß der t-Verteilung, Formel \@ref(eq:muhatstand).
+Die Herleitung können Sie z.B. in @mittag2016, S. 218ff nachlesen. Hier soll uns nur die Bedeutung dieser Formel interessieren. $\hat\mu-\mu$ ist die Differenz des Schätzers vom wahren Mittelwert (den wir nicht kennen). Diese Differenz wird mit dem Standardfehler des Schätzers $s_{\hat\mu}$ normalisiert. Das Symbol $\sim$ ("Tilde") heißt "ist verteilt gemäß" (vgl. Kapitel \@ref(verteilungen)). Und $t_{n-1}$ steht für die t-Verteilung, die einen Parameter hat (genannt "Freiheitsgrade"), der hier den Wert $n-1$ annimmt. Man spricht von einer t-Verteilung mit $n-1$ Freiheitsgraden. Je größer diese Zahl desto schmaler die t-Verteilung. Abbildung \@ref(fig:tpdfcdfvariation) zeigt die t-Verteilung für verschiedene Freiheitsgrade. Wenn $n$ gegen Unendlich geht, dann geht die t-Verteilung in die Standardnormalverteilung $N(0,1)$ über (vgl. Abbildung \@ref(fig:npdf)). Man sieht in Abbildung \@ref(fig:tpdfcdfvariation), dass sich schon zwischen 100 und 1000 Freiheitsgraden nicht mehr viel an der Breite der t-Verteilung ändert. Wie die Standardnormalverteilung geht die t-Verteilung von $-\infty$ bis $+\infty$ und ist symmetrisch um einen Mittelwert 0. D.h. mit dieser Verteilung erwarten wir bei wiederholter Stichprobenziehung _im Mittel_ den wahren Mittelwert der Grundgesamtheit genau zu schätzen, $E\left(\hat\mu-\mu\right)=0$. Aber von Stichprobe zu Stichprobe erwarten wir eine Variation des Schätzwertes gemäß der t-Verteilung, Formel \@ref(eq:muhatstand).
 
-```{r tpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Freiheitsgrade (der einzige Parameter der t-Verteilung heißt "Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden t-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+```{r tpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariable $Z$ für verschiedene Freiheitsgrade (der einzige Parameter der t-Verteilung heißt "Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden t-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # pdf
 plot(seq(-5,5,0.01), dt(seq(-5,5,0.01), 1), ylim=c(0,0.4), type='l',
      xlab='Z=z', ylab='Dichtefunktion')
@@ -107,7 +107,7 @@ $$\begin{equation}
 
 $t_{n-1;0.975}$ steht für das 0.975-Quantil der t-Verteilung mit $n-1$ Freiheitsgraden (Abbildung \@ref(fig:kiz)). Da die t-Verteilung symmetrisch ist gilt $-t_{n-1;0.975}=t_{n-1;0.025}$.
 
-```{r kiz, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariablen $Z$, hier mit 10 Freiheitsgraden. Die Grenzen des zentralen 95% Konfidenzintervalls sind rot markiert. Es umschließt die zentralen 95% der Verteilung, so dass 2.5% links und 2.5% rechts davon liegen. Rechts: Verteilungsfunktion der entsprechenden t-Verteilung. Die Grenzen des Konfidenzintervalls kann man hier direkt ablesen, als 0.025- und 0.975-Quantile. Da die t-Verteilung symmetrisch ist gilt $-t_{n-1;0.975}=t_{n-1;0.025}$.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+```{r kiz, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariable $Z$, hier mit 10 Freiheitsgraden. Die Grenzen des zentralen 95% Konfidenzintervalls sind rot markiert. Es umschließt die zentralen 95% der Verteilung, so dass 2.5% links und 2.5% rechts davon liegen. Rechts: Verteilungsfunktion der entsprechenden t-Verteilung. Die Grenzen des Konfidenzintervalls kann man hier direkt ablesen, als 0.025- und 0.975-Quantile. Da die t-Verteilung symmetrisch ist gilt $-t_{n-1;0.975}=t_{n-1;0.025}$.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 library("latex2exp")
 # pdf
 plot(seq(-5,5,0.01), dt(seq(-5,5,0.01), 10), ylim=c(0,0.4), type='l',
@@ -239,13 +239,12 @@ Ein visueller Test, ob eine Stichprobe aus einer bestimmten Verteilung entstammt
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-# reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 ```
 
-```{r qqentfernung, echo=TRUE, fig.align='center', fig.cap='Links: QQ-Plot der Entfernungsdaten. Wie wir in Kapitel \\@ref(haeufigkeit) und Kapitel \\@ref(verteilungen) gesehen haben sind die Originaldaten rechtsschief, was wir an dem nach oben gewölbten QQ-Plot sehen (vgl. Abbildung \\@ref(fig:qqvariation)). Eine Lognormalverteilung passte hier ganz gut. Rechts: QQ-Plot der log-transformierten Entfernungsdaten. Hier passt die Normalverteilung besser. Die Verteilung der Daten ist jedoch steiler als eine Normalverteilung (flachere Flanken), was sich in der leichten S-Kurve zeigt (vgl. Abbildung \\@ref(fig:qqvariation)); ausserdem ist der eine Extremwert unten links sichtbar.', fig.show='hold', out.width='50%'}
+```{r qqentfernung, echo=TRUE, fig.align='center', fig.cap='Links: QQ-Plot der Entfernungsdaten. Wie wir in Kapitel \\@ref(haeufigkeit) und Kapitel \\@ref(verteilungen) gesehen haben sind die Originaldaten rechtsschief ("right-skewed"), was wir an dem nach oben gewölbten QQ-Plot sehen (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)). Eine Lognormalverteilung passte hier mässig gut. Rechts: QQ-Plot der log-transformierten Entfernungsdaten. Die Verteilung der transformierten Daten hat flachere Flanken als eine Normalverteilung ("heavier tails"), was sich an der Form der Kurve zeigt (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)).', fig.show='hold', out.width='50%'}
 # QQ-Plot für Originaldaten
 qqnorm(reisedat$distanz)
 qqline(reisedat$distanz)
@@ -254,27 +253,4 @@ qqnorm(log(reisedat$distanz))
 qqline(log(reisedat$distanz))
 ```
 
-Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar (vgl. Kapitel \@ref(haeufigkeit)). Dieses Quantil (nach Standardisierung; vgl. Kapitel \@ref(streuung)) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung aus (Abbildung \@ref(fig:qqvariation)). Im Fall einer Normalverteilung fallen alle Punkte auf eine gerade Linie.
-
-```{r qqvariation, echo=TRUE, fig.align='center', fig.cap='Charakteristische Formen des QQ-Plots und was diese für die Verteilung bedeuten. Eine einfache Verteilung mit steileren Flanken als die der Normalverteilung konnte ich nicht finden. Dieser Fall würde ein S-Form aufweisen, wie die Variante mit flachen Flanken, nur an der Diagonale gespiegelt.', fig.show='hold', out.width='50%'}
-# 1) simuliere normalverteilte Daten
-x_norm <- rnorm(100, 0, 1)
-# QQ-Plot
-qqnorm(x_norm, xlim = c(-4, 4), ylim = c(-4, 4), main='normalverteilte Daten')
-qqline(x_norm)
-# 2) simuliere rechtsschiefe Daten
-x_right <- rlnorm(100, 0, 1)
-# QQ-Plot
-qqnorm(x_right, xlim = c(-4, 4), ylim = c(-2, 6), main='rechtsschiefe Daten')
-qqline(x_right)
-# 3) simuliere linksschiefe Daten
-x_left <- -x_right
-# QQ-Plot
-qqnorm(x_left, xlim = c(-4, 4), ylim = c(-6, 2), main='linksschiefe Daten')
-qqline(x_left)
-# 4) simuliere Verteilung mit flachen Flanken
-x_thick <- rcauchy(100, 0, 1)
-# QQ-Plot
-qqnorm(x_thick, xlim = c(-4, 4), ylim = c(-8, 8), main='Verteilung mit flachen Flanken')
-qqline(x_thick)
-```
+Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar (vgl. Kapitel \@ref(haeufigkeit)). Dieses Quantil (nach Standardisierung; vgl. Kapitel \@ref(streuung)) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung aus. Dies veranschaulicht diese [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/) ganz schön. Im Fall einer Normalverteilung fallen alle Punkte auf eine gerade Linie.
