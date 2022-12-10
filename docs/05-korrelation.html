@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-11-21" />
+<meta name="date" content="2022-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,25 +49,24 @@
 
 
 
-<script src="libs/accessible-code-block/empty-anchor.js"></script>
 <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,13 +86,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -120,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -139,34 +160,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
 <li class="part"><span><b>Grundlagen</b></span></li>
-<li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
+<li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.1</b> Statistik im empirischen Forschungsprozess</a></li>
 <li class="chapter" data-level="1.2" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.2</b> Warum Statistik?</a></li>
 <li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.3</b> Mathematische Notation und Grundlagen</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a><ul>
+<li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="02-begriffe.html"><a href="02-begriffe.html#statistische-grundbegriffe"><i class="fa fa-check"></i><b>2.1</b> Statistische Grundbegriffe</a></li>
 <li class="chapter" data-level="2.2" data-path="02-begriffe.html"><a href="02-begriffe.html#datenerhebung"><i class="fa fa-check"></i><b>2.2</b> Datenerhebung</a></li>
 <li class="chapter" data-level="2.3" data-path="02-begriffe.html"><a href="02-begriffe.html#skalenniveaus"><i class="fa fa-check"></i><b>2.3</b> Skalenniveaus</a></li>
 </ul></li>
 <li class="part"><span><b>Deskriptive Statistik</b></span></li>
-<li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a><ul>
+<li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#ziel-der-deskriptiven-statistik"><i class="fa fa-check"></i><b>3.1</b> Ziel der deskriptiven Statistik</a></li>
 <li class="chapter" data-level="3.2" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#häufigkeiten"><i class="fa fa-check"></i><b>3.2</b> Häufigkeiten</a></li>
 <li class="chapter" data-level="3.3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#lageparameter"><i class="fa fa-check"></i><b>3.3</b> Lageparameter</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a><ul>
+<li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="04-streuung.html"><a href="04-streuung.html#streuungsparameter"><i class="fa fa-check"></i><b>4.1</b> Streuungsparameter</a></li>
 <li class="chapter" data-level="4.2" data-path="04-streuung.html"><a href="04-streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
 <li class="chapter" data-level="4.3" data-path="04-streuung.html"><a href="04-streuung.html#standardisierung-z-transformation"><i class="fa fa-check"></i><b>4.3</b> Standardisierung (z-Transformation)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a><ul>
+<li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="05-korrelation.html"><a href="05-korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik"><i class="fa fa-check"></i><b>5.1</b> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik</a></li>
 <li class="chapter" data-level="5.2" data-path="05-korrelation.html"><a href="05-korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman"><i class="fa fa-check"></i><b>5.2</b> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman</a></li>
 <li class="chapter" data-level="5.3" data-path="05-korrelation.html"><a href="05-korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson"><i class="fa fa-check"></i><b>5.3</b> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson</a></li>
 </ul></li>
 <li class="part"><span><b>Wahrscheinlichkeitstheorie</b></span></li>
-<li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a><ul>
+<li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvorgänge"><i class="fa fa-check"></i><b>6.1</b> Zufallsvorgänge</a></li>
 <li class="chapter" data-level="6.2" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#ereignisse"><i class="fa fa-check"></i><b>6.2</b> Ereignisse</a></li>
 <li class="chapter" data-level="6.3" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvariablen"><i class="fa fa-check"></i><b>6.3</b> Zufallsvariablen</a></li>
@@ -174,20 +201,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#axiome-der-wahrscheinlichkeitstheorie-nach-kolmogorow"><i class="fa fa-check"></i><b>6.5</b> Axiome der Wahrscheinlichkeitstheorie nach Kolmogorow</a></li>
 <li class="chapter" data-level="6.6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#rechenregeln"><i class="fa fa-check"></i><b>6.6</b> Rechenregeln</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-verteilungen.html"><a href="07-verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a><ul>
+<li class="chapter" data-level="7" data-path="07-verteilungen.html"><a href="07-verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="07-verteilungen.html"><a href="07-verteilungen.html#von-der-empirischen-zur-theoretischen-verteilung"><i class="fa fa-check"></i><b>7.1</b> Von der empirischen zur theoretischen Verteilung</a></li>
 <li class="chapter" data-level="7.2" data-path="07-verteilungen.html"><a href="07-verteilungen.html#parameter-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.2</b> Parameter theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.3" data-path="07-verteilungen.html"><a href="07-verteilungen.html#kenngrößen-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.3</b> Kenngrößen theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.4" data-path="07-verteilungen.html"><a href="07-verteilungen.html#distr"><i class="fa fa-check"></i><b>7.4</b> Wichtige Verteilungen und ihre Anwendungen</a></li>
 </ul></li>
 <li class="part"><span><b>Induktive Statistik</b></span></li>
-<li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a><ul>
+<li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-schätzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
 <li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
 <li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
 <li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#qqplot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a><ul>
+<li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="09-tests.html"><a href="09-tests.html#grundprinzipien-statistischer-tests"><i class="fa fa-check"></i><b>9.1</b> Grundprinzipien statistischer Tests</a></li>
 <li class="chapter" data-level="9.2" data-path="09-tests.html"><a href="09-tests.html#ttest"><i class="fa fa-check"></i><b>9.2</b> t-Test (Vergleich von Mittelwerten)</a></li>
 <li class="chapter" data-level="9.3" data-path="09-tests.html"><a href="09-tests.html#interpretation-des-p-wertes"><i class="fa fa-check"></i><b>9.3</b> Interpretation des p-Wertes</a></li>
@@ -195,7 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="09-tests.html"><a href="09-tests.html#kstest"><i class="fa fa-check"></i><b>9.5</b> Verteilungstest (Kolmogorow-Smirnow-Test)</a></li>
 <li class="chapter" data-level="9.6" data-path="09-tests.html"><a href="09-tests.html#chi2test"><i class="fa fa-check"></i><b>9.6</b> Unabhängigkeitstest (Chi-Quadrat-Test)</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Lineare Regression</a><ul>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Lineare Regression</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#definitionen"><i class="fa fa-check"></i><b>10.1</b> Definitionen</a></li>
 <li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#beschreibung-vs.-vorhersage"><i class="fa fa-check"></i><b>10.2</b> Beschreibung vs. Vorhersage</a></li>
 <li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterführende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
@@ -226,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="korrelation" class="section level1 hasAnchor">
+<div id="korrelation" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Kapitel 5</span> Korrelationsanalyse<a href="05-korrelation.html#korrelation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Lesen Sie hierzu bitte Kapitel 3.4.2 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>. Die Fragen, die uns besonders interessieren sind:</p>
 <ul>
@@ -236,7 +267,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><em>Wie kann man den Zusammenhang visualisieren?</em></li>
 </ul>
 <p>Die Verfahren sind unterschiedlich für nominalskalierte, ordinalskalierte und metrische Merkmale. Wir werden diese jetzt nacheinander einführen. Die Themen können Sie in <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>, Kapitel 8 und 9 vertiefen.</p>
-<div id="nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="section level2 hasAnchor">
+<div id="nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik<a href="05-korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Wir wollen diese Methode am Beispiel des Volksentscheids Tegel von 2017 verdeutlichen.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Der Beschlussentwurf lautete:</p>
 <blockquote>
@@ -319,7 +350,7 @@ Abbildung 5.5: Vergleich der beobachteten absoluten Häufigkeiten <span class="m
 <p>Für den Volksentscheid Tegel ergibt sich ein Wert von <span class="math inline">\(\mathcal{X}^2=49895.1\)</span>, wobei <span class="math inline">\(\mathcal{X}_{max}^2=1732940\)</span>. Da <span class="math inline">\(\mathcal{X}^2\)</span> näher an <span class="math inline">\(0\)</span> ist als an <span class="math inline">\(1 732 940\)</span>, scheint die Abhängigkeit der Merkmale “Bezirk” und “Abstimmungsverhalten” gering zu sein. Ob sie dennoch <em>statistisch signifikant</em> ist können wir erst mit einem sogenannten <strong>Chi-Quadrat-Test</strong> beurteilen, den wir als Teil der schließenden Statistik in Kapitel <a href="09-tests.html#chi2test">9.6</a> kennenlernen.</p>
 </blockquote>
 </div>
-<div id="ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="section level2 hasAnchor">
+<div id="ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman<a href="05-korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Hier ist das Beispiel des Zusammenhangs von Grünflächenanteil und Bildungsgrad in Stadbezirken aus <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.4.2, S. 274 - 278 sehr anschaulich. Das Merkmal “Grünflächenanteil” ist zwar metrisch skaliert, muss aber ordinal skaliert werden, um es mit dem Merkmal “Bildungsgrad” vergleichbar zu machen, das bereits ordinal vorliegt; siehe Tabelle 3.36 in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, S. 277.</p>
 <p>Der <strong>Rangkorrelationskoeffizient nach Spearman</strong> <span class="math inline">\(r_s\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> wird dann berechnet durch:
@@ -330,36 +361,36 @@ Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beid
 <p>Wenn keine Rangkorrelation vorliegt ist <span class="math inline">\(r_s=0\)</span>.</p>
 <p>Bei dem Grünflächenanteil/Bildungsgrad Beispiel von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> ist <span class="math inline">\(r_s=0.84\)</span>, die beiden Merkmale sind also stark positiv korreliert. D.h. größere Anteile von Grünflächen sind tendenziell mit höheren Bildungsgraden assoziiert und kleinere Anteile von Grünflächen sind tendenziell mit geringeren Bildungsgraden assoziiert. <em>Überlegen Sie gerne, in welche Richtung hier die Kausalität wirkt.</em></p>
 </div>
-<div id="metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="section level2 hasAnchor">
+<div id="metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson<a href="05-korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Alle Merkmale (“Distanz” und “Zeit”) sind metrisch skaliert und somit können wir den <strong>Korrelationskoeffizienten nach Bravais-Pearson</strong> verwenden, der mehr Informationen über den Zusammenhang, nämlich <strong>Linearität</strong>, liefert. Einen ersten Eindruck verschafft der <strong>Scatterplot</strong> (auch Streudiagramm), den wir einfach mit der <code>plot()</code> Funktion in <em>R</em> generieren. Als erstes plotten wir die beiden Zeiten (“morgens” und “nachmittags”) gegeneinander:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="05-korrelation.html#cb39-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>zeit_morgens, reisedat<span class="op">$</span>zeit_nachmittags, </span>
-<span id="cb39-2"><a href="05-korrelation.html#cb39-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
-<span id="cb39-3"><a href="05-korrelation.html#cb39-3"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="05-korrelation.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>zeit_morgens, reisedat<span class="sc">$</span>zeit_nachmittags, </span>
+<span id="cb39-2"><a href="05-korrelation.html#cb39-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
+<span id="cb39-3"><a href="05-korrelation.html#cb39-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-21-1.png" width="80%" /></p>
 <p>Hier fällt das Wertepaar <span class="math inline">\((55, 1)\)</span> unten, in der Mitte auf. Meine Vermutung ist, dass jemand hier nachmittags <span class="math inline">\(1\)</span> im Sinne von einer Stunde eingetragen hat, anstatt <span class="math inline">\(60\)</span> Minuten. Ich ändere das in einem korrigierten Datensatz und lade diesen erneut ein (grundsätzlich muss so eine Änderung gut begründet und dokumentiert sein; alternativ kann man auch zweifelhafte Werte entfernen):</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="05-korrelation.html#cb40-1"></a><span class="co"># Paket laden, das für das Einlesen von xlsx gebraucht wird</span></span>
-<span id="cb40-2"><a href="05-korrelation.html#cb40-2"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
-<span id="cb40-3"><a href="05-korrelation.html#cb40-3"></a><span class="co"># &quot;korrigierte&quot; Daten einlesen</span></span>
-<span id="cb40-4"><a href="05-korrelation.html#cb40-4"></a>reisedat &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022_korrigiert.xlsx&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
-<span id="cb40-5"><a href="05-korrelation.html#cb40-5"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
-<span id="cb40-6"><a href="05-korrelation.html#cb40-6"></a>reisedat &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span></code></pre></div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="05-korrelation.html#cb41-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>zeit_morgens, reisedat<span class="op">$</span>zeit_nachmittags, </span>
-<span id="cb41-2"><a href="05-korrelation.html#cb41-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
-<span id="cb41-3"><a href="05-korrelation.html#cb41-3"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="05-korrelation.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paket laden, das für das Einlesen von xlsx gebraucht wird</span></span>
+<span id="cb40-2"><a href="05-korrelation.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span>
+<span id="cb40-3"><a href="05-korrelation.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;korrigierte&quot; Daten einlesen</span></span>
+<span id="cb40-4"><a href="05-korrelation.html#cb40-4" aria-hidden="true" tabindex="-1"></a>reisedat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/Daten_Distanz_Reisezeit_2022_korrigiert.xlsx&quot;</span>, <span class="at">na =</span> <span class="st">&quot;-999&quot;</span>)</span>
+<span id="cb40-5"><a href="05-korrelation.html#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># in Zahlen und data.frame umwandeln</span></span>
+<span id="cb40-6"><a href="05-korrelation.html#cb40-6" aria-hidden="true" tabindex="-1"></a>reisedat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">apply</span>(reisedat, <span class="dv">2</span>, as.numeric))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="05-korrelation.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>zeit_morgens, reisedat<span class="sc">$</span>zeit_nachmittags, </span>
+<span id="cb41-2"><a href="05-korrelation.html#cb41-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
+<span id="cb41-3"><a href="05-korrelation.html#cb41-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-23-1.png" width="80%" /></p>
 <p>Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker.</p>
 <p>Plotten wir nun eine der Zeiten (“morgens”) gegen die Entfernung:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="05-korrelation.html#cb42-1"></a><span class="kw">plot</span>(reisedat<span class="op">$</span>distanz, reisedat<span class="op">$</span>zeit_morgens, </span>
-<span id="cb42-2"><a href="05-korrelation.html#cb42-2"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="05-korrelation.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens, </span>
+<span id="cb42-2"><a href="05-korrelation.html#cb42-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-24-1.png" width="80%" /></p>
 <p>An dieser Stelle fallen die vier Datenpunkte ganz rechts auf, sowie der Datenpunkte unten <span class="math inline">\((14.8, 1.2)\)</span>. Bei letzterem hat sich vielleicht wieder jemand mit Minuten und Stunden vertan und meint hier <span class="math inline">\(1.2\)</span> Stunden, also <span class="math inline">\(72\)</span> Minuten. Die vier Punkte ganz rechts könnten Personen sein, die relativ weite Strecken mit dem Auto zurücklegen. Darauf schauen wir in späteren Kapitel noch etwas näher. Vorerst nutzen wir die Daten so, wie sie sind.</p>
 <p><strong>Aufgabe:</strong> <em>Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in “Reisezeit” kommen könnte.</em></p>
 <p>Die <em>lineare</em> Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-<strong>Korrelationskoeffizient nach Bravais-Pearson</strong> <span class="math inline">\(r_{x,y}\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> berechnet. Er ergibt sich aus den Standardabweichungen <span class="math inline">\(s_x\)</span> und <span class="math inline">\(s_y\)</span> und der standardisierten Kovarianz <span class="math inline">\(s_{x,y}\)</span> durch:
 <span class="math display">\[r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}\]</span></p>
 <p>In <em>R</em> mit der <code>cor()</code> Funktion:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="05-korrelation.html#cb43-1"></a><span class="kw">cor</span>(reisedat<span class="op">$</span>distanz, reisedat<span class="op">$</span>zeit_morgens,</span>
-<span id="cb43-2"><a href="05-korrelation.html#cb43-2"></a>    <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="05-korrelation.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens,</span>
+<span id="cb43-2"><a href="05-korrelation.html#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0.8221</code></pre>
 <p>Das Argument <code>use = "complete.obs"</code> teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne “NA”, ansonsten wäre der Output “NA”. Da hier nur vollständige Datenpaare vorhanden sind, ist das Argument nur vorsorglich gesetzt. Anstatt <code>method = "pearson"</code> sind ebenfalls <code>method = "spearman"</code> und <code>method = "kendall"</code> möglich; beides sind Rangkorrelationskoeffizienten.</p>
 <p>In Abbildung <a href="05-korrelation.html#fig:pearson">5.6</a> sehen Sie Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. Bei augenscheinlich nicht-linearen Zusammenhängen wählt man üblicherweise einen Rangkorrelationskoeffizienten, der dann aussagekräftiger ist.</p>
@@ -376,12 +407,12 @@ Abbildung 5.6: Werte des Korrelationskoeffizienten für verschiedene Zusammenhä
 
 
 <h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references">
-<div id="ref-mittag2016">
-<p>Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-mittag2016" class="csl-entry">
+Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.
 </div>
-<div id="ref-zimmermann2014">
-<p>Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.</p>
+<div id="ref-zimmermann2014" class="csl-entry">
+Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.
 </div>
 </div>
 <div class="footnotes">

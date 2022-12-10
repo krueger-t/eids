@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-11-21" />
+<meta name="date" content="2022-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,25 +49,24 @@
 
 
 
-<script src="libs/accessible-code-block/empty-anchor.js"></script>
 <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,13 +86,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -120,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -139,34 +160,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
 <li class="part"><span><b>Grundlagen</b></span></li>
-<li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
+<li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.1</b> Statistik im empirischen Forschungsprozess</a></li>
 <li class="chapter" data-level="1.2" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.2</b> Warum Statistik?</a></li>
 <li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.3</b> Mathematische Notation und Grundlagen</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a><ul>
+<li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="02-begriffe.html"><a href="02-begriffe.html#statistische-grundbegriffe"><i class="fa fa-check"></i><b>2.1</b> Statistische Grundbegriffe</a></li>
 <li class="chapter" data-level="2.2" data-path="02-begriffe.html"><a href="02-begriffe.html#datenerhebung"><i class="fa fa-check"></i><b>2.2</b> Datenerhebung</a></li>
 <li class="chapter" data-level="2.3" data-path="02-begriffe.html"><a href="02-begriffe.html#skalenniveaus"><i class="fa fa-check"></i><b>2.3</b> Skalenniveaus</a></li>
 </ul></li>
 <li class="part"><span><b>Deskriptive Statistik</b></span></li>
-<li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a><ul>
+<li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#ziel-der-deskriptiven-statistik"><i class="fa fa-check"></i><b>3.1</b> Ziel der deskriptiven Statistik</a></li>
 <li class="chapter" data-level="3.2" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#häufigkeiten"><i class="fa fa-check"></i><b>3.2</b> Häufigkeiten</a></li>
 <li class="chapter" data-level="3.3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#lageparameter"><i class="fa fa-check"></i><b>3.3</b> Lageparameter</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a><ul>
+<li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="04-streuung.html"><a href="04-streuung.html#streuungsparameter"><i class="fa fa-check"></i><b>4.1</b> Streuungsparameter</a></li>
 <li class="chapter" data-level="4.2" data-path="04-streuung.html"><a href="04-streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
 <li class="chapter" data-level="4.3" data-path="04-streuung.html"><a href="04-streuung.html#standardisierung-z-transformation"><i class="fa fa-check"></i><b>4.3</b> Standardisierung (z-Transformation)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a><ul>
+<li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="05-korrelation.html"><a href="05-korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik"><i class="fa fa-check"></i><b>5.1</b> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik</a></li>
 <li class="chapter" data-level="5.2" data-path="05-korrelation.html"><a href="05-korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman"><i class="fa fa-check"></i><b>5.2</b> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman</a></li>
 <li class="chapter" data-level="5.3" data-path="05-korrelation.html"><a href="05-korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson"><i class="fa fa-check"></i><b>5.3</b> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson</a></li>
 </ul></li>
 <li class="part"><span><b>Wahrscheinlichkeitstheorie</b></span></li>
-<li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a><ul>
+<li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvorgänge"><i class="fa fa-check"></i><b>6.1</b> Zufallsvorgänge</a></li>
 <li class="chapter" data-level="6.2" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#ereignisse"><i class="fa fa-check"></i><b>6.2</b> Ereignisse</a></li>
 <li class="chapter" data-level="6.3" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvariablen"><i class="fa fa-check"></i><b>6.3</b> Zufallsvariablen</a></li>
@@ -174,20 +201,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#axiome-der-wahrscheinlichkeitstheorie-nach-kolmogorow"><i class="fa fa-check"></i><b>6.5</b> Axiome der Wahrscheinlichkeitstheorie nach Kolmogorow</a></li>
 <li class="chapter" data-level="6.6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#rechenregeln"><i class="fa fa-check"></i><b>6.6</b> Rechenregeln</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-verteilungen.html"><a href="07-verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a><ul>
+<li class="chapter" data-level="7" data-path="07-verteilungen.html"><a href="07-verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="07-verteilungen.html"><a href="07-verteilungen.html#von-der-empirischen-zur-theoretischen-verteilung"><i class="fa fa-check"></i><b>7.1</b> Von der empirischen zur theoretischen Verteilung</a></li>
 <li class="chapter" data-level="7.2" data-path="07-verteilungen.html"><a href="07-verteilungen.html#parameter-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.2</b> Parameter theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.3" data-path="07-verteilungen.html"><a href="07-verteilungen.html#kenngrößen-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.3</b> Kenngrößen theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.4" data-path="07-verteilungen.html"><a href="07-verteilungen.html#distr"><i class="fa fa-check"></i><b>7.4</b> Wichtige Verteilungen und ihre Anwendungen</a></li>
 </ul></li>
 <li class="part"><span><b>Induktive Statistik</b></span></li>
-<li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a><ul>
+<li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-schätzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
 <li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
 <li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
 <li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#qqplot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a><ul>
+<li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="09-tests.html"><a href="09-tests.html#grundprinzipien-statistischer-tests"><i class="fa fa-check"></i><b>9.1</b> Grundprinzipien statistischer Tests</a></li>
 <li class="chapter" data-level="9.2" data-path="09-tests.html"><a href="09-tests.html#ttest"><i class="fa fa-check"></i><b>9.2</b> t-Test (Vergleich von Mittelwerten)</a></li>
 <li class="chapter" data-level="9.3" data-path="09-tests.html"><a href="09-tests.html#interpretation-des-p-wertes"><i class="fa fa-check"></i><b>9.3</b> Interpretation des p-Wertes</a></li>
@@ -195,7 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="09-tests.html"><a href="09-tests.html#kstest"><i class="fa fa-check"></i><b>9.5</b> Verteilungstest (Kolmogorow-Smirnow-Test)</a></li>
 <li class="chapter" data-level="9.6" data-path="09-tests.html"><a href="09-tests.html#chi2test"><i class="fa fa-check"></i><b>9.6</b> Unabhängigkeitstest (Chi-Quadrat-Test)</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Lineare Regression</a><ul>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Lineare Regression</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#definitionen"><i class="fa fa-check"></i><b>10.1</b> Definitionen</a></li>
 <li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#beschreibung-vs.-vorhersage"><i class="fa fa-check"></i><b>10.2</b> Beschreibung vs. Vorhersage</a></li>
 <li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterführende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
@@ -226,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="verteilungen" class="section level1 hasAnchor">
+<div id="verteilungen" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Kapitel 7</span> Verteilungen<a href="07-verteilungen.html#verteilungen" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In Kapitel <a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit">6</a> haben wir gesehen, dass alle <span class="math inline">\(36\)</span> Elementarereignisse zweier Würfelwürfe <span class="math inline">\(\omega=(1;1),(1;2),\ldots,(6;6)\)</span> (vgl. Abbildung <a href="06-wahrscheinlichkeit.html#fig:wuerfel2">6.2</a>) die gleiche Wahrscheinlichkeit haben, nämlich <span class="math inline">\(\Pr(\omega_i)=\frac{1}{6}\cdot\frac{1}{6}=\frac{1}{36}\)</span>. In Abbildung <a href="07-verteilungen.html#fig:prverteilung">7.1</a> links, sehen wir eine Verteilung dieser Wahrscheinlichkeiten; in diesem Fall ist es eine sogenannte <em>diskrete Gleichverteilung</em>. Wenn uns die Gesamtaugenzahl interessiert, gibt es Ereignisse (z.B. “Gesamtaugenzahl 7”), hier mit <span class="math inline">\(E\)</span> symbolisiert, die wahrscheinlicher sind als andere. Das deckt sich mit unserer Erfahrung mit Würfelspielen. Die Verteilung ist symmetrisch um ein Maximum bei <span class="math inline">\(7\)</span> (Abbildung <a href="07-verteilungen.html#fig:prverteilung">7.1</a> rechts), eine sogenannte <em>diskrete Dreiecksverteilung</em>. Formal schreiben wir:
 <span class="math display" id="eq:prereignis">\[\begin{equation}
@@ -242,7 +273,7 @@ Abbildung 7.1: Links: Die <span class="math inline">\(36\)</span> Elementarereig
 </div>
 <p>In diesem Kapitel soll es um solche Wahrscheinlichkeitsverteilungen gehen. Erinnern wir uns, dass eine <strong>Zufallsvariable</strong> ein Merkmal ist, dessen Werte als Ergebnisse eines Zufallsvorgangs <em>interpretiert</em> werden (vgl. Kapitel <a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit">6</a>). Die <strong>Wahrscheinlichkeitsverteilung</strong> der Zufallsvariable ist nun ein <em>Modell</em>, das das Verhalten der Zufallsvariable vollständig beschreibt. Alternative Bezeichnungen sind <strong>Verteilung</strong> und <strong>theoretische Verteilung</strong>.</p>
 <p>So wie wir <strong>diskrete und stetige Zufallsvariablen</strong> unterscheiden (vgl. Kapitel <a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit">6</a>), unterscheiden wir auch <strong>diskrete und stetige Verteilungen</strong>. Für diskrete Verteilungen werden wir den Begriff <strong>Wahrscheinlichkeitsfunktion</strong> kennenlernen und für stetige Verteilungen den Begriff <strong>Dichtefunktion</strong>. Für kumulierte Wahrscheinlichkeiten lernen wir den Begriff <strong>Verteilungsfunktion</strong> kennen, der für diskrete und stetige Verteilungen gleichermaßen gilt. Am Ende des Kapitels stellen wir wichtige Verteilungen und ihre Anwendungen kurz vor.</p>
-<div id="von-der-empirischen-zur-theoretischen-verteilung" class="section level2 hasAnchor">
+<div id="von-der-empirischen-zur-theoretischen-verteilung" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Von der empirischen zur theoretischen Verteilung<a href="07-verteilungen.html#von-der-empirischen-zur-theoretischen-verteilung" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Wir haben bereits Darstellungen von <strong>empirischen Verteilungen</strong> in der Form von Histogrammen (und Boxplots) kennengelernt (vgl. Kapitel <a href="03-haeufigkeit.html#haeufigkeit">3</a>). Nehmen wir das Beispiel “Entfernung” aus den Reisedaten (Abbildung <a href="07-verteilungen.html#fig:fFempirisch">7.2</a>). “Entfernung” ist eine stetige Zufallsvariable, die hier aber klassiert dargestellt ist. Ein Beispiel für eine diskrete Zufallsvariable ist das Merkmal “Anzahl Vulkanausbrüche” aus <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fFempirisch"></span>
@@ -284,14 +315,14 @@ F_X(x)=\Pr(X\leq x)
 </blockquote>
 <p>Die Analogien zwischen empirischen und theoretischen Verteilungen können Sie auch nochmal in <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>, Tabelle 10.3 auf S. 159 nachlesen.</p>
 </div>
-<div id="parameter-theoretischer-verteilungen" class="section level2 hasAnchor">
+<div id="parameter-theoretischer-verteilungen" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Parameter theoretischer Verteilungen<a href="07-verteilungen.html#parameter-theoretischer-verteilungen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Die Form einer Verteilung wird grundsätzlich von der mathematischen Formel der entsprechenden Wahrscheinlichkeits- bzw. Dichtefunktion bestimmt. Die für uns wichtigsten Verteilungen und ihre Formen werden wir <a href="07-verteilungen.html#distr">weiter unten</a> kennenlernen. Auf die mathematischen Formeln werden wir in diesem Kurs nicht eingehen; sie können beispielsweise in <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span> nachgeschlagen werden. Wichtig zu wissen ist aber, dass die Wahrscheinlichkeits- bzw. Dichtefunktion sogenannte <strong>Parameter</strong> hat, die die Lage und die Breite der Verteilung, und bei manchen Verteilungen auch die Form selber, bestimmen.</p>
 <p>Schauen wir uns das für den einfachsten Fall der sogenannten <em>Normalverteilung</em> an (Abbildung <a href="07-verteilungen.html#fig:npdf">7.4</a>)<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="07-verteilungen.html#cb46-1"></a><span class="co"># generiere x-Werte von -5 bis 5 in 0.1-Schritten</span></span>
-<span id="cb46-2"><a href="07-verteilungen.html#cb46-2"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)</span>
-<span id="cb46-3"><a href="07-verteilungen.html#cb46-3"></a><span class="co"># plotte Dichtefunktion der Normalverteilung mit µ = 0 und sigma = 1 für x</span></span>
-<span id="cb46-4"><a href="07-verteilungen.html#cb46-4"></a><span class="kw">plot</span>(x, <span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="07-verteilungen.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generiere x-Werte von -5 bis 5 in 0.1-Schritten</span></span>
+<span id="cb46-2"><a href="07-verteilungen.html#cb46-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)</span>
+<span id="cb46-3"><a href="07-verteilungen.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plotte Dichtefunktion der Normalverteilung mit µ = 0 und sigma = 1 für x</span></span>
+<span id="cb46-4"><a href="07-verteilungen.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:npdf"></span>
 <img src="eids_files/figure-html/npdf-1.png" alt="Form der Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable $X$. Hier ist die **Standardnormalverteilung** $N(0,1)$ dargestellt, mit Mittelwert $\mu=0$ und Standardabweichung $\sigma=1$." width="80%" />
 <p class="caption">
@@ -305,26 +336,26 @@ X\sim N(\mu,\sigma)
 \end{equation}\]</span>
 Das Tildesymbol <span class="math inline">\(\sim\)</span> bedeutet “ist verteilt gemäß”, das <span class="math inline">\(N\)</span> steht für die Normalverteilung und in Klammern stehen die Parameter der Verteilung, in diesem Fall <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\sigma\)</span>. Andere Verteilungen haben eine höhere oder auch geringere Anzahl Parameter und diese haben oft auch andere Bezeichnungen. Im Fall der Normalverteilung ist <span class="math inline">\(\mu\)</span> der Mittelwert (Erwartungswert) und <span class="math inline">\(\sigma\)</span> ist die Standardabweichung der Zufallsvariable <span class="math inline">\(X\)</span><a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. Es handelt sich hier um <em>theoretische</em> Parameter der Grundgesamtheit, nicht zu verwechseln mit den <em>empirischen</em> Parametern einer Stichprobe. Wenn die Stichprobe aber tatsächlich aus einer normalverteilten Grundgesamtheit stammt, dann sind empirischer Mittelwert und Standardabweichung die <em>Schätzer</em> der entsprechenden theoretischen Parameter! Das Schätzen von Verteilungsparametern wird uns in Kapitel <a href="08-schaetzen.html#schaetzen">8</a> beschäftigen.</p>
 <p>Den Effekt verschiedener Werte für <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\sigma\)</span> auf die Lage und Breite der Verteilung sehen wir wenn wir <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\sigma\)</span> variieren (Abbildung <a href="07-verteilungen.html#fig:npdfvariation">7.5</a>).</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="07-verteilungen.html#cb47-1"></a><span class="co"># generiere x-Werte von -5 bis 5 in 0.1-Schritten</span></span>
-<span id="cb47-2"><a href="07-verteilungen.html#cb47-2"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)</span>
-<span id="cb47-3"><a href="07-verteilungen.html#cb47-3"></a></span>
-<span id="cb47-4"><a href="07-verteilungen.html#cb47-4"></a><span class="co"># plotte Dichtefunktion der Normalverteilung mit µ = -1, 0, 1 und sigma = 1 für x </span></span>
-<span id="cb47-5"><a href="07-verteilungen.html#cb47-5"></a><span class="co"># (linke Abbildung)</span></span>
-<span id="cb47-6"><a href="07-verteilungen.html#cb47-6"></a><span class="kw">plot</span>(x, <span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">type=</span><span class="st">&#39;l&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.45</span>), </span>
-<span id="cb47-7"><a href="07-verteilungen.html#cb47-7"></a>     <span class="dt">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>, <span class="dt">panel.first =</span> <span class="kw">grid</span>())</span>
-<span id="cb47-8"><a href="07-verteilungen.html#cb47-8"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">-1</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb47-9"><a href="07-verteilungen.html#cb47-9"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">1</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb47-10"><a href="07-verteilungen.html#cb47-10"></a><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;N(-1, 1)&#39;</span>, <span class="st">&#39;N(0, 1)&#39;</span>, <span class="st">&#39;N(1, 1)&#39;</span>), </span>
-<span id="cb47-11"><a href="07-verteilungen.html#cb47-11"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;black&#39;</span>, <span class="st">&#39;blue&#39;</span>), <span class="dt">lty =</span> <span class="dv">1</span>)</span>
-<span id="cb47-12"><a href="07-verteilungen.html#cb47-12"></a></span>
-<span id="cb47-13"><a href="07-verteilungen.html#cb47-13"></a><span class="co"># plotte Dichtefunktion der Normalverteilung mit µ = 0 und sigma = 1, 1.5, 2 für x </span></span>
-<span id="cb47-14"><a href="07-verteilungen.html#cb47-14"></a><span class="co"># (rechte Abbildung)</span></span>
-<span id="cb47-15"><a href="07-verteilungen.html#cb47-15"></a><span class="kw">plot</span>(x, <span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.45</span>),</span>
-<span id="cb47-16"><a href="07-verteilungen.html#cb47-16"></a>     <span class="dt">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>, <span class="dt">panel.first =</span> <span class="kw">grid</span>())</span>
-<span id="cb47-17"><a href="07-verteilungen.html#cb47-17"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">2</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb47-18"><a href="07-verteilungen.html#cb47-18"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">1.5</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb47-19"><a href="07-verteilungen.html#cb47-19"></a><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;N(0, 2)&#39;</span>, <span class="st">&#39;N(0, 1.5)&#39;</span>, <span class="st">&#39;N(0, 1)&#39;</span>),</span>
-<span id="cb47-20"><a href="07-verteilungen.html#cb47-20"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>, <span class="st">&#39;black&#39;</span>), <span class="dt">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="07-verteilungen.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generiere x-Werte von -5 bis 5 in 0.1-Schritten</span></span>
+<span id="cb47-2"><a href="07-verteilungen.html#cb47-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)</span>
+<span id="cb47-3"><a href="07-verteilungen.html#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="07-verteilungen.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plotte Dichtefunktion der Normalverteilung mit µ = -1, 0, 1 und sigma = 1 für x </span></span>
+<span id="cb47-5"><a href="07-verteilungen.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (linke Abbildung)</span></span>
+<span id="cb47-6"><a href="07-verteilungen.html#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.45</span>), </span>
+<span id="cb47-7"><a href="07-verteilungen.html#cb47-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>, <span class="at">panel.first =</span> <span class="fu">grid</span>())</span>
+<span id="cb47-8"><a href="07-verteilungen.html#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb47-9"><a href="07-verteilungen.html#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb47-10"><a href="07-verteilungen.html#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&#39;N(-1, 1)&#39;</span>, <span class="st">&#39;N(0, 1)&#39;</span>, <span class="st">&#39;N(1, 1)&#39;</span>), </span>
+<span id="cb47-11"><a href="07-verteilungen.html#cb47-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;black&#39;</span>, <span class="st">&#39;blue&#39;</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb47-12"><a href="07-verteilungen.html#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="07-verteilungen.html#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plotte Dichtefunktion der Normalverteilung mit µ = 0 und sigma = 1, 1.5, 2 für x </span></span>
+<span id="cb47-14"><a href="07-verteilungen.html#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="co"># (rechte Abbildung)</span></span>
+<span id="cb47-15"><a href="07-verteilungen.html#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.45</span>),</span>
+<span id="cb47-16"><a href="07-verteilungen.html#cb47-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>, <span class="at">panel.first =</span> <span class="fu">grid</span>())</span>
+<span id="cb47-17"><a href="07-verteilungen.html#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb47-18"><a href="07-verteilungen.html#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb47-19"><a href="07-verteilungen.html#cb47-19" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&#39;N(0, 2)&#39;</span>, <span class="st">&#39;N(0, 1.5)&#39;</span>, <span class="st">&#39;N(0, 1)&#39;</span>),</span>
+<span id="cb47-20"><a href="07-verteilungen.html#cb47-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>, <span class="st">&#39;black&#39;</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:npdfvariation"></span>
 <img src="eids_files/figure-html/npdfvariation-1.png" alt="Links: Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\mu$. Wir sehen, dass der Parameter $\mu$ die Verteilung nach rechts bzw. links verschiebt. Rechts: Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\sigma$. Wir sehen, dass der Parameter $\sigma$ die Verteilung breiter bzw. schmaler macht." width="50%" /><img src="eids_files/figure-html/npdfvariation-2.png" alt="Links: Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\mu$. Wir sehen, dass der Parameter $\mu$ die Verteilung nach rechts bzw. links verschiebt. Rechts: Dichtefunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\sigma$. Wir sehen, dass der Parameter $\sigma$ die Verteilung breiter bzw. schmaler macht." width="50%" />
 <p class="caption">
@@ -336,26 +367,26 @@ Abbildung 7.5: Links: Dichtefunktion der Normalverteilung einer beliebigen Zufal
 <p>Merke: Die Fläche unter der Kurve bleibt ebenfalls gleich; sie ist immer <span class="math inline">\(1\)</span> aufgrund des 2. Axioms nach Kolmogorow <span class="math inline">\(K2: \Pr(\Omega)=1\)</span> (Normierung); vgl. Kapitel <a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit">6</a>. Deshalb wird die Verteilung wenn sie breiter wird gleichzeitig niedriger und wenn sie schmaler wird gleichzeitig höher.</p>
 </blockquote>
 <p>Bisher haben wir uns nur die Dichtefunktion der Normalverteilung angeschaut. Es fehlt die Verteilungsfunktion als Darstellung der kumulierten Wahrscheinlichkeit. Diese ist wichtig, da wir damit einfach Quantile berechnen können, die in der induktiven Statistik häufig zum Einsatz kommen. Die Verteilungsfunktion der Normalverteilung ist in Abbildung <a href="07-verteilungen.html#fig:ncdfvariation">7.6</a> für verschiedene Werte <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\sigma\)</span> dargestellt (vgl. Abbildung <a href="07-verteilungen.html#fig:npdfvariation">7.5</a>).</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="07-verteilungen.html#cb48-1"></a><span class="co"># generiere x-Werte von -5 bis 5 in 0.1-Schritten</span></span>
-<span id="cb48-2"><a href="07-verteilungen.html#cb48-2"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)</span>
-<span id="cb48-3"><a href="07-verteilungen.html#cb48-3"></a></span>
-<span id="cb48-4"><a href="07-verteilungen.html#cb48-4"></a><span class="co"># plotte Verteilungsfunktion der Normalverteilung mit µ = -1, 0, 1 und sigma = 1 für x</span></span>
-<span id="cb48-5"><a href="07-verteilungen.html#cb48-5"></a><span class="co"># (linke Abbildung)</span></span>
-<span id="cb48-6"><a href="07-verteilungen.html#cb48-6"></a><span class="kw">plot</span>(x, <span class="kw">pnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>,</span>
-<span id="cb48-7"><a href="07-verteilungen.html#cb48-7"></a>     <span class="dt">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Verteilungsfunktion&#39;</span>, <span class="dt">panel.first =</span> <span class="kw">grid</span>())</span>
-<span id="cb48-8"><a href="07-verteilungen.html#cb48-8"></a><span class="kw">curve</span>(<span class="kw">pnorm</span>(x, <span class="dt">mean =</span> <span class="dv">-1</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb48-9"><a href="07-verteilungen.html#cb48-9"></a><span class="kw">curve</span>(<span class="kw">pnorm</span>(x, <span class="dt">mean =</span> <span class="dv">1</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb48-10"><a href="07-verteilungen.html#cb48-10"></a><span class="kw">legend</span>(<span class="st">&#39;topleft&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;N(-1, 1)&#39;</span>, <span class="st">&#39;N(0, 1)&#39;</span>, <span class="st">&#39;N(1, 1)&#39;</span>),</span>
-<span id="cb48-11"><a href="07-verteilungen.html#cb48-11"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;black&#39;</span>, <span class="st">&#39;blue&#39;</span>), <span class="dt">lty =</span> <span class="dv">1</span>)</span>
-<span id="cb48-12"><a href="07-verteilungen.html#cb48-12"></a></span>
-<span id="cb48-13"><a href="07-verteilungen.html#cb48-13"></a><span class="co"># plotte Verteilungsfunktion der Normalverteilung mit µ = 0 und sigma = 1, 1.5, 2 für x</span></span>
-<span id="cb48-14"><a href="07-verteilungen.html#cb48-14"></a><span class="co"># (rechte Abbildung)</span></span>
-<span id="cb48-15"><a href="07-verteilungen.html#cb48-15"></a><span class="kw">plot</span>(x, <span class="kw">pnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>,</span>
-<span id="cb48-16"><a href="07-verteilungen.html#cb48-16"></a>     <span class="dt">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Verteilungsfunktion&#39;</span>, <span class="dt">panel.first =</span> <span class="kw">grid</span>())</span>
-<span id="cb48-17"><a href="07-verteilungen.html#cb48-17"></a><span class="kw">curve</span>(<span class="kw">pnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">2</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb48-18"><a href="07-verteilungen.html#cb48-18"></a><span class="kw">curve</span>(<span class="kw">pnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">1.5</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb48-19"><a href="07-verteilungen.html#cb48-19"></a><span class="kw">legend</span>(<span class="st">&#39;topleft&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;N(0, 2)&#39;</span>, <span class="st">&#39;N(0, 1.5)&#39;</span>, <span class="st">&#39;N(0, 1)&#39;</span>),</span>
-<span id="cb48-20"><a href="07-verteilungen.html#cb48-20"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>, <span class="st">&#39;black&#39;</span>), <span class="dt">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="07-verteilungen.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generiere x-Werte von -5 bis 5 in 0.1-Schritten</span></span>
+<span id="cb48-2"><a href="07-verteilungen.html#cb48-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)</span>
+<span id="cb48-3"><a href="07-verteilungen.html#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="07-verteilungen.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plotte Verteilungsfunktion der Normalverteilung mit µ = -1, 0, 1 und sigma = 1 für x</span></span>
+<span id="cb48-5"><a href="07-verteilungen.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (linke Abbildung)</span></span>
+<span id="cb48-6"><a href="07-verteilungen.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">pnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">type =</span> <span class="st">&#39;l&#39;</span>,</span>
+<span id="cb48-7"><a href="07-verteilungen.html#cb48-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Verteilungsfunktion&#39;</span>, <span class="at">panel.first =</span> <span class="fu">grid</span>())</span>
+<span id="cb48-8"><a href="07-verteilungen.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pnorm</span>(x, <span class="at">mean =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb48-9"><a href="07-verteilungen.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pnorm</span>(x, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb48-10"><a href="07-verteilungen.html#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topleft&#39;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&#39;N(-1, 1)&#39;</span>, <span class="st">&#39;N(0, 1)&#39;</span>, <span class="st">&#39;N(1, 1)&#39;</span>),</span>
+<span id="cb48-11"><a href="07-verteilungen.html#cb48-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;black&#39;</span>, <span class="st">&#39;blue&#39;</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb48-12"><a href="07-verteilungen.html#cb48-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-13"><a href="07-verteilungen.html#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plotte Verteilungsfunktion der Normalverteilung mit µ = 0 und sigma = 1, 1.5, 2 für x</span></span>
+<span id="cb48-14"><a href="07-verteilungen.html#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="co"># (rechte Abbildung)</span></span>
+<span id="cb48-15"><a href="07-verteilungen.html#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">pnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">type =</span> <span class="st">&#39;l&#39;</span>,</span>
+<span id="cb48-16"><a href="07-verteilungen.html#cb48-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Verteilungsfunktion&#39;</span>, <span class="at">panel.first =</span> <span class="fu">grid</span>())</span>
+<span id="cb48-17"><a href="07-verteilungen.html#cb48-17" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">2</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb48-18"><a href="07-verteilungen.html#cb48-18" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">pnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">1.5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb48-19"><a href="07-verteilungen.html#cb48-19" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topleft&#39;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&#39;N(0, 2)&#39;</span>, <span class="st">&#39;N(0, 1.5)&#39;</span>, <span class="st">&#39;N(0, 1)&#39;</span>),</span>
+<span id="cb48-20"><a href="07-verteilungen.html#cb48-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>, <span class="st">&#39;black&#39;</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ncdfvariation"></span>
 <img src="eids_files/figure-html/ncdfvariation-1.png" alt="Links: Verteilungsfunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\mu$. Rechts: Verteilungsfunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\sigma$. Vgl. Abbildung \@ref(fig:npdfvariation)." width="50%" /><img src="eids_files/figure-html/ncdfvariation-2.png" alt="Links: Verteilungsfunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\mu$. Rechts: Verteilungsfunktion der Normalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\sigma$. Vgl. Abbildung \@ref(fig:npdfvariation)." width="50%" />
 <p class="caption">
@@ -364,7 +395,7 @@ Abbildung 7.6: Links: Verteilungsfunktion der Normalverteilung einer beliebigen 
 </div>
 <p>Wenn wir Abbildung <a href="07-verteilungen.html#fig:npdfvariation">7.5</a> und Abbildung <a href="07-verteilungen.html#fig:ncdfvariation">7.6</a> vergleichen, dann sehen wir, dass die Verteilungsfunktion dort am steilsten ist, wo die Dichtefunktion ihr Maximum hat; dort ändert sich sozusagen in der kumulierten Wahrscheinichkeit am meisten. Wenn die Dichtefunktion abflacht, dann nimmt auch die Steigung der Verteilungsfunktion wieder ab. Es ist wichtig, dass Sie den Zusammenhang zwischen Dichte- und Verteilungsfunktion verstehen, der analog zum Zusammenhang zwischen Häufigkeit und Summenhäufigkeit ist (vgl. Kapitel <a href="03-haeufigkeit.html#haeufigkeit">3</a>).</p>
 </div>
-<div id="kenngrößen-theoretischer-verteilungen" class="section level2 hasAnchor">
+<div id="kenngrößen-theoretischer-verteilungen" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Kenngrößen theoretischer Verteilungen<a href="07-verteilungen.html#kenngrößen-theoretischer-verteilungen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Auch für die <strong>Kenngrößen</strong> theoretischer Verteilungen ist es wichtig, dass wir die Parallelen zu den empirischen Verteilungen sehen.</p>
 <p>Der <strong>Erwartungswert</strong> theoretischer Verteilungen ist:
@@ -416,39 +447,39 @@ F_X(x_p)=\Pr\left(X\leq x_p\right)=p
 <span class="math display">\[\bar x_p=\frac{x_{n\cdot p}+x_{n\cdot p+1}}{2}\quad\text{falls}\quad n\cdot p\quad\text{ganzzahlig}\]</span>
 <span class="math display">\[\bar x_p=x_i\quad\text{falls}\quad n\cdot p\quad\text{nicht ganzzahlig, wobei}\quad i\quad\text{die nächstgrößere Zahl ist}\]</span></p>
 </div>
-<div id="distr" class="section level2 hasAnchor">
+<div id="distr" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Wichtige Verteilungen und ihre Anwendungen<a href="07-verteilungen.html#distr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Hier soll auf ein paar Vetreilungen eingegangen werden, die für den weiteren Verlauf Ihres Studiums wichtig sind.</p>
-<div id="normalverteilung" class="section level3 hasAnchor">
+<div id="normalverteilung" class="section level3 hasAnchor" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> Normalverteilung<a href="07-verteilungen.html#normalverteilung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die Normalverteilung (Abbildung <a href="07-verteilungen.html#fig:npdfvariation">7.5</a>) ist eine <em>symmetrische</em>, <em>stetige</em> Verteilung. Der Wertebereich geht von <span class="math inline">\(-\infty\)</span> bis <span class="math inline">\(\infty\)</span>, d.h. die Verteilung ist für <em>negative</em> als auch <em>positive</em> Ausprägungen definiert. Die Normalverteilung ist die am häufigsten angenommene Verteilung. Das mag zum einen daran liegen, dass die Normalverteilung mathematisch relativ einfach zu handhaben ist. Zum anderen scheinen aber tatsächlich viele reale Zufallsvorgänge einer Normalverteilung zu folgen. Ein typisches Beispiel ist die Verteilung von zufälligen Messfehlern bei der Verwendung von Messinstrumenten im Feld und im Labor. Sehen Sie sich nochmal Abbildung <a href="07-verteilungen.html#fig:npdf">7.4</a> an. Wenn kein systematischer Fehler vorliegt, dann macht es Sinn, die Verteilung von Messfehlern um Null zu zentrieren - im Mittel misst das Instrument genau. Um diesen Mittelwert <span class="math inline">\(\mu=0\)</span> streuen die Daten mehr oder weniger stark - in Abhängigkeit der Standardabweichung <span class="math inline">\(\sigma\)</span> - wobei kleine Abweichungen wahrscheinlicher sind als große. Man bestimmt die Verteilungsparameter anhand von Wiederholungsmessungen an der selben Probe oder am selben Standort. Diese Konzeption des Messfehlers werden Sie beispielsweise im bodenkundlichen Praktikum verwenden.</p>
 <p>Mathematisch lässt sich zeigen, dass die Normalverteilung aus der Summe vieler Einzelprozesse entsteht, selbst wenn die Einzelprozesse ganz anderen Verteilungen folgen; der aggregierte Zufallsprozess folgt einer Normalverteilung. Das ist der <strong>zentrale Grenzwertsatz</strong>. Theoretisch muss es die Summe <em>unendlich</em> vieler Einzelprozesse sein; wir sehen eine Normalverteilung aber bereits bei wenigen Summanden auftauchen, was wir anhand wiederholter Würfelwürfe zeigen können (Abbildung <a href="07-verteilungen.html#fig:grenzwertsatz">7.7</a>).</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="07-verteilungen.html#cb49-1"></a><span class="co"># Paket laden, das uns die diskrete Gleichverteilung gibt</span></span>
-<span id="cb49-2"><a href="07-verteilungen.html#cb49-2"></a><span class="kw">library</span>(<span class="st">&#39;extraDistr&#39;</span>)</span>
-<span id="cb49-3"><a href="07-verteilungen.html#cb49-3"></a></span>
-<span id="cb49-4"><a href="07-verteilungen.html#cb49-4"></a><span class="co"># 1000 Realisationen eines Würfelwurfes simulieren</span></span>
-<span id="cb49-5"><a href="07-verteilungen.html#cb49-5"></a>w1 &lt;-<span class="st"> </span><span class="kw">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb49-6"><a href="07-verteilungen.html#cb49-6"></a><span class="co"># 1000 Realisationen der Summe zweier Würfelwürfe simulieren</span></span>
-<span id="cb49-7"><a href="07-verteilungen.html#cb49-7"></a>w2 &lt;-<span class="st"> </span>w1 <span class="op">+</span><span class="st"> </span><span class="kw">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb49-8"><a href="07-verteilungen.html#cb49-8"></a><span class="co"># usw. bis zu sechs Würfelwürfen</span></span>
-<span id="cb49-9"><a href="07-verteilungen.html#cb49-9"></a>w3 &lt;-<span class="st"> </span>w2 <span class="op">+</span><span class="st"> </span><span class="kw">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb49-10"><a href="07-verteilungen.html#cb49-10"></a>w4 &lt;-<span class="st"> </span>w3 <span class="op">+</span><span class="st"> </span><span class="kw">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb49-11"><a href="07-verteilungen.html#cb49-11"></a>w5 &lt;-<span class="st"> </span>w4 <span class="op">+</span><span class="st"> </span><span class="kw">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb49-12"><a href="07-verteilungen.html#cb49-12"></a>w6 &lt;-<span class="st"> </span>w5 <span class="op">+</span><span class="st"> </span><span class="kw">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb49-13"><a href="07-verteilungen.html#cb49-13"></a></span>
-<span id="cb49-14"><a href="07-verteilungen.html#cb49-14"></a><span class="co"># empirische Wahrscheinlichkeitsfunktion plotten</span></span>
-<span id="cb49-15"><a href="07-verteilungen.html#cb49-15"></a><span class="kw">hist</span>(w1, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="fl">0.5</span>, <span class="fl">6.5</span>, <span class="dv">1</span>), <span class="dt">freq =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb49-16"><a href="07-verteilungen.html#cb49-16"></a>     <span class="dt">main =</span> <span class="st">&#39;1 Würfel&#39;, xlab = &#39;</span>Gesamtaugenzahl<span class="st">&#39;, ylab = &#39;</span>Wahrscheinlichkeit<span class="st">&#39;)</span></span>
-<span id="cb49-17"><a href="07-verteilungen.html#cb49-17"></a><span class="st">hist(w2, breaks = seq(1.5, 12.5, 1), freq = FALSE,</span></span>
-<span id="cb49-18"><a href="07-verteilungen.html#cb49-18"></a><span class="st">     main = &#39;</span><span class="dv">2</span> Würfel&#39;, <span class="dt">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span>
-<span id="cb49-19"><a href="07-verteilungen.html#cb49-19"></a><span class="kw">hist</span>(w3, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="fl">2.5</span>, <span class="fl">18.5</span>, <span class="dv">1</span>), <span class="dt">freq =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb49-20"><a href="07-verteilungen.html#cb49-20"></a>     <span class="dt">main =</span> <span class="st">&#39;3 Würfel&#39;, xlab = &#39;</span>Gesamtaugenzahl<span class="st">&#39;, ylab = &#39;</span>Wahrscheinlichkeit<span class="st">&#39;)</span></span>
-<span id="cb49-21"><a href="07-verteilungen.html#cb49-21"></a><span class="st">hist(w4, breaks = seq(3.5, 24.5, 1), freq = FALSE,</span></span>
-<span id="cb49-22"><a href="07-verteilungen.html#cb49-22"></a><span class="st">     main = &#39;</span><span class="dv">4</span> Würfel&#39;, <span class="dt">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span>
-<span id="cb49-23"><a href="07-verteilungen.html#cb49-23"></a><span class="kw">hist</span>(w5, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="fl">4.5</span>, <span class="fl">30.5</span>, <span class="dv">1</span>), <span class="dt">freq =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb49-24"><a href="07-verteilungen.html#cb49-24"></a>     <span class="dt">main =</span> <span class="st">&#39;5 Würfel&#39;, xlab = &#39;</span>Gesamtaugenzahl<span class="st">&#39;, ylab = &#39;</span>Wahrscheinlichkeit<span class="st">&#39;)</span></span>
-<span id="cb49-25"><a href="07-verteilungen.html#cb49-25"></a><span class="st">hist(w6, breaks = seq(5.5, 36.5, 1), freq = FALSE,</span></span>
-<span id="cb49-26"><a href="07-verteilungen.html#cb49-26"></a><span class="st">     main = &#39;</span><span class="dv">6</span> Würfel&#39;, <span class="dt">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="07-verteilungen.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paket laden, das uns die diskrete Gleichverteilung gibt</span></span>
+<span id="cb49-2"><a href="07-verteilungen.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;extraDistr&#39;</span>)</span>
+<span id="cb49-3"><a href="07-verteilungen.html#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="07-verteilungen.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1000 Realisationen eines Würfelwurfes simulieren</span></span>
+<span id="cb49-5"><a href="07-verteilungen.html#cb49-5" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> <span class="fu">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb49-6"><a href="07-verteilungen.html#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1000 Realisationen der Summe zweier Würfelwürfe simulieren</span></span>
+<span id="cb49-7"><a href="07-verteilungen.html#cb49-7" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> w1 <span class="sc">+</span> <span class="fu">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb49-8"><a href="07-verteilungen.html#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># usw. bis zu sechs Würfelwürfen</span></span>
+<span id="cb49-9"><a href="07-verteilungen.html#cb49-9" aria-hidden="true" tabindex="-1"></a>w3 <span class="ot">&lt;-</span> w2 <span class="sc">+</span> <span class="fu">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb49-10"><a href="07-verteilungen.html#cb49-10" aria-hidden="true" tabindex="-1"></a>w4 <span class="ot">&lt;-</span> w3 <span class="sc">+</span> <span class="fu">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb49-11"><a href="07-verteilungen.html#cb49-11" aria-hidden="true" tabindex="-1"></a>w5 <span class="ot">&lt;-</span> w4 <span class="sc">+</span> <span class="fu">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb49-12"><a href="07-verteilungen.html#cb49-12" aria-hidden="true" tabindex="-1"></a>w6 <span class="ot">&lt;-</span> w5 <span class="sc">+</span> <span class="fu">rdunif</span>(<span class="dv">1000</span>, <span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb49-13"><a href="07-verteilungen.html#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="07-verteilungen.html#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="co"># empirische Wahrscheinlichkeitsfunktion plotten</span></span>
+<span id="cb49-15"><a href="07-verteilungen.html#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(w1, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">0.5</span>, <span class="fl">6.5</span>, <span class="dv">1</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb49-16"><a href="07-verteilungen.html#cb49-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;1 Würfel&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span>
+<span id="cb49-17"><a href="07-verteilungen.html#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(w2, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">1.5</span>, <span class="fl">12.5</span>, <span class="dv">1</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb49-18"><a href="07-verteilungen.html#cb49-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;2 Würfel&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span>
+<span id="cb49-19"><a href="07-verteilungen.html#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(w3, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">2.5</span>, <span class="fl">18.5</span>, <span class="dv">1</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb49-20"><a href="07-verteilungen.html#cb49-20" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;3 Würfel&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span>
+<span id="cb49-21"><a href="07-verteilungen.html#cb49-21" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(w4, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">3.5</span>, <span class="fl">24.5</span>, <span class="dv">1</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb49-22"><a href="07-verteilungen.html#cb49-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;4 Würfel&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span>
+<span id="cb49-23"><a href="07-verteilungen.html#cb49-23" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(w5, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">4.5</span>, <span class="fl">30.5</span>, <span class="dv">1</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb49-24"><a href="07-verteilungen.html#cb49-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;5 Würfel&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span>
+<span id="cb49-25"><a href="07-verteilungen.html#cb49-25" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(w6, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">5.5</span>, <span class="fl">36.5</span>, <span class="dv">1</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb49-26"><a href="07-verteilungen.html#cb49-26" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;6 Würfel&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Gesamtaugenzahl&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Wahrscheinlichkeit&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:grenzwertsatz"></span>
 <img src="eids_files/figure-html/grenzwertsatz-1.png" alt="Illustration des zentralen Grenzwertsatzes. Mit zunehmender Anzahl addierter Zufallsprozesse (hier Würfelwürfe, die jeweils einer Gleichverteilung folgen), nähert sich die Wahrscheinlichkeitsverteilung der Summe einer Normalverteilung an." width="50%" /><img src="eids_files/figure-html/grenzwertsatz-2.png" alt="Illustration des zentralen Grenzwertsatzes. Mit zunehmender Anzahl addierter Zufallsprozesse (hier Würfelwürfe, die jeweils einer Gleichverteilung folgen), nähert sich die Wahrscheinlichkeitsverteilung der Summe einer Normalverteilung an." width="50%" /><img src="eids_files/figure-html/grenzwertsatz-3.png" alt="Illustration des zentralen Grenzwertsatzes. Mit zunehmender Anzahl addierter Zufallsprozesse (hier Würfelwürfe, die jeweils einer Gleichverteilung folgen), nähert sich die Wahrscheinlichkeitsverteilung der Summe einer Normalverteilung an." width="50%" /><img src="eids_files/figure-html/grenzwertsatz-4.png" alt="Illustration des zentralen Grenzwertsatzes. Mit zunehmender Anzahl addierter Zufallsprozesse (hier Würfelwürfe, die jeweils einer Gleichverteilung folgen), nähert sich die Wahrscheinlichkeitsverteilung der Summe einer Normalverteilung an." width="50%" /><img src="eids_files/figure-html/grenzwertsatz-5.png" alt="Illustration des zentralen Grenzwertsatzes. Mit zunehmender Anzahl addierter Zufallsprozesse (hier Würfelwürfe, die jeweils einer Gleichverteilung folgen), nähert sich die Wahrscheinlichkeitsverteilung der Summe einer Normalverteilung an." width="50%" /><img src="eids_files/figure-html/grenzwertsatz-6.png" alt="Illustration des zentralen Grenzwertsatzes. Mit zunehmender Anzahl addierter Zufallsprozesse (hier Würfelwürfe, die jeweils einer Gleichverteilung folgen), nähert sich die Wahrscheinlichkeitsverteilung der Summe einer Normalverteilung an." width="50%" />
 <p class="caption">
@@ -456,7 +487,7 @@ Abbildung 7.7: Illustration des zentralen Grenzwertsatzes. Mit zunehmender Anzah
 </p>
 </div>
 </div>
-<div id="log" class="section level3 hasAnchor">
+<div id="log" class="section level3 hasAnchor" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> Lognormalverteilung<a href="07-verteilungen.html#log" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die Lognormalverteilung ist eine typische Wahl wenn eine <em>stetige</em> Zufallsvariable nur <em>positive</em> Ausprägungen hat, da die Verteilung von <span class="math inline">\(0\)</span> bis <span class="math inline">\(\infty\)</span> definiert ist. Sie ist <em>rechtsschief</em>, d.h. linkssteil (vgl. Kapitel <a href="04-streuung.html#streuung">4</a>). Gemäß dem zentralen Grenzwertsatz (s. oben) kann sie als aggregierte Verteilung vieler <em>multiplikativer</em> Zufallsvorgänge interpretiert werden. Ein Beispiel für lognormalverteilte Zufallsvariablen ist Einkommen; viele haben wenig und wenige haben viel. Wir schreiben:
 <span class="math display" id="eq:xlognverteilt">\[\begin{equation}
@@ -467,26 +498,26 @@ X\sim logN(\mu,\sigma)
 Wenn <span class="math inline">\(X\)</span> lognormalverteilt ist, <span class="math inline">\(X\sim logN(\mu,\sigma)\)</span>, dann ist das log-transformierte <span class="math inline">\(X\)</span> normalverteilt, <span class="math inline">\(\log(X)\sim N(\mu,\sigma)\)</span>, mit den gleichen Parametern <span class="math inline">\(\mu\)</span> und <span class="math inline">\(\sigma\)</span>.<br />
 D.h. die Schätzer für die beiden Parameter sind das arithmetische Mittel bzw. die Standardabweichung der <em>log-transformierten</em> Daten einer Stichprobe (s. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>).</p>
 <p>Schauen wir uns die Form der Lognormalverteilung für verschiedene Parameterkonstellationen an (Abbildung <a href="07-verteilungen.html#fig:lognvariation">7.8</a>). Beide Parameter kontrollieren hier sowohl den Erwartungswert als auch die Varianz und damit auch die Form der Verteilung; im Beispiel sehen wir das nur für <span class="math inline">\(\sigma\)</span> während <span class="math inline">\(\mu\)</span> konstant gehalten ist. An den Formeln für Erwartungswert und Varianz könnten wir sehen, dass dort jeweils beide Parameter eingehen. Das können Sie beispielsweise in <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span> nachlesen.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="07-verteilungen.html#cb50-1"></a><span class="co"># generiere x-Werte von 0 bis 3 in 0.05-Schritten</span></span>
-<span id="cb50-2"><a href="07-verteilungen.html#cb50-2"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="fl">0.05</span>)</span>
-<span id="cb50-3"><a href="07-verteilungen.html#cb50-3"></a></span>
-<span id="cb50-4"><a href="07-verteilungen.html#cb50-4"></a><span class="co"># plotte Dichtefunktion der Lognormalverteilung mit µ = 0 und sigma = 0.25, 0.5, 1 für x</span></span>
-<span id="cb50-5"><a href="07-verteilungen.html#cb50-5"></a><span class="co"># (linke Abbildung)</span></span>
-<span id="cb50-6"><a href="07-verteilungen.html#cb50-6"></a><span class="kw">plot</span>(x, <span class="kw">dlnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.25</span>), <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>),</span>
-<span id="cb50-7"><a href="07-verteilungen.html#cb50-7"></a>     <span class="dt">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>, <span class="dt">panel.first =</span> <span class="kw">grid</span>())</span>
-<span id="cb50-8"><a href="07-verteilungen.html#cb50-8"></a><span class="kw">curve</span>(<span class="kw">dlnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.5</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb50-9"><a href="07-verteilungen.html#cb50-9"></a><span class="kw">curve</span>(<span class="kw">dlnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb50-10"><a href="07-verteilungen.html#cb50-10"></a><span class="kw">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;logN(0, 0.25)&#39;</span>, <span class="st">&#39;logN(0, 0.5)&#39;</span>, <span class="st">&#39;logN(0, 1)&#39;</span>),</span>
-<span id="cb50-11"><a href="07-verteilungen.html#cb50-11"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>), <span class="dt">lty =</span> <span class="dv">1</span>)</span>
-<span id="cb50-12"><a href="07-verteilungen.html#cb50-12"></a></span>
-<span id="cb50-13"><a href="07-verteilungen.html#cb50-13"></a><span class="co"># Verteilungsfunktion</span></span>
-<span id="cb50-14"><a href="07-verteilungen.html#cb50-14"></a><span class="co"># (rechte Abbildung)</span></span>
-<span id="cb50-15"><a href="07-verteilungen.html#cb50-15"></a><span class="kw">plot</span>(x, <span class="kw">plnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.25</span>), <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>,</span>
-<span id="cb50-16"><a href="07-verteilungen.html#cb50-16"></a>     <span class="dt">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Verteilungsfunktion&#39;</span>, <span class="dt">panel.first =</span> <span class="kw">grid</span>())</span>
-<span id="cb50-17"><a href="07-verteilungen.html#cb50-17"></a><span class="kw">curve</span>(<span class="kw">plnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="fl">0.5</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb50-18"><a href="07-verteilungen.html#cb50-18"></a><span class="kw">curve</span>(<span class="kw">plnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
-<span id="cb50-19"><a href="07-verteilungen.html#cb50-19"></a><span class="kw">legend</span>(<span class="st">&#39;bottomright&#39;</span>, <span class="dt">legend =</span> <span class="kw">c</span>(<span class="st">&#39;logN(0, 0.25)&#39;</span>, <span class="st">&#39;logN(0, 0.5)&#39;</span>, <span class="st">&#39;logN(0, 1)&#39;</span>),</span>
-<span id="cb50-20"><a href="07-verteilungen.html#cb50-20"></a>       <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>), <span class="dt">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="07-verteilungen.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generiere x-Werte von 0 bis 3 in 0.05-Schritten</span></span>
+<span id="cb50-2"><a href="07-verteilungen.html#cb50-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="fl">0.05</span>)</span>
+<span id="cb50-3"><a href="07-verteilungen.html#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="07-verteilungen.html#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plotte Dichtefunktion der Lognormalverteilung mit µ = 0 und sigma = 0.25, 0.5, 1 für x</span></span>
+<span id="cb50-5"><a href="07-verteilungen.html#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># (linke Abbildung)</span></span>
+<span id="cb50-6"><a href="07-verteilungen.html#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">dlnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.25</span>), <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">2</span>),</span>
+<span id="cb50-7"><a href="07-verteilungen.html#cb50-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>, <span class="at">panel.first =</span> <span class="fu">grid</span>())</span>
+<span id="cb50-8"><a href="07-verteilungen.html#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dlnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb50-9"><a href="07-verteilungen.html#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dlnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb50-10"><a href="07-verteilungen.html#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;topright&#39;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&#39;logN(0, 0.25)&#39;</span>, <span class="st">&#39;logN(0, 0.5)&#39;</span>, <span class="st">&#39;logN(0, 1)&#39;</span>),</span>
+<span id="cb50-11"><a href="07-verteilungen.html#cb50-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span>
+<span id="cb50-12"><a href="07-verteilungen.html#cb50-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-13"><a href="07-verteilungen.html#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Verteilungsfunktion</span></span>
+<span id="cb50-14"><a href="07-verteilungen.html#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="co"># (rechte Abbildung)</span></span>
+<span id="cb50-15"><a href="07-verteilungen.html#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">plnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.25</span>), <span class="at">type =</span> <span class="st">&#39;l&#39;</span>,</span>
+<span id="cb50-16"><a href="07-verteilungen.html#cb50-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;X = x&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Verteilungsfunktion&#39;</span>, <span class="at">panel.first =</span> <span class="fu">grid</span>())</span>
+<span id="cb50-17"><a href="07-verteilungen.html#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">plnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="fl">0.5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb50-18"><a href="07-verteilungen.html#cb50-18" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">plnorm</span>(x, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb50-19"><a href="07-verteilungen.html#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&#39;bottomright&#39;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&#39;logN(0, 0.25)&#39;</span>, <span class="st">&#39;logN(0, 0.5)&#39;</span>, <span class="st">&#39;logN(0, 1)&#39;</span>),</span>
+<span id="cb50-20"><a href="07-verteilungen.html#cb50-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;black&#39;</span>, <span class="st">&#39;red&#39;</span>, <span class="st">&#39;blue&#39;</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lognvariation"></span>
 <img src="eids_files/figure-html/lognvariation-1.png" alt="Links: Dichtefunktion der Lognormalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\sigma$, wobei $\mu=0$ gesetzt ist. Wir sehen, dass der Parameter $\sigma$ sowohl die Lage als auch die Breite, sowie die Form der Verteilung kontrolliert. Gleiches gilt für $\mu$, ist aber hier nicht dargestellt. Sie können den _R_-Code anpassen, um Variationen von $\mu$ zu simulieren. Rechts: Verteilungsfunktionfunktion der entsprechenden Variationen der Lognormalverteilung." width="50%" /><img src="eids_files/figure-html/lognvariation-2.png" alt="Links: Dichtefunktion der Lognormalverteilung einer beliebigen Zufallsvariable $X$ für verschiedene Werte $\sigma$, wobei $\mu=0$ gesetzt ist. Wir sehen, dass der Parameter $\sigma$ sowohl die Lage als auch die Breite, sowie die Form der Verteilung kontrolliert. Gleiches gilt für $\mu$, ist aber hier nicht dargestellt. Sie können den _R_-Code anpassen, um Variationen von $\mu$ zu simulieren. Rechts: Verteilungsfunktionfunktion der entsprechenden Variationen der Lognormalverteilung." width="50%" />
 <p class="caption">
@@ -495,27 +526,27 @@ Abbildung 7.8: Links: Dichtefunktion der Lognormalverteilung einer beliebigen Zu
 </div>
 <p>Da unsere Entfernungsdaten rechtsschief verteilt sind - mit relativ kleinen Werten (wenige Kilometer) und relativ großen Werten (Zehner von Kilometern), bietet sich die Lognormalverteilung als theoretische Verteilung an, auch wenn sie sich nicht perfekt an die Daten anpassen lässt (vgl. Abbildung <a href="07-verteilungen.html#fig:fFempirisch">7.2</a>).</p>
 <p>Nutzen wir die Entfernungsdaten, um uns den Zusammenhang zwischen Lognormal- und Normalverteilung zu veranschaulichen. Wir hatten gesagt, wenn <span class="math inline">\(X\)</span> lognormalverteilt ist (Abbildung <a href="07-verteilungen.html#fig:lognn">7.9</a> links) dann ist <span class="math inline">\(\log(X)\)</span> normalverteilt mit den gleichen Parametern; das sehen wir in Abbildung <a href="07-verteilungen.html#fig:lognn">7.9</a> rechts.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="07-verteilungen.html#cb51-1"></a><span class="co"># Lognormalverteilung von X</span></span>
-<span id="cb51-2"><a href="07-verteilungen.html#cb51-2"></a><span class="co"># Histogramm berechnen (ohne Output)</span></span>
-<span id="cb51-3"><a href="07-verteilungen.html#cb51-3"></a>h &lt;-<span class="st"> </span><span class="kw">hist</span>(reisedat<span class="op">$</span>distanz, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb51-4"><a href="07-verteilungen.html#cb51-4"></a><span class="co"># absolute in relative Häufigkeiten umrechnen</span></span>
-<span id="cb51-5"><a href="07-verteilungen.html#cb51-5"></a>h<span class="op">$</span>counts &lt;-<span class="st"> </span>h<span class="op">$</span>counts <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(h<span class="op">$</span>counts)</span>
-<span id="cb51-6"><a href="07-verteilungen.html#cb51-6"></a><span class="co"># plot</span></span>
-<span id="cb51-7"><a href="07-verteilungen.html#cb51-7"></a><span class="kw">plot</span>(h, <span class="dt">freq =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&#39;gray&#39;</span>,</span>
-<span id="cb51-8"><a href="07-verteilungen.html#cb51-8"></a>     <span class="dt">main =</span> <span class="st">&#39;&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;Entfernung (km)&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>)</span>
-<span id="cb51-9"><a href="07-verteilungen.html#cb51-9"></a><span class="kw">curve</span>(<span class="kw">dlnorm</span>(x, <span class="dt">meanlog =</span> <span class="kw">mean</span>(<span class="kw">log</span>(reisedat<span class="op">$</span>distanz)),</span>
-<span id="cb51-10"><a href="07-verteilungen.html#cb51-10"></a>             <span class="dt">sdlog =</span> <span class="kw">sd</span>(<span class="kw">log</span>(reisedat<span class="op">$</span>distanz))), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb51-11"><a href="07-verteilungen.html#cb51-11"></a></span>
-<span id="cb51-12"><a href="07-verteilungen.html#cb51-12"></a><span class="co"># Normalverteilung von log(X)</span></span>
-<span id="cb51-13"><a href="07-verteilungen.html#cb51-13"></a><span class="co"># Histogramm berechnen (ohne Output)</span></span>
-<span id="cb51-14"><a href="07-verteilungen.html#cb51-14"></a>hlog &lt;-<span class="st"> </span><span class="kw">hist</span>(<span class="kw">log</span>(reisedat<span class="op">$</span>distanz), <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">4.5</span>, <span class="fl">0.5</span>), <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb51-15"><a href="07-verteilungen.html#cb51-15"></a><span class="co"># absolute in relative Häufigkeiten umrechnen</span></span>
-<span id="cb51-16"><a href="07-verteilungen.html#cb51-16"></a>hlog<span class="op">$</span>counts &lt;-<span class="st"> </span>hlog<span class="op">$</span>counts <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(hlog<span class="op">$</span>counts)</span>
-<span id="cb51-17"><a href="07-verteilungen.html#cb51-17"></a><span class="co"># plot</span></span>
-<span id="cb51-18"><a href="07-verteilungen.html#cb51-18"></a><span class="kw">plot</span>(hlog, <span class="dt">freq =</span> <span class="ot">FALSE</span>, <span class="dt">col =</span> <span class="st">&#39;gray&#39;</span>,</span>
-<span id="cb51-19"><a href="07-verteilungen.html#cb51-19"></a>     <span class="dt">main =</span> <span class="st">&#39;&#39;</span>, <span class="dt">xlab =</span> <span class="st">&#39;log(Entfernung) (log(km))&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>)</span>
-<span id="cb51-20"><a href="07-verteilungen.html#cb51-20"></a><span class="kw">curve</span>(<span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="kw">mean</span>(<span class="kw">log</span>(reisedat<span class="op">$</span>distanz)),</span>
-<span id="cb51-21"><a href="07-verteilungen.html#cb51-21"></a>            <span class="dt">sd =</span> <span class="kw">sd</span>(<span class="kw">log</span>(reisedat<span class="op">$</span>distanz))), <span class="dt">add =</span> <span class="ot">TRUE</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="07-verteilungen.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Lognormalverteilung von X</span></span>
+<span id="cb51-2"><a href="07-verteilungen.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogramm berechnen (ohne Output)</span></span>
+<span id="cb51-3"><a href="07-verteilungen.html#cb51-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hist</span>(reisedat<span class="sc">$</span>distanz, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">75</span>, <span class="dv">5</span>), <span class="at">plot =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb51-4"><a href="07-verteilungen.html#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># absolute in relative Häufigkeiten umrechnen</span></span>
+<span id="cb51-5"><a href="07-verteilungen.html#cb51-5" aria-hidden="true" tabindex="-1"></a>h<span class="sc">$</span>counts <span class="ot">&lt;-</span> h<span class="sc">$</span>counts <span class="sc">/</span> <span class="fu">sum</span>(h<span class="sc">$</span>counts)</span>
+<span id="cb51-6"><a href="07-verteilungen.html#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb51-7"><a href="07-verteilungen.html#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(h, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&#39;gray&#39;</span>,</span>
+<span id="cb51-8"><a href="07-verteilungen.html#cb51-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;Entfernung (km)&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>)</span>
+<span id="cb51-9"><a href="07-verteilungen.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dlnorm</span>(x, <span class="at">meanlog =</span> <span class="fu">mean</span>(<span class="fu">log</span>(reisedat<span class="sc">$</span>distanz)),</span>
+<span id="cb51-10"><a href="07-verteilungen.html#cb51-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">sdlog =</span> <span class="fu">sd</span>(<span class="fu">log</span>(reisedat<span class="sc">$</span>distanz))), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb51-11"><a href="07-verteilungen.html#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="07-verteilungen.html#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalverteilung von log(X)</span></span>
+<span id="cb51-13"><a href="07-verteilungen.html#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogramm berechnen (ohne Output)</span></span>
+<span id="cb51-14"><a href="07-verteilungen.html#cb51-14" aria-hidden="true" tabindex="-1"></a>hlog <span class="ot">&lt;-</span> <span class="fu">hist</span>(<span class="fu">log</span>(reisedat<span class="sc">$</span>distanz), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">4.5</span>, <span class="fl">0.5</span>), <span class="at">plot =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb51-15"><a href="07-verteilungen.html#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="co"># absolute in relative Häufigkeiten umrechnen</span></span>
+<span id="cb51-16"><a href="07-verteilungen.html#cb51-16" aria-hidden="true" tabindex="-1"></a>hlog<span class="sc">$</span>counts <span class="ot">&lt;-</span> hlog<span class="sc">$</span>counts <span class="sc">/</span> <span class="fu">sum</span>(hlog<span class="sc">$</span>counts)</span>
+<span id="cb51-17"><a href="07-verteilungen.html#cb51-17" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb51-18"><a href="07-verteilungen.html#cb51-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hlog, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&#39;gray&#39;</span>,</span>
+<span id="cb51-19"><a href="07-verteilungen.html#cb51-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&#39;&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;log(Entfernung) (log(km))&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Dichtefunktion&#39;</span>)</span>
+<span id="cb51-20"><a href="07-verteilungen.html#cb51-20" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> <span class="fu">mean</span>(<span class="fu">log</span>(reisedat<span class="sc">$</span>distanz)),</span>
+<span id="cb51-21"><a href="07-verteilungen.html#cb51-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd =</span> <span class="fu">sd</span>(<span class="fu">log</span>(reisedat<span class="sc">$</span>distanz))), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:lognn"></span>
 <img src="eids_files/figure-html/lognn-1.png" alt="Links: Empirische Verteilung der Entfernungsdaten mit theoretischer Lognormalverteilung. Rechts: Empirische Verteilung der log-transformierten Entfernungsdaten mit theoretischer Normalverteilung." width="50%" /><img src="eids_files/figure-html/lognn-2.png" alt="Links: Empirische Verteilung der Entfernungsdaten mit theoretischer Lognormalverteilung. Rechts: Empirische Verteilung der log-transformierten Entfernungsdaten mit theoretischer Normalverteilung." width="50%" />
 <p class="caption">
@@ -524,7 +555,7 @@ Abbildung 7.9: Links: Empirische Verteilung der Entfernungsdaten mit theoretisch
 </div>
 <p>Abschließend sei erwähnt, dass wir für Zufallsvariablen, die nur positive Ausprägungen haben, wie z.B. Entfernung, sinnvollerweise eine theoretische Verteilung annehmen sollten, die auch nur für positive Werte definiert ist, wie z.B. die Lognormalverteilung. Leider sind die meisten dieser Verteilungen schiefe Verteilungen. Wenn wir eine symmetrische Verteilung wollen, dann bietet sich weiterhin die Normalverteilung an, obwohl sie theoretisch negative Werte erzeugt, die physikalisch unrealistisch sind. In der Praxis wird die Normalverteilung oft relativ weit genug von Null weg sein, so dass negative Werte eine vernachlässigbar kleine Wahrscheinlichkeit haben. Wenn uns negative Werte trotzdem Probleme bereiten, dann können wir auf die sogenannte <strong>abgeschnittene Normalverteilung</strong> zurückgreifen, die bei Null abgeschnitten und dann skaliert ist, so dass die Fläche unter der Dichtefunktion weiterhin <span class="math inline">\(1\)</span> ist.</p>
 </div>
-<div id="gleichverteilung" class="section level3 hasAnchor">
+<div id="gleichverteilung" class="section level3 hasAnchor" number="7.4.3">
 <h3><span class="header-section-number">7.4.3</span> Gleichverteilung<a href="07-verteilungen.html#gleichverteilung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die <strong>diskrete</strong> Gleichverteilung haben wir bereits kennengelernt (hier nochmal in Abbildung <a href="07-verteilungen.html#fig:u">7.10</a> links). Beispiele sind die Elementarereignisse von Glücksspielen: Würfelwürfe, Münzwürfe, Roulette, Lottozahlen, usw. Analog dazu gibt es auch eine <strong>stetige</strong> Gleichverteilung (Abbildung <a href="07-verteilungen.html#fig:u">7.10</a> rechts):
 <span class="math display" id="eq:xuverteilt">\[\begin{equation}
@@ -541,7 +572,7 @@ Abbildung 7.10: Links: Diskrete Gleichverteilung der Elementarereignisse zweier 
 </p>
 </div>
 </div>
-<div id="binomialverteilung" class="section level3 hasAnchor">
+<div id="binomialverteilung" class="section level3 hasAnchor" number="7.4.4">
 <h3><span class="header-section-number">7.4.4</span> Binomialverteilung<a href="07-verteilungen.html#binomialverteilung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die Binomialverteilung werden viele noch aus der Schule kennen, als Verteilung für “Ziehen mit Zurücklegen”, z.B. von Murmeln verschiedener Farbe aus einer Urne. So wird oft die Wahrscheinlichkeitsrechnung eingeführt. Wir schreiben:
 <span class="math display" id="eq:xbverteilt">\[\begin{equation}
@@ -561,7 +592,7 @@ Abbildung 7.11: Links: Wahrscheinlichkeitsfunktion der Binomialverteilung für v
 </div>
 <p>In der Geographie verwenden wir die Binomialverteilung häufig für <em>Zähldaten</em> und <em>Proportionen</em>, z.B. in der Biogeographie. Ein Beispiel ist der Anteil überlebender Organismen als Funktion der Konzentration einer toxischen Substanz. Die Binomialverteilung dient aber auch als Wahrscheinlichkeitsmodell für <em>Präsenz bzw. Absenz</em> beispielsweise einer Tierart in einem Gebiet.</p>
 </div>
-<div id="poisson-verteilung" class="section level3 hasAnchor">
+<div id="poisson-verteilung" class="section level3 hasAnchor" number="7.4.5">
 <h3><span class="header-section-number">7.4.5</span> Poisson-Verteilung<a href="07-verteilungen.html#poisson-verteilung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die Poisson-Verteilung ist eine weitere <em>diskrete</em> Verteilung für <em>Zähldaten</em>, z.B. fuer die Anzahl beobachteter Tierarten in einem Gebiet. Wir schreiben:
 <span class="math display" id="eq:xpoisverteilt">\[\begin{equation}
@@ -579,7 +610,7 @@ Abbildung 7.12: Links: Wahrscheinlichkeitsfunktion der Poisson-Verteilung für v
 </p>
 </div>
 </div>
-<div id="gumbel-verteilung" class="section level3 hasAnchor">
+<div id="gumbel-verteilung" class="section level3 hasAnchor" number="7.4.6">
 <h3><span class="header-section-number">7.4.6</span> Gumbel-Verteilung<a href="07-verteilungen.html#gumbel-verteilung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die Gumbel-Verteilung ist eine <em>stetige</em>, <em>rechtsschiefe</em> (d.h. linkssteile) Verteilung, die für den <em>negativen als auch positiven</em> Wertebereich definiert ist. Sie kommt beispielsweise in der Klimageographie als <em>Extremwertverteilung</em> von Hochwässern und Trockenheiten zur Anwendung. Wir schreiben:
 <span class="math display" id="eq:xgumverteilt">\[\begin{equation}
@@ -597,7 +628,7 @@ Abbildung 7.13: Links: Dichtefunktion der Gumbel-Verteilung für verschiedene We
 </p>
 </div>
 </div>
-<div id="weibull-verteilung" class="section level3 hasAnchor">
+<div id="weibull-verteilung" class="section level3 hasAnchor" number="7.4.7">
 <h3><span class="header-section-number">7.4.7</span> Weibull-Verteilung<a href="07-verteilungen.html#weibull-verteilung" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Die Weibull-Verteilung ist eine weitere <em>stetige Extremwertverteilung</em>, die beispielsweise in der Klimageographie die Verteilung von Windgeschwindigkeiten modelliert. Sie ist nur für <em>positive</em> Werte definiert. Wir schreiben:
 <span class="math display" id="eq:xweiverteilt">\[\begin{equation}
@@ -622,12 +653,12 @@ Abbildung 7.14: Links: Dichtefunktion der Weibull-Verteilung für verschiedene W
 
 
 <h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references">
-<div id="ref-mittag2016">
-<p>Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-mittag2016" class="csl-entry">
+Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.
 </div>
-<div id="ref-zimmermann2014">
-<p>Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.</p>
+<div id="ref-zimmermann2014" class="csl-entry">
+Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.
 </div>
 </div>
 <div class="footnotes">

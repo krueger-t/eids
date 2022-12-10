@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-11-21" />
+<meta name="date" content="2022-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,25 +49,24 @@
 
 
 
-<script src="libs/accessible-code-block/empty-anchor.js"></script>
 <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,13 +86,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -120,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -139,34 +160,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
 <li class="part"><span><b>Grundlagen</b></span></li>
-<li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
+<li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.1</b> Statistik im empirischen Forschungsprozess</a></li>
 <li class="chapter" data-level="1.2" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.2</b> Warum Statistik?</a></li>
 <li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.3</b> Mathematische Notation und Grundlagen</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a><ul>
+<li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="02-begriffe.html"><a href="02-begriffe.html#statistische-grundbegriffe"><i class="fa fa-check"></i><b>2.1</b> Statistische Grundbegriffe</a></li>
 <li class="chapter" data-level="2.2" data-path="02-begriffe.html"><a href="02-begriffe.html#datenerhebung"><i class="fa fa-check"></i><b>2.2</b> Datenerhebung</a></li>
 <li class="chapter" data-level="2.3" data-path="02-begriffe.html"><a href="02-begriffe.html#skalenniveaus"><i class="fa fa-check"></i><b>2.3</b> Skalenniveaus</a></li>
 </ul></li>
 <li class="part"><span><b>Deskriptive Statistik</b></span></li>
-<li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a><ul>
+<li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#ziel-der-deskriptiven-statistik"><i class="fa fa-check"></i><b>3.1</b> Ziel der deskriptiven Statistik</a></li>
 <li class="chapter" data-level="3.2" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#häufigkeiten"><i class="fa fa-check"></i><b>3.2</b> Häufigkeiten</a></li>
 <li class="chapter" data-level="3.3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#lageparameter"><i class="fa fa-check"></i><b>3.3</b> Lageparameter</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a><ul>
+<li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="04-streuung.html"><a href="04-streuung.html#streuungsparameter"><i class="fa fa-check"></i><b>4.1</b> Streuungsparameter</a></li>
 <li class="chapter" data-level="4.2" data-path="04-streuung.html"><a href="04-streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
 <li class="chapter" data-level="4.3" data-path="04-streuung.html"><a href="04-streuung.html#standardisierung-z-transformation"><i class="fa fa-check"></i><b>4.3</b> Standardisierung (z-Transformation)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a><ul>
+<li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="05-korrelation.html"><a href="05-korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik"><i class="fa fa-check"></i><b>5.1</b> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik</a></li>
 <li class="chapter" data-level="5.2" data-path="05-korrelation.html"><a href="05-korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman"><i class="fa fa-check"></i><b>5.2</b> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman</a></li>
 <li class="chapter" data-level="5.3" data-path="05-korrelation.html"><a href="05-korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson"><i class="fa fa-check"></i><b>5.3</b> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson</a></li>
 </ul></li>
 <li class="part"><span><b>Wahrscheinlichkeitstheorie</b></span></li>
-<li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a><ul>
+<li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvorgänge"><i class="fa fa-check"></i><b>6.1</b> Zufallsvorgänge</a></li>
 <li class="chapter" data-level="6.2" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#ereignisse"><i class="fa fa-check"></i><b>6.2</b> Ereignisse</a></li>
 <li class="chapter" data-level="6.3" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvariablen"><i class="fa fa-check"></i><b>6.3</b> Zufallsvariablen</a></li>
@@ -174,20 +201,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#axiome-der-wahrscheinlichkeitstheorie-nach-kolmogorow"><i class="fa fa-check"></i><b>6.5</b> Axiome der Wahrscheinlichkeitstheorie nach Kolmogorow</a></li>
 <li class="chapter" data-level="6.6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#rechenregeln"><i class="fa fa-check"></i><b>6.6</b> Rechenregeln</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-verteilungen.html"><a href="07-verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a><ul>
+<li class="chapter" data-level="7" data-path="07-verteilungen.html"><a href="07-verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="07-verteilungen.html"><a href="07-verteilungen.html#von-der-empirischen-zur-theoretischen-verteilung"><i class="fa fa-check"></i><b>7.1</b> Von der empirischen zur theoretischen Verteilung</a></li>
 <li class="chapter" data-level="7.2" data-path="07-verteilungen.html"><a href="07-verteilungen.html#parameter-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.2</b> Parameter theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.3" data-path="07-verteilungen.html"><a href="07-verteilungen.html#kenngrößen-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.3</b> Kenngrößen theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.4" data-path="07-verteilungen.html"><a href="07-verteilungen.html#distr"><i class="fa fa-check"></i><b>7.4</b> Wichtige Verteilungen und ihre Anwendungen</a></li>
 </ul></li>
 <li class="part"><span><b>Induktive Statistik</b></span></li>
-<li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a><ul>
+<li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-schätzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
 <li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
 <li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
 <li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#qqplot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a><ul>
+<li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="09-tests.html"><a href="09-tests.html#grundprinzipien-statistischer-tests"><i class="fa fa-check"></i><b>9.1</b> Grundprinzipien statistischer Tests</a></li>
 <li class="chapter" data-level="9.2" data-path="09-tests.html"><a href="09-tests.html#ttest"><i class="fa fa-check"></i><b>9.2</b> t-Test (Vergleich von Mittelwerten)</a></li>
 <li class="chapter" data-level="9.3" data-path="09-tests.html"><a href="09-tests.html#interpretation-des-p-wertes"><i class="fa fa-check"></i><b>9.3</b> Interpretation des p-Wertes</a></li>
@@ -195,7 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="09-tests.html"><a href="09-tests.html#kstest"><i class="fa fa-check"></i><b>9.5</b> Verteilungstest (Kolmogorow-Smirnow-Test)</a></li>
 <li class="chapter" data-level="9.6" data-path="09-tests.html"><a href="09-tests.html#chi2test"><i class="fa fa-check"></i><b>9.6</b> Unabhängigkeitstest (Chi-Quadrat-Test)</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Lineare Regression</a><ul>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Lineare Regression</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#definitionen"><i class="fa fa-check"></i><b>10.1</b> Definitionen</a></li>
 <li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#beschreibung-vs.-vorhersage"><i class="fa fa-check"></i><b>10.2</b> Beschreibung vs. Vorhersage</a></li>
 <li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterführende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
@@ -226,11 +257,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="wahrscheinlichkeit" class="section level1 hasAnchor">
+<div id="wahrscheinlichkeit" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Kapitel 6</span> Grundlagen der Wahrscheinlichkeitsrechnung<a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Die Wahrscheinlichkeitstheorie bildet die Brücke zwischen der deskriptiven und der induktiven Statistik, um bei dem Bild von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> zu bleiben. Sie liefert Modelle in der Form von Wahrscheinlichkeitsverteilungen (s. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>), die es uns erlauben von Stichproben auf Grundgesamtheiten zu schließen.</p>
 <p>Dieses Kapitel motiviert zunächst <strong>Zufallsvorgänge</strong> und definiert ein paar grundlegende Begriffe. Sodann werden <strong>Ereignisse</strong> als Ergebnis eines Zufallsvorgangs über die Mengenleere eingeführt.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Dazu gehört die Darstellung des <strong>Venn-Diagramms</strong>. Sodann werden <strong>Zufallsvariablen</strong> und <strong>Zufallsexperimente</strong> definiert, bevor wir zum Begriff der <strong>Wahrscheinlichkeit</strong> kommen. Dabei schauen wir uns besonders Konzepte wie <strong>bedingte Wahrscheinlichkeit</strong> und <strong>Unabhängigkeit von Ereignissen</strong>, sowie die Rechenregeln der Wahrscheinlichkeitsrechnung an.</p>
-<div id="zufallsvorgänge" class="section level2 hasAnchor">
+<div id="zufallsvorgänge" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Zufallsvorgänge<a href="06-wahrscheinlichkeit.html#zufallsvorgänge" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Wir alle kennen Zufallsvorgänge im Alltagsleben; z.B. Glücksspiele wie Roulette, Würfelspiele und die Ziehung der Lottozahlen. Aber auch Prozesse wie die Entwicklung von Börsenkursen, die Abschätzung von Schadensverläufen oder Lebenserwartungen (wichtig für Versicherungen) und Marktrisiken (wichtig für Unternehmen) werden als Zufallsvorgänge konzeptionalisiert und behandelt. Das sind Prozesse, die auf der Maßstabsebene, auf der wir sie betrachten gewisse Regularitäten aufweisen, die Glücksspielen ähneln und deshalb als Zufallsvorgänge betrachtet werden können. Das mag aber nur deshalb so sein weil wir die zugrunde liegenden Kausalketten nicht kennen oder nicht beschreiben können bzw. das zu aufwendig wäre. Das gleiche trifft übrigens auch auf Glücksspiele zu, deren Verlauf wir theoretisch auch physikalisch beschreiben könnten wenn wir nur alle Randbedingungen bestimmen könnten. Aus diesem Blickwinkel sind Zufallsvorgänge also immer nur grobskalige <em>Modelle</em> für Prozesse, die auf kleineren Skalen ablaufen und die wir nicht vollständig quantifizieren (können). Ob es am Ende einer Kausalkette unteilbare, “echte” Zufallsvorgänge gibt wird beispielsweise in der Physik debatiert.</p>
 <p>Die Wahrscheinlichkeitsrechnung stellt jedenfalls Modelle bereit, die es erlauben, den Verlauf zufallsabhängiger Prozesse abzuschätzen und <em>von Stichproben auf Grundgesamtheiten zu schließen</em>. Die bisher thematisierte beschreibende Statistik charakterisiert gegebene Datensätze ohne einen Rückschluss auf Eigenschaften umfassenderer Grundgesamtheiten zu vermitteln.</p>
@@ -251,7 +282,7 @@ Abbildung 6.2: Ergebnismenge <span class="math inline">\(\Omega=\{(1;1),(1;2),\l
 <p>Ein <strong>Zufallsvorgang</strong> ist formal definiert als ein Prozess, der zu einem von mehreren, sich gegenseitig ausschließenden Ergebnissen <span class="math inline">\(\omega\)</span> führt. Welches Ergebnis eintritt, ist vorab nicht bekannt.
 Mögliche Ergebnisse <span class="math inline">\(\omega\)</span> heissen <strong>Elementarereignisse</strong> und die <strong>Ergebnismenge</strong> <span class="math inline">\(\Omega\)</span> ist definert als <span class="math inline">\(\Omega=\{x : x \text{ ist Elementarereignis}\}\)</span>. <span class="math inline">\(\Omega\)</span> kann endlich oder auch unendlich viele Elemente enthalten. Ein Beisiel für eine <strong>unendliche Ergebnismenge</strong> ist wie oft man Lotto spielen muss bis man “Sechs Richtige und Zusatzzahl” hat; <span class="math inline">\(\Omega=\{1,2,\ldots,\infty\}=\mathbb{N}\)</span>, wobei <span class="math inline">\(\mathbb{N}\)</span> die Menge der natürlichen Zahlen ist. Eine Teilmenge <span class="math inline">\(A\)</span> von <span class="math inline">\(\Omega\)</span> heißt <strong>Ereignis</strong>.</p>
 </div>
-<div id="ereignisse" class="section level2 hasAnchor">
+<div id="ereignisse" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Ereignisse<a href="06-wahrscheinlichkeit.html#ereignisse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Das sogenannte <strong>sichere Ereignis</strong> ist <span class="math inline">\(A=\Omega\)</span>; z.B. bei einem Würfelwurf <span class="math inline">\(A=\Omega=\{1,2,3,4,5,6\}\)</span>. Das sogenannte <strong>unmögliche Ereignis</strong> ist <span class="math inline">\(A=\bar\Omega=\emptyset\)</span>, wobei <span class="math inline">\(\bar\Omega\)</span> das Komplementärereignis (“nicht <span class="math inline">\(\Omega\)</span>”) und <span class="math inline">\(\emptyset\)</span> die leere Menge ist.</p>
 Das <strong>Komplementärereignis</strong> lässt sich mit einem sogenannten Venn-Diagramm veranschaulichen (Abbildung <a href="06-wahrscheinlichkeit.html#fig:komplementaer">6.3</a>). Das <strong>Venn-Diagramm</strong> kommt aus der Mengenleere und symbolsiert verschiedene Arten von Mengen (hier Ereignisse) als Flächen, deren Größe idealerweise proportional zur Größe der Menge ist, was aber in unseren Darstellungen nicht der Fall ist.
@@ -283,12 +314,12 @@ Abbildung 6.6: Venn-Diagramm der Differenzmenge zweier Ereignisse <span class="m
 </p>
 </div>
 </div>
-<div id="zufallsvariablen" class="section level2 hasAnchor">
+<div id="zufallsvariablen" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Zufallsvariablen<a href="06-wahrscheinlichkeit.html#zufallsvariablen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Interpretiert man die Werte eines Merkmals als Ergebnis eines Zufallsvorgangs, dann nennt man das Merkmal <strong>Zufallsvariable</strong> und die möglichen Ergebnisse des Zufallsprozesses <strong>Ausprägungen</strong> oder <strong>Realisierungen</strong> der betreffenden Zufallsvariable (vgl. deskriptive Statistik). Wir unterscheiden diskrete und stetige Zufallsvariablen. Bei einer <strong>diskreten Zufallsvariable</strong> ist die Anzahl der Ausprägungen <em>abzählbar</em>; z.B. Anzahl der Richtigen beim Lotto. Bei einer <strong>stetigen Zufallsvariable</strong> (auch kontinuierlich genannt) ist die Anzahl der Ausprägungen theoretisch <em>nicht abzählbar</em>; z.B. Entfernung zwischen Wohnort und Arbeitsplatz einer zufällig aus einer größeren Menschengruppe ausgewählten Person. Praktisch wird es aber immer eine Messgenauigkeit geben - wir können Entfernung nicht mit beliebig vielen Nachkommastellen messen. D.h. auch hier ist die Stetigkeit von Zufallsvariablen ein mathematisches Modell für das, was wir in der Welt sehen.</p>
 <p>In der Wissenschaft sprechen wir oft von Zufallsexperimenten, wobei wir kontrollierte und nicht-kontrollierte Zufallsexperimente unterscheiden. Ein <strong>kontrolliertes Zufallsexperiment</strong> ist unter annähernd gleichbleibenden Bedingungen wiederholbar; z.B. Ziehung der Lottozahlen. Ein <strong>nicht-kontrolliertes Zufallsexperiment</strong> ist z.B. die Durchschnittstemperatur im Monat Juli an einem bestimmten Ort. Diese hängt von Faktoren ab, die wir nicht experimentell kontrollieren können.</p>
 </div>
-<div id="wahrscheinlichkeit-1" class="section level2 hasAnchor">
+<div id="wahrscheinlichkeit-1" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Wahrscheinlichkeit<a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So wie wir Zufallsvorgänge und Ereignisse aus der Mengenleere kommend konzeptionalisiert haben<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> ist die <strong>Wahrscheinlichkeit</strong> für das Eintreten eines Ereignisses <span class="math inline">\(A\)</span> - <span class="math inline">\(\Pr(A)\)</span> - als <em>Grenzwert der relativen Häufigkeit</em> für das Eintreten von <span class="math inline">\(A\)</span> definiert:<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>
 <span class="math display" id="eq:wahrscheinlichkeit">\[\begin{equation}
@@ -296,24 +327,24 @@ f_n(A)\xrightarrow{n\to\infty}\Pr(A)
 \tag{6.1}
 \end{equation}\]</span></p>
 <p>Veranschaulichen wir das mit dem Beispiel Münzwurf (Abbildung <a href="06-wahrscheinlichkeit.html#fig:muenze">6.7</a>): Mit zunehmender Anzahl Münzwürfe <span class="math inline">\(n\)</span> nähert sich die relative Häufigkeit <span class="math inline">\(f_n\)</span> des Ereignisses “Zahl” (ebenso “Kopf”) dem erwarteten Wert 0.5 an. Wenn <span class="math inline">\(n\)</span> (hypothetisch) gegen unendlich geht (<span class="math inline">\(n\to\infty\)</span>) dann nennen wir diesen Grenzwert Wahrscheinlichkeit.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="06-wahrscheinlichkeit.html#cb45-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
-<span id="cb45-2"><a href="06-wahrscheinlichkeit.html#cb45-2"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
-<span id="cb45-3"><a href="06-wahrscheinlichkeit.html#cb45-3"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
-<span id="cb45-4"><a href="06-wahrscheinlichkeit.html#cb45-4"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
-<span id="cb45-5"><a href="06-wahrscheinlichkeit.html#cb45-5"></a><span class="co"># daher der R-Befehl</span></span>
-<span id="cb45-6"><a href="06-wahrscheinlichkeit.html#cb45-6"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
-<span id="cb45-7"><a href="06-wahrscheinlichkeit.html#cb45-7"></a>zahl &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
-<span id="cb45-8"><a href="06-wahrscheinlichkeit.html#cb45-8"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
-<span id="cb45-9"><a href="06-wahrscheinlichkeit.html#cb45-9"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
-<span id="cb45-10"><a href="06-wahrscheinlichkeit.html#cb45-10"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
-<span id="cb45-11"><a href="06-wahrscheinlichkeit.html#cb45-11"></a>f =<span class="st"> </span><span class="kw">cumsum</span>(zahl) <span class="op">/</span><span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
-<span id="cb45-12"><a href="06-wahrscheinlichkeit.html#cb45-12"></a><span class="co"># plot</span></span>
-<span id="cb45-13"><a href="06-wahrscheinlichkeit.html#cb45-13"></a><span class="kw">plot</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="dt">type =</span> <span class="st">&#39;n&#39;</span>,</span>
-<span id="cb45-14"><a href="06-wahrscheinlichkeit.html#cb45-14"></a>     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
-<span id="cb45-15"><a href="06-wahrscheinlichkeit.html#cb45-15"></a>     <span class="dt">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
-<span id="cb45-16"><a href="06-wahrscheinlichkeit.html#cb45-16"></a><span class="kw">abline</span>(<span class="dt">h =</span> <span class="fl">0.5</span>, <span class="dt">lwd =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb45-17"><a href="06-wahrscheinlichkeit.html#cb45-17"></a><span class="kw">points</span>(<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="dt">pch =</span> <span class="dv">20</span>)</span>
-<span id="cb45-18"><a href="06-wahrscheinlichkeit.html#cb45-18"></a><span class="kw">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="06-wahrscheinlichkeit.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
+<span id="cb45-2"><a href="06-wahrscheinlichkeit.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
+<span id="cb45-3"><a href="06-wahrscheinlichkeit.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
+<span id="cb45-4"><a href="06-wahrscheinlichkeit.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
+<span id="cb45-5"><a href="06-wahrscheinlichkeit.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co"># daher der R-Befehl</span></span>
+<span id="cb45-6"><a href="06-wahrscheinlichkeit.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
+<span id="cb45-7"><a href="06-wahrscheinlichkeit.html#cb45-7" aria-hidden="true" tabindex="-1"></a>zahl <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
+<span id="cb45-8"><a href="06-wahrscheinlichkeit.html#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
+<span id="cb45-9"><a href="06-wahrscheinlichkeit.html#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
+<span id="cb45-10"><a href="06-wahrscheinlichkeit.html#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
+<span id="cb45-11"><a href="06-wahrscheinlichkeit.html#cb45-11" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> <span class="fu">cumsum</span>(zahl) <span class="sc">/</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
+<span id="cb45-12"><a href="06-wahrscheinlichkeit.html#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb45-13"><a href="06-wahrscheinlichkeit.html#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">type =</span> <span class="st">&#39;n&#39;</span>,</span>
+<span id="cb45-14"><a href="06-wahrscheinlichkeit.html#cb45-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb45-15"><a href="06-wahrscheinlichkeit.html#cb45-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
+<span id="cb45-16"><a href="06-wahrscheinlichkeit.html#cb45-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb45-17"><a href="06-wahrscheinlichkeit.html#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb45-18"><a href="06-wahrscheinlichkeit.html#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:muenze"></span>
 <img src="eids_files/figure-html/muenze-1.png" alt="Simulation von 1000 Münzwürfen und die Entwicklung der relativen Häufigkeit von &quot;Zahl&quot;. Wir sehen, dass sich die relative Häufigkeit mit zunehmender Anzahl Münzwürfe dem erwarteten Wert 0.5 annähert. Den Grenzwert der relativen Häufigkeit wenn die Anzahl der Münzwürfe gegen unendlich geht nennen wir Wahrscheinlichkeit." width="80%" />
 <p class="caption">
@@ -321,7 +352,7 @@ Abbildung 6.7: Simulation von 1000 Münzwürfen und die Entwicklung der relative
 </p>
 </div>
 </div>
-<div id="axiome-der-wahrscheinlichkeitstheorie-nach-kolmogorow" class="section level2 hasAnchor">
+<div id="axiome-der-wahrscheinlichkeitstheorie-nach-kolmogorow" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Axiome der Wahrscheinlichkeitstheorie nach Kolmogorow<a href="06-wahrscheinlichkeit.html#axiome-der-wahrscheinlichkeitstheorie-nach-kolmogorow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Die Wahrscheinlichkeitstheorie beruht wie jede Theorie auf gewissen sogenannten Axiomen, d.h. Annahmen, die so grundlegend sind, dass sie in der Anwendung nicht in Frage gestellt werden. Ohne Axiome gibt es keine Wahrscheinlichkeitstheorie. Die Herleitung der Wahrscheinlichkeitstheorie aus der Mengenlehre formuliert die Axiome nach Kolmogorow:</p>
 <p><span class="math display">\[K1: \Pr(A)\geq0\]</span>
@@ -338,7 +369,7 @@ Abbildung 6.8: Venn-Diagramm zweier Ereignisse eines Würfelwurfes <span class="
 </p>
 </div>
 </div>
-<div id="rechenregeln" class="section level2 hasAnchor">
+<div id="rechenregeln" class="section level2 hasAnchor" number="6.6">
 <h2><span class="header-section-number">6.6</span> Rechenregeln<a href="06-wahrscheinlichkeit.html#rechenregeln" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Aus den o.g. Axiomen lassen sich die Rechenregeln der Wahrscheinlichkeitsrechnung ableiten. Es mag phantastisch klingen, aber man braucht tatsächlich keine weiteren Annahmen als die Axiome, um zu relativ komplizierten Regeln zu kommen.</p>
 <p>Als erstes steht die <strong>Produktregel</strong>:
@@ -395,12 +426,12 @@ Abbildung 6.11: Baumdiagramm zweier Würfelwürfe. Die Wahrscheinlichkeit, dass 
 </div>
 </div>
 <h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references">
-<div id="ref-mittag2016">
-<p>Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-mittag2016" class="csl-entry">
+Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.
 </div>
-<div id="ref-zimmermann2014">
-<p>Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.</p>
+<div id="ref-zimmermann2014" class="csl-entry">
+Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.
 </div>
 </div>
 <div class="footnotes">

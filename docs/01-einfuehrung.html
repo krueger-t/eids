@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-11-21" />
+<meta name="date" content="2022-12-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,25 +49,24 @@
 
 
 
-<script src="libs/accessible-code-block/empty-anchor.js"></script>
 <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,13 +86,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -120,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -139,34 +160,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Vorwort</a></li>
 <li class="part"><span><b>Grundlagen</b></span></li>
-<li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a><ul>
+<li class="chapter" data-level="1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html"><i class="fa fa-check"></i><b>1</b> Einführung</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess"><i class="fa fa-check"></i><b>1.1</b> Statistik im empirischen Forschungsprozess</a></li>
 <li class="chapter" data-level="1.2" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#warum-statistik"><i class="fa fa-check"></i><b>1.2</b> Warum Statistik?</a></li>
 <li class="chapter" data-level="1.3" data-path="01-einfuehrung.html"><a href="01-einfuehrung.html#mathematische-notation-und-grundlagen"><i class="fa fa-check"></i><b>1.3</b> Mathematische Notation und Grundlagen</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a><ul>
+<li class="chapter" data-level="2" data-path="02-begriffe.html"><a href="02-begriffe.html"><i class="fa fa-check"></i><b>2</b> Grundbegriffe und Datenerhebung</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="02-begriffe.html"><a href="02-begriffe.html#statistische-grundbegriffe"><i class="fa fa-check"></i><b>2.1</b> Statistische Grundbegriffe</a></li>
 <li class="chapter" data-level="2.2" data-path="02-begriffe.html"><a href="02-begriffe.html#datenerhebung"><i class="fa fa-check"></i><b>2.2</b> Datenerhebung</a></li>
 <li class="chapter" data-level="2.3" data-path="02-begriffe.html"><a href="02-begriffe.html#skalenniveaus"><i class="fa fa-check"></i><b>2.3</b> Skalenniveaus</a></li>
 </ul></li>
 <li class="part"><span><b>Deskriptive Statistik</b></span></li>
-<li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a><ul>
+<li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#ziel-der-deskriptiven-statistik"><i class="fa fa-check"></i><b>3.1</b> Ziel der deskriptiven Statistik</a></li>
 <li class="chapter" data-level="3.2" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#häufigkeiten"><i class="fa fa-check"></i><b>3.2</b> Häufigkeiten</a></li>
 <li class="chapter" data-level="3.3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#lageparameter"><i class="fa fa-check"></i><b>3.3</b> Lageparameter</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a><ul>
+<li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="04-streuung.html"><a href="04-streuung.html#streuungsparameter"><i class="fa fa-check"></i><b>4.1</b> Streuungsparameter</a></li>
 <li class="chapter" data-level="4.2" data-path="04-streuung.html"><a href="04-streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
 <li class="chapter" data-level="4.3" data-path="04-streuung.html"><a href="04-streuung.html#standardisierung-z-transformation"><i class="fa fa-check"></i><b>4.3</b> Standardisierung (z-Transformation)</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a><ul>
+<li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="05-korrelation.html"><a href="05-korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik"><i class="fa fa-check"></i><b>5.1</b> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik</a></li>
 <li class="chapter" data-level="5.2" data-path="05-korrelation.html"><a href="05-korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman"><i class="fa fa-check"></i><b>5.2</b> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman</a></li>
 <li class="chapter" data-level="5.3" data-path="05-korrelation.html"><a href="05-korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson"><i class="fa fa-check"></i><b>5.3</b> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson</a></li>
 </ul></li>
 <li class="part"><span><b>Wahrscheinlichkeitstheorie</b></span></li>
-<li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a><ul>
+<li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvorgänge"><i class="fa fa-check"></i><b>6.1</b> Zufallsvorgänge</a></li>
 <li class="chapter" data-level="6.2" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#ereignisse"><i class="fa fa-check"></i><b>6.2</b> Ereignisse</a></li>
 <li class="chapter" data-level="6.3" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvariablen"><i class="fa fa-check"></i><b>6.3</b> Zufallsvariablen</a></li>
@@ -174,20 +201,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#axiome-der-wahrscheinlichkeitstheorie-nach-kolmogorow"><i class="fa fa-check"></i><b>6.5</b> Axiome der Wahrscheinlichkeitstheorie nach Kolmogorow</a></li>
 <li class="chapter" data-level="6.6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#rechenregeln"><i class="fa fa-check"></i><b>6.6</b> Rechenregeln</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="07-verteilungen.html"><a href="07-verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a><ul>
+<li class="chapter" data-level="7" data-path="07-verteilungen.html"><a href="07-verteilungen.html"><i class="fa fa-check"></i><b>7</b> Verteilungen</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="07-verteilungen.html"><a href="07-verteilungen.html#von-der-empirischen-zur-theoretischen-verteilung"><i class="fa fa-check"></i><b>7.1</b> Von der empirischen zur theoretischen Verteilung</a></li>
 <li class="chapter" data-level="7.2" data-path="07-verteilungen.html"><a href="07-verteilungen.html#parameter-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.2</b> Parameter theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.3" data-path="07-verteilungen.html"><a href="07-verteilungen.html#kenngrößen-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.3</b> Kenngrößen theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.4" data-path="07-verteilungen.html"><a href="07-verteilungen.html#distr"><i class="fa fa-check"></i><b>7.4</b> Wichtige Verteilungen und ihre Anwendungen</a></li>
 </ul></li>
 <li class="part"><span><b>Induktive Statistik</b></span></li>
-<li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a><ul>
+<li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-schätzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
 <li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
 <li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
 <li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#qqplot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a><ul>
+<li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="09-tests.html"><a href="09-tests.html#grundprinzipien-statistischer-tests"><i class="fa fa-check"></i><b>9.1</b> Grundprinzipien statistischer Tests</a></li>
 <li class="chapter" data-level="9.2" data-path="09-tests.html"><a href="09-tests.html#ttest"><i class="fa fa-check"></i><b>9.2</b> t-Test (Vergleich von Mittelwerten)</a></li>
 <li class="chapter" data-level="9.3" data-path="09-tests.html"><a href="09-tests.html#interpretation-des-p-wertes"><i class="fa fa-check"></i><b>9.3</b> Interpretation des p-Wertes</a></li>
@@ -195,7 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="09-tests.html"><a href="09-tests.html#kstest"><i class="fa fa-check"></i><b>9.5</b> Verteilungstest (Kolmogorow-Smirnow-Test)</a></li>
 <li class="chapter" data-level="9.6" data-path="09-tests.html"><a href="09-tests.html#chi2test"><i class="fa fa-check"></i><b>9.6</b> Unabhängigkeitstest (Chi-Quadrat-Test)</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Lineare Regression</a><ul>
+<li class="chapter" data-level="10" data-path="10-regression.html"><a href="10-regression.html"><i class="fa fa-check"></i><b>10</b> Lineare Regression</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#definitionen"><i class="fa fa-check"></i><b>10.1</b> Definitionen</a></li>
 <li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#beschreibung-vs.-vorhersage"><i class="fa fa-check"></i><b>10.2</b> Beschreibung vs. Vorhersage</a></li>
 <li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterführende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
@@ -226,18 +257,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="einfuehrung" class="section level1 hasAnchor">
+<div id="einfuehrung" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Kapitel 1</span> Einführung<a href="01-einfuehrung.html#einfuehrung" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="statistik-im-empirischen-forschungsprozess" class="section level2 hasAnchor">
+<div id="statistik-im-empirischen-forschungsprozess" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> Statistik im empirischen Forschungsprozess<a href="01-einfuehrung.html#statistik-im-empirischen-forschungsprozess" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lesen Sie dazu bitte Kapitel 2.4 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, s. Moodle. Gemäß der dort gewählten Kategorisierung befasst sich die Statistik hauptsächlich mit <strong>Datenanalyse</strong> (Punkt 7), obwohl die angrenzenden Schritte ebenfalls wichtig sind. Auf <strong>Auswahl der Untersuchungseinheit</strong> (Punkt 4), <strong>Datenerhebung</strong> (Punkt 5) und <strong>Datenaufbereitung</strong> (Punkt 6) werden wir in Kapitel <a href="02-begriffe.html#begriffe">2</a> näher eingehen. Punkt 8 (<strong>Interpretation und Rückschlüsse</strong>) wird durchgehend eine Rolle spielen.</p>
 </div>
-<div id="warum-statistik" class="section level2 hasAnchor">
+<div id="warum-statistik" class="section level2 hasAnchor" number="1.2">
 <h2><span class="header-section-number">1.2</span> Warum Statistik?<a href="01-einfuehrung.html#warum-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Statistik ist Teil des physisch- und humangeographischen Methodenpakets. Da die Erkenntnisse der Geographie in vielen Teilen auf dem empirischen Forschungsprozess basieren ist statistische Analyse als Argumentationsunterstützung und als Beweissicherung unumgänglich. Außerdem dient sie der Bestätigung oder Widerlegung theoretischer Ansätze und der Generierung neuer Informationen aus verfügbaren Daten. In der Praxis dient Statistik häufig als Entscheidungsgrundlage.</p>
-<p>Lesen Sie bitte Kapitel 2.3 <span class="citation">(Zimmermann-Janschitz <a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> für konkrete Anwendungsbeispiele der Statistik in der Geographie. Am Ende jenes Kapitels finden Sie außerdem eine Erklärung der Teilbereiche der Statistik. Mit der <strong>deskriptiven (beschreibenden) Statistik</strong> beschäftigen wir uns in den Wochen 3 - 5. Dazu ist das Lehrbuch von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> wichtig. Mit der <strong>induktiven (schließenden) Statistik</strong> beschäfigen wir uns in den Wochen 8 - 13. Die Brücke zwischen diesen beiden Teilbereichen - wie es <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> darstellt - ist die <strong>Wahrscheinlichkeitstheorie</strong>, mit deren Grundlagen wir uns in den Wochen 6 - 7 auseinandersetzen.</p>
+<p>Lesen Sie bitte Kapitel 2.3 <span class="citation">(<a href="#ref-zimmermann2014" role="doc-biblioref">Zimmermann-Janschitz 2014</a>)</span> für konkrete Anwendungsbeispiele der Statistik in der Geographie. Am Ende jenes Kapitels finden Sie außerdem eine Erklärung der Teilbereiche der Statistik. Mit der <strong>deskriptiven (beschreibenden) Statistik</strong> beschäftigen wir uns in den Wochen 3 - 5. Dazu ist das Lehrbuch von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> wichtig. Mit der <strong>induktiven (schließenden) Statistik</strong> beschäfigen wir uns in den Wochen 8 - 13. Die Brücke zwischen diesen beiden Teilbereichen - wie es <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> darstellt - ist die <strong>Wahrscheinlichkeitstheorie</strong>, mit deren Grundlagen wir uns in den Wochen 6 - 7 auseinandersetzen.</p>
 </div>
-<div id="mathematische-notation-und-grundlagen" class="section level2 hasAnchor">
+<div id="mathematische-notation-und-grundlagen" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Mathematische Notation und Grundlagen<a href="01-einfuehrung.html#mathematische-notation-und-grundlagen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In diesem Unterkapitel werden wichtige Begriffe eingeführt und wichtige mathematische Grundlagen aus der Schule wiederholt. Lesen Sie bitte dazu Kapitel 1.2 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>. Dort werden anhand des Beispieles der Kostenaufstellung für eine “Statistikexkursion” die Begriffe <strong>Variable</strong>, <strong>Index</strong> und <strong>Summe</strong> eingeführt. Variable wird synonym mit <strong>Merkmal</strong> verwendet. In den Zeilen der Tabelle 1.1 in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> stehen dann die einzelnen <strong>Merkmalswerte</strong> oder einfach nur <strong>Werte</strong> für die Untersuchungselemente (<strong>statistische Einheiten</strong>). Jede statistische Einheit ist gekennzeichnet durch einen eigenen Index. An dieser Stelle sei ergänzt, dass ein Index auch unterschiedliche Variablen bezeichnen kann, z.B. <span class="math inline">\(x_1, x_2, \ldots\)</span>.</p>
 <p>Die <strong>Summe</strong> verschiedener Merkmalswerte wird wie folgt abgekürzt:
@@ -282,7 +313,7 @@ x_{n,1} &amp; x_{n,2} &amp; \cdots &amp; x_{n,p}
 \end{pmatrix}\]</span>
 Hier hat jeder Merkmalswert zwei Indizes, einen für die statistische Einheit (hier bis Anzahl <span class="math inline">\(n\)</span>) und einen für die Variable (hier bis Anzahl <span class="math inline">\(p\)</span>).</p>
 <p>Vektoren und Matrizen werden in der Regel fett gedruckt, wobei Vektoren <span class="math inline">\(\mathbf{x}\)</span> mit Kleinbuchstaben und Matrizen <span class="math inline">\(\mathbf{X}\)</span> mit Großbuchstaben bezeichnet werden. Die Rechenregeln für Vektoren und Matrizen sind in der linearen Algebra zusammengefasst. Wir werden daraus nur Auszüge in den letzten Semesterwochen verwenden.</p>
-<div id="exponential--und-logarithmusfunktion" class="section level3 hasAnchor">
+<div id="exponential--und-logarithmusfunktion" class="section level3 hasAnchor" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Exponential- und Logarithmusfunktion<a href="01-einfuehrung.html#exponential--und-logarithmusfunktion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Zwei mathematische Funktionen sind für diese Lehrveranstaltung besonders wichtig, die Exponential- und die Logarithmusfunktion. Die folgende Darstellung ist inspiriert von <span class="citation">Gelman and Nolan (<a href="#ref-gelman2002" role="doc-biblioref">2002</a>)</span>.</p>
 <p>Stellen Sie sich eine Amöbe vor, die sich innerhalb einer Stunde teilt (Abbildung <a href="01-einfuehrung.html#fig:amoeba">1.1</a>). Diese zwei Amöben teilen sich jede in einer weiteren Stunde usw. Wie lautet die Gleichung für die Anzahl Amöben, <span class="math inline">\(y\)</span>, als Funktion der Zeit, <span class="math inline">\(t\)</span> (in Stunden)?</p>
@@ -298,10 +329,10 @@ y=2^t
 \tag{1.4}
 \end{equation}\]</span>
 Dies ist eine <strong>Exponentialfunktion</strong> mit <strong>Basis</strong> <span class="math inline">\(2\)</span> und <strong>Exponent</strong> <span class="math inline">\(t\)</span>. Abbildung <a href="01-einfuehrung.html#fig:explog">1.2</a> zeigt zwei Plots dieser Funktion. (Den verwendeten <em>R</em>-Code werden sie im Verlauf der PC-Übung verstehen.)</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="01-einfuehrung.html#cb1-1"></a>t &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
-<span id="cb1-2"><a href="01-einfuehrung.html#cb1-2"></a>y &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">^</span>t</span>
-<span id="cb1-3"><a href="01-einfuehrung.html#cb1-3"></a><span class="kw">plot</span>(t, y, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>)</span>
-<span id="cb1-4"><a href="01-einfuehrung.html#cb1-4"></a><span class="kw">plot</span>(t, <span class="kw">log</span>(y), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="01-einfuehrung.html#cb1-1" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb1-2"><a href="01-einfuehrung.html#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">^</span>t</span>
+<span id="cb1-3"><a href="01-einfuehrung.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t, y, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>)</span>
+<span id="cb1-4"><a href="01-einfuehrung.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(t, <span class="fu">log</span>(y), <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:explog"></span>
 <img src="eids_files/figure-html/explog-1.png" alt="Links: Plot von Gleichung (1.4). Rechts: Plot von Gleichung (1.4) auf logarithmischer Skala." width="50%" /><img src="eids_files/figure-html/explog-2.png" alt="Links: Plot von Gleichung (1.4). Rechts: Plot von Gleichung (1.4) auf logarithmischer Skala." width="50%" />
 <p class="caption">
@@ -381,7 +412,7 @@ log\left(u^r\right)=r \cdot log(u)
 \tag{1.18}
 \end{equation}\]</span></p>
 </div>
-<div id="quadratische-funktion-und-wurzelfunktion" class="section level3 hasAnchor">
+<div id="quadratische-funktion-und-wurzelfunktion" class="section level3 hasAnchor" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Quadratische Funktion und Wurzelfunktion<a href="01-einfuehrung.html#quadratische-funktion-und-wurzelfunktion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Abschließend sei noch die <strong>quadratische Funktion</strong> erwähnt (Abbildung <a href="01-einfuehrung.html#fig:quad">1.3</a>, links):
 <span class="math display" id="eq:quad">\[\begin{equation}
@@ -393,9 +424,9 @@ f(x)=x^2
 \sqrt{x^2}=x
 \tag{1.20}
 \end{equation}\]</span></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="01-einfuehrung.html#cb2-1"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)</span>
-<span id="cb2-2"><a href="01-einfuehrung.html#cb2-2"></a><span class="kw">plot</span>(x, x<span class="op">^</span><span class="dv">2</span>, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>)</span>
-<span id="cb2-3"><a href="01-einfuehrung.html#cb2-3"></a><span class="kw">plot</span>(x, <span class="kw">sqrt</span>(x<span class="op">^</span><span class="dv">2</span>), <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="01-einfuehrung.html#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="fl">0.1</span>)</span>
+<span id="cb2-2"><a href="01-einfuehrung.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, x<span class="sc">^</span><span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>)</span>
+<span id="cb2-3"><a href="01-einfuehrung.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">sqrt</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">type =</span> <span class="st">&#39;b&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:quad"></span>
 <img src="eids_files/figure-html/quad-1.png" alt="Links: Quadratische Funktion von $x$. Rechts: Wurzelfunktion von $x^2$, s. Gleichung (1.20)." width="50%" /><img src="eids_files/figure-html/quad-2.png" alt="Links: Quadratische Funktion von $x$. Rechts: Wurzelfunktion von $x^2$, s. Gleichung (1.20)." width="50%" />
 <p class="caption">
@@ -407,12 +438,12 @@ Abbildung 1.3: Links: Quadratische Funktion von <span class="math inline">\(x\)<
 </div>
 </div>
 <h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references">
-<div id="ref-gelman2002">
-<p>Gelman, A., and D. Nolan. 2002. <em>Teaching Statistics: A Bag of Tricks</em>. New York: Oxford University Press.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-gelman2002" class="csl-entry">
+Gelman, A., and D. Nolan. 2002. <em>Teaching Statistics: A Bag of Tricks</em>. New York: Oxford University Press.
 </div>
-<div id="ref-zimmermann2014">
-<p>Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.</p>
+<div id="ref-zimmermann2014" class="csl-entry">
+Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.
 </div>
 </div>
             </section>
