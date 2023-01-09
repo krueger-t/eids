@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2022-12-19" />
+<meta name="date" content="2023-01-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -661,7 +661,7 @@ t_s=\frac{\hat d-0}{s}\cdot\sqrt{n}\sim t_{n-1}
 <h3><span class="header-section-number">9.4.1</span> Beispiel 6 (rechtsseitiger F-test)<a href="09-tests.html#beispiel-6-rechtsseitiger-f-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Siehe Abbildung <a href="09-tests.html#fig:freisezeit2">9.2</a>:</p>
 <blockquote>
-<p>Ist die Varianz der Reisezeit morgens <span class="math inline">\(\sigma_2^2\)</span> (gegeben <span class="math inline">\(s_2^2=547\)</span>) größer als die Varianz der Reisezeit nachmittags <span class="math inline">\(\sigma_1^2\)</span> (gegeben <span class="math inline">\(s_1^2=544\)</span>)?</p>
+<p>Ist die Varianz der Reisezeit nachmittags <span class="math inline">\(\sigma_2^2\)</span> (gegeben <span class="math inline">\(s_2^2=547\)</span>) größer als die Varianz der Reisezeit morgens <span class="math inline">\(\sigma_1^2\)</span> (gegeben <span class="math inline">\(s_1^2=544\)</span>)?</p>
 </blockquote>
 <p>Die Nullhypothese ist in diesem Fall, dass die beiden Varianzen gleich sind:
 <span class="math display">\[H_0:\sigma_2^2=\sigma_1^2\]</span>
@@ -681,23 +681,23 @@ Abbildung 9.5: Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsva
 </div>
 <p>Setzen wir nun die Zahlenwerten der Stichproben in Formel <a href="09-tests.html#eq:fs">(9.7)</a> ein:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="09-tests.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Varianzen</span></span>
-<span id="cb106-2"><a href="09-tests.html#cb106-2" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">var</span>(reisedat<span class="sc">$</span>zeit_nachmittags, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb106-2"><a href="09-tests.html#cb106-2" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">&lt;-</span> <span class="fu">var</span>(reisedat<span class="sc">$</span>zeit_morgens, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
 <span id="cb106-3"><a href="09-tests.html#cb106-3" aria-hidden="true" tabindex="-1"></a>var1</span></code></pre></div>
-<pre><code>## [1] 546.6</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="09-tests.html#cb108-1" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">var</span>(reisedat<span class="sc">$</span>zeit_morgens, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb108-2"><a href="09-tests.html#cb108-2" aria-hidden="true" tabindex="-1"></a>var2</span></code></pre></div>
 <pre><code>## [1] 543.9</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="09-tests.html#cb108-1" aria-hidden="true" tabindex="-1"></a>var2 <span class="ot">&lt;-</span> <span class="fu">var</span>(reisedat<span class="sc">$</span>zeit_nachmittags, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb108-2"><a href="09-tests.html#cb108-2" aria-hidden="true" tabindex="-1"></a>var2</span></code></pre></div>
+<pre><code>## [1] 546.6</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="09-tests.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stichprobenumfänge</span></span>
-<span id="cb110-2"><a href="09-tests.html#cb110-2" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(reisedat<span class="sc">$</span>zeit_nachmittags[<span class="sc">!</span><span class="fu">is.na</span>(reisedat<span class="sc">$</span>zeit_nachmittags)])</span>
+<span id="cb110-2"><a href="09-tests.html#cb110-2" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(reisedat<span class="sc">$</span>zeit_morgens[<span class="sc">!</span><span class="fu">is.na</span>(reisedat<span class="sc">$</span>zeit_morgens)])</span>
 <span id="cb110-3"><a href="09-tests.html#cb110-3" aria-hidden="true" tabindex="-1"></a>n1</span></code></pre></div>
-<pre><code>## [1] 75</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="09-tests.html#cb112-1" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(reisedat<span class="sc">$</span>zeit_morgens[<span class="sc">!</span><span class="fu">is.na</span>(reisedat<span class="sc">$</span>zeit_morgens)])</span>
-<span id="cb112-2"><a href="09-tests.html#cb112-2" aria-hidden="true" tabindex="-1"></a>n2</span></code></pre></div>
 <pre><code>## [1] 77</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="09-tests.html#cb112-1" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(reisedat<span class="sc">$</span>zeit_nachmittags[<span class="sc">!</span><span class="fu">is.na</span>(reisedat<span class="sc">$</span>zeit_nachmittags)])</span>
+<span id="cb112-2"><a href="09-tests.html#cb112-2" aria-hidden="true" tabindex="-1"></a>n2</span></code></pre></div>
+<pre><code>## [1] 75</code></pre>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="09-tests.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Teststatistik</span></span>
 <span id="cb114-2"><a href="09-tests.html#cb114-2" aria-hidden="true" tabindex="-1"></a>fs <span class="ot">&lt;-</span> var2 <span class="sc">/</span> var1</span>
 <span id="cb114-3"><a href="09-tests.html#cb114-3" aria-hidden="true" tabindex="-1"></a>fs</span></code></pre></div>
-<pre><code>## [1] 0.9951</code></pre>
+<pre><code>## [1] 1.005</code></pre>
 <p>Dieser Wert der Teststatistik liegt im Zentrum der F-Verteilung, die unter der Nullhypothese zu erwarten ist:</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="09-tests.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), <span class="fu">pf</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">5</span>,<span class="fl">0.01</span>), n1<span class="dv">-1</span>, n2<span class="dv">-1</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">type=</span><span class="st">&#39;l&#39;</span>,</span>
 <span id="cb116-2"><a href="09-tests.html#cb116-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&#39;Z=F_s&#39;</span>, <span class="at">ylab=</span><span class="st">&#39;Verteilungsfunktion&#39;</span>)</span>
@@ -708,7 +708,7 @@ Abbildung 9.5: Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsva
 <span class="math display">\[\Pr\left(Z&gt;F_s\right)=1-F_F\left(F_s\right)\]</span></p>
 <p>Mit Zahlenwerten:</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="09-tests.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(fs, n2<span class="dv">-1</span>, n1<span class="dv">-1</span>)</span></code></pre></div>
-<pre><code>## [1] 0.5089</code></pre>
+<pre><code>## [1] 0.4911</code></pre>
 <p>Da der p-Wert viel größer ist als das konventionelle Signifikanzniveau von 0.01, ist sehr wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir lehnen demnach die Nullhypothese nicht ab und schließen für Beispiel 6:</p>
 <blockquote>
 <p>Der Unterschied der Varianzen der beiden Reisezeiten ist statistisch <em>nicht signifikant</em>.</p>

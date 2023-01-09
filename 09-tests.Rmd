@@ -478,7 +478,7 @@ Während der t-Test für den Vergleich von Mittelwerten zuständig ist, dient de
 
 Siehe Abbildung \@ref(fig:freisezeit2):
 
-> Ist die Varianz der Reisezeit morgens $\sigma_2^2$ (gegeben $s_2^2=547$) größer als die Varianz der Reisezeit nachmittags $\sigma_1^2$ (gegeben $s_1^2=544$)?
+> Ist die Varianz der Reisezeit nachmittags $\sigma_2^2$ (gegeben $s_2^2=547$) größer als die Varianz der Reisezeit morgens $\sigma_1^2$ (gegeben $s_1^2=544$)?
 
 Die Nullhypothese ist in diesem Fall, dass die beiden Varianzen gleich sind:
 $$H_0:\sigma_2^2=\sigma_1^2$$
@@ -517,14 +517,14 @@ legend('bottomright', legend=c('F(1,1)', 'F(2,1)', 'F(5,2)', 'F(10,1)', 'F(100,1
 Setzen wir nun die Zahlenwerten der Stichproben in Formel \@ref(eq:fs) ein:
 ```{r echo=TRUE}
 # Varianzen
-var1 <- var(reisedat$zeit_nachmittags, na.rm=TRUE)
+var1 <- var(reisedat$zeit_morgens, na.rm=TRUE)
 var1
-var2 <- var(reisedat$zeit_morgens, na.rm=TRUE)
+var2 <- var(reisedat$zeit_nachmittags, na.rm=TRUE)
 var2
 # Stichprobenumfänge
-n1 <- length(reisedat$zeit_nachmittags[!is.na(reisedat$zeit_nachmittags)])
+n1 <- length(reisedat$zeit_morgens[!is.na(reisedat$zeit_morgens)])
 n1
-n2 <- length(reisedat$zeit_morgens[!is.na(reisedat$zeit_morgens)])
+n2 <- length(reisedat$zeit_nachmittags[!is.na(reisedat$zeit_nachmittags)])
 n2
 # Teststatistik
 fs <- var2 / var1
