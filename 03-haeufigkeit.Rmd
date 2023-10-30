@@ -42,7 +42,8 @@ reisedat$x
 library("readxl")
 # Daten einlesen
 # der Zusatz na = "-999" sagt R, dass fehlende Werte mit -999 kodiert sind
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")
+# ein Wert mit Distanz = 3822km wurde bereits mit -999 = NA markiert
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2023_korrigiert.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 # Ausgabe von reisedat$distanz
@@ -50,15 +51,15 @@ reisedat$distanz
 
 ```
 
-Das ist eine ungeordnete Reihe von 77 Datenpunkten, den sogenannten **Rohdaten**.
+Das ist eine ungeordnete Reihe von 83 Datenpunkten, den sogenannten **Rohdaten**.
 
 Wenn wir die Rohdaten jetzt ordnen und in Klassen einteilen können wir **absolute Häufigkeiten** bestimmen, gewissermaßen durch Abzählen:
 
 ```{r echo=TRUE, out.width='80%'}
 # reisedat$distanz aufsteigend ordnen und ausgeben
 sort(reisedat$distanz)
-# absolute Häufigkeiten bestimmen für Klassen von 0 bis 75km, mit Breite 5km
-hist(reisedat$distanz, breaks = seq(0, 75, 5),
+# absolute Häufigkeiten bestimmen für Klassen von 0 bis 80km, mit Breite 5km
+hist(reisedat$distanz, breaks = seq(0, 80, 5),
      main = "", xlab = "Entfernung (km)", 
      ylab = "absolute Häufigkeit")
 ```
@@ -77,16 +78,16 @@ Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. 
 
 ```{r echo=TRUE, out.width='80%'}
 # Histogramm berechnen ohne Output
-h <- hist(reisedat$distanz, breaks = seq(0, 75, 5), plot = FALSE)
+h <- hist(reisedat$distanz, breaks = seq(0, 80, 5), plot = FALSE)
 # absolute in relative Häufigkeiten umrechnen
 h$counts <- h$counts / sum(h$counts)
 # Histogrammdaten plotten
-plot(h, freq = TRUE, col = "gray",
+barplot(h$counts ~ h$mids, space = 0, col = "gray",
      main = "", xlab = "Entfernung (km)", ylab = "relative Häufigkeit")
 
 ```
 
-Interpretation: Der ersten Balken z.B. geht bis knapp über 0.1, d.h. etwas mehr als 10% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 9 von 77 Datenpunkten sind.
+Interpretation: Der zweite Balken z.B. geht bis knapp über 0.2, d.h. etwas mehr als 20% der Entfernungsdaten haben Werte zwischen 5 und 10km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 17 von 83 Datenpunkten sind.
 
 Die Summe der relativen Häufigkeiten ist 1, was 100% entspricht:
 $$\sum_{j=1}^{m}f_j=1$$
@@ -95,7 +96,7 @@ Kommen wir nun zu den **Summenhäufigkeiten**, auch genannt **kumulative Häufig
 
 ```{r echo=TRUE, fig.show='hold', out.width='50%'}
 # Histogramm berechnen ohne Output
-h <- hist(reisedat$distanz, breaks = seq(0, 75, 5), plot = FALSE)
+h <- hist(reisedat$distanz, breaks = seq(0, 80, 5), plot = FALSE)
 # Häufigkeiten kumuliert aufsummieren
 h$counts <- cumsum(h$counts)
 # Histogrammdaten plotten
@@ -104,12 +105,12 @@ plot(h, freq = TRUE, col = "gray",
 # absolute Summenhäufigkeiten in relative umrechnen
 h$counts <- h$counts / max(h$counts)
 # Histogrammdaten plotten
-plot(h, freq = TRUE, col = "gray",
+barplot(h$counts ~ h$mids, space = 0, col = "gray",
      main = "", xlab = "Entfernung (km)", ylab = "relative Summenhäufigkeit")
 
 ```
 
-Die Häufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Höhe 77, die Gesamtzahl der Datenpunkte $n$, bzw. die relative Höhe 1 (100%). Sehen die dazu auch das Beispiel in @zimmermann2014, Tabelle 3.10 auf Seite 87.
+Die Häufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Höhe 83, die Gesamtzahl der Datenpunkte $n$, bzw. die relative Höhe 1 (100%). Sehen die dazu auch das Beispiel in @zimmermann2014, Tabelle 3.10 auf Seite 87.
 
 Abschließend noch ein paar Worte zur **Klassifizierung**. Äquidistante Klassen, d.h. Klassen gleicher Breite, sind grundsätzlich zu bevorzugen. In *R* können Sie eine gewünschte Anzahl Klassen angeben, die dann äquidistant über den Wertebereich verteilt werden. Das ist sinnvoll für einen ersten Eindruck. Die Grundeinstellung von 10 Klassen ist dabei meist ausreichend. Im Laufe der Analyse wird es manchmal sinnvoller sein, bestimmte Klassen vorzugeben, auch (oder gerade) wenn manche Klasse in der betrachteten Stichprobe nicht vorkommen, wie bei unserem Beispiel der Entfernungsdaten. Sie können in *R* Klassen vorzugeben, indem Sie die Klassengrenzen ("breaks") angeben. Hier eine Variation:
 
@@ -138,7 +139,7 @@ Lageparameter sind Maße der zentralen Tendenz einer Häufigkeitsverteilung. Sie
 Der **Modus** $\bar x_{mod}$ entspricht jener Merkmalsausprägung $a_j$, die in der Häufigkeitsverteilung (lokal) _am häufigsten_ vorkommt. In unseren Entfernungsdaten wäre das der Wert $12.5$:
 
 ```{r echo=TRUE, out.width='80%'}
-h <- hist(reisedat$distanz, breaks = seq(0, 75, 5), plot = FALSE)
+h <- hist(reisedat$distanz, breaks = seq(0, 80, 5), plot = FALSE)
 plot(h, freq = TRUE, col = "gray",
      main = "", xlab = "Entfernung (km)", ylab = "absolute Häufigkeit")
 # gib Klassenmitte aus (an der Stelle, wo die Häufigkeiten gleich dem Maximum sind)
@@ -151,7 +152,7 @@ Bei "künstlichen" Klassen wie in unserem Beispiel wird typischerweise die Mitte
 1. Ungleiche Klassenbreiten vermeiden.
 2. Ein Klasse für den Modus ("Modalklasse") angeben, z.B. für unsere Entfernungsdaten: "Bei einer Klassierung der Entfernungsdaten mit Klassenbreite 5km ist die häufigste Klasse $(10;15]$."
 
-Im obigen Histogramm der Entfernungsdaten sehen wir außerdem weitere lokale Maxima bei $37.5$, $52.5$ und $72.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die **bimodale** Verteilung, die zwei lokale Maxima hat.
+Im obigen Histogramm der Entfernungsdaten sehen wir außerdem weitere lokale Maxima bei $37.5$, $47.5$ und $77.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die **bimodale** Verteilung, die zwei lokale Maxima hat.
 
 Das **arithmetische Mittel** $\bar x$ der Merkmalswerte $x_1, x_2, \ldots, x_n$ ist die Summe aller Merkmalswerte $x_i$ relativ zur Stichprobengröße $n$:
 $$\bar x=\frac{\sum_{i=1}^{n}x_i}{n}$$
@@ -164,7 +165,8 @@ Berechnen wir das arithmetische Mittel für unsere Entfernungsdaten mit der Funk
 
 ```{r echo=TRUE}
 # berechne arithmetisches Mittel für Variable "Distanz" in km
-mean(reisedat$distanz)
+# der Zusatz na.rm = TRUE bedeutet, dass NA-Werte nicht berücksichtigt werden
+mean(reisedat$distanz, na.rm = TRUE)
 
 ```
 
@@ -179,7 +181,7 @@ $$\bar x_{med}=\frac{x_{\frac{n}{2}}+x_{\frac{n}{2}+1}}{2}$$
 Berechnen wir den Median für unsere Entfernungsdaten mit der Funktion `median()`:
 
 ```{r echo=TRUE}
-median(reisedat$distanz)
+median(reisedat$distanz, na.rm = TRUE)
 
 ```
 
