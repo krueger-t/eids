@@ -35,16 +35,16 @@ rbeta(10000,2,3) %>%
            color="black", size = 5) +
   geom_segment(aes(x = 0, y = -0.45, xend = 0.95, yend = -0.45),
                arrow = arrow(length = unit(0.5, "cm")), lineend = "round", 
-               linejoin = "round", size = 2, col = "black") +
+               linejoin = "round", linewidth = 2, col = "black") +
   geom_segment(aes(x = 0.95, y = -0.45, xend = 0, yend = -0.45),
                arrow = arrow(length = unit(0.5, "cm")), lineend = "round", 
-               linejoin = "round", size = 2, col = "black") +
+               linejoin = "round", linewidth = 2, col = "black") +
   geom_segment(aes(x = 0.23, y = -0.35, xend = 0.55, yend = -0.35),
                arrow = arrow(length = unit(0.5, "cm")), lineend = "round", 
-               linejoin = "round", size = 2, col = "black") +
+               linejoin = "round", linewidth = 2, col = "black") +
   geom_segment(aes(x = 0.55, y = -0.35, xend = 0.23, yend = -0.35),
                arrow = arrow(length = unit(0.5, "cm")), lineend = "round", 
-               linejoin = "round", size = 2, col = "black") +
+               linejoin = "round", linewidth = 2, col = "black") +
   annotate(geom="text", x=0.4, y=-0.4, label="Quartilsabstand (IQR = inter-quartile-range) ",
            color="black", size = 5) +
   annotate(geom="text", x=0.45, y=-0.5, label="Spannweite",
