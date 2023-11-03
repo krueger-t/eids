@@ -92,7 +92,7 @@ Diese absolute Häufigkeit, die wir mit $\tilde h_{ij}$ bezeichnen, ist die _bei
 knitr::include_graphics('figs/ct_vergleich.png')
 ```
 
-Als Vergleichsmaß wird die sogenannte **Chi-Quadrat Statistik** $\mathcal{X}^2$ (oder quadratische Kontingenz) verwendet, und das ist dann auch unser **Zusammenhangsmaß für nominalskalierte Merkmale**. $\mathcal{X}^2$ ergibt sich aus der Differenz der tatsächlichen Häufigkeiten $h_{ij}$ und den erwarteten Häufigkeiten bei empirischer Unabhängigkeit $\tilde h_{ij}$:
+Als Vergleichsmaß wird die sogenannte **Chi-Quadrat Statistik** $\mathcal{X}^2$ (oder quadratische Kontingenz) verwendet, und das ist dann auch unser **Zusammenhangsmaß für nominalskalierte Merkmale**. $\mathcal{X}^2$ ergibt sich aus den Differenzen der tatsächlichen Häufigkeiten $h_{ij}$ und den erwarteten Häufigkeiten bei empirischer Unabhängigkeit $\tilde h_{ij}$, die quadriert, mit $\tilde h_{ij}$ standardisiert und dann über alle $k$ Zeilen und alle $m$ Spalten aufsummiert werden:
 $$\mathcal{X}^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{\left(h_{ij}-\tilde h_{ij}\right)^2}{\tilde h_{ij}}$$
 
 Bei Unabhängigkeit der Merkmale ist $\mathcal{X}^2=0$. Bei vollständiger Abhängigkeit ist $\mathcal{X}^2=\mathcal{X}_{max}^2$, wobei $\mathcal{X}_{max}^2=n\cdot(M-1)$ mit $M=\min(k;m)$. D.h. der maximal mögliche Wert der $\mathcal{X}^2$ Statistik ergibt sich durch die Dimensionen der Kontingenztabelle, die Zeilenanzahl $k$ und die Spaltenanzahl $m$. Dadurch können wir leider die Größenordnung der $\mathcal{X}^2$ Statistik schlecht intuitiv einordnen, was unser Beispiel verdeutlicht:
@@ -113,7 +113,9 @@ Bei perfekter positiver Rangkorrelation ist $r_s=1$.
 
 Wenn keine Rangkorrelation vorliegt ist $r_s=0$.
 
-Bei dem Grünflächenanteil/Bildungsgrad Beispiel von @zimmermann2014 ist $r_s=0.84$, die beiden Merkmale sind also stark positiv korreliert. D.h. größere Anteile von Grünflächen sind tendenziell mit höheren Bildungsgraden assoziiert und kleinere Anteile von Grünflächen sind tendenziell mit geringeren Bildungsgraden assoziiert. _Überlegen Sie gerne, in welche Richtung hier die Kausalität wirkt._
+Bei dem Grünflächenanteil/Bildungsgrad Beispiel von @zimmermann2014 ist $r_s=0.84$, die beiden Merkmale sind also stark positiv korreliert. D.h. größere Anteile von Grünflächen sind tendenziell mit höheren Bildungsgraden assoziiert und kleinere Anteile von Grünflächen sind tendenziell mit geringeren Bildungsgraden assoziiert.
+
+> Überlegen Sie gerne, in welche Richtung hier die Kausalität wirkt.
 
 ## Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson
 
@@ -123,28 +125,7 @@ An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Alle Merkmale 
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-# reisedat <- read_excel("data/Daten_Distanz_Stationen.xlsx")
-# reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx")
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")
-# in Zahlen und data.frame umwandeln
-reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
-
-```
-
-```{r echo=TRUE, out.width='80%'}
-plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags, 
-     xlab = "Reisezeit, morgens (min)",
-     ylab = "Reisezeit, nachmittags (min)")
-
-```
-
-Hier fällt das Wertepaar $(55, 1)$ unten, in der Mitte auf. Meine Vermutung ist, dass jemand hier nachmittags $1$ im Sinne von einer Stunde eingetragen hat, anstatt $60$ Minuten. Ich ändere das in einem korrigierten Datensatz und lade diesen erneut ein (grundsätzlich muss so eine Änderung gut begründet und dokumentiert sein; alternativ kann man auch zweifelhafte Werte entfernen):
-
-```{r echo=TRUE, message=FALSE}
-# Paket laden, das für das Einlesen von xlsx gebraucht wird
-library("readxl")
-# "korrigierte" Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022_korrigiert.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2023_korrigiert.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
@@ -167,7 +148,7 @@ plot(reisedat$distanz, reisedat$zeit_morgens,
 
 ```
 
-An dieser Stelle fallen die vier Datenpunkte ganz rechts auf, sowie der Datenpunkte unten $(14.8, 1.2)$. Bei letzterem hat sich vielleicht wieder jemand mit Minuten und Stunden vertan und meint hier $1.2$ Stunden, also $72$ Minuten. Die vier Punkte ganz rechts könnten Personen sein, die relativ weite Strecken mit dem Auto zurücklegen. Darauf schauen wir in späteren Kapitel noch etwas näher. Vorerst nutzen wir die Daten so, wie sie sind.
+An dieser Stelle fällt der Datenpunkte ganz rechts auf. Hierbei könnte es sich um eine Person handeln, die eine relativ weite Strecke mit der Regionalbahn zurücklegt, die effizienter ist als der ÖPNV in Berlin. Darauf schauen wir in späteren Kapitel noch etwas näher. Vorerst nutzen wir die Daten so, wie sie sind.
 
 **Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in "Reisezeit" kommen könnte._
 
@@ -181,7 +162,7 @@ cor(reisedat$distanz, reisedat$zeit_morgens,
     use = "complete.obs", method = "pearson")
 
 ```
-Das Argument `use = "complete.obs"` teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne "NA", ansonsten wäre der Output "NA". Da hier nur vollständige Datenpaare vorhanden sind, ist das Argument nur vorsorglich gesetzt. Anstatt `method = "pearson"` sind ebenfalls `method = "spearman"` und `method = "kendall"` möglich; beides sind Rangkorrelationskoeffizienten.
+Das Argument `use = "complete.obs"` teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne "NA", ansonsten wäre der Output "NA". Anstatt `method = "pearson"` sind ebenfalls `method = "spearman"` und `method = "kendall"` möglich; beides sind Rangkorrelationskoeffizienten.
 
 In Abbildung \@ref(fig:pearson) sehen Sie Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. Bei augenscheinlich nicht-linearen Zusammenhängen wählt man üblicherweise einen Rangkorrelationskoeffizienten, der dann aussagekräftiger ist.
 
