@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2023-11-03" />
+<meta name="date" content="2023-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -347,7 +347,7 @@ Abbildung 5.5: Vergleich der beobachteten absoluten Häufigkeiten <span class="m
 <span class="math display">\[\mathcal{X}^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{\left(h_{ij}-\tilde h_{ij}\right)^2}{\tilde h_{ij}}\]</span></p>
 <p>Bei Unabhängigkeit der Merkmale ist <span class="math inline">\(\mathcal{X}^2=0\)</span>. Bei vollständiger Abhängigkeit ist <span class="math inline">\(\mathcal{X}^2=\mathcal{X}_{max}^2\)</span>, wobei <span class="math inline">\(\mathcal{X}_{max}^2=n\cdot(M-1)\)</span> mit <span class="math inline">\(M=\min(k;m)\)</span>. D.h. der maximal mögliche Wert der <span class="math inline">\(\mathcal{X}^2\)</span> Statistik ergibt sich durch die Dimensionen der Kontingenztabelle, die Zeilenanzahl <span class="math inline">\(k\)</span> und die Spaltenanzahl <span class="math inline">\(m\)</span>. Dadurch können wir leider die Größenordnung der <span class="math inline">\(\mathcal{X}^2\)</span> Statistik schlecht intuitiv einordnen, was unser Beispiel verdeutlicht:</p>
 <blockquote>
-<p>Für den Volksentscheid Tegel ergibt sich ein Wert von <span class="math inline">\(\mathcal{X}^2=49895.1\)</span>, wobei <span class="math inline">\(\mathcal{X}_{max}^2=1732940\)</span>. Da <span class="math inline">\(\mathcal{X}^2\)</span> näher an <span class="math inline">\(0\)</span> ist als an <span class="math inline">\(1 732 940\)</span>, scheint die Abhängigkeit der Merkmale “Bezirk” und “Abstimmungsverhalten” gering zu sein. Ob sie dennoch <em>statistisch signifikant</em> ist können wir erst mit einem sogenannten <strong>Chi-Quadrat-Test</strong> beurteilen, den wir als Teil der schließenden Statistik in Kapitel <a href="09-tests.html#chi2test">9.6</a> kennenlernen.</p>
+<p>Für den Volksentscheid Tegel ergibt sich ein Wert von <span class="math inline">\(\mathcal{X}^2=49895.1\)</span>, wobei <span class="math inline">\(\mathcal{X}_{max}^2=1732940\)</span>. Da <span class="math inline">\(\mathcal{X}^2\)</span> näher an <span class="math inline">\(0\)</span> ist als an <span class="math inline">\(1 732 940\)</span>, scheint die Abhängigkeit der Merkmale “Bezirk” und “Abstimmungsverhalten” gering zu sein. Mit dem sogenannten <strong>Chi-Quadrat-Test</strong>, den wir als Teil der schließenden Statistik in Kapitel <a href="09-tests.html#chi2test">9.6</a> kennenlernen, können wir diesen Wert noch etwas besser einordnen.</p>
 </blockquote>
 </div>
 <div id="ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="section level2 hasAnchor" number="5.2">
