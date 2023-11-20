@@ -42,7 +42,7 @@ knitr::include_graphics('figs/tegel_f.png')
 
 Als nächstes müssen wir den Begriff der **bedingten relativen Häufigkeit** einführen. Die bedingte relative Häufigkeit ist die Häufigkeit einer Ausprägung des einen Merkmals relativ zur Häufigkeit einer bestimmten Ausprägung des zweiten Merkmals, d.h. "bedingt" dadurch, dass wir uns auf eine Ausprägung des zweiten Merkmals festlegen. Relative Häufigkeiten existieren somit in zwei "Richtungen" in einer Kontingenztabelle (Abbildung \@ref(fig:ctf)).
 
-```{r ctf, echo=FALSE, fig.align='center', fig.cap='Illustration relativer Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von $Y$ unter der Bedingung $X=a_i$. Rechts: Absolute Häufigkeiten der Ausprägungen von $X$ unter der Bedingung $Y=b_j$. <br><small> Nach: @mittag2016. </small>', fig.show='hold', out.width='50%'}
+```{r ctf, echo=FALSE, fig.align='center', fig.cap='Illustration bedingter Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von $Y$ unter der Bedingung $X=a_i$. Rechts: Absolute Häufigkeiten der Ausprägungen von $X$ unter der Bedingung $Y=b_j$. <br><small> Nach: @mittag2016. </small>', fig.show='hold', out.width='50%'}
 knitr::include_graphics(c('figs/ct_fy.png','figs/ct_fx.png'))
 
 ```
