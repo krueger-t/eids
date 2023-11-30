@@ -239,7 +239,7 @@ Ein visueller Test, ob eine Stichprobe aus einer bestimmten Verteilung entstammt
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2023_korrigiert.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 ```
