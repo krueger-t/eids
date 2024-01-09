@@ -135,6 +135,8 @@ eq:b13
 tab:anova
 fig:ssysse
 fig:fcdf
+eq:r2
+eq:adjr2
 eq:seb0
 eq:seb1
 eq:sey
@@ -149,8 +151,6 @@ eq:h1b1
 eq:tsb0
 eq:tsb1
 eq:pv
-eq:r2
-eq:adjr2
 einfuehrung
 statistik-im-empirischen-forschungsprozess
 warum-statistik
@@ -226,6 +226,6 @@ definitionen
 beschreibung-vs.-vorhersage
 ausblick-weiterführende-lineare-modelle
 lineare-regression
-signifikanz-der-regression
-konfidenzintervalle-und-signifikanz-der-parameter
-güte-der-modellanpassung
+erklärte-varianz
+konfidenzintervalle-der-parameterschätzer
+annahmen-der-regression

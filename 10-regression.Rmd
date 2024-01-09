@@ -6,42 +6,38 @@ Für die lineare Regression kehren wir zu einer Frage aus Kapitel \@ref(korrelat
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2022_korrigiert.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2023_korrigiert.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat,2,as.numeric))
 ```
 ```{r echo=TRUE, out.width='80%'}
 plot(reisedat$distanz, reisedat$zeit_morgens, 
      xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
-points(reisedat$distanz[13], reisedat$zeit_morgens[13], col = "red")
-points(reisedat$distanz[c(30,37,63,71)], reisedat$zeit_morgens[c(30,37,63,71)], col = "blue")
+points(reisedat$distanz[47], reisedat$zeit_morgens[47], col = "blue")
 ```
 
-Ich erstelle zwei neue Versionen der Daten, wo ich einmal den fraglichen Datenpunkt $(14.8, 1.2)$ (oben in rot) und einmal zusätzlich die vier Punkte ganz rechts (oben in blau) rausnehme. Bei ersterem vermute ich eine falsche Dateneingabe in Stunden (statt Minuten). Bei letzteren vermute ich eine Anreise mit dem Auto, die dann nicht unbedingt mit den anderen Datenpunkten für öffentliche Verkehrsmittel (und Fahrrad) zusammenpasst. Ich werde die drei Versionen der Daten dann vergleichen.
+Ich erstelle eine neue Versionen der Daten, wo ich den Datenpunkt ganz rechts (oben in blau) rausnehme. Hier vermute ich eine Anreise mit einem anderen Verkehrsmittel als dem öffentlichen Personennahverkehr (ÖPNV), die dann nicht unbedingt mit den anderen Datenpunkten für ÖPNV (und Fahrrad) zusammenpasst. Ich werde die beiden Versionen der Daten dann vergleichen.
 
-```{r echo=FALSE, out.width='33%'}
-reisedat2 <- reisedat[-c(13),]
-reisedat3 <- reisedat[-c(13,30,37,63,71),]
+```{r echo=FALSE, out.width='50%'}
+reisedat2 <- reisedat[-c(47),]
 plot(reisedat$distanz, reisedat$zeit_morgens, 
      xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)", main = "Originaldaten")
 plot(reisedat2$distanz, reisedat2$zeit_morgens, 
-     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)", main = "ohne Punkt (14.8,1.2)")
-plot(reisedat3$distanz, reisedat3$zeit_morgens, 
-     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)", main = "ohne Punkt (14.8,1.2) und 4 Punkte ganz rechts")
+     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)", main = "ohne Punkt ganz rechts")
 ```
 
-Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel \@ref(korrelation) 0.82 war (für die Originaldaten). Das Ziel ist nun, eine Gerade durch die Punktwolke zu legen, die den *Trend* beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.
+Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel \@ref(korrelation) 0.77 war (für die Originaldaten). Das Ziel ist nun, eine Gerade durch die Punktwolke zu legen, die den *Trend* beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.
 
 Es geht um *2 Variablen* (Merkmale):
 
 - die **abhängige Variable** $y$ (im Bsp. Reisezeit)
 - die **unabhängige Variable** $x$ (im Bsp. Entfernung)
 
-Die Variablen müssen *metrisch* skaliert sein.^[Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten _abhängigen_ Variablen sind mathematisch ähnlich. Das wird im Masterstudiengang _Global Change Geography_ gelehrt.] Wir wollen das generelle Verhalten von $y$ mit $x$ beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.
+Die Variablen müssen *metrisch* skaliert sein.^[Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten _abhängigen_ Variablen sind mathematisch ähnlich. Das wird z.B. im Masterstudiengang _Global Change Geography_ gelehrt.] Wir wollen das generelle Verhalten von $y$ mit $x$ beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.
 
 ## Definitionen
 
-Im Falle einer einzigen unabhängigen Variable lautet die Gleichung des **linearen Models**:
+Im Fall einer einzigen unabhängigen Variable lautet die Gleichung des **linearen Models**:
 
 $$\begin{equation}
 y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i \quad \text{mit} \quad i=1,2,\ldots,n
@@ -88,7 +84,7 @@ tibble( x = c(-0.407, 1, 2, 3, 3.5, 4, 5, 6, 7, 8),
 
 ## Beschreibung vs. Vorhersage
 
-Der primäre Zweck einer Regressionsanalyse ist die Beschreibung (oder Erklärung) der Daten im Sinne einer allgemeinen Beziehung, die sich auf die Grundgesamtheit übertragen lässt, aus der diese Daten entnommen wurden. Da diese Beziehung eine Eigenschaft der Grundgesamtheit ist, sollte sie auch Vorhersagen ermöglichen. Hierbei ist jedoch Vorsicht geboten. Betrachten Sie den Zusammenhang von Jahr und Weltrekordzeit für die in Abbildung \@ref(fig:mile) dargestellten Daten (Meile, Herren). Wenn, wie hier, die Zeit die unabhängige Variable ist, wird die Regression zu einer Form der Trendanalyse, die in diesem Fall eine Abnahme der Rekordzeit mit den Jahren anzeigt. (Die `lm()` Funktion und ihren Output werden wir weiter unten kennenlernen, hier geht es um die Grafiken.)
+Der primäre Zweck einer Regressionsanalyse ist die Beschreibung (oder Erklärung) der Daten im Sinn einer allgemeinen Beziehung, die sich auf die Grundgesamtheit übertragen lässt, aus der diese Daten entnommen wurden. Da diese Beziehung eine Eigenschaft der Grundgesamtheit ist, sollte sie auch Vorhersagen ermöglichen. Hierbei ist jedoch Vorsicht geboten. Betrachten Sie den Zusammenhang von Jahr und Weltrekordzeit für die in Abbildung \@ref(fig:mile) dargestellten Daten ("Meile, Herren"). Wenn, wie hier, die Zeit die unabhängige Variable ist, wird die Regression zu einer Form der Trendanalyse, die in diesem Fall eine Abnahme der Rekordzeit mit den Jahren anzeigt. (Die `lm()` Funktion und ihren Output werden wir weiter unten kennenlernen, hier geht es um die Grafiken.)
 
 ```{r echo=TRUE}
 # Daten laden
@@ -125,7 +121,7 @@ abline(coef(mile_fit2), lwd = 3, col = "red")
 
 Wir sehen, dass sich der Weltrekord in der ersten Hälfte des 20. Jahrhunderts linear verbesserte (Abbildung \@ref(fig:mile), links). Dieser Trend passt auch für die zweite Hälfte des 20. Jahrhunderts bemerkenswert gut (Abbildung \@ref(fig:mile), Mitte). Wie lange kann sich der Weltrekord jedoch noch mit der gleichen Rate verbessern (Abbildung \@ref(fig:mile), rechts)?
 
-Dieses Beispiel zeigt deutlich die Anwendbarkeit von Regressionen für Vorhersagen innerhalb bestimmter Grenzen, zeigt jedoch gleichzeitig die Grenzen dieser einfachen Modelle für längere Vorhersagen (z.B. in Zeit und Raum). Im Falle des Weltrekords würden wir erwarten, dass die Verbesserungsrate mit der Zeit abnimmt, d.h. dass die Kurve abflacht, was ein nichtlineares Modell erfordert.
+Dieses Beispiel zeigt deutlich die Anwendbarkeit von Regressionen für Vorhersagen, zeigt jedoch gleichzeitig die Grenzen dieser einfachen Modelle für längere Vorhersagen (z.B. in Zeit und Raum). Im Fall des Weltrekords würden wir erwarten, dass die Verbesserungsrate mit der Zeit abnimmt, d.h. dass die Kurve abflacht, was ein nichtlineares Modell erfordert.
 
 ## Ausblick: Weiterführende lineare Modelle
 
@@ -218,21 +214,19 @@ $$\begin{equation}
 
 $SSX=\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^2$ ist ein Maß für die Varianz der Daten in $x$-Richtung. $SSXY=\sum_{i=1}^{n}\left(x_i-\bar{x}\right) \cdot \left(y_i-\bar{y}\right)$ ist ein Maß für die Kovarianz der Daten. Es gibt auch $SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2$, das entsprechend ein Maß für die Varianz der Daten in $y$-Richtung ist. Gleichung \@ref(eq:b13) ist eine exakte Lösung für $\hat\beta_1$.
 
-Wir setzen nun Gleichung \@ref(eq:b13) in Gleichung \@ref(eq:b04) ein und haben eine exakte Lösung für $\hat\beta_0$. Berechnen wir nun die Parameter für unsere drei Reisedatenverianten mit der `lm()` Funktion:
+Wir setzen nun Gleichung \@ref(eq:b13) in Gleichung \@ref(eq:b04) ein und haben eine exakte Lösung für $\hat\beta_0$. Berechnen wir nun die Parameter für unsere beiden Reisedatenvarianten mit der `lm()` Funktion:
 
 ```{r echo=TRUE}
 # lineare Regression der Reisedaten
 reise_fit <- lm(zeit_morgens ~ distanz, data = reisedat)
 reise_fit2 <- lm(zeit_morgens ~ distanz, data = reisedat2)
-reise_fit3 <- lm(zeit_morgens ~ distanz, data = reisedat3)
 # Informationen über geschätzte Parameterwerte ausgeben
 coef(summary(reise_fit))
 coef(summary(reise_fit2))
-coef(summary(reise_fit3))
 ```
-In der ersten Spalte ("Estimate") dieses Outputs finden Sie die Werte der Parameterschätzer, wobei "(Intercept)" für $\beta_0$ steht und "distanz" (in diesem Fall) für $\beta_1$. Anhand von $\beta_1$ können wir ablesen, dass sich pro km Entfernung die Reisezeit um 1.5min (bzw. 2.5min) erhöht. Der Achsenabschnitt $\beta_0$ hat keine direkte Entsprechung.^[Wenn wir jedoch die unabhängige Variable "distanz" zentrieren würden, d.h. von allen Datenpunkten den Mittelwert abziehen würden, dann ergäbe sich ein Achsenabschnitt, der die Entfernung für die mittlere Entfernung darstellen würde.] Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgeraden $y_i=28.4+1.5\cdot x_i+\epsilon_i$, $y_i=29.1+1.5\cdot x_i+\epsilon_i$ und $y_i=16.0+2.5\cdot x_i+\epsilon_i$:
+In der ersten Spalte ("Estimate") dieses Outputs finden Sie die Werte der Parameterschätzer, wobei "(Intercept)" für $\beta_0$ steht und "distanz" (in diesem Fall) für $\beta_1$. Anhand von $\beta_1$ können wir ablesen, dass sich pro km Entfernung die Reisezeit um 1.5min (bzw. 2.2min) erhöht. Der Achsenabschnitt $\beta_0$ hat keine direkte Entsprechung.^[Wenn wir jedoch die unabhängige Variable "distanz" zentrieren würden, d.h. von allen Datenpunkten den Mittelwert abziehen würden, dann ergäbe sich ein Achsenabschnitt, der die Reisezeit für die mittlere Entfernung darstellen würde.] Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelten Regressionsgeraden $y_i=29.2+1.5\cdot x_i+\epsilon_i$ und $y_i=20.1+2.2\cdot x_i+\epsilon_i$:
 
-```{r echo=FALSE, out.width='33%'}
+```{r echo=FALSE, out.width='50%'}
 # Modellanpassung plotten
 plot(reisedat$distanz, reisedat$zeit_morgens,
      pch = 19, type = 'p', xlim = c(0,80), ylim = c(0,140),
@@ -242,17 +236,13 @@ plot(reisedat2$distanz, reisedat2$zeit_morgens,
      pch = 19, type = 'p', xlim = c(0,80), ylim = c(0,140),
      xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
 abline(coef(reise_fit2), lwd = 3, col = "red")
-plot(reisedat3$distanz, reisedat3$zeit_morgens,
-     pch = 19, type = 'p', xlim = c(0,80), ylim = c(0,140),
-     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
-abline(coef(reise_fit3), lwd = 3, col = "red")
 ```
 
-Wie man sieht, macht das Weglassen des Datenpunktes $(14.8, 1.2)$ keinen grossen Unterschied, das Weglassen der vier Punke ganz rechts schon: Die Steigung ist für die übrigen Punkte steiler.
+Wie man sieht, macht das Weglassen des Datenpunkts ganz rechts einen grossen Unterschied: Die Steigung ist für die übrigen Punkte steiler.
 
-## Signifikanz der Regression
+## Erklärte Varianz
 
-Nun, da wir Werte für die Regressionsparameter haben, müssen wir uns fragen, ob diese Werte statistisch signifikant sind oder ob sie durch Zufall aus dem (angenommenen) Zufallsprozess der Stichprobenziehung entstanden sein könnten. Dazu testen wir formal, ob die vom Modell erklärte Varianz in den Daten signifikant größer als die nicht erklärte Varianz ist. Das ist ein F-Test-Problem (vgl. Kapitel \@ref(ftest)), das wir über die sogenannte Varianzanalyse (ANOVA) angehen. ANOVA beginnt mit der Erstellung der ANOVA-Tabelle (Tabelle \@ref(tab:anova)). Dies geschieht in _R_ im Hintergrund und wird selten explizit betrachtet; tun wir es hier aber trotzdem, damit wir verstehen was passiert.
+Nun, da wir Werte für die Regressionsparameter haben, testen wir üblicherweise formal, ob die vom Modell erklärte Varianz in den Daten signifikant größer als die nicht erklärte Varianz ist. Das ist ein F-Test-Problem (vgl. Kapitel \@ref(ftest)), das wir über die sogenannte Varianzanalyse (ANOVA) angehen. ANOVA beginnt mit der Erstellung der ANOVA-Tabelle (Tabelle \@ref(tab:anova)). Dies geschieht in _R_ im Hintergrund und wird selten explizit betrachtet; tun wir es hier aber trotzdem, damit wir verstehen was passiert.
 
 | Varianz-<br>quelle | Quadrat-<br>summe | Freiheits-<br>grad ($df$) | Varianz | F-Statistik ($F_s$) | p-Wert |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -299,13 +289,13 @@ tibble(x = c(2, 2.5, 4.9, 5.1, 6, 6.7, 6.8, 8, 8.5, 9),
   theme(text = element_text(size=20))
 ```
 
-In der dritten Spalte der Tabelle \@ref(tab:anova) stehen die Freiheitsgrade der drei Varianzterme. Diese können als Anzahl der Werte in einer Stichprobe, die für die Berechnung der jeweiligen Parameter frei zur Verfügung stehen, verstanden werden (vgl. Kapitel \@ref(streuung)): In die Berechnung von $SSY$ geht $\bar y$ ein, für dessen Berechnung die Werte der Stichprobe bereits einmal verwendet wurden; dadurch ist die Anzahl Freiheitsgrade $df_{SSY}=n-1$. In die Berechnung von $SSE$ gehen $\beta_0$ und $\beta_1$ ein (Gleichung \@ref(eq:sse)), d.h. die Anzahl Freiheitsgrade ist $df_{SSE}=n-2$. Für $SSR$ gilt dann einfach $df_{SSR}=df_{SSY}-df_{SSE}=1$. Die Freiheitsgrade werden verwendet, um die Varianzterme in der vierten Spalte der Tabelle \@ref(tab:anova) zu normalisieren, wobei $s^2$ Fehlervarianz genannt wird.
+In der dritten Spalte der Tabelle \@ref(tab:anova) stehen die Freiheitsgrade der drei Varianzterme. Diese können als Anzahl der Werte in einer Stichprobe, die für die Berechnung der jeweiligen Parameter frei zur Verfügung stehen, verstanden werden (vgl. Kapitel \@ref(streuung)): In die Berechnung von $SSY$ geht $\bar y$ ein, für dessen Berechnung die Werte der Stichprobe bereits einmal verwendet wurden; dadurch ist die Anzahl Freiheitsgrade $df_{SSY}=n-1$. In die Berechnung von $SSE$ gehen $\beta_0$ und $\beta_1$ ein (Gleichung \@ref(eq:sse)), d.h. die Anzahl Freiheitsgrade ist $df_{SSE}=n-2$. Für $SSR$ gilt dann einfach $df_{SSR}=df_{SSY}-df_{SSE}=1$. Die Freiheitsgrade werden verwendet, um die Varianzterme in der vierten Spalte der Tabelle \@ref(tab:anova) zu normalisieren, d.h. auf die Skala einer Varianz zu bringen, wobei $s^2$ Fehlervarianz genannt wird.
 
 In der fünften Spalte der Tabelle \@ref(tab:anova) finden wir das Verhältnis von zwei Varianzen; Regressionsvarianz über Fehlervarianz. Von einer signifikanten Regression erwarten wir, dass die (durch das Modell erklärte) Regressionsvarianz viel größer ist als die (durch das Modell nicht erklärte) Fehlervarianz. Dies ist ein F-Test Problem, bei dem getestet wird, ob sich die durch das Modell _erklärte_ Varianz **signifikant** von der durch das Modell _nicht erklärten_ Varianz unterscheidet. Das Verhältnis der beiden Varianzen dient als F-Statistik $F_s$ (vgl. Kapitel \@ref(ftest)).
 
 Die sechste Spalte der Tabelle \@ref(tab:anova) gibt dann den p-Wert des F-Tests an, d.h. die Wahrscheinlichkeit, $F_s$ oder einen größeren Wert (d.h. **ein noch besseres Modell**) zufällig zu erhalten, wenn die Nullhypothese $H_0$ wahr ist (vgl. Kapitel \@ref(ftest)). Im Fall der linearen Regression ist $H_0:\frac{SSR}{df_{SSR}}=s^2$, d.h. die beiden Varianzen sind gleich, und $H_1:\frac{SSR}{df_{SSR}}>s^2$, d.h. die erklärte Varianz ist größer als die nicht erklärte.
 
-Wie in Kapitel \@ref(ftest) bereits diskutiert folgt $F_s$ einer F-Verteilung unter der Nullhypothese, hier mit den Parametern $1$ und $n-2$ (Abbildung \@ref(fig:fcdf)). Die blaue Linie in Abbildung \@ref(fig:fcdf) markiert einen bestimmten Wert von $F_s$ (hier $8$) und den entsprechenden Wert der Verteilungsfunktion der F-Verteilung ($F\left(F_s,1,n-2\right)$). Der p-Wert ist $\Pr\left(Z> F_s\right)=1-F\left(F_s,1,n-2\right)$ und beschreibt die Wahrscheinlichkeit, dieses oder ein größeres Varianzverhältnis zufällig (aufgrund der zufälligen Stichprobenziehung) zu erhalten, selbst wenn die beiden Varianzen tatsächlich gleich sind.
+Wie in Kapitel \@ref(ftest) bereits diskutiert folgt $F_s$ einer F-Verteilung unter der Nullhypothese, hier mit den Parametern $1$ und $n-2$ (Abbildung \@ref(fig:fcdf)). Die blaue Linie in Abbildung \@ref(fig:fcdf) markiert einen bestimmten Wert von $F_s$ (in diesem Beispiel $8$) und den entsprechenden Wert der Verteilungsfunktion der F-Verteilung ($F\left(F_s,1,n-2\right)$). Der p-Wert ist $\Pr\left(Z> F_s\right)=1-F\left(F_s,1,n-2\right)$ und beschreibt die Wahrscheinlichkeit, dieses oder ein größeres Varianzverhältnis zufällig (aufgrund der zufälligen Stichprobenziehung) zu erhalten, selbst wenn die beiden Varianzen tatsächlich gleich sind.
 ```{r fcdf, echo=FALSE, fig.align='center', fig.cap='Verteilungsfunktion der F-Verteilung der F-Statistik $F_s$. Blau: Bestimmter Wert für $F_s$ und entsprechender Wert der Verteilungsfunktion.', out.width='80%'}
 plot(seq(0,15,0.1), pf(seq(0,15,0.1), 1, 71), ylim=c(0,1), type='l',
      xlab='Z=F_s', ylab='Verteilungsfunktion')
@@ -314,15 +304,38 @@ lines(c(0, 8), c(1, 1)* pf(8, 1, 71), col='blue')
 text(8,-0.2,"F_s", col="blue", xpd=TRUE)
 ```
 
-Für die Regression der Reisedaten ist der p-Wert wesentlich kleiner als das konventionelle Signifikanzniveau $\alpha=0.01$, daher lehnen wir die die Nullhypothese ab und bezeichnen die Regression als statistisch signifikant. Schauen wir uns die ANOVA-Tabelle fuer das Beispiel in den drei Datenvarianten an:
+Für die Regression der Reisedaten ist der p-Wert wesentlich kleiner als das konventionelle Signifikanzniveau $\alpha=0.01$, daher lehnen wir die Nullhypothese ab und bezeichnen die Regression als statistisch signifikant. Schauen wir uns die ANOVA-Tabelle für das Beispiel in den beiden Datenvarianten an:
 ```{r echo=TRUE}
 anova(reise_fit)
 anova(reise_fit2)
-anova(reise_fit3)
 ```
 Im Vergleich zu Tabelle \@ref(tab:anova) lässt _R_ die letzte Zeile ($SSY$) weg und tauscht die Spalten "Quadratsumme" und "Freiheitsgrad".
 
-## Konfidenzintervalle und Signifikanz der Parameter
+Der Anteil der Varianz (in $y$-Richtung), der durch das Modell erklärt wird, wird außerdem mit dem **Bestimmtheitsmaß** ($r^2$) ausgedrückt:
+$$\begin{equation}
+r^2=\frac{SSY-SSE}{SSY}=1-\frac{SSE}{SSY}
+(\#eq:r2)
+\end{equation}$$
+Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Quadrat (vgl. Kapitel \@ref(korrelation)).
+
+Wie wir an Gleichung \@ref(eq:r2) sehen, wenn das Modell nicht mehr Variation als die Gesamtvariation um den Mittelwert erklärt, d.h. $SSE=SSY$ ist, dann ist $r^2=0$. Umgekehrt, wenn das Modell perfekt zu den Daten passt, d.h. $SSE=0$ ist, dann ist $r^2=1$. Werte dazwischen stellen unterschiedliche Grade der Anpassungsgüte dar. Das kann wiederum mit Abbildung \@ref(fig:ssysse) veranschaulicht werden, wobei der linke Teil $SSY$ und der rechte Teil $SSE$ verdeutlicht.
+
+Wenn es darum geht, Modelle unterschiedlicher Komplexität (d.h. mit mehr oder weniger Parametern) mit $r^2$ zu vergleichen, dann ist es sinnvoll, das Bestimmtheitsmaß mit der Anzahl der Modellparameter zu korrigieren, da komplexere Modelle (mehr Parameter) automatisch zu besseren Anpassungen führen, einfach aufgrund der größeren Freiheitsgrade, die komplexere Modelle bei der Anpassung an die Daten haben. Dies führt zum **korrigierten $r^2$**:
+$$\begin{equation}
+\bar r^2=1-\frac{\frac{SSE}{df_{SSE}}}{\frac{SSY}{df_{SSY}}}=1-\frac{SSE}{SSY} \cdot \frac{df_{SSY}}{df_{SSE}}
+(\#eq:adjr2)
+\end{equation}$$
+
+Rechnen wir $r^2$ und $\bar r^2$ für die Regression der Reisedaten aus:
+```{r echo=TRUE}
+summary(reise_fit)$r.squared
+summary(reise_fit)$adj.r.squared
+summary(reise_fit2)$r.squared
+summary(reise_fit2)$adj.r.squared
+```
+D.h. bei der Regression der Originaldaten werden rund 59% der Varianz in den Reisezeit-Daten durch das lineare Modell mit Entfernung als Prädiktor erklärt. Lässt man den Datenpunkt ganz rechts weg, vebessert sich die Güte auf 73% - das ist für die Auswirkung eines einzigen Datenpunktes erheblich.
+
+## Konfidenzintervalle der Parameterschätzer
 
 Da die Modellanpassung nicht perfekt ist, haben die Parameterschätzer Standardfehler, d.h. sie werden wie andere statistische Kennzahlen als Realisationen eines Zufallsprozesses interpretiert. Das führt uns zu Konfidenzintervallen und t-Tests auf Signifikanz der einzelnen Parameter.
 
@@ -365,7 +378,7 @@ KI=\left[\hat\beta_0-t_{n-2;0.975} \cdot s_{\hat\beta_0};\hat\beta_0+t_{n-2;0.97
 (\#eq:cib02)
 \end{equation}$$
 
-Wie bei dem Konfidenzintervall des Mittelwertschätzers (Kapitel \@ref(schaetzen)) liegt das Konfidenzintervall symmetrisch um den Parameterschätzwert $\hat\beta_0$ und ergibt sich aus einer t-Verteilung mit dem Parameter $n-2$, deren Breite durch den Standardfehler $s_{\hat\beta_0}$ moduliert wird. Erinnern Sie sich, dass die Breite der t-Verteilung ebenfalls durch den Stichprobenumfang kontrolliert wird und mit zunehmendem $n$ immer schmaler wird.
+Wie bei dem Konfidenzintervall des Mittelwertschätzers (Kapitel \@ref(schaetzen)) liegt das Konfidenzintervall symmetrisch um den Parameterschätzer $\hat\beta_0$ und ergibt sich aus einer t-Verteilung mit dem Parameter $n-2$ (Freiheitsgrade), deren Breite durch den Standardfehler $s_{\hat\beta_0}$ moduliert wird. Erinnern Sie sich, dass die Breite der t-Verteilung ebenfalls durch den Stichprobenumfang kontrolliert wird und mit zunehmendem $n$ immer schmaler wird.
 
 Die gleichen Formeln gelten für $\beta_1$ und $y$:
 $$\begin{equation}
@@ -423,45 +436,80 @@ Jetzt verstehen wir auch die restlichen Informationen des Outputs der `lm()` Fun
 ```{r echo=TRUE}
 coef(summary(reise_fit))
 coef(summary(reise_fit2))
-coef(summary(reise_fit3))
 ```
-Wie bereits oben erwähnt steht die Zeile "(Intercept)" für $\beta_0$ und die Zeile "distanz" (in diesem Fall) für $\beta_1$. In Spalte "Estimate" stehen die Werte der Parameterschätzer. In Spalte "Std. Error" stehen deren Standardfehler (Gleichungen \@ref(eq:seb0) und \@ref(eq:seb1)). In Spalte "t value" stehen die entsprechenden Werte der Teststatistik (Gleichungen \@ref(eq:tsb0) und \@ref(eq:tsb1)). In Spalte "Pr(>|t|)" stehen die p-Werte der t-Tests auf Signifikanz der Parameter (Gleichung \@ref(eq:pv)). Wir sehen, dass in unserem Beispiel (für alle drei Datenvarianten) beide Parameter signifikant sind (die p-Werte sind wesentlich kleiner als das konventionelle $\alpha=0.01$).
+Wie bereits oben erwähnt steht die Zeile "(Intercept)" für $\beta_0$ und die Zeile "distanz" (in diesem Fall) für $\beta_1$. In Spalte "Estimate" stehen die Werte der Parameterschätzer. In Spalte "Std. Error" stehen deren Standardfehler (Gleichungen \@ref(eq:seb0) und \@ref(eq:seb1)). In Spalte "t value" stehen die entsprechenden Werte der Teststatistik (Gleichungen \@ref(eq:tsb0) und \@ref(eq:tsb1)). In Spalte "Pr(>|t|)" stehen die p-Werte der t-Tests auf Signifikanz der Parameter (Gleichung \@ref(eq:pv)). Wir sehen, dass in unserem Beispiel (für beide Datenvarianten) beide Parameter signifikant sind (die p-Werte sind wesentlich kleiner als das konventionelle $\alpha=0.01$).
 
-## Güte der Modellanpassung
+Mit der Information der Konfidenzintervalle der Parameterschätzer und der Vorhersagen können wir jetzt die Regressionsgerade mit Konfidenzintervall darstellen - nur dann ist die Darstellung vollständig. Es gibt zwei Arten von Konfidenzintervallen: das Konfidenzintervall der Regressionsgeraden, in das die Konfidenzintervalle der beiden Parameterschätzer (Gleichungen \@ref(eq:cib01) und \@ref(eq:cib1)) eingehen, und das Konfidenzintervall tatsächlicher Werte der abhängigen Variable $y$ für Werte der unabhängigen Variable $x$ (Vorhersagen), d.h. das Konfidenzintervalle der Vorhersagen (Gleichung \@ref(eq:ciy)).
 
-Die Signifikanz der Parameter der Regression ist eine Sache. Wie gut aber ist das Modell im Beschreiben der Daten? D.h. wieviel von der Varianz in den Daten wird vom Modell erklärt? Die Güte der Modellanpassung kann in erster Linie mit dem **Bestimmtheitsmaß** ($r^2$) begutachtet werden, welches als Anteil der Varianz (in $y$-Richtung) definiert ist, der durch das Modell erklärt wird:
-$$\begin{equation}
-r^2=\frac{SSY-SSE}{SSY}=1-\frac{SSE}{SSY}
-(\#eq:r2)
-\end{equation}$$
-Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Quadrat (vgl. Kapitel \@ref(korrelation)).
+Das erste Konfidenzintervall beschreibt damit die Unsicherheit des Trends durch die Punktwolke, der meistens von primärem Interesse ist:
 
-Wie wir an Gleichung \@ref(eq:r2) sehen, wenn das Modell nicht mehr Variation als die Gesamtvariation um den Mittelwert erklärt, d.h. $SSE=SSY$ ist, dann ist $r^2=0$. Umgekehrt, wenn das Modell perfekt zu den Daten passt, d.h. $SSE=0$ ist, dann ist $r^2=1$. Werte dazwischen stellen unterschiedliche Grade der Anpassungsgüte dar. Das kann wiederum mit Abbildung \@ref(fig:ssysse) veranschaulicht werden, wobei der linke Teil $SSY$ und der rechte Teil $SSE$ verdeutlicht.
+```{r echo=FALSE, out.width='50%'}
+# KI (Trend) = confidence interval
+ci <- predict(reise_fit, newdata = data.frame(distanz = seq(0,80,1)), interval = 'confidence')
+# Modellanpassung mit KI (Trend) plotten
+plot(reisedat$distanz, reisedat$zeit_morgens,
+     pch = 19, type = 'p', xlim = c(0,80), ylim = c(0,140),
+     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
+# Regressionsgerade
+lines(seq(0,80,1), ci[,1], lwd = 3, col = "red")
+# untere KI-Grenze
+lines(seq(0,80,1), ci[,2], lwd = 3, col = "blue", lty = 2)
+# obere KI-Grenze
+lines(seq(0,80,1), ci[,3], lwd = 3, col = "blue", lty = 2)
 
-Wenn es darum geht, Modelle unterschiedlicher Komplexität (d.h. mit mehr oder weniger Parametern) mit $r^2$ zu vergleichen, dann ist es sinnvoll, das Bestimmtheitsmaß mit der Anzahl der Modellparameter zu korrigieren, da komplexere Modelle (mehr Parameter) automatisch zu besseren Anpassungen führen, einfach aufgrund der größeren Freiheitsgrade, die komplexere Modelle bei der Anpassung der Daten haben. Dies führt zum **korrigierten $r^2$**:
-$$\begin{equation}
-\bar r^2=1-\frac{\frac{SSE}{df_{SSE}}}{\frac{SSY}{df_{SSY}}}=1-\frac{SSE}{SSY} \cdot \frac{df_{SSY}}{df_{SSE}}
-(\#eq:adjr2)
-\end{equation}$$
-
-Rechnen wir $r^2$ und $\bar r^2$ für die Regression der Reisedaten aus:
-```{r echo=TRUE}
-summary(reise_fit)$r.squared
-summary(reise_fit)$adj.r.squared
-summary(reise_fit2)$r.squared
-summary(reise_fit2)$adj.r.squared
-summary(reise_fit3)$r.squared
-summary(reise_fit3)$adj.r.squared
+# KI (Trend) = confidence interval
+ci2 <- predict(reise_fit2, newdata = data.frame(distanz = seq(0,80,1)), interval = 'confidence')
+# Modellanpassung mit KI (Trend) plotten
+plot(reisedat2$distanz, reisedat2$zeit_morgens,
+     pch = 19, type = 'p', xlim = c(0,80), ylim = c(0,140),
+     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
+# Regressionsgerade
+lines(seq(0,80,1), ci2[,1], lwd = 3, col = "red")
+# untere KI-Grenze
+lines(seq(0,80,1), ci2[,2], lwd = 3, col = "blue", lty = 2)
+# obere KI-Grenze
+lines(seq(0,80,1), ci2[,3], lwd = 3, col = "blue", lty = 2)
 ```
-D.h. bei der Regression der Originaldaten werden rund 68% der Varianz in den Reisezeit-Daten durch das lineare Modell mit Entfernung als Prädiktor erklärt. Lässt man den fraglichen Datenpunkt $(14.8, 1.2)$ weg, vebessert sich die Güte auf 72% - das ist für die Auswirkung eines einzigen Datenpunktes nicht unerheblich. Lässt man ausserdem die weiteren vier Datenpunkte ganz rechts weg dann verbessert sich die Güte geringfügig auf 73%.
 
-Aber was heißt Güte der Modellanpassung? Sind alle Modellannahmen erfüllt? Folgende Annahmen ergeben sich aus der **Maximum-Likelihood-Theorie** (vgl. Schätzen von Verteilungsparametern, Kapitel \@ref(schaetzen)):
+Das zweite Konfidenzintervall beschreibt die Unsicherheit der Vorhersage neuer einzelner Werte von $y$, die natürlich wesentlich größer ist:
+
+```{r echo=FALSE, out.width='50%'}
+# KI (Vorhersage) = prediction interval
+pi <- predict(reise_fit, newdata = data.frame(distanz = seq(0,80,1)), interval = 'prediction')
+# Modellanpassung mit KI (Vorhersage) plotten
+plot(reisedat$distanz, reisedat$zeit_morgens,
+     pch = 19, type = 'p', xlim = c(0,80), ylim = c(0,140),
+     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
+# Regressionsgerade
+lines(seq(0,80,1), pi[,1], lwd = 3, col = "red")
+# untere KI-Grenze
+lines(seq(0,80,1), pi[,2], lwd = 3, col = "blue", lty = 2)
+# obere KI-Grenze
+lines(seq(0,80,1), pi[,3], lwd = 3, col = "blue", lty = 2)
+
+# KI (Vorhersage) = prediction interval
+pi2 <- predict(reise_fit2, newdata = data.frame(distanz = seq(0,80,1)), interval = 'prediction')
+# Modellanpassung mit KI (Vorhersage) plotten
+plot(reisedat2$distanz, reisedat2$zeit_morgens,
+     pch = 19, type = 'p', xlim = c(0,80), ylim = c(0,140),
+     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
+# Regressionsgerade
+lines(seq(0,80,1), pi2[,1], lwd = 3, col = "red")
+# untere KI-Grenze
+lines(seq(0,80,1), pi2[,2], lwd = 3, col = "blue", lty = 2)
+# obere KI-Grenze
+lines(seq(0,80,1), pi2[,3], lwd = 3, col = "blue", lty = 2)
+```
+
+## Annahmen der Regression
+
+Da die o.g. Schätzer und wahrscheinlichkeitstheoretischen Aussagen nur unter bestimmten Modellannahmen gültig sind, müssen wir diese Annahmen bei jeder Regression testen. Folgende Annahmen ergeben sich aus der **Maximum-Likelihood-Theorie** (vgl. Schätzen von Verteilungsparametern, Kapitel \@ref(schaetzen)):
 
 - Die Residuen sind **unabhängig**, in diesem Fall gibt es keine serielle Korrelation in der Residuengrafik - dies kann mit dem Durbin-Watson-Test getestet werden
 - Die Residuen sind **normalverteilt** - dies kann visuell mit Hilfe des Quantil-Quantil-Diagramms (QQ-Plot) und dem Residuen-Histogramm beurteilt werden, und kann mit dem Kolmogorov-Smirnov-Test (Kapitel \@ref(kstest)) und dem Shapiro-Wilk-Test getestet werden
 - Die Varianz ist für alle Residuen konstant (die Residuen sind **homoskedastisch**), d.h. es erfolgt kein "Auffächern" der Residuen
 
-Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder Generalisierte Lineare Modelle zurückgreifen. Letzteres ist wird im Master *Global Change Geography* unterrichtet.
+Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder Generalisierte Lineare Modelle zurückgreifen. Letzteres wird z.B. im Master *Global Change Geography* unterrichtet.
 
 Eine erste nützliche diagnostische Darstellung ist die der Residuen in Serie, d.h. nach Index $i$, um zu sehen, ob es ein Muster aufgrund des Datenerfassungsprozesses gibt. Für unser Beispiel:
 
@@ -470,8 +518,6 @@ Eine erste nützliche diagnostische Darstellung ist die der Residuen in Serie, d
 plot(residuals(reise_fit), pch = 19, type = 'p', ylim = c(-70,70))
 abline(h = 0, lwd = 3, col = "red")
 plot(residuals(reise_fit2), pch = 19, type = 'p', ylim = c(-70,70))
-abline(h = 0, lwd = 3, col = "red")
-plot(residuals(reise_fit3), pch = 19, type = 'p', ylim = c(-70,70))
 abline(h = 0, lwd = 3, col = "red")
 ```
 
@@ -485,11 +531,9 @@ plot(fitted.values(reise_fit),residuals(reise_fit), pch = 19, type = 'p', ylim =
 abline(h = 0, lwd = 3, col = "red")
 plot(fitted.values(reise_fit2),residuals(reise_fit2), pch = 19, type = 'p', ylim = c(-70,70))
 abline(h = 0, lwd = 3, col = "red")
-plot(fitted.values(reise_fit3),residuals(reise_fit3), pch = 19, type = 'p', ylim = c(-70,70))
-abline(h = 0, lwd = 3, col = "red")
 ```
 
-Hier gibt es jetzt v.a. im ersten und zweite Fall systematische Unter- und Überschätzungen, die gegen eine Linearität des Zusammenhangs sprechen. Lassen wir die vier Datenpunkte ganz rechts weg, passt das lineare Modell besser. Wenn diese vier Datenpunkte tatsächlich einem anderen Transportmodus entstammen, dann wäre das eine plausible Strategie.
+Hier gibt es jetzt v.a. im ersten Fall systematische Unter- und Überschätzungen, die gegen eine Linearität des Zusammenhangs sprechen. Lassen wir den Datenpunkt ganz rechts weg, passt das lineare Modell besser. Wenn dieser Datenpunkt tatsächlich einem anderen Transportmodus entstammt, dann wäre das eine plausible Strategie.
 
 Die Annahme, dass die Residuen normalverteilt sind, kann anhand des QQ-Plots beurteilt werden (vgl. Kapitel \@ref(qqplot)):
 
@@ -498,8 +542,6 @@ qqnorm(residuals(reise_fit))
 qqline(residuals(reise_fit))
 qqnorm(residuals(reise_fit2))
 qqline(residuals(reise_fit2))
-qqnorm(residuals(reise_fit3))
-qqline(residuals(reise_fit3))
 ```
 
 Die Residuen zeigen flachere Flanken ("heavier tails") als die Normalverteilung, zumindest auf der positiven (rechten) Seite. Vgl. https://xiongge.shinyapps.io/QQplots/. Das kann man auch am Histogramm der Residuen sehen, einer weiteren nützlichen Darstellung:
@@ -508,5 +550,14 @@ Die Residuen zeigen flachere Flanken ("heavier tails") als die Normalverteilung,
 # Histogramm der Residuen plotten
 hist(residuals(reise_fit), xlim = c(-70,70))
 hist(residuals(reise_fit2), xlim = c(-70,70))
-hist(residuals(reise_fit3), xlim = c(-70,70))
 ```
+
+Ein formaler KS-Test gibt aber bei keiner der beiden Datenvarianten Anlass, die Normalverteilungsannahme der Residuen abzulehnen:
+```{r echo=TRUE}
+res <- residuals(reise_fit)
+ks.test(res, "pnorm", 0, sd(res))
+res2 <- residuals(reise_fit2)
+ks.test(res2, "pnorm", 0, sd(res2))
+```
+
+Wir können also die Regressionsannahmen in unserem Fall als hinreichend erfüllt betrachten, zumindest wenn wir den Datenpunkt ganz rechts ausschließen, und mit den ermittelten Parameterschätzern und deren Unsicherheiten weiterarbeiten.

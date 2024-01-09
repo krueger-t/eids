@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2023-11-30" />
+<meta name="date" content="2024-01-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -231,9 +231,9 @@ div.csl-indent {
 <li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#beschreibung-vs.-vorhersage"><i class="fa fa-check"></i><b>10.2</b> Beschreibung vs. Vorhersage</a></li>
 <li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterführende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
 <li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#lineare-regression"><i class="fa fa-check"></i><b>10.4</b> Lineare Regression</a></li>
-<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#signifikanz-der-regression"><i class="fa fa-check"></i><b>10.5</b> Signifikanz der Regression</a></li>
-<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#konfidenzintervalle-und-signifikanz-der-parameter"><i class="fa fa-check"></i><b>10.6</b> Konfidenzintervalle und Signifikanz der Parameter</a></li>
-<li class="chapter" data-level="10.7" data-path="10-regression.html"><a href="10-regression.html#güte-der-modellanpassung"><i class="fa fa-check"></i><b>10.7</b> Güte der Modellanpassung</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#erklärte-varianz"><i class="fa fa-check"></i><b>10.5</b> Erklärte Varianz</a></li>
+<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#konfidenzintervalle-der-parameterschätzer"><i class="fa fa-check"></i><b>10.6</b> Konfidenzintervalle der Parameterschätzer</a></li>
+<li class="chapter" data-level="10.7" data-path="10-regression.html"><a href="10-regression.html#annahmen-der-regression"><i class="fa fa-check"></i><b>10.7</b> Annahmen der Regression</a></li>
 </ul></li>
 <li class="appendix"><span><b>Referenzen</b></span></li>
 <li class="chapter" data-level="" data-path="11-refs.html"><a href="11-refs.html"><i class="fa fa-check"></i>Literatur</a></li>
@@ -262,12 +262,11 @@ div.csl-indent {
 <p>Für die lineare Regression kehren wir zu einer Frage aus Kapitel <a href="05-korrelation.html#korrelation">5</a> zurück: <em>Kann man Ihre Anreisezeit nach Adlershof mit der Entfernung zu Ihrem Wohnort statistisch vorhersagen?</em></p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="10-regression.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens, </span>
 <span id="cb126-2"><a href="10-regression.html#cb126-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span>
-<span id="cb126-3"><a href="10-regression.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(reisedat<span class="sc">$</span>distanz[<span class="dv">13</span>], reisedat<span class="sc">$</span>zeit_morgens[<span class="dv">13</span>], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb126-4"><a href="10-regression.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(reisedat<span class="sc">$</span>distanz[<span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">37</span>,<span class="dv">63</span>,<span class="dv">71</span>)], reisedat<span class="sc">$</span>zeit_morgens[<span class="fu">c</span>(<span class="dv">30</span>,<span class="dv">37</span>,<span class="dv">63</span>,<span class="dv">71</span>)], <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<span id="cb126-3"><a href="10-regression.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(reisedat<span class="sc">$</span>distanz[<span class="dv">47</span>], reisedat<span class="sc">$</span>zeit_morgens[<span class="dv">47</span>], <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-50-1.png" width="80%" /></p>
-<p>Ich erstelle zwei neue Versionen der Daten, wo ich einmal den fraglichen Datenpunkt <span class="math inline">\((14.8, 1.2)\)</span> (oben in rot) und einmal zusätzlich die vier Punkte ganz rechts (oben in blau) rausnehme. Bei ersterem vermute ich eine falsche Dateneingabe in Stunden (statt Minuten). Bei letzteren vermute ich eine Anreise mit dem Auto, die dann nicht unbedingt mit den anderen Datenpunkten für öffentliche Verkehrsmittel (und Fahrrad) zusammenpasst. Ich werde die drei Versionen der Daten dann vergleichen.</p>
-<p><img src="eids_files/figure-html/unnamed-chunk-51-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-51-2.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-51-3.png" width="33%" /></p>
-<p>Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel <a href="05-korrelation.html#korrelation">5</a> 0.82 war (für die Originaldaten). Das Ziel ist nun, eine Gerade durch die Punktwolke zu legen, die den <em>Trend</em> beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.</p>
+<p>Ich erstelle eine neue Versionen der Daten, wo ich den Datenpunkt ganz rechts (oben in blau) rausnehme. Hier vermute ich eine Anreise mit einem anderen Verkehrsmittel als dem öffentlichen Personennahverkehr (ÖPNV), die dann nicht unbedingt mit den anderen Datenpunkten für ÖPNV (und Fahrrad) zusammenpasst. Ich werde die beiden Versionen der Daten dann vergleichen.</p>
+<p><img src="eids_files/figure-html/unnamed-chunk-51-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-51-2.png" width="50%" /></p>
+<p>Wir erinnern uns, dass der Korrelationskoeffizient nach Bravais-Pearson aus Kapitel <a href="05-korrelation.html#korrelation">5</a> 0.77 war (für die Originaldaten). Das Ziel ist nun, eine Gerade durch die Punktwolke zu legen, die den <em>Trend</em> beschreibt, so dass der Abstand der Punkte von der Geraden minimal ist.</p>
 <p>Es geht um <em>2 Variablen</em> (Merkmale):</p>
 <ul>
 <li>die <strong>abhängige Variable</strong> <span class="math inline">\(y\)</span> (im Bsp. Reisezeit)</li>
@@ -276,7 +275,7 @@ div.csl-indent {
 <p>Die Variablen müssen <em>metrisch</em> skaliert sein.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> Wir wollen das generelle Verhalten von <span class="math inline">\(y\)</span> mit <span class="math inline">\(x\)</span> beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.</p>
 <div id="definitionen" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Definitionen<a href="10-regression.html#definitionen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Im Falle einer einzigen unabhängigen Variable lautet die Gleichung des <strong>linearen Models</strong>:</p>
+<p>Im Fall einer einzigen unabhängigen Variable lautet die Gleichung des <strong>linearen Models</strong>:</p>
 <p><span class="math display" id="eq:linmodsingle">\[\begin{equation}
 y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i \quad \text{mit} \quad i=1,2,\ldots,n
 \tag{10.1}
@@ -291,7 +290,7 @@ Abbildung 10.1: Lineare Regression: Definitionen.
 </div>
 <div id="beschreibung-vs.-vorhersage" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Beschreibung vs. Vorhersage<a href="10-regression.html#beschreibung-vs.-vorhersage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Der primäre Zweck einer Regressionsanalyse ist die Beschreibung (oder Erklärung) der Daten im Sinne einer allgemeinen Beziehung, die sich auf die Grundgesamtheit übertragen lässt, aus der diese Daten entnommen wurden. Da diese Beziehung eine Eigenschaft der Grundgesamtheit ist, sollte sie auch Vorhersagen ermöglichen. Hierbei ist jedoch Vorsicht geboten. Betrachten Sie den Zusammenhang von Jahr und Weltrekordzeit für die in Abbildung <a href="10-regression.html#fig:mile">10.2</a> dargestellten Daten (Meile, Herren). Wenn, wie hier, die Zeit die unabhängige Variable ist, wird die Regression zu einer Form der Trendanalyse, die in diesem Fall eine Abnahme der Rekordzeit mit den Jahren anzeigt. (Die <code>lm()</code> Funktion und ihren Output werden wir weiter unten kennenlernen, hier geht es um die Grafiken.)</p>
+<p>Der primäre Zweck einer Regressionsanalyse ist die Beschreibung (oder Erklärung) der Daten im Sinn einer allgemeinen Beziehung, die sich auf die Grundgesamtheit übertragen lässt, aus der diese Daten entnommen wurden. Da diese Beziehung eine Eigenschaft der Grundgesamtheit ist, sollte sie auch Vorhersagen ermöglichen. Hierbei ist jedoch Vorsicht geboten. Betrachten Sie den Zusammenhang von Jahr und Weltrekordzeit für die in Abbildung <a href="10-regression.html#fig:mile">10.2</a> dargestellten Daten (“Meile, Herren”). Wenn, wie hier, die Zeit die unabhängige Variable ist, wird die Regression zu einer Form der Trendanalyse, die in diesem Fall eine Abnahme der Rekordzeit mit den Jahren anzeigt. (Die <code>lm()</code> Funktion und ihren Output werden wir weiter unten kennenlernen, hier geht es um die Grafiken.)</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="10-regression.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten laden</span></span>
 <span id="cb127-2"><a href="10-regression.html#cb127-2" aria-hidden="true" tabindex="-1"></a>mile <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/avehtari/ROS-Examples/master/Mile/data/mile.csv&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
 <span id="cb127-3"><a href="10-regression.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co"># lineares Modell an Daten aus 1. Hälfte des 20. Jahrh. anpassen</span></span>
@@ -332,7 +331,7 @@ Abbildung 10.2: Links: Trend des Weltrekords “Meile, Herren” in der ersten H
 </p>
 </div>
 <p>Wir sehen, dass sich der Weltrekord in der ersten Hälfte des 20. Jahrhunderts linear verbesserte (Abbildung <a href="10-regression.html#fig:mile">10.2</a>, links). Dieser Trend passt auch für die zweite Hälfte des 20. Jahrhunderts bemerkenswert gut (Abbildung <a href="10-regression.html#fig:mile">10.2</a>, Mitte). Wie lange kann sich der Weltrekord jedoch noch mit der gleichen Rate verbessern (Abbildung <a href="10-regression.html#fig:mile">10.2</a>, rechts)?</p>
-<p>Dieses Beispiel zeigt deutlich die Anwendbarkeit von Regressionen für Vorhersagen innerhalb bestimmter Grenzen, zeigt jedoch gleichzeitig die Grenzen dieser einfachen Modelle für längere Vorhersagen (z.B. in Zeit und Raum). Im Falle des Weltrekords würden wir erwarten, dass die Verbesserungsrate mit der Zeit abnimmt, d.h. dass die Kurve abflacht, was ein nichtlineares Modell erfordert.</p>
+<p>Dieses Beispiel zeigt deutlich die Anwendbarkeit von Regressionen für Vorhersagen, zeigt jedoch gleichzeitig die Grenzen dieser einfachen Modelle für längere Vorhersagen (z.B. in Zeit und Raum). Im Fall des Weltrekords würden wir erwarten, dass die Verbesserungsrate mit der Zeit abnimmt, d.h. dass die Kurve abflacht, was ein nichtlineares Modell erfordert.</p>
 </div>
 <div id="ausblick-weiterführende-lineare-modelle" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Ausblick: Weiterführende lineare Modelle<a href="10-regression.html#ausblick-weiterführende-lineare-modelle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -447,31 +446,26 @@ n \cdot \beta_0=\sum_{i=1}^{n}y_i-\beta_1 \cdot \sum_{i=1}^{n}x_i
 \tag{10.13}
 \end{equation}\]</span></p>
 <p><span class="math inline">\(SSX=\sum_{i=1}^{n}\left(x_i-\bar{x}\right)^2\)</span> ist ein Maß für die Varianz der Daten in <span class="math inline">\(x\)</span>-Richtung. <span class="math inline">\(SSXY=\sum_{i=1}^{n}\left(x_i-\bar{x}\right) \cdot \left(y_i-\bar{y}\right)\)</span> ist ein Maß für die Kovarianz der Daten. Es gibt auch <span class="math inline">\(SSY=\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2\)</span>, das entsprechend ein Maß für die Varianz der Daten in <span class="math inline">\(y\)</span>-Richtung ist. Gleichung <a href="10-regression.html#eq:b13">(10.13)</a> ist eine exakte Lösung für <span class="math inline">\(\hat\beta_1\)</span>.</p>
-<p>Wir setzen nun Gleichung <a href="10-regression.html#eq:b13">(10.13)</a> in Gleichung <a href="10-regression.html#eq:b04">(10.8)</a> ein und haben eine exakte Lösung für <span class="math inline">\(\hat\beta_0\)</span>. Berechnen wir nun die Parameter für unsere drei Reisedatenverianten mit der <code>lm()</code> Funktion:</p>
+<p>Wir setzen nun Gleichung <a href="10-regression.html#eq:b13">(10.13)</a> in Gleichung <a href="10-regression.html#eq:b04">(10.8)</a> ein und haben eine exakte Lösung für <span class="math inline">\(\hat\beta_0\)</span>. Berechnen wir nun die Parameter für unsere beiden Reisedatenvarianten mit der <code>lm()</code> Funktion:</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="10-regression.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lineare Regression der Reisedaten</span></span>
 <span id="cb132-2"><a href="10-regression.html#cb132-2" aria-hidden="true" tabindex="-1"></a>reise_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(zeit_morgens <span class="sc">~</span> distanz, <span class="at">data =</span> reisedat)</span>
 <span id="cb132-3"><a href="10-regression.html#cb132-3" aria-hidden="true" tabindex="-1"></a>reise_fit2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(zeit_morgens <span class="sc">~</span> distanz, <span class="at">data =</span> reisedat2)</span>
-<span id="cb132-4"><a href="10-regression.html#cb132-4" aria-hidden="true" tabindex="-1"></a>reise_fit3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(zeit_morgens <span class="sc">~</span> distanz, <span class="at">data =</span> reisedat3)</span>
-<span id="cb132-5"><a href="10-regression.html#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Informationen über geschätzte Parameterwerte ausgeben</span></span>
-<span id="cb132-6"><a href="10-regression.html#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit))</span></code></pre></div>
+<span id="cb132-4"><a href="10-regression.html#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Informationen über geschätzte Parameterwerte ausgeben</span></span>
+<span id="cb132-5"><a href="10-regression.html#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit))</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
-## (Intercept)   28.379     2.4808   11.44 4.113e-18
-## distanz        1.532     0.1225   12.50 5.029e-20</code></pre>
+## (Intercept)   29.242     2.5924   11.28 3.290e-18
+## distanz        1.495     0.1389   10.76 3.236e-17</code></pre>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="10-regression.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit2))</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
-## (Intercept)   29.115     2.2577   12.90 1.309e-20
-## distanz        1.527     0.1112   13.74 4.775e-22</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="10-regression.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit3))</span></code></pre></div>
-<pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
-## (Intercept)   16.045     2.7399   5.856 1.404e-07
-## distanz        2.545     0.1833  13.888 8.499e-22</code></pre>
-<p>In der ersten Spalte (“Estimate”) dieses Outputs finden Sie die Werte der Parameterschätzer, wobei “(Intercept)” für <span class="math inline">\(\beta_0\)</span> steht und “distanz” (in diesem Fall) für <span class="math inline">\(\beta_1\)</span>. Anhand von <span class="math inline">\(\beta_1\)</span> können wir ablesen, dass sich pro km Entfernung die Reisezeit um 1.5min (bzw. 2.5min) erhöht. Der Achsenabschnitt <span class="math inline">\(\beta_0\)</span> hat keine direkte Entsprechung.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelte Regressionsgeraden <span class="math inline">\(y_i=28.4+1.5\cdot x_i+\epsilon_i\)</span>, <span class="math inline">\(y_i=29.1+1.5\cdot x_i+\epsilon_i\)</span> und <span class="math inline">\(y_i=16.0+2.5\cdot x_i+\epsilon_i\)</span>:</p>
-<p><img src="eids_files/figure-html/unnamed-chunk-54-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-54-2.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-54-3.png" width="33%" /></p>
-<p>Wie man sieht, macht das Weglassen des Datenpunktes <span class="math inline">\((14.8, 1.2)\)</span> keinen grossen Unterschied, das Weglassen der vier Punke ganz rechts schon: Die Steigung ist für die übrigen Punkte steiler.</p>
+## (Intercept)   20.056     2.4574   8.162 4.223e-12
+## distanz        2.178     0.1486  14.658 3.044e-24</code></pre>
+<p>In der ersten Spalte (“Estimate”) dieses Outputs finden Sie die Werte der Parameterschätzer, wobei “(Intercept)” für <span class="math inline">\(\beta_0\)</span> steht und “distanz” (in diesem Fall) für <span class="math inline">\(\beta_1\)</span>. Anhand von <span class="math inline">\(\beta_1\)</span> können wir ablesen, dass sich pro km Entfernung die Reisezeit um 1.5min (bzw. 2.2min) erhöht. Der Achsenabschnitt <span class="math inline">\(\beta_0\)</span> hat keine direkte Entsprechung.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> Auf die anderen Spalten werden wir weiter unten zu sprechen kommen. Plotten wir nun die so ermittelten Regressionsgeraden <span class="math inline">\(y_i=29.2+1.5\cdot x_i+\epsilon_i\)</span> und <span class="math inline">\(y_i=20.1+2.2\cdot x_i+\epsilon_i\)</span>:</p>
+<p><img src="eids_files/figure-html/unnamed-chunk-54-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-54-2.png" width="50%" /></p>
+<p>Wie man sieht, macht das Weglassen des Datenpunkts ganz rechts einen grossen Unterschied: Die Steigung ist für die übrigen Punkte steiler.</p>
 </div>
-<div id="signifikanz-der-regression" class="section level2 hasAnchor" number="10.5">
-<h2><span class="header-section-number">10.5</span> Signifikanz der Regression<a href="10-regression.html#signifikanz-der-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Nun, da wir Werte für die Regressionsparameter haben, müssen wir uns fragen, ob diese Werte statistisch signifikant sind oder ob sie durch Zufall aus dem (angenommenen) Zufallsprozess der Stichprobenziehung entstanden sein könnten. Dazu testen wir formal, ob die vom Modell erklärte Varianz in den Daten signifikant größer als die nicht erklärte Varianz ist. Das ist ein F-Test-Problem (vgl. Kapitel <a href="09-tests.html#ftest">9.4</a>), das wir über die sogenannte Varianzanalyse (ANOVA) angehen. ANOVA beginnt mit der Erstellung der ANOVA-Tabelle (Tabelle <a href="10-regression.html#tab:anova">10.3</a>). Dies geschieht in <em>R</em> im Hintergrund und wird selten explizit betrachtet; tun wir es hier aber trotzdem, damit wir verstehen was passiert.</p>
+<div id="erklärte-varianz" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Erklärte Varianz<a href="10-regression.html#erklärte-varianz" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nun, da wir Werte für die Regressionsparameter haben, testen wir üblicherweise formal, ob die vom Modell erklärte Varianz in den Daten signifikant größer als die nicht erklärte Varianz ist. Das ist ein F-Test-Problem (vgl. Kapitel <a href="09-tests.html#ftest">9.4</a>), das wir über die sogenannte Varianzanalyse (ANOVA) angehen. ANOVA beginnt mit der Erstellung der ANOVA-Tabelle (Tabelle <a href="10-regression.html#tab:anova">10.3</a>). Dies geschieht in <em>R</em> im Hintergrund und wird selten explizit betrachtet; tun wir es hier aber trotzdem, damit wir verstehen was passiert.</p>
 <table style="width:100%;">
 <caption><span id="tab:anova">Tabelle 10.3: </span> ANOVA-Tabelle der linearen Regression.</caption>
 <colgroup>
@@ -526,68 +520,80 @@ n \cdot \beta_0=\sum_{i=1}^{n}y_i-\beta_1 \cdot \sum_{i=1}^{n}x_i
 Abbildung 10.3: Variation der Datenpunkte um den Mittelwert, zusammengefasst durch <span class="math inline">\(SSY\)</span> (links), und um die Regressionsgerade, zusammengefasst durch <span class="math inline">\(SSE\)</span> (rechts).
 </p>
 </div>
-<p>In der dritten Spalte der Tabelle <a href="10-regression.html#tab:anova">10.3</a> stehen die Freiheitsgrade der drei Varianzterme. Diese können als Anzahl der Werte in einer Stichprobe, die für die Berechnung der jeweiligen Parameter frei zur Verfügung stehen, verstanden werden (vgl. Kapitel <a href="04-streuung.html#streuung">4</a>): In die Berechnung von <span class="math inline">\(SSY\)</span> geht <span class="math inline">\(\bar y\)</span> ein, für dessen Berechnung die Werte der Stichprobe bereits einmal verwendet wurden; dadurch ist die Anzahl Freiheitsgrade <span class="math inline">\(df_{SSY}=n-1\)</span>. In die Berechnung von <span class="math inline">\(SSE\)</span> gehen <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> ein (Gleichung <a href="10-regression.html#eq:sse">(10.2)</a>), d.h. die Anzahl Freiheitsgrade ist <span class="math inline">\(df_{SSE}=n-2\)</span>. Für <span class="math inline">\(SSR\)</span> gilt dann einfach <span class="math inline">\(df_{SSR}=df_{SSY}-df_{SSE}=1\)</span>. Die Freiheitsgrade werden verwendet, um die Varianzterme in der vierten Spalte der Tabelle <a href="10-regression.html#tab:anova">10.3</a> zu normalisieren, wobei <span class="math inline">\(s^2\)</span> Fehlervarianz genannt wird.</p>
+<p>In der dritten Spalte der Tabelle <a href="10-regression.html#tab:anova">10.3</a> stehen die Freiheitsgrade der drei Varianzterme. Diese können als Anzahl der Werte in einer Stichprobe, die für die Berechnung der jeweiligen Parameter frei zur Verfügung stehen, verstanden werden (vgl. Kapitel <a href="04-streuung.html#streuung">4</a>): In die Berechnung von <span class="math inline">\(SSY\)</span> geht <span class="math inline">\(\bar y\)</span> ein, für dessen Berechnung die Werte der Stichprobe bereits einmal verwendet wurden; dadurch ist die Anzahl Freiheitsgrade <span class="math inline">\(df_{SSY}=n-1\)</span>. In die Berechnung von <span class="math inline">\(SSE\)</span> gehen <span class="math inline">\(\beta_0\)</span> und <span class="math inline">\(\beta_1\)</span> ein (Gleichung <a href="10-regression.html#eq:sse">(10.2)</a>), d.h. die Anzahl Freiheitsgrade ist <span class="math inline">\(df_{SSE}=n-2\)</span>. Für <span class="math inline">\(SSR\)</span> gilt dann einfach <span class="math inline">\(df_{SSR}=df_{SSY}-df_{SSE}=1\)</span>. Die Freiheitsgrade werden verwendet, um die Varianzterme in der vierten Spalte der Tabelle <a href="10-regression.html#tab:anova">10.3</a> zu normalisieren, d.h. auf die Skala einer Varianz zu bringen, wobei <span class="math inline">\(s^2\)</span> Fehlervarianz genannt wird.</p>
 <p>In der fünften Spalte der Tabelle <a href="10-regression.html#tab:anova">10.3</a> finden wir das Verhältnis von zwei Varianzen; Regressionsvarianz über Fehlervarianz. Von einer signifikanten Regression erwarten wir, dass die (durch das Modell erklärte) Regressionsvarianz viel größer ist als die (durch das Modell nicht erklärte) Fehlervarianz. Dies ist ein F-Test Problem, bei dem getestet wird, ob sich die durch das Modell <em>erklärte</em> Varianz <strong>signifikant</strong> von der durch das Modell <em>nicht erklärten</em> Varianz unterscheidet. Das Verhältnis der beiden Varianzen dient als F-Statistik <span class="math inline">\(F_s\)</span> (vgl. Kapitel <a href="09-tests.html#ftest">9.4</a>).</p>
 <p>Die sechste Spalte der Tabelle <a href="10-regression.html#tab:anova">10.3</a> gibt dann den p-Wert des F-Tests an, d.h. die Wahrscheinlichkeit, <span class="math inline">\(F_s\)</span> oder einen größeren Wert (d.h. <strong>ein noch besseres Modell</strong>) zufällig zu erhalten, wenn die Nullhypothese <span class="math inline">\(H_0\)</span> wahr ist (vgl. Kapitel <a href="09-tests.html#ftest">9.4</a>). Im Fall der linearen Regression ist <span class="math inline">\(H_0:\frac{SSR}{df_{SSR}}=s^2\)</span>, d.h. die beiden Varianzen sind gleich, und <span class="math inline">\(H_1:\frac{SSR}{df_{SSR}}&gt;s^2\)</span>, d.h. die erklärte Varianz ist größer als die nicht erklärte.</p>
-Wie in Kapitel <a href="09-tests.html#ftest">9.4</a> bereits diskutiert folgt <span class="math inline">\(F_s\)</span> einer F-Verteilung unter der Nullhypothese, hier mit den Parametern <span class="math inline">\(1\)</span> und <span class="math inline">\(n-2\)</span> (Abbildung <a href="10-regression.html#fig:fcdf">10.4</a>). Die blaue Linie in Abbildung <a href="10-regression.html#fig:fcdf">10.4</a> markiert einen bestimmten Wert von <span class="math inline">\(F_s\)</span> (hier <span class="math inline">\(8\)</span>) und den entsprechenden Wert der Verteilungsfunktion der F-Verteilung (<span class="math inline">\(F\left(F_s,1,n-2\right)\)</span>). Der p-Wert ist <span class="math inline">\(\Pr\left(Z&gt; F_s\right)=1-F\left(F_s,1,n-2\right)\)</span> und beschreibt die Wahrscheinlichkeit, dieses oder ein größeres Varianzverhältnis zufällig (aufgrund der zufälligen Stichprobenziehung) zu erhalten, selbst wenn die beiden Varianzen tatsächlich gleich sind.
+Wie in Kapitel <a href="09-tests.html#ftest">9.4</a> bereits diskutiert folgt <span class="math inline">\(F_s\)</span> einer F-Verteilung unter der Nullhypothese, hier mit den Parametern <span class="math inline">\(1\)</span> und <span class="math inline">\(n-2\)</span> (Abbildung <a href="10-regression.html#fig:fcdf">10.4</a>). Die blaue Linie in Abbildung <a href="10-regression.html#fig:fcdf">10.4</a> markiert einen bestimmten Wert von <span class="math inline">\(F_s\)</span> (in diesem Beispiel <span class="math inline">\(8\)</span>) und den entsprechenden Wert der Verteilungsfunktion der F-Verteilung (<span class="math inline">\(F\left(F_s,1,n-2\right)\)</span>). Der p-Wert ist <span class="math inline">\(\Pr\left(Z&gt; F_s\right)=1-F\left(F_s,1,n-2\right)\)</span> und beschreibt die Wahrscheinlichkeit, dieses oder ein größeres Varianzverhältnis zufällig (aufgrund der zufälligen Stichprobenziehung) zu erhalten, selbst wenn die beiden Varianzen tatsächlich gleich sind.
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:fcdf"></span>
 <img src="eids_files/figure-html/fcdf-1.png" alt="Verteilungsfunktion der F-Verteilung der F-Statistik $F_s$. Blau: Bestimmter Wert für $F_s$ und entsprechender Wert der Verteilungsfunktion." width="80%" />
 <p class="caption">
 Abbildung 10.4: Verteilungsfunktion der F-Verteilung der F-Statistik <span class="math inline">\(F_s\)</span>. Blau: Bestimmter Wert für <span class="math inline">\(F_s\)</span> und entsprechender Wert der Verteilungsfunktion.
 </p>
 </div>
-<p>Für die Regression der Reisedaten ist der p-Wert wesentlich kleiner als das konventionelle Signifikanzniveau <span class="math inline">\(\alpha=0.01\)</span>, daher lehnen wir die die Nullhypothese ab und bezeichnen die Regression als statistisch signifikant. Schauen wir uns die ANOVA-Tabelle fuer das Beispiel in den drei Datenvarianten an:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="10-regression.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reise_fit)</span></code></pre></div>
+<p>Für die Regression der Reisedaten ist der p-Wert wesentlich kleiner als das konventionelle Signifikanzniveau <span class="math inline">\(\alpha=0.01\)</span>, daher lehnen wir die Nullhypothese ab und bezeichnen die Regression als statistisch signifikant. Schauen wir uns die ANOVA-Tabelle für das Beispiel in den beiden Datenvarianten an:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="10-regression.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reise_fit)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: zeit_morgens
 ##           Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## distanz    1  27936   27936     156 &lt;2e-16 ***
-## Residuals 75  13403     179                   
+## distanz    1  21257   21257     116 &lt;2e-16 ***
+## Residuals 80  14685     184                   
 ## ---
 ## Signif. codes:  
 ## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="10-regression.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reise_fit2)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="10-regression.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reise_fit2)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: zeit_morgens
 ##           Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## distanz    1  27751   27751     189 &lt;2e-16 ***
-## Residuals 74  10884     147                   
-## ---
-## Signif. codes:  
-## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="10-regression.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(reise_fit3)</span></code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: zeit_morgens
-##           Df Sum Sq Mean Sq F value Pr(&gt;F)    
-## distanz    1  18506   18506     193 &lt;2e-16 ***
-## Residuals 70   6716      96                   
+## distanz    1  24975   24975     215 &lt;2e-16 ***
+## Residuals 79   9183     116                   
 ## ---
 ## Signif. codes:  
 ## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Im Vergleich zu Tabelle <a href="10-regression.html#tab:anova">10.3</a> lässt <em>R</em> die letzte Zeile (<span class="math inline">\(SSY\)</span>) weg und tauscht die Spalten “Quadratsumme” und “Freiheitsgrad”.</p>
+<p>Der Anteil der Varianz (in <span class="math inline">\(y\)</span>-Richtung), der durch das Modell erklärt wird, wird außerdem mit dem <strong>Bestimmtheitsmaß</strong> (<span class="math inline">\(r^2\)</span>) ausgedrückt:
+<span class="math display" id="eq:r2">\[\begin{equation}
+r^2=\frac{SSY-SSE}{SSY}=1-\frac{SSE}{SSY}
+\tag{10.14}
+\end{equation}\]</span>
+Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Quadrat (vgl. Kapitel <a href="05-korrelation.html#korrelation">5</a>).</p>
+<p>Wie wir an Gleichung <a href="10-regression.html#eq:r2">(10.14)</a> sehen, wenn das Modell nicht mehr Variation als die Gesamtvariation um den Mittelwert erklärt, d.h. <span class="math inline">\(SSE=SSY\)</span> ist, dann ist <span class="math inline">\(r^2=0\)</span>. Umgekehrt, wenn das Modell perfekt zu den Daten passt, d.h. <span class="math inline">\(SSE=0\)</span> ist, dann ist <span class="math inline">\(r^2=1\)</span>. Werte dazwischen stellen unterschiedliche Grade der Anpassungsgüte dar. Das kann wiederum mit Abbildung <a href="10-regression.html#fig:ssysse">10.3</a> veranschaulicht werden, wobei der linke Teil <span class="math inline">\(SSY\)</span> und der rechte Teil <span class="math inline">\(SSE\)</span> verdeutlicht.</p>
+<p>Wenn es darum geht, Modelle unterschiedlicher Komplexität (d.h. mit mehr oder weniger Parametern) mit <span class="math inline">\(r^2\)</span> zu vergleichen, dann ist es sinnvoll, das Bestimmtheitsmaß mit der Anzahl der Modellparameter zu korrigieren, da komplexere Modelle (mehr Parameter) automatisch zu besseren Anpassungen führen, einfach aufgrund der größeren Freiheitsgrade, die komplexere Modelle bei der Anpassung an die Daten haben. Dies führt zum <strong>korrigierten <span class="math inline">\(r^2\)</span></strong>:
+<span class="math display" id="eq:adjr2">\[\begin{equation}
+\bar r^2=1-\frac{\frac{SSE}{df_{SSE}}}{\frac{SSY}{df_{SSY}}}=1-\frac{SSE}{SSY} \cdot \frac{df_{SSY}}{df_{SSE}}
+\tag{10.15}
+\end{equation}\]</span></p>
+<p>Rechnen wir <span class="math inline">\(r^2\)</span> und <span class="math inline">\(\bar r^2\)</span> für die Regression der Reisedaten aus:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="10-regression.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit)<span class="sc">$</span>r.squared</span></code></pre></div>
+<pre><code>## [1] 0.5914</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="10-regression.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
+<pre><code>## [1] 0.5863</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="10-regression.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit2)<span class="sc">$</span>r.squared</span></code></pre></div>
+<pre><code>## [1] 0.7312</code></pre>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="10-regression.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit2)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
+<pre><code>## [1] 0.7277</code></pre>
+<p>D.h. bei der Regression der Originaldaten werden rund 59% der Varianz in den Reisezeit-Daten durch das lineare Modell mit Entfernung als Prädiktor erklärt. Lässt man den Datenpunkt ganz rechts weg, vebessert sich die Güte auf 73% - das ist für die Auswirkung eines einzigen Datenpunktes erheblich.</p>
 </div>
-<div id="konfidenzintervalle-und-signifikanz-der-parameter" class="section level2 hasAnchor" number="10.6">
-<h2><span class="header-section-number">10.6</span> Konfidenzintervalle und Signifikanz der Parameter<a href="10-regression.html#konfidenzintervalle-und-signifikanz-der-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="konfidenzintervalle-der-parameterschätzer" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Konfidenzintervalle der Parameterschätzer<a href="10-regression.html#konfidenzintervalle-der-parameterschätzer" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Da die Modellanpassung nicht perfekt ist, haben die Parameterschätzer Standardfehler, d.h. sie werden wie andere statistische Kennzahlen als Realisationen eines Zufallsprozesses interpretiert. Das führt uns zu Konfidenzintervallen und t-Tests auf Signifikanz der einzelnen Parameter.</p>
 <p>Der <strong>Standardfehlern</strong> für <span class="math inline">\(\hat\beta_0\)</span> ist:
 <span class="math display" id="eq:seb0">\[\begin{equation}
 s_{\hat\beta_0}=\sqrt{\frac{\sum_{i=1}^{n}x_i^2}{n} \cdot \frac{s^2}{SSX}}
-\tag{10.14}
+\tag{10.16}
 \end{equation}\]</span></p>
 <p>Wenn wir diese Formel in ihre einzelnen Teile zerlegen, sehen wir: Je mehr Datenpunkte <span class="math inline">\(n\)</span> wir haben, desto kleiner ist der Standardfehler, d.h. desto mehr Vertrauen haben wir in die Schätzung. Außerdem gilt, je größer die Variation in <span class="math inline">\(x\)</span> (<span class="math inline">\(SSX\)</span>), desto kleiner der Standardfehler. Beide Effekte machen intuitiv Sinn: Je mehr Datenpunkte wir haben und je mehr Ausprägungen von <span class="math inline">\(x\)</span> wir abgedeckt haben, desto sicherer können wir sein, dass unsere Stichprobe aussagekräftig für die Grundgesamtheit ist. Umgekehrt gilt: Je größer die Fehlervarianz <span class="math inline">\(s^2\)</span>, d.h. je kleiner die Erklärungskraft unseres Modells, desto größer der Standardfehler. Und je mehr <span class="math inline">\(x\)</span>-Datenpunkte von Null entfernt sind, d.h. je größer <span class="math inline">\(\sum_{i=1}^{n}x_i^2\)</span>, desto geringer ist unser Vertrauen in den Achsenabschnitt (wo <span class="math inline">\(x=0\)</span> ist) und damit steigt der Standardfehler.</p>
 <p>Der Standardfehler für <span class="math inline">\(\hat\beta_1\)</span> ist:
 <span class="math display" id="eq:seb1">\[\begin{equation}
 s_{\hat\beta_1}=\sqrt{\frac{s^2}{SSX}}
-\tag{10.15}
+\tag{10.17}
 \end{equation}\]</span>
 Hier gilt die gleiche Interpretation wie zuvor, außer dass es keinen Einfluss der Größe der <span class="math inline">\(x\)</span>-Datenpunkte gibt.</p>
 <p>Wir können auch einen Standardfehler für neue Vorhersagen <span class="math inline">\(\hat y\)</span> für gegebene <span class="math inline">\(\hat x\)</span> festlegen:
 <span class="math display" id="eq:sey">\[\begin{equation}
 s_{\hat y}=\sqrt{s^2 \cdot \left(\frac{1}{n}+\frac{\left(\hat x-\bar x\right)^2}{SSX}\right)}
-\tag{10.16}
+\tag{10.18}
 \end{equation}\]</span></p>
 <p>Dieselbe Interpretation gilt auch hier, nur dass jetzt ein zusätzlicher Term <span class="math inline">\(\left(\hat x-\bar x\right)^2\)</span> auftaucht, der besagt, je weiter der neue <span class="math inline">\(x\)</span>-Wert vom Zentrum der ursprünglichen Daten (den Trainings- oder Kalibrierungsdaten) entfernt ist, desto größer ist der Standardfehler der neuen Vorhersage, d.h. desto geringer ist die Zuversicht, dass sie korrekt ist.</p>
 <blockquote>
@@ -596,119 +602,112 @@ s_{\hat y}=\sqrt{s^2 \cdot \left(\frac{1}{n}+\frac{\left(\hat x-\bar x\right)^2}
 <p>Aus den Standardfehlern können wir <strong>Konfidenzintervalle</strong> für die Parameterschätzer wie folgt berechnen (vgl. Konfidenzintervall des Mittelwertschätzers (Kapitel <a href="08-schaetzen.html#schaetzen">8</a>)):
 <span class="math display" id="eq:cib01">\[\begin{equation}
 \Pr\left(\hat\beta_0-t_{n-2;0.975} \cdot s_{\hat\beta_0}\leq \beta_0\leq \hat\beta_0+t_{n-2;0.975} \cdot s_{\hat\beta_0}\right)=0.95
-\tag{10.17}
+\tag{10.19}
 \end{equation}\]</span></p>
-<p>Gleichung <a href="10-regression.html#eq:cib01">(10.17)</a> ist das zentrale 95%-Konfidenzintervall, in dem der wahre Parameterwert, hier <span class="math inline">\(\beta_0\)</span>, mit einer Wahrscheinlichkeit von 0.95 liegt.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a></p>
+<p>Gleichung <a href="10-regression.html#eq:cib01">(10.19)</a> ist das zentrale 95%-Konfidenzintervall, in dem der wahre Parameterwert, hier <span class="math inline">\(\beta_0\)</span>, mit einer Wahrscheinlichkeit von 0.95 liegt.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a></p>
 <p>Wir können das Intervall auch wie folgt schreiben:
 <span class="math display" id="eq:cib02">\[\begin{equation}
 KI=\left[\hat\beta_0-t_{n-2;0.975} \cdot s_{\hat\beta_0};\hat\beta_0+t_{n-2;0.975} \cdot s_{\hat\beta_0}\right]
-\tag{10.18}
+\tag{10.20}
 \end{equation}\]</span></p>
-<p>Wie bei dem Konfidenzintervall des Mittelwertschätzers (Kapitel <a href="08-schaetzen.html#schaetzen">8</a>) liegt das Konfidenzintervall symmetrisch um den Parameterschätzwert <span class="math inline">\(\hat\beta_0\)</span> und ergibt sich aus einer t-Verteilung mit dem Parameter <span class="math inline">\(n-2\)</span>, deren Breite durch den Standardfehler <span class="math inline">\(s_{\hat\beta_0}\)</span> moduliert wird. Erinnern Sie sich, dass die Breite der t-Verteilung ebenfalls durch den Stichprobenumfang kontrolliert wird und mit zunehmendem <span class="math inline">\(n\)</span> immer schmaler wird.</p>
+<p>Wie bei dem Konfidenzintervall des Mittelwertschätzers (Kapitel <a href="08-schaetzen.html#schaetzen">8</a>) liegt das Konfidenzintervall symmetrisch um den Parameterschätzer <span class="math inline">\(\hat\beta_0\)</span> und ergibt sich aus einer t-Verteilung mit dem Parameter <span class="math inline">\(n-2\)</span> (Freiheitsgrade), deren Breite durch den Standardfehler <span class="math inline">\(s_{\hat\beta_0}\)</span> moduliert wird. Erinnern Sie sich, dass die Breite der t-Verteilung ebenfalls durch den Stichprobenumfang kontrolliert wird und mit zunehmendem <span class="math inline">\(n\)</span> immer schmaler wird.</p>
 <p>Die gleichen Formeln gelten für <span class="math inline">\(\beta_1\)</span> und <span class="math inline">\(y\)</span>:
 <span class="math display" id="eq:cib1">\[\begin{equation}
 \Pr\left(\hat\beta_1-t_{n-2;0.975} \cdot s_{\hat\beta_1}\leq \beta_1\leq \hat\beta_1+t_{n-2;0.975} \cdot s_{\hat\beta_1}\right)=0.95
-\tag{10.19}
+\tag{10.21}
 \end{equation}\]</span>
 <span class="math display" id="eq:ciy">\[\begin{equation}
 \Pr\left(\hat y-t_{n-2;0.975} \cdot s_{\hat y}\leq y\leq \hat y+t_{n-2;0.975} \cdot s_{\hat y}\right)=0.95
-\tag{10.20}
+\tag{10.22}
 \end{equation}\]</span></p>
-<p>Die Formeln für die Konfidenzintervalle (Gleichungen <a href="10-regression.html#eq:cib01">(10.17)</a>, <a href="10-regression.html#eq:cib1">(10.19)</a> und <a href="10-regression.html#eq:ciy">(10.20)</a>) ergeben sich aus den Grundannahmen der linearen Regression (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>): Die Residuen sind <em>unabhängig identisch verteilt (u.i.v.)</em> gemäß einer <em>Normalverteilung</em>, d.h. <span class="math inline">\(\epsilon_i\sim N(0,\sigma)\)</span>, und <em>das lineare Modell ist korrekt</em>. Dann lässt sich mathematisch zeigen, dass <span class="math inline">\(\frac{\hat\beta_0-\beta_0}{s_{\hat\beta_0}}\)</span>, <span class="math inline">\(\frac{\hat\beta_1-\beta_1}{s_{\hat\beta_1}}\)</span> und <span class="math inline">\(\frac{\hat y-y}{s_{\hat y}}\)</span> <span class="math inline">\(t_{n-2}\)</span>-verteilt sind (t-Verteilung mit <span class="math inline">\(n-2\)</span> Freiheitsgraden). Da das zentrale 95%-Konfidenzintervall einer <span class="math inline">\(t_{n-2}\)</span>-verteilten Zufallsvariablen <span class="math inline">\(Z\)</span> <span class="math inline">\(\Pr\left(-t_{n-2;0.975}\leq Z\leq t_{n-2;0. 975}\right)=0.95\)</span> ist (Abbildung <a href="08-schaetzen.html#fig:kiz">8.2</a>), können wir jeden der oben genannten drei Terme für <span class="math inline">\(Z\)</span> einsetzen und die Ungleichung umstellen, um zu den Gleichungen <a href="10-regression.html#eq:cib01">(10.17)</a>, <a href="10-regression.html#eq:cib1">(10.19)</a> und <a href="10-regression.html#eq:ciy">(10.20)</a> zu gelangen (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>).</p>
+<p>Die Formeln für die Konfidenzintervalle (Gleichungen <a href="10-regression.html#eq:cib01">(10.19)</a>, <a href="10-regression.html#eq:cib1">(10.21)</a> und <a href="10-regression.html#eq:ciy">(10.22)</a>) ergeben sich aus den Grundannahmen der linearen Regression (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>): Die Residuen sind <em>unabhängig identisch verteilt (u.i.v.)</em> gemäß einer <em>Normalverteilung</em>, d.h. <span class="math inline">\(\epsilon_i\sim N(0,\sigma)\)</span>, und <em>das lineare Modell ist korrekt</em>. Dann lässt sich mathematisch zeigen, dass <span class="math inline">\(\frac{\hat\beta_0-\beta_0}{s_{\hat\beta_0}}\)</span>, <span class="math inline">\(\frac{\hat\beta_1-\beta_1}{s_{\hat\beta_1}}\)</span> und <span class="math inline">\(\frac{\hat y-y}{s_{\hat y}}\)</span> <span class="math inline">\(t_{n-2}\)</span>-verteilt sind (t-Verteilung mit <span class="math inline">\(n-2\)</span> Freiheitsgraden). Da das zentrale 95%-Konfidenzintervall einer <span class="math inline">\(t_{n-2}\)</span>-verteilten Zufallsvariablen <span class="math inline">\(Z\)</span> <span class="math inline">\(\Pr\left(-t_{n-2;0.975}\leq Z\leq t_{n-2;0. 975}\right)=0.95\)</span> ist (Abbildung <a href="08-schaetzen.html#fig:kiz">8.2</a>), können wir jeden der oben genannten drei Terme für <span class="math inline">\(Z\)</span> einsetzen und die Ungleichung umstellen, um zu den Gleichungen <a href="10-regression.html#eq:cib01">(10.19)</a>, <a href="10-regression.html#eq:cib1">(10.21)</a> und <a href="10-regression.html#eq:ciy">(10.22)</a> zu gelangen (vgl. Kapitel <a href="08-schaetzen.html#schaetzen">8</a>).</p>
 <p>Die Signifikanz der Parameterschätzer wird mit Hilfe eines t-Tests ermittelt (vgl. Kapitel <a href="09-tests.html#ttest">9.2</a>). Die <strong>Nullhypothese</strong> ist, dass die wahren Parameterwerte gleich Null sind, d.h. die Parameterschätzer <em>nicht</em> signifikant sind:
 <span class="math display" id="eq:h0b0">\[\begin{equation}
 H_0:\beta_0=0
-\tag{10.21}
+\tag{10.23}
 \end{equation}\]</span>
 <span class="math display" id="eq:h0b1">\[\begin{equation}
 H_0:\beta_1=0
-\tag{10.22}
+\tag{10.24}
 \end{equation}\]</span></p>
 <p>Diese Hypothese wird gegen die <strong>Alternativhypothese</strong> getestet, dass die wahren Parameterwerte <em>un</em>gleich Null sind, d.h. dass die Parameterschätzer signifikant sind:
 <span class="math display" id="eq:h1b0">\[\begin{equation}
 H_1:\beta_0\neq 0
-\tag{10.23}
+\tag{10.25}
 \end{equation}\]</span>
 <span class="math display" id="eq:h1b1">\[\begin{equation}
 H_1:\beta_1\neq 0
-\tag{10.24}
+\tag{10.26}
 \end{equation}\]</span></p>
 <p>Die Teststatistiken sind:
 <span class="math display" id="eq:tsb0">\[\begin{equation}
 t_s=\frac{\hat\beta_0-0}{s_{\hat\beta_0}}\sim t_{n-2}
-\tag{10.25}
+\tag{10.27}
 \end{equation}\]</span>
 <span class="math display" id="eq:tsb1">\[\begin{equation}
 t_s=\frac{\hat\beta_1-0}{s_{\hat\beta_1}}\sim t_{n-2}
-\tag{10.26}
+\tag{10.28}
 \end{equation}\]</span></p>
 <p>Die t-Verteilungen der Teststatistiken ergeben sich wiederum aus den oben erwähnten Regressionsannahmen. Die Annahmen sind die gleichen wie beim üblichen t-Test der Mittelwerte (Kapitel <a href="09-tests.html#ttest">9.2</a>), außer dass im Fall der linearen Regression die Residuen als u.i.v. normal angenommen werden, während im Fall der Mittelwerte die tatsächlichen Datenpunkte <span class="math inline">\(y\)</span> als u.i.v. normal angenommen werden.</p>
 <p>Analog zum üblichen 2-seitigen t-Test ist der p-Wert definiert als:
 <span class="math display" id="eq:pv">\[\begin{equation}
 2 \cdot \Pr\left(t&gt;|t_s|\right)=2 \cdot \left(1-F_t\left(|t_s|\right)\right)
-\tag{10.27}
+\tag{10.29}
 \end{equation}\]</span></p>
 <p>Mit einem konventionellen Signifikanzniveau von <span class="math inline">\(\alpha=0.01\)</span> gelangen wir zu einem kritischen Wert der Teststatistik <span class="math inline">\(t_c=t_{n-2;0.995}\)</span>, bei dessen Überschreitung, bzw. Unterschreitung von <span class="math inline">\(-t_c\)</span>, wir die Nullhypothese ablehnen und die Parameterschätzer als signifikant bezeichnen.</p>
 <p>Jetzt verstehen wir auch die restlichen Informationen des Outputs der <code>lm()</code> Funktion (s. oben):</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="10-regression.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit))</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="10-regression.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit))</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
-## (Intercept)   28.379     2.4808   11.44 4.113e-18
-## distanz        1.532     0.1225   12.50 5.029e-20</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="10-regression.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit2))</span></code></pre></div>
+## (Intercept)   29.242     2.5924   11.28 3.290e-18
+## distanz        1.495     0.1389   10.76 3.236e-17</code></pre>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="10-regression.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit2))</span></code></pre></div>
 <pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
-## (Intercept)   29.115     2.2577   12.90 1.309e-20
-## distanz        1.527     0.1112   13.74 4.775e-22</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="10-regression.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">summary</span>(reise_fit3))</span></code></pre></div>
-<pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
-## (Intercept)   16.045     2.7399   5.856 1.404e-07
-## distanz        2.545     0.1833  13.888 8.499e-22</code></pre>
-<p>Wie bereits oben erwähnt steht die Zeile “(Intercept)” für <span class="math inline">\(\beta_0\)</span> und die Zeile “distanz” (in diesem Fall) für <span class="math inline">\(\beta_1\)</span>. In Spalte “Estimate” stehen die Werte der Parameterschätzer. In Spalte “Std. Error” stehen deren Standardfehler (Gleichungen <a href="10-regression.html#eq:seb0">(10.14)</a> und <a href="10-regression.html#eq:seb1">(10.15)</a>). In Spalte “t value” stehen die entsprechenden Werte der Teststatistik (Gleichungen <a href="10-regression.html#eq:tsb0">(10.25)</a> und <a href="10-regression.html#eq:tsb1">(10.26)</a>). In Spalte “Pr(&gt;|t|)” stehen die p-Werte der t-Tests auf Signifikanz der Parameter (Gleichung <a href="10-regression.html#eq:pv">(10.27)</a>). Wir sehen, dass in unserem Beispiel (für alle drei Datenvarianten) beide Parameter signifikant sind (die p-Werte sind wesentlich kleiner als das konventionelle <span class="math inline">\(\alpha=0.01\)</span>).</p>
+## (Intercept)   20.056     2.4574   8.162 4.223e-12
+## distanz        2.178     0.1486  14.658 3.044e-24</code></pre>
+<p>Wie bereits oben erwähnt steht die Zeile “(Intercept)” für <span class="math inline">\(\beta_0\)</span> und die Zeile “distanz” (in diesem Fall) für <span class="math inline">\(\beta_1\)</span>. In Spalte “Estimate” stehen die Werte der Parameterschätzer. In Spalte “Std. Error” stehen deren Standardfehler (Gleichungen <a href="10-regression.html#eq:seb0">(10.16)</a> und <a href="10-regression.html#eq:seb1">(10.17)</a>). In Spalte “t value” stehen die entsprechenden Werte der Teststatistik (Gleichungen <a href="10-regression.html#eq:tsb0">(10.27)</a> und <a href="10-regression.html#eq:tsb1">(10.28)</a>). In Spalte “Pr(&gt;|t|)” stehen die p-Werte der t-Tests auf Signifikanz der Parameter (Gleichung <a href="10-regression.html#eq:pv">(10.29)</a>). Wir sehen, dass in unserem Beispiel (für beide Datenvarianten) beide Parameter signifikant sind (die p-Werte sind wesentlich kleiner als das konventionelle <span class="math inline">\(\alpha=0.01\)</span>).</p>
+<p>Mit der Information der Konfidenzintervalle der Parameterschätzer und der Vorhersagen können wir jetzt die Regressionsgerade mit Konfidenzintervall darstellen - nur dann ist die Darstellung vollständig. Es gibt zwei Arten von Konfidenzintervallen: das Konfidenzintervall der Regressionsgeraden, in das die Konfidenzintervalle der beiden Parameterschätzer (Gleichungen <a href="10-regression.html#eq:cib01">(10.19)</a> und <a href="10-regression.html#eq:cib1">(10.21)</a>) eingehen, und das Konfidenzintervall tatsächlicher Werte der abhängigen Variable <span class="math inline">\(y\)</span> für Werte der unabhängigen Variable <span class="math inline">\(x\)</span> (Vorhersagen), d.h. das Konfidenzintervalle der Vorhersagen (Gleichung <a href="10-regression.html#eq:ciy">(10.22)</a>).</p>
+<p>Das erste Konfidenzintervall beschreibt damit die Unsicherheit des Trends durch die Punktwolke, der meistens von primärem Interesse ist:</p>
+<p><img src="eids_files/figure-html/unnamed-chunk-58-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-58-2.png" width="50%" /></p>
+<p>Das zweite Konfidenzintervall beschreibt die Unsicherheit der Vorhersage neuer einzelner Werte von <span class="math inline">\(y\)</span>, die natürlich wesentlich größer ist:</p>
+<p><img src="eids_files/figure-html/unnamed-chunk-59-1.png" width="50%" /><img src="eids_files/figure-html/unnamed-chunk-59-2.png" width="50%" /></p>
 </div>
-<div id="güte-der-modellanpassung" class="section level2 hasAnchor" number="10.7">
-<h2><span class="header-section-number">10.7</span> Güte der Modellanpassung<a href="10-regression.html#güte-der-modellanpassung" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Die Signifikanz der Parameter der Regression ist eine Sache. Wie gut aber ist das Modell im Beschreiben der Daten? D.h. wieviel von der Varianz in den Daten wird vom Modell erklärt? Die Güte der Modellanpassung kann in erster Linie mit dem <strong>Bestimmtheitsmaß</strong> (<span class="math inline">\(r^2\)</span>) begutachtet werden, welches als Anteil der Varianz (in <span class="math inline">\(y\)</span>-Richtung) definiert ist, der durch das Modell erklärt wird:
-<span class="math display" id="eq:r2">\[\begin{equation}
-r^2=\frac{SSY-SSE}{SSY}=1-\frac{SSE}{SSY}
-\tag{10.28}
-\end{equation}\]</span>
-Das Bestimmtheitsmaß ist der Korrelationskoeffizient nach Bravais-Pearson zum Quadrat (vgl. Kapitel <a href="05-korrelation.html#korrelation">5</a>).</p>
-<p>Wie wir an Gleichung <a href="10-regression.html#eq:r2">(10.28)</a> sehen, wenn das Modell nicht mehr Variation als die Gesamtvariation um den Mittelwert erklärt, d.h. <span class="math inline">\(SSE=SSY\)</span> ist, dann ist <span class="math inline">\(r^2=0\)</span>. Umgekehrt, wenn das Modell perfekt zu den Daten passt, d.h. <span class="math inline">\(SSE=0\)</span> ist, dann ist <span class="math inline">\(r^2=1\)</span>. Werte dazwischen stellen unterschiedliche Grade der Anpassungsgüte dar. Das kann wiederum mit Abbildung <a href="10-regression.html#fig:ssysse">10.3</a> veranschaulicht werden, wobei der linke Teil <span class="math inline">\(SSY\)</span> und der rechte Teil <span class="math inline">\(SSE\)</span> verdeutlicht.</p>
-<p>Wenn es darum geht, Modelle unterschiedlicher Komplexität (d.h. mit mehr oder weniger Parametern) mit <span class="math inline">\(r^2\)</span> zu vergleichen, dann ist es sinnvoll, das Bestimmtheitsmaß mit der Anzahl der Modellparameter zu korrigieren, da komplexere Modelle (mehr Parameter) automatisch zu besseren Anpassungen führen, einfach aufgrund der größeren Freiheitsgrade, die komplexere Modelle bei der Anpassung der Daten haben. Dies führt zum <strong>korrigierten <span class="math inline">\(r^2\)</span></strong>:
-<span class="math display" id="eq:adjr2">\[\begin{equation}
-\bar r^2=1-\frac{\frac{SSE}{df_{SSE}}}{\frac{SSY}{df_{SSY}}}=1-\frac{SSE}{SSY} \cdot \frac{df_{SSY}}{df_{SSE}}
-\tag{10.29}
-\end{equation}\]</span></p>
-<p>Rechnen wir <span class="math inline">\(r^2\)</span> und <span class="math inline">\(\bar r^2\)</span> für die Regression der Reisedaten aus:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="10-regression.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit)<span class="sc">$</span>r.squared</span></code></pre></div>
-<pre><code>## [1] 0.6758</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="10-regression.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
-<pre><code>## [1] 0.6715</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="10-regression.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit2)<span class="sc">$</span>r.squared</span></code></pre></div>
-<pre><code>## [1] 0.7183</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="10-regression.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit2)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
-<pre><code>## [1] 0.7145</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="10-regression.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit3)<span class="sc">$</span>r.squared</span></code></pre></div>
-<pre><code>## [1] 0.7337</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="10-regression.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reise_fit3)<span class="sc">$</span>adj.r.squared</span></code></pre></div>
-<pre><code>## [1] 0.7299</code></pre>
-<p>D.h. bei der Regression der Originaldaten werden rund 68% der Varianz in den Reisezeit-Daten durch das lineare Modell mit Entfernung als Prädiktor erklärt. Lässt man den fraglichen Datenpunkt <span class="math inline">\((14.8, 1.2)\)</span> weg, vebessert sich die Güte auf 72% - das ist für die Auswirkung eines einzigen Datenpunktes nicht unerheblich. Lässt man ausserdem die weiteren vier Datenpunkte ganz rechts weg dann verbessert sich die Güte geringfügig auf 73%.</p>
-<p>Aber was heißt Güte der Modellanpassung? Sind alle Modellannahmen erfüllt? Folgende Annahmen ergeben sich aus der <strong>Maximum-Likelihood-Theorie</strong> (vgl. Schätzen von Verteilungsparametern, Kapitel <a href="08-schaetzen.html#schaetzen">8</a>):</p>
+<div id="annahmen-der-regression" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Annahmen der Regression<a href="10-regression.html#annahmen-der-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Da die o.g. Schätzer und wahrscheinlichkeitstheoretischen Aussagen nur unter bestimmten Modellannahmen gültig sind, müssen wir diese Annahmen bei jeder Regression testen. Folgende Annahmen ergeben sich aus der <strong>Maximum-Likelihood-Theorie</strong> (vgl. Schätzen von Verteilungsparametern, Kapitel <a href="08-schaetzen.html#schaetzen">8</a>):</p>
 <ul>
 <li>Die Residuen sind <strong>unabhängig</strong>, in diesem Fall gibt es keine serielle Korrelation in der Residuengrafik - dies kann mit dem Durbin-Watson-Test getestet werden</li>
 <li>Die Residuen sind <strong>normalverteilt</strong> - dies kann visuell mit Hilfe des Quantil-Quantil-Diagramms (QQ-Plot) und dem Residuen-Histogramm beurteilt werden, und kann mit dem Kolmogorov-Smirnov-Test (Kapitel <a href="09-tests.html#kstest">9.5</a>) und dem Shapiro-Wilk-Test getestet werden</li>
 <li>Die Varianz ist für alle Residuen konstant (die Residuen sind <strong>homoskedastisch</strong>), d.h. es erfolgt kein “Auffächern” der Residuen</li>
 </ul>
-<p>Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder Generalisierte Lineare Modelle zurückgreifen. Letzteres ist wird im Master <em>Global Change Geography</em> unterrichtet.</p>
+<p>Sind diese Annahmen nicht erfüllt, können wir auf Datentransformation, gewichtete Regression oder Generalisierte Lineare Modelle zurückgreifen. Letzteres wird z.B. im Master <em>Global Change Geography</em> unterrichtet.</p>
 <p>Eine erste nützliche diagnostische Darstellung ist die der Residuen in Serie, d.h. nach Index <span class="math inline">\(i\)</span>, um zu sehen, ob es ein Muster aufgrund des Datenerfassungsprozesses gibt. Für unser Beispiel:</p>
-<p><img src="eids_files/figure-html/unnamed-chunk-58-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-58-2.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-58-3.png" width="33%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-60-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-60-2.png" width="33%" /></p>
 <p>Die Residuen zeigen für keine der Datenvarianten ein erkennbares Muster, das gegen die Unabhängigkeit der Residuen sprechen würde.</p>
 <p>Wir sollten auch die Residuen nach dem modellierten Wert von <span class="math inline">\(y\)</span> plotten, um zu sehen, ob es ein Muster als Funktion der Größenordnung von <span class="math inline">\(y\)</span> gibt:</p>
-<p><img src="eids_files/figure-html/unnamed-chunk-59-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-59-2.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-59-3.png" width="33%" /></p>
-<p>Hier gibt es jetzt v.a. im ersten und zweite Fall systematische Unter- und Überschätzungen, die gegen eine Linearität des Zusammenhangs sprechen. Lassen wir die vier Datenpunkte ganz rechts weg, passt das lineare Modell besser. Wenn diese vier Datenpunkte tatsächlich einem anderen Transportmodus entstammen, dann wäre das eine plausible Strategie.</p>
+<p><img src="eids_files/figure-html/unnamed-chunk-61-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-61-2.png" width="33%" /></p>
+<p>Hier gibt es jetzt v.a. im ersten Fall systematische Unter- und Überschätzungen, die gegen eine Linearität des Zusammenhangs sprechen. Lassen wir den Datenpunkt ganz rechts weg, passt das lineare Modell besser. Wenn dieser Datenpunkt tatsächlich einem anderen Transportmodus entstammt, dann wäre das eine plausible Strategie.</p>
 <p>Die Annahme, dass die Residuen normalverteilt sind, kann anhand des QQ-Plots beurteilt werden (vgl. Kapitel <a href="08-schaetzen.html#qqplot">8.4</a>):</p>
-<p><img src="eids_files/figure-html/unnamed-chunk-60-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-60-2.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-60-3.png" width="33%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-62-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-62-2.png" width="33%" /></p>
 <p>Die Residuen zeigen flachere Flanken (“heavier tails”) als die Normalverteilung, zumindest auf der positiven (rechten) Seite. Vgl. <a href="https://xiongge.shinyapps.io/QQplots/" class="uri">https://xiongge.shinyapps.io/QQplots/</a>. Das kann man auch am Histogramm der Residuen sehen, einer weiteren nützlichen Darstellung:</p>
-<p><img src="eids_files/figure-html/unnamed-chunk-61-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-61-2.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-61-3.png" width="33%" /></p>
+<p><img src="eids_files/figure-html/unnamed-chunk-63-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-63-2.png" width="33%" /></p>
+<p>Ein formaler KS-Test gibt aber bei keiner der beiden Datenvarianten Anlass, die Normalverteilungsannahme der Residuen abzulehnen:</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="10-regression.html#cb152-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">residuals</span>(reise_fit)</span>
+<span id="cb152-2"><a href="10-regression.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(res, <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="fu">sd</span>(res))</span></code></pre></div>
+<pre><code>## 
+##  Exact one-sample Kolmogorov-Smirnov test
+## 
+## data:  res
+## D = 0.082, p-value = 0.6
+## alternative hypothesis: two-sided</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="10-regression.html#cb154-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> <span class="fu">residuals</span>(reise_fit2)</span>
+<span id="cb154-2"><a href="10-regression.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(res2, <span class="st">&quot;pnorm&quot;</span>, <span class="dv">0</span>, <span class="fu">sd</span>(res2))</span></code></pre></div>
+<pre><code>## 
+##  Exact one-sample Kolmogorov-Smirnov test
+## 
+## data:  res2
+## D = 0.055, p-value = 1
+## alternative hypothesis: two-sided</code></pre>
+<p>Wir können also die Regressionsannahmen in unserem Fall als hinreichend erfüllt betrachten, zumindest wenn wir den Datenpunkt ganz rechts ausschließen, und mit den ermittelten Parameterschätzern und deren Unsicherheiten weiterarbeiten.</p>
 
 </div>
 </div>
@@ -724,10 +723,10 @@ Wainer, H. 2009. <em>Picturing the Uncertain World</em>. Princeton: Princeton Un
 <div class="footnotes">
 <hr />
 <ol start="23">
-<li id="fn23"><p>Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten <em>abhängigen</em> Variablen sind mathematisch ähnlich. Das wird im Masterstudiengang <em>Global Change Geography</em> gelehrt.<a href="10-regression.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p>Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten unabhängigen Variablen mathematisch identisch sind. Auch Regressionsprobleme mit nominal oder ordinal skalierten <em>abhängigen</em> Variablen sind mathematisch ähnlich. Das wird z.B. im Masterstudiengang <em>Global Change Geography</em> gelehrt.<a href="10-regression.html#fnref23" class="footnote-back">↩︎</a></p></li>
 <li id="fn24"><p>Summenregel: wenn <span class="math inline">\(y=u(t) \pm v(t)\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{du}{dt} \pm \frac{dv}{dt}\)</span><a href="10-regression.html#fnref24" class="footnote-back">↩︎</a></p></li>
 <li id="fn25"><p>Kettenregel: wenn <span class="math inline">\(y=f[g(t)]\)</span> dann <span class="math inline">\(\frac{dy}{dt}=\frac{df[g]}{dg} \cdot \frac{dg}{dt}\)</span>, d.h. “äußere mal innere Ableitung”<a href="10-regression.html#fnref25" class="footnote-back">↩︎</a></p></li>
-<li id="fn26"><p>Wenn wir jedoch die unabhängige Variable “distanz” zentrieren würden, d.h. von allen Datenpunkten den Mittelwert abziehen würden, dann ergäbe sich ein Achsenabschnitt, der die Entfernung für die mittlere Entfernung darstellen würde.<a href="10-regression.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p>Wenn wir jedoch die unabhängige Variable “distanz” zentrieren würden, d.h. von allen Datenpunkten den Mittelwert abziehen würden, dann ergäbe sich ein Achsenabschnitt, der die Reisezeit für die mittlere Entfernung darstellen würde.<a href="10-regression.html#fnref26" class="footnote-back">↩︎</a></p></li>
 <li id="fn27"><p>Wahrscheinlichkeit heisst hier wieder, dass bei wiederholtem Stichprobenziehen in 95% der Fälle das so konstruierte Konfidenzintervall den wahren Wert <span class="math inline">\(\beta_0\)</span> umschließt und in 5% der Fälle nicht.<a href="10-regression.html#fnref27" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
