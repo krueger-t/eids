@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2024-01-09" />
+<meta name="date" content="2024-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -124,6 +124,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -259,14 +260,14 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="korrelation" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Kapitel 5</span> Korrelationsanalyse<a href="05-korrelation.html#korrelation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Lesen Sie hierzu bitte Kapitel 3.4.2 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>. Die Fragen, die uns besonders interessieren sind:</p>
+<p>Lesen Sie hierzu bitte Kapitel 3.4.2 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014">2014</a>)</span>. Die Fragen, die uns besonders interessieren sind:</p>
 <ul>
 <li><em>Gibt es einen Zusammenhang zwischen zwei Merkmalen?</em></li>
 <li><em>Wenn ja, wie kann dieser Zusammenhang charakterisiert werden?</em></li>
 <li><em>Wie stark ist der Zusammenhang zwischen den Merkmalen?</em></li>
 <li><em>Wie kann man den Zusammenhang visualisieren?</em></li>
 </ul>
-<p>Die Verfahren sind unterschiedlich für nominalskalierte, ordinalskalierte und metrische Merkmale. Wir werden diese jetzt nacheinander einführen. Die Themen können Sie in <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>, Kapitel 8 und 9 vertiefen.</p>
+<p>Die Verfahren sind unterschiedlich für nominalskalierte, ordinalskalierte und metrische Merkmale. Wir werden diese jetzt nacheinander einführen. Die Themen können Sie in <span class="citation">Mittag (<a href="#ref-mittag2016">2016</a>)</span>, Kapitel 8 und 9 vertiefen.</p>
 <div id="nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik<a href="05-korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Wir wollen diese Methode am Beispiel des Volksentscheids Tegel von 2017 verdeutlichen.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Der Beschlussentwurf lautete:</p>
@@ -286,7 +287,7 @@ Abbildung 5.1: Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tege
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cth"></span>
 <img src="figs/ct_h.png" alt="Notation der absoluten Häufigkeiten in einer Kontingenztabelle. &lt;br&gt;&lt;small&gt; Nach: @mittag2016. &lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 5.2: Notation der absoluten Häufigkeiten in einer Kontingenztabelle. <br><small> Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>. </small>
+Abbildung 5.2: Notation der absoluten Häufigkeiten in einer Kontingenztabelle. <br><small> Nach: <span class="citation">Mittag (<a href="#ref-mittag2016">2016</a>)</span>. </small>
 </p>
 </div>
 <p>Wir können die Kontingenztabelle für dieses Beispiel auch mit relativen Häufigkeiten darstellen (Abbildung <a href="05-korrelation.html#fig:tegelf">5.3</a>).</p>
@@ -300,7 +301,7 @@ Abbildung 5.3: Kontingenztabelle zum Abstimmungsverhalten im Volksentscheid Tege
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ctf"></span>
 <img src="figs/ct_fy.png" alt="Illustration bedingter Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von $Y$ unter der Bedingung $X=a_i$. Rechts: Absolute Häufigkeiten der Ausprägungen von $X$ unter der Bedingung $Y=b_j$. &lt;br&gt;&lt;small&gt; Nach: @mittag2016. &lt;/small&gt;" width="50%" /><img src="figs/ct_fx.png" alt="Illustration bedingter Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von $Y$ unter der Bedingung $X=a_i$. Rechts: Absolute Häufigkeiten der Ausprägungen von $X$ unter der Bedingung $Y=b_j$. &lt;br&gt;&lt;small&gt; Nach: @mittag2016. &lt;/small&gt;" width="50%" />
 <p class="caption">
-Abbildung 5.4: Illustration bedingter Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von <span class="math inline">\(Y\)</span> unter der Bedingung <span class="math inline">\(X=a_i\)</span>. Rechts: Absolute Häufigkeiten der Ausprägungen von <span class="math inline">\(X\)</span> unter der Bedingung <span class="math inline">\(Y=b_j\)</span>. <br><small> Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>. </small>
+Abbildung 5.4: Illustration bedingter Häufigkeiten in einer Kontingenztabelle. Links: Absolute Häufigkeiten der Ausprägungen von <span class="math inline">\(Y\)</span> unter der Bedingung <span class="math inline">\(X=a_i\)</span>. Rechts: Absolute Häufigkeiten der Ausprägungen von <span class="math inline">\(X\)</span> unter der Bedingung <span class="math inline">\(Y=b_j\)</span>. <br><small> Nach: <span class="citation">Mittag (<a href="#ref-mittag2016">2016</a>)</span>. </small>
 </p>
 </div>
 <center>
@@ -352,14 +353,14 @@ Abbildung 5.5: Vergleich der beobachteten absoluten Häufigkeiten <span class="m
 </div>
 <div id="ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman<a href="05-korrelation.html#ordinalskalierte-merkmale-rangkorrelationskoeffizient-nach-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Hier ist das Beispiel des Zusammenhangs von Grünflächenanteil und Bildungsgrad in Stadbezirken aus <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, Kapitel 3.4.2, S. 274 - 278 sehr anschaulich. Das Merkmal “Grünflächenanteil” ist zwar metrisch skaliert, muss aber ordinal skaliert werden, um es mit dem Merkmal “Bildungsgrad” vergleichbar zu machen, das bereits ordinal vorliegt; siehe Tabelle 3.36 in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span>, S. 277.</p>
+<p>Hier ist das Beispiel des Zusammenhangs von Grünflächenanteil und Bildungsgrad in Stadbezirken aus <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014">2014</a>)</span>, Kapitel 3.4.2, S. 274 - 278 sehr anschaulich. Das Merkmal “Grünflächenanteil” ist zwar metrisch skaliert, muss aber ordinal skaliert werden, um es mit dem Merkmal “Bildungsgrad” vergleichbar zu machen, das bereits ordinal vorliegt; siehe Tabelle 3.36 in <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014">2014</a>)</span>, S. 277.</p>
 <p>Der <strong>Rangkorrelationskoeffizient nach Spearman</strong> <span class="math inline">\(r_s\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> wird dann berechnet durch:
 <span class="math display">\[r_s=1-\frac{6\cdot\sum_{i=1}^{n}d_i^2}{n\cdot\left(n^2-1\right)}\]</span>
 Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beiden Merkmale <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> ist.</p>
 <p>Bei perfekter negativer Rangkorrelation ist <span class="math inline">\(r_s=-1\)</span>.</p>
 <p>Bei perfekter positiver Rangkorrelation ist <span class="math inline">\(r_s=1\)</span>.</p>
 <p>Wenn keine Rangkorrelation vorliegt ist <span class="math inline">\(r_s=0\)</span>.</p>
-<p>Bei dem Grünflächenanteil/Bildungsgrad Beispiel von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> ist <span class="math inline">\(r_s=0.84\)</span>, die beiden Merkmale sind also stark positiv korreliert. D.h. größere Anteile von Grünflächen sind tendenziell mit höheren Bildungsgraden assoziiert und kleinere Anteile von Grünflächen sind tendenziell mit geringeren Bildungsgraden assoziiert.</p>
+<p>Bei dem Grünflächenanteil/Bildungsgrad Beispiel von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014">2014</a>)</span> ist <span class="math inline">\(r_s=0.84\)</span>, die beiden Merkmale sind also stark positiv korreliert. D.h. größere Anteile von Grünflächen sind tendenziell mit höheren Bildungsgraden assoziiert und kleinere Anteile von Grünflächen sind tendenziell mit geringeren Bildungsgraden assoziiert.</p>
 <blockquote>
 <p>Überlegen Sie gerne, in welche Richtung hier die Kausalität wirkt.</p>
 </blockquote>
@@ -367,22 +368,22 @@ Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beid
 <div id="metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Metrische Merkmale: Scatterplot (Streudiagramm) und Korrelationskoeffizient nach Bravais-Pearson<a href="05-korrelation.html#metrische-merkmale-scatterplot-streudiagramm-und-korrelationskoeffizient-nach-bravais-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Alle Merkmale (“Distanz” und “Zeit”) sind metrisch skaliert und somit können wir den <strong>Korrelationskoeffizienten nach Bravais-Pearson</strong> verwenden, der mehr Informationen über den Zusammenhang, nämlich <strong>Linearität</strong>, liefert. Einen ersten Eindruck verschafft der <strong>Scatterplot</strong> (auch Streudiagramm), den wir einfach mit der <code>plot()</code> Funktion in <em>R</em> generieren. Als erstes plotten wir die beiden Zeiten (“morgens” und “nachmittags”) gegeneinander:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="05-korrelation.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>zeit_morgens, reisedat<span class="sc">$</span>zeit_nachmittags, </span>
-<span id="cb38-2"><a href="05-korrelation.html#cb38-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
-<span id="cb38-3"><a href="05-korrelation.html#cb38-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="05-korrelation.html#cb45-1" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>zeit_morgens, reisedat<span class="sc">$</span>zeit_nachmittags, </span>
+<span id="cb45-2"><a href="05-korrelation.html#cb45-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
+<span id="cb45-3"><a href="05-korrelation.html#cb45-3" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-21-1.png" width="80%" /></p>
 <p>Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker.</p>
 <p>Plotten wir nun eine der Zeiten (“morgens”) gegen die Entfernung:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="05-korrelation.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens, </span>
-<span id="cb39-2"><a href="05-korrelation.html#cb39-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="05-korrelation.html#cb46-1" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens, </span>
+<span id="cb46-2"><a href="05-korrelation.html#cb46-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-22-1.png" width="80%" /></p>
 <p>An dieser Stelle fällt der Datenpunkte ganz rechts auf. Hierbei könnte es sich um eine Person handeln, die eine relativ weite Strecke mit der Regionalbahn zurücklegt, die effizienter ist als der ÖPNV in Berlin. Darauf schauen wir in späteren Kapitel noch etwas näher. Vorerst nutzen wir die Daten so, wie sie sind.</p>
 <p><strong>Aufgabe:</strong> <em>Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in “Reisezeit” kommen könnte.</em></p>
 <p>Die <em>lineare</em> Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-<strong>Korrelationskoeffizient nach Bravais-Pearson</strong> <span class="math inline">\(r_{x,y}\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> berechnet. Er ergibt sich aus den Standardabweichungen <span class="math inline">\(s_x\)</span> und <span class="math inline">\(s_y\)</span> und der standardisierten Kovarianz <span class="math inline">\(s_{x,y}\)</span> durch:
 <span class="math display">\[r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}\]</span></p>
 <p>In <em>R</em> mit der <code>cor()</code> Funktion:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="05-korrelation.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens,</span>
-<span id="cb40-2"><a href="05-korrelation.html#cb40-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="05-korrelation.html#cb47-1" tabindex="-1"></a><span class="fu">cor</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens,</span>
+<span id="cb47-2"><a href="05-korrelation.html#cb47-2" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0.769</code></pre>
 <p>Das Argument <code>use = "complete.obs"</code> teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne “NA”, ansonsten wäre der Output “NA”. Anstatt <code>method = "pearson"</code> sind ebenfalls <code>method = "spearman"</code> und <code>method = "kendall"</code> möglich; beides sind Rangkorrelationskoeffizienten.</p>
 <p>In Abbildung <a href="05-korrelation.html#fig:pearson">5.6</a> sehen Sie Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. Bei augenscheinlich nicht-linearen Zusammenhängen wählt man üblicherweise einen Rangkorrelationskoeffizienten, der dann aussagekräftiger ist.</p>
@@ -399,7 +400,7 @@ Abbildung 5.6: Werte des Korrelationskoeffizienten für verschiedene Zusammenhä
 
 
 <h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-mittag2016" class="csl-entry">
 Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.
 </div>

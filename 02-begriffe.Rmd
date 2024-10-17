@@ -6,7 +6,7 @@ Lesen Sie hierzu bitte Kapitel 3.1.2 und 3.1.3 von @zimmermann2014. Im Folgenden
 
 Die **statistische Masse** umfasst all jene Elemente (Anzahl $N$), die für eine statistische Untersuchung _Relevanz_ besitzen. Für die Bestimmung der statistischen Masse sind inhaltliche, zeitliche und räumliche Abgrenzungskriterien erforderlich. Alternative Begriffe sind (die geläufigsten fett gedruckt): statistische Grundmenge, **Grundgesamtheit**, **Population**, Kollektiv. Beispiele finden Sie in @zimmermann2014, Kapitel 3.1.3.
 
-Die **statistische Einheit** $e_i$ mit $i=1, \ldots, n$ stellt das _Untersuchungselement_ und somit die kleinste, nicht weiter unterteilbare Einheit in einer statistischen Untersuchung dar. Diese statistische Einheit trägt jene Information (auch als Merkmal $X$ bezeichnet), die im Zentrum der statistischen Untersuchung steht. Alternative Begriffe sind, je nach Kontext: **Untersuchungseinheit**, Proband, **Merkmalsträger**. Siehe @zimmermann2014, Kapitel 3.1.3 für Beispiele.
+Die **statistische Einheit** $e_i$ mit $i=1, \ldots, n$ stellt das _Untersuchungselement_ und somit die kleinste Einheit in einer statistischen Untersuchung dar. Diese statistische Einheit trägt jene Information (auch als Merkmal $X$ bezeichnet), die im Zentrum der statistischen Untersuchung steht. Alternative Begriffe sind, je nach Kontext: **Untersuchungseinheit**, Proband, **Merkmalsträger**. Siehe @zimmermann2014, Kapitel 3.1.3 für Beispiele.
 
 Jene _Eigenschaft_ eines Untersuchungselements, die für die statistische Untersuchung von Bedeutung ist, wird als **Merkmal** $X$ des Elements bezeichnet. Eine statistische Einheit weist mindestens ein Merkmal auf, kann aber ebenso durch mehrere Merkmale gekennzeichnet sein. Alternative Begriffe sind: **Variable**, Indikator. Beispiele finden Sie wiederum in @zimmermann2014, Kapitel 3.1.3.
 
@@ -41,7 +41,7 @@ Qualitative, klassifikatorische Merkmale befinden sich auf der **Nominalskala**.
 | 1 | 2 | 3 | 4 |
 Table: (\#tab:nominal) Art des Vulkanausbruchs.
 
-Qualitative, komparative Merkmale (Rangmerkmale) finden Sie auf der **Ordinalskala**. Wieder können die Kategorien verbale Bezeichnungen sein oder mittels Zahlen codiert. Die Zulässigen mathematischen Operationen sind der **Vergleich** sowie **Wertung/Reihung/Ordnung**. Es sind keine Aussagen über Distanz oder Ähnlichkeit benachbarter Merkmalsausprägungen möglich. Beispiel: Komfort der Unterkunft (Tabelle \@ref(tab:ordinal)). Der Komfort eines \*\*\*Hotels ist größer als der Komfort eines \*Hotels, aber nicht unbedingt 3x so groß!
+Qualitative, komparative Merkmale (Rangmerkmale) finden Sie auf der **Ordinalskala**. Wieder können die Kategorien verbale Bezeichnungen sein oder mittels Zahlen codiert. Die zulässigen mathematischen Operationen sind der **Vergleich** sowie **Wertung/Reihung/Ordnung**. Es sind keine Aussagen über Distanz oder Ähnlichkeit benachbarter Merkmalsausprägungen möglich. Beispiel: Komfort der Unterkunft (Tabelle \@ref(tab:ordinal)). Der Komfort eines \*\*\*Hotels ist größer als der Komfort eines \*Hotels, aber nicht unbedingt 3x so groß!
 
 | Jugendherberge | \*Hotel | \*\*Hotel | \*\*\*Hotel |
 | :---: | :---: | :---: | :---: |

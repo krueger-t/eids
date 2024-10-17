@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2024-01-09" />
+<meta name="date" content="2024-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -124,6 +124,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -259,7 +260,7 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="wahrscheinlichkeit" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Kapitel 6</span> Grundlagen der Wahrscheinlichkeitsrechnung<a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Die Wahrscheinlichkeitstheorie bildet die Brücke zwischen der deskriptiven und der induktiven Statistik, um bei dem Bild von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014" role="doc-biblioref">2014</a>)</span> zu bleiben. Sie liefert Modelle in der Form von Wahrscheinlichkeitsverteilungen (s. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>), die es uns erlauben von Stichproben auf Grundgesamtheiten zu schließen.</p>
+<p>Die Wahrscheinlichkeitstheorie bildet die Brücke zwischen der deskriptiven und der induktiven Statistik, um bei dem Bild von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014">2014</a>)</span> zu bleiben. Sie liefert Modelle in der Form von Wahrscheinlichkeitsverteilungen (s. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>), die es uns erlauben von Stichproben auf Grundgesamtheiten zu schließen.</p>
 <p>Dieses Kapitel motiviert zunächst <strong>Zufallsvorgänge</strong> und definiert ein paar grundlegende Begriffe. Sodann werden <strong>Ereignisse</strong> als Ergebnis eines Zufallsvorgangs über die Mengenleere eingeführt.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Dazu gehört die Darstellung des <strong>Venn-Diagramms</strong>. Sodann werden <strong>Zufallsvariablen</strong> und <strong>Zufallsexperimente</strong> definiert, bevor wir zum Begriff der <strong>Wahrscheinlichkeit</strong> kommen. Dabei schauen wir uns besonders Konzepte wie <strong>bedingte Wahrscheinlichkeit</strong> und <strong>Unabhängigkeit von Ereignissen</strong>, sowie die Rechenregeln der Wahrscheinlichkeitsrechnung an.</p>
 <div id="zufallsvorgänge" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Zufallsvorgänge<a href="06-wahrscheinlichkeit.html#zufallsvorgänge" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -289,28 +290,28 @@ Das <strong>Komplementärereignis</strong> lässt sich mit einem sogenannten Ven
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:komplementaer"></span>
 <img src="figs/Komplementaerereignis.png" alt="Venn-Diagramm des Komplementärereignisses $\bar A$. Wenn das Rechteck die Ergebnismenge $\Omega$ ist dann sind alle Elementarereignisse, die nicht im Ereignis $A$ (weiß) sind im Komplementärereignis $\bar A$ (grün).&lt;br&gt;&lt;small&gt;Nach: @mittag2016.&lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 6.3: Venn-Diagramm des Komplementärereignisses <span class="math inline">\(\bar A\)</span>. Wenn das Rechteck die Ergebnismenge <span class="math inline">\(\Omega\)</span> ist dann sind alle Elementarereignisse, die nicht im Ereignis <span class="math inline">\(A\)</span> (weiß) sind im Komplementärereignis <span class="math inline">\(\bar A\)</span> (grün).<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>.</small>
+Abbildung 6.3: Venn-Diagramm des Komplementärereignisses <span class="math inline">\(\bar A\)</span>. Wenn das Rechteck die Ergebnismenge <span class="math inline">\(\Omega\)</span> ist dann sind alle Elementarereignisse, die nicht im Ereignis <span class="math inline">\(A\)</span> (weiß) sind im Komplementärereignis <span class="math inline">\(\bar A\)</span> (grün).<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016">2016</a>)</span>.</small>
 </p>
 </div>
 Die <strong>Schnittmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> wird mit <span class="math inline">\(A\cap B\)</span> symbolisiert; die Ereignisse <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span> treten beide ein (Abbildung <a href="06-wahrscheinlichkeit.html#fig:schnitt">6.4</a>).
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:schnitt"></span>
 <img src="figs/Schnittmenge.png" alt="Venn-Diagramm der Schnittmenge zweier Ereignisse $A\cap B$. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass $A$ _und_ $B$ beide eintreten.&lt;br&gt;&lt;small&gt;Nach: @mittag2016.&lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 6.4: Venn-Diagramm der Schnittmenge zweier Ereignisse <span class="math inline">\(A\cap B\)</span>. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span> beide eintreten.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>.</small>
+Abbildung 6.4: Venn-Diagramm der Schnittmenge zweier Ereignisse <span class="math inline">\(A\cap B\)</span>. Die grüne Fläche beschreibt die Schnittmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> <em>und</em> <span class="math inline">\(B\)</span> beide eintreten.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016">2016</a>)</span>.</small>
 </p>
 </div>
 Die <strong>Vereinigungsmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> wird mit <span class="math inline">\(A\cup B\)</span> symbolisiert; das Ereignis <span class="math inline">\(A\)</span> <em>oder</em> das Ereignis <span class="math inline">\(B\)</span> tritt ein (Abbildung <a href="06-wahrscheinlichkeit.html#fig:vereinigung">6.5</a>).
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:vereinigung"></span>
 <img src="figs/Vereinigungsmenge.png" alt="Venn-Diagramm der Vereinigungsmenge zweier Ereignisse $A\cup B$. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass $A$ _oder_ $B$ eintritt.&lt;br&gt;&lt;small&gt;Nach: @mittag2016.&lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 6.5: Venn-Diagramm der Vereinigungsmenge zweier Ereignisse <span class="math inline">\(A\cup B\)</span>. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> <em>oder</em> <span class="math inline">\(B\)</span> eintritt.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>.</small>
+Abbildung 6.5: Venn-Diagramm der Vereinigungsmenge zweier Ereignisse <span class="math inline">\(A\cup B\)</span>. Die grüne Fläche beschreibt die Vereinigungsmenge, d.h. das Ereignis, dass <span class="math inline">\(A\)</span> <em>oder</em> <span class="math inline">\(B\)</span> eintritt.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016">2016</a>)</span>.</small>
 </p>
 </div>
 Die <strong>Differenzmenge zweier Ereignisse</strong> <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> schließlich ist die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span> (Komplementärereignis von <span class="math inline">\(B\)</span>) und wird mit <span class="math inline">\(A\setminus B=A\cap\bar B\)</span> symbolisiert (Abbildung <a href="06-wahrscheinlichkeit.html#fig:differenz">6.6</a>).
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:differenz"></span>
 <img src="figs/Differenzmenge.png" alt="Venn-Diagramm der Differenzmenge zweier Ereignisse $A\setminus B=A\cap\bar B$. Die grüne Fläche beschreibt die Schnittmenge von $A$ und $\bar B$.&lt;br&gt;&lt;small&gt;Nach: @mittag2016.&lt;/small&gt;" width="60%" />
 <p class="caption">
-Abbildung 6.6: Venn-Diagramm der Differenzmenge zweier Ereignisse <span class="math inline">\(A\setminus B=A\cap\bar B\)</span>. Die grüne Fläche beschreibt die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span>.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016" role="doc-biblioref">2016</a>)</span>.</small>
+Abbildung 6.6: Venn-Diagramm der Differenzmenge zweier Ereignisse <span class="math inline">\(A\setminus B=A\cap\bar B\)</span>. Die grüne Fläche beschreibt die Schnittmenge von <span class="math inline">\(A\)</span> und <span class="math inline">\(\bar B\)</span>.<br><small>Nach: <span class="citation">Mittag (<a href="#ref-mittag2016">2016</a>)</span>.</small>
 </p>
 </div>
 </div>
@@ -327,24 +328,24 @@ f_n(A)\xrightarrow{n\to\infty}\Pr(A)
 \tag{6.1}
 \end{equation}\]</span></p>
 <p>Veranschaulichen wir das mit dem Beispiel Münzwurf (Abbildung <a href="06-wahrscheinlichkeit.html#fig:muenze">6.7</a>): Mit zunehmender Anzahl Münzwürfe <span class="math inline">\(n\)</span> nähert sich die relative Häufigkeit <span class="math inline">\(f_n\)</span> des Ereignisses “Zahl” (ebenso “Kopf”) dem erwarteten Wert 0.5 an. Wenn <span class="math inline">\(n\)</span> (hypothetisch) gegen unendlich geht (<span class="math inline">\(n\to\infty\)</span>) dann nennen wir diesen Grenzwert Wahrscheinlichkeit.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="06-wahrscheinlichkeit.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
-<span id="cb42-2"><a href="06-wahrscheinlichkeit.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
-<span id="cb42-3"><a href="06-wahrscheinlichkeit.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
-<span id="cb42-4"><a href="06-wahrscheinlichkeit.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
-<span id="cb42-5"><a href="06-wahrscheinlichkeit.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># daher der R-Befehl</span></span>
-<span id="cb42-6"><a href="06-wahrscheinlichkeit.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
-<span id="cb42-7"><a href="06-wahrscheinlichkeit.html#cb42-7" aria-hidden="true" tabindex="-1"></a>zahl <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
-<span id="cb42-8"><a href="06-wahrscheinlichkeit.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
-<span id="cb42-9"><a href="06-wahrscheinlichkeit.html#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
-<span id="cb42-10"><a href="06-wahrscheinlichkeit.html#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
-<span id="cb42-11"><a href="06-wahrscheinlichkeit.html#cb42-11" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> <span class="fu">cumsum</span>(zahl) <span class="sc">/</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
-<span id="cb42-12"><a href="06-wahrscheinlichkeit.html#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb42-13"><a href="06-wahrscheinlichkeit.html#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">type =</span> <span class="st">&#39;n&#39;</span>,</span>
-<span id="cb42-14"><a href="06-wahrscheinlichkeit.html#cb42-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
-<span id="cb42-15"><a href="06-wahrscheinlichkeit.html#cb42-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
-<span id="cb42-16"><a href="06-wahrscheinlichkeit.html#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb42-17"><a href="06-wahrscheinlichkeit.html#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">pch =</span> <span class="dv">20</span>)</span>
-<span id="cb42-18"><a href="06-wahrscheinlichkeit.html#cb42-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="06-wahrscheinlichkeit.html#cb49-1" tabindex="-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
+<span id="cb49-2"><a href="06-wahrscheinlichkeit.html#cb49-2" tabindex="-1"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
+<span id="cb49-3"><a href="06-wahrscheinlichkeit.html#cb49-3" tabindex="-1"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
+<span id="cb49-4"><a href="06-wahrscheinlichkeit.html#cb49-4" tabindex="-1"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
+<span id="cb49-5"><a href="06-wahrscheinlichkeit.html#cb49-5" tabindex="-1"></a><span class="co"># daher der R-Befehl</span></span>
+<span id="cb49-6"><a href="06-wahrscheinlichkeit.html#cb49-6" tabindex="-1"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
+<span id="cb49-7"><a href="06-wahrscheinlichkeit.html#cb49-7" tabindex="-1"></a>zahl <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
+<span id="cb49-8"><a href="06-wahrscheinlichkeit.html#cb49-8" tabindex="-1"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
+<span id="cb49-9"><a href="06-wahrscheinlichkeit.html#cb49-9" tabindex="-1"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
+<span id="cb49-10"><a href="06-wahrscheinlichkeit.html#cb49-10" tabindex="-1"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
+<span id="cb49-11"><a href="06-wahrscheinlichkeit.html#cb49-11" tabindex="-1"></a>f <span class="ot">=</span> <span class="fu">cumsum</span>(zahl) <span class="sc">/</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
+<span id="cb49-12"><a href="06-wahrscheinlichkeit.html#cb49-12" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb49-13"><a href="06-wahrscheinlichkeit.html#cb49-13" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">type =</span> <span class="st">&#39;n&#39;</span>,</span>
+<span id="cb49-14"><a href="06-wahrscheinlichkeit.html#cb49-14" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb49-15"><a href="06-wahrscheinlichkeit.html#cb49-15" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
+<span id="cb49-16"><a href="06-wahrscheinlichkeit.html#cb49-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb49-17"><a href="06-wahrscheinlichkeit.html#cb49-17" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb49-18"><a href="06-wahrscheinlichkeit.html#cb49-18" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:muenze"></span>
 <img src="eids_files/figure-html/muenze-1.png" alt="Simulation von 1000 Münzwürfen und die Entwicklung der relativen Häufigkeit von &quot;Zahl&quot;. Wir sehen, dass sich die relative Häufigkeit mit zunehmender Anzahl Münzwürfe dem erwarteten Wert 0.5 annähert. Den Grenzwert der relativen Häufigkeit wenn die Anzahl der Münzwürfe gegen unendlich geht nennen wir Wahrscheinlichkeit." width="80%" />
 <p class="caption">
@@ -426,7 +427,7 @@ Abbildung 6.11: Baumdiagramm zweier Würfelwürfe. Die Wahrscheinlichkeit, dass 
 </div>
 </div>
 <h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-mittag2016" class="csl-entry">
 Mittag, H. J. 2016. <em>Statistik (4. Auflage)</em>. Berlin: Springer Spektrum.
 </div>
