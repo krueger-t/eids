@@ -20,38 +20,19 @@ Dazu brauchen wir erstmal Begriffe wie **absolute Häufigkeit**, **relative Häu
 
 Schauen wir uns dazu die Reisedaten an, die Sie eingegeben haben, und zwar nur die Entfernungen (der *R*-Code wird in den PC-Übungen schnell klar werden):
 
-```{r eval=FALSE, include=FALSE}
-# Paket laden, das für das Einlesen von xlsx gebraucht wird
-library("readxl")
-# Daten einlesen
-# reisedat <- read_excel("data/Reisedaten.xlsx", na = "-999")
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2021.xlsx", na = "-999")
-# in data.frame umwandeln
-reisedat <- as.data.frame(reisedat)
-# Spalten umbenennen
-# names(reisedat) <- c('x', 't')
-names(reisedat) <- c('t', 'x')
-# Ausgabe von reisedat$x
-# dies ist die Variable "Entfernung (Luftlinie) zum Wohnort (km)"
-reisedat$x
-
-```
-
 ```{r echo=TRUE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
 # der Zusatz na = "-999" sagt R, dass fehlende Werte mit -999 kodiert sind
-# ein Wert mit Distanz = 3822km wurde bereits mit -999 = NA markiert
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2023_korrigiert.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 # Ausgabe von reisedat$distanz
 reisedat$distanz
-
 ```
 
-Das ist eine ungeordnete Reihe von 83 Datenpunkten, den sogenannten **Rohdaten**.
+Das ist eine ungeordnete Reihe von 60 Datenpunkten, den sogenannten **Rohdaten**.
 
 Wenn wir die Rohdaten jetzt ordnen und in Klassen einteilen können wir **absolute Häufigkeiten** bestimmen, gewissermaßen durch Abzählen:
 
@@ -87,12 +68,12 @@ barplot(h$counts ~ h$mids, space = 0, col = "gray",
 
 ```
 
-Interpretation: Der zweite Balken z.B. geht bis knapp über 0.2, d.h. etwas mehr als 20% der Entfernungsdaten haben Werte zwischen 5 und 10km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 17 von 83 Datenpunkten sind.
+Interpretation: Der zweite Balken z.B. geht bis ca. 0.13, d.h. ca. 13% der Entfernungsdaten haben Werte zwischen 5 und 10km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 8 von 60 Datenpunkten sind.
 
 Die Summe der relativen Häufigkeiten ist 1, was 100% entspricht:
 $$\sum_{j=1}^{m}f_j=1$$
 
-Kommen wir nun zu den **Summenhäufigkeiten**, auch genannt **kumulative Häufigkeit** oder **kumulierte Häufigkeit**. Die absolute Summenhäufigkeit einer Merkmalsausprägung $a_j$ ist die Anzahl der Merkmalswerte, die kleiner oder gleich $a_j$ sind. Die relative Summenhäufigkeit von $a_j$ ist dementsprechend der Anteil der Merkmalswerte, die kleiner oder gleich $a_j$ sind. Am besten visualisieren wir das kurz in *R*:
+Kommen wir nun zu den **Summenhäufigkeiten**, auch genannt **kumulative Häufigkeiten** oder **kumulierte Häufigkeiten**. Die absolute Summenhäufigkeit einer Merkmalsausprägung $a_j$ ist die Anzahl der Merkmalswerte, die kleiner oder gleich $a_j$ sind. Die relative Summenhäufigkeit von $a_j$ ist dementsprechend der Anteil der Merkmalswerte, die kleiner oder gleich $a_j$ sind. Am besten visualisieren wir das kurz in *R*:
 
 ```{r echo=TRUE, fig.show='hold', out.width='50%'}
 # Histogramm berechnen ohne Output
@@ -110,9 +91,9 @@ barplot(h$counts ~ h$mids, space = 0, col = "gray",
 
 ```
 
-Die Häufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Höhe 83, die Gesamtzahl der Datenpunkte $n$, bzw. die relative Höhe 1 (100%). Sehen die dazu auch das Beispiel in @zimmermann2014, Tabelle 3.10 auf Seite 87.
+Die Häufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Höhe 60, die Gesamtzahl der Datenpunkte $n$, bzw. die relative Höhe 1 (100%). Sehen die dazu auch das Beispiel in @zimmermann2014, Tabelle 3.10 auf Seite 87.
 
-Abschließend noch ein paar Worte zur **Klassifizierung**. Äquidistante Klassen, d.h. Klassen gleicher Breite, sind grundsätzlich zu bevorzugen. In *R* können Sie eine gewünschte Anzahl Klassen angeben, die dann äquidistant über den Wertebereich verteilt werden. Das ist sinnvoll für einen ersten Eindruck. Die Grundeinstellung von 10 Klassen ist dabei meist ausreichend. Im Laufe der Analyse wird es manchmal sinnvoller sein, bestimmte Klassen vorzugeben, auch (oder gerade) wenn manche Klasse in der betrachteten Stichprobe nicht vorkommen, wie bei unserem Beispiel der Entfernungsdaten. Sie können in *R* Klassen vorzugeben, indem Sie die Klassengrenzen ("breaks") angeben. Hier eine Variation:
+Abschließend noch ein paar Worte zur **Klassifizierung**. Äquidistante Klassen, d.h. Klassen gleicher Breite, sind grundsätzlich zu bevorzugen. In *R* können Sie eine gewünschte Anzahl Klassen angeben, die dann äquidistant über den Wertebereich verteilt werden. Das ist sinnvoll für einen ersten Eindruck. Die Grundeinstellung von 10 Klassen ist dabei meist ausreichend. Im Laufe der Analyse wird es manchmal sinnvoller sein, bestimmte Klassen vorzugeben, auch (oder gerade) wenn manche Klassen in der betrachteten Stichprobe nicht vorkommen, wie bei unserem Beispiel der Entfernungsdaten. Sie können in *R* Klassen vorgeben, indem Sie die Klassengrenzen ("breaks") angeben. Hier einige Varianten:
 
 ```{r echo=TRUE, fig.show='hold', out.width = '50%'}
 # Klassenbreite 5km
@@ -130,7 +111,7 @@ hist(reisedat$distanz, breaks = seq(0, 80, 20),
 
 ```
 
-Je größer die Klassenbreite, desto mehr Nuancen der Verteilung der Werte gehen verloren. Je kleiner die Klassenbreite, desto mehr Lücken entstehen im Histogramm und die generelle Form der Verteilung tritt in den Hintergrund. Eine geeignete mittlere Klassenbreite wird man nur durch Ausprobieren hinbekommen. Siehe aber @zimmermann2014, S. 91 - 102 für Richtlinien zur Klassenbildung.
+Je größer die Klassenbreite, desto mehr Nuancen der Verteilung der Werte gehen verloren. Je kleiner die Klassenbreite, desto mehr Lücken entstehen im Histogramm und die generelle Form der Verteilung tritt in den Hintergrund. Eine geeignete Klassenbreite wird man nur durch Ausprobieren hinbekommen. Siehe aber @zimmermann2014, S. 91 - 102 für Richtlinien zur Klassenbildung.
 
 ## Lageparameter
 
@@ -152,7 +133,7 @@ Bei "künstlichen" Klassen wie in unserem Beispiel wird typischerweise die Mitte
 1. Ungleiche Klassenbreiten vermeiden.
 2. Ein Klasse für den Modus ("Modalklasse") angeben, z.B. für unsere Entfernungsdaten: "Bei einer Klassierung der Entfernungsdaten mit Klassenbreite 5km ist die häufigste Klasse $(10;15]$."
 
-Im obigen Histogramm der Entfernungsdaten sehen wir außerdem weitere lokale Maxima bei $37.5$, $47.5$ und $77.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall der multimodalen Verteilung wäre die **bimodale** Verteilung, die zwei lokale Maxima hat.
+Im obigen Histogramm der Entfernungsdaten sehen wir außerdem ein weiteres lokales Maximum bei $37.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall, der hier vorliegt, ist die **bimodale** Verteilung, die zwei lokale Maxima hat.
 
 Das **arithmetische Mittel** $\bar x$ der Merkmalswerte $x_1, x_2, \ldots, x_n$ ist die Summe aller Merkmalswerte $x_i$ relativ zur Stichprobengröße $n$:
 $$\bar x=\frac{\sum_{i=1}^{n}x_i}{n}$$
@@ -172,10 +153,10 @@ mean(reisedat$distanz, na.rm = TRUE)
 
 Andere Mittelwerte sind das geometrische Mittel und das harmonische Mittel, siehe @zimmermann2014, S. 126 - 134.
 
-Der **Median** $\bar x_{med}$ schließlich entspricht jenem Merkmalswert $x_j$ in einer Häufigkeitsverteilung, der eine *geordnete* Reihe von Merkmalswerten $x_1, x_2, \ldots, x_n$ in zwei _gleich große_ Wertebereiche teilt. Für eine _ungerade_ Anzahl von Merkmalswerten entspricht der Median dem mittleren Wert:
+Der **Median** $\bar x_{med}$ schließlich entspricht jenem Merkmalswert $x_j$ in einer Häufigkeitsverteilung, der eine *geordnete* Reihe von Merkmalswerten $x_1, x_2, \ldots, x_n$ in zwei _gleich große_ Wertebereiche teilt. Für eine _ungerade_ Anzahl von Merkmalswerten entspricht der Median dem in der Mitte liegenden Wert:
 $$\bar x_{med}=x_{\frac{n+1}{2}}$$
 
-Für eine _gerade_ Anzahl von Merkmalswerten wird der Median aus dem arithmetischen Mittel der beiden mittleren Werte errechnet:
+Für eine _gerade_ Anzahl von Merkmalswerten wird der Median aus dem arithmetischen Mittel der beiden in der Mitte liegenden Werte errechnet:
 $$\bar x_{med}=\frac{x_{\frac{n}{2}}+x_{\frac{n}{2}+1}}{2}$$
 
 Berechnen wir den Median für unsere Entfernungsdaten mit der Funktion `median()`:
@@ -185,7 +166,9 @@ median(reisedat$distanz, na.rm = TRUE)
 
 ```
 
-Der Median wird auch **0.5-Quantil** genannt. Allgemein entspricht ein **p-Quantil** $\bar x_p$ mit $0\leq p\leq 1$ jenem Merkmalswert $x_j$ in einer Häufigkeitsverteilung, der eine **geordnete** Reihe von Merkmalswerten $x_1, x_2, \ldots, x_n$ in zwei Wertebereiche teilt, so dass ein Anteil $p$ der Werte kleiner oder gleich $x_j$ ist. Ist das Produkt $n\cdot p$ _nicht ganzzahlig_, wird für $j$ die dem Produkt nächstgrößere Zahl verwendet:
+Der Median wird auch **0.5-Quantil** genannt. Allgemein entspricht ein **p-Quantil** $\bar x_p$ mit $0\leq p\leq 1$ jenem Merkmalswert $x_j$ in einer Häufigkeitsverteilung, der eine **geordnete** Reihe von Merkmalswerten $x_1, x_2, \ldots, x_n$ in zwei Wertebereiche teilt, so dass ein Anteil $p$ der Werte kleiner oder gleich $x_j$ ist.
+
+Ist das Produkt $n\cdot p$ _nicht ganzzahlig_, wird für $j$ die dem Produkt nächstgrößere Zahl verwendet:
 $$\bar x_p=x_j$$
 
 Ist das Produkt $n\cdot p$ _ganzzahlig_, dann ist $j=n\cdot p$:

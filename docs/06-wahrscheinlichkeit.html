@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2024-10-17" />
+<meta name="date" content="2024-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -328,24 +328,24 @@ f_n(A)\xrightarrow{n\to\infty}\Pr(A)
 \tag{6.1}
 \end{equation}\]</span></p>
 <p>Veranschaulichen wir das mit dem Beispiel Münzwurf (Abbildung <a href="06-wahrscheinlichkeit.html#fig:muenze">6.7</a>): Mit zunehmender Anzahl Münzwürfe <span class="math inline">\(n\)</span> nähert sich die relative Häufigkeit <span class="math inline">\(f_n\)</span> des Ereignisses “Zahl” (ebenso “Kopf”) dem erwarteten Wert 0.5 an. Wenn <span class="math inline">\(n\)</span> (hypothetisch) gegen unendlich geht (<span class="math inline">\(n\to\infty\)</span>) dann nennen wir diesen Grenzwert Wahrscheinlichkeit.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="06-wahrscheinlichkeit.html#cb49-1" tabindex="-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
-<span id="cb49-2"><a href="06-wahrscheinlichkeit.html#cb49-2" tabindex="-1"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
-<span id="cb49-3"><a href="06-wahrscheinlichkeit.html#cb49-3" tabindex="-1"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
-<span id="cb49-4"><a href="06-wahrscheinlichkeit.html#cb49-4" tabindex="-1"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
-<span id="cb49-5"><a href="06-wahrscheinlichkeit.html#cb49-5" tabindex="-1"></a><span class="co"># daher der R-Befehl</span></span>
-<span id="cb49-6"><a href="06-wahrscheinlichkeit.html#cb49-6" tabindex="-1"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
-<span id="cb49-7"><a href="06-wahrscheinlichkeit.html#cb49-7" tabindex="-1"></a>zahl <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
-<span id="cb49-8"><a href="06-wahrscheinlichkeit.html#cb49-8" tabindex="-1"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
-<span id="cb49-9"><a href="06-wahrscheinlichkeit.html#cb49-9" tabindex="-1"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
-<span id="cb49-10"><a href="06-wahrscheinlichkeit.html#cb49-10" tabindex="-1"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
-<span id="cb49-11"><a href="06-wahrscheinlichkeit.html#cb49-11" tabindex="-1"></a>f <span class="ot">=</span> <span class="fu">cumsum</span>(zahl) <span class="sc">/</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
-<span id="cb49-12"><a href="06-wahrscheinlichkeit.html#cb49-12" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb49-13"><a href="06-wahrscheinlichkeit.html#cb49-13" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">type =</span> <span class="st">&#39;n&#39;</span>,</span>
-<span id="cb49-14"><a href="06-wahrscheinlichkeit.html#cb49-14" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
-<span id="cb49-15"><a href="06-wahrscheinlichkeit.html#cb49-15" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
-<span id="cb49-16"><a href="06-wahrscheinlichkeit.html#cb49-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb49-17"><a href="06-wahrscheinlichkeit.html#cb49-17" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">pch =</span> <span class="dv">20</span>)</span>
-<span id="cb49-18"><a href="06-wahrscheinlichkeit.html#cb49-18" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="06-wahrscheinlichkeit.html#cb42-1" tabindex="-1"></a><span class="co"># simuliere 1000 Münzwürfe</span></span>
+<span id="cb42-2"><a href="06-wahrscheinlichkeit.html#cb42-2" tabindex="-1"></a><span class="co"># dies geschieht hier mit einem Bernoulliprozess,</span></span>
+<span id="cb42-3"><a href="06-wahrscheinlichkeit.html#cb42-3" tabindex="-1"></a><span class="co"># wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall &quot;Zahl&quot;) gleich 0.5 ist</span></span>
+<span id="cb42-4"><a href="06-wahrscheinlichkeit.html#cb42-4" tabindex="-1"></a><span class="co"># der Bernoulliprozess ist der Spezialfall eines Binomialprozesses mit einem Versuch,</span></span>
+<span id="cb42-5"><a href="06-wahrscheinlichkeit.html#cb42-5" tabindex="-1"></a><span class="co"># daher der R-Befehl</span></span>
+<span id="cb42-6"><a href="06-wahrscheinlichkeit.html#cb42-6" tabindex="-1"></a><span class="co"># im Output steht 1 für &quot;Zahl&quot; und 0 für &quot;Kopf&quot;</span></span>
+<span id="cb42-7"><a href="06-wahrscheinlichkeit.html#cb42-7" tabindex="-1"></a>zahl <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</span>
+<span id="cb42-8"><a href="06-wahrscheinlichkeit.html#cb42-8" tabindex="-1"></a><span class="co"># berechne relative Häufigkeit für &quot;Zahl&quot; nach jedem Münzwurf</span></span>
+<span id="cb42-9"><a href="06-wahrscheinlichkeit.html#cb42-9" tabindex="-1"></a><span class="co"># das ist die Summe der bisherigen Ereignisse &quot;Zahl&quot;,</span></span>
+<span id="cb42-10"><a href="06-wahrscheinlichkeit.html#cb42-10" tabindex="-1"></a><span class="co"># geteilt durch die jeweilige Anzahl der Münzwürfe</span></span>
+<span id="cb42-11"><a href="06-wahrscheinlichkeit.html#cb42-11" tabindex="-1"></a>f <span class="ot">=</span> <span class="fu">cumsum</span>(zahl) <span class="sc">/</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>)</span>
+<span id="cb42-12"><a href="06-wahrscheinlichkeit.html#cb42-12" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb42-13"><a href="06-wahrscheinlichkeit.html#cb42-13" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">type =</span> <span class="st">&#39;n&#39;</span>,</span>
+<span id="cb42-14"><a href="06-wahrscheinlichkeit.html#cb42-14" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb42-15"><a href="06-wahrscheinlichkeit.html#cb42-15" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Anzahl Münzwürfe n&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Relative Häufigkeit f_n(Zahl)&#39;</span>)</span>
+<span id="cb42-16"><a href="06-wahrscheinlichkeit.html#cb42-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb42-17"><a href="06-wahrscheinlichkeit.html#cb42-17" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">1000</span>,<span class="dv">1</span>), f, <span class="at">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb42-18"><a href="06-wahrscheinlichkeit.html#cb42-18" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">800</span>, <span class="fl">0.6</span>, <span class="st">&#39;Grenzwert: Pr(Zahl)=0.5&#39;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:muenze"></span>
 <img src="eids_files/figure-html/muenze-1.png" alt="Simulation von 1000 Münzwürfen und die Entwicklung der relativen Häufigkeit von &quot;Zahl&quot;. Wir sehen, dass sich die relative Häufigkeit mit zunehmender Anzahl Münzwürfe dem erwarteten Wert 0.5 annähert. Den Grenzwert der relativen Häufigkeit wenn die Anzahl der Münzwürfe gegen unendlich geht nennen wir Wahrscheinlichkeit." width="80%" />
 <p class="caption">
