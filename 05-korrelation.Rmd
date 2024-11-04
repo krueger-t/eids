@@ -97,7 +97,9 @@ $$\mathcal{X}^2=\sum_{i=1}^{k}\sum_{j=1}^{m}\frac{\left(h_{ij}-\tilde h_{ij}\rig
 
 Bei Unabhängigkeit der Merkmale ist $\mathcal{X}^2=0$. Bei vollständiger Abhängigkeit ist $\mathcal{X}^2=\mathcal{X}_{max}^2$, wobei $\mathcal{X}_{max}^2=n\cdot(M-1)$ mit $M=\min(k;m)$. D.h. der maximal mögliche Wert der $\mathcal{X}^2$ Statistik ergibt sich durch die Dimensionen der Kontingenztabelle, die Zeilenanzahl $k$ und die Spaltenanzahl $m$. Dadurch können wir leider die Größenordnung der $\mathcal{X}^2$ Statistik schlecht intuitiv einordnen, was unser Beispiel verdeutlicht:
 
-> Für den Volksentscheid Tegel ergibt sich ein Wert von $\mathcal{X}^2=49895.1$, wobei $\mathcal{X}_{max}^2=1732940$. Da $\mathcal{X}^2$ näher an $0$ ist als an $1 732 940$, scheint die Abhängigkeit der Merkmale "Bezirk" und "Abstimmungsverhalten" gering zu sein. Mit dem sogenannten **Chi-Quadrat-Test**, den wir als Teil der schließenden Statistik in Kapitel \@ref(chi2test) kennenlernen, können wir diesen Wert noch etwas besser einordnen.
+> Für den Volksentscheid Tegel ergibt sich ein Wert von $\mathcal{X}^2=49895.1$, wobei $\mathcal{X}_{max}^2=1732940$. Da $\mathcal{X}^2$ näher an $0$ ist als an $1 732 940$, scheint die Abhängigkeit der Merkmale "Bezirk" und "Abstimmungsverhalten" gering zu sein.
+
+Mit dem sogenannten **Chi-Quadrat-Test**, den wir als Teil der schließenden Statistik in Kapitel \@ref(chi2test) kennenlernen, können wir diesen Wert dann noch etwas besser einordnen.
 
 ## Ordinalskalierte Merkmale: Rangkorrelationskoeffizient nach Spearman
 
@@ -125,7 +127,7 @@ An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Alle Merkmale 
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2023_korrigiert.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
@@ -140,6 +142,25 @@ plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags,
 
 Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker.
 
+Außerdem fällt der Datenpunkt unten in der Mitte auf, der nicht zu dem linearen Zusammenhang passt. Hier hat jemand für morgens die Fahrtzeit 54min angegeben, für nachmittags 1min. Ich vermute, das sollte 1 Stunde heissen, also 60min. In dem Fall ändere ich das Datum auf 60min. Eine andere Möglichkeit wäre, diesen Datenpunkt komplett rauszulassen. In jedem Fall muss eine Änderung oder ein Weglassen von Daten gut begründet und dokumentiert werden!
+
+Diese sind die "korrigierten" Daten, mit denen ich von jetzt an weiterarbeite:
+
+```{r include=FALSE}
+# Daten einlesen
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024_korrigiert.xlsx", na = "-999")
+# in Zahlen und data.frame umwandeln
+reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
+
+```
+
+```{r echo=TRUE, out.width='80%'}
+plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags, 
+     xlab = "Reisezeit, morgens (min)",
+     ylab = "Reisezeit, nachmittags (min)")
+
+```
+
 Plotten wir nun eine der Zeiten ("morgens") gegen die Entfernung:
 
 ```{r echo=TRUE, out.width='80%'}
@@ -147,8 +168,6 @@ plot(reisedat$distanz, reisedat$zeit_morgens,
      xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
 
 ```
-
-An dieser Stelle fällt der Datenpunkte ganz rechts auf. Hierbei könnte es sich um eine Person handeln, die eine relativ weite Strecke mit der Regionalbahn zurücklegt, die effizienter ist als der ÖPNV in Berlin. Darauf schauen wir in späteren Kapitel noch etwas näher. Vorerst nutzen wir die Daten so, wie sie sind.
 
 **Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in "Reisezeit" kommen könnte._
 
