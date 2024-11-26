@@ -70,7 +70,7 @@ s_{\hat\mu}=\frac{s}{\sqrt{n}}
 
 Wobei $s$ die Standardabweichung der Stichprobe ist (vgl. Kapitel \@ref(streuung)) und $n$ der Stichprobenumfang. Wir sehen an der Formel, dass je kleiner die Standardabweichung der Stichprobe ist und je größer der Stichprobenumfang ist desto besser die Schätzung wird - das ist die o.g. _Konsistenzeigenschaft_, die wir von einem Schätzer erwarten.
 
-Der Standardfehler wird mit wahrscheinlichkeitstheoretischen Annahmen verknüpft und geht so in die Berechnung des sogenannten **Konfidenzintervalls** ein, das die Unsicherheit des Schätzers mit Wahrscheinlichkeiten ausdrückt. Das Konfidenzintervall des Mittelwertschätzers wollen wir im Folgenden einmal herleiten. Das bildet die Grundlage für viele ähnliche Herleitungen, die später bei den Tests und bei der Regression kommen, die wir dann aber nicht mehr so ausführlich behandeln werden.
+Der Standardfehler wird mit wahrscheinlichkeitstheoretischen Annahmen verknüpft und geht so in die Berechnung des sogenannten **Konfidenzintervalls** ein, das die Unsicherheit des Schätzers mit Wahrscheinlichkeiten ausdrückt. Das Konfidenzintervall des Mittelwertschätzers wollen wir im Folgenden einmal herleiten. Das bildet die Grundlage für viele ähnliche Herleitungen, die später bei den Tests und bei der Regression eine Rolle spielen, die wir dann aber nicht mehr so ausführlich behandeln werden.
 
 _Unter Annahme einer normalverteilten Grundgesamtheit_ folgt der standardisierte Schätzer des Mittelwertes _bei wiederholtem Stichprobenziehen_ einer sogenannten t-Verteilung:
 $$\begin{equation}
@@ -78,7 +78,7 @@ $$\begin{equation}
 (\#eq:muhatstand)
 \end{equation}$$
 
-Die Herleitung können Sie z.B. in @mittag2016, S. 218ff nachlesen. Hier soll uns nur die Bedeutung dieser Formel interessieren. $\hat\mu-\mu$ ist die Differenz des Schätzers vom wahren Mittelwert (den wir nicht kennen). Diese Differenz wird mit dem Standardfehler des Schätzers $s_{\hat\mu}$ standardisiert. Das Symbol $\sim$ ("Tilde") heißt "ist verteilt gemäß" (vgl. Kapitel \@ref(verteilungen)). Und $t_{n-1}$ steht für die t-Verteilung, die einen Parameter hat (genannt "Freiheitsgrade"), der hier den Wert $n-1$ annimmt. Man spricht von einer t-Verteilung mit $n-1$ Freiheitsgraden. Je größer diese Zahl desto schmaler die t-Verteilung. Abbildung \@ref(fig:tpdfcdfvariation) zeigt die t-Verteilung für verschiedene Freiheitsgrade. Wenn $n$ gegen Unendlich geht, dann geht die t-Verteilung in die Standardnormalverteilung $N(0,1)$ über (vgl. Abbildung \@ref(fig:npdf)). Man sieht in Abbildung \@ref(fig:tpdfcdfvariation), dass sich schon zwischen 100 und 1000 Freiheitsgraden nicht mehr viel an der Breite der t-Verteilung ändert. Wie die Standardnormalverteilung geht die t-Verteilung von $-\infty$ bis $+\infty$ und ist symmetrisch um einen Mittelwert 0. D.h. mit dieser Verteilung erwarten wir bei wiederholter Stichprobenziehung _im Mittel_ den wahren Mittelwert der Grundgesamtheit genau zu schätzen, $E\left(\hat\mu-\mu\right)=0$. Aber von Stichprobe zu Stichprobe erwarten wir eine Variation des Schätzwertes gemäß der t-Verteilung, Formel \@ref(eq:muhatstand).
+Die Herleitung können Sie z.B. in @mittag2016, S. 218ff nachlesen. Hier soll uns nur die Bedeutung dieser Formel interessieren. $\hat\mu-\mu$ ist die Differenz des Schätzers vom wahren Mittelwert (den wir nicht kennen). Diese Differenz wird mit dem Standardfehler des Schätzers $s_{\hat\mu}$ standardisiert. Das Symbol $\sim$ ("Tilde") heißt "ist verteilt gemäß" (vgl. Kapitel \@ref(verteilungen)). Und $t_{n-1}$ steht für die t-Verteilung, die einen Parameter hat (genannt "Freiheitsgrade"), der hier den Wert $n-1$ annimmt. Man spricht von einer t-Verteilung mit $n-1$ Freiheitsgraden. Je größer die Anzahl Freiheitsgrade, desto schmaler die t-Verteilung. Abbildung \@ref(fig:tpdfcdfvariation) zeigt die t-Verteilung für verschiedene Freiheitsgrade. Wenn $n$ gegen Unendlich geht, dann geht die t-Verteilung in die Standardnormalverteilung $N(0,1)$ über (vgl. Abbildung \@ref(fig:npdf)). Man sieht in Abbildung \@ref(fig:tpdfcdfvariation), dass sich schon zwischen 100 und 1000 Freiheitsgraden nicht mehr viel an der Breite der t-Verteilung ändert. Wie die Standardnormalverteilung geht die t-Verteilung von $-\infty$ bis $+\infty$ und ist symmetrisch um einen Mittelwert 0. D.h. mit dieser Verteilung erwarten wir bei wiederholter Stichprobenziehung _im Mittel_ den wahren Mittelwert der Grundgesamtheit genau zu schätzen, $E\left(\hat\mu-\mu\right)=0$. Aber von Stichprobe zu Stichprobe erwarten wir eine Variation des Schätzwertes gemäß der t-Verteilung, Formel \@ref(eq:muhatstand).
 
 ```{r tpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariable $Z$ für verschiedene Freiheitsgrade (der einzige Parameter der t-Verteilung heißt "Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden t-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # pdf
@@ -129,7 +129,7 @@ text(qt(0.025, 10),-0.3,TeX('$=t_{n-1;0.025}$'), col="red", xpd=TRUE)
 text(qt(0.975, 10),-0.2,TeX('$t_{n-1;0.975}$'), col="red", xpd=TRUE)
 ```
 
-Setzen wir nun Formel \@ref(eq:muhatstand) für $Z$ in Formel \@ref(eq:kiz) ein erhalten wir:
+Setzen wir nun Formel \@ref(eq:muhatstand) für $Z$ in Formel \@ref(eq:kiz) ein, erhalten wir:
 $$\begin{equation}
 \Pr\left(-t_{n-1;0.975}\leq\frac{\hat\mu-\mu}{s_{\hat\mu}}\leq t_{n-1;0.975}\right)=0.95
 (\#eq:kihatmustand1)
@@ -155,7 +155,7 @@ $$\begin{equation}
 
 > Merke: Um den letzten Schritt zu verstehen muss man wissen, dass sich bei der Multiplikation einer Ungleichung mit einer negativen Zahl die Vergleichszeichen (hier $\leq$) umdrehen. Danach wurde die Ungleichung wieder von klein nach groß geordnet.
 
-Setzen wir nun die Formeln \@ref(eq:muhat) und \@ref(eq:smuhat) in Formel \@ref(eq:kihatmustand3) ein erhalten wir:
+Setzen wir nun die Formeln \@ref(eq:muhat) und \@ref(eq:smuhat) in Formel \@ref(eq:kihatmustand3) ein, erhalten wir:
 $$\begin{equation}
 \Pr\left(\bar x-t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}\leq\mu\leq\bar x+t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}\right)=0.95
 (\#eq:kihatmustand4)
@@ -169,7 +169,7 @@ KI=\left[\bar x-t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}};\bar x+t_{n-1;0.975}\cdot\f
 
 Beachten Sie die **Interpretation** des Konfidenzintervalls, die sich aus dem klassischen Wahrscheinlichkeitsbegriff ergibt (vgl. Kapitel \@ref(wahrscheinlichkeit)): Bei hypothetischer wiederholter Stichprobenziehung des selben Umfangs aus der selben Grundgesamtheit enthält in 95% der Fälle das Konfidenzintervall den wahren Wert, während die restlichen 5% der Intervalle den wahren Wert nicht enthalten (Abbildung \@ref(fig:kiinterpretation)). Für die einzige Stichprobe, die wir jeweils vorliegen haben ist das _keine_ Wahrscheinlichkeit, dass der wahre Wert in den Grenzen des Konfidenzinervalls liegt! Das wird in der Praxis often verwechselt, also behalten Sie sich das gut.
 
-```{r kiinterpretation, echo=TRUE, fig.align='center', fig.cap='50 Wiederholungen von Stichprobenziehungen aus der gleichen Grundgesamtheit, $N(0,1)$, aus denen jeweils der Mittelwert geschätzt wurde, einmal mit $n=5$ (links) und einmal mit $n=10$ (rechts). Gezeigt ist jeweils der geschätzte Mittelwert mit Konfidenzintervall. Konfidenzintervalle, die den wahren Wert $\\mu=0$ nicht einschließen sind rot markiert; das sind bei einer ausreichenden Anzahl Wiederholungen 5%, d.h. in diesem Fall 2-3 von 50. Wenn hier die Grafiken abweichen dann liegt das an der geringen Anzahl Wiederholungen. Außerdem sehen wir, dass bei größerem Stichprobenumfang der Standardfehler und damit die Breite der Konfidenzintervalle kleiner sind ($n=10$ rechts im Vergleich zu $n=5$ links); vgl. Gleichung \\@ref(eq:smuhat). Nach: @mittag2016.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+```{r kiinterpretation, echo=TRUE, fig.align='center', fig.cap='50 Wiederholungen von Stichprobenziehungen aus der gleichen Grundgesamtheit, $N(0,1)$, aus denen jeweils der Mittelwert geschätzt wurde, einmal mit $n=5$ (links) und einmal mit $n=10$ (rechts). Gezeigt ist jeweils der geschätzte Mittelwert mit 95% Konfidenzintervall. Konfidenzintervalle, die den wahren Wert $\\mu=0$ nicht einschließen sind rot markiert; das sind bei einer ausreichenden Anzahl Wiederholungen 5%, d.h. in diesem Fall 2-3 von 50. Wenn hier die Grafiken abweichen dann liegt das an der geringen Anzahl Wiederholungen. Außerdem sehen wir, dass bei größerem Stichprobenumfang der Standardfehler und damit die Breite der Konfidenzintervalle kleiner sind ($n=10$ rechts im Vergleich zu $n=5$ links); vgl. Gleichung \\@ref(eq:smuhat). Nach: @mittag2016.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # plot 1: 5 Zufallszahlen
 # initialise
 xbar <- rep(NA,50)
@@ -239,12 +239,12 @@ Ein visueller Test, ob eine Stichprobe aus einer bestimmten Verteilung entstammt
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2023_korrigiert.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024_korrigiert.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 ```
 
-```{r qqentfernung, echo=TRUE, fig.align='center', fig.cap='Links: QQ-Plot der Entfernungsdaten. Wie wir in Kapitel \\@ref(haeufigkeit) und Kapitel \\@ref(verteilungen) gesehen haben sind die Originaldaten rechtsschief ("right-skewed"), was wir an dem nach oben gewölbten QQ-Plot sehen (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)). Eine Lognormalverteilung passte hier mässig gut. Rechts: QQ-Plot der log-transformierten Entfernungsdaten. Die Verteilung der transformierten Daten hat flachere Flanken als eine Normalverteilung ("heavier tails"), was sich an der Form der Kurve zeigt (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)).', fig.show='hold', out.width='50%'}
+```{r qqentfernung, echo=TRUE, fig.align='center', fig.cap='Links: QQ-Plot der Entfernungsdaten. Wie wir in Kapitel \\@ref(haeufigkeit) und Kapitel \\@ref(verteilungen) gesehen haben sind die Originaldaten rechtsschief ("right-skewed"), was wir an dem nach oben gewölbten QQ-Plot sehen (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)). Eine Lognormalverteilung passte hier mässig gut. Rechts: QQ-Plot der log-transformierten Entfernungsdaten. Die Verteilung der transformierten Daten ist eher linksschief ("left-skewed"), was wir an dem nach unten gewölbten QQ-Plot sehen (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)).', fig.show='hold', out.width='50%'}
 # QQ-Plot für Originaldaten
 qqnorm(reisedat$distanz)
 qqline(reisedat$distanz)
@@ -253,4 +253,4 @@ qqnorm(log(reisedat$distanz))
 qqline(log(reisedat$distanz))
 ```
 
-Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar (vgl. Kapitel \@ref(haeufigkeit)). Dieses Quantil (nach Standardisierung; vgl. Kapitel \@ref(streuung)) wird gegen den Wert dieses Quantils geplotted (vertikale Achse), der unter einer Standard-Normalverteilung (horizontale Achse) erwartet wird. Die resultierenden Formen sagen etwas über die Verteilung aus. Dies veranschaulicht diese [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/) ganz schön. Im Fall einer Normalverteilung fallen alle Punkte auf eine gerade Linie.
+Im QQ-Plot stellt jeder Datenpunkt ein bestimmtes Quantil der empirischen Verteilung dar (vgl. Kapitel \@ref(haeufigkeit)). Dieses Quantil (nach Standardisierung; vgl. Kapitel \@ref(streuung)) - vertikale Achse - wird gegen den Wert dieses Quantils aufgetragen, der unter einer Standard-Normalverteilung erwartet wird - horizontale Achse. Die resultierenden Formen sagen etwas über die Verteilung aus. Dies veranschaulicht diese [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/) ganz schön. Im Fall einer Normalverteilung fallen alle Punkte auf eine gerade Linie.

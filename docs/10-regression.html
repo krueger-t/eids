@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2024-11-12" />
+<meta name="date" content="2024-11-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -282,21 +282,31 @@ y_i = \beta_0 + \beta_1 \cdot x_i + \epsilon_i \quad \text{mit} \quad i=1,2,\ldo
 \tag{10.1}
 \end{equation}\]</span></p>
 <p><span class="math inline">\(y_i\)</span> bezeichnet den Wert der <strong>abhängigen Variable</strong> für Datenpunkt <span class="math inline">\(i\)</span>, und <span class="math inline">\(x_i\)</span> den Wert der <strong>unabhängigen Variable</strong> für Datenpunkt <span class="math inline">\(i\)</span>. Der Parameter <span class="math inline">\(\beta_0\)</span> beschreibt den <strong>Achsenabschnitt</strong> der Geraden, also der Punkt, an dem die Gerade die y-Achse schneidet. Der Parameter <span class="math inline">\(\beta_1\)</span> beschreibt die <strong>Steigung</strong> der Geraden. <span class="math inline">\(\epsilon_i\)</span> stellt das <strong>Residuum</strong> (also den Fehler) für Datenpunkt <span class="math inline">\(i\)</span> dar (Abbildung <a href="10-regression.html#fig:linreg">10.1</a>).</p>
-<pre><code>## Warning in geom_segment(aes(x = -0.9, xend = -0.4, y = 2.72, yend = 2.72), : All aesthetics have length 1, but the data has 10 rows.
-## ℹ Please consider using `annotate()` or provide this layer
-##   with data containing a single row.</code></pre>
-<pre><code>## Warning in geom_segment(aes(x = 2, xend = 2, y = 2.94, yend = 3), linetype = 3, : All aesthetics have length 1, but the data has 10 rows.
-## ℹ Please consider using `annotate()` or provide this layer
-##   with data containing a single row.</code></pre>
-<pre><code>## Warning in geom_segment(aes(x = 4.3, xend = 4, y = 3.15, yend = 3.3), linetype = 3, : All aesthetics have length 1, but the data has 10 rows.
-## ℹ Please consider using `annotate()` or provide this layer
-##   with data containing a single row.</code></pre>
-<pre><code>## Warning in geom_segment(aes(x = 4, xend = 5.5, y = 3.1, yend = 3.1), linetype = 3, : All aesthetics have length 1, but the data has 10 rows.
-## ℹ Please consider using `annotate()` or provide this layer
-##   with data containing a single row.</code></pre>
-<pre><code>## Warning in geom_segment(aes(x = 5.5, xend = 5.5, y = 3.1, yend = 3.245), : All aesthetics have length 1, but the data has 10 rows.
-## ℹ Please consider using `annotate()` or provide this layer
-##   with data containing a single row.</code></pre>
+<pre><code>## Warning in geom_segment(aes(x = -0.9, xend = -0.4, y = 2.72, yend = 2.72), : All aesthetics have length 1, but the data has
+## 10 rows.
+## ℹ Please consider using `annotate()` or
+##   provide this layer with data containing a
+##   single row.</code></pre>
+<pre><code>## Warning in geom_segment(aes(x = 2, xend = 2, y = 2.94, yend = 3), linetype = 3, : All aesthetics have length 1, but the data has
+## 10 rows.
+## ℹ Please consider using `annotate()` or
+##   provide this layer with data containing a
+##   single row.</code></pre>
+<pre><code>## Warning in geom_segment(aes(x = 4.3, xend = 4, y = 3.15, yend = 3.3), linetype = 3, : All aesthetics have length 1, but the data has
+## 10 rows.
+## ℹ Please consider using `annotate()` or
+##   provide this layer with data containing a
+##   single row.</code></pre>
+<pre><code>## Warning in geom_segment(aes(x = 4, xend = 5.5, y = 3.1, yend = 3.1), linetype = 3, : All aesthetics have length 1, but the data has
+## 10 rows.
+## ℹ Please consider using `annotate()` or
+##   provide this layer with data containing a
+##   single row.</code></pre>
+<pre><code>## Warning in geom_segment(aes(x = 5.5, xend = 5.5, y = 3.1, yend = 3.245), : All aesthetics have length 1, but the data has
+## 10 rows.
+## ℹ Please consider using `annotate()` or
+##   provide this layer with data containing a
+##   single row.</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:linreg"></span>
 <img src="eids_files/figure-html/linreg-1.png" alt="Lineare Regression: Definitionen." width="672" />
 <p class="caption">
