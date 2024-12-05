@@ -99,6 +99,7 @@ fig:qqentfernung
 fig:freisezeit
 fig:freisezeit2
 fig:fmoose
+fig:ertrag
 eq:ts
 fig:testprinzip
 eq:ts2
@@ -108,6 +109,9 @@ eq:ts24
 eq:ts2gepaart
 eq:fs
 fig:fpdfcdfvariation
+fig:anovassysse
+tab:einfaktoriell
+fig:perfectssysse
 eq:dn
 fig:ks1
 eq:dn2
@@ -216,11 +220,13 @@ beispiel-5-zweiseitiger-gepaarter-zweistichproben-t-test
 interpretation-des-p-wertes
 ftest
 beispiel-6-rechtsseitiger-f-test
+anova
+beispiel-9
 kstest
-beispiel-7-einstichproben-kolmogorow-smirnow-test
-beispiel-8-zweistichproben-kolmogorow-smirnow-test
+beispiel-8-einstichproben-kolmogorow-smirnow-test
+beispiel-9-zweistichproben-kolmogorow-smirnow-test
 chi2test
-beispiel-9-chi-quadrat-test
+beispiel-10-chi-quadrat-test
 regression
 definitionen
 beschreibung-vs.-vorhersage
