@@ -235,3 +235,4 @@ lineare-regression
 erklärte-varianz
 konfidenzintervalle-der-parameterschätzer
 annahmen-der-regression
+anova_lm
