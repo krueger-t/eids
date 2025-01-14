@@ -22,7 +22,7 @@ Es geht um *2 Variablen* (Merkmale):
 - die **abhängige Variable** $y$ (im Bsp. Reisezeit)
 - die **unabhängige Variable** $x$ (im Bsp. Entfernung)
 
-Die Variablen müssen *metrisch* skaliert sein. Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten _unabhängigen_ Variablen mathematisch identisch sind. Das werden wir weiter unten, in Kapitel \@ref(anova_lm), noch sehen. ^[Auch Regressionsprobleme mit nominal oder ordinal skalierten _abhängigen_ Variablen sind mathematisch ähnlich. Das wird z.B. im Masterstudiengang _Global Change Geography_ gelehrt.] Wir wollen das generelle Verhalten von $y$ mit $x$ beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.
+Die Variablen müssen *metrisch* skaliert sein. Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten _unabhängigen_ Variablen mathematisch identisch sind. Das werden wir weiter unten, in Kapitel \@ref(anovalm), noch sehen. ^[Auch Regressionsprobleme mit nominal oder ordinal skalierten _abhängigen_ Variablen sind mathematisch ähnlich. Das wird z.B. im Masterstudiengang _Global Change Geography_ gelehrt.] Wir wollen das generelle Verhalten von $y$ mit $x$ beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.
 
 ## Definitionen
 
@@ -114,7 +114,7 @@ Dieses Beispiel zeigt deutlich die Anwendbarkeit von Regressionen für Vorhersag
 
 ## Ausblick: Weiterführende lineare Modelle
 
-Wenn wir über das lineare Modell sprechen, ist die abhängige Variable immer metrisch skaliert, während die unabhängigen Variablen metrisch, nominal/ordinal oder gemischt sein können. Im Prinzip kann jede dieser Varianten mathematisch gleich behandelt werden, d.h. alle können z.B. mit der `lm()` Funktion in _R_ analysiert werden. Allerdings haben sich historisch gesehen unterschiedliche Bezeichnungen für diese Varianten etabliert, die hier erwähnt werden sollen, um Verwirrung zu vermeiden (Tabellen \@ref(tab:varianten1) und \@ref(tab:varianten2)). Wie Sie sehen, kann auch die Varianzanalyse (ANOVA) aus Kapitel \@ref(anova) als ein Spezialfall des linearen Modells verstanden werden, worauf wir weiter unten in Kapitel \@ref(anova_lm) noch eingehen werden.
+Wenn wir über das lineare Modell sprechen, ist die abhängige Variable immer metrisch skaliert, während die unabhängigen Variablen metrisch, nominal/ordinal oder gemischt sein können. Im Prinzip kann jede dieser Varianten mathematisch gleich behandelt werden, d.h. alle können z.B. mit der `lm()` Funktion in _R_ analysiert werden. Allerdings haben sich historisch gesehen unterschiedliche Bezeichnungen für diese Varianten etabliert, die hier erwähnt werden sollen, um Verwirrung zu vermeiden (Tabellen \@ref(tab:varianten1) und \@ref(tab:varianten2)). Wie Sie sehen, kann auch die Varianzanalyse (ANOVA) aus Kapitel \@ref(anova) als ein Spezialfall des linearen Modells verstanden werden, worauf wir weiter unten in Kapitel \@ref(anovalm) noch eingehen werden.
 
 | unabhängige Variable(n)<br>metrisch | unabhängige Variable(n)<br>nominal/ordinal | unabhängige Variable(n)<br>gemischt |
 | :---: | :---: | :---: |
@@ -449,7 +449,7 @@ lines(seq(0,80,1), pi[,2], lwd = 3, col = "blue", lty = 2)
 lines(seq(0,80,1), pi[,3], lwd = 3, col = "blue", lty = 2)
 ```
 
-## Annahmen der Regression
+## Annahmen der Regression {#regannahmen}
 
 Da die o.g. Schätzer und wahrscheinlichkeitstheoretischen Aussagen nur unter bestimmten Modellannahmen gültig sind, müssen wir diese Annahmen bei jeder Regression testen. Folgende Annahmen ergeben sich aus der **Maximum-Likelihood-Theorie** (vgl. Schätzen von Verteilungsparametern, Kapitel \@ref(schaetzen)):
 
@@ -501,6 +501,26 @@ ks.test(res, "pnorm", 0, sd(res))
 
 Wir können also die Regressionsannahmen in unserem Fall als hinreichend erfüllt betrachten und mit den ermittelten Parameterschätzern und deren Unsicherheiten weiterarbeiten.
 
-## ANOVA als Regressionsproblem {#anova_lm}
+## ANOVA als Regressionsproblem {#anovalm}
 
-to be continued
+Abschließend sei noch die ANOVA im engen Sinn als Regressionsproblem vorgestellt, auch um die in Kapitel \@ref(anova) angesprochenen Probleme der Vergleiche zwischen Kategorien zu umgehen. Da die ANOVA als Generalisierung des t-Test verstanden werden kann (auf mehr als 2 Kategorien), ist die Regression gleichzeitig eine Generalisierung des t-Tests.
+
+Kehren wir dazu zu dem Ertragsbeispiel aus @crawley2012 zurück (Abbildung \@ref(fig:ertrag)): _Hat Bodenart einen Einfluss auf Ertrag?_
+```{r include=FALSE}
+ertrag <- read.table("data/yields.txt",header=T)
+names(ertrag) <- c("Sand", "Ton", "Lehm")
+```
+
+Anders als in Kapitel \@ref(anova) analysieren wir jetzt aber die Daten mit der `lm()` Funktion, wobei die ANOVA Tabelle wie gesagt im Hintergrund aufgestellt wird:
+```{r}
+ertrag_long <- ertrag %>%
+  pivot_longer(everything()) %>%
+  mutate(name = factor(name))
+# lineare Regression von Ertrag mit Bodenart als Prädiktor
+ertrag_fit <- lm(value ~ name, data = ertrag_long)
+summary(ertrag_fit)
+```
+
+Wir haben also eine lineare Regression durchgeführt mit Ertrag als abhängige Variable und Bodenart als kategorische (!) unabhängige Variable (Prädiktor). _R_ interpretiert das wie folgt (siehe Output): Der Achsenabschnitt "(Intercept)" ist jetzt der mittlere Ertrag für eine der 3 Bodenart-Kategorien (in diesem Fall "Lehm", da das Wort alphabetisch zuerst kommt). Dies ist die sogenannte Basiskategorie. Der mittlere Ertrag auf Lehm ist also 14.3 wie bereits in Kapitel \@ref(anova) errechnet. Die beiden weiteren Zeilen "nameSand" und "nameTon" sind jetzt die Ertragsunterschiede von "Sand" bzw. "Ton" im Vergleich zur Basiskategorie "Lehm". Sand liefert also im Mittel 4.4 weniger Ertrag als Lehm und Ton im Mittel 2.8 weniger Ertrag als Lehm. Auch diese Zalenwerte kennen wir schon aus Kapitel \@ref(anova). Die `lm()` Funktion hat also aus den 3 Kategorien einen Achsenabschnitt und 2 "Steigungen" gemacht, wenn man so will.
+
+Der Vorteil ist jetzt, dass wir Ertragsunterschiede zwischen Kategorien und deren Unsicherheiten direkt aus den Ergebnissen der `lm()` Funktion ablesen können, zumindest im Vergleich zur Basiskategorie. Wir sehen dadurch, dass Sand tatsächlich "signifikant" weniger Ertrag liefert als Lehm (p-Wert kleiner als 0.01), Ton aber nicht. Es steckt also mehr Information in dieser Analyse als in der ANOVA im engen Sinn. Gleichzeitig passen wir nur ein Modell an und umgehen das Problem vieler einzelner t-Tests. Nur für den Vergleich von Sand und Ton müssten wir die Ergebnisse nochmal umrechnen, was an dieser Stelle aber zu weit führt. Als Ausblick können Sie das gerne in @crawley2012 nachlesen. Eine Residuenanalyse würde analog zur Regression im engen Sinn erfolgen (Kapitel \@ref(regannahmen)).

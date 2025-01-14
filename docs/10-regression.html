@@ -235,8 +235,8 @@ div.csl-indent {
 <li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#lineare-regression"><i class="fa fa-check"></i><b>10.4</b> Lineare Regression</a></li>
 <li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#erklärte-varianz"><i class="fa fa-check"></i><b>10.5</b> Erklärte Varianz</a></li>
 <li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#konfidenzintervalle-der-parameterschätzer"><i class="fa fa-check"></i><b>10.6</b> Konfidenzintervalle der Parameterschätzer</a></li>
-<li class="chapter" data-level="10.7" data-path="10-regression.html"><a href="10-regression.html#annahmen-der-regression"><i class="fa fa-check"></i><b>10.7</b> Annahmen der Regression</a></li>
-<li class="chapter" data-level="10.8" data-path="10-regression.html"><a href="10-regression.html#anova_lm"><i class="fa fa-check"></i><b>10.8</b> ANOVA als Regressionsproblem</a></li>
+<li class="chapter" data-level="10.7" data-path="10-regression.html"><a href="10-regression.html#regannahmen"><i class="fa fa-check"></i><b>10.7</b> Annahmen der Regression</a></li>
+<li class="chapter" data-level="10.8" data-path="10-regression.html"><a href="10-regression.html#anovalm"><i class="fa fa-check"></i><b>10.8</b> ANOVA als Regressionsproblem</a></li>
 </ul></li>
 <li class="appendix"><span><b>Referenzen</b></span></li>
 <li class="chapter" data-level="" data-path="11-refs.html"><a href="11-refs.html"><i class="fa fa-check"></i>Literatur</a></li>
@@ -272,7 +272,7 @@ div.csl-indent {
 <li>die <strong>abhängige Variable</strong> <span class="math inline">\(y\)</span> (im Bsp. Reisezeit)</li>
 <li>die <strong>unabhängige Variable</strong> <span class="math inline">\(x\)</span> (im Bsp. Entfernung)</li>
 </ul>
-<p>Die Variablen müssen <em>metrisch</em> skaliert sein. Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten <em>unabhängigen</em> Variablen mathematisch identisch sind. Das werden wir weiter unten, in Kapitel @ref(anova_lm), noch sehen. <a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> Wir wollen das generelle Verhalten von <span class="math inline">\(y\)</span> mit <span class="math inline">\(x\)</span> beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.</p>
+<p>Die Variablen müssen <em>metrisch</em> skaliert sein. Das ist korrekt wenn wir von linearer Regression im engen Sinn sprechen, obwohl Regressionsprobleme mit nominal oder ordinal skalierten <em>unabhängigen</em> Variablen mathematisch identisch sind. Das werden wir weiter unten, in Kapitel <a href="10-regression.html#anovalm">10.8</a>, noch sehen. <a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> Wir wollen das generelle Verhalten von <span class="math inline">\(y\)</span> mit <span class="math inline">\(x\)</span> beschreiben. Eine Gerade stellt dabei das einfachste lineare Modell dar.</p>
 <div id="definitionen" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> Definitionen<a href="10-regression.html#definitionen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Im Fall einer einzigen unabhängigen Variable lautet die Gleichung des <strong>linearen Models</strong>:</p>
@@ -335,7 +335,7 @@ Abbildung 10.2: Links: Trend des Weltrekords “Meile, Herren” in der ersten H
 </div>
 <div id="ausblick-weiterführende-lineare-modelle" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Ausblick: Weiterführende lineare Modelle<a href="10-regression.html#ausblick-weiterführende-lineare-modelle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Wenn wir über das lineare Modell sprechen, ist die abhängige Variable immer metrisch skaliert, während die unabhängigen Variablen metrisch, nominal/ordinal oder gemischt sein können. Im Prinzip kann jede dieser Varianten mathematisch gleich behandelt werden, d.h. alle können z.B. mit der <code>lm()</code> Funktion in <em>R</em> analysiert werden. Allerdings haben sich historisch gesehen unterschiedliche Bezeichnungen für diese Varianten etabliert, die hier erwähnt werden sollen, um Verwirrung zu vermeiden (Tabellen <a href="10-regression.html#tab:varianten1">10.1</a> und <a href="10-regression.html#tab:varianten2">10.2</a>). Wie Sie sehen, kann auch die Varianzanalyse (ANOVA) aus Kapitel <a href="09-tests.html#anova">9.5</a> als ein Spezialfall des linearen Modells verstanden werden, worauf wir weiter unten in Kapitel @ref(anova_lm) noch eingehen werden.</p>
+<p>Wenn wir über das lineare Modell sprechen, ist die abhängige Variable immer metrisch skaliert, während die unabhängigen Variablen metrisch, nominal/ordinal oder gemischt sein können. Im Prinzip kann jede dieser Varianten mathematisch gleich behandelt werden, d.h. alle können z.B. mit der <code>lm()</code> Funktion in <em>R</em> analysiert werden. Allerdings haben sich historisch gesehen unterschiedliche Bezeichnungen für diese Varianten etabliert, die hier erwähnt werden sollen, um Verwirrung zu vermeiden (Tabellen <a href="10-regression.html#tab:varianten1">10.1</a> und <a href="10-regression.html#tab:varianten2">10.2</a>). Wie Sie sehen, kann auch die Varianzanalyse (ANOVA) aus Kapitel <a href="09-tests.html#anova">9.5</a> als ein Spezialfall des linearen Modells verstanden werden, worauf wir weiter unten in Kapitel <a href="10-regression.html#anovalm">10.8</a> noch eingehen werden.</p>
 <table>
 <caption><span id="tab:varianten1">Tabelle 10.1: </span> Historische Namen für die Varianten des linearen Modells, je nachdem, ob die unabhängigen Variablen metrisch, nominal/ordinal oder gemischt sind. Die abhängige Variable ist immer metrisch skaliert.</caption>
 <colgroup>
@@ -647,8 +647,8 @@ t_s=\frac{\hat\beta_1-0}{s_{\hat\beta_1}}\sim t_{n-2}
 <p>Das zweite Konfidenzintervall beschreibt die Unsicherheit der Vorhersage neuer einzelner Werte von <span class="math inline">\(y\)</span>, die natürlich wesentlich größer ist:</p>
 <p><img src="eids_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 </div>
-<div id="annahmen-der-regression" class="section level2 hasAnchor" number="10.7">
-<h2><span class="header-section-number">10.7</span> Annahmen der Regression<a href="10-regression.html#annahmen-der-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="regannahmen" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Annahmen der Regression<a href="10-regression.html#regannahmen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Da die o.g. Schätzer und wahrscheinlichkeitstheoretischen Aussagen nur unter bestimmten Modellannahmen gültig sind, müssen wir diese Annahmen bei jeder Regression testen. Folgende Annahmen ergeben sich aus der <strong>Maximum-Likelihood-Theorie</strong> (vgl. Schätzen von Verteilungsparametern, Kapitel <a href="08-schaetzen.html#schaetzen">8</a>):</p>
 <ul>
 <li>Die Residuen sind <strong>unabhängig</strong>, in diesem Fall gibt es keine serielle Korrelation in der Residuengrafik - dies kann mit dem Durbin-Watson-Test getestet werden</li>
@@ -677,9 +677,39 @@ t_s=\frac{\hat\beta_1-0}{s_{\hat\beta_1}}\sim t_{n-2}
 ## alternative hypothesis: two-sided</code></pre>
 <p>Wir können also die Regressionsannahmen in unserem Fall als hinreichend erfüllt betrachten und mit den ermittelten Parameterschätzern und deren Unsicherheiten weiterarbeiten.</p>
 </div>
-<div id="anova_lm" class="section level2 hasAnchor" number="10.8">
-<h2><span class="header-section-number">10.8</span> ANOVA als Regressionsproblem<a href="10-regression.html#anova_lm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>to be continued</p>
+<div id="anovalm" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> ANOVA als Regressionsproblem<a href="10-regression.html#anovalm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Abschließend sei noch die ANOVA im engen Sinn als Regressionsproblem vorgestellt, auch um die in Kapitel <a href="09-tests.html#anova">9.5</a> angesprochenen Probleme der Vergleiche zwischen Kategorien zu umgehen. Da die ANOVA als Generalisierung des t-Test verstanden werden kann (auf mehr als 2 Kategorien), ist die Regression gleichzeitig eine Generalisierung des t-Tests.</p>
+<p>Kehren wir dazu zu dem Ertragsbeispiel aus <span class="citation">Crawley (<a href="#ref-crawley2012">2012</a>)</span> zurück (Abbildung <a href="09-tests.html#fig:ertrag">9.4</a>): <em>Hat Bodenart einen Einfluss auf Ertrag?</em></p>
+<p>Anders als in Kapitel <a href="09-tests.html#anova">9.5</a> analysieren wir jetzt aber die Daten mit der <code>lm()</code> Funktion, wobei die ANOVA Tabelle wie gesagt im Hintergrund aufgestellt wird:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="10-regression.html#cb147-1" tabindex="-1"></a>ertrag_long <span class="ot">&lt;-</span> ertrag <span class="sc">%&gt;%</span></span>
+<span id="cb147-2"><a href="10-regression.html#cb147-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb147-3"><a href="10-regression.html#cb147-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">factor</span>(name))</span>
+<span id="cb147-4"><a href="10-regression.html#cb147-4" tabindex="-1"></a><span class="co"># lineare Regression von Ertrag mit Bodenart als Prädiktor</span></span>
+<span id="cb147-5"><a href="10-regression.html#cb147-5" tabindex="-1"></a>ertrag_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(value <span class="sc">~</span> name, <span class="at">data =</span> ertrag_long)</span>
+<span id="cb147-6"><a href="10-regression.html#cb147-6" tabindex="-1"></a><span class="fu">summary</span>(ertrag_fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = value ~ name, data = ertrag_long)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+##   -8.5   -1.8    0.3    1.7    7.1 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    14.30       1.08   13.23  2.6e-13 ***
+## nameSand       -4.40       1.53   -2.88   0.0077 ** 
+## nameTon        -2.80       1.53   -1.83   0.0781 .  
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.42 on 27 degrees of freedom
+## Multiple R-squared:  0.239,  Adjusted R-squared:  0.183 
+## F-statistic: 4.24 on 2 and 27 DF,  p-value: 0.025</code></pre>
+<p>Wir haben also eine lineare Regression durchgeführt mit Ertrag als abhängige Variable und Bodenart als kategorische (!) unabhängige Variable (Prädiktor). <em>R</em> interpretiert das wie folgt (siehe Output): Der Achsenabschnitt “(Intercept)” ist jetzt der mittlere Ertrag für eine der 3 Bodenart-Kategorien (in diesem Fall “Lehm”, da das Wort alphabetisch zuerst kommt). Dies ist die sogenannte Basiskategorie. Der mittlere Ertrag auf Lehm ist also 14.3 wie bereits in Kapitel <a href="09-tests.html#anova">9.5</a> errechnet. Die beiden weiteren Zeilen “nameSand” und “nameTon” sind jetzt die Ertragsunterschiede von “Sand” bzw. “Ton” im Vergleich zur Basiskategorie “Lehm”. Sand liefert also im Mittel 4.4 weniger Ertrag als Lehm und Ton im Mittel 2.8 weniger Ertrag als Lehm. Auch diese Zalenwerte kennen wir schon aus Kapitel <a href="09-tests.html#anova">9.5</a>. Die <code>lm()</code> Funktion hat also aus den 3 Kategorien einen Achsenabschnitt und 2 “Steigungen” gemacht, wenn man so will.</p>
+<p>Der Vorteil ist jetzt, dass wir Ertragsunterschiede zwischen Kategorien und deren Unsicherheiten direkt aus den Ergebnissen der <code>lm()</code> Funktion ablesen können, zumindest im Vergleich zur Basiskategorie. Wir sehen dadurch, dass Sand tatsächlich “signifikant” weniger Ertrag liefert als Lehm (p-Wert kleiner als 0.01), Ton aber nicht. Es steckt also mehr Information in dieser Analyse als in der ANOVA im engen Sinn. Gleichzeitig passen wir nur ein Modell an und umgehen das Problem vieler einzelner t-Tests. Nur für den Vergleich von Sand und Ton müssten wir die Ergebnisse nochmal umrechnen, was an dieser Stelle aber zu weit führt. Als Ausblick können Sie das gerne in <span class="citation">Crawley (<a href="#ref-crawley2012">2012</a>)</span> nachlesen. Eine Residuenanalyse würde analog zur Regression im engen Sinn erfolgen (Kapitel <a href="10-regression.html#regannahmen">10.7</a>).</p>
 
 </div>
 </div>
@@ -688,6 +718,9 @@ t_s=\frac{\hat\beta_1-0}{s_{\hat\beta_1}}\sim t_{n-2}
 
 <h3>Literatur<a href="11-refs.html#literatur" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-crawley2012" class="csl-entry">
+Crawley, M. J. 2012. <em>The r Book (2nd Ed.)</em>. Chichester: John Wiley &amp; Sons Ltd.
+</div>
 <div id="ref-wainer2009" class="csl-entry">
 Wainer, H. 2009. <em>Picturing the Uncertain World</em>. Princeton: Princeton University Press.
 </div>
