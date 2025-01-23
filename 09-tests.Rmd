@@ -642,7 +642,7 @@ Das Ergebnis der Varianzanalyse wird in der ANOVA Tabelle zusammengefasst (Tabel
 
 | Variations-quelle | Quadrat-summe | Freiheitsgrade $(df)$ | Mittlere Quadrate | F-Statistik $\left(F_s\right)$ | $\Pr\left(Z\geq F_s\right)$ |
 | :---: | :---: | :---: | :---: | :---: | :---: |
-| Faktor | $SSA=\\SSY-SSE$ | $k-1$ | $\frac{SSA}{df_{SSA}}$ | $\frac{\frac{SSA}{df_{SSA}}}{s^2}$ | $1-F\left(F_s,1,n-k\right)$ |
+| Faktor | $SSA=\\SSY-SSE$ | $k-1$ | $\frac{SSA}{df_{SSA}}$ | $\frac{\frac{SSA}{df_{SSA}}}{s^2}$ | $1-F\left(F_s,k-1,n-k\right)$ |
 | Residuum | $SSE$ | $n-k$ | $\frac{SSE}{df_{SSE}}=s^2$ | | |
 | Gesamt | $SSY$ | $n-1$ | | | |
 Table: (\#tab:einfaktoriell) Einfaktorielle ANOVA Tabelle.
