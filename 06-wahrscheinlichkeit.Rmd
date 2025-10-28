@@ -64,7 +64,7 @@ f_n(A)\xrightarrow{n\to\infty}\Pr(A)
 \end{equation}$$
 
 Veranschaulichen wir das mit dem Beispiel Münzwurf (Abbildung \@ref(fig:muenze)): Mit zunehmender Anzahl Münzwürfe $n$ nähert sich die relative Häufigkeit $f_n$ des Ereignisses "Zahl" (ebenso "Kopf") dem erwarteten Wert 0.5 an. Wenn $n$ (hypothetisch) gegen unendlich geht ($n\to\infty$) dann nennen wir diesen Grenzwert Wahrscheinlichkeit.
-```{r muenze, echo=TRUE, fig.align='center', fig.cap='Simulation von 1000 Münzwürfen und die Entwicklung der relativen Häufigkeit von "Zahl". Wir sehen, dass sich die relative Häufigkeit mit zunehmender Anzahl Münzwürfe dem erwarteten Wert 0.5 annähert. Den Grenzwert der relativen Häufigkeit wenn die Anzahl der Münzwürfe gegen unendlich geht nennen wir Wahrscheinlichkeit.', out.width='80%'}
+```{r muenze, echo=TRUE, fig.align='center', fig.cap='Simulation von 1000 Münzwürfen und die Entwicklung der relativen Häufigkeit der Merkmalsausprägung Zahl. Wir sehen, dass sich die relative Häufigkeit mit zunehmender Anzahl Münzwürfe dem erwarteten Wert 0.5 annähert. Den Grenzwert der relativen Häufigkeit wenn die Anzahl der Münzwürfe gegen unendlich geht nennen wir Wahrscheinlichkeit.', out.width='80%'}
 # simuliere 1000 Münzwürfe
 # dies geschieht hier mit einem Bernoulliprozess,
 # wobei die Wahrscheinlichkeit für Erfolg (in unserem Fall "Zahl") gleich 0.5 ist
