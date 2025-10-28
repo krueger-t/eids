@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 4 Streuungsparameter, Schiefe und Wölbung | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 4 Streuungsparameter, Schiefe und Wölbung | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2025-01-23" />
+<meta name="date" content="2025-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,6 +120,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -177,13 +181,13 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#ziel-der-deskriptiven-statistik"><i class="fa fa-check"></i><b>3.1</b> Ziel der deskriptiven Statistik</a></li>
-<li class="chapter" data-level="3.2" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#häufigkeiten"><i class="fa fa-check"></i><b>3.2</b> Häufigkeiten</a></li>
+<li class="chapter" data-level="3.2" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#h%C3%A4ufigkeiten"><i class="fa fa-check"></i><b>3.2</b> Häufigkeiten</a></li>
 <li class="chapter" data-level="3.3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#lageparameter"><i class="fa fa-check"></i><b>3.3</b> Lageparameter</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="04-streuung.html"><a href="04-streuung.html#streuungsparameter"><i class="fa fa-check"></i><b>4.1</b> Streuungsparameter</a></li>
-<li class="chapter" data-level="4.2" data-path="04-streuung.html"><a href="04-streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
+<li class="chapter" data-level="4.2" data-path="04-streuung.html"><a href="04-streuung.html#schiefe-und-w%C3%B6lbung-von-h%C3%A4ufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
 <li class="chapter" data-level="4.3" data-path="04-streuung.html"><a href="04-streuung.html#standardisierung-z-transformation"><i class="fa fa-check"></i><b>4.3</b> Standardisierung (z-Transformation)</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a>
@@ -195,7 +199,7 @@ div.csl-indent {
 <li class="part"><span><b>Wahrscheinlichkeitstheorie</b></span></li>
 <li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvorgänge"><i class="fa fa-check"></i><b>6.1</b> Zufallsvorgänge</a></li>
+<li class="chapter" data-level="6.1" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvorg%C3%A4nge"><i class="fa fa-check"></i><b>6.1</b> Zufallsvorgänge</a></li>
 <li class="chapter" data-level="6.2" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#ereignisse"><i class="fa fa-check"></i><b>6.2</b> Ereignisse</a></li>
 <li class="chapter" data-level="6.3" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvariablen"><i class="fa fa-check"></i><b>6.3</b> Zufallsvariablen</a></li>
 <li class="chapter" data-level="6.4" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit-1"><i class="fa fa-check"></i><b>6.4</b> Wahrscheinlichkeit</a></li>
@@ -206,15 +210,15 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="07-verteilungen.html"><a href="07-verteilungen.html#von-der-empirischen-zur-theoretischen-verteilung"><i class="fa fa-check"></i><b>7.1</b> Von der empirischen zur theoretischen Verteilung</a></li>
 <li class="chapter" data-level="7.2" data-path="07-verteilungen.html"><a href="07-verteilungen.html#parameter-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.2</b> Parameter theoretischer Verteilungen</a></li>
-<li class="chapter" data-level="7.3" data-path="07-verteilungen.html"><a href="07-verteilungen.html#kenngrößen-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.3</b> Kenngrößen theoretischer Verteilungen</a></li>
+<li class="chapter" data-level="7.3" data-path="07-verteilungen.html"><a href="07-verteilungen.html#kenngr%C3%B6%C3%9Fen-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.3</b> Kenngrößen theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.4" data-path="07-verteilungen.html"><a href="07-verteilungen.html#distr"><i class="fa fa-check"></i><b>7.4</b> Wichtige Verteilungen und ihre Anwendungen</a></li>
 </ul></li>
 <li class="part"><span><b>Induktive Statistik</b></span></li>
 <li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-schätzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
-<li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
-<li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
+<li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-sch%C3%A4tzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
+<li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-sch%C3%A4tzer-f%C3%BCr-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
+<li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-sch%C3%A4tzer-f%C3%BCr-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
 <li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#qqplot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a>
@@ -231,10 +235,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#definitionen"><i class="fa fa-check"></i><b>10.1</b> Definitionen</a></li>
 <li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#beschreibung-vs.-vorhersage"><i class="fa fa-check"></i><b>10.2</b> Beschreibung vs. Vorhersage</a></li>
-<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterführende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
+<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterf%C3%BChrende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
 <li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#lineare-regression"><i class="fa fa-check"></i><b>10.4</b> Lineare Regression</a></li>
-<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#erklärte-varianz"><i class="fa fa-check"></i><b>10.5</b> Erklärte Varianz</a></li>
-<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#konfidenzintervalle-der-parameterschätzer"><i class="fa fa-check"></i><b>10.6</b> Konfidenzintervalle der Parameterschätzer</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#erkl%C3%A4rte-varianz"><i class="fa fa-check"></i><b>10.5</b> Erklärte Varianz</a></li>
+<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#konfidenzintervalle-der-parametersch%C3%A4tzer"><i class="fa fa-check"></i><b>10.6</b> Konfidenzintervalle der Parameterschätzer</a></li>
 <li class="chapter" data-level="10.7" data-path="10-regression.html"><a href="10-regression.html#regannahmen"><i class="fa fa-check"></i><b>10.7</b> Annahmen der Regression</a></li>
 <li class="chapter" data-level="10.8" data-path="10-regression.html"><a href="10-regression.html#anovalm"><i class="fa fa-check"></i><b>10.8</b> ANOVA als Regressionsproblem</a></li>
 </ul></li>
@@ -266,7 +270,7 @@ div.csl-indent {
 <h2><span class="header-section-number">4.1</span> Streuungsparameter<a href="04-streuung.html#streuungsparameter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lesen Sie dazu bitte Kapitel 3.2.3 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014">2014</a>)</span>.</p>
 <p><strong>Streuungsparameter</strong> sind Maße der Variabilität einer Häufigkeitsverteilung. Uns interessieren hier v.a. <strong>Spannweite</strong>, <strong>Quartilsabstand</strong>, <strong>Varianz und Standardabweichung</strong> und <strong>Variationskoeffizient</strong>, weniger durchschnittliche absolute Abweichung, da wir letztere kaum in der Praxis sehen.</p>
-<p>Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-Whisker-Plot, kurz einfach <strong>Boxplot</strong>, verdeutlichen (Abbildung <a href="04-streuung.html#fig:boxplot">4.1</a>). Ein Boxplot fasst die Verteilung der Werte eines Merkmals (in einer Stichprobe) zusammen. Die <strong>Spannweite</strong> ist der Abstand zwischen Minimum und Maximum der Merkmalswerte. Der <strong>Quartilsabstand</strong> ist der Abstand zwischen 0.25-Quantil und 0.75-Quantil; in diesem Bereich liegen 50% der Merkmalswerte (0.75 - 0.25). 0.25-Quantil, 0.5-Quantil (Median) und 0.75-Quantil heißen auch 1., 2. und 3. Quartil, weil sie den Wertebereich in vier gleichgroße Teile teilen: zwischen Minimum und 0.25-Quantil liegen 25% der Merkmalswerte, zwischen 0.25-Quantil und Median 25%, zwischen Median und 0.75-Quantil 25% und zwischen 0.75-Quantil und Maximum ebenfalls 25% aller Merkmalswerte. Ebenso gibt es auch Quintile usw., diese sind aber in der Praxis kaum von Bedeutung. Ein Boxplot kann horizontal (wie hier) oder vertikal dargestellt werden.</p>
+<p>Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-Whisker-Plot, kurz <strong>Boxplot</strong>, verdeutlichen (Abbildung <a href="04-streuung.html#fig:boxplot">4.1</a>). Ein Boxplot fasst die Verteilung der Werte eines Merkmals (in einer Stichprobe) zusammen. Die <strong>Spannweite</strong> ist der Abstand zwischen Minimum und Maximum der Merkmalswerte. Der <strong>Quartilsabstand</strong> ist der Abstand zwischen 0.25-Quantil und 0.75-Quantil; in diesem Bereich liegen 50% der Merkmalswerte (0.75 - 0.25). 0.25-Quantil, 0.5-Quantil (Median) und 0.75-Quantil heißen auch 1., 2. und 3. Quartil, weil sie den Wertebereich in vier gleichgroße Teile teilen: zwischen Minimum und 0.25-Quantil liegen 25% der Merkmalswerte, zwischen 0.25-Quantil und Median 25%, zwischen Median und 0.75-Quantil 25% und zwischen 0.75-Quantil und Maximum ebenfalls 25% aller Merkmalswerte. Ebenso gibt es auch Quintile usw., diese sind aber in der Praxis kaum von Bedeutung. Ein Boxplot kann horizontal (wie hier) oder vertikal dargestellt werden.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:boxplot"></span>
 <img src="eids_files/figure-html/boxplot-1.png" alt="Boxplot mit Quartilsabstand und Spannweite." width="80%" />
 <p class="caption">
@@ -297,10 +301,10 @@ Abbildung 4.1: Boxplot mit Quartilsabstand und Spannweite.
 <span id="cb18-17"><a href="04-streuung.html#cb18-17" tabindex="-1"></a><span class="fu">boxplot</span>(reisedat<span class="sc">$</span>zeit_nachmittags, <span class="at">range =</span> <span class="dv">0</span>, <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb18-18"><a href="04-streuung.html#cb18-18" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">130</span>), <span class="at">xlab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-10-1.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-10-2.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-10-3.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-10-4.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-10-5.png" width="33%" /><img src="eids_files/figure-html/unnamed-chunk-10-6.png" width="33%" /></p>
-<p>Die Variable “Distanz” ist schief verteilt, die zentralen 50% der Verteilung - die “Box” im Boxplot - befinden sich links der Mitte. Die beiden Variablen “Zeit” sind symmetrischer verteilt, die zentralen 50% der Verteilungen - die “Boxen” im Boxplot - befinden sich näher der Mitte. Für das Verständnis von Verteilungen in Kapitel <a href="07-verteilungen.html#verteilungen">7</a> ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!</p>
+<p>Die Variable “Distanz” ist schief verteilt, die zentralen 50% der Verteilung - die “Box” im Boxplot - befinden sich links der Mitte. Die beiden Variablen “Zeit” sind symmetrischer verteilt, die zentralen 50% der Verteilungen - die “Boxen” im Boxplot - befinden sich näher der Mitte. Für das Verständnis von Verteilungen in Kapitel <a href="07-verteilungen.html#verteilungen">7</a> ist es wichtig, dass Sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!</p>
 <p>Nun zu den weiteren Streuungsparametern. Die <strong>Varianz</strong> <span class="math inline">\(s^2\)</span> ist die mittlere (“durchschnittliche”) quadrierte Abweichung der Merkmalswerte <span class="math inline">\(x_i\quad\left(i=1, 2, \ldots, n\right)\)</span> vom arithmetischen Mittel <span class="math inline">\(\bar x\)</span>:
 <span class="math display">\[s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}\]</span></p>
-<p>Genau genommen ist das die <strong>korrigierte Varianz</strong>, bei der durch <span class="math inline">\(n-1\)</span> geteilt wird und nicht durch <span class="math inline">\(n\)</span> wie man bei einer Mittelung erwarten könnte. Das Teilen durch <span class="math inline">\(n-1\)</span> garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner <span class="math inline">\(n-1\)</span> wird <strong>Anzahl Freiheitsgrade</strong> genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) <em>frei</em> zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits “belegt” – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.</p>
+<p>Genau genommen ist das die <strong>korrigierte Varianz</strong>, bei der durch <span class="math inline">\(n-1\)</span> geteilt wird und nicht durch <span class="math inline">\(n\)</span> wie man bei einer Mittelung erwarten könnte. Das Teilen durch <span class="math inline">\(n-1\)</span> garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner <span class="math inline">\(n-1\)</span> wird <strong>Anzahl Freiheitsgrade</strong> genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) <em>frei</em> zur Verfügung stehen, d.h. in denen sich der Zufallsprozess der Stichprobenziehung ausdrücken kann. Im Fall der Varianz ist ein Wert der Stichprobe bereits “belegt” – durch das arithmetische Mittel.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Daher reduziert sich die Zahl der <em>freien</em> Elemente der Stichprobe, die in die Berechnung eingehen um eins.</p>
 <p>Die <strong>Standardabweichung</strong> <span class="math inline">\(s\)</span> ist die Quadratwurzel der mittleren quadrierten Abweichung der Merkmalswerte <span class="math inline">\(x_i\quad\left(i=1, 2, \ldots, n\right)\)</span> vom arithmetischen Mittel <span class="math inline">\(\bar x\)</span>, d.h. die Quadratwurzel der Varianz:
 <span class="math display">\[s=\sqrt{s^2}=\sqrt{\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}}\]</span></p>
 <p>Die Standardabweichung besitzt die gleiche Einheit wie die Merkmalswerte und ist deshalb einfacher zu interpretieren als die Varianz. Sie drückt die Streuung der Merkmalswerte um den Mittelwert bzw. deren Abweichung vom Mittelwert in einer anschaulichen Größe aus. Je größer die Werte der Standardabweichung sind, desto mehr streuen die Daten.</p>
@@ -322,7 +326,7 @@ Abbildung 4.1: Boxplot mit Quartilsabstand und Spannweite.
 <span id="cb19-12"><a href="04-streuung.html#cb19-12" tabindex="-1"></a>vd <span class="ot">&lt;-</span> sd <span class="sc">/</span> dbar</span>
 <span id="cb19-13"><a href="04-streuung.html#cb19-13" tabindex="-1"></a><span class="co"># Ergebnisse:</span></span>
 <span id="cb19-14"><a href="04-streuung.html#cb19-14" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(dbar, s2d, sd, vd))</span></code></pre></div>
-<pre><code>## [1] 15.7075 71.6220  8.4630  0.5388</code></pre>
+<pre><code>## [1] 14.2767 83.0334  9.1123  0.6383</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="04-streuung.html#cb21-1" tabindex="-1"></a><span class="co"># &quot;Zeit, morgens&quot; in min</span></span>
 <span id="cb21-2"><a href="04-streuung.html#cb21-2" tabindex="-1"></a><span class="co"># 1) arithmetisches Mittel</span></span>
 <span id="cb21-3"><a href="04-streuung.html#cb21-3" tabindex="-1"></a><span class="co"># na.rm = TRUE ignoriert die fehlenden Werte im Datensatz</span></span>
@@ -335,7 +339,7 @@ Abbildung 4.1: Boxplot mit Quartilsabstand und Spannweite.
 <span id="cb21-10"><a href="04-streuung.html#cb21-10" tabindex="-1"></a>vs <span class="ot">&lt;-</span> ss <span class="sc">/</span> sbar</span>
 <span id="cb21-11"><a href="04-streuung.html#cb21-11" tabindex="-1"></a><span class="co"># Ergebnisse:</span></span>
 <span id="cb21-12"><a href="04-streuung.html#cb21-12" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(sbar, s2s, ss, vs))</span></code></pre></div>
-<pre><code>## [1]  57.0500 464.3534  21.5489   0.3777</code></pre>
+<pre><code>## [1]  51.7460 398.8054  19.9701   0.3859</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="04-streuung.html#cb23-1" tabindex="-1"></a><span class="co"># &quot;Zeit, nachmittags&quot; in min</span></span>
 <span id="cb23-2"><a href="04-streuung.html#cb23-2" tabindex="-1"></a><span class="co"># 1) arithmetisches Mittel</span></span>
 <span id="cb23-3"><a href="04-streuung.html#cb23-3" tabindex="-1"></a><span class="co">#  na.rm = TRUE ignoriert die fehlenden Werte im Datensatz</span></span>
@@ -348,11 +352,11 @@ Abbildung 4.1: Boxplot mit Quartilsabstand und Spannweite.
 <span id="cb23-10"><a href="04-streuung.html#cb23-10" tabindex="-1"></a>vs <span class="ot">&lt;-</span> ss <span class="sc">/</span> sbar</span>
 <span id="cb23-11"><a href="04-streuung.html#cb23-11" tabindex="-1"></a><span class="co"># Ergebnisse:</span></span>
 <span id="cb23-12"><a href="04-streuung.html#cb23-12" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(sbar, s2s, ss, vs))</span></code></pre></div>
-<pre><code>## [1]  58.1167 513.3929  22.6582   0.3899</code></pre>
+<pre><code>## [1]  57.1746 527.5335  22.9681   0.4017</code></pre>
 <p>Die Variable “Distanz” hat im Vergleich zu “Zeit, morgens” und “Zeit, nachmitttags” eine größere Varianz relativ zum Mittelwert. Daher ist der Variationskoeffizient größer.</p>
 </div>
 <div id="schiefe-und-wölbung-von-häufigkeitsverteilungen" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Schiefe und Wölbung von Häufigkeitsverteilungen<a href="04-streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">4.2</span> Schiefe und Wölbung von Häufigkeitsverteilungen<a href="04-streuung.html#schiefe-und-w%C3%B6lbung-von-h%C3%A4ufigkeitsverteilungen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Lesen Sie dazu bitte Kapitel 3.2.5 von <span class="citation">Zimmermann-Janschitz (<a href="#ref-zimmermann2014">2014</a>)</span>.</p>
 <p>Die <strong>Schiefe</strong> <span class="math inline">\(a_3\)</span> einer Häufigkeitsverteilung von Merkmalswerten <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> mit dem arithmetischen Mittel <span class="math inline">\(\bar x\)</span> und der Standardabweichung <span class="math inline">\(s\)</span> bezeichnet die Abweichung der Verteilung der Merkmalswerte von der symmetrischen Form:
 <span class="math display">\[a_3=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^3}{n\cdot s^3}\]</span></p>
@@ -377,8 +381,8 @@ Für eine <strong>linkschiefe</strong> (rechtssteile) Verteilung gilt:
 <span id="cb26-7"><a href="04-streuung.html#cb26-7" tabindex="-1"></a>mean_d <span class="ot">&lt;-</span> <span class="fu">mean</span>(reisedat<span class="sc">$</span>distanz, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb26-8"><a href="04-streuung.html#cb26-8" tabindex="-1"></a><span class="co"># Ergebnisse:</span></span>
 <span id="cb26-9"><a href="04-streuung.html#cb26-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(skew_d, med_d, mean_d))</span></code></pre></div>
-<pre><code>## [1]  0.7795 14.6000 15.7075</code></pre>
-<p>Die Verteilungen der Merkmale “Zeit, morgens” und “Zeit, nachmittags” sind eher symmetrisch:</p>
+<pre><code>## [1]  2.464 13.200 14.277</code></pre>
+<p>Die Verteilungen der Merkmale “Zeit, morgens” und “Zeit, nachmittags” sind weniger rechtsschief:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="04-streuung.html#cb28-1" tabindex="-1"></a><span class="co"># &quot;Zeit, morgens&quot; in min</span></span>
 <span id="cb28-2"><a href="04-streuung.html#cb28-2" tabindex="-1"></a><span class="co"># 1) Schiefe</span></span>
 <span id="cb28-3"><a href="04-streuung.html#cb28-3" tabindex="-1"></a>skew_s <span class="ot">&lt;-</span> <span class="fu">skewness</span>(reisedat<span class="sc">$</span>zeit_morgens, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -388,7 +392,7 @@ Für eine <strong>linkschiefe</strong> (rechtssteile) Verteilung gilt:
 <span id="cb28-7"><a href="04-streuung.html#cb28-7" tabindex="-1"></a>mean_s <span class="ot">&lt;-</span> <span class="fu">mean</span>(reisedat<span class="sc">$</span>zeit_morgens, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb28-8"><a href="04-streuung.html#cb28-8" tabindex="-1"></a><span class="co"># Ergebnisse:</span></span>
 <span id="cb28-9"><a href="04-streuung.html#cb28-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(skew_s, med_s, mean_s))</span></code></pre></div>
-<pre><code>## [1] -0.1772 57.5000 57.0500</code></pre>
+<pre><code>## [1]  0.3029 48.0000 51.7460</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="04-streuung.html#cb30-1" tabindex="-1"></a><span class="co"># &quot;Zeit, nachmittags&quot; in min</span></span>
 <span id="cb30-2"><a href="04-streuung.html#cb30-2" tabindex="-1"></a><span class="co"># 1) Schiefe</span></span>
 <span id="cb30-3"><a href="04-streuung.html#cb30-3" tabindex="-1"></a>skew_s <span class="ot">&lt;-</span> <span class="fu">skewness</span>(reisedat<span class="sc">$</span>zeit_nachmittags, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -398,7 +402,7 @@ Für eine <strong>linkschiefe</strong> (rechtssteile) Verteilung gilt:
 <span id="cb30-7"><a href="04-streuung.html#cb30-7" tabindex="-1"></a>mean_s <span class="ot">&lt;-</span> <span class="fu">mean</span>(reisedat<span class="sc">$</span>zeit_nachmittags, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb30-8"><a href="04-streuung.html#cb30-8" tabindex="-1"></a><span class="co"># Ergebnisse:</span></span>
 <span id="cb30-9"><a href="04-streuung.html#cb30-9" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(skew_s, med_s, mean_s))</span></code></pre></div>
-<pre><code>## [1] -0.08211 61.50000 58.11667</code></pre>
+<pre><code>## [1]  0.48 50.00 57.17</code></pre>
 <p>Die <strong>Wölbung</strong> <span class="math inline">\(a_4\)</span> einer Häufigkeitsverteilung von Merkmalswerten <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> mit dem arithmetischen Mittel <span class="math inline">\(\bar x\)</span> und der Standardabweichung <span class="math inline">\(s\)</span> bestimmt die <em>Steilheit</em> einer Verteilung:
 <span class="math display">\[a_4=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^4}{n\cdot s^4}-3\]</span></p>
 <p>Die Subtraktion von <span class="math inline">\(-3\)</span> dient der Standardisierung auf die sogenannte Normalverteilung, eine symmetrische, glockenförmige Verteilung <span class="citation">(s. <a href="#ref-zimmermann2014">Zimmermann-Janschitz 2014</a>, Kapitel 3.2.5)</span>. Mehr zur Normalverteilung in Kapitel <a href="07-verteilungen.html#verteilungen">7</a>.</p>
@@ -410,16 +414,16 @@ Für eine <strong>linkschiefe</strong> (rechtssteile) Verteilung gilt:
 Für eine “flachere” Verteilung als die Normalverteilung gilt:
 </center>
 <p><span class="math display">\[a_4&lt;0\]</span></p>
-<p>Die Verteilungen der Merkmale “Distanz” und “Zeit, nachmittags” unserer Reisedaten sind spitzer als die Normalverteilung, wobei die Variable “Distanz” wegen ihrer Rechtsschiefe ohnehin nicht mit der Normalverteilung vergleichbar ist. Die Verteilung des Merkmals “Zeit, morgens” is flacher als die Normalverteilung:</p>
+<p>Die Verteilung des Merkmals “Distanz” unserer Reisedaten ist spitzer als die Normalverteilung, wobei diese Variable wegen ihrer Rechtsschiefe ohnehin nicht mit der Normalverteilung vergleichbar ist. Die Verteilungen der Merkmale “Zeit, morgens” und “Zeit, nachmittags” sind etwas flacher als die Normalverteilung:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="04-streuung.html#cb32-1" tabindex="-1"></a><span class="co"># Wölbung der &quot;Distanz&quot;</span></span>
 <span id="cb32-2"><a href="04-streuung.html#cb32-2" tabindex="-1"></a><span class="fu">kurtosis</span>(reisedat<span class="sc">$</span>distanz, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] 0.3345</code></pre>
+<pre><code>## [1] 9.397</code></pre>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="04-streuung.html#cb34-1" tabindex="-1"></a><span class="co"># Wölbung der &quot;Zeit, morgens&quot;</span></span>
 <span id="cb34-2"><a href="04-streuung.html#cb34-2" tabindex="-1"></a><span class="fu">kurtosis</span>(reisedat<span class="sc">$</span>zeit_morgens, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] -0.2803</code></pre>
+<pre><code>## [1] -0.5949</code></pre>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="04-streuung.html#cb36-1" tabindex="-1"></a><span class="co"># Wölbung der &quot;Zeit, nachmittags&quot;</span></span>
 <span id="cb36-2"><a href="04-streuung.html#cb36-2" tabindex="-1"></a><span class="fu">kurtosis</span>(reisedat<span class="sc">$</span>zeit_nachmittags, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="dv">3</span></span></code></pre></div>
-<pre><code>## [1] 0.6546</code></pre>
+<pre><code>## [1] -0.3523</code></pre>
 </div>
 <div id="standardisierung-z-transformation" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Standardisierung (z-Transformation)<a href="04-streuung.html#standardisierung-z-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -428,7 +432,7 @@ Für eine “flachere” Verteilung als die Normalverteilung gilt:
 z_i=\frac{x_i-\bar x}{s_x}
 \tag{4.1}
 \end{equation}\]</span>
-Der neue Mittelwert ist <span class="math inline">\(\bar z=0\)</span>, die neue Standardabweichung ist <span class="math inline">\(s_z=1\)</span>. Sollten die <span class="math inline">\(x\)</span> Daten einer sogenannten Normalverteilung folgen (s. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>) dann folgen die <span class="math inline">\(z\)</span> Daten einer Standardnormalverteilung.</p>
+Der neue Mittelwert ist <span class="math inline">\(\bar z=0\)</span>, die neue Standardabweichung ist <span class="math inline">\(s_z=1\)</span>. Sollten die <span class="math inline">\(x\)</span> Daten einer Normalverteilung folgen (s. Kapitel <a href="07-verteilungen.html#verteilungen">7</a>) dann folgen die <span class="math inline">\(z\)</span> Daten einer Standardnormalverteilung.</p>
 
 </div>
 </div>
@@ -437,6 +441,12 @@ Der neue Mittelwert ist <span class="math inline">\(\bar z=0\)</span>, die neue 
 <div id="ref-zimmermann2014" class="csl-entry">
 Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Springer Spektrum.
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Wenn ich das arithmetische Mittel kenne, dann kann ich einen Merkmalswert mit Hilfe der anderen und dem arithmetische Mittel ausrechnen.<a href="04-streuung.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -458,42 +468,42 @@ Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Spr
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "none"
-}
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
 });
 });
 </script>

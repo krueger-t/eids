@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Kapitel 5 Korrelationsanalyse | Einführung in die Statistik</title>
   <meta name="description" content="This is the script of the course ‘Einführung in die Statistik’ (in German) run at the Geography Department of Humboldt-Universität zu Berlin." />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Kapitel 5 Korrelationsanalyse | Einführung in die Statistik" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Tobias Krueger" />
 
 
-<meta name="date" content="2025-01-23" />
+<meta name="date" content="2025-10-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -120,6 +120,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -177,13 +181,13 @@ div.csl-indent {
 <li class="chapter" data-level="3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html"><i class="fa fa-check"></i><b>3</b> Häufigkeiten und Lageparameter</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#ziel-der-deskriptiven-statistik"><i class="fa fa-check"></i><b>3.1</b> Ziel der deskriptiven Statistik</a></li>
-<li class="chapter" data-level="3.2" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#häufigkeiten"><i class="fa fa-check"></i><b>3.2</b> Häufigkeiten</a></li>
+<li class="chapter" data-level="3.2" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#h%C3%A4ufigkeiten"><i class="fa fa-check"></i><b>3.2</b> Häufigkeiten</a></li>
 <li class="chapter" data-level="3.3" data-path="03-haeufigkeit.html"><a href="03-haeufigkeit.html#lageparameter"><i class="fa fa-check"></i><b>3.3</b> Lageparameter</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="04-streuung.html"><a href="04-streuung.html"><i class="fa fa-check"></i><b>4</b> Streuungsparameter, Schiefe und Wölbung</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="04-streuung.html"><a href="04-streuung.html#streuungsparameter"><i class="fa fa-check"></i><b>4.1</b> Streuungsparameter</a></li>
-<li class="chapter" data-level="4.2" data-path="04-streuung.html"><a href="04-streuung.html#schiefe-und-wölbung-von-häufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
+<li class="chapter" data-level="4.2" data-path="04-streuung.html"><a href="04-streuung.html#schiefe-und-w%C3%B6lbung-von-h%C3%A4ufigkeitsverteilungen"><i class="fa fa-check"></i><b>4.2</b> Schiefe und Wölbung von Häufigkeitsverteilungen</a></li>
 <li class="chapter" data-level="4.3" data-path="04-streuung.html"><a href="04-streuung.html#standardisierung-z-transformation"><i class="fa fa-check"></i><b>4.3</b> Standardisierung (z-Transformation)</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="05-korrelation.html"><a href="05-korrelation.html"><i class="fa fa-check"></i><b>5</b> Korrelationsanalyse</a>
@@ -195,7 +199,7 @@ div.csl-indent {
 <li class="part"><span><b>Wahrscheinlichkeitstheorie</b></span></li>
 <li class="chapter" data-level="6" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html"><i class="fa fa-check"></i><b>6</b> Grundlagen der Wahrscheinlichkeitsrechnung</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvorgänge"><i class="fa fa-check"></i><b>6.1</b> Zufallsvorgänge</a></li>
+<li class="chapter" data-level="6.1" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvorg%C3%A4nge"><i class="fa fa-check"></i><b>6.1</b> Zufallsvorgänge</a></li>
 <li class="chapter" data-level="6.2" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#ereignisse"><i class="fa fa-check"></i><b>6.2</b> Ereignisse</a></li>
 <li class="chapter" data-level="6.3" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#zufallsvariablen"><i class="fa fa-check"></i><b>6.3</b> Zufallsvariablen</a></li>
 <li class="chapter" data-level="6.4" data-path="06-wahrscheinlichkeit.html"><a href="06-wahrscheinlichkeit.html#wahrscheinlichkeit-1"><i class="fa fa-check"></i><b>6.4</b> Wahrscheinlichkeit</a></li>
@@ -206,15 +210,15 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="07-verteilungen.html"><a href="07-verteilungen.html#von-der-empirischen-zur-theoretischen-verteilung"><i class="fa fa-check"></i><b>7.1</b> Von der empirischen zur theoretischen Verteilung</a></li>
 <li class="chapter" data-level="7.2" data-path="07-verteilungen.html"><a href="07-verteilungen.html#parameter-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.2</b> Parameter theoretischer Verteilungen</a></li>
-<li class="chapter" data-level="7.3" data-path="07-verteilungen.html"><a href="07-verteilungen.html#kenngrößen-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.3</b> Kenngrößen theoretischer Verteilungen</a></li>
+<li class="chapter" data-level="7.3" data-path="07-verteilungen.html"><a href="07-verteilungen.html#kenngr%C3%B6%C3%9Fen-theoretischer-verteilungen"><i class="fa fa-check"></i><b>7.3</b> Kenngrößen theoretischer Verteilungen</a></li>
 <li class="chapter" data-level="7.4" data-path="07-verteilungen.html"><a href="07-verteilungen.html#distr"><i class="fa fa-check"></i><b>7.4</b> Wichtige Verteilungen und ihre Anwendungen</a></li>
 </ul></li>
 <li class="part"><span><b>Induktive Statistik</b></span></li>
 <li class="chapter" data-level="8" data-path="08-schaetzen.html"><a href="08-schaetzen.html"><i class="fa fa-check"></i><b>8</b> Schätzen von Verteilungsparametern</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-schätzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
-<li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
-<li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-schätzer-für-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
+<li class="chapter" data-level="8.1" data-path="08-schaetzen.html"><a href="08-schaetzen.html#anforderungen-an-sch%C3%A4tzer"><i class="fa fa-check"></i><b>8.1</b> Anforderungen an Schätzer</a></li>
+<li class="chapter" data-level="8.2" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-sch%C3%A4tzer-f%C3%BCr-mu"><i class="fa fa-check"></i><b>8.2</b> Normalverteilung: Schätzer für <span class="math inline">\(\mu\)</span></a></li>
+<li class="chapter" data-level="8.3" data-path="08-schaetzen.html"><a href="08-schaetzen.html#normalverteilung-sch%C3%A4tzer-f%C3%BCr-sigma"><i class="fa fa-check"></i><b>8.3</b> Normalverteilung: Schätzer für <span class="math inline">\(\sigma\)</span></a></li>
 <li class="chapter" data-level="8.4" data-path="08-schaetzen.html"><a href="08-schaetzen.html#qqplot"><i class="fa fa-check"></i><b>8.4</b> Quantil-Quantil-Diagramm (QQ-Plot)</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="09-tests.html"><a href="09-tests.html"><i class="fa fa-check"></i><b>9</b> Statistische Tests</a>
@@ -231,10 +235,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="10.1" data-path="10-regression.html"><a href="10-regression.html#definitionen"><i class="fa fa-check"></i><b>10.1</b> Definitionen</a></li>
 <li class="chapter" data-level="10.2" data-path="10-regression.html"><a href="10-regression.html#beschreibung-vs.-vorhersage"><i class="fa fa-check"></i><b>10.2</b> Beschreibung vs. Vorhersage</a></li>
-<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterführende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
+<li class="chapter" data-level="10.3" data-path="10-regression.html"><a href="10-regression.html#ausblick-weiterf%C3%BChrende-lineare-modelle"><i class="fa fa-check"></i><b>10.3</b> Ausblick: Weiterführende lineare Modelle</a></li>
 <li class="chapter" data-level="10.4" data-path="10-regression.html"><a href="10-regression.html#lineare-regression"><i class="fa fa-check"></i><b>10.4</b> Lineare Regression</a></li>
-<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#erklärte-varianz"><i class="fa fa-check"></i><b>10.5</b> Erklärte Varianz</a></li>
-<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#konfidenzintervalle-der-parameterschätzer"><i class="fa fa-check"></i><b>10.6</b> Konfidenzintervalle der Parameterschätzer</a></li>
+<li class="chapter" data-level="10.5" data-path="10-regression.html"><a href="10-regression.html#erkl%C3%A4rte-varianz"><i class="fa fa-check"></i><b>10.5</b> Erklärte Varianz</a></li>
+<li class="chapter" data-level="10.6" data-path="10-regression.html"><a href="10-regression.html#konfidenzintervalle-der-parametersch%C3%A4tzer"><i class="fa fa-check"></i><b>10.6</b> Konfidenzintervalle der Parameterschätzer</a></li>
 <li class="chapter" data-level="10.7" data-path="10-regression.html"><a href="10-regression.html#regannahmen"><i class="fa fa-check"></i><b>10.7</b> Annahmen der Regression</a></li>
 <li class="chapter" data-level="10.8" data-path="10-regression.html"><a href="10-regression.html#anovalm"><i class="fa fa-check"></i><b>10.8</b> ANOVA als Regressionsproblem</a></li>
 </ul></li>
@@ -272,7 +276,7 @@ div.csl-indent {
 <p>Die Verfahren sind unterschiedlich für nominalskalierte, ordinalskalierte und metrische Merkmale. Wir werden diese jetzt nacheinander einführen. Die Themen können Sie in <span class="citation">Mittag (<a href="#ref-mittag2016">2016</a>)</span>, Kapitel 8 und 9 vertiefen.</p>
 <div id="nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Nominalskalierte Merkmale: Kontingenztabelle und Chi-Quadrat Statistik<a href="05-korrelation.html#nominalskalierte-merkmale-kontingenztabelle-und-chi-quadrat-statistik" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Wir wollen diese Methode am Beispiel des Volksentscheids Tegel von 2017 verdeutlichen.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Der Beschlussentwurf lautete:</p>
+<p>Wir wollen diese Methode am Beispiel des Volksentscheids Tegel von 2017 verdeutlichen.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Der Beschlussentwurf lautete:</p>
 <blockquote>
 <p>“Der Flughafen Berlin-Tegel „Otto-Lilienthal“ ergänzt und entlastet den geplanten Flughafen Berlin Brandenburg „Willy Brandt“ (BER). Der Berliner Senat wird aufgefordert, sofort die Schließungsabsichten aufzugeben und alle Maßnahmen einzuleiten, die erforderlich sind, um den unbefristeten Fortbetrieb des Flughafens Tegel als Verkehrsflughafen zu sichern!”</p>
 </blockquote>
@@ -373,26 +377,22 @@ Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beid
 <p>An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Alle Merkmale (“Distanz” und “Zeit”) sind metrisch skaliert und somit können wir den <strong>Korrelationskoeffizienten nach Bravais-Pearson</strong> verwenden, der mehr Informationen über den Zusammenhang, nämlich <strong>Linearität</strong>, liefert. Einen ersten Eindruck verschafft der <strong>Scatterplot</strong> (auch Streudiagramm), den wir einfach mit der <code>plot()</code> Funktion in <em>R</em> generieren. Als erstes plotten wir die beiden Zeiten (“morgens” und “nachmittags”) gegeneinander:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="05-korrelation.html#cb38-1" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>zeit_morgens, reisedat<span class="sc">$</span>zeit_nachmittags, </span>
 <span id="cb38-2"><a href="05-korrelation.html#cb38-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
-<span id="cb38-3"><a href="05-korrelation.html#cb38-3" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
+<span id="cb38-3"><a href="05-korrelation.html#cb38-3" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>,</span>
+<span id="cb38-4"><a href="05-korrelation.html#cb38-4" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">130</span>),</span>
+<span id="cb38-5"><a href="05-korrelation.html#cb38-5" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">130</span>))</span></code></pre></div>
 <p><img src="eids_files/figure-html/unnamed-chunk-20-1.png" width="80%" /></p>
-<p>Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker.</p>
-<p>Außerdem fällt der Datenpunkt unten in der Mitte auf, der nicht zu dem linearen Zusammenhang passt. Hier hat jemand für morgens die Fahrtzeit 54min angegeben, für nachmittags 1min. Ich vermute, das sollte 1 Stunde heissen, also 60min. In dem Fall ändere ich das Datum auf 60min. Eine andere Möglichkeit wäre, diesen Datenpunkt komplett rauszulassen. In jedem Fall muss eine Änderung oder ein Weglassen von Daten gut begründet und dokumentiert werden!</p>
-<p>Diese sind die “korrigierten” Daten, mit denen ich von jetzt an weiterarbeite:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="05-korrelation.html#cb39-1" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>zeit_morgens, reisedat<span class="sc">$</span>zeit_nachmittags, </span>
-<span id="cb39-2"><a href="05-korrelation.html#cb39-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>,</span>
-<span id="cb39-3"><a href="05-korrelation.html#cb39-3" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, nachmittags (min)&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-22-1.png" width="80%" /></p>
+<p>Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker (wobei besonders lange Fahrzeiten unterrepräsentiert sind).</p>
 <p>Plotten wir nun eine der Zeiten (“morgens”) gegen die Entfernung:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="05-korrelation.html#cb40-1" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens, </span>
-<span id="cb40-2"><a href="05-korrelation.html#cb40-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
-<p><img src="eids_files/figure-html/unnamed-chunk-23-1.png" width="80%" /></p>
-<p><strong>Aufgabe:</strong> <em>Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in “Reisezeit” kommen könnte.</em></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="05-korrelation.html#cb39-1" tabindex="-1"></a><span class="fu">plot</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens, </span>
+<span id="cb39-2"><a href="05-korrelation.html#cb39-2" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-21-1.png" width="80%" /></p>
+<p><strong>Aufgabe:</strong> <em>Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in “Reisezeit” kommen könnte und was es mit dem einzelnen Punkt ganz rechts auf sich haben könnte.</em></p>
 <p>Die <em>lineare</em> Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-<strong>Korrelationskoeffizient nach Bravais-Pearson</strong> <span class="math inline">\(r_{x,y}\)</span> für <span class="math inline">\(n\)</span> Wertepaare <span class="math inline">\(\left(x_i,y_i\right)\)</span> mit <span class="math inline">\(i=1, 2, \ldots, n\)</span> berechnet. Er ergibt sich aus den Standardabweichungen <span class="math inline">\(s_x\)</span> und <span class="math inline">\(s_y\)</span> und der standardisierten Kovarianz <span class="math inline">\(s_{x,y}\)</span> durch:
 <span class="math display">\[r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}\]</span></p>
 <p>In <em>R</em> mit der <code>cor()</code> Funktion:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="05-korrelation.html#cb41-1" tabindex="-1"></a><span class="fu">cor</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens,</span>
-<span id="cb41-2"><a href="05-korrelation.html#cb41-2" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] 0.8162</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="05-korrelation.html#cb40-1" tabindex="-1"></a><span class="fu">cor</span>(reisedat<span class="sc">$</span>distanz, reisedat<span class="sc">$</span>zeit_morgens,</span>
+<span id="cb40-2"><a href="05-korrelation.html#cb40-2" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.7244</code></pre>
 <p>Das Argument <code>use = "complete.obs"</code> teilt R mit, nur vollständige Datenpaare zu verwenden, d.h. ohne “NA”, ansonsten wäre der Output “NA”. Anstatt <code>method = "pearson"</code> sind ebenfalls <code>method = "spearman"</code> und <code>method = "kendall"</code> möglich; beides sind Rangkorrelationskoeffizienten.</p>
 <p>In Abbildung <a href="05-korrelation.html#fig:pearson">5.6</a> sehen Sie Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. Bei augenscheinlich nicht-linearen Zusammenhängen wählt man üblicherweise einen Rangkorrelationskoeffizienten, der dann aussagekräftiger ist.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:pearson"></span>
@@ -401,6 +401,16 @@ Wobei <span class="math inline">\(d_i\)</span> die Differenz der Ränge der beid
 Abbildung 5.6: Werte des Korrelationskoeffizienten für verschiedene Zusammenhänge. <br><small> Quelle: <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Correlation_examples.png/440px-Correlation_examples.png" class="uri">https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Correlation_examples.png/440px-Correlation_examples.png</a>. </small>
 </p>
 </div>
+<p>Wenn wir den Punkt ganz rechts im Diagramm weglassen, ist der lineare Zusammenhang etwas stärker:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="05-korrelation.html#cb42-1" tabindex="-1"></a><span class="co"># generiere Zeitreihe ohne statistische Einheit Nr. 6</span></span>
+<span id="cb42-2"><a href="05-korrelation.html#cb42-2" tabindex="-1"></a>reisedat2 <span class="ot">&lt;-</span> reisedat[<span class="sc">-</span><span class="dv">6</span>,]</span>
+<span id="cb42-3"><a href="05-korrelation.html#cb42-3" tabindex="-1"></a><span class="fu">plot</span>(reisedat2<span class="sc">$</span>distanz, reisedat2<span class="sc">$</span>zeit_morgens, </span>
+<span id="cb42-4"><a href="05-korrelation.html#cb42-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Entfernung (km)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Reisezeit, morgens (min)&quot;</span>)</span></code></pre></div>
+<p><img src="eids_files/figure-html/unnamed-chunk-23-1.png" width="80%" /></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="05-korrelation.html#cb43-1" tabindex="-1"></a><span class="fu">cor</span>(reisedat2<span class="sc">$</span>distanz, reisedat2<span class="sc">$</span>zeit_morgens,</span>
+<span id="cb43-2"><a href="05-korrelation.html#cb43-2" tabindex="-1"></a>    <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0.7778</code></pre>
+<p>Datenpunkte wegzulassen ist gut zu begründen und in jedem Fall transparent zu machen! Wir werden das im Seminar diskutieren.</p>
 
 </div>
 </div>
@@ -418,8 +428,8 @@ Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Spr
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>Die Daten sind <a href="https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html" class="uri">https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html</a> entnommen.<a href="05-korrelation.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<ol start="2">
+<li id="fn2"><p>Die Daten sind <a href="https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html" class="uri">https://www.wahlen-berlin.de/wahlen/BU2017/afspraes/ve/index.html</a> entnommen.<a href="05-korrelation.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -442,42 +452,42 @@ Zimmermann-Janschitz, S. 2014. <em>Statistik in Der Geographie</em>. Berlin: Spr
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": true,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "none"
-}
+  "sharing": {
+    "github": true,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none"
+  }
 });
 });
 </script>

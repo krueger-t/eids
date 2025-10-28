@@ -127,8 +127,8 @@ An dieser Stelle können wir zu unseren Reisedaten zurückkehren. Alle Merkmale 
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024.xlsx", na = "-999")
-# in Zahlen und data.frame umwandeln
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2025.xlsx", na = "-999")
+# in metrische Skala und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
 ```
@@ -136,30 +136,13 @@ reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 ```{r echo=TRUE, out.width='80%'}
 plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags, 
      xlab = "Reisezeit, morgens (min)",
-     ylab = "Reisezeit, nachmittags (min)")
+     ylab = "Reisezeit, nachmittags (min)",
+     xlim = c(0, 130),
+     ylim = c(0, 130))
 
 ```
 
-Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker.
-
-Außerdem fällt der Datenpunkt unten in der Mitte auf, der nicht zu dem linearen Zusammenhang passt. Hier hat jemand für morgens die Fahrtzeit 54min angegeben, für nachmittags 1min. Ich vermute, das sollte 1 Stunde heissen, also 60min. In dem Fall ändere ich das Datum auf 60min. Eine andere Möglichkeit wäre, diesen Datenpunkt komplett rauszulassen. In jedem Fall muss eine Änderung oder ein Weglassen von Daten gut begründet und dokumentiert werden!
-
-Diese sind die "korrigierten" Daten, mit denen ich von jetzt an weiterarbeite:
-
-```{r include=FALSE}
-# Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024_korrigiert.xlsx", na = "-999")
-# in Zahlen und data.frame umwandeln
-reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
-
-```
-
-```{r echo=TRUE, out.width='80%'}
-plot(reisedat$zeit_morgens, reisedat$zeit_nachmittags, 
-     xlab = "Reisezeit, morgens (min)",
-     ylab = "Reisezeit, nachmittags (min)")
-
-```
+Die Zeiten morgens und nachmittags scheinen demnach entlang einer 1:1 Linie zu streuen, d.h. es gibt keinen systematischen Unterschied in den beiden Fahrtzeiten. Das können wir in den kommenden Wochen formal testen. Die Variation um die 1:1 Linie scheint aber mit zunehmender Fahrtzeit zuzunehmen, d.h. der Unterschied der beiden Zeiten variiert bei längeren Fahrtzeiten stärker (wobei besonders lange Fahrzeiten unterrepräsentiert sind).
 
 Plotten wir nun eine der Zeiten ("morgens") gegen die Entfernung:
 
@@ -169,7 +152,7 @@ plot(reisedat$distanz, reisedat$zeit_morgens,
 
 ```
 
-**Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in "Reisezeit" kommen könnte._
+**Aufgabe:** _Überlegen Sie kurz, wie stark die Korrelation hier sein wird! (Auflösung weiter unten.) Überlegen Sie außerdem, woher die Streuung in "Reisezeit" kommen könnte und was es mit dem einzelnen Punkt ganz rechts auf sich haben könnte._
 
 Die _lineare_ Korrelation zweier metrischer Merkmale wird üblicherweise mit dem Produkt-Moment-**Korrelationskoeffizient nach Bravais-Pearson** $r_{x,y}$ für $n$ Wertepaare $\left(x_i,y_i\right)$ mit $i=1, 2, \ldots, n$ berechnet. Er ergibt sich aus den Standardabweichungen $s_x$ und $s_y$ und der standardisierten Kovarianz $s_{x,y}$ durch:
 $$r_{x,y}=\frac{s_{x,y}}{s_x\cdot s_y}=\frac{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)\cdot\left(y_i-\bar y\right)}{\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}\cdot\sqrt{\frac{1}{n-1}\cdot\sum_{i=1}^{n}\left(y_i-\bar y\right)^2}}$$
@@ -189,3 +172,21 @@ In Abbildung \@ref(fig:pearson) sehen Sie Werte des Korrelationskoeffizienten f�
 knitr::include_graphics('figs/pearson.png')
 
 ```
+
+Wenn wir den Punkt ganz rechts im Diagramm weglassen, ist der lineare Zusammenhang etwas stärker:
+
+```{r echo=TRUE, out.width='80%'}
+# generiere Zeitreihe ohne statistische Einheit Nr. 6
+reisedat2 <- reisedat[-6,]
+plot(reisedat2$distanz, reisedat2$zeit_morgens, 
+     xlab = "Entfernung (km)", ylab = "Reisezeit, morgens (min)")
+
+```
+
+```{r echo=TRUE}
+cor(reisedat2$distanz, reisedat2$zeit_morgens,
+    use = "complete.obs", method = "pearson")
+
+```
+
+Datenpunkte wegzulassen ist gut zu begründen und in jedem Fall transparent zu machen! Wir werden das im Seminar diskutieren.

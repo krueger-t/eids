@@ -20,19 +20,19 @@ Dazu brauchen wir erstmal Begriffe wie **absolute Häufigkeit**, **relative Häu
 
 Schauen wir uns dazu die Reisedaten an, die Sie eingegeben haben, und zwar nur die Entfernungen (der *R*-Code wird in den PC-Übungen schnell klar werden):
 
-```{r echo=TRUE}
+```{r echo=TRUE, warning=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
 # der Zusatz na = "-999" sagt R, dass fehlende Werte mit -999 kodiert sind
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024.xlsx", na = "-999")
-# in Zahlen und data.frame umwandeln
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2025.xlsx", na = "-999")
+# in metrische Skala und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 # Ausgabe von reisedat$distanz
 reisedat$distanz
 ```
 
-Das ist eine ungeordnete Reihe von 60 Datenpunkten, den sogenannten **Rohdaten**.
+Das ist eine ungeordnete Reihe von `r length(reisedat$distanz)` Datenpunkten, den sogenannten **Rohdaten**.
 
 Wenn wir die Rohdaten jetzt ordnen und in Klassen einteilen können wir **absolute Häufigkeiten** bestimmen, gewissermaßen durch Abzählen:
 
@@ -55,7 +55,7 @@ $$\sum_{j=1}^{m}h_j=n$$
 Die **relative Häufigkeit**, bezeichnet mit $f_j$ für $f\left(a_j\right)$ und $j=1,\ldots,m$, gibt dann den _Anteil_ der statistischen Einheiten an einer Stichprobe an, welche die Merkmalsausprägung $a_j$ für ein Merkmal $X$ annehmen:
 $$f_j=f\left(a_j\right)=\frac{h\left(a_j\right)}{n}$$
 
-Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. Da das in der `hist()`-Funktion  nicht vorgesehen ist, ist der *R*-Code etwas länger:
+Das Histogramm bleibt gleich, nur dass die vertikale Achse anders skaliert ist. Da das in der `hist()` Funktion  nicht vorgesehen ist, ist der *R*-Code etwas länger:
 
 ```{r echo=TRUE, out.width='80%'}
 # Histogramm berechnen ohne Output
@@ -68,7 +68,7 @@ barplot(h$counts ~ h$mids, space = 0, col = "gray",
 
 ```
 
-Interpretation: Der zweite Balken z.B. geht bis ca. 0.13, d.h. ca. 13% der Entfernungsdaten haben Werte zwischen 5 und 10km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 8 von 60 Datenpunkten sind.
+Interpretation: Der erste Balken z.B. geht bis ca. 0.08, d.h. ca. 8% der Entfernungsdaten haben Werte zwischen 0 und 5km. Wenn wir uns das Histogramm der absoluten Häufigkeiten weiter oben anschauen, dann sehen wir, dass das 5 von 63 Datenpunkten sind.
 
 Die Summe der relativen Häufigkeiten ist 1, was 100% entspricht:
 $$\sum_{j=1}^{m}f_j=1$$
@@ -91,11 +91,11 @@ barplot(h$counts ~ h$mids, space = 0, col = "gray",
 
 ```
 
-Die Häufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Höhe 60, die Gesamtzahl der Datenpunkte $n$, bzw. die relative Höhe 1 (100%). Sehen die dazu auch das Beispiel in @zimmermann2014, Tabelle 3.10 auf Seite 87.
+Die Häufigkeiten der Klassen sind hier kumuliert aufsummiert, d.h. der letzte Balken ganz rechts hat die absolute Höhe `r length(reisedat$distanz)`, die Gesamtzahl der Datenpunkte $n$, bzw. die relative Höhe 1 (100%). Sehen die dazu auch das Beispiel in @zimmermann2014, Tabelle 3.10 auf Seite 87.
 
 Abschließend noch ein paar Worte zur **Klassifizierung**. Äquidistante Klassen, d.h. Klassen gleicher Breite, sind grundsätzlich zu bevorzugen. In *R* können Sie eine gewünschte Anzahl Klassen angeben, die dann äquidistant über den Wertebereich verteilt werden. Das ist sinnvoll für einen ersten Eindruck. Die Grundeinstellung von 10 Klassen ist dabei meist ausreichend. Im Laufe der Analyse wird es manchmal sinnvoller sein, bestimmte Klassen vorzugeben, auch (oder gerade) wenn manche Klassen in der betrachteten Stichprobe nicht vorkommen, wie bei unserem Beispiel der Entfernungsdaten. Sie können in *R* Klassen vorgeben, indem Sie die Klassengrenzen ("breaks") angeben. Hier einige Varianten:
 
-```{r echo=TRUE, fig.show='hold', out.width = '50%'}
+```{r echo=TRUE, fig.show='hold', out.width = '33%'}
 # Klassenbreite 5km
 hist(reisedat$distanz, breaks = seq(0, 80, 5),
      main = "5km Klassenbreite", 
@@ -117,7 +117,7 @@ Je größer die Klassenbreite, desto mehr Nuancen der Verteilung der Werte gehen
 
 Lageparameter sind Maße der zentralen Tendenz einer Häufigkeitsverteilung. Siehe @zimmermann2014, Kapitel 3.2.2. Wichtig sind uns in dieser Veranstaltung der **Modus**, das **arithmetische Mittel** und der **Median**, weniger das harmonische Mittel und das geometrische Mittel, die Sie aber bei @zimmermann2014 nachlesen können.
 
-Der **Modus** $\bar x_{mod}$ entspricht jener Merkmalsausprägung $a_j$, die in der Häufigkeitsverteilung (lokal) _am häufigsten_ vorkommt. In unseren Entfernungsdaten wäre das der Wert $12.5$:
+Der **Modus** $\bar x_{mod}$ entspricht jener Merkmalsausprägung $a_j$, die in der Häufigkeitsverteilung (lokal) _am häufigsten_ vorkommt. In unseren Entfernungsdaten wäre das der Wert $7.5$:
 
 ```{r echo=TRUE, out.width='80%'}
 h <- hist(reisedat$distanz, breaks = seq(0, 80, 5), plot = FALSE)
@@ -131,9 +131,9 @@ h$mids[h$counts == max(h$counts)]
 Bei "künstlichen" Klassen wie in unserem Beispiel wird typischerweise die Mitte der häufigsten Klasse angegeben. Sie sehen also, der Modus ist in diesem Fall abhängig von der gewählten Klassifizierung und nicht eindeutig. Bei @zimmermann2014, S. 110 - 112 finden Sie eine "Korrektur" des Modus für ungleiche Klassenbreiten; von der Klassenmitte hin zu der Nachbarklasse, die häufiger ist als die andere Nachbarklasse. Mit dem gleichen Argument könnte man auch den Modus bei gleicher Klassenbreite korrigieren. Diese Art der Korrektur des Modus wird aber immer ein Kompromiss bleiben. Deshalb würde ich folgendes empfehlen:
 
 1. Ungleiche Klassenbreiten vermeiden.
-2. Ein Klasse für den Modus ("Modalklasse") angeben, z.B. für unsere Entfernungsdaten: "Bei einer Klassierung der Entfernungsdaten mit Klassenbreite 5km ist die häufigste Klasse $(10;15]$."
+2. Ein Klasse für den Modus ("Modalklasse") angeben, z.B. für unsere Entfernungsdaten: "Bei einer Klassierung der Entfernungsdaten mit Klassenbreite 5km ist die häufigste Klasse $(5;10]$."
 
-Im obigen Histogramm der Entfernungsdaten sehen wir außerdem ein weiteres lokales Maximum bei $37.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall, der hier vorliegt, ist die **bimodale** Verteilung, die zwei lokale Maxima hat.
+Im obigen Histogramm der Entfernungsdaten sehen wir außerdem ein weiteres lokales Maximum bei $62.5$, es handelt sich also in dieser Klassifizierung um eine **multimodale** Verteilung - eine Verteilung mit mehreren Modi. Der Sonderfall, der hier vorliegt, ist die **bimodale** Verteilung, die zwei lokale Maxima hat.
 
 Das **arithmetische Mittel** $\bar x$ der Merkmalswerte $x_1, x_2, \ldots, x_n$ ist die Summe aller Merkmalswerte $x_i$ relativ zur Stichprobengröße $n$:
 $$\bar x=\frac{\sum_{i=1}^{n}x_i}{n}$$
@@ -171,7 +171,7 @@ Der Median wird auch **0.5-Quantil** genannt. Allgemein entspricht ein **p-Quant
 Ist das Produkt $n\cdot p$ _nicht ganzzahlig_, wird für $j$ die dem Produkt nächstgrößere Zahl verwendet:
 $$\bar x_p=x_j$$
 
-Ist das Produkt $n\cdot p$ _ganzzahlig_, dann ist $j=n\cdot p$:
+Ist das Produkt $n\cdot p$ _ganzzahlig_, dann ist $j=n\cdot p$ und:
 $$\bar x_p=\frac{x_j+x_{j+1}}{2}$$
 
 Auf Quantile werden wir im Zuge theoretischer Verteilungen noch näher zu sprechen kommen (s. Kapitel \@ref(verteilungen)).

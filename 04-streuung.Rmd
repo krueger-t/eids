@@ -6,7 +6,7 @@ Lesen Sie dazu bitte Kapitel 3.2.3 von @zimmermann2014.
 
 **Streuungsparameter** sind Maße der Variabilität einer Häufigkeitsverteilung. Uns interessieren hier v.a. **Spannweite**, **Quartilsabstand**, **Varianz und Standardabweichung** und **Variationskoeffizient**, weniger durchschnittliche absolute Abweichung, da wir letztere kaum in der Praxis sehen.
 
-Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-Whisker-Plot, kurz einfach **Boxplot**, verdeutlichen (Abbildung \@ref(fig:boxplot)). Ein Boxplot fasst die Verteilung der Werte eines Merkmals (in einer Stichprobe) zusammen. Die **Spannweite** ist der Abstand zwischen Minimum und Maximum der Merkmalswerte. Der **Quartilsabstand** ist der Abstand zwischen 0.25-Quantil und 0.75-Quantil; in diesem Bereich liegen 50% der Merkmalswerte (0.75 - 0.25). 0.25-Quantil, 0.5-Quantil (Median) und 0.75-Quantil heißen auch 1., 2. und 3. Quartil, weil sie den Wertebereich in vier gleichgroße Teile teilen: zwischen Minimum und 0.25-Quantil liegen 25% der Merkmalswerte, zwischen 0.25-Quantil und Median 25%, zwischen Median und 0.75-Quantil 25% und zwischen 0.75-Quantil und Maximum ebenfalls 25% aller Merkmalswerte. Ebenso gibt es auch Quintile usw., diese sind aber in der Praxis kaum von Bedeutung. Ein Boxplot kann horizontal (wie hier) oder vertikal dargestellt werden.
+Spannweite und Quartilsabstand lassen sich am besten mit einem sogenannten Box-Whisker-Plot, kurz **Boxplot**, verdeutlichen (Abbildung \@ref(fig:boxplot)). Ein Boxplot fasst die Verteilung der Werte eines Merkmals (in einer Stichprobe) zusammen. Die **Spannweite** ist der Abstand zwischen Minimum und Maximum der Merkmalswerte. Der **Quartilsabstand** ist der Abstand zwischen 0.25-Quantil und 0.75-Quantil; in diesem Bereich liegen 50% der Merkmalswerte (0.75 - 0.25). 0.25-Quantil, 0.5-Quantil (Median) und 0.75-Quantil heißen auch 1., 2. und 3. Quartil, weil sie den Wertebereich in vier gleichgroße Teile teilen: zwischen Minimum und 0.25-Quantil liegen 25% der Merkmalswerte, zwischen 0.25-Quantil und Median 25%, zwischen Median und 0.75-Quantil 25% und zwischen 0.75-Quantil und Maximum ebenfalls 25% aller Merkmalswerte. Ebenso gibt es auch Quintile usw., diese sind aber in der Praxis kaum von Bedeutung. Ein Boxplot kann horizontal (wie hier) oder vertikal dargestellt werden.
 
 ```{r boxplot, echo=FALSE, fig.align='center', message = FALSE, warning = FALSE, results = FALSE, fig.cap='Boxplot mit Quartilsabstand und Spannweite.', out.width='80%'}
 # knitr::include_graphics('figs/boxplot.png')
@@ -63,8 +63,8 @@ Die Entsprechung können Sie auch in unseren Reisedaten sehen (hier sowohl "Dist
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024.xlsx", na = "-999")
-# in Zahlen und data.frame umwandeln
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2025.xlsx", na = "-999")
+# in metrische Skala und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 
 ```
@@ -91,12 +91,12 @@ boxplot(reisedat$zeit_nachmittags, range = 0, horizontal = TRUE,
 
 ```
 
-Die Variable "Distanz" ist schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Die beiden Variablen "Zeit" sind symmetrischer verteilt, die zentralen 50% der Verteilungen - die "Boxen" im Boxplot - befinden sich näher der Mitte. Für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen) ist es wichtig, dass sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
+Die Variable "Distanz" ist schief verteilt, die zentralen 50% der Verteilung - die "Box" im Boxplot - befinden sich links der Mitte. Die beiden Variablen "Zeit" sind symmetrischer verteilt, die zentralen 50% der Verteilungen - die "Boxen" im Boxplot - befinden sich näher der Mitte. Für das Verständnis von Verteilungen in Kapitel \@ref(verteilungen) ist es wichtig, dass Sie den Zusammenhang zwischen Histogramm und Boxplot verstehen!
 
 Nun zu den weiteren Streuungsparametern. Die **Varianz** $s^2$ ist die mittlere ("durchschnittliche") quadrierte Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, n\right)$ vom arithmetischen Mittel $\bar x$:
 $$s^2=\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}$$
 
-Genau genommen ist das die **korrigierte Varianz**, bei der durch $n-1$ geteilt wird und nicht durch $n$ wie man bei einer Mittelung erwarten könnte. Das Teilen durch $n-1$ garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner $n-1$ wird **Anzahl Freiheitsgrade** genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) *frei* zur Verfügung stehen. Im Fall der Varianz ist ein Wert der Stichprobe bereits "belegt" – durch das arithmetische Mittel. Daher reduziert sich die Zahl der Elemente der Stichprobe, die in die Berechnung eingehen um eins.
+Genau genommen ist das die **korrigierte Varianz**, bei der durch $n-1$ geteilt wird und nicht durch $n$ wie man bei einer Mittelung erwarten könnte. Das Teilen durch $n-1$ garantiert eine optimale Schätzung der Varianz der Grundgesamtheit anhand der Stichprobe - mehr dazu in der schließenden Statistik. Der Nenner $n-1$ wird **Anzahl Freiheitsgrade** genannt und bezeichnet die Anzahl der Werte in einer Stichprobe, die für die Berechnung des Parameters (hier Varianz) *frei* zur Verfügung stehen, d.h. in denen sich der Zufallsprozess der Stichprobenziehung ausdrücken kann. Im Fall der Varianz ist ein Wert der Stichprobe bereits "belegt" – durch das arithmetische Mittel.^[Wenn ich das arithmetische Mittel kenne, dann kann ich einen Merkmalswert mit Hilfe der anderen und dem arithmetische Mittel ausrechnen.] Daher reduziert sich die Zahl der *freien* Elemente der Stichprobe, die in die Berechnung eingehen um eins.
 
 Die **Standardabweichung** $s$ ist die Quadratwurzel der mittleren quadrierten Abweichung der Merkmalswerte $x_i\quad\left(i=1, 2, \ldots, n\right)$ vom arithmetischen Mittel $\bar x$, d.h. die Quadratwurzel der Varianz:
 $$s=\sqrt{s^2}=\sqrt{\frac{\sum_{i=1}^{n}\left(x_i-\bar x\right)^2}{n-1}}$$
@@ -200,7 +200,7 @@ print(c(skew_d, med_d, mean_d))
 
 ```
 
-Die Verteilungen der Merkmale "Zeit, morgens" und "Zeit, nachmittags" sind eher symmetrisch:
+Die Verteilungen der Merkmale "Zeit, morgens" und "Zeit, nachmittags" sind weniger rechtsschief:
 
 ```{r echo=TRUE, warning=FALSE}
 # "Zeit, morgens" in min
@@ -242,7 +242,7 @@ $$a_4>0$$
 Für eine "flachere" Verteilung als die Normalverteilung gilt: </center>
 $$a_4<0$$
 
-Die Verteilungen der Merkmale "Distanz" und "Zeit, nachmittags" unserer Reisedaten sind spitzer als die Normalverteilung, wobei die Variable "Distanz" wegen ihrer Rechtsschiefe ohnehin nicht mit der Normalverteilung vergleichbar ist. Die Verteilung des Merkmals "Zeit, morgens" is flacher als die Normalverteilung:
+Die Verteilung des Merkmals "Distanz" unserer Reisedaten ist spitzer als die Normalverteilung, wobei diese Variable wegen ihrer Rechtsschiefe ohnehin nicht mit der Normalverteilung vergleichbar ist. Die Verteilungen der Merkmale "Zeit, morgens" und "Zeit, nachmittags" sind etwas flacher als die Normalverteilung:
 
 ```{r echo=TRUE}
 # Wölbung der "Distanz"
@@ -261,4 +261,4 @@ $$\begin{equation}
 z_i=\frac{x_i-\bar x}{s_x}
 (\#eq:standardisierung)
 \end{equation}$$
-Der neue Mittelwert ist $\bar z=0$, die neue Standardabweichung ist $s_z=1$. Sollten die $x$ Daten einer sogenannten Normalverteilung folgen (s. Kapitel \@ref(verteilungen)) dann folgen die $z$ Daten einer Standardnormalverteilung.
+Der neue Mittelwert ist $\bar z=0$, die neue Standardabweichung ist $s_z=1$. Sollten die $x$ Daten einer Normalverteilung folgen (s. Kapitel \@ref(verteilungen)) dann folgen die $z$ Daten einer Standardnormalverteilung.
