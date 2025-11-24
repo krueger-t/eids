@@ -29,11 +29,11 @@ So wie wir **diskrete und stetige Zufallsvariablen** unterscheiden (vgl. Kapitel
 
 Wir haben bereits Darstellungen von **empirischen Verteilungen** in der Form von Histogrammen (und Boxplots) kennengelernt (vgl. Kapitel \@ref(haeufigkeit)). Nehmen wir das Beispiel "Entfernung" aus den Reisedaten (Abbildung \@ref(fig:fFempirisch)). "Entfernung" ist eine stetige Zufallsvariable, die hier aber klassiert dargestellt ist. Ein Beispiel für eine diskrete Zufallsvariable ist das Merkmal "Anzahl Vulkanausbrüche" aus @zimmermann2014.
 
-```{r fFempirisch, echo=FALSE, fig.align='center', fig.cap='Links: Empirische **Verteilung** des Merkmals "Entfernung". Der 1. Balken z.B. hat eine Höhe von etwa $0.1$; d.h. rund 10% der Merkmalswerte sind in Klasse 1 (0 - 5km). Rechts: Empirische **Verteilungsfunktion** des Merkmals "Entfernung". Der 4. Balken hat eine Höhe von etwa $0.75$; d.h. rund 75% der Merkmalswerte sind kleiner oder gleich 20km.', fig.show='hold', out.width='50%'}
+```{r fFempirisch, echo=FALSE, fig.align='center', fig.cap='Links: Empirische **Verteilung** des Merkmals Entfernung. Der 1. Balken z.B. hat eine Höhe von etwa $0.08$; d.h. rund 8% der Merkmalswerte sind in Klasse 1 (0 - 5km). Rechts: Empirische **Verteilungsfunktion** des Merkmals Entfernung. Der 4. Balken hat eine Höhe von etwa $0.86$; d.h. rund 86% der Merkmalswerte sind kleiner oder gleich 20km.', fig.show='hold', out.width='50%'}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024_korrigiert.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2025.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 # Histogramm berechnen ohne Output
@@ -53,9 +53,9 @@ plot(h2, freq = TRUE, col = "gray",
 
 Die **theoretische Verteilung** ist eine mathematische Funktion, die an die Daten der Stichprobe angepasst wurde (Abbildung \@ref(fig:fFtheoretisch)). Genau genommen ist die theoretische Verteilung unser Modell für die Grundgesamtheit, aus der die Stichprobe entnommen wurde. Aber die Parameter dieses Modells werden anhand der Stichprobendaten geschätzt (wie genau lernen wir in Kapitel \@ref(schaetzen)). Für die Entfernungsdaten passt die _Lognormalverteilung_ ganz gut - aber nicht perfekt - mehr dazu [weiter unten](#log).
 
-```{r fFtheoretisch, echo=FALSE, fig.align='center', fig.cap='Links: Theoretische **Verteilung** des Merkmals "Entfernung" über der empirischen Verteilung. Hier wurde eine _Lognormalverteilung_ angepasst. Rechts: Theoretische **Verteilungsfunktion** des Merkmals "Entfernung" über der empirischen Verteilungsfunktion.', fig.show='hold', out.width='50%'}
+```{r fFtheoretisch, echo=FALSE, fig.align='center', fig.cap='Links: Theoretische **Verteilung** des Merkmals Entfernung über der empirischen Verteilung. Hier wurde eine _Lognormalverteilung_ angepasst. Rechts: Theoretische **Verteilungsfunktion** des Merkmals Entfernung über der empirischen Verteilungsfunktion.', fig.show='hold', out.width='50%'}
 plot(h, freq = FALSE, col = "gray",
-     main = "", xlab = "Entfernung (km)", ylab = "Dichtefunktion")
+     main = "", ylim = c(0, 0.08), xlab = "Entfernung (km)", ylab = "Dichtefunktion")
 curve(dlnorm(x, meanlog=mean(log(reisedat$distanz), na.rm=TRUE), sdlog=sd(log(reisedat$distanz), na.rm=TRUE)), add=TRUE, col = "red")
 plot(h2, freq = TRUE, col = "gray",
      main = "", xlab = "Entfernung (km)", ylab = "Verteilungsfunktion")
@@ -106,7 +106,7 @@ $$\begin{equation}
 X\sim N(\mu,\sigma)
 (\#eq:xnverteilt)
 \end{equation}$$
-Das Tildesymbol $\sim$ bedeutet "ist verteilt gemäß", das $N$ steht für die Normalverteilung und in Klammern stehen die Parameter der Verteilung, in diesem Fall $\mu$ und $\sigma$. Andere Verteilungen haben eine höhere oder auch geringere Anzahl Parameter und diese haben oft auch andere Bezeichnungen. Im Fall der Normalverteilung ist $\mu$ der Mittelwert (Erwartungswert) und $\sigma$ ist die Standardabweichung der Zufallsvariable $X$^[Manchmal finden wir die Notation $X\sim N(\mu,\sigma^2)$ mit der Varianz $\sigma^2$.]. Es handelt sich hier um _theoretische_ Parameter der Grundgesamtheit, nicht zu verwechseln mit den _empirischen_ Parametern einer Stichprobe. Wenn die Stichprobe aber tatsächlich aus einer normalverteilten Grundgesamtheit stammt, dann sind empirischer Mittelwert und empirische Standardabweichung die _Schätzer_ der entsprechenden theoretischen Parameter! Das Schätzen von Verteilungsparametern wird uns in Kapitel \@ref(schaetzen) beschäftigen.
+Das Tildesymbol $\sim$ bedeutet "ist verteilt gemäß". Das $N$ steht für die Normalverteilung. In Klammern stehen die Parameter der Verteilung, in diesem Fall $\mu$ und $\sigma$. Andere Verteilungen haben eine höhere oder auch geringere Anzahl Parameter und diese haben oft auch andere Bezeichnungen. Im Fall der Normalverteilung ist $\mu$ der Mittelwert (Erwartungswert) und $\sigma$ ist die Standardabweichung der Zufallsvariable $X$^[Manchmal finden wir die Notation $X\sim N(\mu,\sigma^2)$ mit der Varianz $\sigma^2$.]. Es handelt sich hier um _theoretische_ Parameter der Grundgesamtheit, nicht zu verwechseln mit den _empirischen_ Parametern einer Stichprobe. Wenn die Stichprobe aber tatsächlich aus einer normalverteilten Grundgesamtheit stammt, dann sind empirischer Mittelwert und empirische Standardabweichung die _Schätzer_ der entsprechenden theoretischen Parameter! Das Schätzen von Verteilungsparametern wird uns in Kapitel \@ref(schaetzen) beschäftigen.
 
 Den Effekt verschiedener Werte für $\mu$ und $\sigma$ auf die Lage und Breite der Verteilung sehen wir wenn wir $\mu$ und $\sigma$ variieren (Abbildung \@ref(fig:npdfvariation)).
 
@@ -308,7 +308,7 @@ h <- hist(reisedat$distanz, breaks = seq(0, 80, 5), plot = FALSE)
 h$counts <- h$counts / sum(h$counts)
 # plot
 plot(h, freq = FALSE, col = 'gray',
-     main = '', xlab = 'Entfernung (km)', ylab = 'Dichtefunktion')
+     main = '', ylim = c(0,0.08), xlab = 'Entfernung (km)', ylab = 'Dichtefunktion')
 curve(dlnorm(x, meanlog = mean(log(reisedat$distanz), na.rm=TRUE),
              sdlog = sd(log(reisedat$distanz), na.rm=TRUE)), add = TRUE, col = 'red')
 
