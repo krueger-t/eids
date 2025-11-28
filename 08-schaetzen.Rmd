@@ -13,7 +13,7 @@ In diesem Kapitel diskutieren wir:
 - den Schätzer der Standardabweichung $\sigma$ einer Normalverteilung
 - das Quantil-Quantil-Diagramm (QQ-Plot) als visueller Verteilungstest
 
-Zunächst aber ein paar Worte zum Grundprinzip der schließenden Statistik (vgl. @mittag2016, Abb. 14.1, S. 212). Wie wir wissen ist eine Stichprobe (im besten Fall) eine zufällige Auswahl von Merkmalsträgern aus einer Grundgesamtheit von Merkmalsträgern. In der schließenden Statistik geht es jetzt um die Verdichtung der Informationen in der Stichprobe in Form von Stichprobenfunktionen, mit denen wir _bestimmte Parameter der Grundgesamtheit schätzen_. Im Fall von Verteilungsparametern handelt es sich bei den Stichprobenfunktionen v.a. um den Mittelwert und die Standardabweichung.
+Zunächst aber ein paar Worte zum Grundprinzip der schließenden Statistik (vgl. @mittag2016, Abb. 14.1, S. 212). Wie wir wissen, ist eine Stichprobe (im besten Fall) eine zufällige Auswahl von statistischen Einheiten aus einer Grundgesamtheit von statistischen Einheiten. In der schließenden Statistik geht es jetzt um die Verdichtung der Informationen in der Stichprobe in Form von Stichprobenfunktionen, mit denen wir _bestimmte Parameter der Grundgesamtheit schätzen_. Im Fall von Verteilungsparametern handelt es sich bei den Stichprobenfunktionen v.a. um den Mittelwert und die Standardabweichung.
 
 ## Anforderungen an Schätzer
 
@@ -23,7 +23,7 @@ Die Parameter der Stichprobe (Mittelwert, Standardabweichung etc.) dienen als **
 - _Konsistenz_: Die Genauigkeit der Schätzung soll mit wachsender Stichprobengröße zunehmen
 - _Effizienz_: Unterschiede der Schätzwerte sollen bei Ziehung verschiedener Stichproben möglichst gering sein
 
-In wie weit diese Anforderungen erfüllt sind ergibt sich aus dem _statistischen Modell der Grundgesamtheit_, z.B. dass Merkmalsausprägungen normalverteilt ist. Schauen Sie sich dazu nochmal Kapitel \@ref(verteilungen) an. Die Abbildungen \@ref(fig:fFempirisch) und \@ref(fig:fFtheoretisch) zeigen wie wir von der empirischen zur theoretischen Verteilung kommen. In Abbildungen \@ref(fig:npdfvariation) und \@ref(fig:ncdfvariation) sehen wir die Normalverteilung als ein solches theoretisches Modell der Grundgesamtheit für verschiedene Konstellationen der Parameter $\mu$ und $\sigma$.
+In wie weit diese Anforderungen erfüllt sind, ergibt sich aus dem _statistischen Modell der Grundgesamtheit_, z.B. dass Merkmalsausprägungen normalverteilt ist. Schauen Sie sich dazu nochmal Kapitel \@ref(verteilungen) an. Die Abbildungen \@ref(fig:fFempirisch) und \@ref(fig:fFtheoretisch) zeigen wie wir von der empirischen zur theoretischen Verteilung kommen. In Abbildungen \@ref(fig:npdfvariation) und \@ref(fig:ncdfvariation) sehen wir die Normalverteilung als ein solches theoretisches Modell der Grundgesamtheit für verschiedene Konstellationen der Parameter $\mu$ und $\sigma$.
 
 Da die Stichprobendaten als Realisationen von Zufallsvariablen interpretiert werden (vgl. Kapitel \@ref(verteilungen)), ist auch der aus ihnen errechnete Schätzwert eine Realisation einer Zufallsvariable, die **Schätzer** genannt wird. Dazu die folgende Notation:
 
@@ -46,7 +46,7 @@ B(\hat\theta)=E(\hat\theta)-\theta
 (\#eq:bias)
 \end{equation}$$
 
-Ein verzerrter Schätzer, dessen Verzerrung gegen Null geht wenn der Stichprobenumfang $n$ gegen Unendlich geht heißt **asymptotisch erwartungstreu**:
+Ein verzerrter Schätzer, dessen Verzerrung gegen Null geht wenn der Stichprobenumfang $n$ gegen Unendlich geht, heißt **asymptotisch erwartungstreu**:
 $$\begin{equation}
 \lim_{n\to\infty}E(\hat\theta)=\theta
 (\#eq:asymptotischerwartungstreu)
@@ -68,7 +68,7 @@ s_{\hat\mu}=\frac{s}{\sqrt{n}}
 (\#eq:smuhat)
 \end{equation}$$
 
-Wobei $s$ die Standardabweichung der Stichprobe ist (vgl. Kapitel \@ref(streuung)) und $n$ der Stichprobenumfang. Wir sehen an der Formel, dass je kleiner die Standardabweichung der Stichprobe ist und je größer der Stichprobenumfang ist desto besser die Schätzung wird - das ist die o.g. _Konsistenzeigenschaft_, die wir von einem Schätzer erwarten.
+Wobei $s$ die Standardabweichung der Stichprobe ist (vgl. Kapitel \@ref(streuung)) und $n$ der Stichprobenumfang. Wir sehen an der Formel, dass die Schätzung besser wird je kleiner die Standardabweichung der Stichprobe ist und je größer der Stichprobenumfang ist - das ist die o.g. _Konsistenzeigenschaft_, die wir von einem Schätzer erwarten.
 
 Der Standardfehler wird mit wahrscheinlichkeitstheoretischen Annahmen verknüpft und geht so in die Berechnung des sogenannten **Konfidenzintervalls** ein, das die Unsicherheit des Schätzers mit Wahrscheinlichkeiten ausdrückt. Das Konfidenzintervall des Mittelwertschätzers wollen wir im Folgenden einmal herleiten. Das bildet die Grundlage für viele ähnliche Herleitungen, die später bei den Tests und bei der Regression eine Rolle spielen, die wir dann aber nicht mehr so ausführlich behandeln werden.
 
@@ -80,7 +80,7 @@ $$\begin{equation}
 
 Die Herleitung können Sie z.B. in @mittag2016, S. 218ff nachlesen. Hier soll uns nur die Bedeutung dieser Formel interessieren. $\hat\mu-\mu$ ist die Differenz des Schätzers vom wahren Mittelwert (den wir nicht kennen). Diese Differenz wird mit dem Standardfehler des Schätzers $s_{\hat\mu}$ standardisiert. Das Symbol $\sim$ ("Tilde") heißt "ist verteilt gemäß" (vgl. Kapitel \@ref(verteilungen)). Und $t_{n-1}$ steht für die t-Verteilung, die einen Parameter hat (genannt "Freiheitsgrade"), der hier den Wert $n-1$ annimmt. Man spricht von einer t-Verteilung mit $n-1$ Freiheitsgraden. Je größer die Anzahl Freiheitsgrade, desto schmaler die t-Verteilung. Abbildung \@ref(fig:tpdfcdfvariation) zeigt die t-Verteilung für verschiedene Freiheitsgrade. Wenn $n$ gegen Unendlich geht, dann geht die t-Verteilung in die Standardnormalverteilung $N(0,1)$ über (vgl. Abbildung \@ref(fig:npdf)). Man sieht in Abbildung \@ref(fig:tpdfcdfvariation), dass sich schon zwischen 100 und 1000 Freiheitsgraden nicht mehr viel an der Breite der t-Verteilung ändert. Wie die Standardnormalverteilung geht die t-Verteilung von $-\infty$ bis $+\infty$ und ist symmetrisch um einen Mittelwert 0. D.h. mit dieser Verteilung erwarten wir bei wiederholter Stichprobenziehung _im Mittel_ den wahren Mittelwert der Grundgesamtheit genau zu schätzen, $E\left(\hat\mu-\mu\right)=0$. Aber von Stichprobe zu Stichprobe erwarten wir eine Variation des Schätzwertes gemäß der t-Verteilung, Formel \@ref(eq:muhatstand).
 
-```{r tpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariable $Z$ für verschiedene Freiheitsgrade (der einzige Parameter der t-Verteilung heißt "Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden t-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+```{r tpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der t-Verteilung einer beliebigen Zufallsvariable $Z$ für verschiedene Freiheitsgrade (der einzige Parameter der t-Verteilung heißt Freiheitsgrade). Rechts: Verteilungsfunktion der entsprechenden t-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # pdf
 plot(seq(-5,5,0.01), dt(seq(-5,5,0.01), 1), ylim=c(0,0.4), type='l',
      xlab='Z=z', ylab='Dichtefunktion')
@@ -161,13 +161,13 @@ $$\begin{equation}
 (\#eq:kihatmustand4)
 \end{equation}$$
 
-Das ist nun das zentrale 95% Konfidenzintervall, das besagt: Die Wahrscheinlichkeit, dass der wahre Wert $\mu$ größer oder gleich $\bar x-t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}$ und kleiner oder gleich $\bar x+t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}$ ist, ist 0.95. Man kann das Konfidenzintervall auch mit den Intervallgrenzen so schreiben:
+Das ist das zentrale 95% Konfidenzintervall, das besagt: Die Wahrscheinlichkeit, dass der wahre Wert $\mu$ größer oder gleich $\bar x-t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}$ und kleiner oder gleich $\bar x+t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}$ ist, ist 0.95. Man kann das Konfidenzintervall auch mit den Intervallgrenzen so schreiben:
 $$\begin{equation}
 KI=\left[\bar x-t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}};\bar x+t_{n-1;0.975}\cdot\frac{s}{\sqrt{n}}\right]
 (\#eq:kihatmustand5)
 \end{equation}$$
 
-Beachten Sie die **Interpretation** des Konfidenzintervalls, die sich aus dem klassischen Wahrscheinlichkeitsbegriff ergibt (vgl. Kapitel \@ref(wahrscheinlichkeit)): Bei hypothetischer wiederholter Stichprobenziehung des selben Umfangs aus der selben Grundgesamtheit enthält in 95% der Fälle das Konfidenzintervall den wahren Wert, während die restlichen 5% der Intervalle den wahren Wert nicht enthalten (Abbildung \@ref(fig:kiinterpretation)). Für die einzige Stichprobe, die wir jeweils vorliegen haben ist das _keine_ Wahrscheinlichkeit, dass der wahre Wert in den Grenzen des Konfidenzinervalls liegt! Das wird in der Praxis often verwechselt, also behalten Sie sich das gut.
+Beachten Sie die **Interpretation** des Konfidenzintervalls, die sich aus dem klassischen Wahrscheinlichkeitsbegriff ergibt (vgl. Kapitel \@ref(wahrscheinlichkeit)): Bei hypothetischer wiederholter Stichprobenziehung aus der Grundgesamtheit enthält in 95% der Fälle das Konfidenzintervall den wahren Wert, während die restlichen 5% der Intervalle den wahren Wert nicht enthalten (Abbildung \@ref(fig:kiinterpretation)). Für die einzige Stichprobe, die wir jeweils vorliegen haben ist das _keine_ Wahrscheinlichkeit, dass der wahre Wert in den Grenzen des Konfidenzinervalls liegt! Das wird in der Praxis often verwechselt, also behalten Sie sich das gut.
 
 ```{r kiinterpretation, echo=TRUE, fig.align='center', fig.cap='50 Wiederholungen von Stichprobenziehungen aus der gleichen Grundgesamtheit, $N(0,1)$, aus denen jeweils der Mittelwert geschätzt wurde, einmal mit $n=5$ (links) und einmal mit $n=10$ (rechts). Gezeigt ist jeweils der geschätzte Mittelwert mit 95% Konfidenzintervall. Konfidenzintervalle, die den wahren Wert $\\mu=0$ nicht einschließen sind rot markiert; das sind bei einer ausreichenden Anzahl Wiederholungen 5%, d.h. in diesem Fall 2-3 von 50. Wenn hier die Grafiken abweichen dann liegt das an der geringen Anzahl Wiederholungen. Außerdem sehen wir, dass bei größerem Stichprobenumfang der Standardfehler und damit die Breite der Konfidenzintervalle kleiner sind ($n=10$ rechts im Vergleich zu $n=5$ links); vgl. Gleichung \\@ref(eq:smuhat). Nach: @mittag2016.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # plot 1: 5 Zufallszahlen
@@ -230,7 +230,7 @@ $$\begin{equation}
 
 > In Worten: Der Schätzer der Standardabweichung einer normalverteilten Grundgesamheit $\hat\sigma$ ist die Standardabweichung einer Stichprobe aus dieser Grundgesamtheit.
 
-Die Herleitung beider Schätzer erfolgt über die sogenannte Maximum-Likelihood-Theorie, auf die wir hier nicht näher eingehen wollen. Sie können die Herleitung aber z.B. in @dormann2013, S. 48ff nachlesen. Auf der Maximum-Likelihood-Theorie basiert die Annahme _unabhängig identisch verteilter (u.i.v.) Daten_. Nur wenn diese erfüllt ist, sind die o.g. wahrscheinlichkeitstheoretische Aussagen wie Standardfehler und Konfidenzintervalle gültig! Oft, z.B. wenn Daten korrelieren, ist dies nur annäherungsweise der Fall und wir müssen andere Formeln benutzen.
+Für den Schätzer der Standardabweichung können wir keinen Standarfehler berechnen, da die Stichprobe keine Informationen dazu enthält (die Standardabweichung der Stichprobe geht in die Berechnung des Standardfehlers des Mittelwerts ein, darüber hinaus haben wir keine Informationen). Die Herleitung beider Schätzer erfolgt über die sogenannte Maximum-Likelihood-Theorie, auf die wir hier nicht näher eingehen wollen. Sie können die Herleitung aber z.B. in @dormann2013, S. 48ff nachlesen. Auf der Maximum-Likelihood-Theorie basiert die Annahme _unabhängig identisch verteilter (u.i.v.) Daten_. Nur wenn diese erfüllt ist, sind die o.g. wahrscheinlichkeitstheoretische Aussagen wie Standardfehler und Konfidenzintervalle gültig! Oft, z.B. wenn Merkmalswerte korrelieren, ist dies nur annäherungsweise der Fall und wir müssen andere Formeln benutzen.
 
 ## Quantil-Quantil-Diagramm (QQ-Plot) {#qqplot}
 
@@ -239,12 +239,12 @@ Ein visueller Test, ob eine Stichprobe aus einer bestimmten Verteilung entstammt
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library("readxl")
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024_korrigiert.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2025.xlsx", na = "-999")
 # in Zahlen und data.frame umwandeln
 reisedat <- as.data.frame(apply(reisedat, 2, as.numeric))
 ```
 
-```{r qqentfernung, echo=TRUE, fig.align='center', fig.cap='Links: QQ-Plot der Entfernungsdaten. Wie wir in Kapitel \\@ref(haeufigkeit) und Kapitel \\@ref(verteilungen) gesehen haben sind die Originaldaten rechtsschief ("right-skewed"), was wir an dem nach oben gewölbten QQ-Plot sehen (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)). Eine Lognormalverteilung passte hier mässig gut. Rechts: QQ-Plot der log-transformierten Entfernungsdaten. Die Verteilung der transformierten Daten ist eher linksschief ("left-skewed"), was wir an dem nach unten gewölbten QQ-Plot sehen (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)).', fig.show='hold', out.width='50%'}
+```{r qqentfernung, echo=TRUE, fig.align='center', fig.cap='Links: QQ-Plot der Entfernungsdaten. Wie wir in Kapitel \\@ref(haeufigkeit) und Kapitel \\@ref(verteilungen) gesehen haben, sind die Originaldaten rechtsschief (right-skewed), was wir an dem nach oben gewölbten QQ-Plot sehen (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)). Eine Lognormalverteilung passte hier mässig gut. Rechts: QQ-Plot der log-transformierten Entfernungsdaten. Die Verteilung der transformierten Daten ist eher linksschief (left-skewed), was wir an dem nach unten gewölbten QQ-Plot sehen (vgl. [QQ-Plot App](https://xiongge.shinyapps.io/QQplots/)).', fig.show='hold', out.width='50%'}
 # QQ-Plot für Originaldaten
 qqnorm(reisedat$distanz)
 qqline(reisedat$distanz)
