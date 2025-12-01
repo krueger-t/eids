@@ -1,13 +1,13 @@
 # Statistische Tests {#tests}
 
-Wie wir in Kapitel \@ref(schaetzen) gelernt haben geht es in der schließenden Statistik um die Verdichtung der Informationen in einer Stichprobe in Form von Stichprobenfunktionen, mit denen wir _bestimmte Parameter der Grundgesamtheit schätzen_ (vgl. @mittag2016, Abb. 14.1, S. 212). Während es sich im Fall von Verteilungsparametern bei den Stichprobenfunktionen v.a. um den Mittelwert und die Standardabweichung handelt, sind die Stichprobenfunktionen im Fall von statistischen Tests sogenannte **Teststatistiken**, die die Informationen in der Stichprobe verdichten.
+Wie wir in Kapitel \@ref(schaetzen) gelernt haben, geht es in der schließenden Statistik um die Verdichtung der Informationen in einer Stichprobe in Form von Stichprobenfunktionen, mit denen wir _bestimmte Parameter der Grundgesamtheit schätzen_ (vgl. @mittag2016, Abb. 14.1, S. 212). Während es sich im Fall von Verteilungsparametern bei den Stichprobenfunktionen v.a. um den Mittelwert und die Standardabweichung handelt, sind die Stichprobenfunktionen im Fall von statistischen Tests sogenannte **Teststatistiken**, die die Informationen in der Stichprobe verdichten.
 
 ```{r echo=FALSE}
 # Paket laden, das für das Einlesen von xlsx gebraucht wird
 library(readxl)
 library(ggplot2)
 # Daten einlesen
-reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2024_korrigiert.xlsx", na = "-999")
+reisedat <- read_excel("data/Daten_Distanz_Reisezeit_2025.xlsx", na = "-999")
 # in data.frame umwandeln
 reisedat <- as.data.frame(reisedat)
 ```
@@ -16,7 +16,7 @@ Wir werden das vorliegende Kapitel über die nächsten drei Wochen lesen. Dabei 
 
 - **Beispiel 1**: Laut [dieser Umfrage](https://www.personalwirtschaft.de/der-job-hr/arbeitswelt/artikel/pendelstrecken-werden-immer-laenger.html) von 2018 hält jede zweite Berufspendler:in eine durchschnittliche Fahrtzeit von bis zu 60 min pro Strecke für akzeptabel. Anhand Ihrer Reisezeitdaten (morgens, Abbildung \@ref(fig:freisezeit)) wollen wir fragen: Ist der Mittelwert $\mu$ der Grundgesamtheit _kleiner_ als der Vergleichswert $\mu_0=60$ aus der Studie? Den Mittelwert der Grundgesamtheit kennen wir nicht genau, er wird ja mit dem Stichprobenmittel $\bar x=$ `r round(mean(reisedat$zeit_morgens, na.rm=TRUE),1)` geschätzt. Diese Schätzung ist unsicher (vgl. Standardfehler) und damit auch die Differenz zum Vergleichswert.^[Wir vermeiden hier die klassische strikte Einteilung in "signifikant/nicht signifikant", die seit längerem in Kritik geraten ist (z.B. @amrhein2019). Wir versuchen hier einen Spagat zwischen dieser Kritik und der Vermittlung der klassischen Methoden.] Die Frage "kleiner als", wenn es um einen Mittelwert geht, beantwortet der sogenannte **linksseitige Einstichproben-t-Test** (Kapitel \@ref(ttest1)).
 
-```{r freisezeit, echo=FALSE, fig.align='center', fig.cap='Histogramm des Merkmals "Reisezeit, morgens" der Reisedaten aus dem aktuellen Wintersemester. Die vertikale Linie markiert den Mittelwert.', out.width='50%'}
+```{r freisezeit, echo=FALSE, fig.align='center', fig.cap='Histogramm des Merkmals Reisezeit, morgens der Reisedaten aus dem aktuellen Wintersemester. Die vertikale Linie markiert den Mittelwert.', out.width='50%'}
 # Histogramm
 ggplot(reisedat, aes(x=zeit_morgens)) +
   geom_histogram(aes(y=after_stat(count/sum(count))), breaks=seq(0, 130, 10), colour="black", fill="grey") +
@@ -31,7 +31,7 @@ ggplot(reisedat, aes(x=zeit_morgens)) +
 
 - **Beispiel 4**: Jetzt vergleichen wir die Reisezeiten morgens und nachmittags (Abbildung \@ref(fig:freisezeit2)). Sind die (mit den Stichprobenmitteln $\bar x_1=$ `r round(mean(reisedat$zeit_morgens, na.rm=TRUE),1)` und $\bar x_2=$ `r round(mean(reisedat$zeit_nachmittags, na.rm=TRUE),1)` geschätzten) Mittelwerte $\mu_1$ und $\mu_2$ der Grundgesamtheiten ungleich? Diese Frage beantwortet der sogenannte **Zweistichproben-t-Test (zweiseitig)** (Kapitel \@ref(ttest2)).^[Genau genommen ist dies ein gepaarter Zweistichproben-t-Test (siehe Beispiel 5), da die beiden Reisezeiten (morgens und nachmittags) jeweils für die selben Personen erhoben wurden. Für dieses Beispiel tun wir jedoch so, als wären die beiden Stichproben unabhängig.]
 
-```{r freisezeit2, echo=FALSE, fig.align='center', fig.cap='Histogramme der Merkmale "Reisezeit, morgens" und "Reisezeit, nachmittags" der Reisedaten aus dem aktuellen Wintersemester. Die vertikalen Linien markieren die jeweiligen Mittelwerte', fig.show='hold', out.width='50%'}
+```{r freisezeit2, echo=FALSE, fig.align='center', fig.cap='Histogramme der Merkmale Reisezeit, morgens und Reisezeit, nachmittags der Reisedaten aus dem aktuellen Wintersemester. Die vertikalen Linien markieren die jeweiligen Mittelwerte.', fig.show='hold', out.width='50%'}
 ggplot(reisedat, aes(x=zeit_morgens)) +
   geom_histogram(aes(y=after_stat(count/sum(count))), breaks=seq(0, 130, 10), colour="black", fill="grey") +
   geom_vline(xintercept=mean(reisedat$zeit_morgens, na.rm=TRUE)) +
@@ -96,7 +96,7 @@ Die folgenden Prinzipien liegen allen statistischen Tests zugrunde, wobei wir vi
 
 Das Formulieren von Hypothesen ist die klassische formale Vorgehensweise, Fragestellungen wie die oben genannten Beispiele statistisch zu übersetzen.
 
-> Bsp. 3: Ist $\mu$ (gegeben $\bar x=$) `r round(mean(reisedat$zeit_morgens, na.rm=TRUE),1)` größer als $\mu_0=45$?
+> Bsp. 3: Ist $\mu$ (gegeben $\bar x=$ `r round(mean(reisedat$zeit_morgens, na.rm=TRUE),1)`) größer als $\mu_0=45$?
 
 Jeder statistische Test verlangt eine bestimmte **Nullhypothese** $H_0$, für die sich wahrscheinlichkeitstheoretische Aussagen treffen lassen.
 
@@ -124,7 +124,7 @@ Ein einseitiger Test ist in der Regel aussagekräftiger. Die Ergebnisse beider T
 
 ### Die Teststatistik
 
-Jeder Test hat eine bestimmte **Teststatistik** (Prüfwert) von der wir wissen, wie sie bei wiederholtem Stichprobenziehen verteilt ist (unter bestimmten Annahmen), _falls die Nullhypothese wahr ist_. Die Teststatistik eines Einstichproben-t-Tests beispielsweise ist:
+Jeder Test hat eine bestimmte **Teststatistik** (Prüfwert), von der wir wissen, wie sie bei wiederholtem Stichprobenziehen verteilt ist (unter bestimmten Annahmen), _falls die Nullhypothese wahr ist_. Die Teststatistik eines Einstichproben-t-Tests beispielsweise ist:
 $$\begin{equation}
 t_s=\frac{\hat\mu-\mu_0}{s_{\hat\mu}}\sim t_{n-1}
 (\#eq:ts)
@@ -136,7 +136,7 @@ $\hat\mu$ ist der Mittelwertschätzer; in Bsp. 1 $\hat\mu=\bar x=$ `r round(mean
 
 Wenn die Teststatistik nahe dem Zentrum der Verteilung ist, die unter der Nullhypothese zu erwarten ist, d.h. in einem Bereich hoher Wahrscheinlichkeit, dann lehnen wir die Nullhypothese _nicht_ ab. In Abbildung \@ref(fig:testprinzip) ist das für die Teststatistik $t_s$ in blau und die t-Verteilung dargestellt. Im Bsp. 2 würden wir in so einem Fall bis auf weiteres schließen, dass die Daten mit der Nullhypothese $\mu=\mu_0=60$ kompatibel sind.
 
-Ist die Teststatistik dagegen in den Extremen der Verteilung, d.h. in einem Bereich geringer Wahrscheinlichkeit, dann lehnen wir die Nullhypothese ab. In Abbildung \@ref(fig:testprinzip) ist das mit den roten Pfeilen verdeutlicht. Im Bsp. 2 würden wir in so einem Fall schließen, dass die Daten nicht mit der Nullhypothese $\mu=\mu_0=60$ kompatibel sind. Das ist in dem Beispiel aber nicht das Ergebnis, wie wir noch sehen werden.
+Ist die Teststatistik dagegen in den Extremen der Verteilung, d.h. in einem Bereich geringer Wahrscheinlichkeit, dann lehnen wir die Nullhypothese ab. In Abbildung \@ref(fig:testprinzip) ist das mit den roten Pfeilen verdeutlicht. Im Bsp. 2 würden wir in so einem Fall schließen, dass die Daten nicht mit der Nullhypothese $\mu=\mu_0=60$ kompatibel sind. Das ist in dem Beispiel das Ergebnis, wie wir noch sehen werden.
 
 ```{r testprinzip, echo=FALSE, fig.align='center', fig.cap='Grundprinzip des statistischen Testens, hier dargestellt für einen konstruierten t-Test: Verteilungsfunktion der t-Verteilung mit 97 Freiheitsgraden, mit Teststatistik $t_s$ (blau) im Zentrum der Verteilung, d.h. im Bereich hoher Wahrscheinlichkeit unter der Nullhypothese. Wir lehnen die Nullhypothese _nicht_ ab. Wäre die Teststatistik dagegen in den Extremen der Verteilung (mit roten Pfeilen verdeutlicht), wäre sie im Bereich geringer Wahrscheinlichkeit unter der Nullhypothese. In dem Fall lehnen wir die Nulhypothese ab.', out.width='80%'}
 plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), 97), ylim=c(0,1), type='l',
@@ -151,7 +151,7 @@ arrows(x0=-0.6, y0=0.15, x1=-5, y1=0.15, length=0.1, angle=15, col="red")
 
 ## t-Test (Vergleich von Mittelwerten) {#ttest}
 
-Jetzt haben wir schon viel über den t-Test gehört. Er ist dazu da, _Mittelwerte zu vergleichen_. Wenn wir den Mittelwert einer Stichprobe gegen einen Vergleichswert testen dann ist das der **Einstichproben-t-Test**. Wenn wir die Mittelwerte zweier Stichproben vergleichen dann ist das der **Zweistichproben-t-Test**. Wenn die beiden Stichproben _gepaart_ sind, d.h. wenn die Merkmalswerte jeweils für _die selbe statistische Einheit_ erhoben wurden, dann spricht man vom **gepaarten Zweistichproben-t-Test**. Die Teststatistik ist in allen diesen Fällen ähnlich. Schauen wir uns nun die Varianten des t-Tests anhand der Beispiele an.
+Jetzt haben wir schon viel über den t-Test gehört. Er ist dazu da, _Mittelwerte zu vergleichen_. Wenn wir den Mittelwert einer Stichprobe gegen einen Vergleichswert testen, dann ist das der **Einstichproben-t-Test**. Wenn wir die Mittelwerte zweier Stichproben vergleichen, dann ist das der **Zweistichproben-t-Test**. Wenn die beiden Stichproben _gepaart_ sind, d.h. wenn die Merkmalswerte jeweils für _die selbe statistische Einheit_ erhoben wurden, dann spricht man vom **gepaarten Zweistichproben-t-Test**. Die Teststatistik ist in allen diesen Fällen ähnlich. Schauen wir uns nun die Varianten des t-Tests anhand der Beispiele an.
 
 ### Einstichproben-t-Test {#ttest1}
 
@@ -192,7 +192,7 @@ ts <- (xbar - mu0) / s * sqrt(n)
 ts
 ```
 
-Dieser Wert der Teststatistik liegt im Zentrum der t-Verteilung, die unter der Nullhypothese zu erwarten ist:
+Dieser Wert der Teststatistik liegt in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist:
 ```{r echo=TRUE, out.width='80%'}
 plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), n-1), ylim=c(0,1), type='l',
      xlab='Z=t_s', ylab='Verteilungsfunktion')
@@ -210,11 +210,11 @@ Mit Zahlenwerten:
 pt(ts, n-1)
 ```
 
-Der p-Wert ist relativ groß, d.h. es ist wahrscheinlich, dass dieser Wert der Teststatisk durch Zufall zustande kam falls die Nullhypothese wahr ist. Aber ist er wahrscheinlich genug, um die Nullhypothese beizubehalten? In der klassischen Statistik entscheiden wir das auf Basis eines sogenannten **Signifikanzniveaus**, z.B. 0.01: Ist der p-Wert kleiner oder gleich 0.01 lehnen wir die Nullhypothese ab. Ist der p-Wert größer als 0.01 behalten wir die Nullhypothese bis auf weiteres bei. Das Signifikanzniveau von 0.01 ist dabei reine Konvention! Tatsächlich ist die binäre Einteilung andhand des p-Wertes in signifikant/nicht signifikant seit längerem in der Kritik (z.B. @amrhein2019). _R_ beispielsweise gibt Signifikanz zu mehreren Niveaus an. Grundsätzlich ist immer der p-Wert anzugeben. Dann kann jede Person ihr eigenes Signifikanzniveau ansetzen.
+Der p-Wert ist sehr klein, d.h. es ist sehr unwahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam, falls die Nullhypothese wahr ist. Aber ist er unwahrscheinlich genug, um die Nullhypothese abzulehnen? In der klassischen Statistik entscheiden wir das auf Basis eines sogenannten **Signifikanzniveaus**, z.B. 0.01: Ist der p-Wert kleiner oder gleich 0.01, lehnen wir die Nullhypothese ab. Ist der p-Wert größer als 0.01, behalten wir die Nullhypothese bis auf weiteres bei. Das Signifikanzniveau von 0.01 ist dabei reine Konvention! Tatsächlich ist die binäre Einteilung andhand des p-Wertes in signifikant/nicht signifikant seit längerem in der Kritik (z.B. @amrhein2019). _R_ beispielsweise gibt Signifikanz zu mehreren Niveaus an. Grundsätzlich ist immer der p-Wert anzugeben. Dann kann jede Person ihr eigenes Signifikanzniveau ansetzen.
 
 Für unser Beispiel 1 schließen wir jedenfalls unter diesen Bedingungen:
 
-> Die Daten sind kompatibel mit der Nullhypothese $\mu=\mu_0=60$. Der Unterschied zum geschätzten Mittelwert $\bar x=$ `r round(mean(reisedat$zeit_morgens, na.rm=TRUE),1)` ist gering vor dem Hintergrund des Standardfehlers des Schätzers, der sich wiederum aus der Streung der Stichprobe ergibt. Der Unterschied ist "statistisch nicht signifikant" in der klassischen Interpretation.
+> Die Daten sind nicht kompatibel mit der Nullhypothese $\mu=\mu_0=60$. Der Unterschied zum geschätzten Mittelwert $\bar x=$ `r round(mean(reisedat$zeit_morgens, na.rm=TRUE),1)` ist groß vor dem Hintergrund des Standardfehlers des Schätzers, der sich wiederum aus der Streung der Stichprobe ergibt. Der Unterschied ist "statistisch signifikant" in der klassischen Interpretation.
 
 #### Beispiel 2 (zweiseitiger Einstichproben-t-Test)
 
@@ -246,11 +246,11 @@ Mit Zahlenwerten:
 2*(1-pt(abs(ts),n-1))
 ```
 
-Wie wir sehen ist der p-Wert des zweiseitigen Tests genau zweimal der p-Wert des einseitigen Tests. D.h. wenn der zweiseitige Test signifikant ist, dann ist auch der einseitige Test signifikant. In der Praxis wird oft ein zweiseitiger Test durchgeführt und dann für die einseitige Variante, die sich aus den Zahlenwerten ergibt (hier Bsp. 1), der p-Wert halbiert.
+Wie wir sehen, ist der p-Wert des zweiseitigen Tests genau zweimal der p-Wert des einseitigen Tests. D.h. wenn der zweiseitige Test signifikant ist, dann ist auch der einseitige Test signifikant. In der Praxis wird oft ein zweiseitiger Test durchgeführt und dann für die einseitige Variante, die sich aus den Zahlenwerten ergibt (hier Bsp. 1), der p-Wert halbiert.
 
 Für Beispiel 2 schließen wir jedenfalls:
 
-> Die Daten sind kompatibel mit der Nullhypothese $\mu=\mu_0=60$.
+> Die Daten sind nicht kompatibel mit der Nullhypothese $\mu=\mu_0=60$.
 
 Der zweiseitige Test ist wie gesagt ein schwächerer Test als der einseitige, den wir bereits in Bsp. 1 durchgeführt haben. In der Praxis würde man die Tests wie gesagt nicht so hintereinander schalten, sondern umgekehrt.
 
@@ -260,7 +260,7 @@ Es fehlt noch der **rechtsseitige** Test, für den wir eine Fragestellung wie fo
 
 > Ist der (mit dem Stichprobenmittel $\bar x=$ `r round(mean(reisedat$zeit_morgens, na.rm=TRUE),1)` geschätzte) Mittelwert $\mu$ der Grundgesamtheit _größer_ als der Vergleichswert $\mu_0=45$?
 
-Die Nullhypothese ist wieder, dass der Mittelwert kleiner oder gleich dem Vergleichswert ist:^[Wie im linksseitigen Fall findet man in Textbüchern und online Quellen oft die Formulierung $H_0:\mu\leq\mu_0$, die sich aber nicht mit den wahrscheinlichkeitstheoretischen Überlegungen zur Nullhypothese vereinbaren lässt, wie wir noch sehen werden.]
+Die Nullhypothese ist wieder, dass der Mittelwert gleich dem Vergleichswert ist:^[Wie im linksseitigen Fall findet man in Textbüchern und online Quellen oft die Formulierung $H_0:\mu\leq\mu_0$, die sich aber nicht mit den wahrscheinlichkeitstheoretischen Überlegungen zur Nullhypothese vereinbaren lässt, wie wir noch sehen werden.]
 $$H_0:\mu=\mu_0$$
 Die Alternativhypothese ist, dass der Mittelwert _größer_ als der Vergleichswert ist:
 $$H_1:\mu>\mu_0$$
@@ -271,7 +271,7 @@ ts <- (xbar - 45) / s * sqrt(n)
 ts
 ```
 
-Der Wert der Teststatistik ist jetzt positiv, da $\bar x$ größer ist als $\mu_0$. Er liegt diesmal in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist, und zwar auf der rechten Seite:
+Der Wert der Teststatistik ist jetzt positiv, da $\bar x$ größer ist als $\mu_0$. Er liegt wieder in den Extremen der t-Verteilung, die unter der Nullhypothese zu erwarten ist, und zwar auf der rechten Seite:
 ```{r echo=TRUE, out.width='80%'}
 plot(seq(-5,5,0.01), pt(seq(-5,5,0.01), n-1), ylim=c(0,1), type='l',
      xlab='Z=t_s', ylab='Verteilungsfunktion')
@@ -289,7 +289,7 @@ Mit Zahlenwerten:
 1-pt(ts, n-1)
 ```
 
-Dieser p-Wert ist wesentlich kleiner als das konventionelle Signifikanzniveau von 0.01, d.h. wir lehnen diese Nullhypothese ab und schließen für Beispiel 3:
+Dieser p-Wert ist wieder wesentlich kleiner als das konventionelle Signifikanzniveau von 0.01, d.h. wir lehnen diese Nullhypothese ebenfalls ab und schließen für Beispiel 3:
 
 > Die Daten sind nicht kompatibel mit der Nullhypothese $\mu=\mu_0=45$. Der Unterschied zum geschätzten Mittelwert $\bar x=$ `r round(mean(reisedat$zeit_morgens, na.rm=TRUE),1)` ist groß im Vergleich zum Standardfehler des Schätzers (und damit im Vergeich zur Streuung der Stichprobe). Der Unterschied ist "statistisch signifikant" in der klassischen Interpretation.
 
@@ -481,7 +481,7 @@ Da der p-Wert kleiner ist als das konventionelle Signifikanzniveau von 0.01 ist,
 
 An dieser Stelle ein paar Worte zur Interpretation des p-Wertes. In der klassischen Statistik hängen wie gesagt der p-Wert und das Signifikanzniveau (hier 0.01) zusammen: Ist der p-Wert kleiner oder gleich 0.01 wird die Nullhypothese abgelehnt; ist der p-Wert größer als 0.01 wird die Nullhypothese bis auf weiteres beibehalten. Andere Signifikanzniveaus sind üblich (0.001, 0.05 etc.) und _R_ gibt wie gesagt immer mehrere an. Aber was sagt ein p-Wert von 0.01 nun genau aus?
 
-Ein p-Wert von 0.01 sagt aus, dass wir bei _hypothetisch wiederholter Stichprobenziehung_ des selben Umfangs aus der selben Grundgesamtheit in 1% der Fälle die Nullhypothese ablehnen würden obwohl sie wahr ist - ein sogenannter **Fehler 1. Art**.
+Ein p-Wert von 0.01 sagt aus, dass wir bei _hypothetisch wiederholter Stichprobenziehung_ aus der selben Grundgesamtheit in 1% der Fälle die Nullhypothese ablehnen würden obwohl sie wahr ist - ein sogenannter **Fehler 1. Art**.
 
 In den Worten des Wissenschaftsphilosophen Ian @hacking2001:
 
@@ -499,22 +499,22 @@ Während der t-Test für den Vergleich von Mittelwerten zuständig ist, dient de
 
 Siehe Abbildung \@ref(fig:freisezeit2):
 
-> Ist die Varianz der Reisezeit nachmittags $\sigma_1^2$ (gegeben $s_1^2=$ `r round(var(reisedat$zeit_morgens, na.rm=TRUE),0)`) größer als die Varianz der Reisezeit morgens $\sigma_2^2$ (gegeben $s_2^2=$ `r round(var(reisedat$zeit_nachmittags, na.rm=TRUE),0)`)?
+> Ist die Varianz der Reisezeit nachmittags $\sigma_2^2$ (gegeben $s_2^2=$ `r round(var(reisedat$zeit_nachmittags, na.rm=TRUE),0)`) größer als die Varianz der Reisezeit morgens $\sigma_1^2$ (gegeben $s_1^2=$ `r round(var(reisedat$zeit_morgens, na.rm=TRUE),0)`)?
 
 Die Nullhypothese ist, analog zum t-Test, dass die beiden Varianzen gleich sind:
-$$H_0:\sigma_1^2=\sigma_2^2$$
-Die Alternativhypothese ist, dass $\sigma_1^2$ _größer_ ist als $\sigma_2^2$:
-$$H_1:\sigma_1^2>\sigma_2^2$$
+$$H_0:\sigma_2^2=\sigma_1^2$$
+Die Alternativhypothese ist, dass $\sigma_2^2$ _größer_ ist als $\sigma_1^2$:
+$$H_1:\sigma_2^2>\sigma_1^2$$
 
-Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo $s_1^2$ tatsächlich größer ist als $s_2^2$. Die Formulierung ist per Konvention immer die eines rechtsseitigen Tests, wo die größere Varianz links steht. Die Teststatistik $F_s$ ist:
+Die Alternativhypothese ergibt sich wie beim t-Test aus den Zahlenwerten der Stichproben, wo $s_2^2$ tatsächlich größer ist als $s_1^2$. Die Formulierung ist per Konvention immer die eines rechtsseitigen Tests, wo die größere Varianz links steht. Die Teststatistik $F_s$ ist:
 $$\begin{equation}
-F_s=\frac{s_1^2}{s_2^2}\sim F_{n_1-1;n_2-1}
+F_s=\frac{s_2^2}{s_1^2}\sim F_{n_2-1;n_1-1}
 (\#eq:fs)
 \end{equation}$$
 
-Die größere Stichprobenvarianz steht für den rechtsseitigen Test immer im Zähler.^[Das hat wahrscheinlich numerische Gründe: Steht die größere Stichprobenvarianz immer im Zähler, dann nimmt die Teststatistik nur Werte größer oder gleich 1 an. So werden Rundungsfehler bei Zahlen kleiner 1 vermieden, die stärker ins Gewicht fallen würden.] Sind die beiden Stichprobenvarianzen annähernd gleich dann ist $F_s$ annähernd $1$. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten **F-Verteilung** mit den Parameterwerten $n_1-1$ und $n_2-1$ (auch hier genannt "Freiheitsgrade", wobei es im Gegensatz zur t-Verteilung zwei gibt).^[Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.] Abbildung \@ref(fig:fpdfcdfvariation) zeigt die F-Verteilung für verschiedene Kombinationen der beiden Freiheitsgrade. Die F-Verteilung geht von $0$ bis $+\infty$, d.h. ist nur für positive Werte definiert. Das passt für Varianzen, da diese nie negativ sind. Die F-Verteilung wird schmaler mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmenden Stichprobengrößen $n_1-1$ und $n_2-1$ im Falle des F-Tests.
+Die größere Stichprobenvarianz steht für den rechtsseitigen Test immer im Zähler.^[Das hat wahrscheinlich numerische Gründe: Steht die größere Stichprobenvarianz immer im Zähler, dann nimmt die Teststatistik nur Werte größer oder gleich 1 an. So werden Rundungsfehler bei Zahlen kleiner 1 vermieden, die stärker ins Gewicht fallen würden.] Sind die beiden Stichprobenvarianzen annähernd gleich, dann ist $F_s$ annähernd $1$. Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten **F-Verteilung** mit den Parameterwerten $n_2-1$ und $n_1-1$ (auch hier genannt "Freiheitsgrade", wobei es im Gegensatz zur t-Verteilung zwei gibt).^[Auch hier gibt die Verteilung der Teststatistik dem Test seinen Namen.] Abbildung \@ref(fig:fpdfcdfvariation) zeigt die F-Verteilung für verschiedene Kombinationen der beiden Freiheitsgrade. Die F-Verteilung geht von $0$ bis $+\infty$, d.h. ist nur für positive Werte definiert. Das passt für Varianzen, da diese nie negativ sind. Die F-Verteilung wird schmaler mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmenden Stichprobengrößen $n_2-1$ und $n_1-1$ im Falle des F-Tests.
 
-```{r fpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen "Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+```{r fpdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der F-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Kombinationen der beiden Freiheitsgrade (die beiden Parameter der F-Verteilung heißen Freiheitsgrade). Rechts: Verteilungsfunktion der entsprechenden F-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # pdf
 plot(seq(0,5,0.01), df(seq(0,5,0.01), 1, 1), ylim=c(0,4), type='l',
      xlab='Z=z', ylab='Dichtefunktion')
@@ -548,7 +548,7 @@ n1
 n2 <- length(reisedat$zeit_nachmittags[!is.na(reisedat$zeit_nachmittags)])
 n2
 # Teststatistik
-fs <- var1 / var2
+fs <- var2 / var1
 fs
 ```
 
@@ -568,7 +568,7 @@ Mit Zahlenwerten:
 1-pf(fs, n2-1, n1-1)
 ```
 
-Da der p-Wert viel größer ist als das konventionelle Signifikanzniveau von 0.01, ist sehr wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir lehnen demnach die Nullhypothese nicht ab und schließen für Beispiel 6:
+Da der p-Wert größer ist als das konventionelle Signifikanzniveau von 0.01, ist es wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir lehnen demnach die Nullhypothese nicht ab und schließen für Beispiel 6:
 
 > Die Daten sind kompatibel mit der Nullhypothese gleicher Varianzen. In der klassischen Interpretation: Der Unterschied der Varianzen der beiden Reisezeiten ist statistisch "nicht signifikant".
 
@@ -582,9 +582,9 @@ Siehe Abbildung \@ref(fig:ertrag):
 
 > Hat Bodenart einen Einfluss auf Ertrag?
 
-Kategoriale Variablen (hier eine: Bodenart) werden üblicherweise **Faktoren** genannt, die einzelnen Kategorien **Faktorstufen**, manchmal auch **Gruppen**.^[Andere Disziplinen und experimentelle Zusammenhänge haben noch andere Bezeichnungen.] In unserem Ertragsbeispiel sind die Faktorstufe "Sand", "Ton" und "Lehm". Die metrische Zielvariable, hier Ertrag, nennen wir üblicherweise **abhängige Variable**. ANOVA mit einem Faktor heißt **einfaktorielle Varianzanalyse**.
+Kategoriale Variablen (hier eine: Bodenart) werden üblicherweise **Faktoren** genannt. Die einzelnen Kategorien werden **Faktorstufen** genannt, manchmal auch **Gruppen**.^[Andere Disziplinen und experimentelle Zusammenhänge haben noch andere Bezeichnungen.] In unserem Ertragsbeispiel sind die Faktorstufen "Sand", "Ton" und "Lehm". Die metrische Zielvariable, hier Ertrag, nennen wir üblicherweise **abhängige Variable**. ANOVA mit einem Faktor heißt **einfaktorielle Varianzanalyse**.
 
-Um zu testen, ob der Faktor einen Einfluss auf die abhängige Variable hat, werden die Mittelwerte der abhängigen Variable für die einzelnen Faktorstufen gebildet. Die Varianz der Datenpunkte um diese Mittelwerte wird sodann verglichen mit der Varianz der Datenpunkte um den gemeinsamen Mittelwert (Abbildung \@ref(fig:anovassysse)). Ist die Varianz um die Einzelmittelwerte wesentlich kleiner als die Varianz um den Gesamtmittelwert dann schliessen wir, dass der Faktor einen wesentlichen Anteil der Gesamtvarianz erklärt und damit der Faktor einen Einfluss auf die abhängige Variable hat. Man kann auch sagen, dass wir die Variation _zwischen_ den Faktorstufen (d.h. das Überlappen oder nicht der Boxplots in Abbildung \@ref(fig:ertrag)) mit der Variation _innerhalb_ der Faktorstufen (d.h. die Ausdehnung der individuellen Boxplots) vergleichen. Liegt nur ein Faktor mit zwei Faktorstufen vor, dann ist die ANOVA äquivalent zum t-Test.
+Um zu testen, ob der Faktor einen Einfluss auf die abhängige Variable hat, werden die Mittelwerte der abhängigen Variable für die einzelnen Faktorstufen gebildet. Die Varianz der Datenpunkte um diese Mittelwerte wird sodann verglichen mit der Varianz der Datenpunkte um den gemeinsamen Mittelwert (Abbildung \@ref(fig:anovassysse)). Ist die Varianz um die Einzelmittelwerte wesentlich kleiner als die Varianz um den Gesamtmittelwert, dann schliessen wir, dass der Faktor einen wesentlichen Anteil der Gesamtvarianz erklärt und damit der Faktor einen Einfluss auf die abhängige Variable hat. Man kann auch sagen, dass wir die Variation _zwischen_ den Faktorstufen (d.h. das Überlappen oder nicht der Boxplots in Abbildung \@ref(fig:ertrag)) mit der Variation _innerhalb_ der Faktorstufen (d.h. die Ausdehnung der individuellen Boxplots) vergleichen. Liegt nur ein Faktor mit zwei Faktorstufen vor, dann ist die ANOVA äquivalent zum t-Test.
 
 ```{r anovassysse, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.cap='Links: Variation der Datenpunkte um den gemeinsamen Mittelwert $\\bar y$, quantifiziert mit $SSY$. Rechts: Variation der Datenpunkte um die individuellen Mittelwerte $\\bar y_1, \\bar y_2, \\bar y_3$, quantifiziert mit $SSE$.', fig.show='hold', out.width='50%'}
 
@@ -672,7 +672,7 @@ ertrag_long <- ertrag %>%
 summary(aov(ertrag_long$value~ertrag_long$name))
 ```
 
-Da der p-Wert größer ist als das konventionelle Signifikanzniveau von 0.01, ist wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir können demnach die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 7:
+Da der p-Wert größer ist als das konventionelle Signifikanzniveau von 0.01, ist es wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir können demnach die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 7:
 
 > Die Daten sind kompatibel mit der Nullhypothese, dass die durch den Faktor Bodenart erklärte Varianz der Erträge gleich der _nicht_ erklärten Varianz ist. Klassisch interpretiert: Der Einfluss von Bodenart auf Ertrag ist nicht signifikant.
 
@@ -693,7 +693,7 @@ $$H_0:F_X(x)=F_0(x)$$
 Die Alternativhypothese ist, dass die Verteilungsfunktion von $X$ _ungleich_ $F_0$ ist:
 $$H_1:F_X(x)\ne F_0(x)$$
 
-In diesem Beispiel testen wir auf eine Normalverteilung, grundsätzlich können wir aber auf jede andere Verteilung testen. Die Teststatistik - hier genannt $d_n$ - ist im Falle des KS-Testes der maximale absolute Abstand zwischen empirischer und theoretischer Verteilungsfunktion:
+In diesem Beispiel testen wir auf eine Normalverteilung, grundsätzlich können wir aber auf jede andere Verteilung testen. Die Teststatistik - hier genannt $d_n$ - ist im Fall des KS-Tests der maximale absolute Abstand zwischen empirischer und theoretischer Verteilungsfunktion:
 $$\begin{equation}
 d_n=\sup\left|F_X(x)-F_0(x)\right|
 (\#eq:dn)
@@ -701,7 +701,7 @@ d_n=\sup\left|F_X(x)-F_0(x)\right|
 
 Die Bezeichung $\sup$ steht für "Supremum", also "Maximum"; sie bezeichnet hier den größten Wert aller vorliegenden absoluten Abstände $\left|F_X(x)-F_0(x)\right|$ (Abbildung \@ref(fig:ks1), links).
 
-```{r ks1, echo=FALSE, fig.align='center', fig.cap='Links: Empirische (schwarz) und theoretische (rot) Verteilungsfunktion des Merkmals "Reisezeit, morgens" vom aktuellen Wintersemester. Für die theoretische Verteilungsfunktion wurde eine Normalverteilung angenommen, deren Parameter anhand der Stichprobe geschätzt wurden. Der maximale absolute Abstand der beiden Verteilungsfunktionen, die Teststatistik $d_n$ des KS-Tests, ist in blau markiert. Rechts: Histogramm derselben Daten mit geschätzter Dichtefunktion.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+```{r ks1, echo=FALSE, fig.align='center', fig.cap='Links: Empirische (schwarz) und theoretische (rot) Verteilungsfunktion des Merkmals Reisezeit, morgens vom aktuellen Wintersemester. Für die theoretische Verteilungsfunktion wurde eine Normalverteilung angenommen, deren Parameter anhand der Stichprobe geschätzt wurden. Der maximale absolute Abstand der beiden Verteilungsfunktionen, die Teststatistik $d_n$ des KS-Tests, ist in blau markiert. Rechts: Histogramm derselben Daten mit geschätzter Dichtefunktion.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # (1)
 # Mittelwertschätzer
 xbar <- mean(reisedat$zeit_morgens, na.rm=TRUE)
@@ -735,7 +735,7 @@ plot(h, freq = FALSE, col = "gray",
 curve(dnorm(x, mean=xbar, sd=s), add=TRUE, col = "red")
 ```
 
-Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten **Kolmogorow-Verteilung**. Diese ist in _R_ nicht implementiert und generell aufwendig zu berechnen. Deshalb zeigen wir hier keine Darstellung, sondern benutzen sofort den in _R_ implementierten KS-Test. Das Prinzip ist aber dasselbe wie bei t- und F-Test und allen anderen Tests. Die Teststatistik können wir weiterhin "per Hand" ausrechnen:
+Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer sogenannten **Kolmogorow-Verteilung**. Diese ist in _R_ nicht explizit implementiert und generell aufwendig zu berechnen. Deshalb zeigen wir hier keine Darstellung, sondern benutzen sofort den in _R_ implementierten KS-Test. Das Prinzip ist aber dasselbe wie bei t- und F-Test und allen anderen Tests. Die Teststatistik können wir weiterhin "per Hand" ausrechnen:
 
 ```{r echo=TRUE}
 # Mittelwertschätzer
@@ -747,7 +747,7 @@ s <- sd(reisedat$zeit_morgens, na.rm=TRUE)
 #  Merkmalswerte sortieren
 t_sort <- sort(reisedat$zeit_morgens)
 #  empirische Verteilungsfunktion
-cdf_e <- seq(0, 1-1/length(t_sort), 1/length(t_sort))
+cdf_e <- seq(0+1/length(t_sort), 1, 1/length(t_sort))
 #  theoretische Verteilungsfunktion
 cdf_t <- pnorm(t_sort, mean=xbar, sd=s)
 # absolute Differenzen
@@ -759,9 +759,9 @@ dn
 ks.test(reisedat$zeit_morgens, "pnorm", xbar, s)
 ```
 
-Der Wert der Teststatistik $d_n$ ist `r round(dn,2)`; wir haben ihn "per Hand" ausgerechnet als auch als Ausgabe "D" des KS-Testes erhalten. Die Warnung bezüglich gleicher Stichprobenwerte ("ties") ist unvermeidlich bei realen Stichproben und für unsere Zwecke zu vernachlässigen. Da der p-Wert größer ist als das konventionelle Signifikanzniveau von 0.01, ist wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir können demnach die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 8:
+Der Wert der Teststatistik $d_n$ ist `r round(dn,2)`; wir haben ihn "per Hand" ausgerechnet als auch als Ausgabe "D" des KS-Tests erhalten. Die Warnung bezüglich gleicher Stichprobenwerte ("ties") ist unvermeidlich bei realen Stichproben und für unsere Zwecke zu vernachlässigen. Da der p-Wert größer ist als das konventionelle Signifikanzniveau von 0.01, ist es wahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir können demnach die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 8:
 
-> Wir können nicht ausschließen, dass die Stichprobe der Reisezeit morgens einer normalverteilten Grundgesamtheit entstammt, obwohl die empirische Verteilung leicht linksschief ist. Die Verteilungen sind "statistisch gleich" in der klassischen Interpretation.
+> Wir können nicht ausschließen, dass die Stichprobe der Reisezeit morgens einer normalverteilten Grundgesamtheit entstammt. Die Verteilungen sind "statistisch gleich" in der klassischen Interpretation.
 
 An diesem Beispiel sehen wir bereits, dass der KS-Test sehr tolerant gegenüber Abweichungen der Stichprobe von der Form der Normalverteilung ist. Das ist nicht unpraktisch, da viele statistische Methoden eine Normalverteilung der Daten annehmen.
 
@@ -782,14 +782,14 @@ d_n=\sup\left|F_{X_1}(x)-F_{X_2}(x)\right|
 (\#eq:dn2)
 \end{equation}$$
 
-```{r ks2, echo=FALSE, fig.align='center', fig.cap='Empirische Verteilungsfunktionen der Stichproben der Merkmale "Reisezeit, morgens" und "Reisezeit, nachmittags" vom aktuellen Wintersemester.', message=FALSE, warning=FALSE}
+```{r ks2, echo=FALSE, fig.align='center', fig.cap='Empirische Verteilungsfunktionen der Stichproben der Merkmale Reisezeit, morgens und Reisezeit, nachmittags vom aktuellen Wintersemester.', message=FALSE, warning=FALSE}
 # Werte der empirischen Verteilungsfunktionen für jeden Merkmalswert der beiden Stichproben
 # Merkmalswerte sortieren
 t1_sort <- sort(reisedat$zeit_morgens)
 t2_sort <- sort(reisedat$zeit_nachmittags)
 # empirische Verteilungsfunktion
-cdf_e1 <- seq(1/length(t1_sort), 1, 1/length(t1_sort))
-cdf_e2 <- seq(1/length(t2_sort), 1, 1/length(t2_sort))
+cdf_e1 <- seq(0, 1-1/length(t1_sort), 1/length(t1_sort))
+cdf_e2 <- seq(0, 1-1/length(t2_sort), 1/length(t2_sort))
 # plotte empirische Verteilungsfunktionen
 plot(t1_sort, cdf_e1, type='l', xlab='Reisezeit (min)', ylab='Verteilungsfunktion')
 lines(t2_sort, cdf_e2, ylim=c(0,1), col='red')
@@ -802,7 +802,7 @@ Die Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypoth
 ks.test(reisedat$zeit_morgens, reisedat$zeit_nachmittags)
 ```
 
-Der Wert der Teststatistik $d_n$ ist diesmal 0.12; das Ausrechnen "per Hand" sparen wir uns hier. Da der p-Wert wiederum größer ist als das konventionelle Signifikanzniveau von 0.01, können wir die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 9:
+Der Wert der Teststatistik $d_n$ ist diesmal 0.13; das Ausrechnen "per Hand" sparen wir uns hier. Da der p-Wert wiederum größer ist als das konventionelle Signifikanzniveau von 0.01, können wir die Nullhypothese _nicht_ ablehnen und schließen für Beispiel 9:
 
 > Wir können nicht ausschließen, dass die Stichproben der Reisezeiten morgens und nachmittags der selben Verteilung folgen, obwohl die empirischen Verteilungen unterschiedlich aussehen.
 
@@ -845,7 +845,7 @@ $$\begin{equation}
 
 Diese Teststatistik folgt bei wiederholtem Stichprobenziehen, falls die Nullhypothese wahr ist, einer **Chi-Quadrat-Verteilung** mit Parameterwert $(k-1)\cdot(m-1)$ (auch hier genannt "Anzahl Freiheitsgrade").^[Wiederum ist es die Verteilung, die Teststatistik und Test ihre Namen gibt.] Abbildung \@ref(fig:chi2pdfcdfvariation) zeigt die Chi-Quadrat-Verteilung für verschiedene Anzahl Freiheitsgrade. Die Chi-Quadrat-Verteilung ist wie die F-Verteilung nur für positive Werte definiert. Das passt für $\mathcal{X}^2$, das nie negativ ist. Die Chi-Quadrat-Verteilung wird breiter mit zunehmender Anzahl Freiheitsgrade, d.h. mit zunehmender Anzahl Ausprägungen der beiden Merkmale. Das trägt dem mit zunehmender Anzahl Merkmalsausprägungen größer werdenden Maximalwert von  $\mathcal{X}^2$ Rechnung.
 
-```{r chi2pdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Anzahl Freiheitsgrade (der einzige Parameter der Chi-Quadrat-Verteilung heißt "Anzahl Freiheitsgrade"). Rechts: Verteilungsfunktion der entsprechenden Chi-Quadrat-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
+```{r chi2pdfcdfvariation, echo=FALSE, fig.align='center', fig.cap='Links: Dichtefunktion der Chi-Quadrat-Verteilung einer beliebigen Zufallsvariablen $Z$ für verschiedene Anzahl Freiheitsgrade (der einzige Parameter der Chi-Quadrat-Verteilung heißt Anzahl Freiheitsgrade). Rechts: Verteilungsfunktion der entsprechenden Chi-Quadrat-Verteilungsvarianten.', fig.show='hold', message=FALSE, warning=FALSE, out.width='50%'}
 # pdf
 plot(seq(0,10,0.1), dchisq(seq(0,10,0.1), 1), ylim=c(0,0.5), type='l',
      xlab='Z=z', ylab='Dichtefunktion')
@@ -879,4 +879,4 @@ Der p-Wert ist damit viel kleiner als das konventionelle Signifikanzniveau von 0
 
 Somit ist es sehr unwahrscheinlich, dass dieser Wert der Teststatistik durch Zufall zustande kam falls die Nullhypothese wahr ist. Wir lehnen demnach die Nullhypothese ab und schließen für Beispiel 10:
 
-> Die Abhängigkeit zwischen "Bezirk" und "Votum" ist zwar gering, aber "statistisch signifikant" im klassischen Sinne.
+> Die Abhängigkeit zwischen "Bezirk" und "Votum" ist zwar gering, aber "statistisch signifikant" im klassischen Sinn.
